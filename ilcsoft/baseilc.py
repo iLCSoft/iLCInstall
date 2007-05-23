@@ -37,7 +37,7 @@ class BaseILC:
 			"PATH" : [],
 			"LD_LIBRARY_PATH" : [],
 			"CLASSPATH" : [],
-			"MARLIN_PROCESSOR_LIBS" : []
+			"MARLIN_DLL" : []
 		}
 		self.envbuild = {						# build environment variables used to build Marlin (USERINCLUDES, USERLIBS)
 			"USERINCLUDES" : [],
