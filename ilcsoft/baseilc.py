@@ -22,6 +22,7 @@ class BaseILC:
 		self.hasCMakeSupport = True				# flag for cmake support
 		self.isMarlinPKG = False				# flag for Marlin Packages
 		self.rebuild = False					# flag for calling a "make clean" before building the software
+		self.skipCompile = False				# flag for skipping the compile step of a module
 		self.useLink = False					# flag for "link" packages
 		self.parent = None						# parent class (this should be set to the ilcsoft object)
 		self.reqfiles = []						# list of required files to "use" this package (libraries, binaries, etc.)
@@ -318,6 +319,7 @@ class BaseILC:
 				self.rebuild = True
 				print "***\tInstallation status: ERROR: Package install failed last time it was run!! Will try to rebuild package..."	
 			elif( os.path.exists( self.installPath + "/.doc_failed.tmp" )):
+				self.skipCompile = True
 				print "***\tInstallation status: INCOMPLETE: will finish installing this package..."
 			elif( not self.checkInstall() ):
 				print "***\tInstallation status: INCOMPLETE: will finish installing this package..."
@@ -701,7 +703,8 @@ class BaseILC:
 					os.system( "touch " + self.installPath + "/.doc_failed.tmp" )
 
 			# compile module
-			self.compile()
+			if( not self.skipCompile ):
+				self.compile()
 
 			if( self.useCMake or (not self.isMarlinPKG) or (self.isMarlinPKG and not self.buildInMarlin()) ):
 				os.system( "echo \"" + 100*'#' + "\" >> " + self.logfile )
