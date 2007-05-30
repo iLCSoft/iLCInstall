@@ -252,7 +252,7 @@ USAGE:
 	# CMake stuff
 	# you need this if you want to use CMake
 	# ilcsoft.use( CMake( ilc_home + "CMake/2.4.6" ))
-	# ilcsoft.install( CMakeModules( "HEAD" ))
+	# ilcsoft.install( CMakeModules( "v01-00" ))
 
 	##############################################################################################################
 	# End of configuration tutorial
