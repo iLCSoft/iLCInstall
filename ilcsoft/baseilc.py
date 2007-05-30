@@ -604,7 +604,7 @@ class BaseILC:
 			
 			tryrename( directory, self.version )
 
-		if( self.useCMake ):
+		if( self.useCMake and not self.skipCompile ):
 			trymakedir( self.version + "/build" )
 
 	def cleanupInstall(self):
