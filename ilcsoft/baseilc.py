@@ -685,11 +685,6 @@ class BaseILC:
 			# set environment
 			self.setEnv(self, [])
 
-			if( self.useCMake ):
-				self.setCMakeVars(self,[])
-				print "+ CMake build command: " + self.genCMakeCmd()
-				
-
 			# write snapshot of environment to logfile for debugging
 			if( self.useCMake or (not self.isMarlinPKG) or (self.isMarlinPKG and not self.buildInMarlin()) ):
 				os.system( "echo \"" + 100*'#' + "\" >> " + self.logfile )
@@ -704,6 +699,14 @@ class BaseILC:
 
 			# compile module
 			if( not self.skipCompile ):
+				if( self.useCMake ):
+					self.setCMakeVars(self,[])
+					cmakeCmdstr = self.genCMakeCmd().split()
+					print "+ CMake build variables:"
+					for i in cmakeCmdstr:
+						print "\t" + i
+					print
+				
 				self.compile()
 
 			if( self.useCMake or (not self.isMarlinPKG) or (self.isMarlinPKG and not self.buildInMarlin()) ):
