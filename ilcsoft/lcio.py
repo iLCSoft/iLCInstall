@@ -77,6 +77,7 @@ class LCIO(BaseILC):
 				if( os.system( "ant f77 2>&1 | tee -a " + self.logfile ) != 0 ):
 					self.abort( "failed to compile!!" )
 		
+	def buildDocumentation(self):
 		# build documentation
 		if( self.buildDoc ):
 			os.chdir( self.installPath )
