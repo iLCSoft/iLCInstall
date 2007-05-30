@@ -173,6 +173,10 @@ class ILCSoft:
 			print "+ Initializing " + mod.name + "..."
 			mod.init()
 
+		print "+ Checking for installation consistency..."
+		for mod in self.modules:
+			mod.checkInstallConsistency()
+		
 		print "\n+ Dependencies Pre-Check..."
 		for mod in self.modules:
 			mod.preCheckDeps()

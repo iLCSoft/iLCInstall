@@ -309,10 +309,8 @@ class BaseILC:
 			else:
 				self.abort( "download type " + self.download.type + " not recognized!!" )
 
-	def preCheckDeps(self):
-		""" called before running dependency check
-			useful for adding or removing dependencies based on
-			environment variables or some other setting """
+	def checkInstallConsistency(self):
+		""" check installation consistency """
 		# switch to use mode if already installed
 		if( self.mode == "install" and os.path.exists( self.installPath )):
 			print "*** WARNING: " + self.name + " " + self.version + " already installed in: [ " + self.installPath + " ]!!"
@@ -327,7 +325,12 @@ class BaseILC:
 				print "***\tInstall status: OK: will skip installation and switch to \"use\" mode!!"
 				self.mode = "use"
 
-		if( self.hasCMakeSupport and self.mode == "install" and self.useCMake ):
+
+	def preCheckDeps(self):
+		""" called before running dependency check
+			useful for adding or removing dependencies based on
+			environment variables or some other setting """
+		if( self.mode == "install" and self.useCMake ):
 			self.addExternalDependency( ["CMake","CMakeModules"] )
 			if( self.debug ):
 				self.envcmake["CMAKE_BUILD_TYPE"]="Debug"
@@ -465,6 +468,7 @@ class BaseILC:
 					print "***\t * " + self.name + " changed to \"install\" mode and rebuild flag set to True..."
 					self.mode = "install"
 					self.rebuild = True
+					self.preCheckDeps()
 					print "***\n***\tUpdating dependency tree ( modules that depend on " + self.name + " need also to be rebuilt )...\n***"
 					self.updateDepTree([])
 					print "***\n***\tif you do NOT want to rebuild this module(s) just answer \"no\" later on in the installation process,\n" \
@@ -515,6 +519,7 @@ class BaseILC:
 									print "***\t * " + mod.name + " changed to \"install\" mode and rebuild Flag set to true!!"
 									mod.mode = "install"
 									mod.rebuild = True
+									mod.preCheckDeps()
 									mod.updateDepTree(checked)
 
 	def confirmRebuild( self ):
