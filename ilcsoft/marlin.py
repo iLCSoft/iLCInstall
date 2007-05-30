@@ -59,20 +59,18 @@ class Marlin(BaseILC):
 		f.close()
 
 		# create packages directory
-		try:
-			os.makedirs( self.env["MARLINWORKDIR"] + "/packages" )
-		except:
-			# remove all package links
-			os.chdir( self.env["MARLINWORKDIR"] + "/packages" )
-			# get a list of all files inside packages directory
-			files = glob.glob("*")
-			for file in files:
-				if( file != "CVS" ):
-					if( os.path.islink(file) ):
-						os.unlink( file )
-					else:
-						print "*** WARNING: [ " + dereflinks(file) + " ] is NOT a symbolic link!!" \
-								+ " Marlin will rebuild itself with this package!!"
+		trymakedir( self.env["MARLINWORKDIR"] + "/packages" )
+		# remove all package links
+		os.chdir( self.env["MARLINWORKDIR"] + "/packages" )
+		# get a list of all files inside packages directory
+		files = glob.glob("*")
+		for file in files:
+			if( file != "CVS" ):
+				if( os.path.islink(file) ):
+					os.unlink( file )
+				else:
+					print "*** WARNING: [ " + dereflinks(file) + " ] is NOT a symbolic link!!" \
+							+ " Marlin will rebuild itself with this package!!"
 	
 		# create links to packages
 		os.chdir( self.env["MARLINWORKDIR"] + "/packages" )

@@ -37,10 +37,7 @@ class CERNLIB(BaseILC):
 			return
 
 		# create install base directory
-		try:
-			os.makedirs( os.path.dirname(self.installPath) )
-		except:
-			pass
+		trymakedir( os.path.dirname(self.installPath) )
 
 		os.chdir( os.path.dirname(self.installPath) )
 
@@ -105,12 +102,9 @@ class CERNLIB(BaseILC):
 					+ self.logfile )
 			
 			# create directories
-			try:
-				os.makedirs( "bin" )
-				os.makedirs( "lib" )
-				os.makedirs( "build/log" )
-			except:
-				pass
+			trymakedir( "bin" )
+			trymakedir( "lib" )
+			trymakedir( "build/log" )
 
 			# Create the top level Makefile with imake
 			os.chdir( "build" )
@@ -140,11 +134,8 @@ class CERNLIB(BaseILC):
 	def cleanupInstall(self):
 		os.chdir( os.path.dirname(self.installPath) )
 		for file in self.tgz_files:
-			try:
-				os.unlink(file)
-			except:
-				pass
-		os.unlink( "start_cern" )
+			tryunlink(file)
+		tryunlink( "start_cern" )
 		os.chdir( self.installPath + "/build" )
 
 		# delete object files
