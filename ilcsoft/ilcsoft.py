@@ -148,7 +148,7 @@ class ILCSoft:
 		self.ctime = time.ctime()
 		
 		self.logfile = self.installPath + "/ilcinstall/" + self.config_file_prefix + "-" + self.time + ".log"
-		
+
 		# auto detect modules
 		if( self.module( "Java" ) == None ):
 			auto_java = Java()
@@ -173,6 +173,10 @@ class ILCSoft:
 			print "+ Initializing " + mod.name + "..."
 			mod.init()
 
+		# skip dependencies for downloading only
+		if( self.downloadOnly ):
+			return
+		
 		print "\n+ Checking for installation consistency..."
 		for mod in self.modules:
 			mod.checkInstallConsistency()
