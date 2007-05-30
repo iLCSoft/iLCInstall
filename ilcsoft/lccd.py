@@ -56,6 +56,7 @@ class LCCD(BaseILC):
 				self.abort( "failed to install!!" )
 		
 		# build documentation
+	def buildDocumentation(self):
 		if( self.buildDoc ):
 			os.chdir( self.installPath + "/source" )
 			if(isinPath("doxygen")):

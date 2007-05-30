@@ -148,7 +148,7 @@ class ILCSoft:
 		self.ctime = time.ctime()
 		
 		self.logfile = self.installPath + "/ilcinstall/" + self.config_file_prefix + "-" + self.time + ".log"
-		
+
 		# auto detect modules
 		if( self.module( "Java" ) == None ):
 			auto_java = Java()
@@ -173,6 +173,14 @@ class ILCSoft:
 			print "+ Initializing " + mod.name + "..."
 			mod.init()
 
+		print "\n+ Checking for installation consistency..."
+		for mod in self.modules:
+			mod.checkInstallConsistency()
+		
+		# skip dependencies for downloading only
+		if( self.downloadOnly ):
+			return
+		
 		print "\n+ Dependencies Pre-Check..."
 		for mod in self.modules:
 			mod.preCheckDeps()
@@ -235,10 +243,7 @@ class ILCSoft:
 	def makeinstall(self):
 		""" starts the installation process """
 		# create log directory
-		try:
-			os.makedirs( self.installPath + "/ilcinstall" )
-		except:
-			pass
+		trymakedir( self.installPath + "/ilcinstall" )
 		
 		# copy config file
 		try:
@@ -282,6 +287,9 @@ class ILCSoft:
 			print "\n" + 30*'*' + " Installing software " + 30*'*' + "\n"
 			for mod in self.modules:
 				mod.install([])
+			print "\n" + 30*'*' + " Building documentation " + 30*'*' + "\n"
+			for mod in self.modules:
+				mod.buildDoku()
 			print "\n" + 30*'*' + " Finished ILC Software installation process " + 30*'*' + "\n"
 	
 

@@ -77,6 +77,7 @@ class LCIO(BaseILC):
 				if( os.system( "ant f77 2>&1 | tee -a " + self.logfile ) != 0 ):
 					self.abort( "failed to compile!!" )
 		
+	def buildDocumentation(self):
 		# build documentation
 		if( self.buildDoc ):
 			os.chdir( self.installPath )
@@ -98,6 +99,7 @@ class LCIO(BaseILC):
 					print 80*'*' + "*** WARNING: sth. went wrong with creating the " + self.name + " reference manual\n" + 80*'*'
 
 	def preCheckDeps(self):
+		BaseILC.preCheckDeps(self)
 
 		# in checkDeps() the dependencies from the installed version
 		# are compared against the ones in the config file, so we need to
@@ -109,16 +111,14 @@ class LCIO(BaseILC):
 				self.addExternalDependency( ["Java"] )
 		
 		if( self.mode == "install" ):
-			if( self.buildFortran and self.useCMake ):
+			#if( self.buildFortran and self.useCMake ):
+			if( self.buildFortran ):
 				self.reqfiles.append(["bin/anajob_F"])
 			if( self.buildJava ):
 				self.addBuildOnlyDependency( ["Java"] )
 				self.reqfiles.append(["lib/lcio.jar"])
 			else:
 				self.addExternalDependency( ["Java"] )
-
-		BaseILC.preCheckDeps(self)
-		
 
 	def init(self):
 		

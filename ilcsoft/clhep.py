@@ -40,7 +40,7 @@ class CLHEP(BaseILC):
 		BaseILC.downloadSources(self)
 
 		# create build directory
-		os.makedirs( self.installPath + "/build" )
+		trymakedir( self.installPath + "/build" )
 	
 	def compile(self):
 		""" compile CLHEP """

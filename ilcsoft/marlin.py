@@ -59,24 +59,22 @@ class Marlin(BaseILC):
 		f.close()
 
 		# create packages directory
-		try:
-			os.makedirs( self.env["MARLINWORKDIR"] + "/packages" )
-		except:
-			# remove all package links
-			os.chdir( self.env["MARLINWORKDIR"] + "/packages" )
-			# get a list of all files inside packages directory
-			files = glob.glob("*")
-			for file in files:
-				if( file != "CVS" ):
-					if( os.path.islink(file) ):
-						os.unlink( file )
-					else:
-						print "*** WARNING: [ " + dereflinks(file) + " ] is NOT a symbolic link!!" \
-								+ " Marlin will rebuild itself with this package!!"
+		trymakedir( self.env["MARLINWORKDIR"] + "/packages" )
+		# remove all package links
+		os.chdir( self.env["MARLINWORKDIR"] + "/packages" )
+		# get a list of all files inside packages directory
+		files = glob.glob("*")
+		for file in files:
+			if( file != "CVS" ):
+				if( os.path.islink(file) ):
+					os.unlink( file )
+				else:
+					print "*** WARNING: [ " + dereflinks(file) + " ] is NOT a symbolic link!!" \
+							+ " Marlin will rebuild itself with this package!!"
 	
 		# create links to packages
+		os.chdir( self.env["MARLINWORKDIR"] + "/packages" )
 		for pkg in self.pkgs:
-			os.chdir( self.env["MARLINWORKDIR"] + "/packages" )
 			if( not os.path.exists(pkg.name) ):
 				print "* Creating Link " + pkg.name + " to [ " + pkg.installPath + " ]"
 				os.symlink( pkg.installPath, pkg.name )
@@ -107,9 +105,22 @@ class Marlin(BaseILC):
 			if( os.system( "gmake install 2>&1 | tee -a " + self.logfile ) != 0 ):
 				self.abort( "failed to install!!" )
 		
+	def buildDocumentation(self):
 		# build documentation
 		if( self.buildDoc ):
+			if( self.useCMake ):
+				# create packages directory
+				trymakedir( self.env["MARLINWORKDIR"] + "/packages" )
+				os.chdir( self.env["MARLINWORKDIR"] + "/packages" )
+				# create links to packages
+				for pkg in self.parent.modules:
+					if( pkg.isMarlinPKG ):
+						if( not os.path.exists(pkg.name) ):
+							print "* Creating Link " + pkg.name + " to [ " + pkg.installPath + " ]"
+							os.symlink( pkg.installPath, pkg.name )
+	
 			if(isinPath("doxygen")):
+				os.chdir( self.env["MARLINWORKDIR"] )
 				print 80*'*' + "\n*** Creating C++ API documentation for " + self.name + " with doxygen...\n" + 80*'*'
 				if( os.system( "gmake doc 2>&1 | tee -a " + self.logfile ) != 0 ):
 					self.abort( "failed to build documentation!!" )

@@ -54,6 +54,7 @@ class MarlinPKG(BaseILC):
 				self.abort( "failed to install!!" )
 		
 		# build documentation
+	def buildDocumentation(self):
 		if( self.buildDoc ):
 			os.chdir( self.installPath + "/src" )
 			if(isinPath("doxygen")):
@@ -78,7 +79,7 @@ class MarlinPKG(BaseILC):
 	
 		if( self.useCMake ):
 			if( self.name != "MarlinUtil" ):
-				self.marlin.envpath["MARLIN_PROCESSOR_LIBS"].append( self.installPath + "/lib/lib" + self.name + ".so" )
+				self.marlin.envpath["MARLIN_DLL"].append( self.installPath + "/lib/lib" + self.name + ".so" )
 	
 		# check if this package is going to be built with marlin
 		if( self.buildInMarlin() ):

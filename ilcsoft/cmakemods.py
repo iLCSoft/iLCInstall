@@ -27,3 +27,5 @@ class CMakeModules(BaseILC):
 		self.reqfiles = [ ["LoadPackageMacro.cmake", "MacroLoadPackage.cmake"] ]
 
 		self.hasCMakeSupport = False
+
+		self.skipCompile = True
