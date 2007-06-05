@@ -39,7 +39,7 @@ class GSL(BaseILC):
 		os.renames( self.name, self.version + "/" + self.name )
 
 		# create build directory
-		os.makedirs( self.installPath + "/build" )
+		trymakedir( self.installPath + "/build" )
 
 	def compile(self):
 		""" compile GSL """

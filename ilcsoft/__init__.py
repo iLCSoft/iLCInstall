@@ -22,3 +22,6 @@ from marlinpkg import MarlinPKG
 from marlin import Marlin
 from marlinreco import MarlinReco
 from marlinutil import MarlinUtil
+from pandora import PandoraPFA
+from silicondigi import SiliconDigi
+from lcfivertex import LCFIVertex
