@@ -183,7 +183,7 @@ class Marlin(BaseILC):
                 if( str(self.env["MARLIN_GUI"]) == "1" ):
                     qt = self.parent.module("QT")
                     # check for qt version 4
-                    if( qt.evalVersion("4.0") != 2 ):
+                    if( qt != None and qt.evalVersion("4.0") != 2 ):
                         self.abort( "you need QT 4!! QT version " + qt.version + " found..." )
             
             # enable AIDA

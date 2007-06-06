@@ -771,6 +771,8 @@ class BaseILC:
 	def genCMakeCmd(self):
 		""" generates a CMake command out of envcmake """
 		cmd = ""
+		for k, v in self.parent.envcmake.iteritems():
+			cmd = cmd + "-D" + k + "=\"" + str(v).strip() + "\" "
 		for k, v in self.envcmake.iteritems():
 			cmd = cmd + "-D" + k + "=\"" + str(v).strip() + "\" "
 		for k, v in self.env.iteritems():

@@ -30,6 +30,7 @@ class ILCSoft:
 		self.useCMake = False		# global flag for using cmake
 		self.noAutomaticRebuilds = False # global flag for automatic rebuilding
 		self.env = {}				# global environment variables
+		self.envcmake = {}			# global cmake environment variables
 		self.cleanInstall = True	# global flag for cleaning temporary files after installation (objects, tarfiles...)
 
 		self.envpathbak = {			# backup path environment variables (PATH, LD_LIBRARY_PATH, CLASSPATH)
