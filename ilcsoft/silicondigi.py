@@ -11,13 +11,16 @@
 from marlinpkg import MarlinPKG
 
 class SiliconDigi(MarlinPKG):
-	""" Responsible for the SiliconDigi installation process. """
-	
-	def __init__(self, userInput):
-		MarlinPKG.__init__(self, "SiliconDigi", userInput )
+    """ Responsible for the SiliconDigi installation process. """
+    
+    def __init__(self, userInput):
+        MarlinPKG.__init__(self, "SiliconDigi", userInput )
 
-		# required modules
-		self.reqmodules = [ "Marlin", "MarlinUtil", "LCIO", "GEAR", "CLHEP" ]
+        # required modules
+        self.reqmodules = [ "Marlin", "MarlinUtil", "LCIO", "GEAR", "CLHEP" ]
 
-		# cvs root
-		self.download.root="marlinreco"
+        # cvs root
+        self.download.root="marlinreco"
+
+        # no documentation available
+        self.buildDoc = False

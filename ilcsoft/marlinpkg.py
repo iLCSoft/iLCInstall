@@ -55,7 +55,7 @@ class MarlinPKG(BaseILC):
 		
 		# build documentation
 	def buildDocumentation(self):
-		if( self.buildDoc ):
+		if( not self.useCMake and self.buildDoc ):
 			os.chdir( self.installPath + "/src" )
 			if(isinPath("doxygen")):
 				print 80*'*' + "\n*** Creating C++ API documentation for " + self.name + " with doxygen...\n" + 80*'*'
