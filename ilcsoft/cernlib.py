@@ -133,9 +133,10 @@ class CERNLIB(BaseILC):
     
     def cleanupInstall(self):
         os.chdir( os.path.dirname(self.installPath) )
-        for file in self.tgz_files:
-            tryunlink(file)
-        tryunlink( "start_cern" )
+        if( not self.rebuild ):
+            for file in self.tgz_files:
+                tryunlink(file)
+            tryunlink( "start_cern" )
         os.chdir( self.installPath + "/build" )
 
         # delete object files
