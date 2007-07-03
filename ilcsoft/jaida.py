@@ -36,8 +36,11 @@ class JAIDA(BaseILC):
 			self.abort( "grep not found!!" )
 
 		# get the jars out of the aida-setup.sh script
-		jars = commands.getoutput( "grep 'JAIDAJARS=' " + self.installPath + "/bin/aida-setup.sh" ).split('=')[1].strip('"').split()
-		
+		#jars = commands.getoutput( "grep 'JAIDAJARS=' " + self.installPath + "/bin/aida-setup.sh" ).split('=')[1].strip('"').split()
+        jars_fp = glob.glob( self.installPath + "/*.jar" )
+		jars = [ i.split('/')[-1] for i in jars_fp ]
+
+        
 		for jar in jars:
 			self.envpath["CLASSPATH"].append( "$JAIDA_HOME/lib/" + jar + ".jar" )
 
