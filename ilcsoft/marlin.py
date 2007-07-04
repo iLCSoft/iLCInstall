@@ -18,7 +18,7 @@ class Marlin(BaseILC):
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "Marlin", "Marlin")
 
-        self.reqfiles = [ ["lib/libMarlin.a", "lib/libMarlin.so"], ["bin/Marlin"] ]
+        self.reqfiles = [ ["lib/libMarlin.a", "lib/libMarlin.so", "lib/libMarlin.dylib"], ["bin/Marlin"] ]
 
         # list of packages ( MarlinUtil, MarlinReco ... )
         self.pkgs = []

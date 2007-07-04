@@ -68,4 +68,3 @@ class CED(BaseILC):
 				self.abort( "glut-devel not found in your system!! you can get it from:\n" \
 					+ "[ http://freeglut.sourceforge.net/ ]" )
 
-

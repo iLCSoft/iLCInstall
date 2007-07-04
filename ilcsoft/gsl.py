@@ -21,7 +21,13 @@ class GSL(BaseILC):
 		self.download.supportHEAD = False
 		self.download.supportedTypes = ["wget"]
 
-		self.reqfiles = [ ["lib/libgsl.a", "lib/shared/libgsl.so"] ]
+		self.reqfiles = [[
+                "lib/libgsl.a",
+                "lib/libgsl.so",
+                "lib/libgsl.dylib"
+                "lib/shared/libgsl.so",
+                "lib/shared/libgsl.dylib",
+        ]]
 	
 	def setMode(self, mode):
 

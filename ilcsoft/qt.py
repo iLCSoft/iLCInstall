@@ -22,8 +22,10 @@ class QT(BaseILC):
 		self.hasCMakeSupport = False
 		self.download.supportedTypes = ["wget"]
 
-		self.reqfiles = [ ["lib/libQtCore.so", "lib/qt-3.1/lib/libqt.so"], \
-				["lib/libQtGui.so", "lib/qt-3.1/lib/libqui.so"], ["bin/qmake"] ]
+		self.reqfiles = [
+            ["lib/libQtCore.so", "lib/libQtCore.dylib", "lib/qt-3.1/lib/libqt.so"],
+			["lib/libQtGui.so", "lib/libQtGui.dylib", "lib/qt-3.1/lib/libqui.so"],
+            ["bin/qmake"] ]
 
 		if( userInput=="auto" ):
 			self.autoDetect()

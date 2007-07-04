@@ -24,7 +24,10 @@ class GEAR(BaseILC):
         # java is required for generating header files with ant
         self.reqmodules_external = [ "Java" ]
 
-        self.reqfiles = [ ["lib/libgear.a", "lib/libgear.so"], ["lib/libgearxml.a", "lib/libgearxml.so"] ]
+        self.reqfiles = [
+                ["lib/libgear.a", "lib/libgear.so", "lib/libgear.dylib"],
+                ["lib/libgearxml.a", "lib/libgearxml.so", "lib/libgearxml.dylib"]
+        ]
 
     def compile(self):
         """ compile GEAR """

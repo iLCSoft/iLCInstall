@@ -21,7 +21,7 @@ class CLHEP(BaseILC):
 		self.download.supportHEAD = False
 		self.download.supportedTypes = ["wget"]
 
-		self.reqfiles = [ ["lib/libCLHEP.a", "lib/libCLHEP.so"] ]
+		self.reqfiles = [ ["lib/libCLHEP.a", "lib/libCLHEP.so", "lib/libCLHEP.dylib"] ]
 
 	def setMode(self, mode):
 

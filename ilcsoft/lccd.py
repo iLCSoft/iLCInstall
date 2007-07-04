@@ -18,7 +18,7 @@ class LCCD(BaseILC):
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "LCCD", "lccd")
 
-        self.reqfiles = [ ["lib/liblccd.a", "lib/liblccd.so"] ]
+        self.reqfiles = [ ["lib/liblccd.a", "lib/liblccd.so", "lib/liblccd.dylib"] ]
 
         # LCIO is required for building LCCD
         self.reqmodules = [ "LCIO" ]

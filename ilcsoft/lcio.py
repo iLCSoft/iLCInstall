@@ -18,7 +18,7 @@ class LCIO(BaseILC):
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "LCIO", "lcio")
         
-        self.reqfiles = [ ["lib/liblcio.a", "lib/liblcio.so"] ]
+        self.reqfiles = [ ["lib/liblcio.a", "lib/liblcio.so", "lib/liblcio.dylib"] ]
         
         # optional modules
         self.optmodules = [ "CLHEP" ]

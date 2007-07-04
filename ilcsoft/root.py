@@ -20,7 +20,11 @@ class ROOT(BaseILC):
 
 		self.installSupport = False
 
-		self.reqfiles = [ ["lib/libCore.so"], ["lib/libPhysics.so"], ["bin/root-config"] ]
+		self.reqfiles = [
+                ["lib/libCore.so", "lib/libCore.dylib"], 
+                ["lib/libPhysics.so", "lib/libPhysics.dylib"],
+                ["bin/root-config"]
+        ]
 
 	def init(self):
 

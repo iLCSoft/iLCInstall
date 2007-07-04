@@ -18,7 +18,7 @@ class RAIDA(BaseILC):
 	def __init__(self, userInput):
 		BaseILC.__init__(self, userInput, "RAIDA", "RAIDA")
 
-		self.reqfiles = [ ["bin/aida-config"], ["lib/libRAIDA.a", "lib/libRAIDA.so"] ]
+		self.reqfiles = [ ["bin/aida-config"], ["lib/libRAIDA.a", "lib/libRAIDA.so", "lib/libRAIDA.dylib"] ]
 
 		# ROOT is required for building RAIDA
 		self.reqmodules = [ "ROOT" ]
