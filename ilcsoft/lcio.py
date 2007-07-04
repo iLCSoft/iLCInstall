@@ -56,20 +56,20 @@ class LCIO(BaseILC):
             if( os.system( "ant aid.generate 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to generate header files!!" )
 
-        # lcio java stuff
-        if( self.buildJava ):
-            if( os.system( "ant aid 2>&1 | tee -a " + self.logfile ) != 0 ):
-                self.abort( "failed to compile lcio java!!" )
-        
+       
         if( self.useCMake ):
             os.chdir( "build" )
             if( os.system( "cmake " + self.genCMakeCmd() + " .. 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to configure!!" )
-            if( os.system( "gmake 2>&1 | tee -a " + self.logfile ) != 0 ):
-                self.abort( "failed to compile!!" )
+            #if( os.system( "gmake 2>&1 | tee -a " + self.logfile ) != 0 ):
+            #    self.abort( "failed to compile!!" )
             if( os.system( "gmake install 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to install!!" )
         else:
+            # lcio java stuff
+            if( self.buildJava ):
+                if( os.system( "ant aid 2>&1 | tee -a " + self.logfile ) != 0 ):
+                    self.abort( "failed to compile lcio java!!" )
             if( os.system( "ant cpp 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to compile!!" )
             if( self.buildFortran ):
@@ -119,6 +119,7 @@ class LCIO(BaseILC):
             if( self.buildJava ):
                 self.addBuildOnlyDependency( ["Java"] )
                 self.reqfiles.append(["lib/lcio.jar"])
+                self.envcmake["INSTALL_JAR"]="ON"
             else:
                 self.addExternalDependency( ["Java"] )
 
