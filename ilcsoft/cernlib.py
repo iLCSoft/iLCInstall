@@ -114,21 +114,21 @@ class CERNLIB(BaseILC):
             
             # Install kuipc and the scripts (cernlib, paw and gxint) in $CERN_ROOT/bin
             print "* Building kuipc..."
-            if( os.system( "gmake bin/kuipc > log/kuipc 2>&1" ) != 0 ):
+            if( os.system( "make bin/kuipc > log/kuipc 2>&1" ) != 0 ):
                 self.abort( "failed to compile!!")
             
             print "* Building scripts..."
-            if( os.system( "gmake scripts/Makefile" ) != 0 ):
+            if( os.system( "make scripts/Makefile" ) != 0 ):
                 self.abort( "failed to compile!!")
             
             os.chdir( "scripts" )
             print "* Building install.bin..."
-            if( os.system( "gmake install.bin > ../log/scripts 2>&1" ) != 0 ):
+            if( os.system( "make install.bin > ../log/scripts 2>&1" ) != 0 ):
                 self.abort( "failed to compile!!")
 
             os.chdir( self.installPath + "/build" )
             print "* Building libraries..."
-            if( os.system( "gmake > log/make.`date +%m%d` 2>&1" ) != 0 ):
+            if( os.system( "make > log/make.`date +%m%d` 2>&1" ) != 0 ):
                 self.abort( "failed to compile!!")
     
     def cleanupInstall(self):

@@ -41,18 +41,18 @@ class LCCD(BaseILC):
             if( self.useCMake ):
                 tryunlink( "CMakeCache.txt" )
             else:
-                os.system( "gmake clean" )
+                os.system( "make clean" )
 
         # build software
         if( self.useCMake ):
             if( os.system( "cmake " + self.genCMakeCmd() + " .. 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to configure!!" )
 
-        if( os.system( "gmake 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os.system( "make 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
         
         if( self.useCMake ):
-            if( os.system( "gmake install 2>&1 | tee -a " + self.logfile ) != 0 ):
+            if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to install!!" )
         
         # build documentation
@@ -61,7 +61,7 @@ class LCCD(BaseILC):
             os.chdir( self.installPath + "/source" )
             if(isinPath("doxygen")):
                 print 80*'*' + "\n*** Creating C++ API documentation for " + self.name + " with doxygen...\n" + 80*'*'
-                os.system( "gmake doc 2>&1 | tee -a " + self.logfile )
+                os.system( "make doc 2>&1 | tee -a " + self.logfile )
 
     def init(self):
 

@@ -50,16 +50,16 @@ class CLHEP(BaseILC):
 		if( os.system( "../CLHEP/configure --prefix=" + self.installPath + " 2>&1 | tee -a " + self.logfile ) != 0 ):
 			self.abort( "failed to configure!!" )
 
-		if( os.system( "gmake 2>&1 | tee -a " + self.logfile ) != 0 ):
+		if( os.system( "make 2>&1 | tee -a " + self.logfile ) != 0 ):
 			self.abort( "failed to compile!!" )
 
-		if( os.system( "gmake install 2>&1 | tee -a " + self.logfile ) != 0 ):
+		if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
 			self.abort( "failed to install!!" )
 	
 	def cleanupInstall(self):
 		BaseILC.cleanupInstall(self)
 		os.chdir( self.installPath + "/build" )
-		os.system( "gmake clean" )
+		os.system( "make clean" )
 
 	def init(self):
 		

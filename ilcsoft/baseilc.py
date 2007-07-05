@@ -262,9 +262,7 @@ class BaseILC:
 		
 		if( self.mode == "install" ):
 
-			# check for make and gmake
-			if( not isinPath( "gmake" )):
-				self.abort( "gmake not found on your system!!" )
+			# check for make
 			if( not isinPath( "make" )):
 				self.abort( "make not found on your system!!" )
 

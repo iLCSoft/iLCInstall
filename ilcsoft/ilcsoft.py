@@ -258,7 +258,7 @@ class ILCSoft:
 		os.system( "echo \"Install started at: " + self.ctime + "\" > " + self.logfile )
 		os.system( "echo \"Configuration file: " + self.config_file + "\" >> " + self.logfile )
 		os.system( "echo \"Using " + commands.getoutput( "g++ --version | head -n1" ).strip() + "\" >> " + self.logfile )
-		os.system( "echo \"Using " + commands.getoutput( "gmake --version | head -n1" ).strip() + "\" >> " + self.logfile )
+		os.system( "echo \"Using " + commands.getoutput( "make --version | head -n1" ).strip() + "\" >> " + self.logfile )
 
 		# set global environment
 		self.setEnv()
@@ -298,7 +298,7 @@ class ILCSoft:
 		""" displays an installation summary """
 		print "\n" + 30*'=' + " Installation Summary: " + 40*'='
 		print "\n+ Using " + commands.getoutput( "g++ --version | head -n1" ).strip()
-		print "\n+ Using " + commands.getoutput( "gmake --version | head -n1" ).strip()
+		print "\n+ Using " + commands.getoutput( "make --version | head -n1" ).strip()
 		print "\n+ ILC Software will be installed to [" + self.installPath + "]"
 	
 		print "\n+ Following modules will be installed:\n"

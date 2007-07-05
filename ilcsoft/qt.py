@@ -84,19 +84,19 @@ class QT(BaseILC):
 		os.chdir( self.installPath )
 
 		if( self.rebuild ):
-			os.system( "gmake distclean" )
+			os.system( "make distclean" )
 
 		if( os.system( "./configure -prefix " + self.installPath \
 				+ " -prefix-install -fast 2>&1 | tee -a " + self.logfile ) != 0 ):
 			self.abort( "failed to configure!!" )
 
-		if( os.system( "gmake 2>&1 | tee -a " + self.logfile ) != 0 ):
+		if( os.system( "make 2>&1 | tee -a " + self.logfile ) != 0 ):
 			self.abort( "failed to compile!!" )
 	
 	def cleanupInstall(self):
 		BaseILC.cleanupInstall(self)
 		os.chdir( self.installPath )
-		os.system( "gmake clean" )
+		os.system( "make clean" )
 
 	def init(self):
 		
