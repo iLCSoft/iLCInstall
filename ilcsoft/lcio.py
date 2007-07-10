@@ -52,20 +52,18 @@ class LCIO(BaseILC):
             else:
                 os.system( "ant clean" )
         
-        if( not self.useCMake ):
-            if( os.system( "ant aid.generate 2>&1 | tee -a " + self.logfile ) != 0 ):
-                self.abort( "failed to generate header files!!" )
-
-       
         if( self.useCMake ):
             os.chdir( "build" )
             if( os.system( "cmake " + self.genCMakeCmd() + " .. 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to configure!!" )
-            #if( os.system( "make 2>&1 | tee -a " + self.logfile ) != 0 ):
-            #    self.abort( "failed to compile!!" )
+            if( os.system( "make 2>&1 | tee -a " + self.logfile ) != 0 ):
+                self.abort( "failed to compile!!" )
             if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to install!!" )
         else:
+            # generate headers
+            if( os.system( "ant aid.generate 2>&1 | tee -a " + self.logfile ) != 0 ):
+                self.abort( "failed to generate header files!!" )
             # lcio java stuff
             if( self.buildJava ):
                 if( os.system( "ant aid 2>&1 | tee -a " + self.logfile ) != 0 ):
@@ -119,13 +117,25 @@ class LCIO(BaseILC):
             if( self.buildJava ):
                 self.addBuildOnlyDependency( ["Java"] )
                 self.reqfiles.append(["lib/lcio.jar"])
-                self.envcmake["INSTALL_JAR"]="ON"
             else:
                 self.addExternalDependency( ["Java"] )
+
+    def postCheckDeps(self):
+        BaseILC.postCheckDeps(self)
+
+        self.env["LCIO"] = self.installPath
+
+        # PATH
+        self.envpath["PATH"].append( "$LCIO/tools" )
+        self.envpath["PATH"].append( "$LCIO/bin" )
+
+        if( self.mode == "install" ):
 
             if( self.useCMake ):
                 if( self.buildFortran ):
                     self.envcmake["BUILD_F77_TESTJOBS"]="ON"
+                if( self.buildJava ):
+                    self.envcmake["INSTALL_JAR"]="ON"
 
             # check for doc tools
             if( self.buildDoc ):
@@ -135,14 +145,7 @@ class LCIO(BaseILC):
                     print "*** WARNING: doxygen was not found!! Part of the " + self.name + " documentation will not be built!!! "
                 if( not isinPath("latex")):
                     print "*** WARNING: latex was not found!! Part of the " + self.name + " documentation will not be built!!! "
+            elif( self.useCMake ):
+                self.envcmake["INSTALL_DOC"]="OFF"
 
-    def init(self):
-        
-        BaseILC.init(self)
-        
-        self.env["LCIO"] = self.installPath
-
-        # PATH
-        self.envpath["PATH"].append( "$LCIO/tools" )
-        self.envpath["PATH"].append( "$LCIO/bin" )
 

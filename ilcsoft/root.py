@@ -13,26 +13,25 @@ from util import *
 
 
 class ROOT(BaseILC):
-	""" Responsible for the ROOT installation process. """
-	
-	def __init__(self, userInput):
-		BaseILC.__init__(self, userInput, "ROOT", "root")
+    """ Responsible for the ROOT installation process. """
+    
+    def __init__(self, userInput):
+        BaseILC.__init__(self, userInput, "ROOT", "root")
 
-		self.installSupport = False
+        self.installSupport = False
 
-		self.reqfiles = [
+        self.reqfiles = [
                 ["lib/libCore.so", "lib/libCore.dylib"], 
                 ["lib/libPhysics.so", "lib/libPhysics.dylib"],
                 ["bin/root-config"]
         ]
 
-	def init(self):
+    def postCheckDeps(self):
+        BaseILC.postCheckDeps(self)
 
-		BaseILC.init(self)
+        self.env["ROOTSYS"] = self.installPath
+        self.envpath["PATH"].append( "$ROOTSYS/bin" )
+        self.envpath["LD_LIBRARY_PATH"].append( "$ROOTSYS/lib" )
 
-		self.env["ROOTSYS"] = self.installPath
-		self.envpath["PATH"].append( "$ROOTSYS/bin" )
-		self.envpath["LD_LIBRARY_PATH"].append( "$ROOTSYS/lib" )
-
-		self.envbuild["USERLIBS"].append( "`root-config --libs`" )
+        self.envbuild["USERLIBS"].append( "`root-config --libs`" )
 

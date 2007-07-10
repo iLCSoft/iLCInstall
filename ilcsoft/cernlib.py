@@ -142,10 +142,9 @@ class CERNLIB(BaseILC):
         # delete object files
         os.system( "find -type f -name *.o -exec rm -f {} \;" )
 
-    def init(self):
-        
-        BaseILC.init(self)
-        
+    def postCheckDeps(self):
+        BaseILC.postCheckDeps(self)
+
         self.env["CERNLIB_HOME"] = self.installPath + "/lib"
         
         if( self.mode =="install" ):

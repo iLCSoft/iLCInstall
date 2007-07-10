@@ -63,24 +63,22 @@ class LCCD(BaseILC):
                 print 80*'*' + "\n*** Creating C++ API documentation for " + self.name + " with doxygen...\n" + 80*'*'
                 os.system( "make doc 2>&1 | tee -a " + self.logfile )
 
-    def init(self):
+    def postCheckDeps(self):
+        BaseILC.postCheckDeps(self)
 
-        BaseILC.init(self)
-        
         self.env["LCCD"] = self.installPath
  
-
-    def preCheckDeps(self):
-        BaseILC.preCheckDeps(self)
-
-        if( not self.useCMake and self.mode == "install" ):
-            self.env["LCCDVERSION"] = self.version
-            if( self.debug ):
-                self.env["LCCDDEBUG"] = "1"
+        if( self.mode == "install" ):
+            if( not self.useCMake ):
+                self.env["LCCDVERSION"] = self.version
+                if( self.debug ):
+                    self.env["LCCDDEBUG"] = "1"
             
             # check for doc tools
             if( self.buildDoc ):
                 if( not isinPath("doxygen")):
                     print "*** WARNING: doxygen was not found!! " + self.name + " documentation will not be built!!! "
+            elif( self.useCMake ):
+                self.envcmake["INSTALL_DOC"]="OFF"
 
            

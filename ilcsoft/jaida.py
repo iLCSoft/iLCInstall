@@ -26,10 +26,9 @@ class JAIDA(BaseILC):
         # Java is required for JAIDA
         self.reqmodules = [ "Java" ]
 
-    def init(self):
+    def postCheckDeps(self):
+        BaseILC.postCheckDeps(self)
 
-        BaseILC.init(self)
-        
         self.env["JAIDA_HOME"] = self.installPath
         
         # get the jar names in ${JAIDA_HOME}/lib

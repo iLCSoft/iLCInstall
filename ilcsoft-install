@@ -4,75 +4,75 @@ import os.path
 from ilcsoft import *
 
 if( len(sys.argv) < 2 ):
-	# display usage information
-	print "\n Usage: " + sys.argv[0] + " [-s, -p, -i] \"install.cfg\"\n"
-	print "   -s to display installation summary"
-	print "   -p to preview installation "
-	print "   -i to install the software "
-	print
-	sys.exit(1)
+    # display usage information
+    print "\n Usage: " + sys.argv[0] + " [-s, -p, -i] \"install.cfg\"\n"
+    print "   -s to display installation summary"
+    print "   -p to preview installation "
+    print "   -i to install the software "
+    print
+    sys.exit(1)
 
 else:
-	if( len(sys.argv) == 2 ):
-		options = ["s"]
-	else:
-		options = []
+    if( len(sys.argv) == 2 ):
+        options = ["s"]
+    else:
+        options = []
 
-	# get the config file from the option's list
-	for opt in sys.argv:
+    # get the config file from the option's list
+    for opt in sys.argv:
 
-		if( (opt != sys.argv[0]) and (opt[0] != "-") ):
-			config_file = opt
-			break
-	else:
-		print "you need to specify a config file!!"
-		sys.exit(1)
-	
-	if( not os.path.exists(config_file) ):
-		print "you need to specify a valid config file!!"
-		sys.exit(1)
-	
-	# get the options to be executed
-	for opt in sys.argv:
-		
-		if( opt[0] == "-" ):
-			if( len(opt) > 2 ):
-				for splitop in opt[1:]:
-					options.append(splitop)
-			else:
-				options.append(opt[1:] )
-	
-	if( len(options) == 0):
-		options = ["i"]
-	
-	print "\n" + 30*'*' + " Starting TEST installation process... " + 30*'*' + "\n"
+        if( (opt != sys.argv[0]) and (opt[0] != "-") ):
+            config_file = opt
+            break
+    else:
+        print "you need to specify a config file!!"
+        sys.exit(1)
+    
+    if( not os.path.exists(config_file) ):
+        print "you need to specify a valid config file!!"
+        sys.exit(1)
+    
+    # get the options to be executed
+    for opt in sys.argv:
+        
+        if( opt[0] == "-" ):
+            if( len(opt) > 2 ):
+                for splitop in opt[1:]:
+                    options.append(splitop)
+            else:
+                options.append(opt[1:] )
+    
+    if( len(options) == 0):
+        options = ["i"]
+    
+    print "\n" + 30*'*' + " Starting installation process... " + 30*'*' + "\n"
 
-	print "+ Read configuration file [ " + config_file + " ]\n"
-	# read configuration file
-	execfile( config_file )
+    print "+ Read configuration file [ " + config_file + " ]\n"
+    # read configuration file
+    execfile( config_file )
 
-	# pass the name of the config file to ilcsoft
-	ilcsoft.config_file = config_file
-	ilcsoft.config_file_prefix = config_file[:config_file.rfind(".")]
-	ilcsoft.config_file_suffix = config_file[config_file.rfind(".")+1:]
+    # pass the name of the config file to ilcsoft
+    ilcsoft.config_file = config_file
+    ilcsoft.config_file_prefix = config_file[:config_file.rfind(".")]
+    ilcsoft.config_file_suffix = config_file[config_file.rfind(".")+1:]
 
-	# this is for initializing the modules
-	# (called right after reading the config file)
-	ilcsoft.init()
+    # this is for initializing the modules
+    # (called right after reading the config file)
+    ilcsoft.init()
 
-	for opt in options:
+    for opt in options:
 
-		if( opt == "s" ):
-			# display installation summary
-			ilcsoft.summary()
-		
-		elif( opt == "p" ):
-			# test install
-			ilcsoft.previewinstall()
-		
-		elif( opt == "i" ):
-			# install software
-			ilcsoft.makeinstall()
+        if( opt == "s" ):
+            # display installation summary
+            ilcsoft.summary()
+        
+        elif( opt == "p" ):
+            # test install
+            ilcsoft.previewinstall()
+        
+        elif( opt == "i" ):
+            # install software
+            ilcsoft.makeinstall()
 
-	print "\n" + 30*'*' + " Finished TEST installation process... " + 30*'*' + "\n"
-	
+    print "\n" + 30*'*' + " Finished installation process... " + 30*'*' + "\n"
+    

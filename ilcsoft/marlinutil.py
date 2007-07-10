@@ -11,13 +11,13 @@
 from marlinpkg import MarlinPKG
 
 class MarlinUtil(MarlinPKG):
-	""" Responsible for the MarlinUtil installation process. """
-	
-	def __init__(self, userInput):
-		MarlinPKG.__init__(self, "MarlinUtil", userInput )
+    """ Responsible for the MarlinUtil installation process. """
+    
+    def __init__(self, userInput):
+        MarlinPKG.__init__(self, "MarlinUtil", userInput )
 
-		# required modules
-		self.reqmodules = [ "Marlin", "GEAR", "CLHEP", "GSL", "LCIO" ]
+        # required modules
+        self.reqmodules = [ "Marlin", "GEAR", "CLHEP", "GSL", "LCIO" ]
 
-		# cvs root
-		self.download.root = "marlinreco"
+        # cvs root
+        self.download.root = "marlinreco"

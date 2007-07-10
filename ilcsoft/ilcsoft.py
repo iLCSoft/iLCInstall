@@ -369,8 +369,6 @@ class ILCSoft:
             print "\n" + 30*'*' + " Building documentation " + 30*'*' + "\n"
             for mod in self.modules:
                 mod.buildDoku()
-            print "\n" + 30*'*' + " Finished ILC Software installation process " + 30*'*' + "\n"
-    
 
     def summary(self):
         """ displays an installation summary """

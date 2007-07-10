@@ -11,14 +11,14 @@
 from marlinpkg import MarlinPKG
 
 class CEDViewer(MarlinPKG):
-	""" Responsible for the CEDViewer installation process. """
-	
-	def __init__(self, userInput):
-		MarlinPKG.__init__(self, "CEDViewer", userInput )
+    """ Responsible for the CEDViewer installation process. """
+    
+    def __init__(self, userInput):
+        MarlinPKG.__init__(self, "CEDViewer", userInput )
 
-		# required modules
-		self.reqmodules = [ "Marlin", "MarlinUtil", "LCIO" ]
+        # required modules
+        self.reqmodules = [ "Marlin", "MarlinUtil", "LCIO" ]
 
-		# cvs root
-		self.download.root="marlinreco"
+        # cvs root
+        self.download.root="marlinreco"
 

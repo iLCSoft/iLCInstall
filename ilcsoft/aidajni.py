@@ -13,40 +13,39 @@ from util import *
 
 
 class AIDAJNI(BaseILC):
-	""" Responsible for the AIDAJNI installation process. """
-	
-	def __init__(self, userInput):
-		BaseILC.__init__(self, userInput, "AIDAJNI", "AIDAJNI")
+    """ Responsible for the AIDAJNI installation process. """
+    
+    def __init__(self, userInput):
+        BaseILC.__init__(self, userInput, "AIDAJNI", "AIDAJNI")
 
-		self.installSupport = False
-		self.hasCMakeSupport = False
+        self.installSupport = False
+        self.hasCMakeSupport = False
 
-		self.reqfiles = [ ["bin/Linux-g++/aidajni-setup.sh"], ["bin/Linux-g++/aida-config"], \
-				["lib/Linux-g++/libAIDAJNI.so", "lib/Linux-g++/libAIDAJNI.a"] ]
+        self.reqfiles = [ ["bin/Linux-g++/aidajni-setup.sh"], ["bin/Linux-g++/aida-config"], \
+                ["lib/Linux-g++/libAIDAJNI.so", "lib/Linux-g++/libAIDAJNI.a"] ]
 
-		# Java and JAIDA are required for using AIDAJNI
-		self.reqmodules = [ "Java", "JAIDA" ]
+        # Java and JAIDA are required for using AIDAJNI
+        self.reqmodules = [ "Java", "JAIDA" ]
 
-	def init(self):
-		
-		BaseILC.init(self)
-		
-		self.env["AIDAJNI_HOME"] = self.installPath
+    def postCheckDeps(self):
+        BaseILC.postCheckDeps(self)
+
+        self.env["AIDAJNI_HOME"] = self.installPath
 
 # FIXME write parser for getting environment values out of aidajni-setup.sh
-		
-		# environment variables
-		self.env["AIDAJNI_VERSION"] = self.version
-		self.env["AIDAJNI_INCLUDES"] = "-I" + self.installPath + "/include"
-		self.env["AIDAJNI_LIBS"] = "-L" + self.installPath + "/lib/Linux-g++ -lAIDAJNI -lFHJNI -L" \
-				+ self.parent.module("Java").installPath + "/jre/lib/i386/client -ljvm"
-		
-		# path environment variables
-		self.envpath["PATH"].append( "$AIDAJNI_HOME/bin/Linux-g++" )
-		self.envpath["CLASSPATH"].append( "${AIDAJNI_HOME}/lib/freehep-aidajni.jar" )
-		self.envpath["LD_LIBRARY_PATH"].append( "${AIDAJNI_HOME}/lib/Linux-g++" )
-		self.envpath["LD_LIBRARY_PATH"].append( "${JDK_HOME}/jre/lib/i386/client" )
-		self.envpath["LD_LIBRARY_PATH"].append( "${JDK_HOME}/jre/lib/i386" )	
+        
+        # environment variables
+        self.env["AIDAJNI_VERSION"] = self.version
+        self.env["AIDAJNI_INCLUDES"] = "-I" + self.installPath + "/include"
+        self.env["AIDAJNI_LIBS"] = "-L" + self.installPath + "/lib/Linux-g++ -lAIDAJNI -lFHJNI -L" \
+                + self.parent.module("Java").installPath + "/jre/lib/i386/client -ljvm"
+        
+        # path environment variables
+        self.envpath["PATH"].append( "$AIDAJNI_HOME/bin/Linux-g++" )
+        self.envpath["CLASSPATH"].append( "${AIDAJNI_HOME}/lib/freehep-aidajni.jar" )
+        self.envpath["LD_LIBRARY_PATH"].append( "${AIDAJNI_HOME}/lib/Linux-g++" )
+        self.envpath["LD_LIBRARY_PATH"].append( "${JDK_HOME}/jre/lib/i386/client" )
+        self.envpath["LD_LIBRARY_PATH"].append( "${JDK_HOME}/jre/lib/i386" )    
 
 # end of FIXME
 

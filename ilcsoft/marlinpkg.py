@@ -97,8 +97,12 @@ class MarlinPKG(BaseILC):
             self.envoptbuild["USERLIBS"].append( "-Wl,-whole-archive -L" + self.installPath \
                     + "/lib -l" + self.name + " -Wl,-no-whole-archive" )
 
-        # check for doc tools
-        if( self.buildDoc ):
-            if( not isinPath("doxygen")):
-                print "*** WARNING: doxygen was not found!! " + self.name + " documentation will not be built!!! "
+        if( self.mode == "install" ):
+            # check for doc tools
+            if( self.buildDoc ):
+                if( not isinPath("doxygen")):
+                    print "*** WARNING: doxygen was not found!! " + self.name + " documentation will not be built!!! "
+            else:
+                if( self.useCMake ):
+                    self.envcmake["INSTALL_DOC"]="OFF"
 

@@ -13,20 +13,19 @@ from util import *
 
 
 class MySQL(BaseILC):
-	""" Responsible for the MySQL installation process. """
-	
-	def __init__(self, userInput):
-		BaseILC.__init__(self, userInput, "MySQL", "mysql")
+    """ Responsible for the MySQL installation process. """
+    
+    def __init__(self, userInput):
+        BaseILC.__init__(self, userInput, "MySQL", "mysql")
 
-		self.installSupport = False
-		self.hasCMakeSupport = False
+        self.installSupport = False
+        self.hasCMakeSupport = False
 
-		self.reqfiles = [ ["lib/mysql/libmysqlclient.so"] ]
+        self.reqfiles = [ ["lib/mysql/libmysqlclient.so"] ]
 
-	def init(self):
+    def postCheckDeps(self):
+        BaseILC.postCheckDeps(self)
 
-		BaseILC.init(self)
-		
-		self.env["MYSQL_PATH"] = self.installPath
-		self.envpath["LD_LIBRARY_PATH"].append( "$MYSQL_PATH/lib/mysql" )
+        self.env["MYSQL_PATH"] = self.installPath
+        self.envpath["LD_LIBRARY_PATH"].append( "$MYSQL_PATH/lib/mysql" )
 

@@ -35,7 +35,7 @@ class Marlin(BaseILC):
     def compile(self):
         """ compile Marlin """
         
-        os.chdir( self.env["MARLINWORKDIR"] )
+        os.chdir( self.installPath )
         
         # write userlib.gmk
         f = open( "userlib.gmk", 'w')
@@ -59,9 +59,9 @@ class Marlin(BaseILC):
         f.close()
 
         # create packages directory
-        trymakedir( self.env["MARLINWORKDIR"] + "/packages" )
+        trymakedir( self.installPath + "/packages" )
         # remove all package links
-        os.chdir( self.env["MARLINWORKDIR"] + "/packages" )
+        os.chdir( self.installPath + "/packages" )
         # get a list of all files inside packages directory
         files = glob.glob("*")
         for file in files:
@@ -73,7 +73,7 @@ class Marlin(BaseILC):
                             + " Marlin will rebuild itself with this package!!"
     
         # create links to packages
-        os.chdir( self.env["MARLINWORKDIR"] + "/packages" )
+        os.chdir( self.installPath + "/packages" )
         for pkg in self.pkgs:
             if( not os.path.exists(pkg.name) ):
                 print "* Creating Link " + pkg.name + " to [ " + pkg.installPath + " ]"
@@ -110,8 +110,8 @@ class Marlin(BaseILC):
         if( self.buildDoc ):
             if( self.useCMake ):
                 # create packages directory
-                trymakedir( self.env["MARLINWORKDIR"] + "/packages" )
-                os.chdir( self.env["MARLINWORKDIR"] + "/packages" )
+                trymakedir( self.installPath + "/packages" )
+                os.chdir( self.installPath + "/packages" )
                 # create links to packages
                 for pkg in self.parent.modules:
                     if( pkg.isMarlinPKG ):
@@ -120,7 +120,7 @@ class Marlin(BaseILC):
                             os.symlink( pkg.installPath, pkg.name )
     
             if(isinPath("doxygen")):
-                os.chdir( self.env["MARLINWORKDIR"] )
+                os.chdir( self.installPath )
                 print 80*'*' + "\n*** Creating C++ API documentation for " + self.name + " with doxygen...\n" + 80*'*'
                 if( os.system( "make doc 2>&1 | tee -a " + self.logfile ) != 0 ):
                     self.abort( "failed to build documentation!!" )
@@ -130,34 +130,6 @@ class Marlin(BaseILC):
         for pkg in self.pkgs:
             pkg.cleanupInstall()
     
-    def init(self):
-
-        BaseILC.init(self)
-
-        self.env["MARLIN"] = self.installPath
-        
-        # if MARLINWORKDIR not set, set it to MARLIN
-        if( not self.env.has_key("MARLINWORKDIR") ):
-                self.env["MARLINWORKDIR"] = self.installPath
-
-        if( self.mode == "install" ):
-            # compatibility issues for older versions
-            # check if marlin version is older or equal to v00-09-06
-            if( self.evalVersion("v00-09-06") != 2 ):
-                if( "MarlinUtil" in self.optmodules ):
-                    marlinutil = self.parent.module("MarlinUtil")
-                    if( marlinutil != None ):
-                        marlinutil.envbuild["USERINCLUDES"].append( "-I" \
-                                + marlinutil.installPath + "/include" )
-
-            if( self.debug ):
-                self.env["MARLINDEBUG"] = "1"
-
-            # check for doc tools
-            if( self.buildDoc ):
-                if( not isinPath("doxygen")):
-                    print "*** WARNING: doxygen was not found!! " + self.name + " documentation will not be built!!! "
-
     def preCheckDeps(self):
         BaseILC.preCheckDeps(self)
         if( self.mode == "install" ):
@@ -178,7 +150,25 @@ class Marlin(BaseILC):
 
 
     def postCheckDeps(self):
+        BaseILC.postCheckDeps(self)
+
+        self.env["MARLIN"] = self.installPath
+        
+        # if MARLINWORKDIR not set, set it to MARLIN
+        if( not self.env.has_key("MARLINWORKDIR") ):
+                self.env["MARLINWORKDIR"] = self.installPath
+
         if( self.mode == "install" ):
+            # compatibility issues for older versions
+            # check if marlin version is older or equal to v00-09-06
+            if( not self.useCMake and self.evalVersion("v00-09-06") != 2 ):
+                if( "MarlinUtil" in self.optmodules ):
+                    marlinutil = self.parent.module("MarlinUtil")
+                    if( marlinutil != None ):
+                        marlinutil.envbuild["USERINCLUDES"].append( "-I" \
+                                + marlinutil.installPath + "/include" )
+            
+            # check qt version
             if( self.env.has_key("MARLIN_GUI")):
                 if( str(self.env["MARLIN_GUI"]) == "1" ):
                     qt = self.parent.module("QT")
@@ -186,6 +176,17 @@ class Marlin(BaseILC):
                     if( qt != None and qt.evalVersion("4.0") != 2 ):
                         self.abort( "you need QT 4!! QT version " + qt.version + " found..." )
             
+            # set debug env var
+            if( self.debug ):
+                self.env["MARLINDEBUG"] = "1"
+           
             # enable AIDA
             if( "RAIDA" in self.optmodules or "AIDAJNI" in self.optmodules ):
                 self.env["MARLIN_USE_AIDA"] = "1"
+
+            # check for doc tools
+            if( self.buildDoc ):
+                if( not isinPath("doxygen")):
+                    print "*** WARNING: doxygen was not found!! " + self.name + " documentation will not be built!!! "
+            elif( self.useCMake ):
+                self.envcmake["INSTALL_DOC"]="OFF"
