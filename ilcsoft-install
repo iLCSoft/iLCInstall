@@ -53,7 +53,7 @@ else:
 
     # pass the name of the config file to ilcsoft
     ilcsoft.config_file = config_file
-    ilcsoft.config_file_prefix = config_file[:config_file.rfind(".")]
+    ilcsoft.config_file_prefix = config_file[config_file.rfind( '/' )+1:config_file.rfind(".")]
     ilcsoft.config_file_suffix = config_file[config_file.rfind(".")+1:]
 
     # this is for initializing the modules
