@@ -22,5 +22,8 @@ class SiliconDigi(MarlinPKG):
         # cvs root
         self.download.root="marlinreco"
 
+        # SiliconDigi is made of 3 packages
+        self.sipkgs=["SiDetector","SiDigi","SiClustering"]
+
         # no documentation available
         self.buildDoc = False
