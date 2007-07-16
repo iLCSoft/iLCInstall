@@ -75,22 +75,12 @@ class Marlin(BaseILC):
         # create links to packages
         os.chdir( self.installPath + "/packages" )
         for pkg in self.pkgs:
-            if( pkg.name == "SiliconDigi" ):
-                for sipkg in pkg.sipkgs:
-                    if( not os.path.exists(sipkg) ):
-                        print "* Creating Link " + sipkg + " to [ " + pkg.installPath \
-                                + "/" + sipkg + " ]"
-                        os.symlink( pkg.installPath+"/"+sipkg, sipkg )
-                    else:
-                        print "*** WARNING: [ " + dereflinks(sipkg) + " ] is NOT a symbolic link!!" \
-                                + " Marlin will be built with this package and not the one defined in your config file!! " 
-            else:        
-                if( not os.path.exists(pkg.name) ):
-                    print "* Creating Link " + pkg.name + " to [ " + pkg.installPath + " ]"
-                    os.symlink( pkg.installPath, pkg.name )
-                else:
-                    print "*** WARNING: [ " + dereflinks(pkg.name) + " ] is NOT a symbolic link!!" \
-                            + " Marlin will be built with this package and not the one defined in your config file!! " 
+            if( not os.path.exists(pkg.name) ):
+                print "* Creating Link " + pkg.name + " to [ " + pkg.installPath + " ]"
+                os.symlink( pkg.installPath, pkg.name )
+            else:
+                print "*** WARNING: [ " + dereflinks(pkg.name) + " ] is NOT a symbolic link!!" \
+                        + " Marlin will be built with this package and not the one defined in your config file!! " 
     
         os.chdir( self.installPath )
 
