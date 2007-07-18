@@ -16,6 +16,78 @@ import glob
 import time
 import string
 
+
+#--------------------------------------------------------------------------------
+
+class OSDetect:
+    """ small class for detecting the OS """
+    def __init__(self):
+        self.type="unknown"
+        self.ver="unknown"
+        self.detected=False
+        
+        # Linux
+        if( not self.detected ):
+            out=commands.getstatusoutput("uname -s")
+            if( out[0] == 0 ):
+                if( out[1].find("Linux") != -1 ):
+                    self.detected = True
+                    self.type = "Linux"
+ 
+         # MacOs
+        if( not self.detected ):
+            out=commands.getstatusoutput("sys")
+            if( out[0] == 0 ):
+                if( out[1].find("darwin") != -1 ):
+                    self.detected = True
+                    self.type = "MacOS"
+        
+         # Windows
+        if( not self.detected ):
+            out=commands.getstatusoutput("ver")
+            if( out[0] == 0 ):
+                if( out[1].find("Windows") != -1 ):
+                    self.detected = True
+                    self.type = "Windows"
+ 
+        if( self.type == "Linux" ):
+            out=commands.getstatusoutput("lsb_release -d")
+            if( out[0] == 0 ):
+                self.ver=out[1].split("Description:")[1].strip()
+
+    def __repr__(self):
+        print self.type+"-"+self.ver
+        
+    def isLinux(self):
+        """ returns True if the OS is Linux """
+        if( self.detected ):
+            if( self.type == "Linux" ):
+                return True
+        return False
+
+    def isMac(self):
+        """ returns True if the OS is Mac """
+        if( self.detected ):
+            if( self.type == "MacOS" ):
+                return True
+        return False
+
+    def isSL3(self):
+        """ returns True if this is Scientific Linux 3 """
+        if( self.detected ):
+            if( self.ver.find( "Scientific Linux SL" ) != -1 ):
+                if( self.ver.find( "release 3." ) != -1 ):
+                    return True
+        return False
+        
+    def isSL4(self):
+        """ returns True if this is Scientific Linux 4 """
+        if( self.detected ):
+            if( self.ver.find( "Scientific Linux SL" ) != -1 ):
+                if( self.ver.find( "release 4." ) != -1 ):
+                    return True
+        return False
+
 #--------------------------------------------------------------------------------
 
 def trydelenv(key):

@@ -21,6 +21,7 @@ class ILCSoft:
         and the modules/packages which should be installed """
     
     def __init__(self, installPath):
+        self.os = OSDetect()        # operating system detection
         self.installPath = fixPath(installPath)
         self.modules = []           # list of modules
         self.autoModules = []       # list of auto detected modules
@@ -373,6 +374,7 @@ class ILCSoft:
     def summary(self):
         """ displays an installation summary """
         print "\n" + 30*'=' + " Installation Summary: " + 40*'='
+        print "\n+ Operating System: " + self.os.type+" - "+self.os.ver
         print "\n+ Using " + commands.getoutput( "g++ --version | head -n1" ).strip()
         print "\n+ Using " + commands.getoutput( "make --version | head -n1" ).strip()
         print "\n+ ILC Software will be installed to [" + self.installPath + "]"
