@@ -28,9 +28,13 @@ class CLHEP(BaseILC):
         BaseILC.setMode(self, mode)
             
         if( self.mode == "install" ):
-            
+            if( self.evalVersion("1.9.1.1") == 1 ):
+                self.abort( "ilcinstall only supports installation of CLHEP 1.9.1.1 or greater!" )
+            if( self.evalVersion("2.0.3.0") == 0 and not isinPath( "xiar" )):
+                self.abort( "CLHEP 2.0.3.0 requires xiar, that wasn't found in your system!" )
+
             # download url
-            if( self.version == "1.9.1.1" or self.version == "2.0.1.1" ):
+            if( self.evalVersion("1.9.1.1") == 0 or self.evalVersion( "2.0.1.1" ) == 0 ):
                 self.download.url = "http://proj-clhep.web.cern.ch/proj-clhep/export/share/CLHEP/" \
                         + self.version + "/clhep-" + self.version + ".tgz"
             else:
@@ -61,6 +65,16 @@ class CLHEP(BaseILC):
         os.chdir( self.installPath + "/build" )
         os.system( "make clean" )
 
+    def preCheckDeps(self):
+        # HepPDT is not part of CLHEP since versions 2.0.3.0/1.9.3.0
+        if( self.evalVersion( "2.0.3.0" ) == 0 or       # version == 2.0.3.0
+                self.evalVersion( "1.9.3.0" ) == 0 or   # version == 1.9.3.0
+                self.evalVersion( "2.0.3.0" ) == 2 or   # version  > 2.0.3.0
+                (self.evalVersion( "1.9.3.0" ) == 2 and
+                 self.evalVersion( "1.9.9.9" ) == 1)):    # 1.9.3.0 < version < 1.9.9.9                
+            
+            self.addDependency( ["HepPDT"] )
+
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
 
@@ -70,5 +84,5 @@ class CLHEP(BaseILC):
         self.envpath["LD_LIBRARY_PATH"].append( "$CLHEP/lib" )
 
         # USERINCLUDES + USERLIBS
-        self.envbuild["USERINCLUDES"].append( "-D USE_CLHEP -I" + self.installPath + "/include" )
+        self.envbuild["USERINCLUDES"].append( "-DUSE_CLHEP -I" + self.installPath + "/include" )
         self.envbuild["USERLIBS"].append( "-L" + self.installPath + "/lib -lCLHEP" )

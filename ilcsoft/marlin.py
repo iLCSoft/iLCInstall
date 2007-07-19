@@ -67,7 +67,7 @@ class Marlin(BaseILC):
         for file in files:
             if( file != "CVS" ):
                 if( os.path.islink(file) ):
-                    os.unlink( file )
+                    tryunlink( file )
                 else:
                     print "*** WARNING: [ " + dereflinks(file) + " ] is NOT a symbolic link!!" \
                             + " Marlin will rebuild itself with this package!!"

@@ -5,6 +5,7 @@ from cmakemods import CMakeModules
 from ced import CED
 from cedviewer import CEDViewer
 from clhep import CLHEP
+from heppdt import HepPDT
 from gear import GEAR
 from gsl import GSL
 from lccd import LCCD
