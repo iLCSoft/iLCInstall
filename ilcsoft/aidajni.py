@@ -19,7 +19,6 @@ class AIDAJNI(BaseILC):
         BaseILC.__init__(self, userInput, "AIDAJNI", "AIDAJNI")
 
         self.installSupport = False
-        self.hasCMakeSupport = False
 
         self.reqfiles = [ ["bin/Linux-g++/aidajni-setup.sh"], ["bin/Linux-g++/aida-config"], \
                 ["lib/Linux-g++/libAIDAJNI.so", "lib/Linux-g++/libAIDAJNI.a"] ]

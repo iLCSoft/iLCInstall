@@ -27,29 +27,21 @@ class OSDetect:
         self.detected=False
         
         # Linux
-        if( not self.detected ):
-            out=commands.getstatusoutput("uname -s")
-            if( out[0] == 0 ):
-                if( out[1].find("Linux") != -1 ):
-                    self.detected = True
-                    self.type = "Linux"
+        if( sys.platform == "linux2" ):
+            self.detected = True
+            self.type = "Linux"
  
          # MacOs
-        if( not self.detected ):
-            out=commands.getstatusoutput("sys")
-            if( out[0] == 0 ):
-                if( out[1].find("darwin") != -1 ):
-                    self.detected = True
-                    self.type = "MacOS"
+        if( sys.platform == "mac" or sys.platform == "darwin" ):
+            self.detected = True
+            self.type = "Mac"
         
          # Windows
-        if( not self.detected ):
-            out=commands.getstatusoutput("ver")
-            if( out[0] == 0 ):
-                if( out[1].find("Windows") != -1 ):
-                    self.detected = True
-                    self.type = "Windows"
- 
+        if( sys.platform == "win32" ):
+            self.detected = True
+            self.type = "Win"
+
+        # get linux version
         if( self.type == "Linux" ):
             out=commands.getstatusoutput("lsb_release -d")
             if( out[0] == 0 ):
@@ -60,21 +52,19 @@ class OSDetect:
         
     def isLinux(self):
         """ returns True if the OS is Linux """
-        if( self.detected ):
-            if( self.type == "Linux" ):
-                return True
+        if( self.type == "Linux" ):
+            return True
         return False
 
     def isMac(self):
         """ returns True if the OS is Mac """
-        if( self.detected ):
-            if( self.type == "MacOS" ):
-                return True
+        if( self.type == "Mac" ):
+            return True
         return False
 
     def isSL3(self):
         """ returns True if this is Scientific Linux 3 """
-        if( self.detected ):
+        if( self.type == "Linux" ):
             if( self.ver.find( "Scientific Linux SL" ) != -1 ):
                 if( self.ver.find( "release 3." ) != -1 ):
                     return True
@@ -82,7 +72,7 @@ class OSDetect:
         
     def isSL4(self):
         """ returns True if this is Scientific Linux 4 """
-        if( self.detected ):
+        if( self.type == "Linux" ):
             if( self.ver.find( "Scientific Linux SL" ) != -1 ):
                 if( self.ver.find( "release 4." ) != -1 ):
                     return True
