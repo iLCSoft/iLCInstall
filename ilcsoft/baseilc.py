@@ -257,49 +257,8 @@ class BaseILC:
 
         # init logfile
         self.logfile = self.parent.logfile
-
-    def checkInstallConsistency(self):
-        """ check installation consistency """
-        # switch to use mode if already installed
-        if( self.mode == "install" and os.path.exists( self.installPath )):
-            print "*** WARNING: " + self.name + " " + self.version + " already installed in: [ " + self.installPath + " ]!!"
-            if( os.path.exists( self.installPath + "/.install_failed.tmp" )):
-                self.rebuild = True
-                print "***\tInstallation status: ERROR: Package install failed last time it was run!! Will try to rebuild package..."   
-            elif( os.path.exists( self.installPath + "/.doc_failed.tmp" )):
-                self.skipCompile = True
-                print "***\tInstallation status: INCOMPLETE: will finish installing this package..."
-            elif( not self.checkInstall() ):
-                print "***\tInstallation status: INCOMPLETE: will finish installing this package..."
-            else:
-                print "***\tInstall status: OK: will skip installation and switch to \"use\" mode!!"
-                self.mode = "use"
-
-    def preCheckDeps(self):
-        """ called before running dependency check
-            useful for adding or removing dependencies based on
-            environment variables or some other setting """
-        if( self.mode == "install" and self.useCMake ):
-            self.addExternalDependency( ["CMake","CMakeModules"] )
-    
-    def postCheckDeps(self):
-        """ called after running dependency check
-            useful for checking version incompatibilities
-            or setting environment variables
-            also usefull for testing things that depend on
-            the install modus, since this can change in the
-            checkDeps phase """
             
         if( self.mode == "install" ):
-
-            # check for make
-            if( not isinPath( "make" )):
-                self.abort( "make not found on your system!!" )
-
-            # check for tee
-            if( not isinPath( "tee" )):
-                self.abort( "tee not found on your system!!" )
-
             # initialize download data
             if( not self.download.supportHEAD and self.version == "HEAD" ):
                 self.abort( "sorry, HEAD version of this package cannot be installed!! " \
@@ -335,6 +294,49 @@ class BaseILC:
                         + self.download.root + ";only_with_tag=" + self.version + ";tarball=1"
             else:
                 self.abort( "download type " + self.download.type + " not recognized!!" )
+
+
+
+    def checkInstallConsistency(self):
+        """ check installation consistency """
+        # switch to use mode if already installed
+        if( self.mode == "install" and os.path.exists( self.installPath )):
+            print "*** WARNING: " + self.name + " " + self.version + " already installed in: [ " + self.installPath + " ]!!"
+            if( os.path.exists( self.installPath + "/.install_failed.tmp" )):
+                self.rebuild = True
+                print "***\tInstallation status: ERROR: Package install failed last time it was run!! Will try to rebuild package..."   
+            elif( os.path.exists( self.installPath + "/.doc_failed.tmp" )):
+                self.skipCompile = True
+                print "***\tInstallation status: INCOMPLETE: will finish installing this package..."
+            elif( not self.checkInstall() ):
+                print "***\tInstallation status: INCOMPLETE: will finish installing this package..."
+            else:
+                print "***\tInstall status: OK: will skip installation and switch to \"use\" mode!!"
+                self.mode = "use"
+
+    def preCheckDeps(self):
+        """ called before running dependency check
+            useful for adding or removing dependencies based on
+            environment variables or some other setting """
+        if( self.mode == "install" and self.useCMake ):
+            self.addExternalDependency( ["CMake","CMakeModules"] )
+    
+    def postCheckDeps(self):
+        """ called after running dependency check
+            useful for checking version incompatibilities
+            or setting environment variables
+            also usefull for testing things that depend on
+            the install modus, since this can change in the
+            checkDeps phase """
+        if( self.mode == "install" ):
+
+            # check for make
+            if( not isinPath( "make" )):
+                self.abort( "make not found on your system!!" )
+
+            # check for tee
+            if( not isinPath( "tee" )):
+                self.abort( "tee not found on your system!!" )
 
             # set debug for cmake builds
             if( self.useCMake ):

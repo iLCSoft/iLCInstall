@@ -62,9 +62,8 @@ class CMake(BaseILC):
         ver = [ i.strip(string.letters) for i in ver ]
         # remove empty elements
         ver = [ i for i in ver if i ]
-        # create a string out of the elements
-        dot = "."
-        return dot.join(ver)
+        # return a '.' separated string out of the elements
+        return str.join('.', ver)
 
     def setMode(self, mode):
 
