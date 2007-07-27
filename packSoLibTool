@@ -1,4 +1,12 @@
 #! /usr/bin/python
+
+#########################################
+# Python script for packing a binary
+# together with the needed run-time
+# shared libraries into a tar ball
+# @author Jan Engels, DESY
+#########################################
+
 import sys
 import os.path
 import commands
@@ -11,7 +19,7 @@ valid_opts=["i","e","s","t"]
 args={}
 
 #=============================================================================
-# funtion definitions
+# function definitions
 #-----------------------------------------------------------------------------
 
 def printUsage():
