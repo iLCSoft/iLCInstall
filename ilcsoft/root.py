@@ -33,5 +33,5 @@ class ROOT(BaseILC):
         self.envpath["PATH"].append( "$ROOTSYS/bin" )
         self.envpath["LD_LIBRARY_PATH"].append( "$ROOTSYS/lib" )
 
-        self.envbuild["USERLIBS"].append( "`root-config --libs`" )
+        self.envbuild["USERLIBS"].append( "`root-config --glibs`" )
 
