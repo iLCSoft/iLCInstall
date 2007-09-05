@@ -26,3 +26,4 @@ from marlinutil import MarlinUtil
 from pandora import PandoraPFA
 from silicondigi import SiliconDigi
 from lcfivertex import LCFIVertex
+from eutelescope import Eutelescope
