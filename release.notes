@@ -1,0 +1,36 @@
+#####################################################
+# ILCInstall - Release Notes
+#####################################################
+
+
+-----------------------------------------------------
+ v01-02
+-----------------------------------------------------
+
+ - added OS detection module
+    - use ex.:
+        if( ilcsoft.os.isSL3() ):
+            ilcsoft.use( Java( ilcPath + "java/1.5.0" ))
+        if( ilcsoft.os.isSL4() ):
+            ilcsoft.use( Java( ilcPath + "java/1.6.0" ))
+
+ - added AIDAJNI 'use' support for cmake install mode
+
+ - added compatibility for CLHEP versions greater
+    than 2.0.3.0/1.9.3.0
+    - added HepPDT module
+
+ - added Eutelescope and Overlay modules
+
+-----------------------------------------------------
+ v01-01
+-----------------------------------------------------
+ 
+ - Initial version of ILCInstall
+ 
+-----------------------------------------------------
+ v00-01
+-----------------------------------------------------
+ 
+ - Experimental version of ILCInstall
+
