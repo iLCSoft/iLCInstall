@@ -162,7 +162,6 @@ USAGE:
 	ilcsoft.install( marlin )
 	marlin.buildDoc = True		# override global setting to build documentation
 	marlin.buildWithout( [ "RAIDA", "LCCD" ] ) # this line can be left out, just avoid some warnings...
-	marlin.env[ "MARLIN_USE_DLL" ] = 1	# support for loading libraries dynamically
 	marlin.env[ "MARLIN_GUI" ] = 1		# if you wish to also build Marlin GUI
 	# QT4 is required for building Marlin GUI (see $MARLIN/gui/README for details...)
 	# if you wish you can install QT with this script, but this really takes a very long time!!
@@ -221,13 +220,9 @@ USAGE:
 	# /scratch/ilcsoft/lcio/v01-08-02 and use it! (for example if we would had run the previous tutorial)
 	# Note: with the "use" option, the script checks the dependencies of the installed version of LCIO
 	# against this configuration file. If it fails it will automatically try to recompile LCIO.
-	# For example: suppose you installed LCIO previously with Java version 1.4.2 and in this configuration
-	# file you specify to use Java 1.5.0 (see below), LCIO will automatically get recompiled to fulfill
+	# For example: suppose you installed LCIO previously with CLHEP 2.0.2.1 and in this configuration
+	# file you use CLHEP 2.0.2.2 (see below), LCIO will automatically get recompiled to fulfill
 	# the actual dependencies.
-
-	# Note 2: if you want to use CMake for building Marlin you should also install LCIO with CMake
-	# and therefore comment out the line above: ilcsoft.use( LCIO( "v01-08-02" )) and use this instead:
-	# ilcsoft.install( LCIO( "v01-08-02" ))
 
 	# GEAR
 	ilcsoft.install( GEAR( "v00-05" ))

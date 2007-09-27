@@ -13,7 +13,7 @@ from util import *
 
 
 class MySQL(BaseILC):
-    """ Responsible for the MySQL installation process. """
+    """ Responsible for the MySQL configuration process. """
     
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "MySQL", "mysql")

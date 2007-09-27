@@ -13,7 +13,7 @@ from util import *
 
 
 class JAIDA(BaseILC):
-    """ Responsible for the JAIDA software installation process. """
+    """ Responsible for the JAIDA configuration process. """
     
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "JAIDA", "JAIDA")

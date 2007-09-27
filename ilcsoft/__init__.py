@@ -28,3 +28,5 @@ from silicondigi import SiliconDigi
 from lcfivertex import LCFIVertex
 from eutelescope import Eutelescope
 from overlay import Overlay
+from mokka import Mokka
+from geant4 import Geant4

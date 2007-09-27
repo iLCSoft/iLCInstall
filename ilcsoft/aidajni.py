@@ -13,7 +13,7 @@ from util import *
 
 
 class AIDAJNI(BaseILC):
-    """ Responsible for the AIDAJNI installation process. """
+    """ Responsible for the AIDAJNI configuration process. """
     
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "AIDAJNI", "AIDAJNI")

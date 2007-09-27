@@ -71,6 +71,7 @@ class GEAR(BaseILC):
         # PATH
         self.envpath["PATH"].append( "$GEAR/tools" )
         self.envpath["PATH"].append( "$GEAR/bin" )
+        self.envpath["LD_LIBRARY_PATH"].append( "$GEAR/lib" )
 
         # USERINCLUDES + USERLIBS
         self.envbuild["USERINCLUDES"].append( "-DUSE_GEAR -I" + self.installPath + "/src/cpp/include" )

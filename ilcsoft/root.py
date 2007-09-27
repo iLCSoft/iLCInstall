@@ -13,7 +13,7 @@ from util import *
 
 
 class ROOT(BaseILC):
-    """ Responsible for the ROOT installation process. """
+    """ Responsible for the ROOT configuration process. """
     
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "ROOT", "root")

@@ -4,6 +4,20 @@
 
 
 -----------------------------------------------------
+ v01-03
+-----------------------------------------------------
+
+ - added Mokka support (no cvs download support)
+
+ - added Geant4 'use/link' support
+    - you should have a file named "env.sh" in the
+      'use/link' directory specified for configuring
+      geant4. If you have the file in a different
+      location use something like:
+      ilcsoft.module("Geant4").env["G4ENV_INIT"] = \
+        "/foo/bar/env.sh"
+
+-----------------------------------------------------
  v01-02
 -----------------------------------------------------
 

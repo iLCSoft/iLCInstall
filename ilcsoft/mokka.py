@@ -1,0 +1,50 @@
+##################################################
+#
+# Mokka module
+#
+# Author: Jan Engels, DESY
+# Date: Sep, 2007
+#
+##################################################
+
+# custom imports
+from baseilc import BaseILC
+from util import *
+
+
+class Mokka(BaseILC):
+    """ Responsible for the Mokka configuration process. """
+    
+    def __init__(self, userInput):
+        BaseILC.__init__(self, userInput, "Mokka", "Mokka")
+
+        self.hasCMakeSupport = False
+        self.download.supportHEAD = False
+        self.download.supportedTypes = ["wget"]
+
+        self.reqfiles = [ ["bin/Linux-g++/Mokka"] ]
+        
+        self.reqmodules = [ "LCIO", "GEAR", "Geant4", "MySQL" ]
+
+    def setMode(self, mode):
+        BaseILC.setMode(self, mode)
+
+        self.download.url = "http://polywww.in2p3.fr/activites/physique/geant4/tesla/www/mokka/software/mokka_tags/Mokka-mokka-" \
+                + self.version + ".tgz"
+
+    def compile(self):
+        """ compile Mokka """
+
+        os.chdir( self.installPath + "/source" )
+
+        if( os.system( ". ${G4ENV_INIT}; make 2>&1 | tee -a " + self.logfile ) != 0 ):
+            self.abort( "failed to compile!!" )
+    
+    def postCheckDeps(self):
+        BaseILC.postCheckDeps(self)
+
+        # force mokka to build itself in the installPath
+        if( not self.env.has_key( "G4WORKDIR" )):
+            self.env[ "G4WORKDIR" ] = self.installPath
+
+        self.envpath["PATH"].append( self.installPath + "/bin" )
