@@ -11,10 +11,14 @@
     the configuration step which would cause ilcinstall
     to remain blocked until user types 'yes'
 
- - added ilcsoft.downloadUser
-         ilcsoft.downloadPass
-         ilcsoft.downloadType
-    for defining cvs vars globally
+ - added ilcsoft.downloadUser = "john"
+         ilcsoft.downloadPass = "pass"
+         ilcsoft.downloadType = "ccvssh"
+    for defining cvs vars globally, vars can still be
+    overriden at module level:
+    ilcsoft.module( "X" ).download.type="cvs"
+    ilcsoft.module( "X" ).download.username="anoncvs"
+    ilcsoft.module( "X" ).download.password=""
 
  - added Mokka support
 
