@@ -86,7 +86,7 @@ class QT(BaseILC):
         if( self.rebuild ):
             os.system( "make distclean" )
 
-        if( os.system( "./configure -prefix " + self.installPath \
+        if( os.system( "echo \"yes\" | ./configure -prefix " + self.installPath \
                 + " -prefix-install -fast 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
 
