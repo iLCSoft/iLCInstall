@@ -22,6 +22,7 @@ class Mokka(BaseILC):
 
         self.download.supportedTypes = ["wget", "cvs"]
         # set some cvs variables
+        # export CVSROOT=:pserver:anoncvs@pollin1.in2p3.fr:/home/flc/cvs
         self.download.accessmode = "pserver"
         self.download.username = "anoncvs"
         self.download.server = "pollin1.in2p3.fr"
