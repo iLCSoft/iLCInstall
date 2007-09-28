@@ -28,6 +28,9 @@ class ILCSoft:
         self.debug = False          # global debug flag
         self.buildDoc = True        # global documentation flag
         self.downloadOnly = False   # global download flag
+        self.downloadUser = ""      # global download cvs/ccvssh username
+        self.downloadPass = ""      # global download cvs/ccvssh password
+        self.downloadType = ""      # global download cvs/ccvssh password
         self.useCMake = False       # global flag for using cmake
         self.noAutomaticRebuilds = False # global flag for automatic rebuilding
         self.env = {}               # global environment variables

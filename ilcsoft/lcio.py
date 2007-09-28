@@ -34,13 +34,20 @@ class LCIO(BaseILC):
 
         # supported download types
         self.download.supportedTypes = ["cvs"]
-        # set default download type to cvs
-        self.download.type = "cvs"
+
         # set some cvs variables
         # export CVSROOT=:pserver:anonymous@cvs.freehep.org:/cvs/lcio
         self.download.accessmode = "pserver"
         self.download.server = "cvs.freehep.org"
         self.download.root = "cvs/lcio"
+
+    def setMode(self, mode):
+        BaseILC.setMode(self, mode)
+
+        # set default download type to cvs
+        self.download.type = "cvs"
+
+        
 
     def compile(self):
         """ compile LCIO """

@@ -24,23 +24,17 @@ class Mokka(BaseILC):
         # set some cvs variables
         # export CVSROOT=:pserver:anoncvs@pollin1.in2p3.fr:/home/flc/cvs
         self.download.accessmode = "pserver"
-        self.download.username = "anoncvs"
         self.download.server = "pollin1.in2p3.fr"
         self.download.root = "home/flc/cvs"
 
         self.reqfiles = [ ["bin/Linux-g++/Mokka"] ]
         self.reqmodules = [ "LCIO", "GEAR", "Geant4", "MySQL" ]
 
-    def downloadSources(self):
-        if( self.download.type == "cvs" ):
-            print "type %ilc% as a password (including the '%' signs!)"
-            if( os.system( "cvs login") != 0 ):
-                self.abort( "problem downloading Mokka" )
-        BaseILC.downloadSources(self)
-
     def setMode(self, mode):
         BaseILC.setMode(self, mode)
 
+        self.download.username = "anoncvs"
+        self.download.password = "%ilc%"
         self.download.url = "http://polywww.in2p3.fr/activites/physique/geant4/tesla/www/mokka/software/mokka_tags/Mokka-mokka-" \
                 + self.version + ".tgz"
 

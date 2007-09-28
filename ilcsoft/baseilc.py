@@ -129,6 +129,18 @@ class BaseILC:
         # initialize download only flag 
         self.downloadOnly = self.parent.downloadOnly
 
+        # initialize download type flag
+        if( self.parent.downloadType != "" ):
+            self.download.type = self.parent.downloadType
+
+        # initialize download username
+        if( self.parent.downloadUser != "" ):
+            self.download.username = self.parent.downloadUser
+
+        # initialize download password 
+        if( self.parent.downloadPass != "" ):
+            self.download.password = self.parent.downloadPass
+
         # initialize cleanInstall flag
         self.cleanInstall = self.parent.cleanInstall
         
@@ -571,11 +583,15 @@ class BaseILC:
             for k, v in self.download.env.iteritems():
                 os.environ[k] = v
 
-            if( self.download.type == "ccvssh" ):
-                os.system( "ccvssh login")
-
-#            if( self.download.type == "cvs" ):
-#                os.system( "cvs login")
+            if( isinPath( "expect" )):
+                os.system( "expect -c 'spawn "+self.download.type+" login'" \
+                        + " -c 'expect assword:' -c 'send \""+self.download.password+"""\r"'""" \
+                        + " -c 'expect eof'" )
+            else:
+                if( self.download.type == "ccvssh" ):
+                    os.system( "ccvssh login")
+                elif( self.password != "" ):
+                    os.system( "cvs login")
 
             # checkout sources
             if( self.version == "HEAD" ):
@@ -1142,6 +1158,7 @@ class Download:
         self.project = parent.alias                 # project name
         self.root = str.lower(self.project)         # cvs root
         self.username = "anonymous"                 # cvs username
+        self.password = ""                          # cvs password
         self.server = "cvssrv.ifh.de"               # cvs server
         self.url = ""                               # url for getting tarball with wget
         self.tarball = ""                           # name of the tarball used for wget downloads
