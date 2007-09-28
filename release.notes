@@ -7,7 +7,7 @@
  v01-03
 -----------------------------------------------------
 
- - added Mokka support (no cvs download support)
+ - added Mokka support
 
  - added Geant4 'use/link' support
     - you should have a file named "env.sh" in the

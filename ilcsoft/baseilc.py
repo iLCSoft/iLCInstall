@@ -574,6 +574,9 @@ class BaseILC:
             if( self.download.type == "ccvssh" ):
                 os.system( "ccvssh login")
 
+#            if( self.download.type == "cvs" ):
+#                os.system( "cvs login")
+
             # checkout sources
             if( self.version == "HEAD" ):
                 os.system( "cvs co -d " + self.version + " " + self.download.project )

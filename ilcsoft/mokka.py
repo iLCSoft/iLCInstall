@@ -19,11 +19,15 @@ class Mokka(BaseILC):
         BaseILC.__init__(self, userInput, "Mokka", "Mokka")
 
         self.hasCMakeSupport = False
-        self.download.supportHEAD = False
-        self.download.supportedTypes = ["wget"]
+
+        self.download.supportedTypes = ["wget", "cvs"]
+        # set some cvs variables
+        self.download.accessmode = "pserver"
+        self.download.username = "anoncvs"
+        self.download.server = "pollin1.in2p3.fr"
+        self.download.root = "home/flc/cvs"
 
         self.reqfiles = [ ["bin/Linux-g++/Mokka"] ]
-        
         self.reqmodules = [ "LCIO", "GEAR", "Geant4", "MySQL" ]
 
     def setMode(self, mode):
@@ -40,6 +44,13 @@ class Mokka(BaseILC):
         if( os.system( ". ${G4ENV_INIT}; make 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
     
+    def preCheckDeps(self):
+        BaseILC.preCheckDeps(self)
+
+        if( self.download.type == "wget" and self.version=="HEAD" ):
+            self.abort( "please download the HEAD version with cvs only, e.g.:\n" \
+                    "ilcsoft.module(\"Mokka\").download.type=\"cvs\"" )
+
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
 
