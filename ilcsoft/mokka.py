@@ -31,6 +31,13 @@ class Mokka(BaseILC):
         self.reqfiles = [ ["bin/Linux-g++/Mokka"] ]
         self.reqmodules = [ "LCIO", "GEAR", "Geant4", "MySQL" ]
 
+    def downloadSources(self):
+        if( self.download.type == "cvs" ):
+            print "type %ilc% as a password (including the '%' signs!)"
+            if( os.system( "cvs login") != 0 ):
+                self.abort( "problem downloading Mokka" )
+        BaseILC.downloadSources(self)
+
     def setMode(self, mode):
         BaseILC.setMode(self, mode)
 
