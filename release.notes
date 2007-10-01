@@ -11,22 +11,23 @@
     the configuration step which would cause ilcinstall
     to remain blocked until user types 'yes'
 
- - added ilcsoft.downloadUser = "john"
-         ilcsoft.downloadPass = "pass"
-         ilcsoft.downloadType = "ccvssh"
-    for defining cvs vars globally, vars can still be
-    overriden at module level:
+ - added global variables for cvs download type
+    ilcsoft.downloadUser = "john"
+    ilcsoft.downloadPass = "pass"
+    ilcsoft.downloadType = "ccvssh"
+    
+    variables can still be overriden at module level:
     ilcsoft.module( "X" ).download.type="cvs"
     ilcsoft.module( "X" ).download.username="anoncvs"
-    ilcsoft.module( "X" ).download.password=""
+    ilcsoft.module( "X" ).download.password="zzz"
 
  - added Mokka support
 
  - added Geant4 'use/link' support
-    - you should have a file named "env.sh" in the
-      'use/link' directory specified for configuring
-      geant4. If you have the file in a different
-      location use something like:
+    - there should exist a file named "env.sh" in the
+      'use/link' directory specified in the config
+      file for geant4. If you have the file in a
+      different location use something like:
       ilcsoft.module("Geant4").env["G4ENV_INIT"] = \
         "/foo/bar/env.sh"
 
