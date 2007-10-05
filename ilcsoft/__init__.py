@@ -1,32 +1,41 @@
-#__all__ = [ "ILCSoft", "CMake", "CED", "CEDViewer", "CLHEP", "GEAR", "GSL", "LCCD", "CERNLIB", "CondDBMySQL", "MySQL", "LCIO", "Java", "AIDAJNI", "JAIDA", "RAIDA", "ROOT", "QT", "MarlinPKG", "Marlin", "MarlinReco", "MarlinUtil" ]
 from ilcsoft import ILCSoft
-from cmake import CMake
-from cmakemods import CMakeModules
-from ced import CED
-from cedviewer import CEDViewer
-from clhep import CLHEP
-from heppdt import HepPDT
-from gear import GEAR
-from gsl import GSL
-from lccd import LCCD
-from cernlib import CERNLIB
-from conddbmysql import CondDBMySQL
-from mysql import MySQL
+
+# core software
 from lcio import LCIO
-from java import Java
-from jaida import JAIDA
-from aidajni import AIDAJNI
+from lccd import LCCD
+from gear import GEAR
 from raida import RAIDA
-from root import ROOT
-from qt import QT
+from ced import CED
+
+# marlin & friends
 from marlinpkg import MarlinPKG
 from marlin import Marlin
-from marlinreco import MarlinReco
 from marlinutil import MarlinUtil
+from marlinreco import MarlinReco
+from cedviewer import CEDViewer
 from pandora import PandoraPFA
 from silicondigi import SiliconDigi
 from lcfivertex import LCFIVertex
 from eutelescope import Eutelescope
 from overlay import Overlay
+
+# cmake
+from cmake import CMake
+from cmakemods import CMakeModules
+
+# external (with install support)
 from mokka import Mokka
+from conddbmysql import CondDBMySQL
+from cernlib import CERNLIB
+from clhep import CLHEP
+from heppdt import HepPDT
+from gsl import GSL
+from qt import QT
+
+# external (without install support)
+from root import ROOT
 from geant4 import Geant4
+from aidajni import AIDAJNI
+from jaida import JAIDA
+from java import Java
+from mysql import MySQL
