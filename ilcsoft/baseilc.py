@@ -61,6 +61,9 @@ class BaseILC:
                     print "\t\t+ URL [ " + self.download.url + " ]"
                 else:
                     print "\t\t+ CVSROOT [ " + self.download.env["CVSROOT"] + " ]"
+                    if( self.download.password != "" ):
+                        print "\t\t+ CVSPass [ " + self.download.password + " ]"
+
             if( self.downloadOnly ):
                 print "\t   + download only: True"
             else:
