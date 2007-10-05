@@ -4,24 +4,30 @@
 
 
 -----------------------------------------------------
- v01-03
+ v01-02-01
 -----------------------------------------------------
 
  - fixed QT behaviour of 'waiting for user input' in
     the configuration step which would cause ilcinstall
     to remain blocked until user types 'yes'
 
- - added global variables for cvs download type
+ - added global variables for cvs download type:
     ilcsoft.downloadUser = "john"
-    ilcsoft.downloadPass = "pass"
+    ilcsoft.downloadPass = "my-pass"
     ilcsoft.downloadType = "ccvssh"
     
-    variables can still be overriden at module level:
-    ilcsoft.module( "X" ).download.type="cvs"
-    ilcsoft.module( "X" ).download.username="anoncvs"
-    ilcsoft.module( "X" ).download.password="zzz"
+    - variables can still be overwritten at module level:
+      ilcsoft.module( "X" ).download.type="cvs"
+      ilcsoft.module( "X" ).download.username="anoncvs"
+      ilcsoft.module( "X" ).download.password="xyz"
 
+ - added expect (http://expect.nist.gov/) for
+    automating 'cvs/ccvssh login' procedure
+    - added password field for download structure:
+        ilcsoft.module( "X" ).download.password="xyz"
+    
  - added Mokka support
+    - for cvs download user/pass = "anoncvs" / "%ilc%"
 
  - added Geant4 'use/link' support
     - there should exist a file named "env.sh" in the
