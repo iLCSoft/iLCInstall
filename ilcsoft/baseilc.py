@@ -592,9 +592,9 @@ class BaseILC:
                         + " -c 'expect eof'" )
             else:
                 if( self.download.type == "ccvssh" ):
-                    os.system( "ccvssh login")
-                elif( self.password != "" ):
-                    os.system( "cvs login")
+                    os.system( "ccvssh login" )
+                elif( self.download.password != "" ):
+                    os.system( "cvs login" )
 
             # checkout sources
             if( self.version == "HEAD" ):
