@@ -590,11 +590,6 @@ class BaseILC:
                 os.system( "expect -c 'spawn "+self.download.type+" login'" \
                         + " -c 'expect assword:' -c 'send \""+self.download.password+"""\r"'""" \
                         + " -c 'expect eof'" )
-            else:
-                if( self.download.type == "ccvssh" ):
-                    os.system( "ccvssh login" )
-                elif( self.download.password != "" ):
-                    os.system( "cvs login" )
 
             # checkout sources
             if( self.version == "HEAD" ):
