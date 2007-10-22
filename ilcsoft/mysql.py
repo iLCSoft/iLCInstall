@@ -21,11 +21,11 @@ class MySQL(BaseILC):
         self.installSupport = False
         self.hasCMakeSupport = False
 
-        self.reqfiles = [ ["lib/mysql/libmysqlclient.so"] ]
+        self.reqfiles = [ ["lib/mysql/libmysqlclient.so", "lib/libmysqlclient.so"] ]
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
 
         self.env["MYSQL_PATH"] = self.installPath
         self.envpath["LD_LIBRARY_PATH"].append( "$MYSQL_PATH/lib/mysql" )
-
+        self.envpath["LD_LIBRARY_PATH"].append( "$MYSQL_PATH/lib" )
