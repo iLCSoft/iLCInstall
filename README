@@ -22,10 +22,7 @@ DESCRIPTION:
 		ilcsoft-install:
 			executable file
 		
-		install.cfg:
-			configuration file
-		
-		ilcsoft directory:
+		./ilcsoft directory:
 			Directory containing all needed modules/classes for the script.
 			Tipically there is one module/class for each software
 			package (e.g. lcio.py, marlin.py). (see __init__.py for the
@@ -38,6 +35,16 @@ DESCRIPTION:
 			parent class (e.g. inside the marlin class one could execute the
 			following line: print self.parent.module( "LCIO" ).env to find
 			out which environment variables are set by LCIO ).
+ 	
+		./install.cfg
+			example configuration file (not garuanteed to work out of the box on your system)
+
+
+ 		./releases directory
+			contains configuration files that are used for ilcsoft releases in
+			in afs (reference installations)
+                        =>  also see these files for example configuration files
+			
 
 
 USAGE:
