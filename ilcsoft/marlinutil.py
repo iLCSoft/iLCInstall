@@ -19,5 +19,8 @@ class MarlinUtil(MarlinPKG):
         # required modules
         self.reqmodules = [ "Marlin", "GEAR", "CLHEP", "GSL", "LCIO" ]
 
+        # optional modules
+        self.optmodules = [ "RAIDA" ]
+
         # cvs root
         self.download.root = "marlinreco"

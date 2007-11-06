@@ -20,6 +20,9 @@ class LCFIVertex(MarlinPKG):
         # required modules
         self.reqmodules = [ "Marlin", "LCIO" ]
 
+        # optional modules
+        self.optmodules = [ "RAIDA" ]
+
         # cvs root
         self.download.root="marlinreco"
 
