@@ -92,9 +92,9 @@ if( args.has_key( "t" )):
 
 # check list of strings to exclude
 if( args.has_key( "s" )):
-    exc_str=args["s"].split(':')
+    s=args["s"].split(':')
     # remove empty elements
-    exc_str = [ i for i in exc_str if i ]
+    args["s"] = [ i for i in s if i ]
     
 # list of all libraries
 libs = []
@@ -106,7 +106,7 @@ libs_notfound = []
 # FIXME implement otool for Mac
 lddout = commands.getstatusoutput( "ldd " + bin_file )
 if( lddout[0] != 0 ):
-    abort( bin_file, "is not a valid binary file!!" )
+    abort( bin_file+" is not a valid binary file!!" )
 
 # parse output of ldd
 for l in lddout[1].split('\n'):
@@ -115,7 +115,7 @@ for l in lddout[1].split('\n'):
     if( l.find("/usr/lib/") == -1 and l.find(" /lib/") == -1 and l.find("not found") == -1 ):
         inc_lib=True
         if( args.has_key( "s" )):
-            for s in exc_str:
+            for s in args["s"]:
                 if( l.find( s ) != -1 ):
                     inc_lib=False
         if( inc_lib ):
@@ -177,7 +177,10 @@ if( args.has_key( "e" )):
 print "\nList of files to pack into the tar file:"
 print bin_file
 for l in libs: print l
-for l in libs_notfound: print "WARNING: library not found:",l+"! you can add it manually with -i option!"
+if( len(libs_notfound) != 0 ):
+    print "WARNING: libraries not found:"
+    for l in libs_notfound: print l
+    print "you can add libraries manually with -i option!"
 
 # create tar file
 if( args.has_key( "t" )):
