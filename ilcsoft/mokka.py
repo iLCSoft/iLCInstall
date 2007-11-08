@@ -35,7 +35,7 @@ class Mokka(BaseILC):
 
         self.download.username = "anoncvs"
         self.download.password = "%ilc%"
-        self.download.url = "http://polywww.in2p3.fr/activites/physique/geant4/tesla/www/mokka/software/mokka_tags/Mokka-mokka-" \
+        self.download.url = "http://polywww.in2p3.fr/activites/physique/geant4/tesla/www/mokka/software/mokka_tags/Mokka-" \
                 + self.version + ".tgz"
 
     def compile(self):
