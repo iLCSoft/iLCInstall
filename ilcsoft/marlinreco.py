@@ -20,7 +20,7 @@ class MarlinReco(MarlinPKG):
         self.reqmodules = [ "Marlin", "MarlinUtil", "CLHEP", "GEAR", "GSL", "CERNLIB", "LCIO" ]
 
         # optional modules
-        self.optmodules = [ "RAIDA" ]
+        #self.optmodules = [ "RAIDA" ]
 
     def init(self):
         
