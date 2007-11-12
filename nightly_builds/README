@@ -1,0 +1,43 @@
+###########################################
+# Python script for using ilcinstall to
+# perform nightly builds and send a mail
+# with the output to a list of users
+#
+# Author: Jan Engels, DESY
+###########################################
+
+How to use:
+
+1st:    make sure you have a symbolic link or a copy of nbuild
+        inside the same directory where you have ilcsoft-install
+
+2nd:    edit the nbuild script and change the SETTINGS to your needs
+        * important setting to change is mail_addr!!
+
+3nd:    use the template nb-cmake.cfg and adapt it to your system
+
+4th:    create your cronjob
+
+        # call crontab for current user
+        $ crontab -e
+
+        # example of a crontab file
+        
+        SHELL=/bin/bash
+        PATH=/sbin:/bin:/usr/sbin:/usr/bin:/data/engels/tools/ilcinstall/
+        MAILTO=your_email@blah.zzz
+        HOME=/data/engels/cronhome
+         
+        # cron syntax is:
+        # mm hh MM YY dd
+        #
+        # examples:
+        # 00 * * * *    every hour (X:00)
+        # 30 2 * * *    dayly @ 2:30
+        # 00 4 * * 1    weekly (mondays @ 4:00)
+        # 15 2 1 * *    monthly (1st of the month @ 2:15)
+        # 00 5 * * 1-5  workdays @ 5:00
+       
+        # run dayly at 2:00
+        00 2 * * * nbuild /data/engels/tools/ilcinstall/nightly_builds/nb-cmake.cfg
+
