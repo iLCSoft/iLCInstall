@@ -7,6 +7,10 @@
  v01-03
 -----------------------------------------------------
 
+ - removed expect for automating login procedures
+    passwords are now coded directly into CVSROOT
+    as proposed by K. Harder (Thanks Kristian!)
+
  - removed cmake.cfg
 
  - changed example file install.cfg to use cmake
@@ -35,7 +39,6 @@
         ilcsoft.module( "X" ).download.password="xyz"
     
  - added Mokka support
-    - for cvs download user/pass = "anoncvs" / "%ilc%"
 
  - added Geant4 'use/link' support
     - there should exist a file named "env.sh" in the

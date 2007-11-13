@@ -62,8 +62,6 @@ class BaseILC:
                     print "\t\t+ URL [ " + self.download.url + " ]"
                 else:
                     print "\t\t+ CVSROOT [ " + self.download.env["CVSROOT"] + " ]"
-                    if( self.download.password != "" ):
-                        print "\t\t+ CVSPass [ " + self.download.password + " ]"
 
             if( self.downloadOnly ):
                 print "\t   + download only: True"
@@ -288,14 +286,16 @@ class BaseILC:
                 if( self.download.type == "cvs" ):
                     self.download.accessmode = "pserver"
                 if( self.download.type == "ccvssh" ):
-                    self.download.env["CVS_RSH"] = "ccvssh"
-                    self.download.accessmode = "ext"
                     if( not isinPath("ccvssh") ):
                         self.abort( "ccvssh not found!!" )
+                    if not self.download.env.has_key("CVS_RSH"):
+                        self.download.env["CVS_RSH"] = "ccvssh"
+                    self.download.accessmode = "ext"
 
                 # if CVSROOT not set by user generate a default one
                 if( not self.download.env.has_key("CVSROOT") ):
-                    self.download.env["CVSROOT"] = ":" + self.download.accessmode + ":" + self.download.username \
+                    self.download.env["CVSROOT"] = ":" + self.download.accessmode + ":" \
+                            + self.download.username + ":" + self.download.password \
                             + "@" + self.download.server + ":/" + self.download.root
             elif( self.download.type == "wget" ):
                 if( not isinPath("wget") ):
@@ -584,13 +584,29 @@ class BaseILC:
         
         if( self.download.type == "cvs" or self.download.type == "ccvssh" ):
 
+            # set env
             for k, v in self.download.env.iteritems():
                 os.environ[k] = v
 
-            if( isinPath( "expect" )):
-                os.system( "expect -c 'spawn "+self.download.type+" login'" \
-                        + " -c 'expect assword:' -c 'send \""+self.download.password+"""\r"'""" \
-                        + " -c 'expect eof'" )
+            cvsroot=self.download.env["CVSROOT"]
+
+            i1 = cvsroot.find("@")
+            # if there is a password in CVSROOT call 'cvs login'
+            if( i1 != -1 ):
+                if( cvsroot.count(":",0,i1) == 3 ):
+                    # cvs login
+                    os.system( self.download.type + " login" )
+                
+                    # remove password from CVSROOT
+                    i2=cvsroot.rfind(':',0,i1)
+                    
+                    os.environ["CVSROOT"] = cvsroot[:i2]+cvsroot[i1:]
+                    
+            
+            #if( isinPath( "expect" )):
+            #    os.system( "expect -c 'spawn "+self.download.type+" login'" \
+            #            + " -c 'expect assword:' -c 'send \""+self.download.password+"""\r"'""" \
+            #            + " -c 'expect eof'" )
 
             # checkout sources
             if( self.version == "HEAD" ):
