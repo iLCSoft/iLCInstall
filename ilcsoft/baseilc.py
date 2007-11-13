@@ -35,6 +35,7 @@ class BaseILC:
                                                 # will only be written in the build_env.sh of this package
         self.envcmake = {}                      # cmake environment (e.g. BUILD_SHARED_LIBS=ON )
         self.env = {}                           # environment variables
+        self.envcmds = []                       # cmds added to the environment script (build_env.sh)
         self.envpath = {                        # path environment variables (e.g. PATH, LD_LIBRARY_PATH, CLASSPATH)
             "PATH" : [],
             "LD_LIBRARY_PATH" : [],
@@ -932,9 +933,17 @@ class BaseILC:
             for k, v in self.parent.env.iteritems():
                 f.write( "export " + str(k) + "=\"" + str(v) + "\"" + os.linesep )
         
+
         # write environment recursively to file
         self.writeEnv(f, [])
         
+
+        f.write( "# --- additional comands ------- " + os.linesep ) 
+        print "\n   ----- adding additional commands to build_env.sh : \n "
+        for c in self.envcmds:
+            f.write( c + os.linesep ) 
+            print "\n   ----- adding additional command to build_env.sh " + c + "\n"
+
         # close file
         f.close()
     
