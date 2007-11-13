@@ -21,10 +21,10 @@ class LCIO(BaseILC):
         self.reqfiles = [ ["lib/liblcio.a", "lib/liblcio.so", "lib/liblcio.dylib"] ]
         
         # optional modules
-        self.optmodules = [ "CLHEP" ]
+        #self.optmodules = [ "CLHEP" ]
 
         # supported cmake "build_with" modules
-        self.cmakebuildmodules = [ "CLHEP" ]
+        #self.cmakebuildmodules = [ "CLHEP" ]
 
         # flag for building lcio java stuff
         self.buildJava = False
@@ -136,6 +136,7 @@ class LCIO(BaseILC):
         # PATH
         self.envpath["PATH"].append( "$LCIO/tools" )
         self.envpath["PATH"].append( "$LCIO/bin" )
+        self.envpath["LD_LIBRARY_PATH"].append( "$LCIO/lib" )
 
         if( self.mode == "install" ):
 
