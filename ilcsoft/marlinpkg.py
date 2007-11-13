@@ -53,13 +53,13 @@ class MarlinPKG(BaseILC):
             if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to install!!" )
         
-        # build documentation
+    # build documentation
     def buildDocumentation(self):
         if( not self.useCMake and self.buildDoc ):
             os.chdir( self.installPath + "/src" )
             if(isinPath("doxygen")):
                 print 80*'*' + "\n*** Creating C++ API documentation for " + self.name + " with doxygen...\n" + 80*'*'
-                os.system( "ant cpp.doc 2>&1 | tee -a " + self.logfile )
+                os.system( "make doc 2>&1 | tee -a " + self.logfile )
 
     def buildInMarlin(self):
         """ check if this package is going to be built with Marlin """
