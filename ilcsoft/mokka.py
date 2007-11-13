@@ -30,6 +30,7 @@ class Mokka(BaseILC):
         self.reqfiles = [ ["bin/Linux-g++/Mokka"] ]
         self.reqmodules = [ "LCIO", "GEAR", "Geant4", "MySQL" ]
 
+
     def setMode(self, mode):
         BaseILC.setMode(self, mode)
 
@@ -42,10 +43,11 @@ class Mokka(BaseILC):
         """ compile Mokka """
 
         os.chdir( self.installPath + "/source" )
-
-        if( os.system( ". ${G4ENV_INIT}; make 2>&1 | tee -a " + self.logfile ) != 0 ):
+        
+        if( os.system( ". ${G4ENV_INIT}; unset G4UI_USE_XAW ; unset G4UI_USE_XM ; make 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
-    
+
+
     def preCheckDeps(self):
         BaseILC.preCheckDeps(self)
 
@@ -60,4 +62,11 @@ class Mokka(BaseILC):
         if( not self.env.has_key( "G4WORKDIR" )):
             self.env[ "G4WORKDIR" ] = self.installPath
 
-        self.envpath["PATH"].append( self.installPath + "/bin" )
+        if( not self.env.has_key( "G4UI_USE_TCSH" )):
+            self.env[ "G4UI_USE_TCSH" ] = 1 
+
+        self.envpath["PATH"].append( self.installPath + "/bin/Linux-g++" )
+        #self.envpath["LD_LIBRARY_PATH"].append( "$LCIO/lib" )
+        self.envcmds.append(" . ${G4ENV_INIT} ")
+
+
