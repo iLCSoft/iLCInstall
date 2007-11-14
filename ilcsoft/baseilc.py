@@ -60,6 +60,11 @@ class BaseILC:
                 print "\t   + download sources with [ " + self.download.type + " ] from:"
                 if( self.download.type == "wget" ):
                     print "\t\t+ URL [ " + self.download.url + " ]"
+                elif ( self.download.type == "svn" ):
+                    if ( self.version == "HEAD" ):
+                        print "\t\t+ SVN [ " + self.download.server + "/" + self.download.root + "/trunk ]"
+                    else:
+                        print "\t\t+ SVN [ " + self.download.server + "/" + self.download.root + "/tags/" + self.version + " ]"
                 else:
                     print "\t\t+ CVSROOT [ " + self.download.env["CVSROOT"] + " ]"
 
@@ -308,6 +313,9 @@ class BaseILC:
                     self.download.url = "http://www-zeuthen.desy.de/lc-cgi-bin/cvsweb.cgi/" \
                         + self.download.project + "/" + self.download.project + ".tar.gz?cvsroot=" \
                         + self.download.root + ";only_with_tag=" + self.version + ";tarball=1"
+            elif ( self.download.type == "svn" ):
+                if( not isinPath("svn") ):
+                    self.abort( "svn not found on your system!!" )
             else:
                 self.abort( "download type " + self.download.type + " not recognized!!" )
 
@@ -614,6 +622,13 @@ class BaseILC:
             else:
                 os.system( "cvs co -d " + self.version + " -r " + self.version + " " + self.download.project )
         
+        elif( self.download.type == "svn" ):
+
+            if ( self.version == "HEAD" ):
+                os.system( "svn checkout svn://" + self.download.server + "/" + self.download.root + "/trunk HEAD" )
+            else:
+                os.system( "svn checkout svn://" + self.download.server + "/" + self.download.root + "/tags/" + self.version + " " + self.version )
+
         elif( self.download.type == "wget" ):
 
             # name of the tarball file
@@ -1188,7 +1203,7 @@ class Download:
         self.env = {}                               # environment (CVSROOT, CVS_RSH)
         self.type = "wget"                          # download type (wget, cvs, ccvssh)
         self.supportHEAD = True                     # support for downloading HEAD version
-        self.supportedTypes = [ "wget", "ccvssh" ]  # supported download types for the module
+        self.supportedTypes = [ "wget", "ccvssh", "svn" ]  # supported download types for the module
 
 #--------------------------------------------------------------------------------
 
