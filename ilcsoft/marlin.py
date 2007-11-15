@@ -28,10 +28,10 @@ class Marlin(BaseILC):
 
         # optional modules
         self.optmodules = [ "MarlinUtil", "CEDViewer", "MarlinReco", "PandoraPFA", "SiliconDigi", "LCFIVertex", "Eutelescope", \
-                "Overlay", "GEAR", "CLHEP", "LCCD", "RAIDA" ]
+                "Overlay", "GEAR", "CLHEP", "LCCD", "CondDBMySQL", "RAIDA" ]
 
         # supported cmake "build_with" modules
-        self.cmakebuildmodules = [ "GEAR", "CLHEP", "LCCD", "RAIDA" ]
+        self.cmakebuildmodules = [ "GEAR", "CLHEP", "LCCD", "CondDBMySQL", "RAIDA" ]
     
     def compile(self):
         """ compile Marlin """
