@@ -58,11 +58,11 @@ bin_file = sys.argv[1]
 if( not os.path.exists( bin_file )):
     abort( bin_file+" does not exist!!" )
 
-# shift command name and binary file out of argument list
-argl = sys.argv[2:]
-
 # split arguments by ' -' instead of whitespaces
-argl=str.join(' ', argl).split(' -')
+argl=str.join(' ', sys.argv).split(' -')
+
+# shift command name and binary file out of argument list
+argl = argl[1:]
 
 # remove empty elements
 argl = [ i for i in argl if i ]
