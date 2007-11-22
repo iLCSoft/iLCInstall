@@ -61,8 +61,8 @@ if( not os.path.exists( bin_file )):
 # shift command name and binary file out of argument list
 argl = sys.argv[2:]
 
-# split arguments by '-' instead of whitespaces
-argl=str.join(' ', argl).split('-')
+# split arguments by ' -' instead of whitespaces
+argl=str.join(' ', argl).split(' -')
 
 # remove empty elements
 argl = [ i for i in argl if i ]
