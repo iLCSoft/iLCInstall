@@ -65,15 +65,15 @@ class CLHEP(BaseILC):
         os.chdir( self.installPath + "/build" )
         os.system( "make clean" )
 
-    def preCheckDeps(self):
-        # HepPDT is not part of CLHEP since versions 2.0.3.0/1.9.3.0
-        if( self.evalVersion( "2.0.3.0" ) == 0 or       # version == 2.0.3.0
-                self.evalVersion( "1.9.3.0" ) == 0 or   # version == 1.9.3.0
-                self.evalVersion( "2.0.3.0" ) == 2 or   # version  > 2.0.3.0
-                (self.evalVersion( "1.9.3.0" ) == 2 and
-                 self.evalVersion( "1.9.9.9" ) == 1)):    # 1.9.3.0 < version < 1.9.9.9                
-            
-            self.addDependency( ["HepPDT"] )
+#    def preCheckDeps(self):
+#        # HepPDT is not part of CLHEP since versions 2.0.3.0/1.9.3.0
+#        if( self.evalVersion( "2.0.3.0" ) == 0 or       # version == 2.0.3.0
+#                self.evalVersion( "1.9.3.0" ) == 0 or   # version == 1.9.3.0
+#                self.evalVersion( "2.0.3.0" ) == 2 or   # version  > 2.0.3.0
+#                (self.evalVersion( "1.9.3.0" ) == 2 and
+#                 self.evalVersion( "1.9.9.9" ) == 1)):    # 1.9.3.0 < version < 1.9.9.9                
+#            
+#            self.addDependency( ["HepPDT"] )
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
