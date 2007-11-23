@@ -7,6 +7,8 @@
  v01-03
 -----------------------------------------------------
 
+ - removed HepPDT dependency from CLHEP module
+
  - removed expect for automating login procedures
     passwords are now coded directly into CVSROOT
     as proposed by K. Harder (Thanks Kristian!)
