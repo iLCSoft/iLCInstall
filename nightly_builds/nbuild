@@ -17,12 +17,12 @@ import os.path
 mail_addr=[]
 
 # define the size of the error messages to be sent in the mails
-n_chars_pre_error=12000
-n_chars_pos_error=3000
+n_chars_pre_error=9000
+n_chars_pos_error=1000
 
 # Error strings to be identified in the log file
-errors=[ "Traceback", "CMake Error", "BUILD FAILED", "*** ERROR in module",\
-         "FATAL ERROR", "Error 1", "Error 2" ]
+errors=[ "Traceback", "CMake Error", "BUILD FAILED", "Error 2", "Error 1",\
+         "*** ERROR in module", "FATAL ERROR" ]
 
 # Number of nightly build snapshots to keep on disk
 max_snapshots=3
@@ -94,7 +94,7 @@ error_msgs=""
 for i in errors:
     ind=log.find(i)
     if( ind != -1 ):
-        error_msgs+="\n\n"+80*'*'+"\nERROR OF TYPE: "+i+" OCURRED!!!\n"+80*'*'+"\n\n"
+        error_msgs+="\n\n"+80*'@'+"\nERROR OF TYPE: "+i+" OCURRED!!!\n"+80*'@'+"\n\n"
         error_msgs+=log[ind-n_chars_pre_error:ind+n_chars_pos_error]
 
 if len( error_msgs ) > 1:
@@ -111,5 +111,5 @@ for addr in mail_addr:
         commands.getoutput( "echo \""+error_msgs+"\" | mail -s\""+mail_subject+"\" "+addr )
         commands.getoutput( "mail-files "+addr+" ascii \""+mail_subject+" LOGFILE\" \""+logfile+"\"")
     else:
-        commands.getoutput( "echo \":)\" | mail -s\""+mail_subject+"\" "+addr )
+        commands.getoutput( "cat "+sys.argv[1]+" | mail -s\""+mail_subject+"\" "+addr )
 
