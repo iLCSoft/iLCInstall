@@ -23,8 +23,8 @@ class LCIO(BaseILC):
         # optional modules
         #self.optmodules = [ "CLHEP" ]
 
-        # supported cmake "build_with" modules
-        #self.cmakebuildmodules = [ "CLHEP" ]
+        # supported cmake modules
+        self.cmakebuildmodules = [ "Java" ]
 
         # flag for building lcio java stuff
         self.buildJava = False
