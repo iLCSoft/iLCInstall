@@ -762,11 +762,8 @@ class BaseILC:
             if( not self.skipCompile ):
                 if( self.useCMake ):
                     self.setCMakeVars(self,[])
-                    cmakeCmdstr = self.genCMakeCmd().split()
-                    print "+ CMake build variables:"
-                    for i in cmakeCmdstr:
-                        print "\t" + i
-                    print
+                    print "+ Generated cmake build command:"
+                    print '  $ cmake',self.genCMakeCmd(),self.installPath,os.linesep
                 
                 self.compile()
 
