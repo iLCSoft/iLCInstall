@@ -19,7 +19,7 @@ class Java(BaseILC):
         BaseILC.__init__(self, userInput, "Java", "java")
 
         self.installSupport = False
-        self.hasCMakeSupport = False
+        #self.hasCMakeSupport = False
 
         self.reqfiles = [ ["bin/java"], ["bin/javac"] ]
 
