@@ -342,8 +342,20 @@ class BaseILC:
         """ called before running dependency check
             useful for adding or removing dependencies based on
             environment variables or some other setting """
+        
+        # add cmake dependency
         if( self.mode == "install" and self.useCMake ):
-            self.addExternalDependency( ["CMake","CMakeModules"] )
+            self.addExternalDependency( ["CMake"] )
+
+            # add CMakeModules dependency
+            found=False
+            mods = self.reqmodules + self.optmodules + self.reqmodules_buildonly
+            if( len(mods) > 0 ):
+                for mod in mods:
+                    if mod in self.cmakebuildmodules:
+                        found=True
+            if found:
+                self.addExternalDependency( ["CMakeModules"] )
     
     def postCheckDeps(self):
         """ called after running dependency check
@@ -363,10 +375,8 @@ class BaseILC:
                 self.abort( "tee not found on your system!!" )
 
             # set debug for cmake builds
-            if( self.useCMake ):
-                if( self.debug ):
-                    self.envcmake["CMAKE_BUILD_TYPE"]="Debug"
-
+            if( self.useCMake and self.debug ):
+                self.envcmake["CMAKE_BUILD_TYPE"]="Debug"
 
     def checkOptionalDependencies(self):
         """ check dependencies for the installation
@@ -381,10 +391,10 @@ class BaseILC:
         for opt in self.optmodules:
             mod = self.parent.module(opt)
             if( mod == None ):
-                if( self.mode == "install" ):
-                    print "   - " + self.name + ": " + opt + " not found!!",
-                    print self.name + " will NOT be built with " + opt
                 failed.append(opt)
+                #if( self.mode == "install" ):
+                #    print "   - " + self.name + ": " + opt + " not found!!",
+                #    print self.name + " will NOT be built with " + opt
         
         # remove soft dependencies that were not found
         self.buildWithout(failed)
@@ -816,6 +826,11 @@ class BaseILC:
             # print environment settings recursively
             self.setEnv(self, [], True )
 
+            if( self.useCMake ):
+                self.setCMakeVars(self, [])
+                print "\n+ Generated CMake command for building " + self.name + ":"
+                print '  $ cmake',self.genCMakeCmd(),self.installPath
+            
             print "\n+ " + self.name + " installation finished."
             print '\n' + 20*'-' + " Finished " + self.name + " Installation Test " + 20*'-' + '\n'
 
@@ -839,12 +854,22 @@ class BaseILC:
             checked.append( self.name )
 
         # cmake variables
-        if( self.name in self.parent.cmakeSupportedMods ):
-            if( not origin.envcmake.has_key(self.name+"_HOME")):
-                origin.envcmake[self.name+"_HOME"]=self.realPath()
         if( len(checked) > 1 ):
+            # CMAKE_MODULE_PATH variable
             if( self.name == "CMakeModules" ):
                 origin.envcmake["CMAKE_MODULE_PATH"]=self.realPath()
+            # <PKG>_HOME variables
+            
+            if( self.name in origin.cmakebuildmodules ):
+                # fix for setting JAVA_HOME instead of Java_HOME
+                if self.name == "Java":
+                    thisname=self.name.upper()
+                else:
+                    thisname=self.name
+                
+                if( not origin.envcmake.has_key(thisname+"_HOME")):
+                    origin.envcmake[thisname+"_HOME"]=self.realPath()
+            # BUILD_WITH variable
             if( self.name in origin.cmakebuildmodules and self.name in origin.optmodules ):
                 if( not origin.envcmake.has_key("BUILD_WITH")):
                     origin.envcmake["BUILD_WITH"]=""
@@ -858,9 +883,7 @@ class BaseILC:
             mods = self.optmodules + self.reqmodules + self.reqmodules_buildonly + self.reqmodules_external
         
         for modname in mods:
-            self.parent.module(modname).setCMakeVars(origin, checked)
-
-
+            self.parent.module(modname).setCMakeVars(origin, checked )
 
     def setEnv(self, origin, checked, simOnly=False):
         """ sets the environment variables for this module """
