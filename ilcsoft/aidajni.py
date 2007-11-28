@@ -43,8 +43,6 @@ class AIDAJNI(BaseILC):
         self.envpath["PATH"].append( "$AIDAJNI_HOME/bin/Linux-g++" )
         self.envpath["CLASSPATH"].append( "${AIDAJNI_HOME}/lib/freehep-aidajni.jar" )
         self.envpath["LD_LIBRARY_PATH"].append( "${AIDAJNI_HOME}/lib/Linux-g++" )
-        self.envpath["LD_LIBRARY_PATH"].append( "${JDK_HOME}/jre/lib/i386/client" )
-        self.envpath["LD_LIBRARY_PATH"].append( "${JDK_HOME}/jre/lib/i386" )    
 
 # end of FIXME
 
