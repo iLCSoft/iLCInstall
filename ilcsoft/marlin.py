@@ -28,10 +28,10 @@ class Marlin(BaseILC):
 
         # optional modules
         self.optmodules = [ "MarlinUtil", "CEDViewer", "MarlinReco", "PandoraPFA", "SiliconDigi", "LCFIVertex", "Eutelescope", \
-                "Overlay", "GEAR", "CLHEP", "LCCD", "CondDBMySQL", "RAIDA" ]
+                "Overlay", "GEAR", "CLHEP", "LCCD", "CondDBMySQL", "RAIDA", "AIDAJNI" ]
 
-        # supported cmake "build_with" modules
-        self.cmakebuildmodules = [ "GEAR", "CLHEP", "LCCD", "CondDBMySQL", "RAIDA" ]
+        # supported cmake modules
+        self.cmakebuildmodules = [ "LCIO", "GEAR", "CLHEP", "LCCD", "CondDBMySQL", "RAIDA", "AIDAJNI", "JAIDA" ]
     
     def compile(self):
         """ compile Marlin """
@@ -194,6 +194,9 @@ class Marlin(BaseILC):
                 self.env["MARLINDEBUG"] = "1"
            
             # enable AIDA
+            if( "RAIDA" in self.optmodules and "AIDAJNI" in self.optmodules ):
+                self.abort( "Marlin cannot be built with RAIDA and AIDAJNI simultaneously!!\n"\
+                        +"*    add: ilcsoft.module(\"Marlin\").buildWithout([\"AIDAJNI\"]) to your cfg file." )
             if( "RAIDA" in self.optmodules or "AIDAJNI" in self.optmodules ):
                 self.env["MARLIN_USE_AIDA"] = "1"
 
