@@ -24,9 +24,11 @@ class CLHEP(BaseILC):
         self.reqfiles = [ ["lib/libCLHEP.a", "lib/libCLHEP.so", "lib/libCLHEP.dylib"] ]
 
     def setMode(self, mode):
-
         BaseILC.setMode(self, mode)
-            
+        
+        # no cmake build support
+        self.useCMake = False
+        
         if( self.mode == "install" ):
             if( self.evalVersion("1.9.1.1") == 1 ):
                 self.abort( "ilcinstall only supports installation of CLHEP 1.9.1.1 or greater!" )

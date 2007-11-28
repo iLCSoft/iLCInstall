@@ -32,6 +32,9 @@ class GSL(BaseILC):
     def setMode(self, mode):
 
         BaseILC.setMode(self, mode)
+
+        # no cmake build support
+        self.useCMake = False
             
         if( self.mode == "install" ):
             # download url

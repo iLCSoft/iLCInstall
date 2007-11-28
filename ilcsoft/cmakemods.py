@@ -26,6 +26,14 @@ class CMakeModules(BaseILC):
         
         self.reqfiles = [ ["LoadPackageMacro.cmake", "MacroLoadPackage.cmake"] ]
 
+        # There is no FindCMakeModules.cmake module ;)
         self.hasCMakeSupport = False
 
+        # CMakeModules are just 'unpacked'
         self.skipCompile = True
+
+    def setMode(self, mode):
+        BaseILC.setMode(self, mode)
+
+        # CMakeModules are just 'unpacked'
+        self.useCMake = False

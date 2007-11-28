@@ -25,6 +25,12 @@ class CondDBMySQL(BaseILC):
 
         self.reqmodules_buildonly = [ "MySQL" ]
     
+    def setMode(self, mode):
+        BaseILC.setMode(self, mode)
+
+        # no cmake build support
+        self.useCMake = False
+
     def downloadSources(self):
         BaseILC.downloadSources(self)
 

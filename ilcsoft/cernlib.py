@@ -24,13 +24,15 @@ class CERNLIB(BaseILC):
         self.reqfiles = [ ["lib/libmathlib.a"], ["lib/libkernlib.a"] ]
 
     def setMode(self, mode):
-
         BaseILC.setMode(self, mode)
+
+        # no cmake build support
+        self.useCMake = False
             
         if( self.mode == "install" ):
             # download url
             self.download.url = "http://cernlib.web.cern.ch/cernlib/download/" + self.version + "_source/tar/"
-    
+
     def downloadSources(self):
         
         if( os.path.exists(self.installPath) ):
