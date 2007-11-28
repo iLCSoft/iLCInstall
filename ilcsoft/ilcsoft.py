@@ -284,19 +284,26 @@ class ILCSoft:
                 + " CACHE PATH \"Path to ILC Software\" FORCE)" + os.linesep + os.linesep )
 
         for mod in self.modules:
+            
+            # fix for setting JAVA_HOME and not Java_HOME
+            if mod.name == "Java":
+                modname=mod.name.upper()
+            else:
+                modname=mod.name
+            
             if( mod.name in self.cmakeSupportedMods ):
                 # check if install path from module contains base path from ilcsoft
                 if( mod.installPath.find( self.installPath) == 0 ):
-                    f.write( "SET( " + mod.name + "_HOME \"${ILC_HOME}/" + mod.alias + "/" + mod.version + "\"" \
+                    f.write( "SET( " + modname + "_HOME \"${ILC_HOME}/" + mod.alias + "/" + mod.version + "\"" \
                             + " CACHE PATH \"Path to " + mod.name + "\" FORCE)" + os.linesep )
                 else:
-                    f.write( "SET( " + mod.name + "_HOME \"" + mod.installPath + "\"" \
+                    f.write( "SET( " + modname + "_HOME \"" + mod.installPath + "\"" \
                             + " CACHE PATH \"Path to " + mod.name + "\" FORCE)" + os.linesep )
                 # check if this module was already defined in a previously existing ILCSoft.cmake
                 for k in dicHP:
-                    if( k[0] == str(mod.name+"_HOME") ):
+                    if( k[0] == str(modname+"_HOME") ):
                         # if it was mark it to be deleted (the old one!)
-                        dicHP_remove.append( mod.name+"_HOME" )
+                        dicHP_remove.append( modname+"_HOME" )
         
         cmods = self.module("CMakeModules")
         if( cmods != None ):
