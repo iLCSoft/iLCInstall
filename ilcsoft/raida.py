@@ -23,8 +23,8 @@ class RAIDA(BaseILC):
         # ROOT is required for building RAIDA
         self.reqmodules = [ "ROOT" ]
 
-        # supported cmake "build_with" modules
-        self.cmakebuildmodules = []
+        # supported cmake modules
+        self.cmakebuildmodules = [ "ROOT" ]
 
         # no documentation available
         self.buildDoc = False
