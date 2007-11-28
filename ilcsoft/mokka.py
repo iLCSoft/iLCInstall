@@ -34,6 +34,9 @@ class Mokka(BaseILC):
     def setMode(self, mode):
         BaseILC.setMode(self, mode)
 
+        # no cmake build support
+        self.useCMake = False
+
         # force download type to cvs for HEAD version
         if( self.download.type == "wget" and self.version=="HEAD" ):
             self.download.type = "cvs"

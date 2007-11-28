@@ -18,8 +18,8 @@ class QT(BaseILC):
     def __init__(self, userInput="auto"):
         BaseILC.__init__(self, userInput, "QT", "QT")
 
-        self.download.supportHEAD = False
         self.hasCMakeSupport = False
+        self.download.supportHEAD = False
         self.download.supportedTypes = ["wget"]
 
         self.reqfiles = [
@@ -68,6 +68,9 @@ class QT(BaseILC):
     def setMode(self, mode):
 
         BaseILC.setMode(self, mode)
+
+        # no cmake build support
+        self.useCMake = False
             
         if( self.mode == "install" ):
 
