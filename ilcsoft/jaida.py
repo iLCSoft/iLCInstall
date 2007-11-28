@@ -21,7 +21,7 @@ class JAIDA(BaseILC):
         self.reqfiles = [ ["bin/aida-setup.sh"], ["lib/aida.jar"] ]
 
         self.installSupport = False
-        self.hasCMakeSupport = False
+        #self.hasCMakeSupport = False
 
         # Java is required for JAIDA
         self.reqmodules = [ "Java" ]
