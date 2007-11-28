@@ -18,6 +18,7 @@ class HepPDT(BaseILC):
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "HepPDT", "HepPDT")
 
+        self.hasCMakeSupport = False
         self.download.supportHEAD = False
         self.download.supportedTypes = ["wget"]
 
@@ -26,6 +27,9 @@ class HepPDT(BaseILC):
     def setMode(self, mode):
 
         BaseILC.setMode(self, mode)
+
+        # no cmake build support
+        self.useCMake = False
             
         if( self.mode == "install" ):
             self.download.url = "http://lcgapp.cern.ch/project/simu/HepPDT/download/HepPDT-" \
