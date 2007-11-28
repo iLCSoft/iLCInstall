@@ -7,6 +7,16 @@
  v01-03
 -----------------------------------------------------
 
+ - fixed bugs:
+    - CMakeModules dependency (was added to each
+        module if module.useCMake==True)
+    - <PKG>_HOME variables were beeing set to all
+        packages (not the BUILD_WITH packages only)
+    - some <PKG>_HOME variables weren not being
+        written to global ILCSoft.cmake (JAVA...)
+    - some issues fixed for cmake builds with
+        AIDAJNI
+
  - removed HepPDT dependency from CLHEP module
 
  - removed expect for automating login procedures
