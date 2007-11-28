@@ -23,9 +23,6 @@ class CED(BaseILC):
         # no documentation available
         self.buildDoc = False
 
-        # supported cmake "build_with" modules
-        self.cmakebuildmodules = []
-
         self.download.root = "marlinreco"
 
     def compile(self):
