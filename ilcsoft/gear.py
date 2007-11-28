@@ -18,9 +18,6 @@ class GEAR(BaseILC):
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "GEAR", "gear")
 
-        # supported cmake "build_with" modules
-        self.cmakebuildmodules = []
-
         # java is required for generating header files with ant
         self.reqmodules_external = [ "Java" ]
 
