@@ -283,8 +283,13 @@ class BaseILC:
                 self.abort( "sorry, HEAD version of this package cannot be installed!! " \
                         + "Please choose a release version..." )
             if( not self.download.type in self.download.supportedTypes ):
-                self.abort( "sorry, \'" + self.download.type + "\' download type not supported. " \
-                        + "Please choose from " + str( self.download.supportedTypes ))
+                if len(self.download.supportedTypes) == 1:
+                    print "*** WARNING: "+self.name+" download.type forced from \'"+self.download.type \
+                            + "\' to \'" + self.download.supportedTypes[0] + "\'"
+                    self.download.type=self.download.supportedTypes[0]
+                else:
+                    self.abort( "sorry, \'" + self.download.type + "\' download type not supported. " \
+                            + "Please choose from " + str( self.download.supportedTypes ))
             if( self.download.type == "cvs" or self.download.type == "ccvssh" ):
                 if( not isinPath("cvs") ):
                     self.abort( "cvs not found!!" )
