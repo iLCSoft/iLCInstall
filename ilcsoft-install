@@ -3,7 +3,7 @@ import sys
 import os.path
 from ilcsoft import *
 
-if( len(sys.argv) < 2 ):
+if( len(sys.argv) < 2 or len(sys.argv) >3 ):
     # display usage information
     print "\n Usage: " + sys.argv[0] + " [-s, -p, -i] \"install.cfg\"\n"
     print "   -s to display installation summary"
@@ -13,10 +13,9 @@ if( len(sys.argv) < 2 ):
     sys.exit(1)
 
 else:
+    valid_options = ['s','p','i']
     if( len(sys.argv) == 2 ):
-        options = ["s"]
-    else:
-        options = []
+        option = 's'
 
     # get the config file from the option's list
     for opt in sys.argv:
@@ -32,18 +31,15 @@ else:
         print "you need to specify a valid config file!!"
         sys.exit(1)
     
-    # get the options to be executed
+    # get the option to be executed
     for opt in sys.argv:
         
         if( opt[0] == "-" ):
             if( len(opt) > 2 ):
-                for splitop in opt[1:]:
-                    options.append(splitop)
+                print "invalid option:",opt
+                sys.exit(1)
             else:
-                options.append(opt[1:] )
-    
-    if( len(options) == 0):
-        options = ["i"]
+                option=opt[1:]
     
     print "\n" + 30*'*' + " Starting installation process... " + 30*'*' + "\n"
 
@@ -60,19 +56,15 @@ else:
     # (called right after reading the config file)
     ilcsoft.init()
 
-    for opt in options:
-
-        if( opt == "s" ):
-            # display installation summary
-            ilcsoft.summary()
-        
-        elif( opt == "p" ):
-            # test install
-            ilcsoft.previewinstall()
-        
-        elif( opt == "i" ):
-            # install software
-            ilcsoft.makeinstall()
+    if( option == "s" ):
+        # display installation summary
+        ilcsoft.summary()
+    elif( option == "p" ):
+        # test install
+        ilcsoft.previewinstall()
+    elif( option == "i" ):
+        # install software
+        ilcsoft.makeinstall()
 
     print "\n" + 30*'*' + " Finished installation process... " + 30*'*' + "\n"
-    
+
