@@ -41,6 +41,10 @@ class Mokka(BaseILC):
         if( self.download.type == "wget" and self.version=="HEAD" ):
             self.download.type = "cvs"
 
+        # force download type to cvs if set to ccvssh
+        if( self.download.type == "ccvssh" ):
+            self.download.type = "cvs"
+        
         self.download.username = "anoncvs"
         self.download.password = "%ilc%"
         self.download.url = "http://polywww.in2p3.fr/activites/physique/geant4/tesla/www/mokka/software/mokka_tags/Mokka-" \
