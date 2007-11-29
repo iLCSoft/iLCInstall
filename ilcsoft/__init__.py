@@ -18,7 +18,7 @@ from silicondigi import SiliconDigi
 from lcfivertex import LCFIVertex
 from eutelescope import Eutelescope
 from overlay import Overlay
-#from marlintpc import MarlinTPC
+from marlintpc import MarlinTPC
 
 # cmake
 from cmake import CMake
