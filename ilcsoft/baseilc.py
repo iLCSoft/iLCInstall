@@ -618,7 +618,8 @@ class BaseILC:
             if( i1 != -1 ):
                 if( cvsroot.count(":",0,i1) == 3 ):
                     # cvs login
-                    os.system( self.download.type + " login" )
+                    if( os.system( self.download.type + " login" ) != 0 ):
+                        self.abort( "Problems ocurred downloading sources ("+self.download.type+" login)!!")
                 
                     # remove password from CVSROOT
                     i2=cvsroot.rfind(':',0,i1)
@@ -633,16 +634,22 @@ class BaseILC:
 
             # checkout sources
             if( self.version == "HEAD" ):
-                os.system( "cvs co -d " + self.version + " " + self.download.project )
+                if( os.system( "cvs co -d " + self.version + " " + self.download.project ) != 0 ):
+                    self.abort( "Problems ocurred downloading sources with "+self.download.type+"!!")
             else:
-                os.system( "cvs co -d " + self.version + " -r " + self.version + " " + self.download.project )
+                if( os.system( "cvs co -d " + self.version + " -r " + self.version + " " + self.download.project ) != 0 ):
+                    self.abort( "Problems ocurred downloading sources with "+self.download.type+"!!")
         
         elif( self.download.type == "svn" ):
 
             if ( self.version == "HEAD" ):
-                os.system( "svn checkout svn://" + self.download.server + "/" + self.download.root + "/trunk HEAD" )
+                if( os.system( "svn export svn://" + self.download.server + "/" + self.download.root \
+                        + "/trunk HEAD" ) != 0 ):
+                    self.abort( "Problems ocurred downloading sources with "+self.download.type+"!!")
             else:
-                os.system( "svn checkout svn://" + self.download.server + "/" + self.download.root + "/tags/" + self.version + " " + self.version )
+                if( os.system( "svn export svn://" + self.download.server + "/" + self.download.root \
+                        + "/tags/" + self.version + " " + self.version ) != 0 ):
+                    self.abort( "Problems ocurred downloading sources with "+self.download.type+"!!")
 
         elif( self.download.type == "wget" ):
 
