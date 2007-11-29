@@ -1228,7 +1228,7 @@ class Download:
         self.env = {}                               # environment (CVSROOT, CVS_RSH)
         self.type = "wget"                          # download type (wget, cvs, ccvssh)
         self.supportHEAD = True                     # support for downloading HEAD version
-        self.supportedTypes = [ "wget", "ccvssh", "svn" ]  # supported download types for the module
+        self.supportedTypes = [ "wget", "ccvssh" ]  # supported download types for the module
 
 #--------------------------------------------------------------------------------
 
