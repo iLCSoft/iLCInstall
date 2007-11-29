@@ -16,6 +16,8 @@ class MarlinTPC(MarlinPKG):
     def __init__(self, userInput):
         MarlinPKG.__init__(self, "MarlinTPC", userInput)
 
+        # svn export svn://pi.physik.uni-bonn.de/MarlinTPC/trunk HEAD
+        # svn export svn://pi.physik.uni-bonn.de/MarlinTPC/tags -version-
         self.download.supportedTypes = [ "svn" ]
         self.download.type = "svn"
         self.download.server = "pi.physik.uni-bonn.de"
