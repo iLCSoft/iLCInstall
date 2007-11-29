@@ -22,11 +22,18 @@ How to use:
         $ crontab -e
 
         # example of a crontab file
-        
         SHELL=/bin/bash
-        PATH=/sbin:/bin:/usr/sbin:/usr/bin:/data/engels/tools/ilcinstall/
+        # enter your email here for receiving output from cron jobs
         MAILTO=your_email@blah.zzz
+        # if you have your $HOME dir in afs, cron won't be able to access it because your token
+        # will expire. since ilcinstall needs to access your ~/.cvspass for cvs/ccvssh downloads
+        # you need to redefine the $HOME variable to your local disk and put a copy of ~./cvspass
+        # there. of course you must have logged at least once to each server so that ~/.cvspass
+        # contains all the needed passwords.
         HOME=/data/engels/cronhome
+        # add the path where ilcinstall is located to the PATH list
+        # and also don't forget to add the ccvssh path if you do ccvssh downloads
+        PATH=/sbin:/bin:/usr/sbin:/usr/bin:/data/engels/tools/ilcinstall:/data/engels/cronhome/bin
          
         # cron syntax is:
         # mm hh MM YY dd
