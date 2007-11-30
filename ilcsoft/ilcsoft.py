@@ -31,6 +31,7 @@ class ILCSoft:
         self.downloadUser = ""      # global download cvs/ccvssh username
         self.downloadPass = ""      # global download cvs/ccvssh password
         self.downloadType = ""      # global download cvs/ccvssh password
+        self.downloadLogin2Server=False # set to True if no cvs passwords are stored in your ~/.cvspass
         self.useCMake = False       # global flag for using cmake
         self.noAutomaticRebuilds = False # global flag for automatic rebuilding
         self.env = {}               # global environment variables
