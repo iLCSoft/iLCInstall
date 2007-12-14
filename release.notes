@@ -21,9 +21,15 @@
 
  - removed HepPDT dependency from CLHEP module
 
- - removed expect for automating login procedures
-    passwords are now coded directly into CVSROOT
-    as proposed by K. Harder (Thanks Kristian!)
+ - removed expect. Passwords are now coded directly
+    into CVSROOT as proposed by K. Harder (Thanks!)
+    - flag introduced to login to server(s):
+        set globally with:
+            ilcsoft.downloadLogin2Server=True
+        or per module with:
+            module.download.login2Server=True
+        You don't need to set this flag if your
+        passwords are stored in .cvspass
 
  - removed cmake.cfg
 
