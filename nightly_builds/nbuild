@@ -108,7 +108,7 @@ mail_subject="[Nightly Build] ("+opsys+"): "+build_status+"] "+cfg_file+" "+date
 # mail output of nightly build
 for addr in mail_addr:
     if build_status == "FAILED":
-        commands.getoutput( "echo \""+error_msgs+"\" | mail -s\""+mail_subject+"\" "+addr )
+        commands.getoutput( "echo \'"+error_msgs+"\' | mail -s\""+mail_subject+"\" "+addr )
         commands.getoutput( "mail-files "+addr+" ascii \""+mail_subject+" LOGFILE\" \""+logfile+"\"")
     else:
         commands.getoutput( "cat "+sys.argv[1]+" | mail -s\""+mail_subject+"\" "+addr )
