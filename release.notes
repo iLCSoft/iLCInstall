@@ -17,6 +17,8 @@
     - some issues fixed for cmake builds with
         AIDAJNI
 
+ - added CKFit module (B. Hooberman)
+
  - added MarlinTPC module (P. Wienemann)
 
  - removed HepPDT dependency from CLHEP module
