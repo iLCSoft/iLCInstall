@@ -19,6 +19,7 @@ from lcfivertex import LCFIVertex
 from eutelescope import Eutelescope
 from overlay import Overlay
 from marlintpc import MarlinTPC
+from ckfit import CKFit
 
 # cmake
 from cmake import CMake

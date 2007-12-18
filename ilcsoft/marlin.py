@@ -28,7 +28,7 @@ class Marlin(BaseILC):
 
         # optional modules
         self.optmodules = [ "MarlinUtil", "CEDViewer", "MarlinReco", "PandoraPFA", "SiliconDigi", "LCFIVertex", "Eutelescope", \
-                "Overlay", "GEAR", "CLHEP", "LCCD", "CondDBMySQL", "RAIDA", "AIDAJNI" ]
+                "Overlay", "CKFit", "GEAR", "CLHEP", "LCCD", "CondDBMySQL", "RAIDA", "AIDAJNI" ]
 
         # supported cmake modules
         self.cmakebuildmodules = [ "LCIO", "GEAR", "CLHEP", "LCCD", "CondDBMySQL", "RAIDA", "AIDAJNI", "JAIDA" ]
