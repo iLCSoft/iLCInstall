@@ -87,7 +87,7 @@ class LCIO(BaseILC):
         if( self.buildDoc ):
             os.chdir( self.installPath )
             print 80*'*' + "\n*** Building documentation for " + self.name + "...\n" + 80*'*'
-            if( self.buildJava ):
+            if( self.buildJava and not self.useCMake ):
                 if(isinPath("javadoc")):
                     print 80*'*' + "\n*** Creating JAVA API documentation for " + self.name + " with javadoc...\n" + 80*'*'
                     os.system( "ant doc 2>&1 | tee -a " + self.logfile )
