@@ -27,7 +27,7 @@ class LCIO(BaseILC):
         self.cmakebuildmodules = [ "Java" ]
 
         # flag for building lcio java stuff
-        self.buildJava = False
+        self.buildJava = True
 
         # flag for building lcio fortran stuff
         self.buildFortran = False
