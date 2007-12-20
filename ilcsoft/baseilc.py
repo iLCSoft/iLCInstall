@@ -383,8 +383,11 @@ class BaseILC:
                 self.abort( "tee not found on your system!!" )
 
             # set debug for cmake builds
-            if( self.useCMake and self.debug ):
-                self.envcmake["CMAKE_BUILD_TYPE"]="Debug"
+            if( self.useCMake ):
+                if( self.debug ):
+                    self.envcmake["CMAKE_BUILD_TYPE"]="Debug"
+                else:
+                    self.envcmake["CMAKE_BUILD_TYPE"]="Release"
 
     def checkOptionalDependencies(self):
         """ check dependencies for the installation

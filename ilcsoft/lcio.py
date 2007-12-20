@@ -143,8 +143,12 @@ class LCIO(BaseILC):
             if( self.useCMake ):
                 if( self.buildFortran ):
                     self.envcmake["BUILD_F77_TESTJOBS"]="ON"
+                else:
+                    self.envcmake["BUILD_F77_TESTJOBS"]="OFF"
                 if( self.buildJava ):
                     self.envcmake["INSTALL_JAR"]="ON"
+                else:
+                    self.envcmake["INSTALL_JAR"]="OFF"
 
             # check for doc tools
             if( self.buildDoc ):
