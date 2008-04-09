@@ -18,13 +18,24 @@ class JAIDA(BaseILC):
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "JAIDA", "JAIDA")
 
-        self.reqfiles = [ ["bin/aida-setup.sh"], ["lib/aida.jar"] ]
-
-        self.installSupport = False
-        #self.hasCMakeSupport = False
+        self.reqfiles = [ ["bin/aida-setup.sh"] ]
 
         # Java is required for JAIDA
         self.reqmodules = [ "Java" ]
+
+        self.download.supportedTypes = [ "wget" ]
+
+        # binary distribution of JAIDA is downloaded
+        self.skipCompile = True
+
+    def setMode(self, mode):
+        BaseILC.setMode(self, mode)
+
+        # no cmake build support
+        self.useCMake = False
+
+        self.download.url = "ftp://ftp.slac.stanford.edu/software/freehep/JAIDA/v" \
+                + self.version + "/jaida-" + self.version + "-bin.tar.gz"
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
