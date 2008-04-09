@@ -5,7 +5,7 @@ from ilcsoft import *
 
 if( len(sys.argv) < 2 or len(sys.argv) >3 ):
     # display usage information
-    print "\n Usage: " + sys.argv[0] + " [-s, -p, -i] \"install.cfg\"\n"
+    print "\n Usage: " + sys.argv[0] + " -[s|p|i] \"install.cfg\"\n"
     print "   -s to display installation summary"
     print "   -p to preview installation "
     print "   -i to install the software "
@@ -18,30 +18,29 @@ else:
         option = 's'
 
     # get the config file from the option's list
-    for opt in sys.argv:
-
-        if( (opt != sys.argv[0]) and (opt[0] != "-") ):
-            config_file = opt
+    for arg in sys.argv[1:]:
+        if( arg[0] != "-" ):
+            config_file = arg
             break
     else:
-        print "you need to specify a config file!!"
+        print "no config file in command arguments found"
         sys.exit(1)
     
     if( not os.path.exists(config_file) ):
-        print "you need to specify a valid config file!!"
+        print "config file ["+config_file+"] does not exist"
         sys.exit(1)
     
     # get the option to be executed
-    for opt in sys.argv:
+    for arg in sys.argv[1:]:
         
-        if( opt[0] == "-" ):
-            if( len(opt) > 2 ):
-                print "invalid option:",opt
+        if( arg[0] == "-" ):
+            if( len(arg) > 2 or not arg[1] in valid_options ):
+                print "invalid option: ", arg
                 sys.exit(1)
             else:
-                option=opt[1:]
+                option=arg[1]
     
-    print "\n" + 30*'*' + " Starting installation process... " + 30*'*' + "\n"
+    print "\n" + 30*'*' + " Starting installation " + 30*'*' + "\n"
 
     print "+ Read configuration file [ " + config_file + " ]\n"
     # read configuration file
@@ -66,5 +65,5 @@ else:
         # install software
         ilcsoft.makeinstall()
 
-    print "\n" + 30*'*' + " Finished installation process... " + 30*'*' + "\n"
+    print "\n" + 30*'*' + " Finished installation " + 30*'*' + "\n"
 
