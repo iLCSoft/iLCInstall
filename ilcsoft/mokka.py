@@ -59,13 +59,6 @@ class Mokka(BaseILC):
             self.abort( "failed to compile!!" )
 
 
-    def preCheckDeps(self):
-        BaseILC.preCheckDeps(self)
-
-        if( self.download.type == "wget" and self.version=="HEAD" ):
-            self.abort( "please download the HEAD version with cvs only, e.g.:\n" \
-                    "ilcsoft.module(\"Mokka\").download.type=\"cvs\"" )
-
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
 
