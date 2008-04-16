@@ -41,7 +41,8 @@ class ILCSoft:
         self.envpathbak = {         # backup path environment variables (PATH, LD_LIBRARY_PATH, CLASSPATH)
             "PATH" : [],
             "LD_LIBRARY_PATH" : [],
-            "CLASSPATH" : []
+            "CLASSPATH" : [],
+            "MARLIN_DLL" : []
         }
         # list of supported modules
         # generated from hasCMakeSupport flag
@@ -323,10 +324,7 @@ class ILCSoft:
 
         # make backup of path environment variables
         for k, v in self.envpathbak.iteritems():
-            try:
-                self.envpathbak[k] = getenv(k)
-            except:
-                pass
+            self.envpathbak[k] = getenv(k)
         
         print "\n" + 30*'*' + " Starting ILC Software installation process " + 30*'*' + "\n"
         # write CMake Environment to file
