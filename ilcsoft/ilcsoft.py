@@ -43,41 +43,9 @@ class ILCSoft:
             "LD_LIBRARY_PATH" : [],
             "CLASSPATH" : []
         }
-        # standard environment variables
-        self.stdILCEnvVars = [
-            "CLHEP",
-            "LCIO",
-            "GEAR",
-            "LCCD",
-            "CERNLIB_HOME",
-            "CondDBMySQL",
-            "MARLIN",
-            "MARLIN_GUI",
-            "MARLINWORKDIR",
-            "MARLIN_USE_AIDA",
-            "GSL_HOME",
-            "ROOTSYS",
-            "RAIDA_HOME",
-            "JAIDA_HOME",
-            "AIDA_JNI_HOME"
-        ]
         # list of supported modules
-        self.cmakeSupportedMods = [
-        #   "Marlin",
-        #   "MarlinUtil",
-        #   "MarlinReco",
-        #   "CEDViewer",
-        #   "CED",
-        #   "LCIO",
-        #   "LCCD",
-        #   "GEAR",
-        #   "RAIDA",
-        #   "ROOT",
-        #   "GSL",
-        #   "CLHEP",
-        #   "CERNLIB",
-        #   "CondDBMySQL"
-        ]
+        # generated from hasCMakeSupport flag
+        self.cmakeSupportedMods = []
     
     def use(self, module):
         """ appends the given module to the list of modules 
