@@ -17,7 +17,7 @@ class SiliconDigi(MarlinPKG):
         MarlinPKG.__init__(self, "SiliconDigi", userInput )
 
         # required modules
-        self.reqmodules = [ "Marlin", "MarlinUtil", "LCIO", "GEAR", "CLHEP" ]
+        self.reqmodules = [ "Marlin", "LCIO", "GEAR", "CLHEP", "GSL" ]
 
         # cvs root
         self.download.root="marlinreco"
