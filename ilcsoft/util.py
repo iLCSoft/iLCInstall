@@ -62,19 +62,21 @@ class OSDetect:
             return True
         return False
 
+    # FIXME left here for compatibility, use isSL(3) instead
     def isSL3(self):
         """ returns True if this is Scientific Linux 3 """
-        if( self.type == "Linux" ):
-            if( self.ver.find( "Scientific Linux SL" ) != -1 ):
-                if( self.ver.find( "release 3." ) != -1 ):
-                    return True
-        return False
+        return self.isSL(3)
         
+    # FIXME left here for compatibility, use isSL(4) instead
     def isSL4(self):
         """ returns True if this is Scientific Linux 4 """
+        return self.isSL(4)
+
+    def isSL(self, v):
+        """ returns True if this is Scientific Linux X """
         if( self.type == "Linux" ):
             if( self.ver.find( "Scientific Linux SL" ) != -1 ):
-                if( self.ver.find( "release 4." ) != -1 ):
+                if( self.ver.find( "release "+str(v)+"." ) != -1 ):
                     return True
         return False
 
