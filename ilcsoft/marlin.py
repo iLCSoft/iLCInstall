@@ -150,6 +150,8 @@ class Marlin(BaseILC):
                 if( str(self.env["MARLIN_GUI"]) == "1" ):
                     self.addExternalDependency( ["QT"] )
                     self.reqfiles.append(["bin/MarlinGUI"])
+                    if( self.useCMake ):
+                        self.envcmake['MARLIN_GUI']='ON'
             if( self.useCMake ):
                 packages = []
                 for modname in self.optmodules:
@@ -182,12 +184,11 @@ class Marlin(BaseILC):
                                 + marlinutil.installPath + "/include" )
             
             # check qt version
-            if( self.env.has_key("MARLIN_GUI")):
-                if( str(self.env["MARLIN_GUI"]) == "1" ):
-                    qt = self.parent.module("QT")
-                    # check for qt version 4
-                    if( qt != None and qt.evalVersion("4.0") != 2 ):
-                        self.abort( "you need QT 4!! QT version " + qt.version + " found..." )
+            if( "QT" in self.reqmodules_external ):
+                qt = self.parent.module("QT")
+                # check for qt version 4
+                if( qt != None and qt.evalVersion("4.0") != 2 ):
+                    self.abort( "you need QT 4!! QT version " + qt.version + " found..." )
             
             # set debug env var
             if( self.debug ):

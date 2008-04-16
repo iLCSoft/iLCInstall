@@ -847,11 +847,14 @@ class BaseILC:
     def genCMakeCmd(self):
         """ generates a CMake command out of envcmake """
         cmd = ""
+        cmakeopts={}
         for k, v in self.parent.envcmake.iteritems():
-            cmd = cmd + "-D" + k + "=\"" + str(v).strip() + "\" "
+            cmakeopts[k]=v
+        
         for k, v in self.envcmake.iteritems():
-            cmd = cmd + "-D" + k + "=\"" + str(v).strip() + "\" "
-        for k, v in self.env.iteritems():
+            cmakeopts[k]=v
+
+        for k, v in cmakeopts.iteritems():
             cmd = cmd + "-D" + k + "=\"" + str(v).strip() + "\" "
         return cmd.strip()
 
@@ -868,22 +871,23 @@ class BaseILC:
             # CMAKE_MODULE_PATH variable
             if( self.name == "CMakeModules" ):
                 origin.envcmake["CMAKE_MODULE_PATH"]=self.realPath()
-            # <PKG>_HOME variables
             
             if( self.name in origin.cmakebuildmodules ):
-                # fix for setting JAVA_HOME instead of Java_HOME
+                # FIXME for setting JAVA_HOME instead of Java_HOME
                 if self.name == "Java":
                     thisname=self.name.upper()
                 else:
                     thisname=self.name
                 
-                if( not origin.envcmake.has_key(thisname+"_HOME")):
+                # PKG_HOME variables
+                if( self.name in origin.optmodules + origin.reqmodules + origin.reqmodules_buildonly + origin.reqmodules_external ):
                     origin.envcmake[thisname+"_HOME"]=self.realPath()
-            # BUILD_WITH variable
-            if( self.name in origin.cmakebuildmodules and self.name in origin.optmodules ):
-                if( not origin.envcmake.has_key("BUILD_WITH")):
-                    origin.envcmake["BUILD_WITH"]=""
-                origin.envcmake["BUILD_WITH"]=origin.envcmake["BUILD_WITH"]+self.name+" "
+                
+                # BUILD_WITH variable
+                if( self.name in origin.optmodules ):
+                    if( not origin.envcmake.has_key("BUILD_WITH")):
+                        origin.envcmake["BUILD_WITH"]=""
+                    origin.envcmake["BUILD_WITH"]=origin.envcmake["BUILD_WITH"]+self.name+" "
     
         # set environment for dependencies
         if( len( checked ) > 1 ):
