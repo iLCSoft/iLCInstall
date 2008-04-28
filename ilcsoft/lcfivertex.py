@@ -18,7 +18,7 @@ class LCFIVertex(MarlinPKG):
         MarlinPKG.__init__(self, "LCFIVertex", userInput )
 
         # required modules
-        self.reqmodules = [ "Marlin", "LCIO", "GEAR" ]
+        self.reqmodules = [ "Marlin", "MarlinUtil", "LCIO", "GEAR" ]
 
         # optional modules
         # FIXME not working yet
