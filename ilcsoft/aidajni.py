@@ -24,6 +24,9 @@ class AIDAJNI(BaseILC):
         # Java and JAIDA are required for using AIDAJNI
         self.reqmodules = [ "Java", "JAIDA" ]
 
+        self.download.supportedTypes = [ "wget" ]
+
+        # binary distribution of AIDAJNI is downloaded
         self.skipCompile = True
 
     def setMode(self, mode):
