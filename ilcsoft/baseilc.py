@@ -868,26 +868,33 @@ class BaseILC:
 
         # cmake variables
         if( len(checked) > 1 ):
+            # FIXME for setting JAVA_HOME instead of Java_HOME
+            if( self.name == "Java" ):
+                thisname=self.name.upper()
+            # alias AIDA to RAIDA/AIDAJNI
+            elif( self.name == "RAIDA" or self.name == "AIDAJNI" ):
+                thisname="AIDA"
+            else:
+                thisname=self.name
+ 
             # CMAKE_MODULE_PATH variable
             if( self.name == "CMakeModules" ):
                 origin.envcmake["CMAKE_MODULE_PATH"]=self.realPath()
             
-            if( self.name in origin.cmakebuildmodules ):
-                # FIXME for setting JAVA_HOME instead of Java_HOME
-                if self.name == "Java":
-                    thisname=self.name.upper()
-                else:
-                    thisname=self.name
-                
+            if( thisname.upper() in map(str.upper, origin.cmakebuildmodules) ):
+               
                 # PKG_HOME variables
-                if( self.name in origin.optmodules + origin.reqmodules + origin.reqmodules_buildonly + origin.reqmodules_external ):
+                if( thisname.upper() in map(str.upper, origin.optmodules + origin.reqmodules + origin.reqmodules_buildonly + origin.reqmodules_external) ):
+
+                    if( thisname == "AIDA" ):
+                        origin.envcmake[self.name+"_HOME"]=self.realPath()
                     origin.envcmake[thisname+"_HOME"]=self.realPath()
                 
                 # BUILD_WITH variable
-                if( self.name in origin.optmodules ):
+                if( thisname.upper() in map(str.upper,origin.optmodules) ):
                     if( not origin.envcmake.has_key("BUILD_WITH")):
                         origin.envcmake["BUILD_WITH"]=""
-                    origin.envcmake["BUILD_WITH"]=origin.envcmake["BUILD_WITH"]+self.name+" "
+                    origin.envcmake["BUILD_WITH"]=origin.envcmake["BUILD_WITH"]+thisname+" "
     
         # set environment for dependencies
         if( len( checked ) > 1 ):

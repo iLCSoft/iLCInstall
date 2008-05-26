@@ -46,7 +46,7 @@ class ILCSoft:
         }
         # list of supported modules
         # generated from hasCMakeSupport flag
-        self.cmakeSupportedMods = []
+        self.cmakeSupportedMods = [ "AIDA" ]
     
     def use(self, module):
         """ appends the given module to the list of modules 
@@ -93,7 +93,15 @@ class ILCSoft:
             mods = self.autoModules
         else:
             mods = self.modules
-            
+        
+        modname=str.upper(modname)
+        for mod in mods:
+            if( modname == "AIDA" ):
+                if( mod.name == "RAIDA" or mod.name == "AIDAJNI" ):
+                    return mod
+            elif( str.upper(mod.name) == modname ):
+                return mod    
+
         for mod in mods:
             if( str.upper(mod.name) == str.upper(modname) ):
                 return mod
@@ -204,6 +212,7 @@ class ILCSoft:
 
         # this will be the list of entries to be removed at the end, i.e. entries
         # that were defined in a previous file and that are redefined in this installation
+        # FIXME put this into a set
         dicHP_remove=["ILC_HOME", "CMAKE_MODULE_PATH" ]
         
         # check if file already exists
@@ -260,20 +269,23 @@ class ILCSoft:
                 modname=mod.name.upper()
             else:
                 modname=mod.name
-            
+                
+
             if( mod.name in self.cmakeSupportedMods ):
                 # check if install path from module contains base path from ilcsoft
                 if( mod.installPath.find( self.installPath) == 0 ):
                     f.write( "SET( " + modname + "_HOME \"${ILC_HOME}/" + mod.alias + "/" + mod.version + "\"" \
-                            + " CACHE PATH \"Path to " + mod.name + "\" FORCE)" + os.linesep )
+                            + " CACHE PATH \"Path to " + modname + "\" FORCE)" + os.linesep )
                 else:
                     f.write( "SET( " + modname + "_HOME \"" + mod.installPath + "\"" \
-                            + " CACHE PATH \"Path to " + mod.name + "\" FORCE)" + os.linesep )
-                # check if this module was already defined in a previously existing ILCSoft.cmake
-                for k in dicHP:
-                    if( k[0] == str(modname+"_HOME") ):
-                        # if it was mark it to be deleted (the old one!)
-                        dicHP_remove.append( modname+"_HOME" )
+                            + " CACHE PATH \"Path to " + modname + "\" FORCE)" + os.linesep )
+
+                # fix for writing AIDA_HOME
+                if mod.name == "RAIDA" or mod.name == "AIDAJNI":
+                    f.write( "SET( AIDA_HOME \"${"+modname+"_HOME}\" CACHE PATH \"Path to AIDA\" FORCE)" + os.linesep )
+                    dicHP_remove.append( "AIDA_HOME" )
+
+                dicHP_remove.append( modname+"_HOME" )
         
         cmods = self.module("CMakeModules")
         if( cmods != None ):

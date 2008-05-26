@@ -26,5 +26,5 @@ class MarlinTPC(MarlinPKG):
         self.reqfiles = [["lib/libMarlinTPCReconstruction.a", "lib/libMarlinTPCReconstruction.so", "lib/libMarlinTPCReconstruction.dylib"],
                         [ "lib/libtpcconddata.a", "lib/libtpcconddata.so", "lib/libtpcconddata.dylib"]]
 
-        self.reqmodules = [ "LCIO", "GEAR", "GSL", "Marlin", "LCCD", "ROOT", "RAIDA", "CLHEP" ]
+        self.reqmodules = [ "LCIO", "GEAR", "GSL", "Marlin", "LCCD", "ROOT", "AIDA", "CLHEP" ]
 

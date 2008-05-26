@@ -28,10 +28,10 @@ class Marlin(BaseILC):
 
         # optional modules
         self.optmodules = [ "MarlinUtil", "CEDViewer", "MarlinReco", "PandoraPFA", "SiliconDigi", "LCFIVertex", "Eutelescope", \
-                "Overlay", "CKFit", "GEAR", "CLHEP", "LCCD", "CondDBMySQL", "RAIDA", "AIDAJNI" ]
+                "Overlay", "CKFit", "GEAR", "CLHEP", "LCCD", "CondDBMySQL", "AIDA" ]
 
         # supported cmake modules
-        self.cmakebuildmodules = [ "LCIO", "GEAR", "CLHEP", "LCCD", "CondDBMySQL", "RAIDA", "AIDAJNI", "JAIDA" ]
+        self.cmakebuildmodules = [ "LCIO", "GEAR", "CLHEP", "LCCD", "CondDBMySQL", "AIDA", "RAIDA", "AIDAJNI", "JAIDA" ]
     
     def compile(self):
         """ compile Marlin """
@@ -146,12 +146,15 @@ class Marlin(BaseILC):
     def preCheckDeps(self):
         BaseILC.preCheckDeps(self)
         if( self.mode == "install" ):
-            if( self.env.has_key("MARLIN_GUI")):
-                if( str(self.env["MARLIN_GUI"]) == "1" ):
-                    self.addExternalDependency( ["QT"] )
-                    self.reqfiles.append(["bin/MarlinGUI"])
-                    if( self.useCMake ):
-                        self.envcmake['MARLIN_GUI']='ON'
+            if( self.env.has_key("MARLIN_GUI") and str(self.env["MARLIN_GUI"]) == "1" ):
+                self.envcmake["MARLIN_GUI"]="ON"
+
+            if( self.envcmake.has_key("MARLIN_GUI") and \
+                    (str(self.envcmake["MARLIN_GUI"]) == "1" or self.envcmake["MARLIN_GUI"] == "ON" )):
+                self.addExternalDependency( ["QT"] )
+                self.reqfiles.append(["bin/MarlinGUI"])
+                
+
             if( self.useCMake ):
                 packages = []
                 for modname in self.optmodules:

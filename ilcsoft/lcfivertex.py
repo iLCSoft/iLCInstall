@@ -21,8 +21,7 @@ class LCFIVertex(MarlinPKG):
         self.reqmodules = [ "Marlin", "MarlinUtil", "LCIO", "GEAR" ]
 
         # optional modules
-        # FIXME not working yet
-        #self.optmodules = [ "RAIDA" ]
+        self.optmodules = [ "AIDA" ]
 
         # cvs root
         self.download.root="marlinreco"
