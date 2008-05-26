@@ -33,9 +33,13 @@ class JAIDA(BaseILC):
 
         # no cmake build support
         self.useCMake = False
+        if( self.mode == "install" ):
 
-        self.download.url = "ftp://ftp.slac.stanford.edu/software/freehep/JAIDA/v" \
-                + self.version + "/jaida-" + self.version + "-bin.tar.gz"
+            if( self.evalVersion("3.2.9") == 2  or self.evalVersion("3.2.0") == 1 ):
+                self.abort( "ilcinstall only supports installation of JAIDA 3.2.x versions!" )
+
+            self.download.url = "ftp://ftp.slac.stanford.edu/software/freehep/JAIDA/v" \
+                    + self.version + "/JAIDA-" + self.version + ".tar.gz"
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
