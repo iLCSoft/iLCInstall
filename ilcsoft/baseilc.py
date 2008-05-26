@@ -884,12 +884,15 @@ class BaseILC:
             if( thisname.upper() in map(str.upper, origin.cmakebuildmodules) ):
                
                 # PKG_HOME variables
-                if( thisname.upper() in map(str.upper, origin.optmodules + origin.reqmodules + origin.reqmodules_buildonly + origin.reqmodules_external) ):
-
+                orig_mods = origin.optmodules + origin.reqmodules + origin.reqmodules_buildonly + origin.reqmodules_external
+                if( thisname.upper() in map(str.upper, orig_mods )):
                     if( thisname == "AIDA" ):
                         origin.envcmake[self.name+"_HOME"]=self.realPath()
                     origin.envcmake[thisname+"_HOME"]=self.realPath()
                 
+                if( thisname == "JAIDA" and "AIDA" in orig_mods):
+                    origin.envcmake["JAIDA_HOME"]=self.realPath()
+
                 # BUILD_WITH variable
                 if( thisname.upper() in map(str.upper,origin.optmodules) ):
                     if( not origin.envcmake.has_key("BUILD_WITH")):
