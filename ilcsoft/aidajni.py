@@ -21,13 +21,12 @@ class AIDAJNI(BaseILC):
         self.reqfiles = [ ["bin/Linux-g++/aidajni-setup.sh", "bin/i386-Linux-g++/aidajni-setup.sh"], \
                 ["bin/Linux-g++/aida-config", "bin/i386-Linux-g++/aida-config"] ]
 
+        self.download.supportHEAD = False
+        self.download.supportedTypes = [ "wget" ]
+
         # Java and JAIDA are required for using AIDAJNI
         self.reqmodules = [ "Java", "JAIDA" ]
 
-        self.download.supportedTypes = [ "wget" ]
-
-        # binary distribution of AIDAJNI is downloaded
-        self.skipCompile = True
 
     def setMode(self, mode):
         BaseILC.setMode(self, mode)
@@ -35,9 +34,41 @@ class AIDAJNI(BaseILC):
         # no cmake build support
         self.useCMake = False
         
-        # FIXME MAC download address
-        self.download.url = "ftp://ftp.slac.stanford.edu/software/freehep/AIDAJNI/v" \
-                + self.version + "/aidajni-" + self.version + "-i386-Linux-g++.tar.gz"
+        if( self.mode == "install" ):
+            if( self.evalVersion("3.2.3") != 0 ):
+                self.abort( "only install of version 3.2.3 is supported!" )
+
+            self.download.url = "ftp://ftp.slac.stanford.edu/software/freehep/AIDAJNI/v" \
+                    + self.version + "/AIDAJNI-" + self.version + "-src.tar.gz"
+
+    def downloadSources(self):
+        BaseILC.downloadSources(self)
+
+        # undo rename from baseclass
+        tryrename( self.version, self.download.tardir )
+
+        os.chdir( self.parent.installPath )
+        tryrename( self.alias, 'AIDAJNI-SRC' )
+        os.renames( 'AIDAJNI-SRC', self.alias+'/'+self.version+'/'+self.alias )
+
+    def compile(self):
+        os.chdir( self.installPath+'/'+self.alias )
+
+        os.environ['FREEHEP']=self.installPath+'/'+self.alias
+        os.environ['COMPILER']='g++'
+        os.system('chmod +x tools/ant')
+        
+        if( os.system('tools/ant -Djar=aidajni 2>&1 | tee -a '+ self.logfile ) != 0 ):
+            self.abort( "failed to configure!!" )
+        if( os.system('gmake -f GNUmakefile-AIDAJNI 2>&1 | tee -a '+ self.logfile ) != 0 ):
+            self.abort( "failed to compile!!" )
+        if( os.system('gmake -f GNUmakefile-AIDAJNI dist 2>&1 | tee -a '+ self.logfile ) != 0 ):
+            self.abort( "failed to create tarball!!" )
+
+        trydelenv('FREEHEP')
+        trydelenv('COMPILER')
+        
+        os.system('tar -xzf '+self.alias+'-'+self.version+'-Linux-g++.tar.gz --strip-path=1 -C '+self.installPath)
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)

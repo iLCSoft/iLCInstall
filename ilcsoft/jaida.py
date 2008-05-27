@@ -23,6 +23,7 @@ class JAIDA(BaseILC):
         # Java is required for JAIDA
         self.reqmodules = [ "Java" ]
 
+        self.download.supportHEAD = False
         self.download.supportedTypes = [ "wget" ]
 
         # binary distribution of JAIDA is downloaded
