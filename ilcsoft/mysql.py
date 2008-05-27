@@ -19,7 +19,6 @@ class MySQL(BaseILC):
         BaseILC.__init__(self, userInput, "MySQL", "mysql")
 
         self.installSupport = False
-        self.hasCMakeSupport = False
 
         self.reqfiles = [ ["lib/mysql/libmysqlclient.so", "lib/libmysqlclient.so"] ]
 
