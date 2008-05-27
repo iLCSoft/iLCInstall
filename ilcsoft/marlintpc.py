@@ -19,7 +19,6 @@ class MarlinTPC(MarlinPKG):
         # svn export svn://pi.physik.uni-bonn.de/MarlinTPC/trunk HEAD
         # svn export svn://pi.physik.uni-bonn.de/MarlinTPC/tags -version-
         self.download.supportedTypes = [ "svn" ]
-        self.download.type = "svn"
         self.download.server = "pi.physik.uni-bonn.de"
         self.download.root = "MarlinTPC"
 
