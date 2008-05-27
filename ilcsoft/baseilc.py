@@ -665,18 +665,18 @@ class BaseILC:
                 
             # find out directory inside tarball
             os.system("tar -tzf " + self.download.tarball + " > tarlist.tmp")
-            directory = commands.getoutput( "head -n1 tarlist.tmp" ).strip()
+            self.download.tardir = commands.getoutput( "head -n1 tarlist.tmp" ).strip()
             os.unlink( "tarlist.tmp" )
             
             # extract the root directory from the directory tree
-            if( directory.find('/') != -1 ):
-                directory = directory[:directory.find('/')]
+            if( self.download.tardir.find('/') != -1 ):
+                self.download.tardir = self.download.tardir[:self.download.tardir.find('/')]
 
             # unpack tarball
             print "+ Unpacking " + self.download.tarball
             os.system( "tar -xzvf " + self.download.tarball )
             
-            tryrename( directory, self.version )
+            tryrename( self.download.tardir, self.version )
 
         if( self.useCMake and not self.skipCompile ):
             trymakedir( self.version + "/build" )
@@ -872,7 +872,7 @@ class BaseILC:
             if( self.name == "Java" ):
                 thisname=self.name.upper()
             # alias AIDA to RAIDA/AIDAJNI
-            elif( self.name == "RAIDA" or self.name == "AIDAJNI" ):
+            if( self.name == "RAIDA" or self.name == "AIDAJNI" ):
                 thisname="AIDA"
             else:
                 thisname=self.name
@@ -881,18 +881,13 @@ class BaseILC:
             if( self.name == "CMakeModules" ):
                 origin.envcmake["CMAKE_MODULE_PATH"]=self.realPath()
             
-            if( thisname.upper() in map(str.upper, origin.cmakebuildmodules) ):
-               
-                # PKG_HOME variables
-                orig_mods = origin.optmodules + origin.reqmodules + origin.reqmodules_buildonly + origin.reqmodules_external
-                if( thisname.upper() in map(str.upper, orig_mods )):
-                    if( thisname == "AIDA" ):
-                        origin.envcmake[self.name+"_HOME"]=self.realPath()
-                    origin.envcmake[thisname+"_HOME"]=self.realPath()
-                
-                if( thisname == "JAIDA" and "AIDA" in orig_mods):
-                    origin.envcmake["JAIDA_HOME"]=self.realPath()
-
+            # PKG_HOME variables
+            if( thisname.upper() in map(str.upper, self.parent.cmakeSupportedMods )):
+                if( thisname == "AIDA" ):
+                    origin.envcmake[self.name+"_HOME"]=self.realPath()
+                origin.envcmake[thisname+"_HOME"]=self.realPath()
+            
+            if( thisname.upper() in map( str.upper, origin.cmakebuildmodules )):
                 # BUILD_WITH variable
                 if( thisname.upper() in map(str.upper,origin.optmodules) ):
                     if( not origin.envcmake.has_key("BUILD_WITH")):

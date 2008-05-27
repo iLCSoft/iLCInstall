@@ -31,7 +31,7 @@ class Marlin(BaseILC):
                 "Overlay", "CKFit", "GEAR", "CLHEP", "LCCD", "CondDBMySQL", "AIDA" ]
 
         # supported cmake modules
-        self.cmakebuildmodules = [ "LCIO", "GEAR", "CLHEP", "LCCD", "CondDBMySQL", "AIDA", "RAIDA", "AIDAJNI", "JAIDA" ]
+        self.cmakebuildmodules = [ "LCIO", "GEAR", "CLHEP", "LCCD", "CondDBMySQL", "AIDA", "RAIDA", "AIDAJNI" ]
     
     def compile(self):
         """ compile Marlin """
