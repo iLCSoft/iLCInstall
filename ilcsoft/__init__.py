@@ -9,6 +9,7 @@ from ced import CED
 
 # marlin & friends
 from marlinpkg import MarlinPKG
+from marlinpkg import ConfigPKG
 from marlin import Marlin
 from marlinutil import MarlinUtil
 from marlinreco import MarlinReco

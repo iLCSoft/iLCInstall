@@ -8,32 +8,13 @@
 ##################################################
                                                                                                                                                             
 # custom imports
-from baseilc import BaseILC
-from util import *
+from marlinpkg import ConfigPKG
 
-
-class CMakeModules(BaseILC):
+class CMakeModules(ConfigPKG):
     """ Responsible for installing the CMakeModules. """
     
     def __init__(self, userInput):
-        BaseILC.__init__(self, userInput, "CMakeModules", "CMakeModules")
+        ConfigPKG.__init__(self, "CMakeModules", userInput )
 
-        # no documentation available
-        self.buildDoc = False
-    
-        # cvs root
-        self.download.root = "ilctools"
-        
         self.reqfiles = [ ["LoadPackageMacro.cmake", "MacroLoadPackage.cmake"] ]
 
-        # There is no FindCMakeModules.cmake module ;)
-        self.hasCMakeSupport = False
-
-        # CMakeModules are just 'unpacked'
-        self.skipCompile = True
-
-    def setMode(self, mode):
-        BaseILC.setMode(self, mode)
-
-        # CMakeModules are just 'unpacked'
-        self.useCMake = False

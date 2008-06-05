@@ -11,6 +11,25 @@
 from baseilc import BaseILC
 from util import *
 
+class ConfigPKG(BaseILC):
+    """ Responsible for Configuration Packages installation,
+        i.e. without compilation. """
+
+    def __init__(self, name, userInput):
+        BaseILC.__init__(self, userInput, name, name)
+        self.buildDoc = False
+        self.reqfiles = []
+        self.download.root = "ilctools"
+        self.hasCMakeSupport = False
+        self.skipCompile = True
+
+    def setMode(self, mode):
+        BaseILC.setMode(self, mode)
+                                                                                                                                          
+        # CMakeModules are just 'unpacked'
+        self.useCMake = False
+
+
 
 class MarlinPKG(BaseILC):
     """ Responsible for Marlin Packages installation process. """
