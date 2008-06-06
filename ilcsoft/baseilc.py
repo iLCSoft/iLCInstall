@@ -619,13 +619,15 @@ class BaseILC:
                 cvsroot_nopass = cvsroot[:i2]+cvsroot[i1:]
 
             # dirty hack (but works ;)
-            if( not os.system( 'grep "'+cvsroot_nopass+'" ~/.cvspass' )):
+            if( os.system( 'grep "'+cvsroot_nopass+'" ~/.cvspass' ) != 0 ):
+                print "logging in to cvs server..."
                 if( os.system( self.download.type + " login" ) != 0 ):
                     self.abort( "Problems ocurred downloading sources ("+self.download.type+" login)!!")
 
             os.environ["CVSROOT"] = cvsroot_nopass
 
             # checkout sources
+            print "checking out sources..."
             if( self.version == "HEAD" ):
                 if( os.system( "cvs co -d " + self.version + " " + self.download.project ) != 0 ):
                     self.abort( "Problems ocurred downloading sources with "+self.download.type+"!!")
