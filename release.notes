@@ -3,6 +3,22 @@
 #####################################################
 
 
+
+-----------------------------------------------------
+ v01-03-05
+-----------------------------------------------------
+ - added cmake support to MySQL
+ - added install support for JAIDA/AIDAJNI
+    - only AIDAJNI 3.2.3 can be installed
+    - only JAIDA 3.2.x versions can be installed
+ - replaced RAIDA/AIDAJNI dependencies with AIDA
+ - bug fixed in cvs/ccvssh download type, the 2 flags
+    ilcsoft.downloadLogin2Server and
+    ilcsoft.module.download.login2Server
+    introduced in v01-03 are now obsolete and were
+    removed.
+
+
 -----------------------------------------------------
  v01-03
 -----------------------------------------------------
