@@ -148,9 +148,6 @@ class BaseILC:
         if( self.parent.downloadPass != "" ):
             self.download.password = self.parent.downloadPass
 
-        # initialize login flag 
-        self.download.login2Server = self.parent.downloadLogin2Server
-        
         # initialize cleanInstall flag
         self.cleanInstall = self.parent.cleanInstall
         
@@ -614,21 +611,17 @@ class BaseILC:
             for k, v in self.download.env.iteritems():
                 os.environ[k] = v
 
-            cvsroot=self.download.env["CVSROOT"]
+            # cvs login
+            if( os.system( self.download.type + " login" ) != 0 ):
+                self.abort( "Problems ocurred downloading sources ("+self.download.type+" login)!!")
 
+            cvsroot=os.environ["CVSROOT"]
             i1 = cvsroot.find("@")
             # if there is a password in CVSROOT
-            if( i1 != -1 ):
-                if( cvsroot.count(":",0,i1) == 3 ):
-                    # cvs login
-                    if (self.download.login2Server ):
-                        if( os.system( self.download.type + " login" ) != 0 ):
-                            self.abort( "Problems ocurred downloading sources ("+self.download.type+" login)!!")
-                
-                    # remove password from CVSROOT
-                    i2=cvsroot.rfind(':',0,i1)
-                    
-                    os.environ["CVSROOT"] = cvsroot[:i2]+cvsroot[i1:]
+            if( cvsroot.count(":",0,i1) == 3 ):
+                # remove it
+                i2=cvsroot.rfind(':',0,i1)
+                os.environ["CVSROOT"] = cvsroot[:i2]+cvsroot[i1:]
 
             # checkout sources
             if( self.version == "HEAD" ):
@@ -1236,7 +1229,6 @@ class Download:
         self.root = str.lower(self.project)         # cvs root
         self.username = "anonymous"                 # cvs username
         self.password = ""                          # cvs password
-        self.login2Server = False                   # cvs/ccvssh login
         self.server = "cvssrv.ifh.de"               # cvs server
         self.url = ""                               # url for getting tarball with wget
         self.tarball = ""                           # name of the tarball used for wget downloads
