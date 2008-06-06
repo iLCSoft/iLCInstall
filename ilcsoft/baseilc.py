@@ -611,17 +611,19 @@ class BaseILC:
             for k, v in self.download.env.iteritems():
                 os.environ[k] = v
 
-            # cvs login
-            if( os.system( self.download.type + " login" ) != 0 ):
-                self.abort( "Problems ocurred downloading sources ("+self.download.type+" login)!!")
-
             cvsroot=os.environ["CVSROOT"]
             i1 = cvsroot.find("@")
-            # if there is a password in CVSROOT
+            # check if there is a password coded in $CVSROOT
             if( cvsroot.count(":",0,i1) == 3 ):
-                # remove it
                 i2=cvsroot.rfind(':',0,i1)
-                os.environ["CVSROOT"] = cvsroot[:i2]+cvsroot[i1:]
+                cvsroot_nopass = cvsroot[:i2]+cvsroot[i1:]
+
+            # dirty hack (but works ;)
+            if( not os.system( 'grep "'+cvsroot_nopass+'" ~/.cvspass' )):
+                if( os.system( self.download.type + " login" ) != 0 ):
+                    self.abort( "Problems ocurred downloading sources ("+self.download.type+" login)!!")
+
+            os.environ["CVSROOT"] = cvsroot_nopass
 
             # checkout sources
             if( self.version == "HEAD" ):
