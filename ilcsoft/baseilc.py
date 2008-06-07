@@ -612,17 +612,31 @@ class BaseILC:
                 os.environ[k] = v
 
             cvsroot=os.environ["CVSROOT"]
+
+            # CVSROOT with pass example:
+            # :ext:engels:****@cvssrv.ifh.de:/ilctools
+            # CVSROOT without pass example:
+            # :ext:engels@cvssrv.ifh.de:/ilctools
+            # entries in ~/.cvspass
+            # :pserver:engels@cvssrv.ifh.de:2405/ilctools 
+
             i1 = cvsroot.find("@")
+
             # check if there is a password coded in $CVSROOT
             if( cvsroot.count(":",0,i1) == 3 ):
                 i2=cvsroot.rfind(':',0,i1)
                 cvsroot_nopass = cvsroot[:i2]+cvsroot[i1:]
 
             # dirty hack (but works ;)
-            if( os.system( 'grep "'+cvsroot_nopass+'" ~/.cvspass' ) != 0 ):
+            i2=cvsroot_nopass.rfind(':',0,i1)
+            i4=cvsroot_nopass.rfind(':')+1
+
+            if( os.system( 'grep "'+cvsroot_nopass[i2:i4]+'[0-9]*'+cvsroot_nopass[i4:]+'" ~/.cvspass &>/dev/null' ) != 0 ):
                 print "logging in to cvs server..."
                 if( os.system( self.download.type + " login" ) != 0 ):
                     self.abort( "Problems ocurred downloading sources ("+self.download.type+" login)!!")
+            else:
+                print "password found in ~/.cvspass, will skip login..."
 
             os.environ["CVSROOT"] = cvsroot_nopass
 
