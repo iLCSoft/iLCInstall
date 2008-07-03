@@ -54,7 +54,7 @@ class CERNLIB(BaseILC):
             self.abort( "Problems ocurred downloading sources!!")
 
         # extract tar.gz files from index.html and put them into a list
-        self.tgz_files = commands.getoutput( r"grep tar.gz index.html | sed -e 's/.*href=\"\(.*\)\".*/\1/'" ).split('\n')
+        self.tgz_files = getoutput( r"grep tar.gz index.html | sed -e 's/.*href=\"\(.*\)\".*/\1/'" ).split('\n')
 
         # index.html no longer needed
         os.unlink( "index.html" )

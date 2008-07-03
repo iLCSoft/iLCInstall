@@ -20,9 +20,6 @@ class LCIO(BaseILC):
         
         self.reqfiles = [ ["lib/liblcio.a", "lib/liblcio.so", "lib/liblcio.dylib"] ]
         
-        # optional modules
-        #self.optmodules = [ "CLHEP" ]
-
         # supported cmake modules
         self.cmakebuildmodules = [ "Java" ]
 

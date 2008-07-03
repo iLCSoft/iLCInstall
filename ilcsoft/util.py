@@ -7,14 +7,17 @@
 #
 ##################################################
 
+from version import Version
+from commands import getstatusoutput
+from commands import getoutput
 import os
 import os.path
 import sys
 import shutil
-import commands
 import glob
 import time
 import string
+import re
 
 
 #--------------------------------------------------------------------------------
@@ -43,12 +46,15 @@ class OSDetect:
 
         # get linux version
         if( self.type == "Linux" ):
-            out=commands.getstatusoutput("lsb_release -d")
+            out=getstatusoutput("lsb_release -d")
             if( out[0] == 0 ):
                 self.ver=out[1].split("Description:")[1].strip()
 
     def __repr__(self):
-        print self.type+"-"+self.ver
+        return repr( str(self) )
+
+    def __str__(self):
+        return str(self.type+"-"+self.ver)
         
     def isLinux(self):
         """ returns True if the OS is Linux """
@@ -62,22 +68,26 @@ class OSDetect:
             return True
         return False
 
-    # FIXME left here for compatibility, use isSL(3) instead
+    # left here for compatibility, use isSL(3) instead
     def isSL3(self):
         """ returns True if this is Scientific Linux 3 """
-        return self.isSL(3)
+        return self.isSL()[0] == 3
         
-    # FIXME left here for compatibility, use isSL(4) instead
+    # left here for compatibility, use isSL(4) instead
     def isSL4(self):
         """ returns True if this is Scientific Linux 4 """
-        return self.isSL(4)
+        return self.isSL()[0] == 4
 
-    def isSL(self, v):
-        """ returns True if this is Scientific Linux X """
+    def isSL(self, x=None):
+        """ if x is given: returns True if os == Scientific Linux x
+            if x is not given: returns a Version instance with the SL version
+            otherwise returns False """
         if( self.type == "Linux" ):
-            if( self.ver.find( "Scientific Linux SL" ) != -1 ):
-                if( self.ver.find( "release "+str(v)+"." ) != -1 ):
-                    return True
+            if( self.ver.find( "Scientific" ) != -1 or self.ver.find( "RedHat" ) != -1):
+                if x != None:
+                    return Version( self.ver )[0] == x
+                else:
+                    return Version( self.ver )
         return False
 
 #--------------------------------------------------------------------------------
@@ -182,10 +192,11 @@ def fixPath(path):
         path = os.path.expanduser(path)
     
     # expand environment variables
-    p = os.path.expandvars(path)
+    if( path.find('$') != -1 ):
+        path = os.path.expandvars(path)
     
     # eliminate redundant //
-    return os.path.normpath(p)
+    return os.path.normpath(path)
 
 #--------------------------------------------------------------------------------
 

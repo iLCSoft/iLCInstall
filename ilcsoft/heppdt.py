@@ -62,18 +62,6 @@ class HepPDT(BaseILC):
         if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to install!!" )
 
-        # create links in CLHEP to HepPDT
-        #clhep = self.parent.module( "CLHEP" )
-        #if( clhep != None ):
-        #    #libheppdt = glob.glob( clhep.installPath+"/lib/libCLHEP-HepPDT*")
-        #    #if( len( libheppdt ) == 0 ):
-        #    #    os.symlink( self.installPath+"/lib/libHepPDT.so", clhep.installPath+"/lib/libCLHEP-HepPDT-"+self.version+".so" )
-        #    #    os.symlink( self.installPath+"/lib/libHepPDT.a", clhep.installPath+"/lib/libCLHEP-HepPDT-"+self.version+".a" )
-        #    incheppdt = glob.glob( clhep.installPath+"/include/CLHEP/HepPDT")
-        #    if( len( incheppdt ) == 0 ):
-        #        trymakedir( clhep.installPath+"/include/CLHEP" )
-        #        os.symlink( self.installPath+"/include/HepPDT", clhep.installPath+"/include/CLHEP/HepPDT" )
-    
     def cleanupInstall(self):
         BaseILC.cleanupInstall(self)
         os.chdir( self.installPath + "/build" )

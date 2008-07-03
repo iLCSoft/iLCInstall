@@ -13,6 +13,9 @@ from util import *
 class BaseILC:
     """ Base class for ILC Software modules. """
 
+    ilcHome = '/afs/desy.de/group/it/ilcsoft/'
+    os_ver = OSDetect()
+
     def __init__(self, userInput, name, alias):
         self.__userInput = userInput
         self.name = name                        # module name (e.g. LCIO, GEAR, Marlin, CEDViewer)
@@ -94,8 +97,10 @@ class BaseILC:
                     print
 
         if( self.mode == "use" ):
-            print "\t+ " + self.name + ":",
-            print "located at [ " + self.installPath + " ]"
+            print "   + [ " + self.installPath + " ]",
+            if self.useLink:
+                print " -> [ "+ self.realPath() + " ]",
+            print
 
         return str("")
 
@@ -106,7 +111,7 @@ class BaseILC:
         
         # write error to logfile
         try:
-            commands.getoutput( "echo \"*** Error in module [ " + self.name + " ]: " + str(msg).replace("\n","") + "\" >> " + self.logfile )
+            getoutput( "echo \"*** Error in module [ " + self.name + " ]: " + str(msg).replace("\n","") + "\" >> " + self.logfile )
         except:
             pass
         sys.exit(1)
@@ -210,58 +215,7 @@ class BaseILC:
             self.checkInstall(True)
 
         self.mode = mode
-    
-    def evalVersion(self, v):
-        """ evaluates a version string
-            - returns 0 if versions are equal
-            - returns 1 if self.version < v
-            - returns 2 if self.version > v """
-
-        # version must at least contain 3 chars (e.g. 1.0)
-        if( (len(v) < 3) or (len(self.version) < 3) ):
-            self.abort( "failed to compare versions: [" \
-                    + v + "] with self.version [" + self.version + "] !!" )
-
-        if( v == self.version ):
-            return 0
-
-        if( self.version == "HEAD" ):
-            return 2
-
-        if( v == "HEAD" ):
-            return 1
-
-        # create copies for manipulation
-        vSelf = self.version
-        vTest = v
-        
-        # substitute version separators through whitespaces
-        sep = string.maketrans( ".-_", "   " )
-        vSelf = vSelf.translate( sep )
-        vTest = vTest.translate( sep )
-        
-        # split versions by whitespaces
-        vSelf = vSelf.split()
-        vTest = vTest.split()
-        
-        # remove characters from list elements
-        vSelf = [ i.strip(string.letters) for i in vSelf ]
-        vTest = [ i.strip(string.letters) for i in vTest ]
-
-        # remove empty elements
-        vSelf = [ i for i in vSelf if i ]
-        vTest = [ i for i in vTest if i ]
-
-        # convert to integers
-        vSelf = [ int(i) for i in vSelf ]
-        vTest = [ int(i) for i in vTest ]
-
-        # now compare the versions
-        if( vSelf == vTest ):
-            return 0
-
-        return ((( vSelf > vTest ) and [2] or [1])[0])
-        
+       
     def realPath(self):
         """ returns the path where the module is actually living.
             if module is in link mode the linkPath is returned
@@ -327,17 +281,20 @@ class BaseILC:
         """ check installation consistency """
         # switch to use mode if already installed
         if( self.mode == "install" and os.path.exists( self.installPath )):
-            print "*** WARNING: " + self.name + " " + self.version + " already installed in: [ " + self.installPath + " ]!!"
             if( os.path.exists( self.installPath + "/.install_failed.tmp" )):
                 self.rebuild = True
-                print "***\tInstallation status: ERROR: Package install failed last time it was run!! Will try to rebuild package..."   
+                print "   + [%s] %s installation status: failed - set to rebuild" % \
+                    (self.installPath, (55-len(self.installPath))*' ')
             elif( os.path.exists( self.installPath + "/.doc_failed.tmp" )):
                 self.skipCompile = True
-                print "***\tInstallation status: INCOMPLETE: will finish installing this package..."
+                print "   + [%s] %s installation status: incomplete" % \
+                    (self.installPath, (55-len(self.installPath))*' ')
             elif( not self.checkInstall() ):
-                print "***\tInstallation status: INCOMPLETE: will finish installing this package..."
+                print "   + [%s] %s installation status: incomplete" % \
+                    (self.installPath, (55-len(self.installPath))*' ')
             else:
-                print "***\tInstall status: OK: will skip installation and switch to \"use\" mode!!"
+                print "   + [%s] %s installation status: OK - set to use mode" % \
+                    (self.installPath, (55-len(self.installPath))*' ')
                 self.mode = "use"
 
     def preCheckDeps(self):
@@ -423,8 +380,7 @@ class BaseILC:
                     self.parent.use( self.parent.module(req, True) )
                     self.parent.module( req ).init()
 
-                    print self.name + ": " + req + " version " + self.parent.module( req ).version \
-                            + " was automatically detected and will be used in the installation!!"
+                    print self.name + ": auto-detected " + req + " version " + self.parent.module( req ).version
         
         # build only dependencies
         if( self.mode == "install" ):
@@ -440,8 +396,7 @@ class BaseILC:
                         self.parent.use( self.parent.module(req, True) )
                         self.parent.module( req ).init()
 
-                        print "   - " + self.name + ": " + req + " version " + self.parent.module( req ).version \
-                                + " was automatically detected and will be used in the installation!!"
+                        print "   - " + self.name + ": auto-detected " + req + " version " + self.parent.module( req ).version
 
     def checkDeps( self ):
         """ check if a package needs to be rebuilt by checking the 
@@ -673,7 +628,7 @@ class BaseILC:
                 
             # find out directory inside tarball
             os.system("tar -tzf " + self.download.tarball + " > tarlist.tmp")
-            self.download.tardir = commands.getoutput( "head -n1 tarlist.tmp" ).strip()
+            self.download.tardir = getoutput( "head -n1 tarlist.tmp" ).strip()
             os.unlink( "tarlist.tmp" )
             
             # extract the root directory from the directory tree

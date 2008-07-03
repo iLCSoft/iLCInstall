@@ -118,19 +118,6 @@ class Marlin(BaseILC):
                 self.abort( "failed to install!!" )
         
     def buildDocumentation(self):
-        # obsolete
-        #if( self.buildDoc ):
-            #if( self.useCMake ):
-            #    # create packages directory
-            #    trymakedir( self.installPath + "/packages" )
-            #    os.chdir( self.installPath + "/packages" )
-            #    # create links to packages
-            #    for pkg in self.parent.modules:
-            #        if( pkg.isMarlinPKG ):
-            #            if( not os.path.exists(pkg.name) ):
-            #                print "* Creating Link " + pkg.name + " to [ " + pkg.installPath + " ]"
-            #                os.symlink( pkg.installPath, pkg.name )
-    
         if( not self.useCMake and self.buildDoc ):
             if(isinPath("doxygen")):
                 os.chdir( self.installPath )
@@ -177,20 +164,11 @@ class Marlin(BaseILC):
                 self.env["MARLINWORKDIR"] = self.installPath
 
         if( self.mode == "install" ):
-            # compatibility issues for older versions
-            # check if marlin version is older or equal to v00-09-06
-            if( not self.useCMake and self.evalVersion("v00-09-06") != 2 ):
-                if( "MarlinUtil" in self.optmodules ):
-                    marlinutil = self.parent.module("MarlinUtil")
-                    if( marlinutil != None ):
-                        marlinutil.envbuild["USERINCLUDES"].append( "-I" \
-                                + marlinutil.installPath + "/include" )
-            
             # check qt version
             if( "QT" in self.reqmodules_external ):
                 qt = self.parent.module("QT")
                 # check for qt version 4
-                if( qt != None and qt.evalVersion("4.0") != 2 ):
+                if( qt != None and Version( qt.version ) < '4.0' ):
                     self.abort( "you need QT 4!! QT version " + qt.version + " found..." )
             
             # set debug env var
