@@ -36,7 +36,7 @@ class JAIDA(BaseILC):
         self.useCMake = False
         if( self.mode == "install" ):
 
-            if( self.evalVersion("3.2.9") == 2  or self.evalVersion("3.2.0") == 1 ):
+            if( Version( self.version ) >= '3.3' or Version( self.version ) < '3.2' ):
                 self.abort( "ilcinstall only supports installation of JAIDA 3.2.x versions!" )
 
             self.download.url = "ftp://ftp.slac.stanford.edu/software/freehep/JAIDA/v" \
@@ -48,7 +48,7 @@ class JAIDA(BaseILC):
         self.env["JAIDA_HOME"] = self.installPath
         
         # get the jar names in ${JAIDA_HOME}/lib
-        jars_fp = glob.glob( self.installPath + "/*.jar" )
+        jars_fp = glob.glob( self.installPath + "/lib/*.jar" )
         jars = [ i.split('/')[-1] for i in jars_fp ]
 
         for jar in jars:
