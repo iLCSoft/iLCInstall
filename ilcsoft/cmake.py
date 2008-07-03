@@ -27,43 +27,38 @@ class CMake(BaseILC):
         if( userInput == "auto" ):
             self.autoDetect()
 
-    def autoDetectPath(self, abort=False):
+    def autoDetectPath(self):
         """ tries to auto detect cmake dir from system settings.
             - returns empty string in case of failure
             - otherwise returns cmake dir """
 
-        dir = ""
+        # look for SL afs installation
+        if self.os_ver.isSL() != None:
+            if os.path.exists( self.ilcHome ):
+                for v in [ '2.4.6' ]:
+                    cpath = fixPath( self.ilcHome+'/'+self.alias+'/'+v )
+                    if os.path.exists( cpath ):
+                        return cpath
 
+        # else try to get from cmake
         if( isinPath("cmake")):
-            out = commands.getoutput("which cmake").strip()
+            out = getoutput("which cmake").strip()
             ind = out.find("/bin/cmake")
-            dir = out[:ind]
-        elif(abort):
-            self.abort( "failed trying to get the default CMake settings!!\n" )
+            return out[:ind]
 
-        return dir
+        return ''
 
-    def autoDetectVersion(self, abort=False):
+    def autoDetectVersion(self):
         """ tries to auto detect version by parsing the output of cmake --version.
             - returns empty string in case of failure
             - otherwise returns cmake version """
 
-        out = commands.getstatusoutput( self.realPath() + r"/bin/cmake --version 2>&1" )
-
-        if( out[0] != 0 ):
-            return ""
-
-        # substitute version separators through whitespaces
-        sep = string.maketrans( ".-_", "   " )
-        ver = out[1].translate( sep )
-        # split versions by whitespaces
-        ver = ver.split()
-        # remove characters from list elements
-        ver = [ i.strip(string.letters) for i in ver ]
-        # remove empty elements
-        ver = [ i for i in ver if i ]
-        # return a '.' separated string out of the elements
-        return str.join('.', ver)
+        try:
+            v = Version( getoutput( self.realPath() + '/bin/cmake --version' ).replace( 'patch ','' ), strict=True)
+        except ValueError:
+            return ''
+        else:
+            return str(v)
 
     def setMode(self, mode):
 

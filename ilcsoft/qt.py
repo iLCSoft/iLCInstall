@@ -23,47 +23,51 @@ class QT(BaseILC):
         self.download.supportedTypes = ["wget"]
 
         self.reqfiles = [
-            ["lib/libQtCore.so", "lib/libQtCore.dylib", "lib/qt-3.1/lib/libqt.so"],
-            ["lib/libQtGui.so", "lib/libQtGui.dylib", "lib/qt-3.1/lib/libqui.so"],
+            ["lib/libQtCore.so", "lib/libQtCore.dylib", "lib/qt-3.1/lib/libqt.so", "lib/qt-3.3/lib/libqt-mt.so"],
+            ["lib/libQtGui.so", "lib/libQtGui.dylib", "lib/qt-3.1/lib/libqui.so", "lib/qt-3.3/lib/libqui.so"],
             ["bin/qmake"] ]
 
         if( userInput=="auto" ):
             self.autoDetect()
     
-    def autoDetectPath(self, abort=False):
+    def autoDetectPath(self):
         """ tries to auto detect qt dir from system settings.
             - returns empty string in case of failure
             - otherwise returns qt dir """
 
-        # if QTDIR is set we use it
-        qtdir = os.getenv("QTDIR","")
-        
-        if( not qtdir ):
-            # else try to get from qmake
-            if( isinPath("qmake")):
-                out = commands.getoutput("which qmake").strip()
-                ind = out.find("/bin/qmake")
-                qtdir = out[:ind]
-            elif(abort):
-                self.abort( "failed trying to get the default QT settings!!\n" )
+        # look for SL afs installations
+        if self.os_ver.isSL() != None:
+            if os.path.exists( self.ilcHome ):
+                for v in [ '4.2.2' ]:
+                    qtdir = fixPath( self.ilcHome+'/'+self.alias+'/'+v )
+                    if os.path.exists( qtdir ):
+                        return qtdir
 
-        return qtdir
+        # if $QTDIR is set use it
+        if os.getenv("QTDIR",""):
+            return os.getenv("QTDIR")
+
+        # else try to get from qmake
+        if( isinPath("qmake")):
+            out = getoutput("which qmake").strip()
+            ind = out.find("/bin/qmake")
+            return out[:ind]
+
+        # nothing was found
+        return ''
         
-    def autoDetectVersion(self, abort=False):
+    def autoDetectVersion(self):
         """ tries to auto detect version by parsing the output of qmake -v.
             - returns empty string in case of failure
             - otherwise returns qt version """
 
-        version = ""
-
-        if( isinPath( "grep" ) and isinPath( "sed" )):
-            version = commands.getoutput( self.realPath() \
-                + r"/bin/qmake -v 2>&1 | grep 'Qt' | sed -e 's/.*Qt .*\([0-9]\.[0-9]\.[0-9]\).*/\1/'" )
-        elif(abort):
-            self.abort( "grep or sed not installed on your system!! QT version could not be verified!!!" )
-
-        return version
-
+        # qmake -v returns the qmake version and the qt version, it's the qt version we want
+        try:
+            v = Version( getoutput( self.realPath() + '/bin/qmake -v' ) ).versions[-1]
+        except (ValueError, TypeError, IndexError):
+            return ''
+        else:
+            return str(v)
 
     def setMode(self, mode):
 
