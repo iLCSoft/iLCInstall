@@ -35,7 +35,7 @@ class AIDAJNI(BaseILC):
         self.useCMake = False
         
         if( self.mode == "install" ):
-            if( self.evalVersion("3.2.3") != 0 ):
+            if( Version(self.version) != '3.2.3' ):
                 self.abort( "only install of version 3.2.3 is supported!" )
 
             self.download.url = "ftp://ftp.slac.stanford.edu/software/freehep/AIDAJNI/v" \
@@ -68,25 +68,14 @@ class AIDAJNI(BaseILC):
         trydelenv('FREEHEP')
         trydelenv('COMPILER')
         
-        os.system('tar -xzf '+self.alias+'-'+self.version+'-Linux-g++.tar.gz --strip-path=1 -C '+self.installPath)
+        if self.parent.os.isSL(3):
+            os.system('tar -xzf '+self.alias+'-'+self.version+'-Linux-g++.tar.gz')
+            os.system('mv -f '+self.alias+'-'+self.version+'/* '+self.installPath)
+            os.rmdir( self.alias+'-'+self.version )
+        else:
+            os.system('tar -xzf '+self.alias+'-'+self.version+'-Linux-g++.tar.gz --strip-path=1 -C '+self.installPath)
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
 
         self.env["AIDAJNI_HOME"] = self.installPath
-
-# FIXME write parser for getting environment values out of aidajni-setup.sh
-#        
-#        # environment variables
-#        self.env["AIDAJNI_VERSION"] = self.version
-#        self.env["AIDAJNI_INCLUDES"] = "-I" + self.installPath + "/include"
-#        self.env["AIDAJNI_LIBS"] = "-L" + self.installPath + "/lib/Linux-g++ -lAIDAJNI -lFHJNI -L" \
-#                + self.parent.module("Java").installPath + "/jre/lib/i386/client -ljvm"
-#        
-#        # path environment variables
-#        self.envpath["PATH"].append( "$AIDAJNI_HOME/bin/Linux-g++" )
-#        self.envpath["CLASSPATH"].append( "${AIDAJNI_HOME}/lib/freehep-aidajni.jar" )
-#        self.envpath["LD_LIBRARY_PATH"].append( "${AIDAJNI_HOME}/lib/Linux-g++" )
-#
-# end of FIXME
-
