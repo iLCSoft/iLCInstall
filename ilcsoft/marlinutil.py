@@ -17,7 +17,7 @@ class MarlinUtil(MarlinPKG):
         MarlinPKG.__init__(self, "MarlinUtil", userInput )
 
         # required modules
-        self.reqmodules = [ "Marlin", "GSL", "CLHEP", "GEAR", "LCIO" ]
+        self.reqmodules = [ "Marlin", "GSL", "CLHEP", "GEAR", "LCIO" , "CED" ]
 
         # cvs root
         self.download.root = "marlinreco"

@@ -18,7 +18,7 @@ class CED(BaseILC):
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "CED", "CED")
 
-        self.reqfiles = [ ["glced"] ]
+        self.reqfiles = [ ["lib/libCED.so","lib/libCED.a","lib/libCED.dylib"] ]
 
         # no documentation available
         self.buildDoc = False
