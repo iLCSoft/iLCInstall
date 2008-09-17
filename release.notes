@@ -2,7 +2,26 @@
 # ILCInstall - Release Notes
 #####################################################
 
+-----------------------------------------------------
+ v01-04
+-----------------------------------------------------
+ - added MarlinUtil -> CED dependency (required for
+    MarlinUtil >= v00-10 and CED >= v00-04-01
+ - added configuration files for installing:
+    - everything from scratch:
+        releases/release_v01-04-scratch.cfg
+    - using DESY AFS reference installation:
+        releases/release_v01-04.cfg
 
+-----------------------------------------------------
+ v01-03-06
+-----------------------------------------------------
+ - added new class (Version) for version comparison
+ - added configuration files for installing:
+    - everything from scratch:
+        releases/release_v01-03-06-scratch.cfg
+    - using DESY AFS reference installation:
+        releases/release_v01-03-06.cfg
 
 -----------------------------------------------------
  v01-03-05
@@ -17,7 +36,6 @@
     ilcsoft.module.download.login2Server
     introduced in v01-03 are now obsolete and were
     removed.
-
 
 -----------------------------------------------------
  v01-03
