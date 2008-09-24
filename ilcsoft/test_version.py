@@ -169,7 +169,7 @@ def test_cmd_outputs():
             if sl_ver[0] == 3:
                 assert Version( getoutput( ilcHome+'java/1.5.0/bin/java -version' ) , max_elements = 3) == '1.5.0'
                 assert Version( getoutput( ilcHome+'java/1.5.0/bin/java -version' ) )[:3] == Version('1.5.0')
-                assert Version( getoutput( 'qmake -v' ) ).versions[-1] == '3.1.2'
+                assert Version( getoutput( '/usr/bin/qmake -v' ) ).versions[-1] == '3.1.2'
                 assert Version( getoutput( 'java -version' ) ) == Version('1.4.2.15')
                 assert Version( getoutput( 'java -version' ) )[:3] == Version('1.4.2')
                 assert Version( getoutput( 'java -version' ) , max_elements = 3) == '1.4.2'
@@ -178,7 +178,7 @@ def test_cmd_outputs():
                 assert Version( getoutput( ilcHome+'java/1.6.0/bin/java -version' )) == '1.6.0.04'
                 assert Version( getoutput( ilcHome+'java/1.6.0/bin/java -version' ) , max_elements = 3) == '1.6.0'
                 assert Version( getoutput( ilcHome+'java/1.6.0/bin/java -version' ) )[:3] == Version('1.6.0')
-                assert Version( getoutput( 'qmake -v' ) ).versions[-1] == '3.3.3'
+                assert Version( getoutput( '/usr/bin/qmake -v' ) ).versions[-1] == '3.3.3'
                 assert Version( getoutput( 'java -version' ) ) == Version('1.5.0.14')
                 assert Version( getoutput( 'java -version' ) )[:3] == Version('1.5.0')
                 assert Version( getoutput( 'java -version' ) , max_elements = 3) == '1.5.0'
