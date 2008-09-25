@@ -3,6 +3,23 @@
 #####################################################
 
 -----------------------------------------------------
+ v01-05
+-----------------------------------------------------
+ - introduced ilcsoft.env['MAKEOPTS'] to be able to
+    pass arguments to make (e.g. -j4)
+ - added jupiter: http://jlccvs.kek.jp/cgi-bin/cvsweb.cgi/Jupiter
+ - introduced new patch-feature, use:
+    ilcsoft.patch = [
+        "001-v01-04-3264bit",
+        "002-Jupiter-fixG4Version"
+    ]
+ - removed GNUmakefiles support for all ilcsoft
+    packages except LCIO
+ - removed debug and buildDoc flags, instead use:
+    ilcsoft.envcmake['CMAKE_BUILD_TYPE']
+    ilcsoft.envcmake['INSTALL_DOC']
+
+-----------------------------------------------------
  v01-04
 -----------------------------------------------------
  - added MarlinUtil -> CED dependency (required for
@@ -84,7 +101,7 @@
     ilcsoft.downloadPass = "my-pass"
     ilcsoft.downloadType = "ccvssh"
     
-    - variables can still be overwritten at module level:
+ - variables can still be overwritten at module level:
       ilcsoft.module( "X" ).download.type="cvs"
       ilcsoft.module( "X" ).download.username="anoncvs"
       ilcsoft.module( "X" ).download.password="xyz"

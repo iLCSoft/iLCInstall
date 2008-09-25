@@ -18,30 +18,26 @@ import glob
 import time
 import string
 import re
-
+import fnmatch
 
 #--------------------------------------------------------------------------------
 
-class OSDetect:
+class OSDetect(object):
     """ small class for detecting the OS """
+    type = "unknown"
+    ver = "unknown"
+
     def __init__(self):
-        self.type="unknown"
-        self.ver="unknown"
-        self.detected=False
-        
         # Linux
         if( sys.platform == "linux2" ):
-            self.detected = True
             self.type = "Linux"
  
          # MacOs
         if( sys.platform == "mac" or sys.platform == "darwin" ):
-            self.detected = True
             self.type = "Mac"
         
          # Windows
         if( sys.platform == "win32" ):
-            self.detected = True
             self.type = "Win"
 
         # get linux version
@@ -50,24 +46,19 @@ class OSDetect:
             if( out[0] == 0 ):
                 self.ver=out[1].split("Description:")[1].strip()
 
+    def _get_shortver(self):
+        if self.isSL():
+            return 'SL'+ str(self.isSL()[0])
+        return self.type
+
+    shortver = property( _get_shortver )
+
     def __repr__(self):
-        return repr( str(self) )
+        return repr( self.type )
 
     def __str__(self):
-        return str(self.type+"-"+self.ver)
+        return str(self.type+" - "+self.ver)
         
-    def isLinux(self):
-        """ returns True if the OS is Linux """
-        if( self.type == "Linux" ):
-            return True
-        return False
-
-    def isMac(self):
-        """ returns True if the OS is Mac """
-        if( self.type == "Mac" ):
-            return True
-        return False
-
     # left here for compatibility, use isSL(3) instead
     def isSL3(self):
         """ returns True if this is Scientific Linux 3 """
@@ -89,6 +80,36 @@ class OSDetect:
                 else:
                     return Version( self.ver )
         return False
+
+#--------------------------------------------------------------------------------
+
+class GlobDirectoryWalker:
+    # a forward iterator that traverses a directory tree
+
+    def __init__(self, directory, pattern="*"):
+        self.stack = [directory]
+        self.pattern = pattern 
+        self.files = []
+        self.index = 0
+
+    def __getitem__(self, index):
+        while 1:
+            try:
+                file = self.files[self.index]
+                self.index = self.index + 1
+            except IndexError:
+                # pop next directory from stack
+                self.directory = self.stack.pop()
+                self.files = os.listdir(self.directory)
+                self.files.sort()
+                self.index = 0
+            else:
+                # got a filename
+                fullname = os.path.join(self.directory, file)
+                if os.path.isdir(fullname) and not os.path.islink(fullname):
+                    self.stack.append(fullname)
+                if fnmatch.fnmatch(file, self.pattern):
+                    return fullname
 
 #--------------------------------------------------------------------------------
 

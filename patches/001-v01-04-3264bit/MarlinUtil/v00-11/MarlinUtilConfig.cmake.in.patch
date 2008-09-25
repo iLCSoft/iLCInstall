@@ -1,0 +1,11 @@
+Index: MarlinUtilConfig.cmake.in
+===================================================================
+RCS file: /marlinreco/MarlinUtil/MarlinUtilConfig.cmake.in,v
+retrieving revision 1.3
+diff -r1.3 MarlinUtilConfig.cmake.in
+58a59
+>     SET( MarlinUtil_LIBRARY_DIRS "@CMAKE_INSTALL_PREFIX@/lib @CED_HOME@/lib" )
+60c61
+< 	MARK_AS_ADVANCED( MarlinUtil_INCLUDE_DIRS MarlinUtil_LIBRARIES )
+---
+>     MARK_AS_ADVANCED( MarlinUtil_INCLUDE_DIRS MarlinUtil_LIBRARY_DIRS MarlinUtil_LIBRARIES )

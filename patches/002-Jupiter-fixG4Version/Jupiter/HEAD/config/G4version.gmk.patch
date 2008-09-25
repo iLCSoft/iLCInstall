@@ -1,0 +1,9 @@
+Index: config/G4version.gmk
+===================================================================
+RCS file: /home/cvs/soft/Jupiter/config/G4version.gmk,v
+retrieving revision 1.2
+diff -r1.2 G4version.gmk
+1c1
+<   G4VER  := $(shell file $(G4INSTALL) |sed -e 's/.*geant4\.\([0-9]\)\.\([0-9]\).*/\1\2/')
+---
+>   G4VER  := $(shell file $(G4INSTALL) |sed -e 's/.*geant4.\([0-9]\)\.\([0-9]\).*/\1\2/')

@@ -303,7 +303,7 @@ class BaseILC:
             environment variables or some other setting """
         
         # add cmake dependency
-        if( self.mode == "install" and self.useCMake ):
+        if( self.mode == "install" and self.useCMake and self.hasCMakeSupport ):
             self.addExternalDependency( ["CMake"] )
 
             # add CMakeModules dependency

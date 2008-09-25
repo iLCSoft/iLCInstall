@@ -1,0 +1,172 @@
+Index: CMakeLists.txt
+===================================================================
+RCS file: /marlinreco/CED/CMakeLists.txt,v
+retrieving revision 1.14
+diff -r1.14 CMakeLists.txt
+21c21
+< 
+---
+> OPTION( BUILD_32BIT_COMPATIBLE "Set to ON to build in 32 bit compatibility mode" ON )
+25,27c25,27
+< SET( ${PROJECT_NAME}_MAJOR_VERSION 0 )
+< SET( ${PROJECT_NAME}_MINOR_VERSION 5 )
+< SET( ${PROJECT_NAME}_PATCH_LEVEL 0 )
+---
+> SET( CED_MAJOR_VERSION 0 )
+> SET( CED_MINOR_VERSION 5 )
+> SET( CED_PATCH_LEVEL 0 )
+33a34,60
+> #---------------- 32/64 bit issues ---------------------------------------
+> #INCLUDE( CheckTypeSize )
+> #CHECK_TYPE_SIZE( "void*" SIZE_OF_VOID_P )
+> 
+> IF( CMAKE_SIZEOF_VOID_P EQUAL 4 )
+>     MESSAGE( STATUS "32 bit architecture detected" )
+> ENDIF()
+> 
+> IF( CMAKE_SIZEOF_VOID_P EQUAL 8 )
+>     MESSAGE( STATUS "64 bit architecture detected" )
+> 
+>     IF( BUILD_32BIT_COMPATIBLE )
+>         IF( COMMAND SET_PROPERTY )
+>             SET_PROPERTY(GLOBAL PROPERTY FIND_LIBRARY_USE_LIB64_PATHS 0)
+>             SET( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32" )
+>         ELSE()
+>             MESSAGE( FATAL_ERROR "to build in 32 bit compatibility mode you need cmake >= 2.6" )
+>         ENDIF()
+>         MESSAGE( STATUS "Build in 32 bit compatibility mode" )
+>     ELSE()
+>         MESSAGE( STATUS "Build in native 64 bit mode" )
+>     ENDIF()
+> ENDIF()
+> 
+> #-------------------------------------------------------------------------
+> 
+> 
+35,38c62,63
+< SET( ${PROJECT_NAME}_SOVERSION
+<     "${${PROJECT_NAME}_MAJOR_VERSION}.${${PROJECT_NAME}_MINOR_VERSION}" )
+< SET( ${PROJECT_NAME}_VERSION
+<     "${${PROJECT_NAME}_SOVERSION}.${${PROJECT_NAME}_PATCH_LEVEL}" )
+---
+> SET( CED_SOVERSION "${CED_MAJOR_VERSION}.${CED_MINOR_VERSION}" )
+> SET( CED_VERSION "${CED_SOVERSION}.${CED_PATCH_LEVEL}" )
+54c79
+< # output directories
+---
+> # cmake output directories
+65c90
+<                                                                                                                                                             
+---
+> 
+67,69c92,93
+< ADD_CUSTOM_TARGET( uninstall
+<   "${CMAKE_COMMAND}" -P "${PROJECT_BINARY_DIR}/cmake_uninstall.cmake" )
+<                                                                                                                                                             
+---
+> ADD_CUSTOM_TARGET( uninstall "${CMAKE_COMMAND}" -P "${PROJECT_BINARY_DIR}/cmake_uninstall.cmake" )
+> 
+71,75c95,96
+< CONFIGURE_FILE( "${PROJECT_SOURCE_DIR}/${PROJECT_NAME}Config.cmake.in"
+<                 "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake" @ONLY )
+<                                                                                                                                                             
+< # install configuration file
+< INSTALL( FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake" DESTINATION . )
+---
+> CONFIGURE_FILE( "${PROJECT_SOURCE_DIR}/CEDConfig.cmake.in"
+>                 "${PROJECT_BINARY_DIR}/CEDConfig.cmake" @ONLY )
+77,79c98,99
+< # install include files
+< #INSTALL( FILES "${PROJECT_SOURCE_DIR}/ced.h" "${PROJECT_SOURCE_DIR}/ced_cli.h"
+< #        DESTINATION . )
+---
+> # install configuration file
+> INSTALL( FILES "${PROJECT_BINARY_DIR}/CEDConfig.cmake" DESTINATION . )
+80a101
+> # install header files
+94d114
+< 
+106c126,128
+< ADD_LIBRARY( lib_${PROJECT_NAME} ced_cli.c ced.c glut_socks.c )
+---
+> ADD_LIBRARY( lib_CED ced_cli.c ced.c glut_socks.c )
+> 
+> ADD_CUSTOM_TARGET( lib DEPENDS lib_CED )
+108,109c130
+< ADD_CUSTOM_TARGET( lib DEPENDS lib_${PROJECT_NAME} )
+< SET_TARGET_PROPERTIES( lib_${PROJECT_NAME} PROPERTIES
+---
+> SET_TARGET_PROPERTIES( lib_CED PROPERTIES
+111,112c132,133
+<     VERSION ${${PROJECT_NAME}_VERSION}
+<     SOVERSION ${${PROJECT_NAME}_SOVERSION}
+---
+>     VERSION ${CED_VERSION}
+>     SOVERSION ${CED_SOVERSION}
+116c137
+<     OUTPUT_NAME ${PROJECT_NAME} )
+---
+>     OUTPUT_NAME CED )
+119,124d139
+< #TARGET_LINK_LIBRARIES( lib_${PROJECT_NAME} ${GLUT_glut_LIBRARY} )
+< #MAC ONLY
+< #IF(APPLE)
+< #TARGET_LINK_LIBRARIES( lib_${PROJECT_NAME} ${OPENGL_LIBRARIES} )
+< #ENDIF(APPLE)
+< 
+126c141
+< INSTALL( TARGETS lib_${PROJECT_NAME} DESTINATION lib PERMISSIONS
+---
+> INSTALL( TARGETS lib_CED DESTINATION lib PERMISSIONS
+133,134c148,150
+<   ADD_EXECUTABLE( bin glced.c ced_srv.c)
+<   SET_TARGET_PROPERTIES( bin PROPERTIES OUTPUT_NAME glced )
+---
+>   ADD_EXECUTABLE( glced glced.c ced_srv.c )
+> 
+>   TARGET_LINK_LIBRARIES( glced lib_CED ${GLUT_glut_LIBRARY} )
+137,139c153
+<     TARGET_LINK_LIBRARIES( bin lib_${PROJECT_NAME} ${OPENGL_LIBRARIES} )
+<   ELSE(APPLE)
+<     TARGET_LINK_LIBRARIES( bin lib_${PROJECT_NAME} ${GLUT_glut_LIBRARY} )
+---
+>     TARGET_LINK_LIBRARIES( glced ${OPENGL_LIBRARIES} )
+142c156
+<   INSTALL( TARGETS bin DESTINATION bin )
+---
+>   INSTALL( TARGETS glced DESTINATION bin )
+147c161,162
+< ADD_EXECUTABLE( test_ced test_ced.c ced_cli.c ced.c)
+---
+> ADD_EXECUTABLE( test_ced test_ced.c )
+> TARGET_LINK_LIBRARIES( test_ced lib_CED )
+151,153d165
+< #TARGET_LINK_LIBRARIES( test_ced lib_${PROJECT_NAME} )
+< 
+< 
+161d172
+< MESSAGE( STATUS "CED_SERVER = ${CED_SERVER}" )
+162a174,177
+> IF( CMAKE_SIZEOF_VOID_P EQUAL 8 )
+>     MESSAGE( STATUS "BUILD_32BIT_COMPATIBLE = ${BUILD_32BIT_COMPATIBLE}" )
+> ENDIF()
+> MESSAGE( STATUS "CED_SERVER = ${CED_SERVER}" )
+171,172d185
+< SET( CED_SERVER "${CED_SERVER}" CACHE BOOL
+<     "Set to ON to build CED server: glced" FORCE )
+174c187,189
+<     "Where to install ${PROJECT_NAME}" FORCE )
+---
+>     "Where to install CED" FORCE )
+> SET( CED_SERVER "${CED_SERVER}" CACHE BOOL
+>     "Set to ON to build the glced server" FORCE )
+178c193,194
+< CMAKE_EXPORT_BUILD_SETTINGS( "${PROJECT_NAME}BuildSettings.cmake" )
+---
+> CMAKE_EXPORT_BUILD_SETTINGS( "CEDBuildSettings.cmake" )
+> INSTALL( FILES "${PROJECT_BINARY_DIR}/CEDBuildSettings.cmake" DESTINATION lib/cmake )
+181c197,198
+< EXPORT_LIBRARY_DEPENDENCIES( "${PROJECT_NAME}LibDeps.cmake" )
+---
+> EXPORT_LIBRARY_DEPENDENCIES( "CEDLibDeps.cmake" )
+> INSTALL( FILES "${PROJECT_BINARY_DIR}/CEDLibDeps.cmake" DESTINATION lib/cmake )

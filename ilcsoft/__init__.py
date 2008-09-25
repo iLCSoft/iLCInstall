@@ -22,6 +22,9 @@ from overlay import Overlay
 from marlintpc import MarlinTPC
 from ckfit import CKFit
 
+# kek
+from jupiter import Jupiter
+
 # cmake
 from cmake import CMake
 from cmakemods import CMakeModules

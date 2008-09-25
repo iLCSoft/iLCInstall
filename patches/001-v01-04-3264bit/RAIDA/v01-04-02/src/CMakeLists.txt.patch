@@ -1,0 +1,49 @@
+Index: src/CMakeLists.txt
+===================================================================
+RCS file: /ilctools/RAIDA/src/CMakeLists.txt,v
+retrieving revision 1.5
+diff -r1.5 CMakeLists.txt
+11c11
+< INCLUDE_DIRECTORIES( "${${PROJECT_NAME}_SOURCE_DIR}/include" )
+---
+> INCLUDE_DIRECTORIES( "${RAIDA_SOURCE_DIR}/include" )
+14c14
+< INSTALL( DIRECTORY "${${PROJECT_NAME}_SOURCE_DIR}/include"
+---
+> INSTALL( DIRECTORY "${RAIDA_SOURCE_DIR}/include"
+38,40d37
+< # binary sources: list of all sources from which you want to create a binary
+< #SET( bin_srcs example.cc )
+< 
+50c47
+< ADD_LIBRARY( lib_${PROJECT_NAME} ${lib_srcs} )
+---
+> ADD_LIBRARY( lib_RAIDA ${lib_srcs} )
+53c50
+< ADD_CUSTOM_TARGET( lib DEPENDS lib_${PROJECT_NAME} )
+---
+> ADD_CUSTOM_TARGET( lib DEPENDS lib_RAIDA )
+56c53
+< SET_TARGET_PROPERTIES( lib_${PROJECT_NAME} PROPERTIES
+---
+> SET_TARGET_PROPERTIES( lib_RAIDA PROPERTIES
+58,59c55,56
+<     VERSION ${${PROJECT_NAME}_VERSION}
+<     SOVERSION ${${PROJECT_NAME}_SOVERSION}
+---
+>     VERSION ${RAIDA_VERSION}
+>     SOVERSION ${RAIDA_SOVERSION}
+63c60
+<     OUTPUT_NAME ${PROJECT_NAME} )
+---
+>     OUTPUT_NAME RAIDA )
+66c63
+< INSTALL( TARGETS lib_${PROJECT_NAME} DESTINATION lib PERMISSIONS
+---
+> INSTALL( TARGETS lib_RAIDA DESTINATION lib PERMISSIONS
+79,80c76,77
+<     SET_TARGET_PROPERTIES( bin PROPERTIES OUTPUT_NAME ${PROJECT_NAME} )
+<     TARGET_LINK_LIBRARIES( bin lib_${PROJECT_NAME} )
+---
+>     SET_TARGET_PROPERTIES( bin PROPERTIES OUTPUT_NAME RAIDA )
+>     TARGET_LINK_LIBRARIES( bin lib_RAIDA )

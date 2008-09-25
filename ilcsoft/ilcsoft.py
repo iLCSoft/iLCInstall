@@ -23,6 +23,8 @@ class ILCSoft:
     def __init__(self, installPath):
         self.os = OSDetect()        # operating system detection
         self.installPath = fixPath(installPath)
+        self.ilcinstallDir = os.path.abspath(sys.path[0])
+        self.patch = []             # list of patches
         self.modules = []           # list of modules
         self.autoModules = []       # list of auto detected modules
         self.debug = False          # global debug flag
@@ -351,6 +353,33 @@ class ILCSoft:
             if( (mod.mode == "install") and (not os.path.exists( mod.installPath ))):
                 print 80*'*' + "\n*** Downloading sources for " + mod.name + " version " + mod.version + "...\n" + 80*'*'
                 mod.downloadSources()
+
+        # apply patches
+        if self.patch:
+            print "\n" + 30*'*' + " Patching sources " + 30*'*' + "\n"
+            for patchname in self.patch:
+                relpatchdir = os.path.join( 'patches/', patchname )
+                abspatchdir = os.path.abspath( os.path.join( self.ilcinstallDir, relpatchdir ))
+
+                # FIXME check this in preview mode
+                if not os.path.exists( abspatchdir ):
+                    print "patch not valid:", patchname
+                    sys.exit(1)
+
+                os.chdir( abspatchdir )
+                for patchfile in GlobDirectoryWalker( '.', "*.patch"):
+                    file2patch = os.path.abspath( os.path.join( self.installPath, os.path.splitext( patchfile )[0] ))
+                    dirfile2patch = os.path.dirname( file2patch )
+                    patchfilecopy = os.path.join( dirfile2patch, '.'+os.path.basename( patchfile ) )
+                    if not os.path.exists( patchfilecopy ):
+                        if os.path.exists( file2patch ):
+                            print 'patching file: ', file2patch
+                            os.system( "patch " + file2patch + ' ' + patchfile )
+                            os.system( "cp " + patchfile + ' ' + patchfilecopy ) 
+                        else:
+                            print 'Warning: file to patch not found:', file2patch
+                os.chdir( self.ilcinstallDir )
+
         if( not self.downloadOnly ):
             print "\n" + 30*'*' + " Installing software " + 30*'*' + "\n"
             for mod in self.modules:
