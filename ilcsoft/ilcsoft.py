@@ -27,13 +27,10 @@ class ILCSoft:
         self.patch = []             # list of patches
         self.modules = []           # list of modules
         self.autoModules = []       # list of auto detected modules
-        self.debug = False          # global debug flag
-        self.buildDoc = True        # global documentation flag
         self.downloadOnly = False   # global download flag
         self.downloadUser = ""      # global download cvs/ccvssh username
         self.downloadPass = ""      # global download cvs/ccvssh password
         self.downloadType = ""      # global download cvs/ccvssh password
-        self.useCMake = False       # global flag for using cmake
         self.noAutomaticRebuilds = False # global flag for automatic rebuilding
         self.env = {}               # global environment variables
         self.envcmake = {}          # global cmake environment variables
@@ -46,7 +43,7 @@ class ILCSoft:
             "MARLIN_DLL" : []
         }
         # list of supported modules
-        # generated from hasCMakeSupport flag
+        # generated from hasCMakeFindSupport flag
         self.cmakeSupportedMods = [ "AIDA" ]
     
     def use(self, module):
@@ -149,7 +146,7 @@ class ILCSoft:
         
         # initialize cmake supported modules
         for mod in self.modules:
-            if( mod.hasCMakeSupport ):
+            if( mod.hasCMakeFindSupport ):
                 self.cmakeSupportedMods.append( mod.name )
         
         # initialize each module
@@ -384,9 +381,6 @@ class ILCSoft:
             print "\n" + 30*'*' + " Installing software " + 30*'*' + "\n"
             for mod in self.modules:
                 mod.install([])
-            print "\n" + 30*'*' + " Building documentation " + 30*'*' + "\n"
-            for mod in self.modules:
-                mod.buildDoku()
 
     def summary(self):
         """ displays an installation summary """

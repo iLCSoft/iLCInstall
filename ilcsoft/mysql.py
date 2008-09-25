@@ -19,6 +19,7 @@ class MySQL(BaseILC):
         BaseILC.__init__(self, userInput, "MySQL", "mysql")
 
         self.installSupport = False
+        self.hasCMakeBuildSupport = False
 
         self.reqfiles = [ ["lib/mysql/libmysqlclient.so", "lib/libmysqlclient.so"] ]
 
@@ -28,3 +29,4 @@ class MySQL(BaseILC):
         self.env["MYSQL_PATH"] = self.installPath
         self.envpath["LD_LIBRARY_PATH"].append( "$MYSQL_PATH/lib/mysql" )
         self.envpath["LD_LIBRARY_PATH"].append( "$MYSQL_PATH/lib" )
+

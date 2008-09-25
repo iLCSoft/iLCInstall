@@ -7,17 +7,23 @@
 -----------------------------------------------------
  - introduced ilcsoft.env['MAKEOPTS'] to be able to
     pass arguments to make (e.g. -j4)
- - added jupiter: http://jlccvs.kek.jp/cgi-bin/cvsweb.cgi/Jupiter
+ - added Jupiter from kek soft:
+    http://jlccvs.kek.jp/cgi-bin/cvsweb.cgi/Jupiter
  - introduced new patch-feature, use:
     ilcsoft.patch = [
         "001-v01-04-3264bit",
         "002-Jupiter-fixG4Version"
     ]
- - removed GNUmakefiles support for all ilcsoft
-    packages except LCIO
+ - improved nightly build script
+ - removed 'old' GNUmakefiles support for all ilcsoft
+    packages except LCIO, LCIO can still be built with
+    ant by setting:
+        ilcsoft.module("LCIO").useCMake = False
+    the global flag ilcsoft.useCMake is now obsolete
  - removed debug and buildDoc flags, instead use:
     ilcsoft.envcmake['CMAKE_BUILD_TYPE']
     ilcsoft.envcmake['INSTALL_DOC']
+    in LCIO the buildDoc flag was kept (for ant)
 
 -----------------------------------------------------
  v01-04

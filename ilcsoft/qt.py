@@ -18,7 +18,7 @@ class QT(BaseILC):
     def __init__(self, userInput="auto"):
         BaseILC.__init__(self, userInput, "QT", "QT")
 
-        self.hasCMakeSupport = False
+        self.hasCMakeBuildSupport = False
         self.download.supportHEAD = False
         self.download.supportedTypes = ["wget"]
 
@@ -64,27 +64,16 @@ class QT(BaseILC):
         # qmake -v returns the qmake version and the qt version, it's the qt version we want
         try:
             v = Version( getoutput( self.realPath() + '/bin/qmake -v' ) ).versions[-1]
-        except (ValueError, TypeError, IndexError):
+        except:
             return ''
         else:
             return str(v)
 
     def setMode(self, mode):
-
         BaseILC.setMode(self, mode)
 
-        # no cmake build support
-        self.useCMake = False
-            
-        if( self.mode == "install" ):
+        self.download.url = "ftp://ftp.trolltech.com/qt/source/qt-x11-opensource-src-%s.tar.gz" % (self.version,)
 
-            print "*** WARNING: QT takes a LOT of time to compile (3-4 hours on a fast machine)!!! "
-            
-            # download url
-            self.download.url = "ftp://ftp.trolltech.com/qt/source/qt-x11-opensource-src-" \
-                    + self.version + ".tar.gz"
-        
-    
     def compile(self):
         """ compile QT """
 
@@ -97,7 +86,7 @@ class QT(BaseILC):
                 + " -prefix-install -fast 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
 
-        if( os.system( "make 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
     
     def cleanupInstall(self):
@@ -107,6 +96,9 @@ class QT(BaseILC):
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
+
+        if( self.mode == "install" ):
+            print "*** WARNING: QT takes a LOT of time to compile (3-4 hours on a fast machine)!!! "
 
         self.env["QTDIR"] = self.installPath
         self.env["QMAKESPEC"] = self.installPath + "/mkspecs/linux-g++"

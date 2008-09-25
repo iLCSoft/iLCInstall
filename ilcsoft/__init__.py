@@ -37,11 +37,11 @@ from clhep import CLHEP
 from heppdt import HepPDT
 from gsl import GSL
 from qt import QT
+from aidajni import AIDAJNI
+from jaida import JAIDA
 
 # external (without install support)
 from root import ROOT
 from geant4 import Geant4
-from aidajni import AIDAJNI
-from jaida import JAIDA
 from java import Java
 from mysql import MySQL

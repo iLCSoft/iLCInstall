@@ -18,6 +18,7 @@ class CERNLIB(BaseILC):
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "CERNLIB", "cernlib")
 
+        self.hasCMakeBuildSupport = False
         self.download.supportHEAD = False
         self.download.supportedTypes = ["wget"]
 
@@ -26,12 +27,7 @@ class CERNLIB(BaseILC):
     def setMode(self, mode):
         BaseILC.setMode(self, mode)
 
-        # no cmake build support
-        self.useCMake = False
-            
-        if( self.mode == "install" ):
-            # download url
-            self.download.url = "http://cernlib.web.cern.ch/cernlib/download/" + self.version + "_source/tar/"
+        self.download.url = "http://cernlib.web.cern.ch/cernlib/download/"+self.version+"_source/tar/"
 
     def downloadSources(self):
         
@@ -91,7 +87,8 @@ class CERNLIB(BaseILC):
         #if( self.rebuild ):
             #os.system( "rm -rf " + self.version )
         
-        print "Compiling CERNLIB... This takes a LOT of time and displays no screen output, so just leave it running :)"
+        print "Compiling CERNLIB... This takes a LOT of time and displays " \
+                + "no screen output, so just leave it running :)"
         
         if( int(self.version) < 2006 ):
             if( os.system( "./start_cern 2>&1 | tee -a " + self.logfile ) != 0 ):
@@ -100,8 +97,8 @@ class CERNLIB(BaseILC):
             
             os.chdir( self.installPath )
 
-            os.system( "echo \"Compiling CERNLIB... This takes a LOT of time and displays no screen output, so just leave it running :)\" >> " \
-                    + self.logfile )
+            os.system( "echo \"Compiling CERNLIB... This takes a LOT of time and displays " \
+                + "no screen output, so just leave it running :)\" >> " + self.logfile )
             
             # create directories
             trymakedir( "bin" )
@@ -173,4 +170,3 @@ class CERNLIB(BaseILC):
             self.env["CVSCOSRC"] = self.installPath + "/src"
             self.envpath["PATH"].append( "$CERN_ROOT/bin" )
 
-        self.envbuild["USERLIBS"].append( "-L" + self.installPath + "/lib -lmathlib -lkernlib" )

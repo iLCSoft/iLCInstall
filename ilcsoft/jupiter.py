@@ -18,7 +18,8 @@ class Jupiter(BaseILC):
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "Jupiter", "Jupiter")
 
-        self.hasCMakeSupport = False
+        self.hasCMakeBuildSupport = False
+        self.hasCMakeFindSupport = False
 
         self.download.supportedTypes = ["cvs"]
         # set some cvs variables

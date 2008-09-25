@@ -18,9 +18,10 @@ class Mokka(BaseILC):
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "Mokka", "Mokka")
 
-        self.hasCMakeSupport = False
+        self.hasCMakeBuildSupport = False
+        self.hasCMakeFindSupport = False
 
-        self.download.supportedTypes = ["wget", "cvs"]
+        self.download.supportedTypes = ["cvs", "wget"]
         # set some cvs variables
         # export CVSROOT=:pserver:anoncvs@pollin1.in2p3.fr:/home/flc/cvs
         self.download.accessmode = "pserver"
@@ -34,40 +35,30 @@ class Mokka(BaseILC):
     def setMode(self, mode):
         BaseILC.setMode(self, mode)
 
-        # no cmake build support
-        self.useCMake = False
+        if( self.download.username == "anonymous" ):
+            self.download.username = "anoncvs"
+        if( self.download.password == "" ):
+            self.download.password = "%ilc%"
 
-        # force download type to cvs for HEAD version
-        if( self.download.type == "wget" and self.version=="HEAD" ):
-            self.download.type = "cvs"
-
-        # force download type to cvs if set to ccvssh
-        if( self.download.type == "ccvssh" ):
-            self.download.type = "cvs"
-        
-        self.download.username = "anoncvs"
-        self.download.password = "%ilc%"
-        self.download.url = "http://polywww.in2p3.fr/activites/physique/geant4/tesla/www/mokka/software/mokka_tags/Mokka-" \
-                + self.version + ".tgz"
+        self.download.url = \
+        "http://polywww.in2p3.fr/activites/physique/geant4/tesla/www/mokka/software/mokka_tags/Mokka-%s.tgz" \
+            % (self.version,)
 
     def compile(self):
         """ compile Mokka """
 
         os.chdir( self.installPath + "/source" )
         
-        if( os.system( ". ${G4ENV_INIT}; unset G4UI_USE_XAW ; unset G4UI_USE_XM ; make 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os.system( ". ${G4ENV_INIT}; unset G4UI_USE_XAW ; unset G4UI_USE_XM ; make 2>&1 | tee -a " \
+                + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
-
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
 
-        # force mokka to build itself in the installPath
-        if( not self.env.has_key( "G4WORKDIR" )):
-            self.env[ "G4WORKDIR" ] = self.installPath
-
-        if( not self.env.has_key( "G4UI_USE_TCSH" )):
-            self.env[ "G4UI_USE_TCSH" ] = 1 
+        # if G4WORKDIR not set build mokka in installPath
+        self.env.setdefault( 'G4WORKDIR', self.installPath )
+        self.env.setdefault( 'G4UI_USE_TCSH', 1 )
 
         self.envpath["PATH"].append( self.installPath + "/bin/Linux-g++" )
         #self.envpath["LD_LIBRARY_PATH"].append( "$LCIO/lib" )

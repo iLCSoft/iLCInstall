@@ -19,6 +19,7 @@ class ROOT(BaseILC):
         BaseILC.__init__(self, userInput, "ROOT", "root")
 
         self.installSupport = False
+        self.hasCMakeBuildSupport = False
 
         self.reqfiles = [
                 ["lib/libCore.so", "lib/libCore.dylib"], 
@@ -32,6 +33,4 @@ class ROOT(BaseILC):
         self.env["ROOTSYS"] = self.installPath
         self.envpath["PATH"].append( "$ROOTSYS/bin" )
         self.envpath["LD_LIBRARY_PATH"].append( "$ROOTSYS/lib" )
-
-        self.envbuild["USERLIBS"].append( "`root-config --glibs`" )
 

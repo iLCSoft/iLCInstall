@@ -20,46 +20,36 @@ class CED(BaseILC):
 
         self.reqfiles = [ ["lib/libCED.so","lib/libCED.a","lib/libCED.dylib"] ]
 
-        # no documentation available
-        self.buildDoc = False
-
         self.download.root = "marlinreco"
+
+        self.envcmake['CED_SERVER']='OFF'
 
     def compile(self):
         """ compile CED """
         
-        os.chdir( self.installPath )
-
-        if( self.useCMake ):
-            os.chdir( "build" )
+        os.chdir( self.installPath+'/build' )
 
         if( self.rebuild ):
-            if( self.useCMake ):
-                tryunlink( "CMakeCache.txt" )
-            else:
-                os.system( "make clean" )
+            tryunlink( "CMakeCache.txt" )
         
-        # build software
-        if( self.useCMake ):
-            if( os.system( "cmake " + self.genCMakeCmd() + " .. 2>&1 | tee -a " + self.logfile ) != 0 ):
-                self.abort( "failed to configure!!" )
+        if( os.system( "cmake " + self.genCMakeCmd() + " .. 2>&1 | tee -a " + self.logfile ) != 0 ):
+            self.abort( "failed to configure!!" )
         
-        if( os.system( "make 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
         
-        if( self.useCMake ):
-            if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
-                self.abort( "failed to install!!" )
+        if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
+            self.abort( "failed to install!!" )
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
-        self.env["CED"] = self.installPath
-        
-        self.envpath["PATH"].append( self.installPath )
+        self.envpath["PATH"].append( self.installPath + '/bin' )
 
-        # install FIXME MAC support?
-        if( self.mode == "install" ):
-            if( not os.path.exists( "/usr/include/GL/glut.h" )):
-                self.abort( "glut-devel not found in your system!! you can get it from:\n" \
-                    + "[ http://freeglut.sourceforge.net/ ]" )
+        if( self.mode == "install" and self.envcmake.has_key("CED_SERVER") ):
+            if( str(self.envcmake["CED_SERVER"]) == "1" or self.envcmake["CED_SERVER"] == "ON" ):
+                # FIXME: MAC
+                if( not os.path.exists( "/usr/include/GL/glut.h" ) and not os.path.exists( "/usr/include/glut.h" ) ):
+                    print "glut-devel not found in your system!! you can get it from:\n[ http://freeglut.sourceforge.net/ ]"
+                    print "CED_SERVER forced to OFF"
+                    self.envcmake["CED_SERVER"] = "OFF"
 

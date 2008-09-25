@@ -6,7 +6,7 @@
 # Date: Jan, 2007
 #
 ##################################################
-                                                                                                                                                            
+
 # custom imports
 from util import *
 
@@ -22,8 +22,8 @@ class BaseILC:
         self.alias = alias                      # module alias (e.g. lcio, gear, Marlin, CEDViewer)
         self.installSupport = True              # flag for install support
         self.download = Download(self)          # download struct ( groups together a bunch of download variables )
-        self.hasCMakeSupport = True             # flag for cmake support
-        self.isMarlinPKG = False                # flag for Marlin Packages
+        self.hasCMakeBuildSupport = True        # can the package be built with cmake?
+        self.hasCMakeFindSupport = True         # can the package be found with cmake? 
         self.rebuild = False                    # flag for calling a "make clean" before building the software
         self.skipCompile = False                # flag for skipping the compile step of a module
         self.useLink = False                    # flag for "link" packages
@@ -36,7 +36,10 @@ class BaseILC:
                                                 # affect the consistency of the package e.g. QT, CMake, Java in some cases..)
         self.reqmodules_buildonly = []          # required modules for only building this package (their environment variables
                                                 # will only be written in the build_env.sh of this package
-        self.envcmake = {}                      # cmake environment (e.g. BUILD_SHARED_LIBS=ON )
+        self.envcmake = {                       # cmake environment (e.g. BUILD_SHARED_LIBS=ON)
+            'CMAKE_BUILD_TYPE' : 'Release',
+            'INSTALL_DOC' : 'ON'
+        }
         self.env = {}                           # environment variables
         self.envcmds = []                       # cmds added to the environment script (build_env.sh)
         self.envpath = {                        # path environment variables (e.g. PATH, LD_LIBRARY_PATH, CLASSPATH)
@@ -44,14 +47,6 @@ class BaseILC:
             "LD_LIBRARY_PATH" : [],
             "CLASSPATH" : [],
             "MARLIN_DLL" : []
-        }
-        self.envbuild = {                       # build environment variables used to build Marlin (USERINCLUDES, USERLIBS)
-            "USERINCLUDES" : [],
-            "USERLIBS" : []
-        }
-        self.envoptbuild = {                    # build environment variables for MARLINWORKDIR
-            "USERINCLUDES" : [],
-            "USERLIBS" : []
         }
     
     def __repr__(self):
@@ -74,16 +69,6 @@ class BaseILC:
             if( self.downloadOnly ):
                 print "\t   + download only: True"
             else:
-                print "\t   + build in Debug mode:",
-                if( self.debug ):
-                    print "Yes"
-                else:
-                    print "No"
-                print "\t   + build Documentation:",
-                if( self.buildDoc ):
-                    print "Yes"
-                else:
-                    print "No"
                 mods = self.reqmodules + self.optmodules + self.reqmodules_buildonly
                 if( len(mods) > 0 ):
                     print "\t   + will be built with:",
@@ -118,15 +103,17 @@ class BaseILC:
 
     def autoDetect(self):
         """ auto detect module """
+
+        self.autoDetected = False
         
         # auto detect settings
         self.installPath = self.autoDetectPath()
-        self.version = self.autoDetectVersion()
-
-        check = self.checkInstall()
-
-        # set a flag for successful auto detection
-        self.autoDetected = ( self.installPath and self.version and check )
+        if self.installPath:
+            self.version = self.autoDetectVersion()
+            if self.version:
+                check = self.checkInstall()
+                if check:
+                    self.autoDetected=True
 
     def setMode(self, mode):
         """ sets this module to be used as an already existing
@@ -155,15 +142,6 @@ class BaseILC:
 
         # initialize cleanInstall flag
         self.cleanInstall = self.parent.cleanInstall
-        
-        # initialize debug flag
-        self.debug = self.parent.debug
-        
-        # initialize documentation flag
-        self.buildDoc = self.parent.buildDoc
-
-        # initialize cmake flag
-        self.useCMake = self.parent.useCMake
 
         if( mode == "install" ):
 
@@ -202,27 +180,31 @@ class BaseILC:
             
         elif( mode == "use" ):
             if( self.__userInput != "auto" ):
+                # 1st case: full path to installation is given
                 self.installPath = fixPath(self.__userInput)
-                # if use( Mod( "vXX-XX" ) is given
+                # extract version from path
+                self.version = basename( self.installPath )
+                # 2nd case: use( Mod( "vXX-XX" ) is given
                 if( not self.checkInstall() ):
                     self.version = self.__userInput
                     self.installPath = self.parent.installPath + "/" + self.alias + "/" + self.version
-                else:
-                    # extract version from path
-                    self.version = basename( self.installPath )
+                    # 1st and 2nd cases failed:
+                    if( not self.checkInstall() ):
+                        # revert installPath back to user input
+                        self.installPath = fixPath(self.__userInput)
+                        self.version = basename( self.installPath )
 
-            # check if installed version is functional
+            # check if installed version is functional, abort otherwise
             self.checkInstall(True)
 
         self.mode = mode
-       
+
     def realPath(self):
         """ returns the path where the module is actually living.
             if module is in link mode the linkPath is returned
             else the installPath is returned """
-
-        return (self.useLink and [self.linkPath] or [self.installPath])[0]
         
+        return (self.useLink and [self.linkPath] or [self.installPath])[0]
 
     def init(self):
         """ this method is called right after reading the configuration file and
@@ -249,15 +231,14 @@ class BaseILC:
                 if( self.download.type == "ccvssh" ):
                     if( not isinPath("ccvssh") ):
                         self.abort( "ccvssh not found!!" )
-                    if not self.download.env.has_key("CVS_RSH"):
-                        self.download.env["CVS_RSH"] = "ccvssh"
+                    self.download.env.setdefault('CVS_RSH', 'ccvssh')
                     self.download.accessmode = "ext"
 
                 # if CVSROOT not set by user generate a default one
-                if( not self.download.env.has_key("CVSROOT") ):
-                    self.download.env["CVSROOT"] = ":" + self.download.accessmode + ":" \
-                            + self.download.username + ":" + self.download.password \
-                            + "@" + self.download.server + ":/" + self.download.root
+                self.download.env.setdefault('CVSROOT', ":" + self.download.accessmode + ":" \
+                        + self.download.username + ":" + self.download.password \
+                        + "@" + self.download.server + ":/" + self.download.root )
+
             elif( self.download.type == "wget" ):
                 if( not isinPath("wget") ):
                     self.abort( "wget not found on your system!!" )
@@ -285,16 +266,14 @@ class BaseILC:
                 self.rebuild = True
                 print "   + [%s] %s installation status: failed - set to rebuild" % \
                     (self.installPath, (55-len(self.installPath))*' ')
-            elif( os.path.exists( self.installPath + "/.doc_failed.tmp" )):
-                self.skipCompile = True
-                print "   + [%s] %s installation status: incomplete" % \
-                    (self.installPath, (55-len(self.installPath))*' ')
             elif( not self.checkInstall() ):
                 print "   + [%s] %s installation status: incomplete" % \
                     (self.installPath, (55-len(self.installPath))*' ')
             else:
                 print "   + [%s] %s installation status: OK - set to use mode" % \
                     (self.installPath, (55-len(self.installPath))*' ')
+                #print "   + %-55s installation status: OK - set to use mode" % \
+                #    ('['+self.installPath+']',)
                 self.mode = "use"
 
     def preCheckDeps(self):
@@ -303,7 +282,7 @@ class BaseILC:
             environment variables or some other setting """
         
         # add cmake dependency
-        if( self.mode == "install" and self.useCMake and self.hasCMakeSupport ):
+        if( self.mode == "install" and self.hasCMakeBuildSupport ):
             self.addExternalDependency( ["CMake"] )
 
             # add CMakeModules dependency
@@ -333,13 +312,6 @@ class BaseILC:
             if( not isinPath( "tee" )):
                 self.abort( "tee not found on your system!!" )
 
-            # set debug for cmake builds
-            if( self.useCMake ):
-                if( self.debug ):
-                    self.envcmake["CMAKE_BUILD_TYPE"]="Debug"
-                else:
-                    self.envcmake["CMAKE_BUILD_TYPE"]="Release"
-
     def checkOptionalDependencies(self):
         """ check dependencies for the installation
             this is called right after the init method """
@@ -354,9 +326,6 @@ class BaseILC:
             mod = self.parent.module(opt)
             if( mod == None ):
                 failed.append(opt)
-                #if( self.mode == "install" ):
-                #    print "   - " + self.name + ": " + opt + " not found!!",
-                #    print self.name + " will NOT be built with " + opt
         
         # remove soft dependencies that were not found
         self.buildWithout(failed)
@@ -641,7 +610,7 @@ class BaseILC:
             
             tryrename( self.download.tardir, self.version )
 
-        if( self.useCMake and not self.skipCompile ):
+        if( self.hasCMakeBuildSupport and not self.skipCompile ):
             trymakedir( self.version + "/build" )
 
     def cleanupInstall(self):
@@ -673,25 +642,6 @@ class BaseILC:
         """ method used for compiling module.
             does nothing in the base class """
         print "+ Nothing to be done ;)"
-    
-    def buildDocumentation(self):
-        """ build documentation.
-            does nothing in the base class """
-        pass
-    
-    def buildDoku(self):
-        """ small helper function for building documentation """
-        
-        if( self.buildDoc and os.path.exists( self.installPath + "/.doc_failed.tmp" )):
-            # set environment
-            self.setEnv(self, [])
-
-            print 80*'#' + "\n##### Building Documentation for " + self.name + "...\n" + 80*'#'
-            self.buildDocumentation()
-            
-            # unset environment
-            self.unsetEnv([])
-            os.unlink( self.installPath + "/.doc_failed.tmp" )
 
     def install(self, installed=[]):
         """ install this module """
@@ -723,44 +673,39 @@ class BaseILC:
             self.setEnv(self, [])
 
             # write snapshot of environment to logfile for debugging
-            if( self.useCMake or (not self.isMarlinPKG) or (self.isMarlinPKG and not self.buildInMarlin()) ):
-                os.system( "echo \"" + 100*'#' + "\" >> " + self.logfile )
-                os.system( "echo \"" + 10*'#' + " BUILDING " + self.name + "\" >> " + self.logfile )
-                os.system( "echo \"" + 100*'#' + "\" >> " + self.logfile )
-                os.system( "echo \"" + 5*'-' + " ENVIRONMENT SNAPSHOT " + 5*'-' + "\" >> " + self.logfile )
-                os.system( "env >> " + self.logfile )
-                os.system( "echo \"" + 5*'-' + " END OF ENVIRONMENT SNAPSHOT " + 5*'-' + "\" >> " + self.logfile )
-                os.system( "touch " + self.installPath + "/.install_failed.tmp" )
-                if( self.buildDoc ):
-                    os.system( "touch " + self.installPath + "/.doc_failed.tmp" )
+            os.system( "echo \"" + 100*'#' + "\" >> " + self.logfile )
+            os.system( "echo \"" + 10*'#' + " BUILDING " + self.name + "\" >> " + self.logfile )
+            os.system( "echo \"" + 100*'#' + "\" >> " + self.logfile )
+            os.system( "echo \"" + 5*'-' + " ENVIRONMENT SNAPSHOT " + 5*'-' + "\" >> " + self.logfile )
+            os.system( "env >> " + self.logfile )
+            os.system( "echo \"" + 5*'-' + " END OF ENVIRONMENT SNAPSHOT " + 5*'-' + "\" >> " + self.logfile )
+            os.system( "touch " + self.installPath + "/.install_failed.tmp" )
 
             # compile module
             if( not self.skipCompile ):
-                if( self.useCMake ):
+                if( self.hasCMakeBuildSupport ):
                     self.setCMakeVars(self,[])
                     print "+ Generated cmake build command:"
                     print '  $ cmake',self.genCMakeCmd(),self.installPath,os.linesep
                 
                 self.compile()
 
-            if( self.useCMake or (not self.isMarlinPKG) or (self.isMarlinPKG and not self.buildInMarlin()) ):
-                os.system( "echo \"" + 100*'#' + "\" >> " + self.logfile )
-                os.system( "echo \"" + 10*'#' + " FINISHED BUILDING " + self.name + "\" >> " + self.logfile )
-                os.system( "echo \"" + 100*'#' + "\" >> " + self.logfile )
+            os.system( "echo \"" + 100*'#' + "\" >> " + self.logfile )
+            os.system( "echo \"" + 10*'#' + " FINISHED BUILDING " + self.name + "\" >> " + self.logfile )
+            os.system( "echo \"" + 100*'#' + "\" >> " + self.logfile )
             
             # set the module to use mode
             self.mode = "use"
 
             # just to check if the library was created successfully
-            if( self.useCMake or (not self.isMarlinPKG) or (self.isMarlinPKG and not self.buildInMarlin()) ):
-                self.checkInstall(True)
-                os.unlink( self.installPath + "/.install_failed.tmp" )
-                
-                # write dependencies to file
-                self.writeLocalDeps()
-                
-                if( self.cleanInstall ):
-                    self.cleanupInstall()
+            self.checkInstall(True)
+            os.unlink( self.installPath + "/.install_failed.tmp" )
+            
+            # write dependencies to file
+            self.writeLocalDeps()
+            
+            if( self.cleanInstall ):
+                self.cleanupInstall()
             
             # unset environment
             self.unsetEnv([])
@@ -778,13 +723,6 @@ class BaseILC:
         
             print "\n" + 20*'-' + " Starting " + self.name + " Installation Test " + 20*'-' + '\n'
             
-            # Marlin packages
-            if( self.isMarlinPKG and self.buildInMarlin() ):
-                print "+ " + self.name + " will be built together with Marlin!!"
-                print "+ " + self.name + " dependencies added to Marlin!!"
-                print '\n' + 20*'-' + " Finished " + self.name + " Installation Test " + 20*'-' + '\n'
-                return
-
             # additional modules
             mods = self.optmodules + self.reqmodules + self.reqmodules_external + self.reqmodules_buildonly
             if( len(mods) > 0 ):
@@ -799,7 +737,7 @@ class BaseILC:
             # print environment settings recursively
             self.setEnv(self, [], True )
 
-            if( self.useCMake ):
+            if( self.hasCMakeBuildSupport ):
                 self.setCMakeVars(self, [])
                 print "\n+ Generated CMake command for building " + self.name + ":"
                 print '  $ cmake',self.genCMakeCmd(),self.installPath
@@ -853,9 +791,7 @@ class BaseILC:
             if( thisname.upper() in map( str.upper, origin.cmakebuildmodules )):
                 # BUILD_WITH variable
                 if( thisname.upper() in map(str.upper,origin.optmodules) ):
-                    if( not origin.envcmake.has_key("BUILD_WITH")):
-                        origin.envcmake["BUILD_WITH"]=""
-                    origin.envcmake["BUILD_WITH"]=origin.envcmake["BUILD_WITH"]+thisname+" "
+                    origin.envcmake["BUILD_WITH"]=origin.envcmake.setdefault('BUILD_WITH','')+thisname+' '
     
         # set environment for dependencies
         if( len( checked ) > 1 ):
@@ -896,12 +832,6 @@ class BaseILC:
         # print path and build environment variables
         if( simOnly ):
             for k, v in self.envpath.iteritems():
-                if( len(v) != 0 ):
-                    print "\t* " + k + ": " + str(v)
-            for k, v in self.envbuild.iteritems():
-                if( len(v) != 0 ):
-                    print "\t* " + k + ": " + str(v)
-            for k, v in self.envoptbuild.iteritems():
                 if( len(v) != 0 ):
                     print "\t* " + k + ": " + str(v)
 
@@ -952,9 +882,6 @@ class BaseILC:
     def writeLocalEnv(self):
         """ writes the environment used for building the package to a file (build_env.sh) """
             
-        if( self.isMarlinPKG and self.buildInMarlin() ):
-            return
-
         # open file
         f = open(self.installPath + "/build_env.sh", 'w')
         
@@ -992,8 +919,7 @@ class BaseILC:
         else:
             checked.append( self.name )
 
-        if( not self.isMarlinPKG ):
-            f.write( 2*os.linesep + "#" + 80*'-' + os.linesep + "#" + 5*' ' + self.name + os.linesep + "#" + 80*'-' + os.linesep )
+        f.write( 2*os.linesep + "#" + 80*'-' + os.linesep + "#" + 5*' ' + self.name + os.linesep + "#" + 80*'-' + os.linesep )
             
         # environment variables
         for k, v in self.env.iteritems():
@@ -1019,9 +945,6 @@ class BaseILC:
         """ writes the dependencies + their installation paths 
             used for building this package into a file """
             
-        if( self.isMarlinPKG and self.buildInMarlin() ):
-            return
-
         # open file
         f = open(self.installPath + "/.dependencies", 'w')
         
@@ -1053,42 +976,6 @@ class BaseILC:
 
         for modname in mods:
             self.parent.module(modname).writeDeps(f, checked)
-
-    def writeBuildEnv(self, f, checked, optional=False, recursive=True):
-        """ writes the build environment to a file (userlib.gmk) """
-        
-        # resolve circular dependencies
-        if( self.name in checked ):
-            return
-        else:
-            checked.append( self.name )
-
-        # check if there are any build environment variables
-        foundreq = False
-        foundopt = False
-        for k, v in self.envbuild.iteritems():
-            if( len(v) != 0 ):
-                foundreq = True
-        if( optional ):
-            for k, v in self.envoptbuild.iteritems():
-                if( len(v) != 0 ):
-                    foundopt = True
-
-        # write variables
-        if( foundreq or foundopt ):
-            f.write( 2*os.linesep + "#" + 80*'-' + os.linesep + "#" + 5*' ' + self.name + os.linesep + "#" + 80*'-' + os.linesep )
-            for k, v in self.envbuild.iteritems():
-                for var in v:
-                    f.write( k + " += " + var + os.linesep )
-            if( optional ):
-                for k, v in self.envoptbuild.iteritems():
-                    for var in v:
-                        f.write( k + " += " + var + os.linesep )
-
-        if( recursive ):
-            mods = self.optmodules + self.reqmodules
-            for modname in mods:
-                self.parent.module(modname).writeBuildEnv(f, checked, optional, recursive)
 
     def buildWith(self, mods):
         """ use this to build the software with the extra modules

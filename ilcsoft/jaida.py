@@ -20,6 +20,9 @@ class JAIDA(BaseILC):
 
         self.reqfiles = [ ["bin/aida-setup.sh"] ]
 
+        # no cmake build support
+        self.hasCMakeBuildSupport = False
+
         # Java is required for JAIDA
         self.reqmodules = [ "Java" ]
 
@@ -32,15 +35,12 @@ class JAIDA(BaseILC):
     def setMode(self, mode):
         BaseILC.setMode(self, mode)
 
-        # no cmake build support
-        self.useCMake = False
-        if( self.mode == "install" ):
+        self.download.url = "ftp://ftp.slac.stanford.edu/software/freehep/JAIDA/v%s/JAIDA-%s.tar.gz" \
+                % (self.version, self.version)
 
+        if( self.mode == "install" ):
             if( Version( self.version ) >= '3.3' or Version( self.version ) < '3.2' ):
                 self.abort( "ilcinstall only supports installation of JAIDA 3.2.x versions!" )
-
-            self.download.url = "ftp://ftp.slac.stanford.edu/software/freehep/JAIDA/v" \
-                    + self.version + "/JAIDA-" + self.version + ".tar.gz"
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)

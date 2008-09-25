@@ -22,9 +22,3 @@ class MarlinReco(MarlinPKG):
         # optional modules
         self.optmodules = [ "AIDA" ]
 
-    def init(self):
-        
-        MarlinPKG.init(self)
-        
-        self.envbuild["USERINCLUDES"].append( "-Df2cFortran" )
-        self.envbuild["USERLIBS"].append( "-lg2c" )

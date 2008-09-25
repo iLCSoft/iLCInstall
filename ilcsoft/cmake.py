@@ -19,7 +19,8 @@ class CMake(BaseILC):
         BaseILC.__init__(self, userInput, "CMake", "CMake")
 
         self.download.supportHEAD = False
-        self.hasCMakeSupport = False
+        self.hasCMakeBuildSupport = False
+        self.hasCMakeFindSupport = False
         self.download.supportedTypes = ["wget"]
 
         self.reqfiles = [ ["bin/cmake"], ["bin/cpack"], ["bin/ctest"] ]
@@ -61,13 +62,9 @@ class CMake(BaseILC):
             return str(v)
 
     def setMode(self, mode):
-
         BaseILC.setMode(self, mode)
-            
-        if( self.mode == "install" ):
-            # download url
-            self.download.url = "http://www.cmake.org/files/v" + \
-                    self.version[:3] + "/cmake-" + self.version + ".tar.gz"
+
+        self.download.url = "http://www.cmake.org/files/v%s/cmake-%s.tar.gz" % (self.version[:3], self.version)
         
     def downloadSources(self):
         BaseILC.downloadSources(self)
@@ -88,10 +85,11 @@ class CMake(BaseILC):
         if( self.rebuild ):
             os.system( "make clean" )
 
-        if( os.system( "../" + self.name + "/configure --prefix=" + self.installPath + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os.system( "../" + self.name + "/configure --prefix=" + self.installPath + \
+            " 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
 
-        if( os.system( "make 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
 
         if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
@@ -104,6 +102,5 @@ class CMake(BaseILC):
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
+        self.envpath["PATH"].append( self.installPath+"/bin" )
 
-        self.env["CMake_HOME"] = self.installPath
-        self.envpath["PATH"].append( "$CMake_HOME/bin" )

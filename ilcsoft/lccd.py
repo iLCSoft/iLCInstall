@@ -32,53 +32,23 @@ class LCCD(BaseILC):
     def compile(self):
         """ compile LCCD """
         
-        os.chdir( self.installPath + "/source" )
-
-        if( self.useCMake ):
-            os.chdir( self.installPath + "/build" )
+        os.chdir( self.installPath + "/build" )
 
         if( self.rebuild ):
-            if( self.useCMake ):
-                tryunlink( "CMakeCache.txt" )
-            else:
-                os.system( "make clean" )
+            tryunlink( "CMakeCache.txt" )
 
         # build software
-        if( self.useCMake ):
-            if( os.system( "cmake " + self.genCMakeCmd() + " .. 2>&1 | tee -a " + self.logfile ) != 0 ):
-                self.abort( "failed to configure!!" )
+        if( os.system( "cmake " + self.genCMakeCmd() + " .. 2>&1 | tee -a " + self.logfile ) != 0 ):
+            self.abort( "failed to configure!!" )
 
-        if( os.system( "make 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
         
-        if( self.useCMake ):
-            if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
-                self.abort( "failed to install!!" )
-        
-        # build documentation
-    def buildDocumentation(self):
-        if( not self.useCMake and self.buildDoc ):
-            os.chdir( self.installPath + "/source" )
-            if(isinPath("doxygen")):
-                print 80*'*' + "\n*** Creating C++ API documentation for " + self.name + " with doxygen...\n" + 80*'*'
-                os.system( "make doc 2>&1 | tee -a " + self.logfile )
+        if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
+            self.abort( "failed to install!!" )
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
 
         self.env["LCCD"] = self.installPath
- 
-        if( self.mode == "install" ):
-            if( not self.useCMake ):
-                self.env["LCCDVERSION"] = self.version
-                if( self.debug ):
-                    self.env["LCCDDEBUG"] = "1"
-            
-            # check for doc tools
-            if( self.buildDoc ):
-                if( not isinPath("doxygen")):
-                    print "*** WARNING: doxygen was not found!! " + self.name + " documentation will not be built!!! "
-            elif( self.useCMake ):
-                self.envcmake["INSTALL_DOC"]="OFF"
 
-           

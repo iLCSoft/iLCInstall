@@ -19,7 +19,8 @@ class Geant4(BaseILC):
         BaseILC.__init__(self, userInput, "Geant4", "geant4")
 
         self.installSupport = False
-        self.hasCMakeSupport = False
+        self.hasCMakeBuildSupport = False
+        self.hasCMakeFindSupport = False
 
         self.reqfiles = [ ["lib/Linux-g++/libG4run.a", "sharedlib/Linux-g++/libG4run.so"] ]
 
@@ -35,3 +36,4 @@ class Geant4(BaseILC):
 
         self.env["G4INSTALL"] = self.installPath
         self.envpath["LD_LIBRARY_PATH"].append( "$G4INSTALL/sharedlib/Linux-g++" )
+

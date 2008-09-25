@@ -18,6 +18,9 @@ class CLHEP(BaseILC):
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "CLHEP", "CLHEP")
 
+        # no cmake build support
+        self.hasCMakeBuildSupport = False
+
         self.download.supportHEAD = False
         self.download.supportedTypes = ["wget"]
 
@@ -25,9 +28,6 @@ class CLHEP(BaseILC):
 
     def setMode(self, mode):
         BaseILC.setMode(self, mode)
-        
-        # no cmake build support
-        self.useCMake = False
         
         if( self.mode == "install" ):
             if( Version( self.version ) < "1.9.1.1" ):
@@ -37,10 +37,11 @@ class CLHEP(BaseILC):
 
             # download url
             if( Version( self.version ) == "1.9.1.1" or Version( self.version ) == "2.0.1.1" ):
-                self.download.url = "http://proj-clhep.web.cern.ch/proj-clhep/export/share/CLHEP/" \
-                        + self.version + "/clhep-" + self.version + ".tgz"
+                self.download.url = "http://proj-clhep.web.cern.ch/proj-clhep/export/share/CLHEP/%s/clhep-%s.tgz" \
+                        % (self.version, self.version)
             else:
-                self.download.url = "http://proj-clhep.web.cern.ch/proj-clhep/DISTRIBUTION/distributions/clhep-" + self.version + ".tgz"
+                self.download.url = "http://proj-clhep.web.cern.ch/proj-clhep/DISTRIBUTION/distributions/clhep-%s.tgz" \
+                        % (self.version,)
     
     def downloadSources(self):
         BaseILC.downloadSources(self)
@@ -56,7 +57,7 @@ class CLHEP(BaseILC):
         if( os.system( "../CLHEP/configure --prefix=" + self.installPath + " 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
 
-        if( os.system( "make 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
 
         if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
@@ -75,6 +76,3 @@ class CLHEP(BaseILC):
         self.envpath["PATH"].append( "$CLHEP/bin" )
         self.envpath["LD_LIBRARY_PATH"].append( "$CLHEP/lib" )
 
-        # USERINCLUDES + USERLIBS
-        self.envbuild["USERINCLUDES"].append( "-DUSE_CLHEP -I" + self.installPath + "/include" )
-        self.envbuild["USERLIBS"].append( "-L" + self.installPath + "/lib -lCLHEP" )

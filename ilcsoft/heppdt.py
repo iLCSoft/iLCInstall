@@ -18,22 +18,18 @@ class HepPDT(BaseILC):
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "HepPDT", "HepPDT")
 
-        self.hasCMakeSupport = False
+        self.hasCMakeBuildSupport = False
+        self.hasCMakeFindSupport = False
+
         self.download.supportHEAD = False
         self.download.supportedTypes = ["wget"]
 
         self.reqfiles = [ ["lib/libHepPDT.a", "lib/libHepPDT.so", "lib/libHepPDT.dylib"] ]
 
     def setMode(self, mode):
-
         BaseILC.setMode(self, mode)
 
-        # no cmake build support
-        self.useCMake = False
-            
-        if( self.mode == "install" ):
-            self.download.url = "http://lcgapp.cern.ch/project/simu/HepPDT/download/HepPDT-" \
-                    + self.version + ".tar.gz"
+        self.download.url = "http://lcgapp.cern.ch/project/simu/HepPDT/download/HepPDT-"+self.version+".tar.gz"
     
     def downloadSources(self):
         BaseILC.downloadSources(self)
@@ -56,7 +52,7 @@ class HepPDT(BaseILC):
                 + " 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
 
-        if( os.system( "make 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
 
         if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
@@ -71,9 +67,5 @@ class HepPDT(BaseILC):
         BaseILC.postCheckDeps(self)
 
         self.env["HEPPDT"] = self.installPath
-        
         self.envpath["LD_LIBRARY_PATH"].append( "$HEPPDT/lib" )
 
-        # USERINCLUDES + USERLIBS
-        self.envbuild["USERINCLUDES"].append( "-DUSE_SEPARATE_HEPPDT -I" + self.installPath + "/include" )
-        self.envbuild["USERLIBS"].append( "-L" + self.installPath + "/lib -lHepPDT -lHepPID" )

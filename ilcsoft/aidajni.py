@@ -18,6 +18,9 @@ class AIDAJNI(BaseILC):
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "AIDAJNI", "AIDAJNI")
 
+        # no cmake build support
+        self.hasCMakeBuildSupport = False
+        
         self.reqfiles = [ ["bin/Linux-g++/aidajni-setup.sh", "bin/i386-Linux-g++/aidajni-setup.sh"], \
                 ["bin/Linux-g++/aida-config", "bin/i386-Linux-g++/aida-config"] ]
 
@@ -31,15 +34,12 @@ class AIDAJNI(BaseILC):
     def setMode(self, mode):
         BaseILC.setMode(self, mode)
 
-        # no cmake build support
-        self.useCMake = False
-        
+        self.download.url = "ftp://ftp.slac.stanford.edu/software/freehep/AIDAJNI/v%s/AIDAJNI-%s-src.tar.gz" \
+                % (self.version, self.version)
+
         if( self.mode == "install" ):
             if( Version(self.version) != '3.2.3' ):
                 self.abort( "only install of version 3.2.3 is supported!" )
-
-            self.download.url = "ftp://ftp.slac.stanford.edu/software/freehep/AIDAJNI/v" \
-                    + self.version + "/AIDAJNI-" + self.version + "-src.tar.gz"
 
     def downloadSources(self):
         BaseILC.downloadSources(self)
@@ -48,7 +48,7 @@ class AIDAJNI(BaseILC):
         tryrename( self.version, self.download.tardir )
 
         os.chdir( self.parent.installPath )
-        tryrename( self.alias, 'AIDAJNI-SRC' )
+        ryrename( self.alias, 'AIDAJNI-SRC' )
         os.renames( 'AIDAJNI-SRC', self.alias+'/'+self.version+'/'+self.alias )
 
     def compile(self):
@@ -69,11 +69,12 @@ class AIDAJNI(BaseILC):
         trydelenv('COMPILER')
         
         if self.parent.os.isSL(3):
-            os.system('tar -xzf '+self.alias+'-'+self.version+'-Linux-g++.tar.gz')
-            os.system('mv -f '+self.alias+'-'+self.version+'/* '+self.installPath)
+            os.system( 'tar -xzf %s-%s-Linux-g++.tar.gz' % (self.alias, self.version) )
+            os.system( 'mv -f %s-%s/* %s' % (self.alias, self.version, self.installPath) )
             os.rmdir( self.alias+'-'+self.version )
         else:
-            os.system('tar -xzf '+self.alias+'-'+self.version+'-Linux-g++.tar.gz --strip-path=1 -C '+self.installPath)
+            os.system( 'tar -xzf %s-%s-Linux-g++.tar.gz --strip-path=1 -C %s' \
+                % (self.alias, self.version, self.installPath) )
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)

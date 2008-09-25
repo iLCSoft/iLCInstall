@@ -1,6 +1,7 @@
 #! /usr/bin/python
 import sys
 import os.path
+import commands
 from ilcsoft import *
 
 if( len(sys.argv) < 2 or len(sys.argv) >3 ):
@@ -20,7 +21,7 @@ else:
     # get the config file from the option's list
     for arg in sys.argv[1:]:
         if( arg[0] != "-" ):
-            config_file = arg
+            config_file = os.path.abspath(arg)
             break
     else:
         print "no config file in command arguments found"
@@ -39,8 +40,13 @@ else:
                 sys.exit(1)
             else:
                 option=arg[1]
-    
+
     print "\n" + 30*'*' + " Starting installation " + 30*'*' + "\n"
+
+    # some settings needed for reading nbuild cfg files
+    date_iso8601 = commands.getoutput( "date --iso-8601" )
+    config_file_basename = config_file[config_file.rfind( '/' )+1:config_file.rfind(".")]
+    config_file_extension = config_file[config_file.rfind(".")+1:]
 
     print "+ Read configuration file [ " + config_file + " ]\n"
     # read configuration file
@@ -48,8 +54,8 @@ else:
 
     # pass the name of the config file to ilcsoft
     ilcsoft.config_file = config_file
-    ilcsoft.config_file_prefix = config_file[config_file.rfind( '/' )+1:config_file.rfind(".")]
-    ilcsoft.config_file_suffix = config_file[config_file.rfind(".")+1:]
+    ilcsoft.config_file_prefix = config_file_basename
+    ilcsoft.config_file_suffix = config_file_extension
 
     # this is for initializing the modules
     # (called right after reading the config file)

@@ -21,3 +21,4 @@ class CKFit(MarlinPKG):
 
         # cvs root
         self.download.root = "marlinreco"
+

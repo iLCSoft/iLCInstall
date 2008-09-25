@@ -1,115 +1,92 @@
 #!/usr/bin/python
 
+from commands import getoutput
 import sys
-import commands
 import glob
 import shutil
 import time
-import os
 import os.path
 
 
-#############################################################################
-# SETTINGS
-#
-# define mail addresses to where the output of the nightly builds are sent
-# example: mail_addr=[ "jan.engels@desy.de", "frank.gaede@desy.de" ]
-mail_addr=[]
-
-# define the size of the error messages to be sent in the mails
-n_chars_pre_error=9000
-n_chars_pos_error=1000
-
-# Error strings to be identified in the log file
-errors=[ "Traceback", "CMake Error", "BUILD FAILED", "Error 2", "Error 1",\
-         "*** ERROR in module", "FATAL ERROR" ]
-
-# Number of nightly build snapshots to keep on disk
-max_snapshots=3
-
-#
-#############################################################################
+#----- settings --------------------------------------------------------------
+# define how much lines from the logfile's tail should be sent in the email
+num_error_lines=150
+# number of days to keep on disk
+max_days=3
+# initialize date
+date_iso8601 = getoutput( "date --iso-8601" )
+# you can set the mail addresses in the config file
+mail_addresses=[]
+#-----------------------------------------------------------------------------
 
 # check args
 if( len(sys.argv) < 2 ):
-    print "usage:", sys.argv[0], "install.cfg"
+    print "usage: %s install.cfg" % (sys.argv[0],)
     sys.exit(1)
 
-# extract name of config file (without extension)
-cfg_file=sys.argv[1][sys.argv[1].rfind('/')+1:sys.argv[1].rfind('.')]
+# extract config file
+config_file = os.path.abspath(sys.argv[1])
+config_file_basename = config_file[config_file.rfind( '/' )+1:config_file.rfind(".")]
+config_file_extension = config_file[config_file.rfind(".")+1:]
 
-# date format used in install directory
-date_dir_format = commands.getoutput( "date --iso-8601" )
-
-# date format used in log file
-t = time.gmtime()
-date_log_format=str(t[0]) + "-" + str(t[1]) + "-" + str(t[2])
-
-# run "ilcsoft-install -s"
-out = commands.getstatusoutput( "ilcsoft-install "+sys.argv[1] )
-if( out[0] != 0 ):
-    print "Fatal Error: Installation aborted!!"
-    print out[1]
+if( not os.path.exists( config_file )):
+    print "config file [%s] does not exist" % (config_file,)
     sys.exit(1)
 
-# extract install path from the output of: "ilcsoft-install -s"
-search_string = "ILC Software will be installed to ["
-ind1=out[1].find( search_string )
-ind1+=len(search_string)
-ind2=out[1].find("]",ind1)
-inst_path=out[1][ind1:ind2]
+print "+ Read configuration file [ %s ]\n" % (config_file,)
 
-# extract operating system
-search_string = "Operating System: "
-ind1=out[1].find( search_string )
-ind1+=len(search_string)
-ind2=out[1].find("\n",ind1)
-opsys=out[1][ind1:ind2].strip()
+ex_handler=None
 
-# check for SL
-if opsys.find("Scientific Linux") != -1:
-    search_string = "release "
-    ind=opsys.find( search_string )
-    ind+=len(search_string)
-    opsys="SL"+opsys[ind:ind+1]
+try:
+    from ilcsoft import *
+    execfile( config_file )
 
-# delete old night builds (won't work after year 2999 ;)
-dirs = glob.glob(os.path.dirname(inst_path)+"/2*")
-dirs.sort()
-while( len( dirs ) >= max_snapshots ):
-    print "removing nightly build: ", dirs[0]
-    shutil.rmtree( dirs[0] )
-    dirs = dirs[1:]
+    # pass the name of the config file to ilcsoft
+    ilcsoft.config_file = config_file
+    ilcsoft.config_file_prefix = config_file_basename
+    ilcsoft.config_file_suffix = config_file_extension
 
-# install software
-log=commands.getoutput( "ilcsoft-install -i "+sys.argv[1] )
+    ilcsoft.init()
 
-# get the full path of the installation log-file
-logfile=str(glob.glob(inst_path+"/ilcinstall/"+cfg_file+"-"+date_log_format+"*.log")[0])
+    ## delete old night builds (won't work after year 2999 ;)
+    dirs = glob.glob(os.path.dirname(os.path.dirname(ilcsoft.installPath))+"/2*")
+    dirs.sort()
+    while( len( dirs ) >= max_days ):
+        print "removing nightly build: ", dirs[0]
+        shutil.rmtree( dirs[0] )
+        dirs = dirs[1:]
 
-# variable for storing the error messages found in the logfile
-error_msgs=""
+    ilcsoft.makeinstall()
 
-# search for errors
-for i in errors:
-    ind=log.find(i)
-    if( ind != -1 ):
-        error_msgs+="\n\n"+80*'@'+"\nERROR OF TYPE: "+i+" OCURRED!!!\n"+80*'@'+"\n\n"
-        error_msgs+=log[ind-n_chars_pre_error:ind+n_chars_pos_error]
-
-if len( error_msgs ) > 1:
+except SystemExit, e:
+    # ilcinstall called the abort method
     build_status="FAILED"
+    # the exit exception should still be raised at the end
+    ex_handler=e
+
+except Exception, e:
+    # some python error ccurred
+    build_status="FAILED"
+    os.system( 'echo "*** Error occured in ilcinstall: %s" >> %s ' % (e, ilcsoft.logfile) )
+    ex_handler=e
+
 else:
+    # no exception was raised
     build_status="SUCCESS"
 
 # mail subject title
-mail_subject="[Nightly Build] ("+opsys+"): "+build_status+"] "+cfg_file+" "+date_dir_format
+mail_subject = "[Nightly Build] (%s): %s] %s %s" % \
+    (ilcsoft.os.shortver, build_status, ilcsoft.config_file_prefix, date_iso8601)
 
 # mail output of nightly build
-for addr in mail_addr:
+for addr in mail_addresses:
     if build_status == "FAILED":
-        commands.getoutput( "echo \'"+error_msgs+"\' | mail -s\""+mail_subject+"\" "+addr )
-        commands.getoutput( "mail-files "+addr+" ascii \""+mail_subject+" LOGFILE\" \""+logfile+"\"")
+        os.system( 'tail -n%s %s | mail -s"%s" %s' % (num_error_lines, ilcsoft.logfile, mail_subject, addr) )
     else:
-        commands.getoutput( "cat "+sys.argv[1]+" | mail -s\""+mail_subject+"\" "+addr )
+        #os.system( 'mail-files %s ascii "%s" "%s"' % (addr, mail_subject, config_file) )
+        os.system( 'cat "%s" | mail -s "%s" %s' % (config_file, mail_subject, addr))
+    time.sleep(1)
+
+if ex_handler:
+    raise ex_handler
 
