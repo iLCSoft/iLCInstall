@@ -25,3 +25,10 @@ class Eutelescope(MarlinPKG):
         # cvs root
         self.download.root = "eutelescope"
 
+    def postCheckDeps(self):
+        BaseILC.postCheckDeps(self)
+
+        self.env["EUTELESCOPE"] = self.installPath
+        self.envpath["PATH"].append( '$EUTELESCOPE/bin' )
+        self.envpath["LD_LIBRARY_PATH"].append( '$EUTELESCOPE/lib' )
+
