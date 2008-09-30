@@ -26,7 +26,7 @@ class Eutelescope(MarlinPKG):
         self.download.root = "eutelescope"
 
     def postCheckDeps(self):
-        BaseILC.postCheckDeps(self)
+        MarlinPKG.postCheckDeps(self)
 
         self.env["EUTELESCOPE"] = self.installPath
         self.envpath["PATH"].append( '$EUTELESCOPE/bin' )
