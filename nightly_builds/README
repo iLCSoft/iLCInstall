@@ -8,7 +8,8 @@
 
 How to use:
 
-1st:    edit the nbuild script and check if the settings meet your needs
+1st:    copy nbuild script to directory where ilcsoft-install is located (cp nbuild ../)
+        edit the nbuild script and check if the settings meet your needs
         * mail_addresses can also be set in the config file
 
 2nd:    use the template nb-release.cfg and adapt it to your needs
