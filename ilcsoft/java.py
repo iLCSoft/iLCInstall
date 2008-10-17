@@ -69,8 +69,11 @@ class Java(BaseILC):
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
 
-        self.env["JDK_HOME"] = self.installPath
+        self.envorder = [ "JAVA_HOME" ]
         self.env["JAVA_HOME"] = self.installPath
+
+        self.env["JDK_HOME"] = "$JAVA_HOME"
         self.envpath["PATH"].append( "$JDK_HOME/bin" )
         self.envpath["LD_LIBRARY_PATH"].append( "$JDK_HOME/jre/lib/i386" )
         self.envpath["LD_LIBRARY_PATH"].append( "$JDK_HOME/jre/lib/i386/client" )
+

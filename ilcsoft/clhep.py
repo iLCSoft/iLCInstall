@@ -71,8 +71,12 @@ class CLHEP(BaseILC):
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
 
+        self.envorder = [ "CLHEP" ]
         self.env["CLHEP"] = self.installPath
+
+        self.env["CLHEP_BASE_DIR"] = "$CLHEP"
+        self.env["CLHEP_INCLUDE_DIR"] = "$CLHEP/include"
         
-        self.envpath["PATH"].append( "$CLHEP/bin" )
-        self.envpath["LD_LIBRARY_PATH"].append( "$CLHEP/lib" )
+        self.envpath["PATH"].append( "$CLHEP_BASE_DIR/bin" )
+        self.envpath["LD_LIBRARY_PATH"].append( "$CLHEP_BASE_DIR/lib" )
 
