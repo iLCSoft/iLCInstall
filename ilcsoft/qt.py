@@ -100,7 +100,9 @@ class QT(BaseILC):
         if( self.mode == "install" ):
             print "*** WARNING: QT takes a LOT of time to compile (3-4 hours on a fast machine)!!! "
 
+        self.envorder=[ "QTDIR" ]
         self.env["QTDIR"] = self.installPath
-        self.env["QMAKESPEC"] = self.installPath + "/mkspecs/linux-g++"
+        
+        self.env["QMAKESPEC"] = "$QTDIR/mkspecs/linux-g++"
         self.envpath["PATH"].append( "$QTDIR/bin" )
         self.envpath["LD_LIBRARY_PATH"].append( "$QTDIR/lib" )

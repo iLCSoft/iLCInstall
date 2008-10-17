@@ -144,8 +144,18 @@ class CERNLIB(BaseILC):
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
 
-        self.env["CERNLIB_HOME"] = self.installPath + "/lib"
+        self.envorder=[ "CERN_ROOT" ]
+
+        self.env["CERN_ROOT"] = self.installPath
         
+        self.env["CERNLIB_HOME"] = "$CERN_ROOT/lib"
+        self.env["CVSCOSRC"] = "$CERN_ROOT/src"
+        self.env["CERN_LEVEL"] = self.version
+        self.env["CERN"] = os.path.dirname(self.installPath)
+        
+        self.envpath["PATH"].append( "$CERN_ROOT/bin" )
+
+
         if( self.mode =="install" ):
 
             # imake
@@ -163,10 +173,4 @@ class CERNLIB(BaseILC):
             # sed
             if( not isinPath( "sed" )):
                 self.abort( "sed not found!!")
-
-            self.env["CERN_LEVEL"] = self.version
-            self.env["CERN"] = os.path.dirname(self.installPath)
-            self.env["CERN_ROOT"] = self.installPath
-            self.env["CVSCOSRC"] = self.installPath + "/src"
-            self.envpath["PATH"].append( "$CERN_ROOT/bin" )
 
