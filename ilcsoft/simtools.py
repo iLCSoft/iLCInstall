@@ -32,12 +32,12 @@ class SimTools(BaseILC):
         self.reqfiles = [ ["Jupiter/bin/Linux-g++/Jupiter"] ]
         self.reqmodules = [ "LCIO", "ROOT", "Geant4", "CLHEP", "Java" ]
 
-    def downloadSources(self):
-        """ downloads SimToolsMaker install script """
-        BaseILC.downloadSources(self)
-
-        os.chdir( self.installPath )
-        os.system( "cp -f "+self.parent.ilcinstallDir+"/setup-simtools.sh ./setup.bash" )
+#    def downloadSources(self):
+#        """ downloads SimToolsMaker install script """
+#        BaseILC.downloadSources(self)
+#
+#        os.chdir( self.installPath )
+#        os.system( "cp -f "+self.parent.ilcinstallDir+"/setup-simtools.sh ./setup.bash" )
 
     def compile(self):
         """ compile SimTools """
