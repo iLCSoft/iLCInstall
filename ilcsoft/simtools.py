@@ -49,8 +49,8 @@ class SimTools(BaseILC):
         else:
             opt="all"
 
-        print "build command:", ". ${G4ENV_INIT}; buildtools -setup build_env.sh -cvsroot",self.download.env["CVSROOT"],opt
-        if( os.system( ". ${G4ENV_INIT}; buildtools -setup build_env.sh -cvsroot "+self.download.env["CVSROOT"]+" "+opt+\
+        print "build command:", "buildtools -setup build_env.sh -cvsroot",self.download.env["CVSROOT"],opt
+        if( os.system( "buildtools -setup build_env.sh -cvsroot "+self.download.env["CVSROOT"]+" "+opt+\
                 " | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
 
