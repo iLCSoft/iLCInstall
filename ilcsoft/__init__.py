@@ -23,7 +23,8 @@ from marlintpc import MarlinTPC
 from ckfit import CKFit
 
 # kek
-from jupiter import Jupiter
+from simtools import SimTools
+#from jupiter import Jupiter
 
 # cmake
 from cmake import CMake
