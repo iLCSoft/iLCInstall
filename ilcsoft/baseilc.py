@@ -40,6 +40,7 @@ class BaseILC:
             'CMAKE_BUILD_TYPE' : 'Release',
             'INSTALL_DOC' : 'ON'
         }
+        self.envorder = []                      # use for environment variables that have priority
         self.env = {}                           # environment variables
         self.envcmds = []                       # cmds added to the environment script (build_env.sh)
         self.envpath = {                        # path environment variables (e.g. PATH, LD_LIBRARY_PATH, CLASSPATH)
@@ -811,6 +812,10 @@ class BaseILC:
             return
         else:
             checked.append( self.name )
+
+        # set values to strings
+        for k in self.env.keys():
+            self.env[k]=str(self.env[k])
         
         # set environment variables
         if( simOnly ):
@@ -822,12 +827,20 @@ class BaseILC:
 
             print "\n   + Environment variables set by " + self.name + ":"
             
-            if( len(self.env) != 0 ):
-                for k, v in self.env.iteritems():
-                    print "\t* " + k + ": " + str(v)
-        else:
             for k, v in self.env.iteritems():
-                os.environ[k] = str(v)
+                print "\t* " + k + ": " + str(v)
+        else:
+            # expand vars
+            for k, v in self.env.iteritems():
+                if( self.env[k].find('$') != -1 ):
+                    self.env[k]=os.path.expandvars(self.env[k])
+            # first set the priority values
+            for k in self.envorder:
+                os.environ[k] = self.env[k]
+            # then set the rest
+            for k, v in self.env.iteritems():
+                if k not in self.envorder:
+                    os.environ[k] = v
 
         # print path and build environment variables
         if( simOnly ):
@@ -919,12 +932,17 @@ class BaseILC:
         else:
             checked.append( self.name )
 
-        f.write( 2*os.linesep + "#" + 80*'-' + os.linesep + "#" + 5*' ' + self.name + os.linesep + "#" + 80*'-' + os.linesep )
-            
-        # environment variables
+        f.write( 2*os.linesep + "#" + 80*'-' + os.linesep + "#" + 5*' ' \
+                + self.name + os.linesep + "#" + 80*'-' + os.linesep )
+           
+        # first write the priority values
+        for k in self.envorder:
+            f.write( "export " + str(k) + "=\"" + str(self.env[k]) + "\"" + os.linesep )
+        # then write the rest
         for k, v in self.env.iteritems():
-            f.write( "export " + str(k) + "=\"" + str(v) + "\"" + os.linesep )
-        
+            if k not in self.envorder:
+                f.write( "export " + str(k) + "=\"" + str(self.env[k]) + "\"" + os.linesep )
+
         # path environment variables
         for k, v in self.envpath.iteritems():
             if( len(v) != 0 ):
