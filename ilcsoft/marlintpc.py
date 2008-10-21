@@ -18,12 +18,18 @@ class MarlinTPC(MarlinPKG):
 
         # svn export svn://pi.physik.uni-bonn.de/MarlinTPC/trunk HEAD
         # svn export svn://pi.physik.uni-bonn.de/MarlinTPC/tags -version-
-        self.download.supportedTypes = [ "svn" ]
-        self.download.server = "pi.physik.uni-bonn.de"
-        self.download.root = "MarlinTPC"
+        self.download.supportedTypes = [ "svn-export", "svn" ]
 
         self.reqfiles = [["lib/libMarlinTPCReconstruction.a", "lib/libMarlinTPCReconstruction.so", "lib/libMarlinTPCReconstruction.dylib"],
                         [ "lib/libtpcconddata.a", "lib/libtpcconddata.so", "lib/libtpcconddata.dylib"]]
 
         self.reqmodules = [ "LCIO", "GEAR", "GSL", "Marlin", "LCCD", "ROOT", "AIDA", "CLHEP" ]
+
+    def init(self):
+        MarlinPKG.init(self)
+
+        # override desy default settings
+        self.download.accessmode = "svn"
+        self.download.server = "pi.physik.uni-bonn.de"
+        self.download.root = ""
 

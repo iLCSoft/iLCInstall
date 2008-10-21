@@ -23,7 +23,7 @@ class BaseILC:
         self.installSupport = True              # flag for install support
         self.download = Download(self)          # download struct ( groups together a bunch of download variables )
         self.hasCMakeBuildSupport = True        # can the package be built with cmake?
-        self.hasCMakeFindSupport = True         # can the package be found with cmake? 
+        self.hasCMakeFindSupport = True         # if yes PKG_HOME variable is set and package can be used in BUILD_WITH
         self.rebuild = False                    # flag for calling a "make clean" before building the software
         self.skipCompile = False                # flag for skipping the compile step of a module
         self.useLink = False                    # flag for "link" packages
@@ -59,11 +59,14 @@ class BaseILC:
                 print "\t   + download sources with [ " + self.download.type + " ] from:"
                 if( self.download.type == "wget" ):
                     print "\t\t+ URL [ " + self.download.url + " ]"
-                elif ( self.download.type == "svn" ):
+                elif ( self.download.type[:3] == "svn" ):
                     if ( self.version == "HEAD" ):
-                        print "\t\t+ SVN [ " + self.download.server + "/" + self.download.root + "/trunk ]"
+                        print "\t\t+ SVN [ %s://%s/%s/%s/trunk ]" % \
+                            (self.download.accessmode, self.download.server, self.download.root, self.download.project)
                     else:
-                        print "\t\t+ SVN [ " + self.download.server + "/" + self.download.root + "/tags/" + self.version + " ]"
+                        print "\t\t+ SVN [ %s://%s/%s/tags/%s ]" % \
+                            (self.download.accessmode, self.download.server, self.download.root, \
+                            self.download.project, self.version)
                 else:
                     print "\t\t+ CVSROOT [ " + self.download.env["CVSROOT"] + " ]"
 
@@ -251,13 +254,19 @@ class BaseILC:
                     self.download.url = "http://www-zeuthen.desy.de/lc-cgi-bin/cvsweb.cgi/" \
                         + self.download.project + "/" + self.download.project + ".tar.gz?cvsroot=" \
                         + self.download.root + ";only_with_tag=" + self.version + ";tarball=1"
-            elif ( self.download.type == "svn" ):
+            elif ( self.download.type[:3] == "svn" ):
                 if( not isinPath("svn") ):
                     self.abort( "svn not found on your system!!" )
+
+                # initialize svn settings for desy
+                self.download.accessmode = "https"
+                self.download.server = "svnsrv.desy.de"
+                if( self.download.username == "anonymous" ):
+                    self.download.root = "public/" + self.download.root
+                else:
+                    self.download.root = "svn/" + self.download.root
             else:
                 self.abort( "download type " + self.download.type + " not recognized!!" )
-
-
 
     def checkInstallConsistency(self):
         """ check installation consistency """
@@ -574,16 +583,23 @@ class BaseILC:
                 if( os.system( "cvs co -d " + self.version + " -r " + self.version + " " + self.download.project ) != 0 ):
                     self.abort( "Problems ocurred downloading sources with "+self.download.type+"!!")
         
-        elif( self.download.type == "svn" ):
-
-            if ( self.version == "HEAD" ):
-                if( os.system( "svn export svn://" + self.download.server + "/" + self.download.root \
-                        + "/trunk HEAD" ) != 0 ):
-                    self.abort( "Problems ocurred downloading sources with "+self.download.type+"!!")
+        elif( self.download.type[:3] == "svn" ):
+            if( self.download.type == "svn-export" ):
+                svncmd = "export"
             else:
-                if( os.system( "svn export svn://" + self.download.server + "/" + self.download.root \
-                        + "/tags/" + self.version + " " + self.version ) != 0 ):
-                    self.abort( "Problems ocurred downloading sources with "+self.download.type+"!!")
+                svncmd = "checkout"
+
+            if( self.version == "HEAD" ):
+                cmd="svn %s %s://%s/%s/%s/trunk HEAD" % \
+                (svncmd, self.download.accessmode,self.download.server,self.download.root,self.download.project)
+            else:
+                cmd="svn %s %s://%s/%s/%s/tags/%s %s" % \
+                    (svncmd, self.download.accessmode,self.download.server,self.download.root,\
+                    self.download.project,self.version,self.version)
+
+            print "svn download cmd:",cmd
+            if( os.system( cmd ) != 0 ):
+                self.abort( "Problems ocurred downloading sources with "+self.download.type+"!!")
 
         elif( self.download.type == "wget" ):
 
@@ -830,17 +846,19 @@ class BaseILC:
             for k, v in self.env.iteritems():
                 print "\t* " + k + ": " + str(v)
         else:
-            # expand vars
-            for k, v in self.env.iteritems():
-                if( self.env[k].find('$') != -1 ):
-                    self.env[k]=os.path.expandvars(self.env[k])
             # first set the priority values
             for k in self.envorder:
-                os.environ[k] = self.env[k]
+                if( self.env[k].find('$') != -1 ):
+                    os.environ[k]=os.path.expandvars(self.env[k])
+                else:
+                    os.environ[k] = self.env[k]
             # then set the rest
             for k, v in self.env.iteritems():
                 if k not in self.envorder:
-                    os.environ[k] = v
+                    if( v.find('$') != -1 ):
+                        os.environ[k] = os.path.expandvars(v)
+                    else:
+                        os.environ[k] = v
 
         # print path and build environment variables
         if( simOnly ):
@@ -1104,16 +1122,17 @@ class Download:
     def __init__(self, parent):
         self.parent = parent                        # parent class responsible for this download
         self.project = parent.alias                 # project name
-        self.root = str.lower(self.project)         # cvs root
-        self.username = "anonymous"                 # cvs username
-        self.password = ""                          # cvs password
-        self.server = "cvssrv.ifh.de"               # cvs server
+        self.root = str.lower(self.project)         # root
+        self.username = "anonymous"                 # username
+        self.password = ""                          # password
+        self.server = "cvssrv.ifh.de"               # server
+        self.accessmode = "ext"                     # server access mode
         self.url = ""                               # url for getting tarball with wget
         self.tarball = ""                           # name of the tarball used for wget downloads
         self.env = {}                               # environment (CVSROOT, CVS_RSH)
         self.type = "wget"                          # download type (wget, cvs, ccvssh)
         self.supportHEAD = True                     # support for downloading HEAD version
-        self.supportedTypes = [ "wget", "ccvssh" ]  # supported download types for the module
+        self.supportedTypes = [ "wget", "svn", "svn-export", "ccvssh" ]  # supported download types for the module
 
 #--------------------------------------------------------------------------------
 
