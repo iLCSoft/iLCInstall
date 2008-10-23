@@ -64,7 +64,7 @@ class BaseILC:
                         print "\t\t+ SVN [ %s://%s/%s/%s/trunk ]" % \
                             (self.download.accessmode, self.download.server, self.download.root, self.download.project)
                     else:
-                        print "\t\t+ SVN [ %s://%s/%s/tags/%s ]" % \
+                        print "\t\t+ SVN [ %s://%s/%s/%s/tags/%s ]" % \
                             (self.download.accessmode, self.download.server, self.download.root, \
                             self.download.project, self.version)
                 else:
