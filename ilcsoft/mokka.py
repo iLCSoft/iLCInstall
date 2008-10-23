@@ -21,7 +21,7 @@ class Mokka(BaseILC):
         self.hasCMakeBuildSupport = False
         self.hasCMakeFindSupport = False
 
-        self.download.supportedTypes = ["cvs", "wget"]
+        self.download.supportedTypes = [ "cvs" ]
         # set some cvs variables
         # export CVSROOT=:pserver:anoncvs@pollin1.in2p3.fr:/home/flc/cvs
         self.download.accessmode = "pserver"
@@ -35,14 +35,12 @@ class Mokka(BaseILC):
     def setMode(self, mode):
         BaseILC.setMode(self, mode)
 
+        if( self.download.type != "cvs" ):
+            self.download.type = "cvs"
+
         if( self.download.username == "anonymous" ):
             self.download.username = "anoncvs"
-        if( self.download.password == "" ):
             self.download.password = "%ilc%"
-
-        self.download.url = \
-        "http://polywww.in2p3.fr/activites/physique/geant4/tesla/www/mokka/software/mokka_tags/Mokka-%s.tgz" \
-            % (self.version,)
 
     def compile(self):
         """ compile Mokka """
