@@ -20,6 +20,9 @@ class LCIO(BaseILC):
         
         self.reqfiles = [ ["lib/liblcio.a", "lib/liblcio.so", "lib/liblcio.dylib"] ]
         
+        # java required
+        self.reqmodules_external = [ "Java" ]
+        
         # supported cmake modules
         self.cmakebuildmodules = [ "Java" ]
 
@@ -121,18 +124,14 @@ class LCIO(BaseILC):
         # in checkDeps() the dependencies from the installed version
         # are compared against the ones in the config file, so we need to
         # ensure that Java is autodetected for comparing versions
-        if( self.mode == "use" ):
-            if( os.path.exists( self.realPath() + "/lib/lcio.jar" )):
-                self.addBuildOnlyDependency( ["Java"] )
-            else:
-                self.addExternalDependency( ["Java"] )
+        #if( self.mode == "use" ):
+        #    if( os.path.exists( self.realPath() + "/lib/lcio.jar" )):
+        #        self.addBuildOnlyDependency( ["Java"] )
         
         if( self.mode == "install" ):
             if( self.buildJava ):
-                self.addBuildOnlyDependency( ["Java"] )
+                #self.addBuildOnlyDependency( ["Java"] )
                 self.reqfiles.append(["lib/lcio.jar"])
-            else:
-                self.addExternalDependency( ["Java"] )
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
