@@ -25,6 +25,13 @@ class MarlinTPC(MarlinPKG):
 
         self.reqmodules = [ "LCIO", "GEAR", "GSL", "Marlin", "LCCD", "ROOT", "AIDA", "CLHEP" ]
 
+    def setMode(self, mode):
+        MarlinPKG.setMode(self, mode)
+        
+        # avoid warning 'download forced....'
+        if self.download.type[:3] != "svn":
+            self.download.type="svn-export"
+
     def init(self):
         MarlinPKG.init(self)
 
