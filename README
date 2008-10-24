@@ -20,7 +20,7 @@ DESCRIPTION:
 	Files description:
 		
 		ilcsoft-install:
-			executable file
+			executable script
 		
 		./ilcsoft directory:
 			Directory containing all needed modules/classes for the script.
@@ -37,15 +37,12 @@ DESCRIPTION:
 			out which environment variables are set by LCIO ).
  	
 		./install.cfg
-			example configuration file (not garuanteed to work out of the box on your system)
-
+			example configuration file (not guaranteed to work out of the box on your system)
 
  		./releases directory
 			contains configuration files that are used for ilcsoft releases in
 			in afs (reference installations)
-                        =>  also see these files for example configuration files
-			
-
+                => take these files as example configuration files
 
 USAGE:
 
@@ -69,195 +66,74 @@ USAGE:
 	how to program in python to be able to use it, although it might
 	help you to understand what happens behind the box if you do
 	have some python knowledge.
-	
 
-	Here is a short tutorial on how to write a configuration file:
-	
-	# This is an example of a comment!
-	# You can write as many comments as you wish in the configuration file
-	
-	
+	##############################################################################################################
+    # example of a configuration file
+	##############################################################################################################
+
+    # Lines prefixed with the # character are comments just like in python!
+
 	# The first thing that should appear in the configuration file
-	# is the path where you want the whole software to be installed to.
-	# This is done with the following line:
-	ilcsoft = ILCSoft( "/scratch/ilcsoft" )	# install ilc software to /scratch/ilcsoft
-
-	
-	# Afterwards you can define which software to install..
-	# I'll start with LCIO
-	ilcsoft.install( LCIO( "v01-08-02" ))	# install LCIO version 01-08-02
-	# IMPORTANT : the version specified should be equal to the cvs tag you wish to install!!!
-	
-	
-	# Now imagine you have a version of CLHEP installed in your computer and you want
-	# to build and link LCIO against this version of CLHEP..
-	# This can be done with 2 steps:
-	
-	# 1st: you have to tell where CLHEP is located
-	# you can do this in 2 ways:
-	ilcsoft.use( CLHEP( "/opt/products/CLHEP/2.0.2.2" ))
-	# or
-	ilcsoft.link( CLHEP( "/opt/products/CLHEP/2.0.2.2" ))
-	# Both of these options do basically the same, except that the second option places a
-	# symbolic link to the directory given above in /scratch/ilcsoft/CLHEP named after the
-	# version (2.0.2.2). In other words, after the installation you will have the link:
-	# /scratch/ilcsoft/CLHEP/2.0.2.2 pointing to -> /opt/products/CLHEP/2.0.2.2
-	# (see "use" mode in next tutorial... )
-
-	# 2nd: you have to make sure that LCIO is built and linked against CLHEP
-	ilcsoft.module("LCIO").buildWith( ["CLHEP"] )
-	# Actually the second step can be left out because LCIO is built
-	# by default with CLHEP. (if CLHEP is somewhere defined in the config file).
-	
-	# If by some means you would like to build LCIO without CLHEP you would
-	# have to substitute the above line with:
-	ilcsoft.module("LCIO").buildWithout( ["CLHEP"] )
-	# IMPORTANT: all software is by default built and linked against all possible packages
-	# defined in the configuration file. At any time you can type at the console:
-	# "ilcsoft-install -s myconfig.cfg" to display a summary of the installation and check
-	# with which packages some software is going to be built and linked against.
-
-	# Additionally you may want to skip building the documentation of LCIO.
-	# For this you type:
-	ilcsoft.module("LCIO").buildDoc = False
-
-	# Or you may also want to build LCIO in debug mode:
-	ilcsoft.module("LCIO").debug = True
-
-	# If you don't want to build the lcio java jar:
-	#ilcsoft.module("LCIO").buildJava = False
-
-	# And if don't need fortran stuff
-	ilcsoft.module("LCIO").buildFortran = False
-
-	# OK, as you've probably noticed, whenever you want to change the default behaviour of some
-	# package you always have to type ilcsoft.module("BLA").something.
-	# There is another way for doing this.. I'll just write the code above with a slight different
-	# syntax to show you the difference:
-
-	ilcsoft = ILCSoft( "/scratch/ilcsoft" )
-	
-	# LCIO
-	lcio = LCIO( "v01-08" )		# IMPORTANT: These 2 lines must be
-	ilcsoft.install( lcio )		# together and in this exact order!!
-
-	lcio.buildWithout( ["CLHEP"] )
-	lcio.buildDoc = False
-	lcio.debug = True
-	#lcio.buildJava = False
-	lcio.buildFortran = False
-	
-	# CLHEP
-	ilcsoft.link( CLHEP( "/opt/products/CLHEP/2.0.2.2" ))
-
-	
-	##############################################################################################################
-	# As a final example take a look at this configuration file for installing Marlin with the
-	# standard marlin packages
-	##############################################################################################################
-
+    # is the path (prefix) where you want the software to be installed to.
 	ilcsoft = ILCSoft( "/scratch/ilcsoft" )
 
-	ilc_home = "/afs/desy.de/group/it/ilcsoft/"	# define a python variable for easily change your ilc_home directory
+    # environment variables and cmake build options can be set globally,
+    # which will apply to ALL modules, e.g.:
 
-	ilcsoft.buildDoc = False	# global documentation flag for all packages
-	ilcsoft.debug = True		# global debug flag for all packages
-	#ilcsoft.useCMake = True	# use this flag if you want to use the new cmake build tool
+    ##### Global options #####################################################
+    # choose compilers
+    ilcsoft.env['CXX']='g++'
+    ilcsoft.env['CC']='gcc'
+    #ilcsoft.env['FC']='g77'
+    # set number of paralell jobs for multicore machines
+    ilcsoft.env["MAKEOPTS"]="-j2"
+    # set cmake to build everything in Debug modus
+    ilcsoft.envcmake['CMAKE_BUILD_TYPE'] = 'Debug'
+    # set cmake to show full build/link commands
+    ilcsoft.envcmake['CMAKE_VERBOSE_MAKEFILE']="ON"
+    ##### End of Global options ##############################################
+ 
+    # you can define your own variables as in any normal python program
+	ilc_home = "/afs/desy.de/group/it/ilcsoft/"
+    ilc_rel = ilc_home + "v01-04/"
 
-	# Marlin
-	marlin = Marlin( "HEAD" )
-	ilcsoft.install( marlin )
-	marlin.buildDoc = True		# override global setting to build documentation
-	marlin.buildWithout( [ "RAIDA", "LCCD" ] ) # this line can be left out, just avoid some warnings...
-	marlin.env[ "MARLIN_GUI" ] = 1		# if you wish to also build Marlin GUI
-	# QT4 is required for building Marlin GUI (see $MARLIN/gui/README for details...)
-	# if you wish you can install QT with this script, but this really takes a very long time!!
-	#ilcsoft.install( QT( "4.2.2" ))
-	# I would recommend you to use a precompiled version of qt4 for your system
-	# SL3 and SL4 users can use the following line:
-	ilcsoft.use( QT( ilc_home + "QT/4.2.2" ))
-	
-	
-	##### IMPORTANT: #############################################################################################
-	#
-	# Note that you can add environment variables to a module by using:
-	# moduleXYZ.env[ "VarName" ] = "SomeValue"
-	# this is equivalent to bash command: "export VarName = SomeValue"
-	#
-	# For the PATH, LD_LIBRARY_PATH and CLASSPATH there is a special variable called envpath, for example:
-	# moduleXYZ.envpath["PATH"].append( "$QTDIR/bin" ) # this will append "$QTDIR/bin" to your PATH
-	# is equivalent to bash: export PATH = $QTDIR/bin:$PATH
-	#
-	##############################################################################################################
-	
-	
-	# Marlin Packages
-	ilcsoft.install( MarlinReco( "HEAD" ))
-	ilcsoft.install( MarlinUtil( "HEAD" ))
-	ilcsoft.install( CEDViewer( "HEAD" ))
+    # example for installing a custom MarlinPKG
+    ilcsoft.install( MarlinPKG( "MyPackage", "v00-03" ))
+    # assign a python variable to the module, so we can easily
+    # type mypkg instead of ilcsoft.module( "MyPackage" )
+    mypkg = ilcsoft.module( "MyPackage" )
+	mypkg.download.type = "cvs"
+	mypkg.download.env["CVSROOT"] = ":pserver:anonymous@cvs.freehep.org:/marlinpkgs/mypackage"
+    # environment variables can be set for individual modules
+    mypkg.env['EGGS'] = '/home/eggs'
+    # for special variables (e.g. PATH, LD_LIBRARY_PATH, CLASSPATH) you should use the envpath, e.g.:
+    mypkg.envpath['PATH'] = '$EGGS/bin'
+    mypkg.envpath['LD_LIBRARY_PATH'] = '$EGGS/lib'
+    # for cmake there is also a way to pass options to the cmake configuration process, e.g.:
+    mypkg.envcmake['MYPKG_TESTJOBS'] = 'ON'
+    # NOTE: for this example to work you need to follow the rules for a standard marlin package
+	# see $MARLIN/examples/mymarlin...
 
-	### Marlin Package Example (this is just an example of how one can add other packages to marlin)
-	#
-	# MyPackage = MarlinPKG( "MyPackage", "v00-03" )
-	# ilcsoft.install( MyPackage )
-	# 
-	### If your package can be downloaded with wget from an URL and is inside a tar.gz file:
-	#
-	# MyPackage.download.url = "http://www.url-to-my-package.de/marlinpackages/mypackage.tar.gz"
-	#
-	### If your package is in a cvs repository define required cvs settings, for example:
-	#
-	# MyPackage.download.env["CVSROOT"] = ":pserver:anonymous@cvs.freehep.org:/marlinpkgs/mypackage"
-	# MyPackage.download.type = "cvs"
-	#
-	# MyPackage.addDependency( [ "LCIO", "CLHEP" ] ) # MyPackage cannot be built without LCIO and CLHEP
-	# MyPackage.buildWith( [ "GEAR" ] ) # build MyPackage (optionally) with GEAR
-	#
-	# marlin.buildWith( [ "MyPackage" ] ) # tell Marlin to build and link itself with this package
-	#
-	# IMPORTANT: for this example to work you need to follow the rules for a standard marlin package:
-	#			 see $MARLIN/examples/mymarlin...
-	#
-	### End of Marlin Package Example
-
-	# LCIO
-	ilcsoft.use( LCIO( "v01-08-02" ))
-	# Note that in the line above we only say use( LCIO( "v01-08-02" )), this is not a typo!
-	# The script will try to find a previously installed version of LCIO located at
-	# /scratch/ilcsoft/lcio/v01-08-02 and use it! (for example if we would had run the previous tutorial)
-	# Note: with the "use" option, the script checks the dependencies of the installed version of LCIO
-	# against this configuration file. If it fails it will automatically try to recompile LCIO.
-	# For example: suppose you installed LCIO previously with CLHEP 2.0.2.1 and in this configuration
-	# file you use CLHEP 2.0.2.2 (see below), LCIO will automatically get recompiled to fulfill
-	# the actual dependencies.
-
-	# GEAR
-	ilcsoft.install( GEAR( "v00-05" ))
-	#ilcsoft.link( GEAR( ilc_home + "gear/v00-05" ))
-
-	# Java (to build LCIO with Java 1.5.0)
-	ilcsoft.link( Java( ilc_home + "java/1.5.0" ))
-	# Note that you don't need to specify which Java to use. If you just comment out the previous
-	# line the script gets the default Java version installed on your system and uses it
-
-	# CLHEP
-	#ilcsoft.install( CLHEP( "2.0.2.2" ))
-	ilcsoft.link( CLHEP( ilc_home + "CLHEP/2.0.2.2" ))
-
-	# CERNLIB
-	#ilcsoft.install( CERNLIB( "2006" ))
-	ilcsoft.link( CERNLIB( ilc_home + "cernlib/2006" ))
-	
-	# GSL
-	#ilcsoft.install( GSL( "1.8" ))
+    # use or link already installed tools
+    ilcsoft.link( Marlin( ilc_home + "Marlin/v00-10-03" ))
+    ilcsoft.link( LCIO( ilc_home + "LCIO/v01-10-01" ))
+	ilcsoft.link( CLHEP( ilc_home + "CLHEP/2.0.3.1" ))
 	ilcsoft.link( GSL( ilc_home + "gsl/1.8" ))
+	ilcsoft.use( CMake( ilc_home + "CMake/2.4.6" ))
+	ilcsoft.use( CMakeModules( "v01-07" ))
+	ilcsoft.link( Java( "/opt/products/java/1.6.0" ))
+    # NOTE: 'link' and 'use' do basically the same, except that the link option places a
+	# symbolic link in the installation directory which will then be the visible directory
+    # to other packages depending on it, for example, if you set Java to 'link', LCIO will
+    # see Java living at /scratch/ilcsoft/java/1.6.0 instead of /opt/products/java/1.6.0
 
-	# CMake stuff
-	# you need this if you want to use CMake
-	# ilcsoft.use( CMake( ilc_home + "CMake/2.4.6" ))
-	# ilcsoft.install( CMakeModules( "v01-00" ))
+    # NOTE: each module you define to be installed in your configuration file tries per
+    # default to build and link against all it's optional dependencies. You can use:
+    # "ilcsoft-install -s myconfig.cfg" to display a summary of the installation and have a
+    # look at the dependencies of each package. Use option -p to get more detailed output
+
 
 	##############################################################################################################
-	# End of configuration tutorial
+	# End of example configuration files
 	##############################################################################################################
 
