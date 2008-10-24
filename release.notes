@@ -5,10 +5,13 @@
 -----------------------------------------------------
  v01-05
 -----------------------------------------------------
+ - added svn support for using https://svnsrv.desy.de
+ - added svn-export modus
+ - added envorder variable for setting/writing
+    environment variables in a certain order
  - introduced ilcsoft.env['MAKEOPTS'] to be able to
     pass arguments to make (e.g. -j4)
- - added Jupiter from kek soft:
-    http://jlccvs.kek.jp/cgi-bin/cvsweb.cgi/Jupiter
+ - added SimTools module (http://jlccvs.kek.jp )
  - introduced new patch-feature, use:
     ilcsoft.patch = [
         "001-v01-04-3264bit",
