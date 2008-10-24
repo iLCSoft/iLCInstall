@@ -36,7 +36,7 @@ class CMake(BaseILC):
         # look for SL afs installation
         if self.os_ver.isSL() != None:
             if os.path.exists( self.ilcHome ):
-                for v in [ '2.4.6' ]:
+                for v in [ '2.6.2', '2.4.6' ]:
                     cpath = fixPath( self.ilcHome+'/'+self.alias+'/'+v )
                     if os.path.exists( cpath ):
                         return cpath
