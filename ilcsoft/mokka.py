@@ -47,6 +47,9 @@ class Mokka(BaseILC):
 
         os.chdir( self.installPath + "/source" )
         
+        if self.rebuild:
+            os.system( ". ${G4ENV_INIT}; unset G4UI_USE_XAW ; unset G4UI_USE_XM ; make clean 2>&1 | tee -a "+self.logfile )
+            
         if( os.system( ". ${G4ENV_INIT}; unset G4UI_USE_XAW ; unset G4UI_USE_XM ; make 2>&1 | tee -a " \
                 + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
