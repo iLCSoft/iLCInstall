@@ -26,6 +26,35 @@ class Geant4(BaseILC):
 
         self.reqfiles = [ ["lib/Linux-g++/libG4run.a", "sharedlib/Linux-g++/libG4run.so"] ]
 
+    def createLink(self):
+        BaseILC.createLink(self)
+
+        if( not os.path.exists( self.env["G4ENV_INIT"] )):
+            #print "cannot read G4Data versions, G4ENV_INIT not defined properly!"
+            return
+        
+        if Version(self.version, max_elements=2 ) < "9.0":
+            #print "cannot read G4Data versions, this is only supported for Geant4 versions >= 9.0"
+            return
+
+        if Version(self.version, max_elements=2 ) == "9.0":
+            datasetsenv = [ "G4LEDATA", "G4NEUTRONHPDATA", "G4LEVELGAMMADATA", "G4RADIOACTIVEDATA" ]
+            
+        if Version(self.version, max_elements=2 ) >= "9.1":
+            datasetsenv = [ "G4ABLADATA", "G4LEDATA", "G4NEUTRONHPDATA", "G4LEVELGAMMADATA", "G4RADIOACTIVEDATA" ]
+
+        depsdir=self.parent.installPath+"/.dependencies"
+        g4dataversfile = depsdir+"/g4data"
+
+        trymakedir( depsdir )
+        os.system( "> " + g4dataversfile )
+        
+        for envvar in datasetsenv:
+            envval=getoutput( ". "+self.env["G4ENV_INIT"]+" &>/dev/null; echo $"+envvar )
+            if envval:
+                ver=Version(envval).versions[-1]
+                os.system( "echo %s:%s >> %s" % (envvar,ver,g4dataversfile) )
+
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
 
