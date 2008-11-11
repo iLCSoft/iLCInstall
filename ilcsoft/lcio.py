@@ -47,7 +47,6 @@ class LCIO(BaseILC):
         self.download.server = "cvs.freehep.org"
         self.download.root = "cvs/lcio"
 
-        self.envcmake["BUILD_F77_TESTJOBS"]="OFF"
         self.envcmake["INSTALL_JAR"]="ON"
 
     def compile(self):
@@ -118,20 +117,24 @@ class LCIO(BaseILC):
                 if( r != 0 ):
                     print 80*'*' + "*** WARNING: sth. went wrong with creating the " + self.name + " reference manual\n" + 80*'*'
 
+        if( self.useCMake and self.makeTests ):
+            if( os.system( "make tests 2>&1 | tee -a " + self.logfile ) != 0 ):
+                self.abort( "failed to compile lcio tests" )
+            if( os.system( "make test 2>&1 | tee -a " + self.logfile ) != 0 ):
+                self.abort( "failed to execute lcio tests" )
+
     def preCheckDeps(self):
         BaseILC.preCheckDeps(self)
-
-        # in checkDeps() the dependencies from the installed version
-        # are compared against the ones in the config file, so we need to
-        # ensure that Java is autodetected for comparing versions
-        #if( self.mode == "use" ):
-        #    if( os.path.exists( self.realPath() + "/lib/lcio.jar" )):
-        #        self.addBuildOnlyDependency( ["Java"] )
-        
+       
         if( self.mode == "install" ):
-            if( self.buildJava ):
-                #self.addBuildOnlyDependency( ["Java"] )
+            if( self.buildJava and not self.useCMake ):
                 self.reqfiles.append(["lib/lcio.jar"])
+            # tests
+            if( self.makeTests ):
+                self.envcmake["BUILD_LCIO_TESTS"]="ON"
+                self.envcmake["BUILD_LCIO_EXAMPLES"]="ON"
+                self.envcmake["BUILD_F77_TESTJOBS"]="ON"
+                
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)

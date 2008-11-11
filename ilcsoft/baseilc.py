@@ -24,6 +24,7 @@ class BaseILC:
         self.download = Download(self)          # download struct ( groups together a bunch of download variables )
         self.hasCMakeBuildSupport = True        # can the package be built with cmake?
         self.hasCMakeFindSupport = True         # if yes PKG_HOME variable is set and package can be used in BUILD_WITH
+        self.makeTests = False                  # flag for calling "make test" after building the software
         self.rebuild = False                    # flag for calling a "make clean" before building the software
         self.skipCompile = False                # flag for skipping the compile step of a module
         self.useLink = False                    # flag for "link" packages
@@ -36,10 +37,7 @@ class BaseILC:
                                                 # affect the consistency of the package e.g. QT, CMake, Java in some cases..)
         self.reqmodules_buildonly = []          # required modules for only building this package (their environment variables
                                                 # will only be written in the build_env.sh of this package
-        self.envcmake = {                       # cmake environment (e.g. BUILD_SHARED_LIBS=ON)
-            'CMAKE_BUILD_TYPE' : 'Release',
-            'INSTALL_DOC' : 'ON'
-        }
+        self.envcmake = {}                      # cmake environment (e.g. BUILD_SHARED_LIBS=ON)
         self.envorder = []                      # use for environment variables that have priority
         self.env = {}                           # environment variables
         self.envcmds = []                       # cmds added to the environment script (build_env.sh)
@@ -146,6 +144,9 @@ class BaseILC:
 
         # initialize cleanInstall flag
         self.cleanInstall = self.parent.cleanInstall
+
+        self.envcmake.update(self.parent.envcmake)
+        self.makeTests = self.parent.makeTests
 
         if( mode == "install" ):
 
@@ -765,14 +766,7 @@ class BaseILC:
     def genCMakeCmd(self):
         """ generates a CMake command out of envcmake """
         cmd = ""
-        cmakeopts={}
-        for k, v in self.parent.envcmake.iteritems():
-            cmakeopts[k]=v
-        
         for k, v in self.envcmake.iteritems():
-            cmakeopts[k]=v
-
-        for k, v in cmakeopts.iteritems():
             cmd = cmd + "-D" + k + "=\"" + str(v).strip() + "\" "
         return cmd.strip()
 

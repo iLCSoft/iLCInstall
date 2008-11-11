@@ -33,7 +33,10 @@ class ILCSoft:
         self.downloadType = ""      # global download cvs/ccvssh password
         self.noAutomaticRebuilds = False # global flag for automatic rebuilding
         self.env = {}               # global environment variables
-        self.envcmake = {}          # global cmake environment variables
+        self.envcmake = {           # global cmake environment variables
+            'CMAKE_BUILD_TYPE' : 'Release',
+            'INSTALL_DOC' : 'ON'
+        }
         self.cleanInstall = True    # global flag for cleaning temporary files after installation (objects, tarfiles...)
 
         self.envpathbak = {         # backup path environment variables (PATH, LD_LIBRARY_PATH, CLASSPATH)
