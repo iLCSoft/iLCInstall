@@ -20,7 +20,7 @@ class Eutelescope(MarlinPKG):
         self.reqmodules = [ "Marlin",  "LCIO" ]
 
         # optional modules
-        self.optmodules = [ "GEAR", "AIDA" , "MarlinUtil", "CLHEP", "GSL" ]
+        self.optmodules = [ "GEAR", "AIDA" , "MarlinUtil", "CLHEP", "GSL", "CED" ]
 
         # cvs root
         self.download.root = "eutelescope"
