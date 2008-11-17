@@ -31,6 +31,7 @@ class ILCSoft:
         self.downloadUser = ""      # global download cvs/ccvssh username
         self.downloadPass = ""      # global download cvs/ccvssh password
         self.downloadType = ""      # global download cvs/ccvssh password
+        self.makeTests = False      # global flag for calling "make test" after building the software
         self.noAutomaticRebuilds = False # global flag for automatic rebuilding
         self.env = {}               # global environment variables
         self.envcmake = {           # global cmake environment variables
