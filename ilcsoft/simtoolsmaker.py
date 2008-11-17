@@ -12,11 +12,11 @@ from baseilc import BaseILC
 from util import *
 
 
-class SimTools(BaseILC):
+class SimToolsMaker(BaseILC):
     """ Responsible for the SimTools installation. """
     
     def __init__(self, userInput):
-        BaseILC.__init__(self, userInput, "SimTools", "SimTools")
+        BaseILC.__init__(self, userInput, "SimToolsMaker", "SimToolsMaker")
 
         self.hasCMakeBuildSupport = False
         self.hasCMakeFindSupport = False
@@ -29,29 +29,25 @@ class SimTools(BaseILC):
         self.download.root = "home/cvs/soft"
         self.download.project = "SimToolsMaker/Release"
 
-        self.reqfiles = [ ["Jupiter/bin/Linux-g++/Jupiter"] ]
+        self.reqfiles = [ ["buildtools"] ]
         self.reqmodules = [ "LCIO", "ROOT", "Geant4", "CLHEP", "Java" ]
-
-#    def downloadSources(self):
-#        """ downloads SimToolsMaker install script """
-#        BaseILC.downloadSources(self)
-#
-#        os.chdir( self.installPath )
-#        os.system( "cp -f "+self.parent.ilcinstallDir+"/setup-simtools.sh ./setup.bash" )
 
     def compile(self):
         """ compile SimTools """
 
-        os.chdir( self.installPath )
+        os.chdir( self.parent.installPath )
         
         if( self.rebuild ):
             opt="build"
         else:
             opt="all"
 
-        print "build command:", "buildtools -setup build_env.sh -cvsroot",self.download.env["CVSROOT"],opt
-        if( os.system( "buildtools -setup build_env.sh -cvsroot "+self.download.env["CVSROOT"]+" "+opt+\
-                " | tee -a " + self.logfile ) != 0 ):
+        
+        buildcmd="%s/buildtools -setup %s/build_env.sh -cvsroot %s %s" % \
+                (self.installPath,self.installPath,self.download.env["CVSROOT"],opt)
+        print ">", buildcmd
+        
+        if( os.system( buildcmd + " | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
 
     def postCheckDeps(self):
@@ -60,7 +56,7 @@ class SimTools(BaseILC):
         self.envorder=[ "LC_RELEASE_DIR", "LCBASEDIR", "KFLIBROOT", "LCLIBROOT", "LEDAROOT", \
                         "JSFROOT", "JUPITERROOT", "SATELLITESROOT", "URANUSROOT", "G4SYSTEM" ]
 
-        self.env["LC_RELEASE_DIR"]=self.installPath
+        self.env["LC_RELEASE_DIR"]=self.parent.installPath
 
         self.env["LCBASEDIR"]="$LC_RELEASE_DIR/lcbase"
         self.env["KFLIBROOT"]="$LC_RELEASE_DIR/physsim"

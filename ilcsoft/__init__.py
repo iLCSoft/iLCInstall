@@ -23,7 +23,7 @@ from marlintpc import MarlinTPC
 from ckfit import CKFit
 
 # kek
-from simtools import SimTools
+from simtoolsmaker import SimToolsMaker
 #from jupiter import Jupiter
 
 # cmake
