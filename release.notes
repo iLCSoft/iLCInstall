@@ -7,6 +7,7 @@
 -----------------------------------------------------
  - added svn support for using https://svnsrv.desy.de
  - added svn-export modus
+ - added ilcsoft.makeTests for nightly builds
  - added envorder variable for setting/writing
     environment variables in a certain order
  - introduced ilcsoft.env['MAKEOPTS'] to be able to
