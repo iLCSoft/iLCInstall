@@ -16,6 +16,12 @@ class BaseILC:
     ilcHome = '/afs/desy.de/group/it/ilcsoft/'
     os_ver = OSDetect()
 
+    # shared libraries extension
+    if os_ver.type == "Mac":
+        shlib_ext=".dylib"
+    else:
+        shlib_ext=".so"
+
     def __init__(self, userInput, name, alias):
         self.__userInput = userInput
         self.name = name                        # module name (e.g. LCIO, GEAR, Marlin, CEDViewer)

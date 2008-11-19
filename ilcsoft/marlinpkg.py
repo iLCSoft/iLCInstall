@@ -58,5 +58,5 @@ class MarlinPKG(BaseILC):
 
         # fill MARLIN_DLL
         if( self.name != "MarlinUtil" ):
-            self.parent.module('Marlin').envpath["MARLIN_DLL"].append( self.installPath + "/lib/lib" + self.name + ".so" )
+            self.parent.module('Marlin').envpath["MARLIN_DLL"].append( self.installPath+"/lib/lib"+self.name+shlib_ext )
 

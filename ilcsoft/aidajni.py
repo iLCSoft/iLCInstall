@@ -68,7 +68,7 @@ class AIDAJNI(BaseILC):
         trydelenv('FREEHEP')
         trydelenv('COMPILER')
         
-        if self.parent.os.isSL(3):
+        if self.os_ver.isSL(3):
             os.system( 'tar -xzf %s-%s-Linux-g++.tar.gz' % (self.alias, self.version) )
             os.system( 'mv -f %s-%s/* %s' % (self.alias, self.version, self.installPath) )
             os.rmdir( self.alias+'-'+self.version )
