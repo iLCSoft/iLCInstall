@@ -50,7 +50,7 @@ class Geant4(BaseILC):
         os.system( "> " + g4dataversfile )
         
         for envvar in datasetsenv:
-            envval=getoutput( ". "+self.env["G4ENV_INIT"]+" &>/dev/null; echo $"+envvar )
+            envval=getoutput( ". "+self.env["G4ENV_INIT"]+" >/dev/null 2>&1 ; echo $"+envvar )
             if envval:
                 ver=Version(envval).versions[-1]
                 os.system( "echo %s:%s >> %s" % (envvar,ver,g4dataversfile) )
