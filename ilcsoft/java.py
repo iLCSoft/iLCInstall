@@ -37,7 +37,7 @@ class Java(BaseILC):
 
         # look for SL afs installations
         if os.path.exists( self.ilcHome ):
-            if self.os_ver.isSL() != None:
+            if self.os_ver.isSL():
                 for v in [ '1.6.0', '1.5.0', '1.4.2' ]:
                     jpath = fixPath( self.ilcHome+'/'+self.alias+'/'+v )
                     if os.path.exists( jpath ):

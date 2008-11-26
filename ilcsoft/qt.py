@@ -39,8 +39,8 @@ class QT(BaseILC):
             - otherwise returns qt dir """
 
         # look for SL afs installations
-        if self.os_ver.isSL() != None:
-            if os.path.exists( self.ilcHome ):
+        if os.path.exists( self.ilcHome ):
+            if self.os_ver.isSL():
                 for v in [ '4.2.2' ]:
                     qtdir = fixPath( self.ilcHome+'/'+self.alias+'/'+v )
                     if os.path.exists( qtdir ):
