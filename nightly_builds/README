@@ -26,9 +26,8 @@ How to use:
         # keep in mind that ilcinstall tries to access $HOME/.cvspass for cvs/ccvssh
         # downloads, so you have to make sure cron has access or a copy of this file.
         HOME=/data/engels/cronhome
-        # add the path to where ilcinstall is located to the PATH list
-        # and also don't forget to add the ccvssh path if you do ccvssh downloads
-        PATH=/sbin:/bin:/usr/sbin:/usr/bin:/afs/desy.de/user/e/engels/public/nightly
+        # don't forget to add the path to ccvssh if you do ccvssh downloads
+        PATH=/sbin:/bin:/usr/sbin:/usr/bin
          
         # cron syntax is:
         # mm hh MM YY dd
@@ -41,5 +40,5 @@ How to use:
         # 00 5 * * 1-5  workdays @ 5:00
        
         # run daily at 2:00
-        00 2 * * * nbuild /afs/desy.de/user/e/engels/public/nightly/nb-release.cfg
+        00 2 * * * cd /path/to/ilcinstall && ./nbuild ./nightly_builds/nb-release.cfg
 
