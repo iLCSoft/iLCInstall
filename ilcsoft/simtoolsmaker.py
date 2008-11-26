@@ -71,7 +71,15 @@ class SimToolsMaker(BaseILC):
         self.env["SOSYMLINK"]="true"
         
         self.env["IMAKEINCLUDE"]="-I$LCBASEDIR -I$KFLIBROOT -I$LCLIBROOT"
-        self.env["GFORTRANLIBDIR"]="-L/usr/lib/gcc/i386-redhat-linux/4.1.0"
+
+        # provide path to libg2c.so in SL3/SL4/SL5
+        if self.os_ver.isSL(4):
+            self.env["GFORTRANLIBDIR"]="-L/usr/lib/gcc/i386-redhat-linux/4.1.0"
+        if self.os_ver.isSL(3):
+            self.env["GFORTRANLIBDIR"]="-L/usr/lib/gcc-lib/i386-redhat-linux/3.2.3"
+        if self.os_ver.isSL(5):
+            self.env["GFORTRANLIBDIR"]="-L/usr/lib/gcc/x86_64-redhat-linux/3.4.6"       # 64bit
+            #self.env["GFORTRANLIBDIR"]="-L/usr/lib/gcc/x86_64-redhat-linux/3.4.6/32"    # 32bit
 
         self.envpath["PATH"].append( "$LCBASEDIR/bin" )
         self.envpath["PATH"].append( "$JSFROOT/bin" )
