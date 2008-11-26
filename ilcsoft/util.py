@@ -49,6 +49,8 @@ class OSDetect(object):
     def _get_shortver(self):
         if self.isSL():
             return 'SL'+ str(self.isSL()[0])
+        elif self.type == "Linux":
+            return self.ver
         return self.type
 
     shortver = property( _get_shortver )
