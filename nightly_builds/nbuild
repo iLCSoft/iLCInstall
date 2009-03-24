@@ -14,7 +14,8 @@ num_error_lines=150
 # number of days to keep on disk
 max_days=3
 # initialize date
-date_iso8601 = getoutput( "date --iso-8601" )
+#date_iso8601 = getoutput( "date --iso-8601" )
+date_iso8601 = getoutput( "date '+20%y-%m-%d'" )
 # you can set the mail addresses in the config file
 mail_addresses=[]
 #-----------------------------------------------------------------------------

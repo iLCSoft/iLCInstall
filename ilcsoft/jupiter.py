@@ -28,7 +28,7 @@ class Jupiter(BaseILC):
         self.download.server = "jlccvs.kek.jp"
         self.download.root = "home/cvs/soft"
 
-        self.reqfiles = [ ["bin/Linux-g++/Jupiter"] ]
+        self.reqfiles = [ ["bin/"+self.os_ver.type+"-g++/Jupiter"] ]
         self.reqmodules = [ "Geant4", "CLHEP" ]
        
     def compile(self):
@@ -46,6 +46,6 @@ class Jupiter(BaseILC):
         self.env["JUPITERROOT"]=self.installPath
         self.env.setdefault( 'G4WORKDIR', self.installPath )
 
-        self.envpath["PATH"].append( "$JUPITERROOT/bin/Linux-g++" )
+        self.envpath["PATH"].append( "$JUPITERROOT/bin/"+self.os_ver.type+"-g++" )
         self.envcmds.append(" . ${G4ENV_INIT} ")
 

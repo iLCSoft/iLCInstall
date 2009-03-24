@@ -22,9 +22,10 @@ class Geant4(BaseILC):
         self.hasCMakeBuildSupport = False
         self.hasCMakeFindSupport = False
 
-        self.env["G4SYSTEM"] = "Linux-g++"
+        # Linux-g++ / Darwin-g++
+        self.env["G4SYSTEM"] = self.os_ver.type+"-g++"
 
-        self.reqfiles = [ ["lib/Linux-g++/libG4run.a", "sharedlib/Linux-g++/libG4run.so"] ]
+        self.reqfiles = [ ["lib/"+self.env["G4SYSTEM"]+"/libG4run.a", "sharedlib/"+self.env["G4SYSTEM"]+"/libG4run.so", "sharedlib/"+self.env["G4SYSTEM"]+"/libG4run.dylib"] ]
 
     def createLink(self):
         BaseILC.createLink(self)
@@ -69,5 +70,5 @@ class Geant4(BaseILC):
                         + "ilcsoft.module(\"Geant4\").env[\"G4ENV_INIT\"]=\"/foo/bar/env.sh\"" )
             self.env["G4ENV_INIT"]="$G4INSTALL/env.sh"
 
-        self.envpath["LD_LIBRARY_PATH"].append( "$G4INSTALL/sharedlib/Linux-g++" )
+        self.envpath["LD_LIBRARY_PATH"].append( "$G4INSTALL/sharedlib/"+self.env["G4SYSTEM"] )
 

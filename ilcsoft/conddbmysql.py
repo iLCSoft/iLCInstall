@@ -21,7 +21,7 @@ class CondDBMySQL(BaseILC):
         # no cmake build support
         self.hasCMakeBuildSupport = False
 
-        self.reqfiles = [ ["lib/libconddb.so"] ]
+        self.reqfiles = [ ["lib/libconddb.so","lib/libconddb.dylib"] ]
 
         # cvs root
         self.download.root = "calice"

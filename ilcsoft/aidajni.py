@@ -21,8 +21,8 @@ class AIDAJNI(BaseILC):
         # no cmake build support
         self.hasCMakeBuildSupport = False
         
-        self.reqfiles = [ ["bin/Linux-g++/aidajni-setup.sh", "bin/i386-Linux-g++/aidajni-setup.sh"], \
-                ["bin/Linux-g++/aida-config", "bin/i386-Linux-g++/aida-config"] ]
+        self.reqfiles = [ ["bin/"+self.os_ver.type+"-g++/aidajni-setup.sh", "bin/i386-"+self.os_ver.type+"-g++/aidajni-setup.sh"], \
+                ["bin/"+self.os_ver.type+"-g++/aida-config", "bin/i386-"+self.os_ver.type+"-g++/aida-config"] ]
 
         self.download.supportHEAD = False
         self.download.supportedTypes = [ "wget" ]
@@ -68,13 +68,16 @@ class AIDAJNI(BaseILC):
         trydelenv('FREEHEP')
         trydelenv('COMPILER')
         
-        if self.os_ver.isSL(3):
-            os.system( 'tar -xzf %s-%s-Linux-g++.tar.gz' % (self.alias, self.version) )
-            os.system( 'mv -f %s-%s/* %s' % (self.alias, self.version, self.installPath) )
-            os.rmdir( self.alias+'-'+self.version )
-        else:
-            os.system( 'tar -xzf %s-%s-Linux-g++.tar.gz --strip-path=1 -C %s' \
-                % (self.alias, self.version, self.installPath) )
+        os.system( 'tar -xzf %s-%s-'+self.os_ver.type+'-g++.tar.gz' % (self.alias, self.version) )
+        os.system( 'mv -f %s-%s/* %s' % (self.alias, self.version, self.installPath) )
+        os.rmdir( self.alias+'-'+self.version )
+        #if self.os_ver.isSL(3):
+        #    os.system( 'tar -xzf %s-%s-Linux-g++.tar.gz' % (self.alias, self.version) )
+        #    os.system( 'mv -f %s-%s/* %s' % (self.alias, self.version, self.installPath) )
+        #    os.rmdir( self.alias+'-'+self.version )
+        #else:
+        #    os.system( 'tar -xzf %s-%s-'+self.os_ver.type+'-g++.tar.gz --strip-path=1 -C %s' \
+        #        % (self.alias, self.version, self.installPath) )
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)

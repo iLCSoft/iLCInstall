@@ -24,8 +24,10 @@ import fnmatch
 
 class OSDetect(object):
     """ small class for detecting the OS """
+
     type = "unknown"
     ver = "unknown"
+    platform = "unknown"
 
     def __init__(self):
         # Linux
@@ -34,17 +36,21 @@ class OSDetect(object):
  
          # MacOs
         if( sys.platform == "mac" or sys.platform == "darwin" ):
-            self.type = "Mac"
+            self.type = "Darwin"
         
          # Windows
         if( sys.platform == "win32" ):
             self.type = "Win"
 
-        # get linux version
         if( self.type == "Linux" ):
+            # description
             out=getstatusoutput("lsb_release -d")
             if( out[0] == 0 ):
                 self.ver=out[1].split("Description:")[1].strip()
+            # hardware platform
+            out=getstatusoutput("uname -i")
+            if( out[0] == 0 ):
+                self.platform=out[1].strip()
 
     def _get_shortver(self):
         if self.isSL():

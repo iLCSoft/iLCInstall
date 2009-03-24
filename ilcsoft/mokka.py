@@ -28,7 +28,7 @@ class Mokka(BaseILC):
         self.download.server = "pollin1.in2p3.fr"
         self.download.root = "home/flc/cvs"
 
-        self.reqfiles = [ ["bin/Linux-g++/Mokka"] ]
+        self.reqfiles = [ ["bin/"+self.os_ver.type+"-g++/Mokka"] ]
         self.reqmodules = [ "LCIO", "GEAR", "Geant4", "MySQL" ]
 
 
@@ -61,7 +61,7 @@ class Mokka(BaseILC):
         self.env.setdefault( 'G4WORKDIR', self.installPath )
         self.env.setdefault( 'G4UI_USE_TCSH', 1 )
 
-        self.envpath["PATH"].append( self.installPath + "/bin/Linux-g++" )
+        self.envpath["PATH"].append( self.installPath + "/bin/"+self.os_ver.type+"-g++" )
         #self.envpath["LD_LIBRARY_PATH"].append( "$LCIO/lib" )
         self.envcmds.append(" . ${G4ENV_INIT} ")
 

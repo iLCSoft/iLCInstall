@@ -17,7 +17,7 @@ class BaseILC:
     os_ver = OSDetect()
 
     # shared libraries extension
-    if os_ver.type == "Mac":
+    if os_ver.type == "Darwin":
         shlib_ext=".dylib"
     else:
         shlib_ext=".so"
