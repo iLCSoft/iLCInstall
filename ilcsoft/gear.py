@@ -42,6 +42,13 @@ class GEAR(BaseILC):
         if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to install!!" )
 
+        # execute ctests
+        if( self.makeTests ):
+
+            if( os.system( "make tests 2>&1 | tee -a " + self.logfile ) != 0 ):
+                self.abort( "failed to compile gear tests" )
+
+
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
 
