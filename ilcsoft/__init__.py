@@ -1,3 +1,10 @@
+# python looks in sys.path when importing modules
+# sys.path[0] is the directory containing the script that was used to invoke the Python interpreter (where ilcsoft-install lives)
+import sys
+sys.path.append( sys.path[0] + '/ilcsoft' )
+#sys.path.append( sys.path[0] + '/ilcsoft/simtools' )
+#print 'DEBUG: sys.path: ' + str(sys.path)
+
 from ilcsoft import ILCSoft
 
 # core software
@@ -22,9 +29,9 @@ from overlay import Overlay
 from marlintpc import MarlinTPC
 from ckfit import CKFit
 
-# kek
-from simtoolsmaker import SimToolsMaker
-#from jupiter import Jupiter
+# simtools
+#from simtoolsmaker import SimToolsMaker
+from simtools import *  # modules defined in simtools/__init__.py
 
 # cmake
 from cmake import CMake
