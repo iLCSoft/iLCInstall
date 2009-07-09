@@ -2,6 +2,9 @@
 #
 # SimTools module
 #
+# THIS MODULE IS DEPRECATED!! Please use individual
+# simtools modules instead
+#
 # Author: Jan Engels, DESY
 # Date: Sep, 2007
 #
