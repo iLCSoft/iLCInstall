@@ -21,7 +21,7 @@ class Mokka(BaseILC):
         self.hasCMakeBuildSupport = False
         self.hasCMakeFindSupport = False
 
-        self.download.supportedTypes = [ "cvs" ]
+        self.download.supportedTypes = [ "svn", "svn-export", "cvs" ]
         # set some cvs variables
         # export CVSROOT=:pserver:anoncvs@pollin1.in2p3.fr:/home/flc/cvs
         self.download.accessmode = "pserver"
@@ -35,12 +35,23 @@ class Mokka(BaseILC):
     def setMode(self, mode):
         BaseILC.setMode(self, mode)
 
-        if( self.download.type != "cvs" ):
+        if( Version( self.version ) >= '7.0' ):
+            self.download.type = "svn"
+        else:
             self.download.type = "cvs"
-
+        
         if( self.download.username == "anonymous" ):
             self.download.username = "anoncvs"
             self.download.password = "%ilc%"
+
+    def init(self):
+        """ init Mokka """
+        BaseILC.init(self)
+
+        if( self.download.type == "svn" ):
+            self.download.accessmode = 'http'
+            self.download.server = 'llrforge.in2p3.fr'
+            self.download.root = 'svn'
 
     def compile(self):
         """ compile Mokka """
