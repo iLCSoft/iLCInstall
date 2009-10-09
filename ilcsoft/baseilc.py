@@ -258,9 +258,17 @@ class BaseILC:
 
                 # if download url not set by user generate a default one
                 if( len(self.download.url) == 0 ):
-                    self.download.url = "http://www-zeuthen.desy.de/lc-cgi-bin/cvsweb.cgi/" \
-                        + self.download.project + "/" + self.download.project + ".tar.gz?cvsroot=" \
-                        + self.download.root + ";only_with_tag=" + self.version + ";tarball=1"
+                    #self.download.url = "http://www-zeuthen.desy.de/lc-cgi-bin/cvsweb.cgi/" \
+                    #    + self.download.project + "/" + self.download.project + ".tar.gz?cvsroot=" \
+                    #    + self.download.root + ";only_with_tag=" + self.version + ";tarball=1"
+                    #https://svnsrv.desy.de/viewvc/ilctools/RAIDA/trunk/?view=tar
+                    if Version( self.version ) == 'head':
+                        svndirprefix='trunk'
+                    else:
+                        svndirprefix='tags/%s' % self.version
+                        
+                    self.download.url = "http://svnsrv.desy.de/viewvc/%s/%s/%s?view=tar" % ( self.download.root, self.download.project, svndirprefix )
+
             elif ( self.download.type[:3] == "svn" ):
                 if( not isinPath("svn") ):
                     self.abort( "svn not found on your system!!" )
@@ -271,7 +279,9 @@ class BaseILC:
                 if( self.download.username == "anonymous" ):
                     self.download.root = "public/" + self.download.root
                 else:
+                    # FIXME authentication using desy account
                     self.download.root = "svn/" + self.download.root
+                    #self.download.root = "desy/" + self.download.root
             else:
                 self.abort( "download type " + self.download.type + " not recognized!!" )
 
