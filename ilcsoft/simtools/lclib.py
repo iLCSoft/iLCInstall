@@ -36,7 +36,7 @@ class lclib(BaseILC):
 
         os.chdir( self.installPath )
 
-        if( os.system( "(configure && make ) 2>&1 | tee -a " + self.logfile ) != 0 ) :
+        if( os.system( "(./configure && make ) 2>&1 | tee -a " + self.logfile ) != 0 ) :
             self.abort( "failed to compile!!" )
 
     def postCheckDeps(self):
