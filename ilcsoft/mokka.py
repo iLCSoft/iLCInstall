@@ -37,6 +37,13 @@ class Mokka(BaseILC):
 
         if( Version( self.version ) >= '7.0' ):
             self.download.type = "svn"
+
+            self.download.svnurl = 'http://llrforge.in2p3.fr/svn/Mokka'
+
+            if( Version( self.version ) == 'HEAD' ):
+                self.download.svnurl += '/trunk'
+            else:
+                self.download.svnurl += '/tags/' + self.version
         else:
             self.download.type = "cvs"
         

@@ -47,6 +47,7 @@ from gsl import GSL
 from qt import QT
 from aidajni import AIDAJNI
 from jaida import JAIDA
+from dcap import dcap
 
 # external (without install support)
 from root import ROOT

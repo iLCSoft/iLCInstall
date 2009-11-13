@@ -159,6 +159,12 @@ class LCIO(BaseILC):
                 self.envcmake["BUILD_LCIO_TESTS"]="ON"
                 self.envcmake["BUILD_LCIO_EXAMPLES"]="ON"
                 self.envcmake["BUILD_F77_TESTJOBS"]="ON"
+
+            dc = self.envcmake.setdefault('BUILD_WITH_DCAP','OFF')
+
+            if dc == 'ON':
+                self.addDependency( ['dcap'] )
+                self.envcmake["DCAP_HOME"]=self.parent.module("dcap").installPath
                 
 
     def postCheckDeps(self):

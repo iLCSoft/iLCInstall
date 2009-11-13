@@ -6,7 +6,9 @@
  HEAD
 -----------------------------------------------------
  - added individual SimTools modules ( Akiya )
+ - added support for building the dcap library
  - bug fixes + cfg file for mac osx (K. Fujii)
+ - added tests in cmake for gear
 
 -----------------------------------------------------
  v01-05

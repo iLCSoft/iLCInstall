@@ -61,19 +61,7 @@ class BaseILC:
             if( not os.path.exists(self.installPath) ):
                 print "\t   + will be installed to: [ " + self.installPath + " ]"
                 print "\t   + download sources with [ " + self.download.type + " ] from:"
-                if( self.download.type == "wget" ):
-                    print "\t\t+ URL [ " + self.download.url + " ]"
-                elif ( self.download.type[:3] == "svn" ):
-                    if ( self.version == "HEAD" ):
-                        print "\t\t+ SVN [ %s://%s/%s/%s/trunk ]" % \
-                            (self.download.accessmode, self.download.server, self.download.root, self.download.project)
-                    else:
-                        print "\t\t+ SVN [ %s://%s/%s/%s/tags/%s ]" % \
-                            (self.download.accessmode, self.download.server, self.download.root, \
-                            self.download.project, self.version)
-                else:
-                    print "\t\t+ CVSROOT [ " + self.download.env["CVSROOT"] + " ]"
-
+                print self.download
             if( self.downloadOnly ):
                 print "\t   + download only: True"
             else:
@@ -258,30 +246,35 @@ class BaseILC:
 
                 # if download url not set by user generate a default one
                 if( len(self.download.url) == 0 ):
-                    #self.download.url = "http://www-zeuthen.desy.de/lc-cgi-bin/cvsweb.cgi/" \
-                    #    + self.download.project + "/" + self.download.project + ".tar.gz?cvsroot=" \
-                    #    + self.download.root + ";only_with_tag=" + self.version + ";tarball=1"
-                    #https://svnsrv.desy.de/viewvc/ilctools/RAIDA/trunk/?view=tar
                     if Version( self.version ) == 'head':
-                        svndirprefix='trunk'
+                        dir='trunk'
                     else:
-                        svndirprefix='tags/%s' % self.version
+                        dir='tags/%s' % self.version
                         
-                    self.download.url = "http://svnsrv.desy.de/viewvc/%s/%s/%s?view=tar" % ( self.download.root, self.download.project, svndirprefix )
+                    self.download.url = "http://svnsrv.desy.de/viewvc/%s/%s/%s?view=tar" % ( self.download.root, self.download.project, dir )
 
             elif ( self.download.type[:3] == "svn" ):
                 if( not isinPath("svn") ):
                     self.abort( "svn not found on your system!!" )
 
-                # initialize svn settings for desy
-                self.download.accessmode = "https"
-                self.download.server = "svnsrv.desy.de"
-                if( self.download.username == "anonymous" ):
-                    self.download.root = "public/" + self.download.root
-                else:
-                    # FIXME authentication using desy account
-                    self.download.root = "svn/" + self.download.root
-                    #self.download.root = "desy/" + self.download.root
+                # if svnurl not set by user generate a default one
+                if( len(self.download.svnurl) == 0 ):
+                    # initialize svn settings for desy
+                    self.download.accessmode = "https"
+                    self.download.server = "svnsrv.desy.de"
+                    if( self.download.username == "anonymous" ):
+                        self.download.root = "public/" + self.download.root
+                    else:
+                        # FIXME authentication using desy account
+                        self.download.root = "svn/" + self.download.root
+                        #self.download.root = "desy/" + self.download.root
+
+                    self.download.svnurl = "%s://%s/%s/%s/" % (self.download.accessmode,self.download.server,self.download.root,self.download.project)
+
+                    if( self.version == "HEAD" ):
+                        self.download.svnurl += 'trunk'
+                    else:
+                        self.download.svnurl += 'tags/'+self.version
             else:
                 self.abort( "download type " + self.download.type + " not recognized!!" )
 
@@ -555,7 +548,7 @@ class BaseILC:
         trymakedir( os.path.dirname( self.installPath ))
     
         os.chdir( os.path.dirname(self.installPath) )
-        
+
         if( self.download.type == "cvs" or self.download.type == "ccvssh" ):
 
             # set env
@@ -601,18 +594,16 @@ class BaseILC:
                     self.abort( "Problems ocurred downloading sources with "+self.download.type+"!!")
         
         elif( self.download.type[:3] == "svn" ):
+
             if( self.download.type == "svn-export" ):
-                svncmd = "export"
+                svncmd = "svn export"
             else:
-                svncmd = "checkout"
+                svncmd = "svn checkout"
 
             if( self.version == "HEAD" ):
-                cmd="svn %s %s://%s/%s/%s/trunk HEAD" % \
-                (svncmd, self.download.accessmode,self.download.server,self.download.root,self.download.project)
+                cmd="%s %s HEAD" % (svncmd, self.download.svnurl)
             else:
-                cmd="svn %s %s://%s/%s/%s/tags/%s %s" % \
-                    (svncmd, self.download.accessmode,self.download.server,self.download.root,\
-                    self.download.project,self.version,self.version)
+                cmd="%s %s %s" % (svncmd, self.download.svnurl, self.version)
 
             print "svn download cmd:",cmd
             if( os.system( cmd ) != 0 ):
@@ -1127,7 +1118,7 @@ class BaseILC:
 #--------------------------------------------------------------------------------
 
 class Download:
-    """ Small class responsible for the downloads """
+    """ class responsible for the downloads """
 
     def __init__(self, parent):
         self.parent = parent                        # parent class responsible for this download
@@ -1138,11 +1129,23 @@ class Download:
         self.server = "cvssrv.ifh.de"               # server
         self.accessmode = "ext"                     # server access mode
         self.url = ""                               # url for getting tarball with wget
+        self.svnurl = ""                            # url for getting tarball with wget
         self.tarball = ""                           # name of the tarball used for wget downloads
         self.env = {}                               # environment (CVSROOT, CVS_RSH)
         self.type = "wget"                          # download type (wget, cvs, ccvssh)
         self.supportHEAD = True                     # support for downloading HEAD version
         self.supportedTypes = [ "wget", "svn", "svn-export", "ccvssh" ]  # supported download types for the module
+        self.url = {}
+
+    def __repr__(self):
+        if( self.type == "wget" ):
+            return "\t\t+ URL [ " + self.url + " ]"
+        elif ( self.type[:3] == "svn" ):
+            return "\t\t+ SVN [ " + self.svnurl + " ]"
+        else:
+            return "\t\t+ CVSROOT [ " + self.env["CVSROOT"] + " ]"
+
+
 
 #--------------------------------------------------------------------------------
 

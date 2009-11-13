@@ -9,6 +9,7 @@
 
 # custom imports
 from marlinpkg import MarlinPKG
+from util import *
 
 class MarlinTPC(MarlinPKG):
     """ Responsible for the MarlinTPC installation process. """
@@ -16,8 +17,6 @@ class MarlinTPC(MarlinPKG):
     def __init__(self, userInput):
         MarlinPKG.__init__(self, "MarlinTPC", userInput)
 
-        # svn export svn://pi.physik.uni-bonn.de/MarlinTPC/trunk HEAD
-        # svn export svn://pi.physik.uni-bonn.de/MarlinTPC/tags -version-
         self.download.supportedTypes = [ "svn-export", "svn" ]
 
         self.reqfiles = [["lib/libMarlinTPCReconstruction.a", "lib/libMarlinTPCReconstruction.so", "lib/libMarlinTPCReconstruction.dylib"],
@@ -31,6 +30,14 @@ class MarlinTPC(MarlinPKG):
         # avoid warning 'download forced....'
         if self.download.type[:3] != "svn":
             self.download.type="svn-export"
+
+        self.download.svnurl = 'svn://pi.physik.uni-bonn.de/MarlinTPC'
+
+        if( Version( self.version ) == 'HEAD' ):
+            self.download.svnurl += '/trunk'
+        else:
+            self.download.svnurl += '/tags/' + self.version
+
 
     def init(self):
         MarlinPKG.init(self)
