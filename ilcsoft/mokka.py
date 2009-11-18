@@ -64,13 +64,23 @@ class Mokka(BaseILC):
         """ compile Mokka """
 
         os.chdir( self.installPath + "/source" )
-        
+
+        # FIXME this must get fixed in Mokka
+        ldflags = os.getenv('LDFLAGS')
+
+        if ldflags:
+            del(os.environ['LDFLAGS'])
+
+        # TODO for grid binary: unset G4VIS_USE_VRML G4VIS_USE_OPENGLXM G4VIS_USE_OPENGLX G4VIS_USE_OIX_DRIVER
+
         if self.rebuild:
             os.system( ". ${G4ENV_INIT}; unset G4UI_USE_XAW ; unset G4UI_USE_XM ; make clean 2>&1 | tee -a "+self.logfile )
             
-        if( os.system( ". ${G4ENV_INIT}; unset G4UI_USE_XAW ; unset G4UI_USE_XM ; make 2>&1 | tee -a " \
-                + self.logfile ) != 0 ):
+        if( os.system( ". ${G4ENV_INIT}; unset G4UI_USE_XAW ; unset G4UI_USE_XM ; make 2>&1 | tee -a "+self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
+
+        if ldflags:
+            os.environ['LDFLAGS'] = ldflags
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
@@ -82,5 +92,7 @@ class Mokka(BaseILC):
         self.envpath["PATH"].append( self.installPath + "/bin/"+self.os_ver.type+"-g++" )
         #self.envpath["LD_LIBRARY_PATH"].append( "$LCIO/lib" )
         self.envcmds.append(" . ${G4ENV_INIT} ")
+        # FIXME this must get fixed in Mokka
+        self.envcmds.append("unset LDFLAGS")
 
 
