@@ -1,0 +1,10 @@
+Index: SiliconDigiConfig.cmake.in
+===================================================================
+RCS file: /marlinreco/SiliconDigi/SiliconDigiConfig.cmake.in,v
+retrieving revision 1.6
+diff -r1.6 SiliconDigiConfig.cmake.in
+159c159,160
+< 	MARK_AS_ADVANCED( @PROJECT_NAME@_INCLUDE_DIRS @PROJECT_NAME@_LIBRARIES )
+---
+>     SET( @PROJECT_NAME@_LIBRARY_DIRS "@CMAKE_INSTALL_PREFIX@/lib" )
+>     MARK_AS_ADVANCED( @PROJECT_NAME@_INCLUDE_DIRS @PROJECT_NAME@_LIBRARY_DIRS @PROJECT_NAME@_LIBRARIES )

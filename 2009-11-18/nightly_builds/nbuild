@@ -1,0 +1,93 @@
+#!/usr/bin/python
+
+from commands import getoutput
+import sys
+import glob
+import shutil
+import time
+import os.path
+
+
+#----- settings --------------------------------------------------------------
+# define how much lines from the logfile's tail should be sent in the email
+num_error_lines=150
+# number of days to keep on disk
+max_days=3
+# initialize date
+#date_iso8601 = getoutput( "date --iso-8601" )
+date_iso8601 = getoutput( "date '+20%y-%m-%d'" )
+# you can set the mail addresses in the config file
+mail_addresses=[]
+#-----------------------------------------------------------------------------
+
+# check args
+if( len(sys.argv) < 2 ):
+    print "usage: %s install.cfg" % (sys.argv[0],)
+    sys.exit(1)
+
+# extract config file
+config_file = os.path.abspath(sys.argv[1])
+config_file_basename = config_file[config_file.rfind( '/' )+1:config_file.rfind(".")]
+config_file_extension = config_file[config_file.rfind(".")+1:]
+
+if( not os.path.exists( config_file )):
+    print "config file [%s] does not exist" % (config_file,)
+    sys.exit(1)
+
+print "+ Read configuration file [ %s ]\n" % (config_file,)
+
+ex_handler=None
+
+try:
+    from ilcsoft import *
+    execfile( config_file )
+
+    # pass the name of the config file to ilcsoft
+    ilcsoft.config_file = config_file
+    ilcsoft.config_file_prefix = config_file_basename
+    ilcsoft.config_file_suffix = config_file_extension
+
+    ilcsoft.init()
+
+    ## delete old night builds (won't work after year 2999 ;)
+    dirs = glob.glob(os.path.dirname(os.path.dirname(ilcsoft.installPath))+"/2*")
+    dirs.sort()
+    while( len( dirs ) >= max_days ):
+        print "removing nightly build: ", dirs[0]
+        shutil.rmtree( dirs[0] )
+        dirs = dirs[1:]
+
+    ilcsoft.makeinstall()
+
+except SystemExit, e:
+    # ilcinstall called the abort method
+    build_status="FAILED"
+    # the exit exception should still be raised at the end
+    ex_handler=e
+
+except Exception, e:
+    # some python error ccurred
+    build_status="FAILED"
+    os.system( 'echo "*** Error occured in ilcinstall: %s" >> %s ' % (e, ilcsoft.logfile) )
+    ex_handler=e
+
+else:
+    # no exception was raised
+    build_status="SUCCESS"
+
+# mail subject title
+mail_subject = "[Nightly Build] (%s): %s] %s %s" % \
+    (ilcsoft.os.shortver, build_status, ilcsoft.config_file_prefix, date_iso8601)
+
+# mail output of nightly build
+for addr in mail_addresses:
+    if build_status == "FAILED":
+        os.system( 'tail -n%s %s | mail -s"%s" %s' % (num_error_lines, ilcsoft.logfile, mail_subject, addr) )
+    else:
+        #os.system( 'mail-files %s ascii "%s" "%s"' % (addr, mail_subject, config_file) )
+        os.system( 'cat "%s" | mail -s "%s" %s' % (config_file, mail_subject, addr))
+    time.sleep(1)
+
+if ex_handler:
+    raise ex_handler
+

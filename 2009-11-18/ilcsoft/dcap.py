@@ -1,0 +1,56 @@
+##################################################
+#
+# dcap module
+#
+# Author: Jan Engels, DESY
+# Date: Nov, 2009
+#
+##################################################
+
+# custom imports
+from baseilc import BaseILC
+from util import *
+
+
+class dcap(BaseILC):
+    """ Responsible for building dcap library """
+    
+    def __init__(self, userInput):
+        BaseILC.__init__(self, userInput, "dcap", "dcap")
+
+        self.hasCMakeBuildSupport = False
+        self.hasCMakeFindSupport = False
+
+        self.download.supportedTypes = [ "svn", "svn-export" ]
+
+        self.reqfiles = [ ["lib/libdcap.so"] ]
+
+    def setMode(self, mode):
+        BaseILC.setMode(self, mode)
+
+        # avoid warning 'download forced....'
+        if self.download.type[:3] != "svn":
+            self.download.type='svn-export'
+
+        if( Version( self.version ) == 'HEAD' ):
+            self.download.svnurl = 'http://svn.dcache.org/dCache/trunk/modules/dcap'
+        else:
+            # 1.9.5-5
+            self.download.svnurl = 'http://svn.dcache.org/dCache/tags/%s/modules/dcap' % self.version
+
+    def compile(self):
+        os.chdir( self.installPath )
+        
+        if self.rebuild:
+            os.system( "make clean 2>&1 | tee -a " + self.logfile )
+        
+        if( os.system( "make CC=\"gcc ${CFLAGS}\" LD=\"gcc ${LDFLAGS}\" ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
+            self.abort( "failed to compile!!" )
+
+        if( os.system( "make CC=\"gcc ${CFLAGS}\" LD=\"gcc ${LDFLAGS}\" BIN_PATH=$PWD install 2>&1 | tee -a " + self.logfile ) != 0 ):
+            self.abort( "failed to compile!!" )
+
+    def postCheckDeps(self):
+        BaseILC.postCheckDeps(self)
+        self.env["DCAP_HOME"] = self.installPath
+        self.envpath["LD_LIBRARY_PATH"].append( self.installPath )

@@ -1,0 +1,101 @@
+Index: MarlinRecoConfig.cmake.in
+===================================================================
+RCS file: /marlinreco/MarlinReco/MarlinRecoConfig.cmake.in,v
+retrieving revision 1.5
+diff -r1.5 MarlinRecoConfig.cmake.in
+2c2
+< # cmake configuration file for @PROJECT_NAME@
+---
+> # cmake configuration file for MarlinReco
+6,7c6,7
+< SET( @PROJECT_NAME@_FOUND FALSE )
+< MARK_AS_ADVANCED( @PROJECT_NAME@_FOUND )
+---
+> SET( MarlinReco_FOUND FALSE )
+> MARK_AS_ADVANCED( MarlinReco_FOUND )
+15a16,17
+>     /usr/lib/gcc/x86_64-redhat-linux/3.4.3
+>     /usr/lib64
+21c23
+<     MESSAGE( STATUS "Check for @PROJECT_NAME@: failed to find g2c library!!" )
+---
+>     MESSAGE( STATUS "Check for MarlinReco: failed to find g2c library!!" )
+22a25
+>     MESSAGE( STATUS "Check for libg2c: ${G2C_LIB}" )
+27c30
+< SET( @PROJECT_NAME@_INCLUDE_DIR @PROJECT_NAME@_INCLUDE_DIR-NOTFOUND )
+---
+> SET( MarlinReco_INCLUDE_DIR MarlinReco_INCLUDE_DIR-NOTFOUND )
+29c32
+< FIND_PATH( @PROJECT_NAME@_INCLUDE_DIR
+---
+> FIND_PATH( MarlinReco_INCLUDE_DIR
+35,40c38,43
+< IF( NOT @PROJECT_NAME@_INCLUDE_DIR )
+<     MESSAGE( STATUS "Check for @PROJECT_NAME@: ${@PROJECT_NAME@_HOME}"
+<                     " -- failed to find @PROJECT_NAME@ include directory!!" )
+< ELSE( NOT @PROJECT_NAME@_INCLUDE_DIR )
+<     MARK_AS_ADVANCED( @PROJECT_NAME@_INCLUDE_DIR )
+< ENDIF( NOT @PROJECT_NAME@_INCLUDE_DIR )
+---
+> IF( NOT MarlinReco_INCLUDE_DIR )
+>     MESSAGE( STATUS "Check for MarlinReco: ${MarlinReco_HOME}"
+>                     " -- failed to find MarlinReco include directory!!" )
+> ELSE( NOT MarlinReco_INCLUDE_DIR )
+>     MARK_AS_ADVANCED( MarlinReco_INCLUDE_DIR )
+> ENDIF( NOT MarlinReco_INCLUDE_DIR )
+43c46
+< SET( @PROJECT_NAME@_LIB @PROJECT_NAME@_LIB-NOTFOUND )
+---
+> SET( MarlinReco_LIB MarlinReco_LIB-NOTFOUND )
+45,46c48,49
+< FIND_LIBRARY( @PROJECT_NAME@_LIB
+<     NAMES @PROJECT_NAME@
+---
+> FIND_LIBRARY( MarlinReco_LIB
+>     NAMES MarlinReco
+51,56c54,59
+< IF( NOT @PROJECT_NAME@_LIB )
+<     MESSAGE( STATUS "Check for @PROJECT_NAME@: ${@PROJECT_NAME@_HOME}"
+<                     " -- failed to find @PROJECT_NAME@ library!!" )
+< ELSE( NOT @PROJECT_NAME@_LIB )
+<     MARK_AS_ADVANCED( @PROJECT_NAME@_LIB )
+< ENDIF( NOT @PROJECT_NAME@_LIB )
+---
+> IF( NOT MarlinReco_LIB )
+>     MESSAGE( STATUS "Check for MarlinReco: ${MarlinReco_HOME}"
+>                     " -- failed to find MarlinReco library!!" )
+> ELSE( NOT MarlinReco_LIB )
+>     MARK_AS_ADVANCED( MarlinReco_LIB )
+> ENDIF( NOT MarlinReco_LIB )
+60,70c63,74
+< IF( @PROJECT_NAME@_INCLUDE_DIR AND @PROJECT_NAME@_LIB AND G2C_LIB )
+<     SET( @PROJECT_NAME@_FOUND TRUE )
+<     SET( @PROJECT_NAME@_INCLUDE_DIRS ${@PROJECT_NAME@_INCLUDE_DIR} )
+<     SET( @PROJECT_NAME@_LIBRARIES ${G2C_LIB} ${@PROJECT_NAME@_LIB} )
+<     MARK_AS_ADVANCED( @PROJECT_NAME@_INCLUDE_DIRS @PROJECT_NAME@_LIBRARIES )
+<     MESSAGE( STATUS "Check for @PROJECT_NAME@: ${@PROJECT_NAME@_HOME} -- works" )
+< ELSE( @PROJECT_NAME@_INCLUDE_DIR AND @PROJECT_NAME@_LIB AND G2C_LIB )
+<     IF( @PROJECT_NAME@_FIND_REQUIRED )
+<         MESSAGE( FATAL_ERROR "Check for @PROJECT_NAME@: ${@PROJECT_NAME@_HOME} -- failed!!" )
+<     ELSE( @PROJECT_NAME@_FIND_REQUIRED )
+<         MESSAGE( STATUS "Check for @PROJECT_NAME@: ${@PROJECT_NAME@_HOME}"
+---
+> IF( MarlinReco_INCLUDE_DIR AND MarlinReco_LIB AND G2C_LIB )
+>     SET( MarlinReco_FOUND TRUE )
+>     SET( MarlinReco_INCLUDE_DIRS ${MarlinReco_INCLUDE_DIR} )
+>     SET( MarlinReco_LIBRARY_DIRS "@CMAKE_INSTALL_PREFIX@/lib" )
+>     SET( MarlinReco_LIBRARIES ${G2C_LIB} ${MarlinReco_LIB} )
+>     MARK_AS_ADVANCED( MarlinReco_INCLUDE_DIRS MarlinReco_LIBRARY_DIRS MarlinReco_LIBRARIES )
+>     MESSAGE( STATUS "Check for MarlinReco: ${MarlinReco_HOME} -- works" )
+> ELSE( MarlinReco_INCLUDE_DIR AND MarlinReco_LIB AND G2C_LIB )
+>     IF( MarlinReco_FIND_REQUIRED )
+>         MESSAGE( FATAL_ERROR "Check for MarlinReco: ${MarlinReco_HOME} -- failed!!" )
+>     ELSE( MarlinReco_FIND_REQUIRED )
+>         MESSAGE( STATUS "Check for MarlinReco: ${MarlinReco_HOME}"
+72,73c76,77
+<     ENDIF( @PROJECT_NAME@_FIND_REQUIRED )
+< ENDIF( @PROJECT_NAME@_INCLUDE_DIR AND @PROJECT_NAME@_LIB AND G2C_LIB )
+---
+>     ENDIF( MarlinReco_FIND_REQUIRED )
+> ENDIF( MarlinReco_INCLUDE_DIR AND MarlinReco_LIB AND G2C_LIB )

@@ -1,0 +1,65 @@
+Index: src/cpp/src/UTIL/lXDR.cc
+===================================================================
+RCS file: /cvs/lcio/lcio/src/cpp/src/UTIL/lXDR.cc,v
+retrieving revision 1.3
+diff -r1.3 lXDR.cc
+119,121c119,126
+<       long nr;
+<       if ((nr = fread(l, 4, 1, _fp)) != 1) return(_error = LXDR_READERROR);
+<       *l = ntohl(*l);
+---
+>       // je: in some architectures where long is 8 byte long this code causes problems 
+>       //long nr;
+>       //if ((nr = fread(l, 4, 1, _fp)) != 1) return(_error = LXDR_READERROR);
+>       //*l = ntohl(*l);
+> 
+>       int32_t buf;
+>       if (fread(&buf, 4, 1, _fp) != 1) return(_error = LXDR_READERROR);
+>       *l = ((int32_t)ntohl(buf));
+143c148,151
+<       *((long *) f) = ntohl(*((long *) f));
+---
+>       // je: in some architectures where long is 8 byte long this code causes problems
+>       //*((long *) f) = ntohl(*((long *) f));
+> 
+>       *((int32_t *) f) = ntohl(*((int32_t *) f));
+188,191c196,217
+<    if (fread(s, 4, length, _fp) != (unsigned long) length) {
+<       _error = LXDR_READERROR;
+<       delete [] s;
+<       return(0);
+---
+>    // je: in some architectures where long is 8 byte long this code causes problems
+>    //if (fread(s, 4, length, _fp) != (unsigned long) length) {
+>    //   _error = LXDR_READERROR;
+>    //   delete [] s;
+>    //   return(0);
+>    //}
+>    //if (_hasNetworkOrder == false) for (long i = 0; i < length; i++) s[i] = ntohl(s[i]);
+> 
+>    int32_t *buf = new int32_t[length];
+>    if (fread(buf, 4, length, _fp) != (unsigned long) length) {
+>        _error = LXDR_READERROR;
+>        delete [] buf;
+>        delete [] s;
+>        return(0);
+>    }
+>    for (long i = 0; i < length; i++){
+>        if (_hasNetworkOrder == false){
+>            s[i] = ((int32_t)ntohl(buf[i]));
+>        }
+>        else{
+>             s[i] = (long)buf[i];
+>        }
+193c219
+<    if (_hasNetworkOrder == false) for (long i = 0; i < length; i++) s[i] = ntohl(s[i]);
+---
+>    delete [] buf;
+215a242
+>    // je: FIXME this will cause problems in architectures where long is not 4 byte long
+221a249
+>    // je: FIXME what happens if _hasNetworkOrder == true?!
+237a266
+>       // je: FIXME this will cause problems in architectures where long is not 4 byte long
+285a315
+>    // je: FIXME this will cause problems in architectures where long is not 4 byte long

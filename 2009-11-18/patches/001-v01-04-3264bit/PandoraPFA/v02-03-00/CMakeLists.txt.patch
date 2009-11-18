@@ -1,0 +1,58 @@
+Index: CMakeLists.txt
+===================================================================
+RCS file: /marlinreco/PandoraPFA/CMakeLists.txt,v
+retrieving revision 1.20
+diff -r1.20 CMakeLists.txt
+35a36
+> OPTION( BUILD_32BIT_COMPATIBLE "Set to ON to build in 32 bit compatibility mode" ON )
+56a58,83
+> #---------------- 32/64 bit issues ---------------------------------------
+> #INCLUDE( CheckTypeSize )
+> #CHECK_TYPE_SIZE( "void*" SIZE_OF_VOID_P )
+> 
+> IF( CMAKE_SIZEOF_VOID_P EQUAL 4 )
+>     MESSAGE( STATUS "32 bit architecture detected" )
+> ENDIF()
+> 
+> IF( CMAKE_SIZEOF_VOID_P EQUAL 8 )
+>     MESSAGE( STATUS "64 bit architecture detected" )
+> 
+>     IF( BUILD_32BIT_COMPATIBLE )
+>         IF( COMMAND SET_PROPERTY )
+>             SET_PROPERTY(GLOBAL PROPERTY FIND_LIBRARY_USE_LIB64_PATHS 0)
+>             SET( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m32" )
+>         ELSE()
+>             MESSAGE( FATAL_ERROR "to build in 32 bit compatibility mode you need cmake >= 2.6" )
+>         ENDIF()
+>         MESSAGE( STATUS "Build in 32 bit compatibility mode" )
+>     ELSE()
+>         MESSAGE( STATUS "Build in native 64 bit mode" )
+>     ENDIF()
+> ENDIF()
+> 
+> #-------------------------------------------------------------------------
+> 
+124,127c151,152
+< SET( ${PROJECT_NAME}_SOVERSION
+<     "${${PROJECT_NAME}_MAJOR_VERSION}.${${PROJECT_NAME}_MINOR_VERSION}" )
+< SET( ${PROJECT_NAME}_VERSION
+<     "${${PROJECT_NAME}_SOVERSION}.${${PROJECT_NAME}_PATCH_LEVEL}" )
+---
+> SET( ${PROJECT_NAME}_SOVERSION "${${PROJECT_NAME}_MAJOR_VERSION}.${${PROJECT_NAME}_MINOR_VERSION}" )
+> SET( ${PROJECT_NAME}_VERSION "${${PROJECT_NAME}_SOVERSION}.${${PROJECT_NAME}_PATCH_LEVEL}" )
+144,147c169,170
+< SET( EXECUTABLE_OUTPUT_PATH "${PROJECT_BINARY_DIR}/bin" CACHE PATH
+<     "EXECUTABLE_OUTPUT_PATH" FORCE )
+< SET( LIBRARY_OUTPUT_PATH "${PROJECT_BINARY_DIR}/lib" CACHE PATH
+<     "LIBRARY_OUTPUT_PATH" FORCE )
+---
+> SET( EXECUTABLE_OUTPUT_PATH "${PROJECT_BINARY_DIR}/bin" CACHE PATH "EXECUTABLE_OUTPUT_PATH" FORCE )
+> SET( LIBRARY_OUTPUT_PATH "${PROJECT_BINARY_DIR}/lib" CACHE PATH "LIBRARY_OUTPUT_PATH" FORCE )
+204a228,230
+> IF( CMAKE_SIZEOF_VOID_P EQUAL 8 )
+>     MESSAGE( STATUS "BUILD_32BIT_COMPATIBLE = ${BUILD_32BIT_COMPATIBLE}" )
+> ENDIF()
+227a254
+> INSTALL( FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}BuildSettings.cmake" DESTINATION lib/cmake )
+230a258
+> INSTALL( FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}LibDeps.cmake" DESTINATION lib/cmake )

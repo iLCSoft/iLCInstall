@@ -1,0 +1,10 @@
+Index: LCFIVertexConfig.cmake.in
+===================================================================
+RCS file: /marlinreco/LCFIVertex/LCFIVertexConfig.cmake.in,v
+retrieving revision 1.2
+diff -r1.2 LCFIVertexConfig.cmake.in
+104c104,105
+< 	MARK_AS_ADVANCED( @PROJECT_NAME@_INCLUDE_DIRS @PROJECT_NAME@_LIBRARIES )
+---
+>     SET( @PROJECT_NAME@_LIBRARY_DIRS "@CMAKE_INSTALL_PREFIX@/lib" )
+>     MARK_AS_ADVANCED( @PROJECT_NAME@_INCLUDE_DIRS @PROJECT_NAME@_LIBRARY_DIRS @PROJECT_NAME@_LIBRARIES )

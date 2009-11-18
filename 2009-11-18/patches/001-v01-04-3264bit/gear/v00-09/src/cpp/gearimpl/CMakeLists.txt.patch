@@ -1,0 +1,49 @@
+Index: src/cpp/gearimpl/CMakeLists.txt
+===================================================================
+RCS file: /gear/gear/src/cpp/gearimpl/CMakeLists.txt,v
+retrieving revision 1.3
+diff -r1.3 CMakeLists.txt
+7,16d6
+< # require proper c++
+< ADD_DEFINITIONS( "-Wall -ansi -pedantic" )
+< 
+< # need long long for int64 for now
+< # FIXME: should establish wether we are on a 32bit or 64 bit machine...
+< ADD_DEFINITIONS( "-Wno-long-long" )
+< 
+< # include directories
+< INCLUDE_DIRECTORIES( ../include )
+< 
+21c11
+< ADD_LIBRARY( lib_${PROJECT_NAME} ${lib_srcs} )
+---
+> ADD_LIBRARY( lib_GEAR ${lib_srcs} )
+23,24c13,17
+< # create symbolic lib target for calling target lib_XXX
+< ADD_CUSTOM_TARGET( lib DEPENDS lib_${PROJECT_NAME} )
+---
+> # cmake 2.4.6 cannot find the lib target
+> IF( "${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}" GREATER 2.4.6 )
+>     # tell lib target to call libGEAR
+>     ADD_DEPENDENCIES( lib lib_GEAR )
+> ENDIF()
+27c20
+< SET_TARGET_PROPERTIES( lib_${PROJECT_NAME} PROPERTIES
+---
+> SET_TARGET_PROPERTIES( lib_GEAR PROPERTIES
+29,30c22,23
+<     VERSION ${${PROJECT_NAME}_VERSION}
+<     SOVERSION ${${PROJECT_NAME}_SOVERSION}
+---
+>     VERSION ${GEAR_VERSION}
+>     SOVERSION ${GEAR_SOVERSION}
+36,38d28
+< # link gear library with gearxml
+< #TARGET_LINK_LIBRARIES( lib_${PROJECT_NAME} lib_GEARXML )
+< 
+40c30
+< INSTALL( TARGETS lib_${PROJECT_NAME} DESTINATION lib PERMISSIONS
+---
+> INSTALL( TARGETS lib_GEAR DESTINATION lib PERMISSIONS
+43a34
+> 
