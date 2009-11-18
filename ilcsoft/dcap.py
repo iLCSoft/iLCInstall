@@ -23,10 +23,14 @@ class dcap(BaseILC):
 
         self.download.supportedTypes = [ "svn", "svn-export" ]
 
-        self.reqfiles = [ ["libdcap.so"] ]
+        self.reqfiles = [ ["lib/libdcap.so"] ]
 
-    def init(self):
-        BaseILC.init(self)
+    def setMode(self, mode):
+        BaseILC.setMode(self, mode)
+
+        # avoid warning 'download forced....'
+        if self.download.type[:3] != "svn":
+            self.download.type='svn-export'
 
         if( Version( self.version ) == 'HEAD' ):
             self.download.svnurl = 'http://svn.dcache.org/dCache/trunk/modules/dcap'
@@ -39,17 +43,12 @@ class dcap(BaseILC):
         
         if self.rebuild:
             os.system( "make clean 2>&1 | tee -a " + self.logfile )
-            
-        if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
+        
+        if( os.system( "make CC=\"gcc ${CFLAGS}\" LD=\"gcc ${LDFLAGS}\" ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
 
-        # FIXME this should be done in dcap with make install!!
-        trymakedir( "lib" )
-        trymakedir( "include" )
-        if( os.system( "cp -va lib*so* lib 2>&1 | tee -a " + self.logfile ) != 0 ):
-            self.abort( "failed to install!!" )
-        if( os.system( "cp -va *.h include 2>&1 | tee -a " + self.logfile ) != 0 ):
-            self.abort( "failed to install!!" )
+        if( os.system( "make CC=\"gcc ${CFLAGS}\" LD=\"gcc ${LDFLAGS}\" BIN_PATH=$PWD install 2>&1 | tee -a " + self.logfile ) != 0 ):
+            self.abort( "failed to compile!!" )
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
