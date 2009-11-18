@@ -29,7 +29,7 @@ class dcap(BaseILC):
         BaseILC.setMode(self, mode)
 
         # avoid warning 'download forced....'
-        if self.download.type[:3] != "svn":
+        if self.download.type != "svn":
             self.download.type='svn-export'
 
         if( Version( self.version ) == 'HEAD' ):

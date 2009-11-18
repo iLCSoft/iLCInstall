@@ -29,6 +29,7 @@ class MarlinPKG(BaseILC):
     def __init__(self, name, userInput):
         BaseILC.__init__(self, userInput, name, name)
         self.reqfiles = [ [ str("lib/lib" + name + ".a"), str("lib/lib" + name + ".so"), str("lib/lib" + name + ".dylib") ] ]
+        self.reqmodules=[ 'LCIO', 'Marlin' ]
     
     def init(self):
         BaseILC.init(self)

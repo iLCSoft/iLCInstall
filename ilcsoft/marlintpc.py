@@ -28,7 +28,7 @@ class MarlinTPC(MarlinPKG):
         MarlinPKG.setMode(self, mode)
         
         # avoid warning 'download forced....'
-        if self.download.type[:3] != "svn":
+        if self.download.type != "svn":
             self.download.type="svn-export"
 
         self.download.svnurl = 'svn://pi.physik.uni-bonn.de/MarlinTPC'

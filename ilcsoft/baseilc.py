@@ -10,6 +10,22 @@
 # custom imports
 from util import *
 
+import logging
+
+log = logging.getLogger('ilcinstall')
+log.setLevel(logging.DEBUG)
+
+ch = logging.StreamHandler()
+ch.setLevel(logging.INFO)
+#ch.setLevel(logging.DEBUG)
+#
+## bind the console handler to the root logger
+##logging.getLogger().addHandler(ch)
+#
+## bind the console handler to the logger
+log.addHandler(ch)
+
+
 class BaseILC:
     """ Base class for ILC Software modules. """
 
@@ -262,12 +278,14 @@ class BaseILC:
                     # initialize svn settings for desy
                     self.download.accessmode = "https"
                     self.download.server = "svnsrv.desy.de"
-                    if( self.download.username == "anonymous" ):
-                        self.download.root = "public/" + self.download.root
-                    else:
-                        # FIXME authentication using desy account
+                    #if( self.download.username == "anonymous" ):
+                    #    self.download.root = "public/" + self.download.root
+                    if( self.download.type == 'svn-desy' ):
+                        self.download.root = "desy/" + self.download.root
+                    elif( self.download.type == 'svn-p12cert' ):
                         self.download.root = "svn/" + self.download.root
-                        #self.download.root = "desy/" + self.download.root
+                    else:
+                        self.download.root = "public/" + self.download.root
 
                     self.download.svnurl = "%s://%s/%s/%s/" % (self.download.accessmode,self.download.server,self.download.root,self.download.project)
 
@@ -402,6 +420,8 @@ class BaseILC:
         if( self.mode == "install" ):
             return True
 
+        log.debug( 'Checking dependencies of %s', self.name )
+        
         file = self.realPath() + "/.dependencies"
         
         r = True
@@ -421,10 +441,14 @@ class BaseILC:
                 filedeplist[ tokens[0] ] = tokens[1]
         f.close()
 
+        log.debug( 'Dependencies read from file: %s', filedeplist )
+
         # get actual dependecies
         deplist={}
         self.getDepList(deplist)
         del deplist[self.name]
+
+        log.debug( 'Dependencies found in current cfg file: %s', deplist )
         
         # compare dependencies
         for k, v in filedeplist.iteritems():
@@ -1134,7 +1158,7 @@ class Download:
         self.env = {}                               # environment (CVSROOT, CVS_RSH)
         self.type = "wget"                          # download type (wget, cvs, ccvssh)
         self.supportHEAD = True                     # support for downloading HEAD version
-        self.supportedTypes = [ "wget", "svn", "svn-export", "ccvssh" ]  # supported download types for the module
+        self.supportedTypes = [ "wget", "svn", "svn-desy", "svn-p12cert", "svn-export", "ccvssh" ]  # supported download types for the module
         self.url = {}
 
     def __repr__(self):
