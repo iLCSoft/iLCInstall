@@ -3,12 +3,15 @@
 #####################################################
 
 -----------------------------------------------------
- HEAD
+ v01-07
 -----------------------------------------------------
+ - changed default download type to svn
  - added individual SimTools modules ( Akiya )
- - added support for building the dcap library
- - bug fixes + cfg file for mac osx (K. Fujii)
+ - added new module for building the dcap library
+ - added svn download support for mokka
  - added tests in cmake for gear
+ - added config for mac osx nightly builds (K. Fujii)
+ - bug fixes and improvements for mac osx (K. Fujii)
 
 -----------------------------------------------------
  v01-05
