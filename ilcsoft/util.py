@@ -70,12 +70,12 @@ class OSDetect(object):
     # left here for compatibility, use isSL(3) instead
     def isSL3(self):
         """ returns True if this is Scientific Linux 3 """
-        return self.isSL()[0] == 3
+        return self.isSL(3)
         
     # left here for compatibility, use isSL(4) instead
     def isSL4(self):
         """ returns True if this is Scientific Linux 4 """
-        return self.isSL()[0] == 4
+        return self.isSL(4)
 
     def isSL(self, x=None):
         """ if x is given: returns True if os == Scientific Linux x
