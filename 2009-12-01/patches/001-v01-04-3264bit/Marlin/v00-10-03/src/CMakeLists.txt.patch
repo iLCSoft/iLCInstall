@@ -1,0 +1,103 @@
+Index: src/CMakeLists.txt
+===================================================================
+RCS file: /marlin/Marlin/src/CMakeLists.txt,v
+retrieving revision 1.16
+diff -r1.16 CMakeLists.txt
+11,12c11,12
+< INCLUDE_DIRECTORIES( "${${PROJECT_NAME}_SOURCE_DIR}/include" )
+< INCLUDE_DIRECTORIES( "${${PROJECT_NAME}_SOURCE_DIR}/streamlog/source/include" )
+---
+> INCLUDE_DIRECTORIES( "${Marlin_SOURCE_DIR}/include" )
+> INCLUDE_DIRECTORIES( "${Marlin_SOURCE_DIR}/streamlog/source/include" )
+15c15
+< INSTALL( DIRECTORY "${${PROJECT_NAME}_SOURCE_DIR}/include/marlin" DESTINATION include
+---
+> INSTALL( DIRECTORY "${Marlin_SOURCE_DIR}/include/marlin" DESTINATION include
+49a50,55
+>     # cmake 2.6 throws warning because QT_LIBRARIES contains -lpthread -ldl
+>     # without the full path
+>     IF(COMMAND CMAKE_POLICY)
+>         CMAKE_POLICY(SET CMP0003 NEW)
+>     ENDIF()
+> 
+101c107
+< ADD_LIBRARY( lib_${PROJECT_NAME} ${lib_srcs} )
+---
+> ADD_LIBRARY( lib_Marlin ${lib_srcs} )
+104c110
+< TARGET_LINK_LIBRARIES( lib_${PROJECT_NAME}  lib_streamlog )
+---
+> TARGET_LINK_LIBRARIES( lib_Marlin  lib_streamlog )
+107c113
+< ADD_CUSTOM_TARGET( lib DEPENDS lib_${PROJECT_NAME} )
+---
+> ADD_CUSTOM_TARGET( lib DEPENDS lib_Marlin )
+110c116
+< SET_TARGET_PROPERTIES( lib_${PROJECT_NAME} PROPERTIES
+---
+> SET_TARGET_PROPERTIES( lib_Marlin PROPERTIES
+112,113c118,119
+<     VERSION ${${PROJECT_NAME}_VERSION}
+<     SOVERSION ${${PROJECT_NAME}_SOVERSION}
+---
+>     VERSION ${Marlin_VERSION}
+>     SOVERSION ${Marlin_SOVERSION}
+117c123
+<     OUTPUT_NAME ${PROJECT_NAME} )
+---
+>     OUTPUT_NAME Marlin )
+120c126
+< INSTALL( TARGETS lib_${PROJECT_NAME} DESTINATION lib PERMISSIONS
+---
+> INSTALL( TARGETS lib_Marlin DESTINATION lib PERMISSIONS
+151c157,163
+<         LINK_LIBRARIES( ${CMAKE_DL_LIBS} )
+---
+>         FIND_LIBRARY( DL_LIB NAMES ${CMAKE_DL_LIBS} )
+>         IF( NOT DL_LIB )
+>             MESSAGE( FATAL_ERROR "failed to find libdl.so" )
+>         ELSE()
+>             MESSAGE( STATUS "using dl library: ${DL_LIB}" )
+>         ENDIF()
+>         LINK_LIBRARIES( ${DL_LIB} )
+158c170
+<                 "Link ${PROJECT_NAME} with these static libs" FORCE )
+---
+>                 "Link Marlin with these static libs" FORCE )
+181c193
+<             TARGET_LINK_LIBRARIES( bin_${bin} lib_${PROJECT_NAME} )
+---
+>             TARGET_LINK_LIBRARIES( bin_${bin} lib_Marlin )
+183c195
+<             TARGET_LINK_LIBRARIES( bin_${bin} -Wl,--whole-archive lib_${PROJECT_NAME} -Wl,--no-whole-archive )
+---
+>             TARGET_LINK_LIBRARIES( bin_${bin} -Wl,--whole-archive lib_Marlin -Wl,--no-whole-archive )
+200c212
+<         ADD_EXECUTABLE( bin_${PROJECT_NAME}_GUI ../gui/main.cpp ${cpp_srcs} ${cpp_moc_srcs} ${ext_bin_srcs} )
+---
+>         ADD_EXECUTABLE( bin_Marlin_GUI ../gui/main.cpp ${cpp_srcs} ${cpp_moc_srcs} ${ext_bin_srcs} )
+203c215
+<         ADD_DEPENDENCIES( bin bin_${PROJECT_NAME}_GUI )
+---
+>         ADD_DEPENDENCIES( bin bin_Marlin_GUI )
+206c218
+<         SET_TARGET_PROPERTIES( bin_${PROJECT_NAME}_GUI PROPERTIES OUTPUT_NAME ${PROJECT_NAME}GUI )
+---
+>         SET_TARGET_PROPERTIES( bin_Marlin_GUI PROPERTIES OUTPUT_NAME MarlinGUI )
+210c222,223
+<             TARGET_LINK_LIBRARIES( bin_${PROJECT_NAME}_GUI lib_${PROJECT_NAME} ${QT_LIBRARIES} )
+---
+> 
+>             TARGET_LINK_LIBRARIES( bin_Marlin_GUI lib_Marlin ${QT_LIBRARIES} )
+212c225
+<             TARGET_LINK_LIBRARIES( bin_${PROJECT_NAME}_GUI -Wl,--whole-archive lib_${PROJECT_NAME} -Wl,--no-whole-archive ${QT_LIBRARIES} )
+---
+>             TARGET_LINK_LIBRARIES( bin_Marlin_GUI -Wl,--whole-archive lib_Marlin -Wl,--no-whole-archive ${QT_LIBRARIES} )
+218c231
+<                 TARGET_LINK_LIBRARIES( bin_${PROJECT_NAME}_GUI -Wl,--whole-archive ${lib} -Wl,--no-whole-archive )
+---
+>                 TARGET_LINK_LIBRARIES( bin_Marlin_GUI -Wl,--whole-archive ${lib} -Wl,--no-whole-archive )
+223c236
+<         INSTALL( TARGETS bin_${PROJECT_NAME}_GUI DESTINATION bin )
+---
+>         INSTALL( TARGETS bin_Marlin_GUI DESTINATION bin )

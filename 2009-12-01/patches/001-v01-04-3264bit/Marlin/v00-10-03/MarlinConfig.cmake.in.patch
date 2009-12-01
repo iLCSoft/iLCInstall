@@ -1,0 +1,100 @@
+Index: MarlinConfig.cmake.in
+===================================================================
+RCS file: /marlin/Marlin/MarlinConfig.cmake.in,v
+retrieving revision 1.7
+diff -r1.7 MarlinConfig.cmake.in
+2c2
+< # cmake configuration file for @PROJECT_NAME@
+---
+> # cmake configuration file for Marlin
+6,7c6,7
+< SET( @PROJECT_NAME@_FOUND FALSE )
+< MARK_AS_ADVANCED( @PROJECT_NAME@_FOUND )
+---
+> SET( Marlin_FOUND FALSE )
+> MARK_AS_ADVANCED( Marlin_FOUND )
+10c10
+< SET( @PROJECT_NAME@_INCLUDE_DIR @PROJECT_NAME@_INCLUDE_DIR-NOTFOUND )
+---
+> SET( Marlin_INCLUDE_DIR Marlin_INCLUDE_DIR-NOTFOUND )
+12c12
+< FIND_PATH( @PROJECT_NAME@_INCLUDE_DIR
+---
+> FIND_PATH( Marlin_INCLUDE_DIR
+18,23c18,23
+< IF( NOT @PROJECT_NAME@_INCLUDE_DIR )
+<     MESSAGE( STATUS "Check for @PROJECT_NAME@: ${@PROJECT_NAME@_HOME}"
+< 					" -- failed to find @PROJECT_NAME@ include directory!!" )
+< ELSE( NOT @PROJECT_NAME@_INCLUDE_DIR )
+<     MARK_AS_ADVANCED( @PROJECT_NAME@_INCLUDE_DIR )
+< ENDIF( NOT @PROJECT_NAME@_INCLUDE_DIR )
+---
+> IF( NOT Marlin_INCLUDE_DIR )
+>     MESSAGE( STATUS "Check for Marlin: ${Marlin_HOME}"
+> 					" -- failed to find Marlin include directory!!" )
+> ELSE( NOT Marlin_INCLUDE_DIR )
+>     MARK_AS_ADVANCED( Marlin_INCLUDE_DIR )
+> ENDIF( NOT Marlin_INCLUDE_DIR )
+27c27
+< SET( @PROJECT_NAME@_LIB @PROJECT_NAME@_LIB-NOTFOUND )
+---
+> SET( Marlin_LIB Marlin_LIB-NOTFOUND )
+29,30c29,30
+< FIND_LIBRARY( @PROJECT_NAME@_LIB
+< 	NAMES @PROJECT_NAME@
+---
+> FIND_LIBRARY( Marlin_LIB
+> 	NAMES Marlin
+35,40c35,40
+< IF( NOT @PROJECT_NAME@_LIB )
+<     MESSAGE( STATUS "Check for @PROJECT_NAME@: ${@PROJECT_NAME@_HOME}"
+< 					" -- failed to find @PROJECT_NAME@ library!!" )
+< ELSE( NOT @PROJECT_NAME@_LIB )
+<     MARK_AS_ADVANCED( @PROJECT_NAME@_LIB )
+< ENDIF( NOT @PROJECT_NAME@_LIB )
+---
+> IF( NOT Marlin_LIB )
+>     MESSAGE( STATUS "Check for Marlin: ${Marlin_HOME}"
+> 					" -- failed to find Marlin library!!" )
+> ELSE( NOT Marlin_LIB )
+>     MARK_AS_ADVANCED( Marlin_LIB )
+> ENDIF( NOT Marlin_LIB )
+44,48c44,49
+< IF( @PROJECT_NAME@_INCLUDE_DIR AND @PROJECT_NAME@_LIB )
+<     SET( @PROJECT_NAME@_FOUND TRUE )
+<     SET( @PROJECT_NAME@_INCLUDE_DIRS ${@PROJECT_NAME@_INCLUDE_DIR} )
+< 	SET( @PROJECT_NAME@_LIBRARIES ${@PROJECT_NAME@_LIB} )
+< 	MARK_AS_ADVANCED( @PROJECT_NAME@_INCLUDE_DIRS @PROJECT_NAME@_LIBRARIES )
+---
+> IF( Marlin_INCLUDE_DIR AND Marlin_LIB )
+>     SET( Marlin_FOUND TRUE )
+>     SET( Marlin_INCLUDE_DIRS ${Marlin_INCLUDE_DIR} )
+>     SET( Marlin_LIBRARY_DIRS "@CMAKE_INSTALL_PREFIX@/lib" )
+> 	SET( Marlin_LIBRARIES ${Marlin_LIB} )
+>     MARK_AS_ADVANCED( Marlin_INCLUDE_DIRS Marlin_LIBRARY_DIRS Marlin_LIBRARIES )
+51,52c52,53
+< 		SET( @PROJECT_NAME@_DEFINITIONS "-DMARLINDEBUG" )
+< 		MARK_AS_ADVANCED( @PROJECT_NAME@_DEFINITIONS )
+---
+> 		SET( Marlin_DEFINITIONS "-DMARLINDEBUG" )
+> 		MARK_AS_ADVANCED( Marlin_DEFINITIONS )
+54,59c55,60
+< 	MESSAGE( STATUS "Check for @PROJECT_NAME@: ${@PROJECT_NAME@_HOME} -- works" )
+< ELSE( @PROJECT_NAME@_INCLUDE_DIR AND @PROJECT_NAME@_LIB )
+< 	IF( @PROJECT_NAME@_FIND_REQUIRED )
+< 		MESSAGE( FATAL_ERROR "Check for @PROJECT_NAME@: ${@PROJECT_NAME@_HOME} -- failed!!" )
+<     ELSE( @PROJECT_NAME@_FIND_REQUIRED )
+<         MESSAGE( STATUS "Check for @PROJECT_NAME@: ${@PROJECT_NAME@_HOME}"
+---
+> 	MESSAGE( STATUS "Check for Marlin: ${Marlin_HOME} -- works" )
+> ELSE( Marlin_INCLUDE_DIR AND Marlin_LIB )
+> 	IF( Marlin_FIND_REQUIRED )
+> 		MESSAGE( FATAL_ERROR "Check for Marlin: ${Marlin_HOME} -- failed!!" )
+>     ELSE( Marlin_FIND_REQUIRED )
+>         MESSAGE( STATUS "Check for Marlin: ${Marlin_HOME}"
+61,62c62,63
+<     ENDIF( @PROJECT_NAME@_FIND_REQUIRED )
+< ENDIF( @PROJECT_NAME@_INCLUDE_DIR AND @PROJECT_NAME@_LIB )
+---
+>     ENDIF( Marlin_FIND_REQUIRED )
+> ENDIF( Marlin_INCLUDE_DIR AND Marlin_LIB )

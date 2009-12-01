@@ -1,0 +1,175 @@
+#####################################################
+# ILCInstall - Release Notes
+#####################################################
+
+-----------------------------------------------------
+ v01-07
+-----------------------------------------------------
+ - changed default download type to svn
+ - added individual SimTools modules ( Akiya )
+ - added new module for building the dcap library
+ - added svn download support for mokka
+ - added tests in cmake for gear
+ - added config for mac osx nightly builds (K. Fujii)
+ - bug fixes and improvements for mac osx (K. Fujii)
+
+-----------------------------------------------------
+ v01-05
+-----------------------------------------------------
+ - added svn support for using https://svnsrv.desy.de
+ - added svn-export modus
+ - added ilcsoft.makeTests for nightly builds
+ - added envorder variable for setting/writing
+    environment variables in a certain order
+ - introduced ilcsoft.env['MAKEOPTS'] to be able to
+    pass arguments to make (e.g. -j4)
+ - added SimTools module (http://jlccvs.kek.jp )
+ - introduced new patch-feature, use:
+    ilcsoft.patch = [
+        "001-v01-04-3264bit",
+        "002-Jupiter-fixG4Version"
+    ]
+ - improved nightly build script
+ - removed 'old' GNUmakefiles support for all ilcsoft
+    packages except LCIO, LCIO can still be built with
+    ant by setting:
+        ilcsoft.module("LCIO").useCMake = False
+    the global flag ilcsoft.useCMake is now obsolete
+ - removed debug and buildDoc flags, instead use:
+    ilcsoft.envcmake['CMAKE_BUILD_TYPE']
+    ilcsoft.envcmake['INSTALL_DOC']
+    in LCIO the buildDoc flag was kept (for ant)
+
+-----------------------------------------------------
+ v01-04
+-----------------------------------------------------
+ - added MarlinUtil -> CED dependency (required for
+    MarlinUtil >= v00-10 and CED >= v00-04-01
+ - added configuration files for installing:
+    - everything from scratch:
+        releases/release_v01-04-scratch.cfg
+    - using DESY AFS reference installation:
+        releases/release_v01-04.cfg
+
+-----------------------------------------------------
+ v01-03-06
+-----------------------------------------------------
+ - added new class (Version) for version comparison
+ - added configuration files for installing:
+    - everything from scratch:
+        releases/release_v01-03-06-scratch.cfg
+    - using DESY AFS reference installation:
+        releases/release_v01-03-06.cfg
+
+-----------------------------------------------------
+ v01-03-05
+-----------------------------------------------------
+ - added cmake support to MySQL
+ - added install support for JAIDA/AIDAJNI
+    - only AIDAJNI 3.2.3 can be installed
+    - only JAIDA 3.2.x versions can be installed
+ - replaced RAIDA/AIDAJNI dependencies with AIDA
+ - bug fixed in cvs/ccvssh download type, the 2 flags
+    ilcsoft.downloadLogin2Server and
+    ilcsoft.module.download.login2Server
+    introduced in v01-03 are now obsolete and were
+    removed.
+
+-----------------------------------------------------
+ v01-03
+-----------------------------------------------------
+
+ - fixed bugs:
+    - CMakeModules dependency (was added to each
+        module if module.useCMake==True)
+    - <PKG>_HOME variables were beeing set to all
+        packages (not the BUILD_WITH packages only)
+    - some <PKG>_HOME variables weren not being
+        written to global ILCSoft.cmake (JAVA...)
+    - some issues fixed for cmake builds with
+        AIDAJNI
+
+ - added CKFit module (B. Hooberman)
+
+ - added MarlinTPC module (P. Wienemann)
+
+ - removed HepPDT dependency from CLHEP module
+
+ - removed expect. Passwords are now coded directly
+    into CVSROOT as proposed by K. Harder (Thanks!)
+    - flag introduced to login to server(s):
+        set globally with:
+            ilcsoft.downloadLogin2Server=True
+        or per module with:
+            module.download.login2Server=True
+        You don't need to set this flag if your
+        passwords are stored in .cvspass
+
+ - removed cmake.cfg
+
+ - changed example file install.cfg to use cmake
+
+-----------------------------------------------------
+ v01-02-01
+-----------------------------------------------------
+
+ - fixed QT behaviour of 'waiting for user input' in
+    the configuration step which would cause ilcinstall
+    to remain blocked until user types 'yes'
+
+ - added global variables for cvs download type:
+    ilcsoft.downloadUser = "john"
+    ilcsoft.downloadPass = "my-pass"
+    ilcsoft.downloadType = "ccvssh"
+    
+ - variables can still be overwritten at module level:
+      ilcsoft.module( "X" ).download.type="cvs"
+      ilcsoft.module( "X" ).download.username="anoncvs"
+      ilcsoft.module( "X" ).download.password="xyz"
+
+ - added expect (http://expect.nist.gov/) for
+    automating 'cvs/ccvssh login' procedure
+    - added password field for download structure:
+        ilcsoft.module( "X" ).download.password="xyz"
+    
+ - added Mokka support
+
+ - added Geant4 'use/link' support
+    - there should exist a file named "env.sh" in the
+      'use/link' directory specified in the config
+      file for geant4. If you have the file in a
+      different location use something like:
+      ilcsoft.module("Geant4").env["G4ENV_INIT"] = \
+        "/foo/bar/env.sh"
+
+-----------------------------------------------------
+ v01-02
+-----------------------------------------------------
+
+ - added OS detection module
+    - use ex.:
+        if( ilcsoft.os.isSL3() ):
+            ilcsoft.use( Java( ilcPath + "java/1.5.0" ))
+        if( ilcsoft.os.isSL4() ):
+            ilcsoft.use( Java( ilcPath + "java/1.6.0" ))
+
+ - added AIDAJNI 'use' support for cmake install mode
+
+ - added compatibility for CLHEP versions greater
+    than 2.0.3.0/1.9.3.0
+    - added HepPDT module
+
+ - added Eutelescope and Overlay modules
+
+-----------------------------------------------------
+ v01-01
+-----------------------------------------------------
+ 
+ - Initial version of ILCInstall
+ 
+-----------------------------------------------------
+ v00-01
+-----------------------------------------------------
+ 
+ - Experimental version of ILCInstall
+

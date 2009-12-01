@@ -1,0 +1,44 @@
+###########################################
+# Python script for using ilcinstall to
+# perform nightly builds and send a mail
+# with the output to a list of users
+#
+# Author: Jan Engels, DESY
+###########################################
+
+How to use:
+
+1st:    copy nbuild script to directory where ilcsoft-install is located (cp nbuild ../)
+        edit the nbuild script and check if the settings meet your needs
+        * mail_addresses can also be set in the config file
+
+2nd:    use the template nb-release.cfg and adapt it to your needs
+
+3rd:    create your cronjob
+
+        # call crontab for current user
+        $ crontab -e
+
+        # example of a crontab file
+        SHELL=/bin/bash
+        # enter your email here for receiving output from cron jobs
+        MAILTO=your_email@blah.zzz
+        # keep in mind that ilcinstall tries to access $HOME/.cvspass for cvs/ccvssh
+        # downloads, so you have to make sure cron has access or a copy of this file.
+        HOME=/data/engels/cronhome
+        # don't forget to add the path to ccvssh if you do ccvssh downloads
+        PATH=/sbin:/bin:/usr/sbin:/usr/bin
+         
+        # cron syntax is:
+        # mm hh MM YY dd
+        #
+        # examples:
+        # 00 * * * *    every hour (X:00)
+        # 30 2 * * *    dayly @ 2:30
+        # 00 4 * * 1    weekly (mondays @ 4:00)
+        # 15 2 1 * *    monthly (1st of the month @ 2:15)
+        # 00 5 * * 1-5  workdays @ 5:00
+       
+        # run daily at 2:00
+        00 2 * * * cd /path/to/ilcinstall && ./nbuild ./nightly_builds/nb-release.cfg
+

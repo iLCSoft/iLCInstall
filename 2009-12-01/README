@@ -1,0 +1,139 @@
+##################################################
+#
+# Installation script for the ILC Software
+#
+# Author: Jan Engels, DESY
+# Date: Jan, 2007
+#
+#
+##################################################
+
+
+DESCRIPTION:
+	
+	Python script for installing the ILC Software in a
+	fully automated way with minimal user intervention.
+	
+	Completely written in Python (www.python.org) version 2.2.3
+
+
+	Files description:
+		
+		ilcsoft-install:
+			executable script
+		
+		./ilcsoft directory:
+			Directory containing all needed modules/classes for the script.
+			Tipically there is one module/class for each software
+			package (e.g. lcio.py, marlin.py). (see __init__.py for the
+			list of all software packages supported by this script)
+			Each of these modules inherit from the BaseILC class (baseilc.py).
+			The ILCSoft (ilcsoft.py) module is a special class which acts as a
+			parent for all instances of modules that are defined in the
+			configuration file to be "installed", "used" or "linked".
+			Each of the modules can comunicate with each other by using the
+			parent class (e.g. inside the marlin class one could execute the
+			following line: print self.parent.module( "LCIO" ).env to find
+			out which environment variables are set by LCIO ).
+ 	
+		./install.cfg
+			example configuration file (not guaranteed to work out of the box on your system)
+
+ 		./releases directory
+			contains configuration files that are used for ilcsoft releases in
+			in afs (reference installations)
+                => take these files as example configuration files
+
+USAGE:
+
+	The script can be called with the following syntax:
+	
+		ilcsoft-install [ -s, -p, -i ] install.cfg
+
+		options description:
+			
+			-s to display an installation summary (1)
+			-p to preview installation
+			-i to install the software
+
+			(1) default behaviour if no option is given
+				e.g. ilcsoft-install install.cfg
+
+	
+	The most important part of the ILC software installation script
+	is the configuration file. The configuration file is python code
+	itself, but it is written in such a way that you don't need to know
+	how to program in python to be able to use it, although it might
+	help you to understand what happens behind the box if you do
+	have some python knowledge.
+
+	##############################################################################################################
+    # example of a configuration file
+	##############################################################################################################
+
+    # Lines prefixed with the # character are comments just like in python!
+
+	# The first thing that should appear in the configuration file
+    # is the path (prefix) where you want the software to be installed to.
+	ilcsoft = ILCSoft( "/scratch/ilcsoft" )
+
+    # environment variables and cmake build options can be set globally,
+    # which will apply to ALL modules, e.g.:
+
+    ##### Global options #####################################################
+    # choose compilers
+    ilcsoft.env['CXX']='g++'
+    ilcsoft.env['CC']='gcc'
+    #ilcsoft.env['FC']='g77'
+    # set number of paralell jobs for multicore machines
+    ilcsoft.env["MAKEOPTS"]="-j2"
+    # set cmake to build everything in Debug modus
+    ilcsoft.envcmake['CMAKE_BUILD_TYPE'] = 'Debug'
+    # set cmake to show full build/link commands
+    ilcsoft.envcmake['CMAKE_VERBOSE_MAKEFILE']="ON"
+    ##### End of Global options ##############################################
+ 
+    # you can define your own variables as in any normal python program
+	ilc_home = "/afs/desy.de/group/it/ilcsoft/"
+    ilc_rel = ilc_home + "v01-04/"
+
+    # example for installing a custom MarlinPKG
+    ilcsoft.install( MarlinPKG( "MyPackage", "v00-03" ))
+    # assign a python variable to the module, so we can easily
+    # type mypkg instead of ilcsoft.module( "MyPackage" )
+    mypkg = ilcsoft.module( "MyPackage" )
+	mypkg.download.type = "cvs"
+	mypkg.download.env["CVSROOT"] = ":pserver:anonymous@cvs.freehep.org:/marlinpkgs/mypackage"
+    # environment variables can be set for individual modules
+    mypkg.env['EGGS'] = '/home/eggs'
+    # for special variables (e.g. PATH, LD_LIBRARY_PATH, CLASSPATH) you should use the envpath, e.g.:
+    mypkg.envpath['PATH'] = '$EGGS/bin'
+    mypkg.envpath['LD_LIBRARY_PATH'] = '$EGGS/lib'
+    # for cmake there is also a way to pass options to the cmake configuration process, e.g.:
+    mypkg.envcmake['MYPKG_TESTJOBS'] = 'ON'
+    # NOTE: for this example to work you need to follow the rules for a standard marlin package
+	# see $MARLIN/examples/mymarlin...
+
+    # use or link already installed tools
+    ilcsoft.link( Marlin( ilc_home + "Marlin/v00-10-03" ))
+    ilcsoft.link( LCIO( ilc_home + "LCIO/v01-10-01" ))
+	ilcsoft.link( CLHEP( ilc_home + "CLHEP/2.0.3.1" ))
+	ilcsoft.link( GSL( ilc_home + "gsl/1.8" ))
+	ilcsoft.use( CMake( ilc_home + "CMake/2.4.6" ))
+	ilcsoft.use( CMakeModules( "v01-07" ))
+	ilcsoft.link( Java( "/opt/products/java/1.6.0" ))
+    # NOTE: 'link' and 'use' do basically the same, except that the link option places a
+	# symbolic link in the installation directory which will then be the visible directory
+    # to other packages depending on it, for example, if you set Java to 'link', LCIO will
+    # see Java living at /scratch/ilcsoft/java/1.6.0 instead of /opt/products/java/1.6.0
+
+    # NOTE: each module you define to be installed in your configuration file tries per
+    # default to build and link against all it's optional dependencies. You can use:
+    # "ilcsoft-install -s myconfig.cfg" to display a summary of the installation and have a
+    # look at the dependencies of each package. Use option -p to get more detailed output
+
+
+	##############################################################################################################
+	# End of example configuration files
+	##############################################################################################################
+

@@ -1,0 +1,75 @@
+#! /usr/bin/python
+import sys
+import os.path
+import commands
+from ilcsoft import *
+
+if( len(sys.argv) < 2 or len(sys.argv) >3 ):
+    # display usage information
+    print "\n Usage: " + sys.argv[0] + " -[s|p|i] \"install.cfg\"\n"
+    print "   -s to display installation summary"
+    print "   -p to preview installation "
+    print "   -i to install the software "
+    print
+    sys.exit(1)
+
+else:
+    valid_options = ['s','p','i']
+    if( len(sys.argv) == 2 ):
+        option = 's'
+
+    # get the config file from the option's list
+    for arg in sys.argv[1:]:
+        if( arg[0] != "-" ):
+            config_file = os.path.abspath(arg)
+            break
+    else:
+        print "no config file in command arguments found"
+        sys.exit(1)
+    
+    if( not os.path.exists(config_file) ):
+        print "config file ["+config_file+"] does not exist"
+        sys.exit(1)
+    
+    # get the option to be executed
+    for arg in sys.argv[1:]:
+        
+        if( arg[0] == "-" ):
+            if( len(arg) > 2 or not arg[1] in valid_options ):
+                print "invalid option: ", arg
+                sys.exit(1)
+            else:
+                option=arg[1]
+
+    print "\n" + 30*'*' + " Starting installation " + 30*'*' + "\n"
+
+    # some settings needed for reading nbuild cfg files
+    date_iso8601 = commands.getoutput( "date --iso-8601" )
+    config_file_basename = config_file[config_file.rfind( '/' )+1:config_file.rfind(".")]
+    config_file_extension = config_file[config_file.rfind(".")+1:]
+
+    print "+ Read configuration file [ " + config_file + " ]\n"
+    # read configuration file
+    execfile( config_file )
+
+    # pass the name of the config file to ilcsoft
+    ilcsoft.config_file = config_file
+    ilcsoft.config_file_prefix = config_file_basename
+    ilcsoft.config_file_suffix = config_file_extension
+
+    # this is for initializing the modules
+    # (called right after reading the config file)
+    ilcsoft.init()
+
+    if( option == "s" ):
+        # display installation summary
+        ilcsoft.summary()
+    elif( option == "p" ):
+        # test install
+        ilcsoft.previewinstall()
+    elif( option == "i" ):
+        # install software
+        ilcsoft.makeinstall()
+
+    print "\n" + 30*'*' + " Finished installation " + 30*'*' + "\n"
+
