@@ -85,8 +85,9 @@ class QT(BaseILC):
         if( self.rebuild ):
             os.system( "make distclean" )
 
-        if( os.system( "echo \"yes\" | ./configure -prefix " + self.installPath \
-                + " -prefix-install -fast 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os.system( "echo \"yes\" | ./configure -prefix " + self.installPath
+                + " -prefix-install -fast -make libs -no-separate-debug-info -no-tablet -no-xkb -no-xinerama -no-qt3support"
+                + " 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
 
         if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
@@ -99,9 +100,6 @@ class QT(BaseILC):
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
-
-        if( self.mode == "install" ):
-            print "*** WARNING: QT takes a LOT of time to compile (3-4 hours on a fast machine)!!! "
 
         self.envorder=[ "QTDIR" ]
         self.env["QTDIR"] = self.installPath
