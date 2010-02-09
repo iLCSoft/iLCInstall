@@ -21,13 +21,13 @@ class Marlin(BaseILC):
         self.reqfiles = [ ["lib/libMarlin.a", "lib/libMarlin.so", "lib/libMarlin.dylib"], ["bin/Marlin"] ]
 
         # LCIO is required for building Marlin
-        self.reqmodules = [ "LCIO" ]
+        self.reqmodules = [ "LCIO", "GEAR" ]
 
         # optional modules
-        self.optmodules = [ "GEAR", "CLHEP", "LCCD", "CondDBMySQL", "AIDA" ]
+        self.optmodules = [ "CLHEP", "LCCD", "CondDBMySQL", "AIDA" ]
 
         # supported cmake modules
-        self.cmakebuildmodules = [ "LCIO", "GEAR", "CLHEP", "LCCD", "CondDBMySQL", "AIDA" ]
+        self.cmakebuildmodules = [ "LCIO", "CLHEP", "LCCD", "CondDBMySQL", "AIDA" ]
 
         self.envcmake['MARLIN_GUI']='OFF'
     
