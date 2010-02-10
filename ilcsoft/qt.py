@@ -85,16 +85,18 @@ class QT(BaseILC):
         if( self.rebuild ):
             os.system( "make distclean" )
 
-        base_cfg_options = " -prefix-install -fast -make libs -no-separate-debug-info -no-xkb -no-xinerama -no-qt3support"
-        ext_cfg_options = " "
+        qt_cfg_options = " -prefix-install -fast -make libs -no-separate-debug-info -no-xkb -no-xinerama -no-qt3support"
         
         if( Version( self.version ) < '4.5' ):
-            ext_cfg_options += " -no-tablet"
+            qt_cfg_options += " -no-tablet"
+
+        if( Version( self.version ) >= '4.4' ):
+            qt_cfg_options += " -no-webkit"
 
         if( Version( self.version ) > '4.5' ):
-            ext_cfg_options += " -opensource"
+            qt_cfg_options += " -opensource"
             
-        if( os.system( "echo \"yes\" | ./configure -prefix " + self.installPath + base_cfg_options + ext_cfg_options
+        if( os.system( "echo \"yes\" | ./configure -prefix " + self.installPath + qt_cfg_options
                 + " 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
 
