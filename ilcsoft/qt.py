@@ -85,8 +85,16 @@ class QT(BaseILC):
         if( self.rebuild ):
             os.system( "make distclean" )
 
-        if( os.system( "echo \"yes\" | ./configure -prefix " + self.installPath
-                + " -prefix-install -fast -make libs -no-separate-debug-info -no-tablet -no-xkb -no-xinerama -no-qt3support"
+        base_cfg_options = " -prefix-install -fast -make libs -no-separate-debug-info -no-xkb -no-xinerama -no-qt3support"
+        ext_cfg_options = " "
+        
+        if( Version( self.version ) < '4.5' ):
+            ext_cfg_options += " -no-tablet"
+
+        if( Version( self.version ) > '4.5' ):
+            ext_cfg_options += " -opensource"
+            
+        if( os.system( "echo \"yes\" | ./configure -prefix " + self.installPath + base_cfg_options + ext_cfg_options
                 + " 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
 
