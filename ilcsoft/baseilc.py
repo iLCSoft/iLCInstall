@@ -154,6 +154,8 @@ class BaseILC:
 
         # initialize cleanInstall flag
         self.cleanInstall = self.parent.cleanInstall
+        
+        self.rebuild = self.parent.rebuild
 
         self.envcmake.update(self.parent.envcmake)
         self.makeTests = self.parent.makeTests
@@ -306,6 +308,9 @@ class BaseILC:
                     (self.installPath, (55-len(self.installPath))*' ')
             elif( not self.checkInstall() ):
                 print "   + [%s] %s installation status: incomplete" % \
+                    (self.installPath, (55-len(self.installPath))*' ')
+            elif( self.rebuild ):
+                print "   + [%s] %s installation status: OK - rebuild flag set to true" % \
                     (self.installPath, (55-len(self.installPath))*' ')
             else:
                 print "   + [%s] %s installation status: OK - set to use mode" % \
