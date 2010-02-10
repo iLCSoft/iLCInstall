@@ -33,6 +33,7 @@ class ILCSoft:
         self.downloadType = ""      # global download cvs/ccvssh password
         self.makeTests = False      # global flag for calling "make test" after building the software
         self.noAutomaticRebuilds = False # global flag for automatic rebuilding
+        self.rebuild = False        # global flag for rebuilding ilcsoft
         self.env = {}               # global environment variables
         self.envcmake = {           # global cmake environment variables
             'CMAKE_BUILD_TYPE' : 'Release',
