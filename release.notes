@@ -3,6 +3,17 @@
 #####################################################
 
 -----------------------------------------------------
+ v01-08
+-----------------------------------------------------
+ - added global rebuild option, use:
+    ilcsoft.rebuild = True
+ - added GEAR dependency to Marlin
+ - added qt options to reduce installation time and
+    space (A. Sailer)
+ - all dependencies are now written to
+    .dependencies/external
+
+-----------------------------------------------------
  v01-07
 -----------------------------------------------------
  - changed default download type to svn
