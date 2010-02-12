@@ -389,10 +389,10 @@ class ILCSoft:
 
         # write dependencies to file
         depsfile=self.installPath+"/.dependencies/external"
-        if not os.path.exists( depsfile ):
-            trymakedir( self.installPath + "/.dependencies" )
-            for mod in self.modules:
-                os.system( "echo %s:%s >> %s" % (mod.alias,mod.version,depsfile) )
+        trymakedir( self.installPath + "/.dependencies" )
+        os.system( "rm -f %s ; touch %s" % (depsfile, depsfile) )
+        for mod in self.modules:
+            os.system( "echo '%s:%s' >> %s" % (mod.alias,mod.version,depsfile) )
 
     def summary(self):
         """ displays an installation summary """
