@@ -52,5 +52,5 @@ class dcap(BaseILC):
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
-        self.env["DCAP_HOME"] = self.installPath
-        self.envpath["LD_LIBRARY_PATH"].append( self.installPath )
+        self.env["DCAP"] = self.installPath
+        self.envpath["LD_LIBRARY_PATH"].append( "$DCAP/lib" )
