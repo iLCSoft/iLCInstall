@@ -54,3 +54,4 @@ class dcap(BaseILC):
         BaseILC.postCheckDeps(self)
         self.env["DCAP"] = self.installPath
         self.envpath["LD_LIBRARY_PATH"].append( "$DCAP/lib" )
+        self.env["LD_PRELOAD"] = "libdcap.so"
