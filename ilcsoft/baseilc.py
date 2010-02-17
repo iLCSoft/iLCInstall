@@ -980,8 +980,9 @@ class BaseILC:
         else:
             checked.append( self.name )
 
-        f.write( 2*os.linesep + "#" + 80*'-' + os.linesep + "#" + 5*' ' \
-                + self.name + os.linesep + "#" + 80*'-' + os.linesep )
+        if self.env:
+            f.write( 2*os.linesep + "#" + 80*'-' + os.linesep + "#" + 5*' ' \
+                    + self.name + os.linesep + "#" + 80*'-' + os.linesep )
            
         # first write the priority values
         for k in self.envorder:

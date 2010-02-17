@@ -342,8 +342,23 @@ class ILCSoft:
             self.envpathbak[k] = getenv(k)
         
         print "\n" + 30*'*' + " Starting ILC Software installation process " + 30*'*' + "\n"
-        # write CMake Environment to file
+        # write CMake Environment to file ILCSoft.cmake
         self.writeCMakeEnv()
+
+        # write initILCSoft.sh
+        checked=[]
+        f = open(self.installPath + "/initILCSoft.sh", 'w')
+        for mod in self.modules:
+            mod.writeEnv(f, checked)
+        geant=self.module('Geant4')
+        if geant:
+            f.write( os.linesep + '# --- source GEANT4 INIT script ---' + os.linesep )
+            f.write( '. ${G4ENV_INIT}' + os.linesep  )
+        if self.os.type == "Mac":
+            f.write( os.linesep + '# --- set DYLD_LIBRARY_PATH to LD_LIBRARY_PATH for MAC compatibility ---' + os.linesep )
+            f.write( 'export DYLD_LIBRARY_PATH=$LD_LIBRARY_PATH:$DYLD_LIBRARY_PATH' + os.linesep + os.linesep )
+        f.close()
+
         print "\n" + 30*'*' + " Creating symlinks " + 30*'*' + "\n"
         for mod in self.modules:
             mod.createLink()
