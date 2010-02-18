@@ -5,8 +5,10 @@
 -----------------------------------------------------
  v01-08
 -----------------------------------------------------
- - added generated initILCSoft.sh, source it to use
-    ilcsoft
+ - added generated init_ilcsoft.sh, source it to use
+    ilcsoft, eg:
+   . /data/ilcsoft/v01-08/init_ilcsoft.sh
+
  - added global rebuild option, use:
     ilcsoft.rebuild = True
  - added GEAR dependency to Marlin
