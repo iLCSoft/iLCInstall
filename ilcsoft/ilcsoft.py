@@ -345,9 +345,12 @@ class ILCSoft:
         # write CMake Environment to file ILCSoft.cmake
         self.writeCMakeEnv()
 
-        # write initILCSoft.sh
+        # write init_ilcsoft.sh
         checked=[]
-        f = open(self.installPath + "/initILCSoft.sh", 'w')
+        f = open(self.installPath + "/init_ilcsoft.sh", 'w')
+        
+        f.write( 'export ILCSOFT='+self.installPath  + os.linesep  )
+        
         for mod in self.modules:
             mod.writeEnv(f, checked)
         geant=self.module('Geant4')
