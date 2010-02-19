@@ -59,7 +59,8 @@ class Marlin(BaseILC):
                 self.envcmake["MARLIN_GUI"]="ON"
 
             if( str(self.envcmake["MARLIN_GUI"]) == "1" or self.envcmake["MARLIN_GUI"] == "ON" ):
-                self.addExternalDependency( ["QT"] )
+                if( sys.platform != "mac" and sys.platform != "darwin" ):
+                    self.addExternalDependency( ["QT"] )
                 self.reqfiles.append(["bin/MarlinGUI"])
     
     def postCheckDeps(self):
