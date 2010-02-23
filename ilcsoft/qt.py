@@ -75,7 +75,10 @@ class QT(BaseILC):
     def setMode(self, mode):
         BaseILC.setMode(self, mode)
 
-        self.download.url = "ftp://ftp.trolltech.com/qt/source/qt-x11-opensource-src-%s.tar.gz" % (self.version,)
+        if( Version( self.version ) < '4.6' ):
+            self.download.url = "ftp://ftp.trolltech.com/qt/source/qt-x11-opensource-src-%s.tar.gz" % (self.version,)
+        else:
+            self.download.url = "ftp://ftp.trolltech.com/qt/source/qt-everywhere-opensource-src-%s.tar.gz" % (self.version,)
 
     def compile(self):
         """ compile QT """
