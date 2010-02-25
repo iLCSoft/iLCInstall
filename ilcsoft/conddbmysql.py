@@ -18,18 +18,29 @@ class CondDBMySQL(BaseILC):
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "CondDBMySQL", "CondDBMySQL")
 
-        # no cmake build support
-        self.hasCMakeBuildSupport = False
-
         self.reqfiles = [ ["lib/libconddb.so","lib/libconddb.dylib"] ]
 
-        # cvs root
         self.download.root = "calice"
 
         self.reqmodules_buildonly = [ "MySQL" ]
 
+
+    def setMode(self, mode):
+        BaseILC.setMode(self, mode)
+
+        if Version( self.version ) > '0.7.3':
+            self.hasCMakeBuildSupport = True
+            self.cmakebuildmodules = [ "MySQL" ]
+        else:
+            self.hasCMakeBuildSupport = False
+
+
+
     def downloadSources(self):
         BaseILC.downloadSources(self)
+
+        if Version( self.version ) > '0.7.3':
+            return
 
         # move sources to a subdirectory
         os.renames( self.version, self.name )
@@ -44,12 +55,19 @@ class CondDBMySQL(BaseILC):
         os.chdir( self.installPath + "/build" )
 
         if( self.rebuild ):
-            os.system( "make distclean" )
+            if Version( self.version ) <= '0.7.3':
+                os.system( "make distclean" )
+            tryunlink( "CMakeCache.txt" )
 
-        if( os.system( "../" + self.name + "/configure --prefix=" + self.installPath \
+        if Version( self.version ) <= '0.7.3':
+            cfg_cmd = "../" + self.name + "/configure --prefix=" + self.installPath \
                 + " --with-mysql-lib=" + self.parent.module("MySQL").installPath + "/lib/mysql" \
                 + " --with-mysql-inc=" + self.parent.module("MySQL").installPath + "/include/mysql" \
-                + " --with-conddbprofile=localhost:mydb:calvin:hobbes 2>&1 | tee -a " + self.logfile ) != 0 ):
+                + " --with-conddbprofile=localhost:mydb:calvin:hobbes 2>&1 | tee -a " + self.logfile 
+        else:
+            cfg_cmd = "cmake " + self.genCMakeCmd() + " .. 2>&1 | tee -a " + self.logfile
+
+        if( os.system( cfg_cmd ) != 0 ):
             self.abort( "failed to configure!!" )
 
         if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
