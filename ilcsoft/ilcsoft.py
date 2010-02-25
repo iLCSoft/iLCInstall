@@ -23,6 +23,7 @@ class ILCSoft:
     def __init__(self, installPath):
         self.os = OSDetect()        # operating system detection
         self.installPath = fixPath(installPath)
+        self.logsdir = self.installPath + "/.ilcinstall-logs/"
         self.ilcinstallDir = os.path.abspath(sys.path[0])
         self.patch = []             # list of patches
         self.modules = []           # list of modules
@@ -50,6 +51,20 @@ class ILCSoft:
         # list of supported modules
         # generated from hasCMakeFindSupport flag
         self.cmakeSupportedMods = [ "AIDA" ]
+
+        self.debugInfo={}
+
+        self.debugInfo['PLATFORM']=self.os.type+" - "+self.os.ver
+        self.debugInfo['UNAME']=getoutput( "uname -a" ).strip()
+        self.debugInfo['LSB_RELEASE']=getoutput( "lsb_release -a 2>/dev/null" ).strip()
+        self.debugInfo['GCC_VERSION']=getoutput( "gcc --version | head -n1" ).strip()
+
+        print
+        for k,v in self.debugInfo.iteritems():
+            print "+", k, '\t', str(v).replace("\n","\n\t\t")
+
+        print
+
     
     def use(self, module):
         """ appends the given module to the list of modules 
@@ -133,7 +148,7 @@ class ILCSoft:
         self.time = str(t[0]) + "-" + str(t[1]) + "-" + str(t[2]) + "_" + str(t[3]) + "-" + str(t[4])
         self.ctime = time.ctime()
         
-        self.logfile = self.installPath + "/ilcinstall/" + self.config_file_prefix + "-" + self.time + ".log"
+        self.logfile = self.logsdir + self.config_file_prefix + "-" + self.time + ".log"
 
         # auto detect modules
         if( self.module( "Java" ) == None ):
@@ -317,13 +332,15 @@ class ILCSoft:
     
     def makeinstall(self):
         """ starts the installation process """
+
+        print "\n" + 30*'*' + " Starting installation " + 30*'*' + "\n"
+
         # create log directory
-        trymakedir( self.installPath + "/ilcinstall" )
+        trymakedir( self.logsdir )
         
         # copy config file
         try:
-            shutil.copyfile( self.config_file, self.installPath + "/ilcinstall/" + \
-                    self.config_file_prefix + "-" + self.time + ".cfg")
+            shutil.copyfile( self.config_file, self.logsdir + self.config_file_prefix + "-" + self.time + ".cfg")
         except:
             print "*** FATAL ERROR: you don't have write permissions in " + self.installPath + "!!!\n"
             sys.exit(1)
@@ -412,12 +429,13 @@ class ILCSoft:
         for mod in self.modules:
             os.system( "echo '%s:%s' >> %s" % (mod.alias,mod.version,depsfile) )
 
+        print "\n" + 30*'*' + " Finished installation " + 30*'*' + "\n"
+
     def summary(self):
         """ displays an installation summary """
+
         print "\n" + 30*'=' + " Installation Summary: " + 40*'='
-        print "\n+ Operating System: " + self.os.type+" - "+self.os.ver
-        print "\n+ Using " + getoutput( "g++ --version | head -n1" ).strip()
-        print "\n+ Using " + getoutput( "make --version | head -n1" ).strip()
+
         print "\n+ ILC Software will be installed to [" + self.installPath + "]"
     
         print "\n+ Following modules will be installed:\n"

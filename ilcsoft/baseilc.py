@@ -104,10 +104,15 @@ class BaseILC:
     def abort(self, msg):
         """ used to abort the installation.
             displays the module name and the given message """
+
+        print
+        print "*** ERROR in module [ " + self.name + " ]: DEBUG INFO: " + str(self.parent.debugInfo)
+        print
         print "*** ERROR in module [ " + self.name + " ]: " + msg
         
         # write error to logfile
         try:
+            getoutput( "echo \"*** Error in module [ " + self.name + " ]: DEBUG INFO: " + str(self.parent.debugInfo).replace("\n","") + "\" >> " + self.logfile )
             getoutput( "echo \"*** Error in module [ " + self.name + " ]: " + str(msg).replace("\n","") + "\" >> " + self.logfile )
         except:
             pass

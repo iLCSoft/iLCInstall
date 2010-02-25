@@ -3,6 +3,14 @@
 #####################################################
 
 -----------------------------------------------------
+ trunk
+-----------------------------------------------------
+ - added support for installing QT versions >= 4.6
+ - added cmake build support for conddbmysql > 0.7.3
+ - installation logs now go into .ilcinstall-logs
+ - replaced print statments with logging library
+
+-----------------------------------------------------
  v01-08
 -----------------------------------------------------
  - generate initialization script init_ilcsoft.sh
