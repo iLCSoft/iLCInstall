@@ -22,8 +22,8 @@ class ROOT(BaseILC):
         self.hasCMakeBuildSupport = False
 
         self.reqfiles = [
-                ["lib/libCore.so", "lib/libCore.dylib"], 
-                ["lib/libPhysics.so", "lib/libPhysics.dylib"],
+                ["lib/libCore.so", "lib64/libCore.so", "lib/libCore.dylib"], 
+                ["lib/libPhysics.so", "lib64/libPhysics.so", "lib/libPhysics.dylib"],
                 ["bin/root-config"]
         ]
 

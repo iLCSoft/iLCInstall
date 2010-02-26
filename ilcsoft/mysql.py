@@ -21,7 +21,11 @@ class MySQL(BaseILC):
         self.installSupport = False
         self.hasCMakeBuildSupport = False
 
-        self.reqfiles = [ ["lib/mysql/libmysqlclient.so", "lib/libmysqlclient.so", "lib/mysql/libmysqlclient.dylib", "lib/libmysqlclient.dylib"] ]
+        self.reqfiles = [
+            ["lib/mysql/libmysqlclient.so", "lib/libmysqlclient.so",
+                "lib64/mysql/libmysqlclient.so", "lib64/libmysqlclient.so",
+                "lib/mysql/libmysqlclient.dylib", "lib/libmysqlclient.dylib"]
+        ]
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
