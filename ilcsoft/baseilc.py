@@ -69,6 +69,9 @@ class BaseILC:
             "CLASSPATH" : [],
             "MARLIN_DLL" : []
         }
+
+        if self.os_ver.type == "Darwin":
+            self.download.cmd="curl"
     
     def __repr__(self):
         if( self.mode == "install" ):
@@ -262,8 +265,8 @@ class BaseILC:
                         + "@" + self.download.server + ":/" + self.download.root )
 
             elif( self.download.type == "wget" ):
-                if( not isinPath("wget") ):
-                    self.abort( "wget not found on your system!!" )
+                if( not isinPath(self.download.cmd) ):
+                    self.abort( self.download.cmd + " not found on your system!!" )
                 if( not isinPath("tar") ):
                     self.abort( "tar not found on your system!!" )
 
@@ -648,7 +651,12 @@ class BaseILC:
             # name of the tarball file
             self.download.tarball = self.download.project + "_" + self.version + ".tgz"
 
-            if( os.system( "wget " + "\"" + self.download.url + "\"" + " -O " + self.download.tarball ) != 0 ):
+            if self.download.cmd == "wget":
+                dopt='O'
+            else:
+                dopt='o'
+
+            if( os.system( '%s "%s" -%s %s' % (self.download.cmd, self.download.url, dopt, self.download.tarball) ) != 0 ):
                 self.abort( "Problems ocurred downloading sources!!")
 
             if( not os.path.exists( "./" + self.download.tarball) ):
@@ -1171,6 +1179,7 @@ class Download:
         self.supportHEAD = True                     # support for downloading HEAD version
         self.supportedTypes = [ "wget", "svn", "svn-desy", "svn-p12cert", "svn-export", "ccvssh" ]  # supported download types for the module
         self.url = {}
+        self.cmd = "wget"
 
     def __repr__(self):
         if( self.type == "wget" ):

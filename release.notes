@@ -6,6 +6,7 @@
  trunk
 -----------------------------------------------------
  - added support for installing QT versions >= 4.6
+ - added support for download with curl in mac
  - added cmake build support for conddbmysql > 0.7.3
  - installation logs now go into .ilcinstall-logs
  - replaced print statments with logging library
