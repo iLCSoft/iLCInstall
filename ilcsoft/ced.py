@@ -47,9 +47,14 @@ class CED(BaseILC):
 
         if( self.mode == "install" and self.envcmake.has_key("CED_SERVER") ):
             if( str(self.envcmake["CED_SERVER"]) == "1" or self.envcmake["CED_SERVER"] == "ON" ):
-                # FIXME: MAC
-                if( not os.path.exists( "/usr/include/GL/glut.h" ) and not os.path.exists( "/usr/include/glut.h" ) ):
-                    print "glut-devel not found in your system!! you can get it from:\n[ http://freeglut.sourceforge.net/ ]"
-                    print "CED_SERVER forced to OFF"
-                    self.envcmake["CED_SERVER"] = "OFF"
+
+                if self.os_ver.type == "Darwin":
+                    if( not os.path.exists( "/usr/X11/include/GL/glut.h" ) and not os.path.exists( "/System/Library/Frameworks/GLUT.framework/Versions/A/Headers/glut.h" )):
+                        print "glut not found in your system!! CED_SERVER forced to OFF"
+                        self.envcmake["CED_SERVER"] = "OFF"
+                else:
+                    if( not os.path.exists( "/usr/include/GL/glut.h" ) and not os.path.exists( "/usr/include/glut.h" ) ):
+                        print "glut-devel not found in your system!! you can get it from:\n[ http://freeglut.sourceforge.net/ ]"
+                        print "CED_SERVER forced to OFF"
+                        self.envcmake["CED_SERVER"] = "OFF"
 
