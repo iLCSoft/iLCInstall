@@ -244,9 +244,9 @@ class BaseILC:
                 self.abort( "sorry, HEAD version of this package cannot be installed!! " \
                         + "Please choose a release version..." )
             if( not self.download.type in self.download.supportedTypes ):
-                if len(self.download.supportedTypes) != 1:
-                    print "*** WARNING: "+self.name+" download.type forced from \'"+self.download.type \
-                            + "\' to \'" + self.download.supportedTypes[0] + "\'"
+                #if len(self.download.supportedTypes) != 1:
+                #    print "*** WARNING: "+self.name+" download.type forced from \'"+self.download.type \
+                #            + "\' to \'" + self.download.supportedTypes[0] + "\'"
                 self.download.type=self.download.supportedTypes[0]
             if( self.download.type == "cvs" or self.download.type == "ccvssh" ):
                 if( not isinPath("cvs") ):
@@ -272,7 +272,7 @@ class BaseILC:
 
                 # if download url not set by user generate a default one
                 if( len(self.download.url) == 0 ):
-                    if Version( self.version ) == 'head':
+                    if Version( self.version ) == 'HEAD':
                         dir='trunk'
                     else:
                         dir='tags/%s' % self.version
@@ -299,7 +299,7 @@ class BaseILC:
 
                     self.download.svnurl = "%s://%s/%s/%s/" % (self.download.accessmode,self.download.server,self.download.root,self.download.project)
 
-                    if( self.version == "HEAD" ):
+                    if Version( self.version ) == 'HEAD': 
                         self.download.svnurl += 'trunk'
                     else:
                         self.download.svnurl += 'tags/'+self.version
