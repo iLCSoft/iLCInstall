@@ -44,11 +44,12 @@ class dcap(BaseILC):
         if self.rebuild:
             os.system( "make clean 2>&1 | tee -a " + self.logfile )
         
-        if( os.system( "make CC=\"gcc ${CFLAGS}\" LD=\"gcc ${LDFLAGS}\" ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
+        # 'make install' crashes if MAKEFLAGS includes "-j2"
+        if( os.system( "unset MAKEFLAGS; make CC=\"gcc ${CFLAGS}\" LD=\"gcc ${LDFLAGS}\" BIN_PATH=${PWD} install 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
 
-        if( os.system( "make CC=\"gcc ${CFLAGS}\" LD=\"gcc ${LDFLAGS}\" BIN_PATH=$PWD install 2>&1 | tee -a " + self.logfile ) != 0 ):
-            self.abort( "failed to compile!!" )
+        #if( os.system( 'export MAKEFLAGS="CC=gcc\ ${CFLAGS} LD=gcc\ ${LDFLAGS} BIN_PATH=${PWD}" ; make install 2>&1 | tee -a ' + self.logfile ) != 0 ):
+        #    self.abort( "failed to compile!!" )
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
