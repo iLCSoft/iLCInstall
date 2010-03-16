@@ -65,7 +65,7 @@ class Mokka(BaseILC):
 
         os.chdir( self.installPath + "/source" )
 
-        # TODO for grid binary: unset G4VIS_USE_VRML G4VIS_USE_OPENGLXM G4VIS_USE_OPENGLX G4VIS_USE_OIX_DRIVER
+        # TODO for grid binary: export G4VIS_NONE (no visualization drivers built or used)
 
         if self.rebuild:
             os.system( "export G4WORKDIR=$MOKKA; . ../build_env.sh ; make clean 2>&1 | tee -a "+self.logfile )
@@ -79,8 +79,21 @@ class Mokka(BaseILC):
         self.env[ 'MOKKA' ] = self.installPath
 
         self.envpath["PATH"].append( "$MOKKA/bin/"+self.os_ver.type+"-g++" )
-        self.envcmds.append(" . ${G4ENV_INIT} ")
-        # FIXME LDFLAGS issue should be fixed in Mokka
-        self.envcmds.append("unset G4UI_USE_XAW G4UI_USE_XM LDFLAGS")
+        self.envcmds.append(" . $G4ENV_INIT ")
 
+        # disable some visualization drivers
+        self.envcmds.append("unset G4VIS_BUILD_OPENGLXM_DRIVER G4VIS_BUILD_OIX_DRIVER" )
+        self.envcmds.append("unset G4VIS_USE_OPENGLXM G4VIS_USE_OIX_DRIVER" )
+        self.envcmds.append("unset G4UI_BUILD_XAW_SESSION G4UI_BUILD_XM_SESSION" )
+        self.envcmds.append("unset G4UI_USE_XAW G4UI_USE_XM" )
+
+        # small hack required for cross-compiling 32bit on 64bit (check $ARCH in $G4ENV_INIT)
+        d = self.parent.env.copy()
+        d.update(self.env)
+        if d.setdefault('CXXFLAGS','').find('m32') != -1:
+            self.envcmds.append('test -d "$OGLHOME/lib" && export OGLLIBS="-L${OGLHOME}/lib -lGLU -lGL"' )
+            self.envcmds.append('test -d "$CLHEP_BASE_DIR/lib" && export CLHEP_LIB_DIR=${CLHEP_BASE_DIR}/lib' )
+         
+        # compiling Mokka crashes if LDFLAGS is set. # TODO add bug to geant4 bug tracker
+        self.envcmds.append("unset LDFLAGS")
 
