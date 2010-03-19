@@ -27,7 +27,7 @@ class LCIO(BaseILC):
         self.cmakebuildmodules = [ "Java" ]
 
         # optional modules
-        self.optmodules = [ "dcap" ]
+        self.optmodules = [ "dcap", "ROOT" ]
 
         # flag for using cmake to build LCIO
         self.useCMake = True
