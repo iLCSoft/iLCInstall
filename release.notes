@@ -6,21 +6,29 @@
  v01-08-01
 -----------------------------------------------------
 
+ - added LCIO optional dependency to ROOT
+ - added support for installing QT versions >= 4.6
+ - added support for download with curl in mac
+ - added cmake build support for conddbmysql > 0.7.3
+ - installation logs now go into .ilcinstall-logs
+
+-----------------------------------------------------
+ v01-08
+-----------------------------------------------------
+
  - added initialization script init_ilcsoft.sh
    -> source it to use ilcsoft, eg:
-   . /data/ilcsoft/v01-08-01/init_ilcsoft.sh
+   . /data/ilcsoft/v01-08/init_ilcsoft.sh
 
  - added global rebuild option, use:
     ilcsoft.rebuild = True
 
- - added support for installing QT versions >= 4.6
- - added support for download with curl in mac
- - added cmake build support for conddbmysql > 0.7.3
  - added GEAR dependency to Marlin
  - added qt options to reduce installation time and
     space (A. Sailer)
- - installation logs now go into .ilcinstall-logs
- - all dependencies written to .dependencies/external
+ - all dependencies are now written to
+    .dependencies/external
+
 
 -----------------------------------------------------
  v01-07
