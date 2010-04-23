@@ -78,6 +78,7 @@ class Mokka(BaseILC):
 
         self.env[ 'MOKKA' ] = self.installPath
 
+        self.envcmds.append("export G4WORKDIR=$MOKKA")
         self.envpath["PATH"].append( "$MOKKA/bin/"+self.os_ver.type+"-g++" )
         self.envcmds.append(" . $G4ENV_INIT ")
 
