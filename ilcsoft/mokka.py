@@ -68,9 +68,9 @@ class Mokka(BaseILC):
         # TODO for grid binary: export G4VIS_NONE (no visualization drivers built or used)
 
         if self.rebuild:
-            os.system( "export G4WORKDIR=$MOKKA; . ../build_env.sh ; make clean 2>&1 | tee -a "+self.logfile )
+            os.system( ". ../build_env.sh ; make clean 2>&1 | tee -a "+self.logfile )
             
-        if( os.system( "export G4WORKDIR=$MOKKA; . ../build_env.sh ; make 2>&1 | tee -a "+self.logfile ) != 0 ):
+        if( os.system( ". ../build_env.sh ; make 2>&1 | tee -a "+self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
 
     def postCheckDeps(self):
