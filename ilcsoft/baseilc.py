@@ -121,6 +121,18 @@ class BaseILC:
             pass
         sys.exit(1)
 
+#    def exe_cmd(self, cmd, abort=True):
+#        log.debug( 'run cmd: ' + cmd )
+#        r = getstatusoutput( cmd )
+#
+#        log.debug( 'cmd output: \n%s' % r[1] )
+#        log.debug( 'cmd exit status: %s' % r[0] )
+#
+#        if r[0] != 0 and abort:
+#            raise Exception( "failed to execute cmd: "+ cmd )
+#
+#        return r
+
     def autoDetect(self):
         """ auto detect module """
 
@@ -221,6 +233,8 @@ class BaseILC:
 
             # check if installed version is functional, abort otherwise
             self.checkInstall(True)
+
+        self.buildPath = self.installPath + '/build'
 
         self.mode = mode
 
@@ -753,7 +767,8 @@ class BaseILC:
                 if( self.hasCMakeBuildSupport ):
                     self.setCMakeVars(self,[])
                     print "+ Generated cmake build command:"
-                    print '  $ cmake',self.genCMakeCmd(),self.installPath,os.linesep
+                    print '  $ ', self.genCMakeCmd()
+                    print os.linesep
                 
                 self.compile()
 
@@ -807,16 +822,20 @@ class BaseILC:
             if( self.hasCMakeBuildSupport ):
                 self.setCMakeVars(self, [])
                 print "\n+ Generated CMake command for building " + self.name + ":"
-                print '  $ cmake',self.genCMakeCmd(),self.installPath
+                print '  $ ',self.genCMakeCmd()
             
             print "\n+ " + self.name + " installation finished."
             print '\n' + 20*'-' + " Finished " + self.name + " Installation Test " + 20*'-' + '\n'
 
     def genCMakeCmd(self):
         """ generates a CMake command out of envcmake """
-        cmd = ""
+        
+        cmd = "cmake "
         for k, v in self.envcmake.iteritems():
             cmd = cmd + "-D" + k + "=\"" + str(v).strip() + "\" "
+
+        cmd += self.installPath
+
         return cmd.strip()
 
     def setCMakeVars(self, origin, checked):

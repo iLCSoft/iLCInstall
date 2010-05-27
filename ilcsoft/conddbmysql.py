@@ -65,7 +65,7 @@ class CondDBMySQL(BaseILC):
                 + " --with-mysql-inc=" + self.parent.module("MySQL").installPath + "/include/mysql" \
                 + " --with-conddbprofile=localhost:mydb:calvin:hobbes 2>&1 | tee -a " + self.logfile 
         else:
-            cfg_cmd = "cmake " + self.genCMakeCmd() + " .. 2>&1 | tee -a " + self.logfile
+            cfg_cmd = self.genCMakeCmd() + " 2>&1 | tee -a " + self.logfile
 
         if( os.system( cfg_cmd ) != 0 ):
             self.abort( "failed to configure!!" )
