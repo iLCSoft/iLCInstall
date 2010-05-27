@@ -69,26 +69,13 @@ class LCIO(BaseILC):
             if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to compile!!" )
 
-            # FIXME this should be done in CMakeLists.txt
-            if( not( str(self.envcmake["INSTALL_DOC"]) == "0" or str(self.envcmake["INSTALL_DOC"]) == "OFF" )):
-                if(isinPath("latex")):
-                    print 80*'*' + "\n*** Creating LCIO reference manual (from api doc)...\n" + 80*'*'
-                    os.chdir( self.installPath )
-                    r = os.system( "ant doc.ref 2>&1 | tee -a " + self.logfile )
-                    os.chdir( self.installPath+'/build' )
-                    if( r != 0 ):
-                        print 80*'*' + "*** WARNING: Error creating LCIO reference manual!\n" + 80*'*'
-            
             if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to install!!" )
 
             # execute ctests
             if( self.makeTests ):
                 
-                if( os.system( "make tests 2>&1 | tee -a " + self.logfile ) != 0 ):
-                    self.abort( "failed to compile lcio tests" )
-                    
-                if( os.system( "make test 2>&1 | tee -a " + self.logfile ) != 0 ):
+                if( os.system( "make tests && make test" ) != 0 ):
                     self.abort( "failed to execute lcio tests" )
 
         # ----- build with ant -----
