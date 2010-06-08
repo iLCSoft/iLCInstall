@@ -22,6 +22,8 @@ from marlinutil import MarlinUtil
 from marlinreco import MarlinReco
 from cedviewer import CEDViewer
 from pandora import PandoraPFA
+from pandoranew import PandoraPFANew
+from marlinpandora import MarlinPandora
 from silicondigi import SiliconDigi
 from lcfivertex import LCFIVertex
 from eutelescope import Eutelescope
