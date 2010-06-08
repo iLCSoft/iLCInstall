@@ -19,7 +19,7 @@ class PandoraPFANew(MarlinPKG):
         MarlinPKG.__init__(self, "PandoraPFANew", userInput )
 
         # required modules
-        self.reqmodules = [ "Marlin", "MarlinUtil", "GEAR", "PandoraPFANew", "LCIO" ]
+        self.reqmodules = []
 
         # optional modules
         self.optmodules = [ "AIDA" ]
