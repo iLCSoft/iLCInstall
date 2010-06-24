@@ -1012,7 +1012,7 @@ class BaseILC:
         else:
             checked.append( self.name )
 
-        if self.env:
+        if self.env or sum(map(len, self.envpath.values()), 0):
             f.write( 2*os.linesep + "#" + 80*'-' + os.linesep + "#" + 5*' ' \
                     + self.name + os.linesep + "#" + 80*'-' + os.linesep )
            
