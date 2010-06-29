@@ -40,6 +40,7 @@ from cmake import CMake
 from cmakemods import CMakeModules
 
 # external (with install support)
+from druid import Druid
 from mokka import Mokka
 from conddbmysql import CondDBMySQL
 from cernlib import CERNLIB
