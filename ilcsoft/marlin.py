@@ -24,10 +24,10 @@ class Marlin(BaseILC):
         self.reqmodules = [ "LCIO", "GEAR" ]
 
         # optional modules
-        self.optmodules = [ "CLHEP", "LCCD", "CondDBMySQL", "AIDA" ]
+        self.optmodules = [ "CLHEP", "LCCD" , "AIDA" ]
 
         # supported cmake modules
-        self.cmakebuildmodules = [ "LCIO", "CLHEP", "LCCD", "CondDBMySQL", "AIDA" ]
+        self.cmakebuildmodules = [ "LCIO", "CLHEP", "LCCD", "AIDA" ]
 
         self.envcmake['MARLIN_GUI']='OFF'
     
