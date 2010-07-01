@@ -88,17 +88,23 @@ class CERNLIB(BaseILC):
             #    os.system( "tar xzf " + tarball )
             #    os.system( "mv %s %s/sources" % (tarball, self.installPath) )
 
-            tarball = '2006_src.tar.gz'
-            urllib.urlretrieve( self.download.url + tarball, tarball )
-            if os.system( "tar xzf " + tarball ) != 0:
-                self.abort( 'failed to extract '+ tarball )
+            tarballs = [ '2006_src.tar.gz', 'include.tar.gz' ]
+            for tarball in tarballs:
+                print 'downloading:', tarball
+                urllib.urlretrieve( self.download.url + tarball, tarball )
+                if os.system( "tar xzf " + tarball ) != 0:
+                    self.abort( 'failed to extract '+ tarball )
+                os.system( "mv " + tarball + " " + self.installPath+'/sources' )
 
 
     def compile(self):
 
         os.chdir( os.path.dirname(self.installPath) )
 
-        # unset MAKEFLAGS
+        # compiling cernlib with -jX crashes
+        make_flags=os.getenv("MAKEFLAGS","")
+        if make_flags.find('-j') != -1:
+            del(os.environ["MAKEFLAGS"])
 
         if self.version == '2005' :
 
@@ -176,7 +182,7 @@ class CERNLIB(BaseILC):
         #os.chdir( self.installPath + "/build" )
 
         ## delete object files
-        #os.system( "find -type f -name *.o -exec rm -f {} \;" )
+        os.system( "find "+self.installPath + "/build -type f -name *.o -exec rm -f {} \;" )
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
