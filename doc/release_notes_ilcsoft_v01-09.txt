@@ -4,10 +4,31 @@
 #
 ###############################
 
+New directory for afs reference installations - starting from  release v01-09:
+
+  /afs/desy.de/project/ilcsoft/sw/
+
+with subdirectories for different CPUs, operating systems and gcc versions.e.g:
+
+ i386_gcc34_sl4       # i386 CPU, 32 bit, gcc3.4, SL4, SL5 and compatible
+ x86_64_gcc41_sl5     # i686 CPU, 64 bit, gcc4.1, SL5 and compatible
+
+The old ilcsoft releases are still available under /afs/desy.de/group/it/ilcsoft.
+
+[The old path relied on the @sys mechanism for afs to automatically link to the 
+appropriate subdirectory. However this mechanism is no longer supported by 
+current OS versions and e.g. does not allow to distinguish 32bit from 64bit builds]
+
+This release for SL4 32bit and compatible is at:
+
+
+   /afs/desy.de/project/ilcsoft/sw/i386_gcc34_sl4/v01-09
+
+--------------------------------------------------------------------------------
+
 
 Release notes of packages that have been changed or added since v01-08-01
 -------------------------------------------------------------------------
-
 
 ================================
  LCIO
@@ -257,11 +278,10 @@ V. New implementation for BeamCal
 
 ================================
 
- first releases of 
+ New packages in iLCSoft since v01-9 
 
   PandoraPFANew   - v00-02
   MarlinPandora   - v00-01
 
   Druid           - 1.5
-
 ================================
