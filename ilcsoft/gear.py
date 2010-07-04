@@ -18,7 +18,8 @@ class GEAR(BaseILC):
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "GEAR", "gear")
 
-        # java is required for generating header files with ant
+        # FIXME: java no longer required for generating header files with ant in v00-14
+        # but still for versions v00-13 and older ...
         self.reqmodules_external = [ "Java" ]
 
         self.reqfiles = [
