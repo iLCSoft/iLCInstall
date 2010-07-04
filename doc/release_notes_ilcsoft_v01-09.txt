@@ -4,6 +4,7 @@
 #
 ###############################
 
+-------------------------------------------------------------------
 New directory for afs reference installations - starting from  release v01-09:
 
   /afs/desy.de/project/ilcsoft/sw/
@@ -24,9 +25,20 @@ This release for SL4 32bit and compatible is at:
 
    /afs/desy.de/project/ilcsoft/sw/i386_gcc34_sl4/v01-09
 
---------------------------------------------------------------------------------
+------------------------------------------------------------------
+
+================================
+
+ New packages in iLCSoft since v01-9 
+
+  PandoraPFANew   - v00-02
+  MarlinPandora   - v00-01
+
+  Druid           - 1.5
+================================
 
 
+-------------------------------------------------------------------------
 Release notes of packages that have been changed or added since v01-08-01
 -------------------------------------------------------------------------
 
@@ -277,11 +289,40 @@ V. New implementation for BeamCal
 
 
 ================================
-
- New packages in iLCSoft since v01-9 
-
-  PandoraPFANew   - v00-02
-  MarlinPandora   - v00-01
-
-  Druid           - 1.5
+  MarlinTPC
 ================================
+
+v00-05-02:
+
+Main additions are the KalmanFilter reconstruction package and the HitFinder for row based pad geometries.
+
+Updates (and bugfixes)
+PulseFinder
+Likelihood fitter
+TPCCloudSimulation
+TopoFinder (zAnode position, collection writing, time separation)
+Mokka2VoxelProcessor - Introduced second half TPC, writes two collections
+createProcessor.py (new option, example code inserted)
+PrimaryIonisationProcessor
+TPCElectronicsProcessor - Major rewrite
+AddEmptyPedestalsProcessor
+BiasedResidualProcessor - 2 parameters 
+PedestalHandler
+PedestalSubstratorProcessor
+
+Bug fixes:
+LCObjectCopier - Fixed memory leak
+replaced tpcconddata with lib_tpcconddata (see commit: r1980)
+calling 'make -j9' would not build generateRawData due to missing dependency of lib_tpcconddata target
+TopoFinder - Fixed problem with wrap-around for full circle geometry
+TrackFitterFactory - Fixed behaviour for Likelihood and linear regression (still not implemented)
+CutApplicationProcessor - Fixed bug for NHitsOnTrack cut
+Mokka2VoxelProcessor - Fixed bug in charge distribution, memory leak, minor things
+TrackFitterKalman - Fixed implementation of static getInstance for the dummy version
+AddEmptyPedestalsProcessor  - writes pedestals to first event in the file
+TPCElectronicsProcessor_ADCPulse (removed compiler warnings, corrected verbosity level)
+PrimaryIonisationProcessor - fixed number of elecrtons in curlers for grouped electrons
+TimePixParameters - fixed serious index errors 
+ADCPulseConverterProcessor and MokkaToVoxelProcessor  - Fixed calculation of time 
+MokkaToVoxelProcessor - Fixed wrong error message 
+
