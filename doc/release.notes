@@ -10,7 +10,7 @@
  - checkout from svn branches repository if version
     string contains -pre
  
- - added Druid module
+ - added modules for Druid, PandoraPFANew, MarlinPandora
 
  - added doc directory for release notes of ilcinstall
     and ilcsoft
