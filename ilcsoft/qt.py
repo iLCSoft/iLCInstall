@@ -24,9 +24,9 @@ class QT(BaseILC):
         self.download.supportedTypes = ["wget"]
 
         self.reqfiles = [
-            ["lib/libQtCore.so", "lib/libQtCore.dylib", "lib/QtCore.la", \
+            ["lib/libQtCore.so", "lib64/libQtCore.so", "lib/libQtCore.dylib", "lib/QtCore.la", \
                 "lib/qt-3.1/lib/libqt.so", "lib/qt-3.3/lib/libqt-mt.so"],
-            ["lib/libQtGui.so", "lib/libQtGui.dylib", "lib/QtGui.la", \
+            ["lib/libQtGui.so", "lib64/libQtGui.so", "lib/libQtGui.dylib", "lib/QtGui.la", \
                 "lib/qt-3.1/lib/libqui.so", "lib/qt-3.3/lib/libqui.so"],
             ["bin/qmake"] ]
 

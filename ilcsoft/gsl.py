@@ -27,8 +27,10 @@ class GSL(BaseILC):
         self.reqfiles = [[
                 "lib/libgsl.a",
                 "lib/libgsl.so",
-                "lib/libgsl.dylib"
+                "lib64/libgsl.so",
+                "lib/libgsl.dylib",
                 "lib/shared/libgsl.so",
+                "lib64/shared/libgsl.so",
                 "lib/shared/libgsl.dylib",
         ]]
     
