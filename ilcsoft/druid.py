@@ -21,7 +21,7 @@ class Druid(BaseILC):
         # no cmake build support
         self.hasCMakeBuildSupport = False
         
-        self.download.supportHEAD = False
+        #self.download.supportHEAD = False
 
         self.download.root = ""
 
