@@ -2,6 +2,19 @@
 # ILCInstall - Release Notes
 #####################################################
 
+
+-----------------------------------------------------
+ v01-09
+-----------------------------------------------------
+
+ - checkout from svn branches repository if version
+    string contains -pre
+ 
+ - added modules for Druid, PandoraPFANew, MarlinPandora
+
+ - added doc directory for release notes of ilcinstall
+    and ilcsoft
+
 -----------------------------------------------------
  v01-08-01
 -----------------------------------------------------
