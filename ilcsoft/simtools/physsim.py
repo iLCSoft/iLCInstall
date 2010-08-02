@@ -28,7 +28,7 @@ class physsim(BaseILC):
         self.download.server = "jlccvs.kek.jp"
         self.download.root = "home/cvs/soft"
 
-        self.reqmodules = [ "ROOT" , "CLHEP", "lcbase", "lclib", "jsf" ]
+        self.reqmodules = [ "ROOT" , "CLHEP", "lcbase", "lclib", "jsf", "Leda" ]
         self.reqfiles = [ ["lib/libPHYLIBTTNEW.a"] ]
        
     def compile(self):
