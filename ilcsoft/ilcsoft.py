@@ -35,7 +35,9 @@ class ILCSoft:
         self.makeTests = False      # global flag for calling "make test" after building the software
         self.noAutomaticRebuilds = False # global flag for automatic rebuilding
         self.rebuild = False        # global flag for rebuilding ilcsoft
-        self.env = {}               # global environment variables
+        self.env = {
+            'ILCSOFT_CMAKE' : self.installPath + '/ILCSoft.cmake' ,
+        }               # global environment variables
         self.envcmake = {           # global cmake environment variables
             'CMAKE_BUILD_TYPE' : 'Release',
             'INSTALL_DOC' : 'ON'
@@ -210,7 +212,7 @@ class ILCSoft:
     def writeCMakeEnv(self):
         
         # name of the file
-        file = self.installPath + "/ILCSoft.cmake"
+        file = self.env[ "ILCSOFT_CMAKE" ]
         
         # this will be a list of lists for storing entries of a previously existing
         # ILCSoft.cmake pre-cache file.. It will store on the first element the cmake

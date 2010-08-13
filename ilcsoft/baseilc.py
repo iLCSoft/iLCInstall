@@ -834,7 +834,7 @@ class BaseILC:
     def genCMakeCmd(self):
         """ generates a CMake command out of envcmake """
         
-        cmd = "cmake "
+        cmd = "cmake -C " + self.parent.env["ILCSOFT_CMAKE"] + " "
         for k, v in self.envcmake.iteritems():
             cmd = cmd + "-D" + k + "=\"" + str(v).strip() + "\" "
 
@@ -861,15 +861,15 @@ class BaseILC:
             else:
                 thisname=self.name
  
-            # CMAKE_MODULE_PATH variable
-            if( self.name == "CMakeModules" ):
-                origin.envcmake["CMAKE_MODULE_PATH"]=self.realPath()
-            
-            # PKG_HOME variables
-            if( thisname.upper() in map(str.upper, self.parent.cmakeSupportedMods )):
-                if( thisname == "AIDA" ):
-                    origin.envcmake[self.name+"_HOME"]=self.realPath()
-                origin.envcmake[thisname+"_HOME"]=self.realPath()
+            ## CMAKE_MODULE_PATH variable
+            #if( self.name == "CMakeModules" ):
+            #    origin.envcmake["CMAKE_MODULE_PATH"]=self.realPath()
+            #
+            ## PKG_HOME variables
+            #if( thisname.upper() in map(str.upper, self.parent.cmakeSupportedMods )):
+            #    if( thisname == "AIDA" ):
+            #        origin.envcmake[self.name+"_HOME"]=self.realPath()
+            #    origin.envcmake[thisname+"_HOME"]=self.realPath()
             
             if( thisname.upper() in map( str.upper, origin.cmakebuildmodules )):
                 # BUILD_WITH variable
