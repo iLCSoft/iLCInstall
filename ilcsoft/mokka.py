@@ -19,7 +19,7 @@ class Mokka(BaseILC):
         BaseILC.__init__(self, userInput, "Mokka", "Mokka")
 
         self.hasCMakeBuildSupport = False
-        self.hasCMakeFindSupport = False
+        #self.hasCMakeFindSupport = False
 
         self.download.supportedTypes = [ "svn", "svn-export", "cvs" ]
         # set some cvs variables
