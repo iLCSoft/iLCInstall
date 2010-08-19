@@ -23,6 +23,7 @@ class MarlinTPC(MarlinPKG):
                         [ "lib/libtpcconddata.a", "lib/libtpcconddata.so", "lib/libtpcconddata.dylib"]]
 
         self.reqmodules = [ "LCIO", "GEAR", "GSL", "Marlin", "LCCD", "ROOT", "AIDA", "CLHEP" ]
+        #self.optmodules = [ "Mokka" ]
 
     def setMode(self, mode):
         MarlinPKG.setMode(self, mode)
@@ -46,4 +47,9 @@ class MarlinTPC(MarlinPKG):
         self.download.accessmode = "svn"
         self.download.server = "pi.physik.uni-bonn.de"
         self.download.root = ""
+
+    def postCheckDeps(self):
+        MarlinPKG.postCheckDeps(self)
+
+        self.envpath["PATH"].append( self.installPath+'/bin' )
 
