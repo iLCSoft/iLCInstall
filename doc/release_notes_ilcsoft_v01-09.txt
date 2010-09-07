@@ -26,6 +26,28 @@ This release for SL4 32bit and compatible is at:
 
    /afs/desy.de/project/ilcsoft/sw/i386_gcc34_sl4/v01-09
 
+
+The ilcsoft release compiled for SL5 64bit is located under:
+
+
+   /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-09-01
+
+
+**********************    NOTE to release v01-09-01    ***************************
+
+    Please note that v01-09-01 is exactly the same code and the same package
+    versions from v01-09 except for the MarlinReco package. The version of
+    MarlinReco included in v01-09 contains a bug in the compiler flags which causes
+    the fortran tracking code to produce no TPC tracks if compiled under 64bit with
+    the gfortran compiler.
+
+    The 32 bit compiled libraries are not affected by this bug even if run under
+    64bit. However, please make sure to use the patched ilcsoft v01-09-01 if you
+    want to compile MarlinReco under SL5 64bit natively.
+
+**********************************************************************************
+
+
 ------------------------------------------------------------------
 
 ================================
