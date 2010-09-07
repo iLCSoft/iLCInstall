@@ -17,7 +17,7 @@ class CEDViewer(MarlinPKG):
         MarlinPKG.__init__(self, "CEDViewer", userInput )
 
         # required modules
-        self.reqmodules = [ "Marlin", "MarlinUtil", "LCIO", "GEAR", "CLHEP", "GSL" ]
+        self.reqmodules = [ "Marlin", "MarlinUtil", "LCIO", "GEAR", "CLHEP", "GSL", "CED" ]
 
         # cvs root
         self.download.root="marlinreco"
