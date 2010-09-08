@@ -41,6 +41,7 @@ from cmakemods import CMakeModules
 
 # external (with install support)
 from druid import Druid
+from garlic import Garlic
 from mokka import Mokka
 from conddbmysql import CondDBMySQL
 from cernlib import CERNLIB

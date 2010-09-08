@@ -2,6 +2,20 @@
 # ILCInstall - Release Notes
 #####################################################
 
+-----------------------------------------------------
+ HEAD 
+-----------------------------------------------------
+
+ - added Garlic module
+ - changed MarlinTPC svn repository URL to desy
+ - changed cmake build command to: cmake -C ..
+ - added cmake find support for Mokka
+ - added CED dependency to CEDViewer
+ - added Leda dependency to simtools/physsim
+ - added lib64 in search path for clhep, gsl and qt
+ - removed libPandoraPFANew.so from MARLIN_DLL
+ - removed obsolete patches
+
 
 -----------------------------------------------------
  v01-09
