@@ -5,6 +5,56 @@
 #################################
 
 
+********************    NEW patch release v01-09-02    ***************************
+
+    Patch release v01-09-02 includes all bug fixes from v01-09-01 plus some
+    additional bug fixes listed below:
+
+    
+    Changes from release:   v01-09-01 --> v01-09-02:
+    ------------------------------------------------
+
+
+    MarlinReco:  v00-18-01 --> v00-18-02
+
+        - TPCDigiProcessor:
+            - Fixed bug in hit smearing - in previous version unsmeared hit was used (smearing didn't do anything) (M. Thomson)
+            - Protected against accessing NULL pointer from getMCParticle (K. Wichmann)
+        - BCalTagEfficiency:
+            - Fixed memory leak bug (C. Bartels)
+
+
+
+    GEAR:  v00-14-01 --> v00-14-02
+
+        - Fixed bug in calculation of overall TPC plane extent (M.Killenberg)
+
+
+
+    RAIDA:  v01-04-03 --> v01-04-04
+
+        - Removed redundant tree->commit() from destructor of histogram factory (M. Killenberg)
+
+**********************************************************************************
+
+
+
+
+**********************    NOTE to release v01-09-01    ***************************
+
+    Please note that v01-09-01 is exactly the same code and the same package
+    versions from v01-09 except for the MarlinReco package. The version of
+    MarlinReco included in v01-09 contains a bug in the compiler flags which causes
+    the fortran tracking code to produce no TPC tracks if compiled under 64bit with
+    the gfortran compiler.
+
+    The 32 bit compiled libraries are not affected by this bug even if run under
+    64bit. However, please make sure to use the patched ilcsoft v01-09-01 if you
+    want to compile MarlinReco under SL5 64bit natively.
+
+**********************************************************************************
+
+
 -------------------------------------------------------------------
 New directory for afs reference installations - starting from  release v01-09:
 
@@ -24,28 +74,14 @@ current OS versions and e.g. does not allow to distinguish 32bit from 64bit buil
 This release for SL4 32bit and compatible is at:
 
 
-   /afs/desy.de/project/ilcsoft/sw/i386_gcc34_sl4/v01-09
+   /afs/desy.de/project/ilcsoft/sw/i386_gcc34_sl4/v01-09-02
 
 
 The ilcsoft release compiled for SL5 64bit is located under:
 
 
-   /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-09-01
+   /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-09-02
 
-
-**********************    NOTE to release v01-09-01    ***************************
-
-    Please note that v01-09-01 is exactly the same code and the same package
-    versions from v01-09 except for the MarlinReco package. The version of
-    MarlinReco included in v01-09 contains a bug in the compiler flags which causes
-    the fortran tracking code to produce no TPC tracks if compiled under 64bit with
-    the gfortran compiler.
-
-    The 32 bit compiled libraries are not affected by this bug even if run under
-    64bit. However, please make sure to use the patched ilcsoft v01-09-01 if you
-    want to compile MarlinReco under SL5 64bit natively.
-
-**********************************************************************************
 
 
 ------------------------------------------------------------------
