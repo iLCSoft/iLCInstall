@@ -146,9 +146,9 @@ class LCIO(BaseILC):
                 self.reqfiles.append(["lib/lcio.jar"])
             # tests
             if( self.makeTests ):
-                self.envcmake["BUILD_LCIO_TESTS"]="ON"
-                self.envcmake["BUILD_LCIO_EXAMPLES"]="ON"
-                self.envcmake["BUILD_F77_TESTJOBS"]="ON"
+                self.envcmake.setdefault("BUILD_LCIO_TESTS","ON")
+                self.envcmake.setdefault("BUILD_LCIO_EXAMPLES","ON")
+                self.envcmake.setdefault("BUILD_F77_TESTJOBS","ON")
 
             dc = self.envcmake.setdefault('BUILD_WITH_DCAP','OFF')
 
