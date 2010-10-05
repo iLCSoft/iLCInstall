@@ -54,7 +54,7 @@ class KalDet(BaseILC):
 
         self.reqfiles = [ ["lib/libKalDet.so","lib/libKalDet.a","lib/libKalDet.dylib"] ]
 
-        self.reqmodules = [ "ROOT" ]
+        self.reqmodules = [ "KalTest", "ROOT" ]
 
         self.download.root = "kaltest"
 
