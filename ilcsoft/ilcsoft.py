@@ -376,7 +376,7 @@ class ILCSoft:
         if geant:
             f.write( os.linesep + '# --- source GEANT4 INIT script ---' + os.linesep )
             f.write( '. ${G4ENV_INIT}' + os.linesep  )
-        if self.os.type == "Mac":
+        if self.os.type == "Darwin":
             f.write( os.linesep + '# --- set DYLD_LIBRARY_PATH to LD_LIBRARY_PATH for MAC compatibility ---' + os.linesep )
             f.write( 'export DYLD_LIBRARY_PATH=$LD_LIBRARY_PATH:$DYLD_LIBRARY_PATH' + os.linesep + os.linesep )
         f.close()
