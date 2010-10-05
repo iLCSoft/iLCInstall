@@ -13,6 +13,7 @@ from lccd import LCCD
 from gear import GEAR
 from raida import RAIDA
 from ced import CED
+from kaltest import KalTest #, KalDet
 
 # marlin & friends
 from marlinpkg import MarlinPKG
