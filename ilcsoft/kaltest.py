@@ -39,6 +39,13 @@ class KalTest(BaseILC):
         if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to install!!" )
 
+    def postCheckDeps(self):
+        BaseILC.postCheckDeps(self)
+
+        self.env["KALTEST"] = self.installPath
+
+        self.envpath["LD_LIBRARY_PATH"].append( '$KALTEST/lib' )
+
 
 
 ##################################################
