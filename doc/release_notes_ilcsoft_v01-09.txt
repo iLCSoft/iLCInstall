@@ -5,6 +5,18 @@
 #################################
 
 
+********************    NEW patch release v01-09-03    ***************************
+    
+    Patch release v01-09-03 includes a new version of CMakeModules (v01-10) to fix
+    a problem for SL5 32 bit when linking against root:
+
+    lib/libCint.so: undefined reference to `dlclose'
+    lib/libCint.so: undefined reference to `dlsym'
+    lib/libCint.so: undefined reference to `dlopen'
+    lib/libCint.so: undefined reference to `dlerror'
+    lib/libCore.so: undefined reference to `dladdr'
+
+
 ********************    NEW patch release v01-09-02    ***************************
 
     Patch release v01-09-02 includes all bug fixes from v01-09-01 plus some
