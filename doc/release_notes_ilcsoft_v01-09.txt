@@ -7,14 +7,30 @@
 
 ********************    NEW patch release v01-09-03    ***************************
     
-    Patch release v01-09-03 includes a new version of CMakeModules (v01-10) to fix
-    a problem for SL5 32 bit when linking against root:
+    Patch release v01-09-03 includes all changes from v01-09-02 plus some
+    additional bug fixes for compliance with SL5 32bit:
+    
 
-    lib/libCint.so: undefined reference to `dlclose'
-    lib/libCint.so: undefined reference to `dlsym'
-    lib/libCint.so: undefined reference to `dlopen'
-    lib/libCint.so: undefined reference to `dlerror'
-    lib/libCore.so: undefined reference to `dladdr'
+    Changes from release:   v01-09-02 --> v01-09-03:
+    ------------------------------------------------
+
+
+    CMakeModules:  v01-09 --> v01-10
+
+        - fixed: problem for SL5 32 bit when linking against root:
+            lib/libCint.so: undefined reference to `dlclose'
+            lib/libCint.so: undefined reference to `dlsym'
+            lib/libCint.so: undefined reference to `dlopen'
+            lib/libCint.so: undefined reference to `dlerror'
+            lib/libCore.so: undefined reference to `dladdr'
+
+        - fixed: ROOT_${COMPONENT}_FOUND not set properly in FindROOT.cmake
+
+
+    MarlinReco:  v00-18-02 --> v00-18-03
+        - added libgfortran path for SL5 32bit
+        - g2c/gfortran library not set correctly in MarlinRecoConfig.cmake
+
 
 
 ********************    NEW patch release v01-09-02    ***************************
