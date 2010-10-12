@@ -7,13 +7,13 @@
 ###########################################
 
 #----- set this to your local install path
-ilc_install_dir = "/afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-10-pre01"
+ilcsoft_install_dir = "/afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-10-pre01"
 
 ROOT_version = "5.26.00b" # -- "5.27.06"   #--- "5.26.00b" 
 
 MySQL_version = "5.0.45"
 
-# Java_version = "1.6.0"
+Java_version = "1.6.0"
 
 Geant4_version = "9.3"  #--- "9.3.p01"  
 
