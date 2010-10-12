@@ -8,7 +8,8 @@
 ********************    NEW patch release v01-09-03    ***************************
     
     Patch release v01-09-03 includes all changes from v01-09-02 plus some
-    additional bug fixes for compliance with SL5 32bit:
+    additional bug fixes for compiling under SL5 32bit. No changes were made to
+    the code, i.e. binaries from v01-09-02 are exactly the same as in v01-09-03.
     
 
     Changes from release:   v01-09-02 --> v01-09-03:
