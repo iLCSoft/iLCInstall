@@ -9,6 +9,11 @@
 #----- set this to your local install path
 ilcsoft_install_dir = "/afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-10-pre01"
 
+# python variable for referring the ILC Home directory
+# used to link already installed packages
+ilcPath = "/afs/desy.de/project/ilcsoft/sw/i386_gcc41_sl5/"
+
+
 ROOT_version = "5.26.00b" # -- "5.27.06"   #--- "5.26.00b" 
 
 MySQL_version = "5.0.45"
