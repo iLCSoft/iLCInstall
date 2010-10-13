@@ -227,6 +227,7 @@ class BaseILC:
                     self.installPath = self.parent.installPath + "/" + self.alias + "/" + self.version
                     # 1st and 2nd cases failed:
                     if( not self.checkInstall() ):
+                        print 'failed to find', self.name, 'in', self.installPath
                         # revert installPath back to user input
                         self.installPath = fixPath(self.__userInput)
                         self.version = basename( self.installPath )
