@@ -6,13 +6,28 @@
 #
 ###########################################
 
+# --------- ilcsoft release version ------------------------------------------
 ilcsoft_release='v01-10-pre01'
+# ----------------------------------------------------------------------------
 
-ilcsoft_install_prefix = "/scratch/ilcsoft/"
+
+# --------- install dir ------------------------------------------------------
+#ilcsoft_install_prefix = "/scratch/ilcsoft/"
 ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
-
 #ilcsoft_install_dir = os.path.join( ilcsoft_install_prefix, ilcsoft_release )
+# ----------------------------------------------------------------------------
 
+
+# --------- ilcsoft home -----------------------------------------------------
+# python variable for referring the ILC Home directory
+# used to link or use already installed packages (SL4 or SL5)
+#ilcPath = '/afs/desy.de/project/ilcsoft/sw/i386_gcc34_sl4/'
+#ilcPath = ilcsoft_afs_path[ arch ]
+# ----------------------------------------------------------------------------
+
+
+
+# ======================= PACKAGE VERSIONS ===================================
 
 ROOT_version = "5.26.00b" # -- "5.27.06"   #--- "5.26.00b" 
 
