@@ -22,3 +22,9 @@ class CEDViewer(MarlinPKG):
         # cvs root
         self.download.root="marlinreco"
 
+
+    def postCheckDeps(self):
+        MarlinPKG.postCheckDeps(self)
+
+        self.envpath["PATH"].append( self.installPath+'/bin' )
+
