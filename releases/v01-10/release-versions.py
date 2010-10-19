@@ -6,8 +6,9 @@
 #
 ###########################################
 
+
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-10-pre01'
+ilcsoft_release='v01-10-pre02'
 # ----------------------------------------------------------------------------
 
 
@@ -29,34 +30,58 @@ ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 
 # ======================= PACKAGE VERSIONS ===================================
 
-ROOT_version = "5.26.00b" # -- "5.27.06"   #--- "5.26.00b" 
+
+ROOT_version = "5.26.00b"
 
 MySQL_version = "5.0.45"
 
 Java_version = "1.6.0"
 
-Geant4_version = "9.3"  #--- "9.3.p01"  
+Geant4_version = "9.3"
 
 CERNLIB_version = "2006" 
 
-#---------------------------------------
+CLHEP_version = "2.0.4.2" 
+
+GSL_version = "1.8" 
+
+QT_version = "4.2.2" 
+
+CMake_version = "2.6.2" 
 
 
-LCIO_version = "v01-51-01-pre" #--- "v01-51" 
 
-GEAR_version = "v00-15-pre"    #-- "v00-14-02" 
+# -------------------------------------------
+
+LCIO_version = "v01-51-01"
+
+GEAR_version = "v00-15-pre"    # v00-15
+
+CED_version = "v01-01"
+
+CondDBMySQL_version = "CondDBMySQL_ILC-0-9-1"
+
+CMakeModules_version = "v01-10"
+
+dcap_version = "1.9.5-5"
+
+
+
+StandardConfig_version = "v02-01" 
+MokkaDBConfig_version = "v02-01"
+LCFI_MokkaBasedNets_version = "v00-01" 
+
+
+
+# -------------------------------------------
 
 KalTest_version = "v01-00-pre"       #-- "v00-14-02" 
 
 KalDet_version = "v01-00-pre"       #-- "v00-14-02" 
 
-CondDBMySQL_version = "CondDBMySQL_ILC-0-9-1-pre"   #--- "CondDBMySQL_ILC-0-8-1" # ??? 
-
 LCCD_version = "v01-01-pre"  #--- "v01-00" 
 
 RAIDA_version = "v01-05-pre" 
-
-CED_version = "v01-01-pre"   #--- "v01-00" 
 
 MarlinUtil_version = "v01-01-pre"  #---- "v01-00" 
 
@@ -77,12 +102,6 @@ CEDViewer_version = "v01-01-pre"
 
 Overlay_version = "v00-07-03"
 
-
-StandardConfig_version = "v02-01" 
-MokkaDBConfig_version = "v02-01"
-LCFI_MokkaBasedNets_version = "v00-01" 
-
-
 Eutelescope_version = "v00-04-04-pre"     
 
 MarlinTPC_version = "v00-05-02"  #---- ????
@@ -91,12 +110,5 @@ SiliconDigi_version = "v00-04-02"
 
 Druid_version = "1.8-pre" 
 
-CLHEP_version = "2.0.4.2" 
+Garlic_version = "HEAD" # v2.02-pre
 
-GSL_version = "1.8" 
-
-QT_version = "4.2.2" 
-
-CMake_version = "2.6.2" 
-
-CMakeModules_version = "v01-10-pre"  #--- "v01-10" 
