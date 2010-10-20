@@ -21,7 +21,7 @@ class MarlinTPC(MarlinPKG):
                         [ "lib/libtpcconddata.a", "lib/libtpcconddata.so", "lib/libtpcconddata.dylib"]]
 
         self.reqmodules = [ "LCIO", "GEAR", "GSL", "Marlin", "LCCD", "ROOT", "AIDA", "CLHEP" ]
-        #self.optmodules = [ "Mokka" ]
+        self.optmodules = [ "KalTest", "KalDet", "Mokka" ]
 
     def setMode(self, mode):
         MarlinPKG.setMode(self, mode)
