@@ -30,8 +30,12 @@ class MySQL(BaseILC):
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
 
-        self.env["MYSQL"] = self.installPath
-        self.envpath["PATH"].append( "$MYSQL/bin" )
-        self.envpath["LD_LIBRARY_PATH"].append( "$MYSQL/lib/mysql" )
-        self.envpath["LD_LIBRARY_PATH"].append( "$MYSQL/lib" )
+        self.envorder = [ "MYSQL_HOME" ]
+
+        self.env["MYSQL_HOME"] = self.installPath
+        self.env["MYSQL"] = "$MYSQL_HOME"
+
+        self.envpath["PATH"].append( "$MYSQL_HOME/bin" )
+        self.envpath["LD_LIBRARY_PATH"].append( "$MYSQL_HOME/lib/mysql" )
+        self.envpath["LD_LIBRARY_PATH"].append( "$MYSQL_HOME/lib" )
 
