@@ -17,8 +17,6 @@ class Garlic(MarlinPKG):
     def __init__(self, userInput):
         MarlinPKG.__init__(self, "Garlic", userInput)
 
-        self.reqfiles = [[ "lib/libGARLIC.a", "lib/libGARLIC.so", "lib/libGARLIC.dylib"]]
-
         self.reqmodules = [ "LCIO", "GEAR", "Marlin", "MarlinUtil", "ROOT" ]
 
         self.download.root = ''
