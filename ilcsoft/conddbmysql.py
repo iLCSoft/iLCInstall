@@ -85,4 +85,5 @@ class CondDBMySQL(BaseILC):
         BaseILC.postCheckDeps(self)
 
         self.env["CondDBMySQL"] = self.installPath
+        self.env["COND_DB_DEBUGLOG"] = '/dev/stdout'
         self.envpath["LD_LIBRARY_PATH"].append( "$CondDBMySQL/lib" )
