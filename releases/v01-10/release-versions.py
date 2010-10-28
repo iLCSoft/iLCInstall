@@ -110,5 +110,5 @@ SiliconDigi_version = "v00-04-02"
 
 Druid_version = "1.8-pre" 
 
-Garlic_version = "v2.03_pre"
+Garlic_version = "v2.03-pre"
 
