@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-10-pre02'
+ilcsoft_release='v01-10-pre'
 # ----------------------------------------------------------------------------
 
 
@@ -57,7 +57,7 @@ LCIO_version = "v01-51-01"
 
 GEAR_version = "v00-15-pre"    # v00-15
 
-CED_version = "v01-01"
+CED_version = "v01-01-01-pre"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-1"
 
@@ -89,7 +89,7 @@ Marlin_version = "v01-13-pre"  #---- "v00-12"
 
 Mokka_version = "HEAD"     # --- "mokka-07-05 or 06 ?" 
 
-MarlinReco_version = "HEAD"  #----- "v00-18-02"  
+MarlinReco_version = "v00-18-03"  #----- "v00-19"
 
 PandoraPFA_version = "v03-02-02-pre" 
 
@@ -110,5 +110,5 @@ SiliconDigi_version = "v00-04-02"
 
 Druid_version = "1.8-pre" 
 
-Garlic_version = "HEAD" # v2.02-pre
+Garlic_version = "v2.03_pre"
 
