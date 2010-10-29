@@ -31,7 +31,7 @@ ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 # ======================= PACKAGE VERSIONS ===================================
 
 
-ROOT_version = "5.26.00b"
+ROOT_version = "5.27.06"
 
 MySQL_version = "5.0.45"
 
@@ -53,7 +53,7 @@ CMake_version = "2.6.2"
 
 # -------------------------------------------
 
-LCIO_version = "v01-51-01"
+LCIO_version = "v01-51-02-pre" # v01-51-02
 
 GEAR_version = "v00-15-pre"    # v00-15
 
@@ -61,7 +61,7 @@ CED_version = "v01-01-01-pre"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-1"
 
-CMakeModules_version = "v01-10"
+CMakeModules_version = "v01-10-01-pre" # v01-10-01
 
 dcap_version = "1.9.5-5"
 
@@ -89,7 +89,7 @@ Marlin_version = "v01-13-pre"  #---- "v00-12"
 
 Mokka_version = "HEAD"     # --- "mokka-07-05 or 06 ?" 
 
-MarlinReco_version = "v00-18-03"  #----- "v00-19"
+MarlinReco_version = "v00-19-pre"  #----- "v00-19"
 
 PandoraPFA_version = "v03-02-02-pre" 
 
@@ -100,7 +100,7 @@ LCFIVertex_version = "v00-04-pre"
 
 CEDViewer_version = "v01-01-pre"  
 
-Overlay_version = "v00-07-03"
+Overlay_version = "v00-07-04"
 
 Eutelescope_version = "v00-04-04-pre"     
 
