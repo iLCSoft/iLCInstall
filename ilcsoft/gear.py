@@ -46,7 +46,7 @@ class GEAR(BaseILC):
         # execute ctests
         if( self.makeTests ):
 
-            if( os.system( "make tests 2>&1 | tee -a " + self.logfile ) != 0 ):
+            if( os.system( "make tests" ) != 0 ):
                 self.abort( "failed to compile gear tests" )
 
 
