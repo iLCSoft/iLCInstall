@@ -18,10 +18,6 @@ class GEAR(BaseILC):
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "GEAR", "gear")
 
-        # FIXME: java no longer required for generating header files with ant in v00-14
-        # but still for versions v00-13 and older ...
-        self.reqmodules_external = [ "Java" ]
-
         self.optmodules = [ "ROOT" ]
 
         self.reqfiles = [
@@ -48,9 +44,15 @@ class GEAR(BaseILC):
         # execute ctests
         if( self.makeTests ):
 
-            if( os.system( "make tests 2>&1 | tee -a " + self.logfile ) != 0 ):
+            if( os.system( "make tests 2>&1" ) != 0 ):
                 self.abort( "failed to compile gear tests" )
 
+
+    def preCheckDeps(self):
+        BaseILC.preCheckDeps(self)
+
+        if Version( self.version ) < '0.14':
+            self.addExternalDependency( ["Java"] )
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
