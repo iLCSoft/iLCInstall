@@ -18,29 +18,16 @@ class PandoraPFANew(MarlinPKG):
     def __init__(self, userInput):
         MarlinPKG.__init__(self, "PandoraPFANew", userInput )
 
+        self.download.root = 'PandoraPFANew'
+
+
+class MarlinPandora(MarlinPKG):
+    """ Responsible for the MarlinPandora installation process. """
+
+    def __init__(self, userInput):
+        MarlinPKG.__init__(self, "MarlinPandora", userInput )
+
         # required modules
-        self.reqmodules = []
+        self.reqmodules = [ "Marlin", "MarlinUtil", "GEAR", "PandoraPFANew", "LCIO" ]
 
-        # optional modules
-        self.optmodules = [ "AIDA" ]
-
-    def setMode(self, mode):
-        MarlinPKG.setMode(self, mode)
-        
-        # avoid warning 'download forced....'
-        if self.download.type != "svn":
-            self.download.type="svn-export"
-
-        self.download.svnurl = 'https://svnsrv.desy.de/public/PandoraPFANew/PandoraPFANew'
-
-
-        if( Version( self.version ) == 'HEAD' ):
-            self.download.svnurl += '/trunk'
-        else:
-            self.download.svnurl += '/tags/' + self.version
-
-        #FIXME ---- this we need for non-conforming version strings and releases in branches...
-#        if( self.version.upper() == 'HEAD' ):
-#            self.download.svnurl += '/trunk'
-#        else:
-#            self.download.svnurl += '/branches/' + self.version
+        self.download.root = 'PandoraPFANew'
