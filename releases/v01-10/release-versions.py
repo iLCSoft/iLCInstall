@@ -13,8 +13,8 @@ ilcsoft_release='v01-10-pre'
 
 
 # --------- install dir ------------------------------------------------------
-#ilcsoft_install_prefix = "/scratch/ilcsoft/"
 ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
+#ilcsoft_install_prefix = "/scratch/ilcsoft/"
 #ilcsoft_install_dir = os.path.join( ilcsoft_install_prefix, ilcsoft_release )
 # ----------------------------------------------------------------------------
 
@@ -59,7 +59,7 @@ GEAR_version = "v00-15-pre"    # v00-15
 
 CED_version = "v01-01-01-pre"
 
-CondDBMySQL_version = "CondDBMySQL_ILC-0-9-1"
+CondDBMySQL_version = "CondDBMySQL_ILC-0-9-1" # 0-9-2 ? Ralf ...
 
 CMakeModules_version = "v01-10-01-pre" # v01-10-01
 
@@ -75,7 +75,7 @@ LCFI_MokkaBasedNets_version = "v00-01"
 
 # -------------------------------------------
 
-KalTest_version = "v01-00-pre"       #-- "v00-14-02" 
+KalTest_version = "v01-00-pre02"       #-- "v00-14-02" 
 
 KalDet_version = "v01-00-pre"       #-- "v00-14-02" 
 
@@ -104,7 +104,7 @@ Overlay_version = "v00-07-04"
 
 Eutelescope_version = "v00-04-04-pre"     
 
-MarlinTPC_version = "v00-05-02"  #---- ????
+MarlinTPC_version = "v00-06-pre"  #---- v00-05-02
 
 SiliconDigi_version = "v00-04-02" 
 
