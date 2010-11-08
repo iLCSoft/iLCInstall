@@ -22,6 +22,8 @@ class GEAR(BaseILC):
         # but still for versions v00-13 and older ...
         self.reqmodules_external = [ "Java" ]
 
+        self.optmodules = [ "ROOT" ]
+
         self.reqfiles = [
                 ["lib/libgear.a", "lib/libgear.so", "lib/libgear.dylib"],
                 ["lib/libgearxml.a", "lib/libgearxml.so", "lib/libgearxml.dylib"]
