@@ -55,7 +55,7 @@ CMake_version = "2.6.2"
 
 LCIO_version = "v01-51-02-pre" # v01-51-02
 
-GEAR_version = "v00-15-pre"    # v00-15
+GEAR_version = "v00-15-pre02"    # v00-15
 
 CED_version = "v01-01-01-pre"
 
