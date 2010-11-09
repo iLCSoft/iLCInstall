@@ -237,39 +237,40 @@ class ILCSoft:
         
         # check if file already exists
         if( os.path.exists( file )):
+            os.unlink( file )
             
-            # open the file
-            f = open( file )
-            
-            list = []
-            l=f.readline()
-            while( not l=="" ):
-                # ignore comments in file
-                if( l[0] != '#' ):
-                    # append lines to a list
-                    list.append(l)
-                l=f.readline()
+            ## open the file
+            #f = open( file )
+            #
+            #list = []
+            #l=f.readline()
+            #while( not l==""):
+            #    # ignore comments in file
+            #    if( l[0] != '#' ):
+            #        # append lines to a list
+            #        list.append(l)
+            #    l=f.readline()
 
-            # close file
-            f.close()
+            ## close file
+            #f.close()
 
-            # strip whitespaces and remove empty elements
-            list = [ i.strip() for i in list if i ]
-            # concatenate everything into a list
-            s=str.join(' ',list)
-            # split by SET instruction
-            list=s.split("SET")
-            # strip whitespaces and remove empty entries
-            list = [ i.strip() for i in list if i ]
+            ## strip whitespaces and remove empty elements
+            #list = [ i.strip() for i in list if i ]
+            ## concatenate everything into a list
+            #s=str.join(' ',list)
+            ## split by SET instruction
+            #list=s.split("SET")
+            ## strip whitespaces and remove empty entries
+            #list = [ i.strip() for i in list if i ]
 
-            # this will be a list of lists:
-            for i in list:
-                s = i.split("(")
-                # strip whitespaces and remove empty entries
-                s = [ j.strip() for j in s if j ]
-                for j in s:
-                    p=j.find(' ')
-                    dicHP.append([ j[:p],j[p:] ])
+            ## this will be a list of lists:
+            #for i in list:
+            #    s = i.split("(")
+            #    # strip whitespaces and remove empty entries
+            #    s = [ j.strip() for j in s if j ]
+            #    for j in s:
+            #        p=j.find(' ')
+            #        dicHP.append([ j[:p],j[p:] ])
         
         # open file (overwrite if already exists)
         f = open( file, 'w' )
