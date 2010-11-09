@@ -61,7 +61,7 @@ CED_version = "v01-01-01-pre"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-1" # 0-9-2 ? Ralf ...
 
-CMakeModules_version = "v01-10-01-pre" # v01-10-01
+CMakeModules_version = "v01-10-01-pre02" # v01-10-01
 
 dcap_version = "1.9.5-5"
 
