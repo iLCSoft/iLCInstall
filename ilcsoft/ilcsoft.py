@@ -303,6 +303,8 @@ class ILCSoft:
                 f.write( "SET( " + modname + "_DIR \"${"+modname+"_HOME}\"" \
                         + " CACHE PATH \"Path to " + modname + "\" FORCE)" + os.linesep )
 
+                f.write( "MARK_AS_ADVANCED( " + modname + "_DIR " + modname + "_HOME )" + os.linesep  )
+
                 # fix for writing AIDA_HOME
                 if mod.name == "RAIDA" or mod.name == "AIDAJNI":
                     f.write( "SET( AIDA_HOME \"${"+modname+"_HOME}\" CACHE PATH \"Path to AIDA\" FORCE)" + os.linesep )
