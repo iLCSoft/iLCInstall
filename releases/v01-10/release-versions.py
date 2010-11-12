@@ -37,7 +37,7 @@ MySQL_version = "5.0.45"
 
 Java_version = "1.6.0"
 
-Geant4_version = "9.3"
+Geant4_version = "9.3.p02"
 
 CERNLIB_version = "2006" 
 
@@ -68,7 +68,7 @@ dcap_version = "1.9.5-5"
 
 
 StandardConfig_version = "v02-01" 
-MokkaDBConfig_version = "v02-01"
+MokkaDBConfig_version = "v02-02-pre"  # v02-02
 LCFI_MokkaBasedNets_version = "v00-01" 
 
 
