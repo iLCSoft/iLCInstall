@@ -41,7 +41,7 @@ Geant4_version = "9.3.p02"
 
 CERNLIB_version = "2006" 
 
-CLHEP_version = "2.0.4.2" 
+CLHEP_version = "2.0.4.5" 
 
 GSL_version = "1.8" 
 
