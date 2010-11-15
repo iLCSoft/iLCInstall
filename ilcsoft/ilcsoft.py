@@ -211,68 +211,13 @@ class ILCSoft:
     
     def writeCMakeEnv(self):
         
-        # name of the file
+        # name of the file ( gets overwritten !! )
         file = self.env[ "ILCSOFT_CMAKE" ]
-        
-        # this will be a list of lists for storing entries of a previously existing
-        # ILCSoft.cmake pre-cache file.. It will store on the first element the cmake
-        # variable being set and on the 2nd element the rest of the cmake
-        # command.
-        #
-        # for example the following line in a cmake pre-cache file:
-        # SET( LCIO_HOME "${ILC_CMAKE}/lcio/HEAD" CACHE PATH "Path to LCIO" FORCE )
-        #
-        # will turn out into a python list element like follows:
-        # ['LCIO_HOME',' "${ILC_CMAKE}/lcio/HEAD" CACHE PATH "Path to LCIO" FORCE )']
-        #
-        # example of what dicHP looks like:
-        # [ ['LCIO_HOME',' "${ILC_CMAKE}/lcio/HEAD" CACHE PATH "Path to LCIO" FORCE )'],
-        #   ['LCCD_HOME',' "${ILC_CMAKE}/lccd/HEAD" CACHE PATH "Path to LCCD" FORCE )'] ]
-        dicHP=[]
-
-        # this will be the list of entries to be removed at the end, i.e. entries
-        # that were defined in a previous file and that are redefined in this installation
-        # FIXME put this into a set
-        dicHP_remove=["ILC_HOME", "CMAKE_MODULE_PATH" ]
         
         # check if file already exists
         if( os.path.exists( file )):
             os.unlink( file )
             
-            ## open the file
-            #f = open( file )
-            #
-            #list = []
-            #l=f.readline()
-            #while( not l==""):
-            #    # ignore comments in file
-            #    if( l[0] != '#' ):
-            #        # append lines to a list
-            #        list.append(l)
-            #    l=f.readline()
-
-            ## close file
-            #f.close()
-
-            ## strip whitespaces and remove empty elements
-            #list = [ i.strip() for i in list if i ]
-            ## concatenate everything into a list
-            #s=str.join(' ',list)
-            ## split by SET instruction
-            #list=s.split("SET")
-            ## strip whitespaces and remove empty entries
-            #list = [ i.strip() for i in list if i ]
-
-            ## this will be a list of lists:
-            #for i in list:
-            #    s = i.split("(")
-            #    # strip whitespaces and remove empty entries
-            #    s = [ j.strip() for j in s if j ]
-            #    for j in s:
-            #        p=j.find(' ')
-            #        dicHP.append([ j[:p],j[p:] ])
-        
-        # open file (overwrite if already exists)
         f = open( file, 'w' )
         
         # write to file
@@ -309,10 +254,9 @@ class ILCSoft:
                 # fix for writing AIDA_HOME
                 if mod.name == "RAIDA" or mod.name == "AIDAJNI":
                     f.write( "SET( AIDA_HOME \"${"+modname+"_HOME}\" CACHE PATH \"Path to AIDA\" FORCE)" + os.linesep )
-                    dicHP_remove.append( "AIDA_HOME" )
+                    f.write( "SET( AIDA_DIR \"${"+modname+"_HOME}\" CACHE PATH \"Path to AIDA\" FORCE)" + os.linesep )
+                    f.write( "MARK_AS_ADVANCED( AIDA_HOME AIDA_DIR )" + os.linesep  )
 
-                dicHP_remove.append( modname+"_HOME" )
-        
         cmods = self.module("CMakeModules")
         if( cmods != None ):
             if( cmods.installPath.find( self.installPath ) == 0 ):
@@ -322,17 +266,6 @@ class ILCSoft:
                 f.write( os.linesep + "SET( CMAKE_MODULE_PATH \"" + cmods.installPath + "\"" \
                         + " CACHE PATH \"Path to CMakeModules\" FORCE)" + os.linesep + os.linesep )
        
-        # remove entries from dicHP
-        for r in dicHP_remove:
-            for k in dicHP:
-                if( k[0] == r ):
-                    del( dicHP[dicHP.index(k)])
-
-        # finally check if there are still any entries in dicHP and write them out
-        # in the new file
-        for k in dicHP:
-            f.write( "SET( " + k[0] + k[1] + os.linesep )
-
         # close file
         f.close()
 
