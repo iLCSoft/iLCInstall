@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-10-pre'
+ilcsoft_release='v01-10-pre03'
 # ----------------------------------------------------------------------------
 
 
@@ -104,7 +104,7 @@ Overlay_version = "v00-07-04"
 
 Eutelescope_version = "v00-04-04-pre"     
 
-MarlinTPC_version = "v00-06-pre"  #---- v00-05-02
+MarlinTPC_version = "v00-07-pre"  #---- v00-07
 
 SiliconDigi_version = "v00-04-02" 
 
