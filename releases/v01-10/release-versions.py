@@ -59,9 +59,9 @@ GEAR_version = "v00-15-pre02"    # v00-15
 
 CED_version = "v01-01-01-pre"
 
-CondDBMySQL_version = "CondDBMySQL_ILC-0-9-2-pre" # 0-9-2
+CondDBMySQL_version = "CondDBMySQL_ILC-0-9-2"
 
-CMakeModules_version = "v01-10-01-pre02" # v01-10-01
+CMakeModules_version = "v01-10-01"
 
 dcap_version = "1.9.5-5"
 
