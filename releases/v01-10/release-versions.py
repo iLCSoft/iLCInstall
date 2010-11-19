@@ -108,7 +108,7 @@ MarlinTPC_version = "v00-07-pre"  #---- v00-07
 
 SiliconDigi_version = "v00-04-02" 
 
-Druid_version = "1.8-pre" 
+Druid_version = "1.8" 
 
 Garlic_version = "v2.03-pre"
 
