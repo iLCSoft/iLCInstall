@@ -20,6 +20,7 @@ class Druid(BaseILC):
 
         # no cmake build support
         self.hasCMakeBuildSupport = False
+        self.hasCMakeFindSupport = False
         
         #self.download.supportHEAD = False
 
