@@ -104,7 +104,7 @@ Overlay_version = "v00-08-pre"
 
 Eutelescope_version = "v00-04-04-pre"     
 
-MarlinTPC_version = "v00-07-pre"  #---- v00-07
+MarlinTPC_version = "v00-07-01"
 
 SiliconDigi_version = "v00-04-02" 
 
