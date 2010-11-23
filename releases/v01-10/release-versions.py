@@ -55,9 +55,9 @@ CMake_version = "2.6.2"
 
 LCIO_version = "v01-51-02"
 
-GEAR_version = "v00-15-pre02"    # v00-15
+GEAR_version = "v00-15"
 
-CED_version = "v01-01-01-pre"
+CED_version = "v01-01-01"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-2"
 
@@ -81,7 +81,7 @@ KalDet_version = "v01-00-pre"       #-- "v00-14-02"
 
 LCCD_version = "v01-01-pre"  #--- "v01-00" 
 
-RAIDA_version = "v01-05-pre" 
+RAIDA_version = "v01-05" 
 
 MarlinUtil_version = "v01-01-pre"  #---- "v01-00" 
 
