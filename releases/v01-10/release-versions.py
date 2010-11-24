@@ -96,7 +96,7 @@ PandoraPFA_version = "v03-02-02-pre"
 PandoraPFANew_version = "v00-03"  #--- "v00-02" 
 MarlinPandora_version = "v00-02"  #--- "v00-01" 
 
-LCFIVertex_version = "v00-04-pre" 
+LCFIVertex_version = "v00-04" 
 
 CEDViewer_version = "v01-01-pre"  
 
