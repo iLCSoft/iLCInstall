@@ -102,9 +102,9 @@ CEDViewer_version = "v01-01-pre"
 
 Overlay_version = "v00-08-pre"
 
-Eutelescope_version = "v00-04-04-pre"     
+Eutelescope_version = "v00-04-04"     
 
-MarlinTPC_version = "v00-07-01"
+MarlinTPC_version = "v00-08-00"
 
 SiliconDigi_version = "v00-04-02" 
 
