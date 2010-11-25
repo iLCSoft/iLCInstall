@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-10-pre04'
+ilcsoft_release='v01-10-pre05'
 # ----------------------------------------------------------------------------
 
 
@@ -79,13 +79,13 @@ KalTest_version = "v01-00"
 
 KalDet_version = "v01-00"
 
-LCCD_version = "v01-01-pre"  #--- "v01-00" 
+LCCD_version = "v01-01"
 
 RAIDA_version = "v01-05" 
 
-MarlinUtil_version = "v01-01-pre"  #---- "v01-00" 
+MarlinUtil_version = "v01-01"
 
-Marlin_version = "v01-13-pre"  #---- "v00-12" 
+Marlin_version = "v00-13"
 
 Mokka_version = "HEAD"     # --- "mokka-07-05 or 06 ?" 
 
@@ -98,7 +98,7 @@ MarlinPandora_version = "v00-02"
 
 LCFIVertex_version = "v00-04" 
 
-CEDViewer_version = "v01-01-pre" #v01-01
+CEDViewer_version = "v01-01"
 
 Overlay_version = "v00-08"
 
@@ -110,5 +110,5 @@ SiliconDigi_version = "v00-04-02"
 
 Druid_version = "1.8" 
 
-Garlic_version = "v2.3.0"
+Garlic_version = "v2.0.3"
 
