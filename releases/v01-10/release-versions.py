@@ -91,20 +91,20 @@ Mokka_version = "HEAD"     # --- "mokka-07-05 or 06 ?"
 
 MarlinReco_version = "v00-19-pre"  #----- "v00-19"
 
-PandoraPFA_version = "v03-02-02-pre" 
+PandoraPFA_version = "v03-02-02" 
 
-PandoraPFANew_version = "v00-03"  #--- "v00-02" 
-MarlinPandora_version = "v00-02"  #--- "v00-01" 
+PandoraPFANew_version = "v00-03"
+MarlinPandora_version = "v00-02"
 
 LCFIVertex_version = "v00-04" 
 
-CEDViewer_version = "v01-01-pre"  
+CEDViewer_version = "v01-01-pre" #v01-01
 
-Overlay_version = "v00-08-pre"
+Overlay_version = "v00-08"
 
 Eutelescope_version = "v00-04-04"     
 
-MarlinTPC_version = "v00-08-00"
+MarlinTPC_version = "v00-08-01"
 
 SiliconDigi_version = "v00-04-02" 
 
