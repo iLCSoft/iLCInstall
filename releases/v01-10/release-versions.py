@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-10-pre05'
+ilcsoft_release='v01-10-pre06'
 # ----------------------------------------------------------------------------
 
 
@@ -55,7 +55,7 @@ CMake_version = "2.6.2"
 
 LCIO_version = "v01-51-02"
 
-GEAR_version = "v00-15"
+GEAR_version = "v00-16-pre"
 
 CED_version = "v01-01-01"
 
@@ -87,7 +87,7 @@ MarlinUtil_version = "v01-01"
 
 Marlin_version = "v00-13"
 
-Mokka_version = "HEAD"     # --- "mokka-07-05 or 06 ?" 
+Mokka_version = "mokka-07-06"
 
 MarlinReco_version = "v00-19-pre"  #----- "v00-19"
 
