@@ -13,8 +13,8 @@ ilcsoft_release='v01-10-pre06'
 
 
 # --------- install dir ------------------------------------------------------
-ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
-#ilcsoft_install_prefix = "/scratch/ilcsoft/"
+#ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
+ilcsoft_install_prefix = "/scratch/ilcsoft/"
 #ilcsoft_install_dir = os.path.join( ilcsoft_install_prefix, ilcsoft_release )
 # ----------------------------------------------------------------------------
 
@@ -93,8 +93,8 @@ MarlinReco_version = "v00-19-pre"  #----- "v00-19"
 
 PandoraPFA_version = "v03-02-02" 
 
-PandoraPFANew_version = "v00-03"
-MarlinPandora_version = "v00-02"
+PandoraPFANew_version = "v00-04"
+MarlinPandora_version = "v00-03"
 
 LCFIVertex_version = "v00-04" 
 
