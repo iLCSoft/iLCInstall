@@ -85,7 +85,7 @@ RAIDA_version = "v01-05"
 
 MarlinUtil_version = "v01-01"
 
-Marlin_version = "v00-13"
+Marlin_version = "v00-13-01"
 
 Mokka_version = "mokka-07-06"
 
