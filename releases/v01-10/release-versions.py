@@ -68,7 +68,7 @@ dcap_version = "1.9.5-5"
 
 
 StandardConfig_version = "v02-01" 
-MokkaDBConfig_version = "v02-02-pre"  # v02-02
+MokkaDBConfig_version = "v02-02"
 LCFI_MokkaBasedNets_version = "v00-01" 
 
 
