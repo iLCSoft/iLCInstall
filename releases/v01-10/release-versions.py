@@ -65,6 +65,8 @@ CMakeModules_version = "v01-10-01"
 
 dcap_version = "1.9.5-5"
 
+FastJet_version = "2.4.2"
+FastJetClustering_version = "HEAD" #FIXME
 
 
 StandardConfig_version = "v02-01" 

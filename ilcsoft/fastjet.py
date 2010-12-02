@@ -10,7 +10,20 @@
                                                                                                                                                             
 # custom imports
 from baseilc import BaseILC
+from marlinpkg import MarlinPKG
 from util import *
+
+
+class FastJetClustering(MarlinPKG):
+    """ Responsible for the FastJetClustering installation process. """
+    
+    def __init__(self, userInput):
+        MarlinPKG.__init__(self, "FastJetClustering", userInput )
+
+        # required modules
+        self.reqmodules = [ "Marlin", "MarlinUtil", "CLHEP", "GEAR", "GSL", "CERNLIB", "LCIO", "FastJet" ]
+
+        self.download.root = "marlinreco"
 
 
 class FastJet(BaseILC):
