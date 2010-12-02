@@ -16,18 +16,24 @@ How to use:
 
 3rd:    create your cronjob
 
-        # call crontab for current user
+        # configure crontab for current user
         $ crontab -e
 
         # example of a crontab file
         SHELL=/bin/bash
         # enter your email here for receiving output from cron jobs
         MAILTO=your_email@blah.zzz
-        # keep in mind that ilcinstall tries to access $HOME/.cvspass for cvs/ccvssh
-        # downloads, so you have to make sure cron has access or a copy of this file.
-        HOME=/data/engels/cronhome
-        # don't forget to add the path to ccvssh if you do ccvssh downloads
-        PATH=/sbin:/bin:/usr/sbin:/usr/bin
+        # for downloading the sources for the nightly builds, the cron user (used by the cronjob)
+        # needs to access some settings:
+        # for cvs downloads: $HOME/.cvspass
+        # for svn downloads with p12 certificate: $HOME/.subversion/servers and $HOME/.globus/usercert.p12
+        # if this settings are located in afs the cronjob needs an afs token to access them.
+        # the easiest way is to use k5crontab to define the cronjobs instead (just call k5crontab -e)
+        # if you do not have k5crontab then you need to relocate the HOME directory of cron to a non-afs
+        # directory and copy the needed settings to this directory.
+        # HOME=/scratch/cronhome
+        # some additional paths may be needed
+        # PATH=/sbin:/bin:/usr/sbin:/usr/bin
          
         # cron syntax is:
         # mm hh MM YY dd

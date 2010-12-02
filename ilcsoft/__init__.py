@@ -31,6 +31,7 @@ from eutelescope import Eutelescope
 from overlay import Overlay
 from marlintpc import MarlinTPC
 from ckfit import CKFit
+from fastjet import FastJet
 
 # simtools
 #from simtoolsmaker import SimToolsMaker
