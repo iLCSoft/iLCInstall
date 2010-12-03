@@ -3,9 +3,18 @@
 #####################################################
 
 -----------------------------------------------------
- HEAD 
+ v01-10 
 -----------------------------------------------------
-
+ - reorganized the release config scripts:
+   new directory:
+    ./releases/v01-10
+   files:
+      release-base.cfg
+      release-ilcsoft.cfg
+      release-scratch.cfg
+      release-versions.py
+   modify as needed (install path in elease-versions.py)
+    
  - added Garlic module
  - changed MarlinTPC svn repository URL to desy
  - changed cmake build command to: cmake -C ..
