@@ -69,7 +69,7 @@ FastJet_version = "2.4.2"
 FastJetClustering_version = "v00-01"
 
 
-StandardConfig_version = "v02-01" 
+StandardConfig_version = "v02-02-pre"  #FIXME
 MokkaDBConfig_version = "v02-02"
 LCFI_MokkaBasedNets_version = "v00-01" 
 
