@@ -69,7 +69,7 @@ FastJet_version = "2.4.2"
 FastJetClustering_version = "v00-01"
 
 
-StandardConfig_version = "v02-02-pre"  #FIXME
+StandardConfig_version = "v02-02"
 MokkaDBConfig_version = "v02-02"
 LCFI_MokkaBasedNets_version = "v00-01" 
 
@@ -91,7 +91,7 @@ Marlin_version = "v00-13-01"
 
 Mokka_version = "mokka-07-06"
 
-MarlinReco_version = "v00-19-pre"  #----- "v00-19"
+MarlinReco_version = "v00-19"
 
 PandoraPFA_version = "v03-02-02" 
 
@@ -100,13 +100,13 @@ MarlinPandora_version = "v00-03"
 
 LCFIVertex_version = "v00-04" 
 
-CEDViewer_version = "v01-01"
+CEDViewer_version = "v01-01-01"
 
 Overlay_version = "v00-08"
 
 Eutelescope_version = "v00-04-04"     
 
-MarlinTPC_version = "v00-08-01"
+MarlinTPC_version = "v00-08-03"
 
 SiliconDigi_version = "v00-04-02" 
 
