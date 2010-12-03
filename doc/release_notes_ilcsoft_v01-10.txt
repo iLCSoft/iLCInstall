@@ -451,8 +451,8 @@ v00-08-03
 
  - added FindMokka.cmake
  - changes in FindROOT.cmake
-    - bug fix: ROOT_${COMPONENT}_FOUND not set properly
-    - renamed ROOT_LIB_COMPONENT to ROOT_COMPONENT_LIB
+    - bug fix: ROOT_${COMPONENT}_FOUND variables not set properly
+    - renamed ROOT_LIB_${COMPONENT} to ROOT_${COMPONENT}_LIBRARY for individual libraries
     - reenabled dl lib (required for SL5 32bit)
  - replaced PKG_HOME variables with PKG_DIR (still
     backwards compatible)
