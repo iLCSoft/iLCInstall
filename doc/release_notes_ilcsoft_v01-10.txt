@@ -36,11 +36,13 @@ current OS versions and e.g. does not allow to distinguish 32bit from 64bit buil
  KalDet  v01-00
 
  Garlic  v2.0.3
+ 
+ FastJetClustering v00-01
+  (+ FastJet 2.4.2 )
 
-
--------------------------------------------------------------------------
-Release notes of packages that have been changed or added since v01-08-01
--------------------------------------------------------------------------
+-------------------------------------------------
+Release notes of packages that have been changed 
+-------------------------------------------------
 
 ================================
   Mokka
@@ -313,23 +315,55 @@ XIII. Run abort when reaching end of input file
 ================================
   MarlinPandora
 ================================
-TAG V00-02 FOR ILCSOFT USAGE
 
-  Correct layer absorber thickness calculation.
-  Switch order of calls to register user content and create geometry.
-  Set BUILD_32BIT_COMPATIBLE to OFF by default.
+TAG V00-03 FOR ILCSOFT USAGE
+
+Deal with yoke plug hits and also hits that have zero absorber thickness.
+Updated to reflect namespace changes to pandora::StatusCode enum and pandora::StatusCodeException class.
+Added SimpleBFieldCalculator class and chose to use HighGranularityPseudoLayerCalculator class provided with 
+PandoraPFANew library.
+Updated PandoraSettings files to reflect recent changes and provided file that uses separate muon reconstruction.
+Provided a gnu makefile.
+Correct layer absorber thickness calculation.
+Switch order of calls to register user content and create geometry.
+Set BUILD_32BIT_COMPATIBLE to OFF by default.
 
 ================================
   PandoraPFANew
 ================================
-TAG V00-03 FOR ILCSOFT 
 
-  Tidied GeometryHelper class, separating PseudoLayerCalculator and DetectorGap classes.
-  Improved pseudo layer calculation; now uses binary search and has improved treatment for barrel/endcap
-  overlap regions.
-  Added ability to create and use custom pseudo layer calculator class.
-  Added efficiency monitoring algorithm to assess particle identification purity and completeness.
-  Set BUILD_32BIT_COMPATIBLE to OFF by default.
+TAG V00-04 FOR ILCSOFT USAGE
+
+Improve OrderedCaloHitList memory management.
+Added muon reconstruction algorithm, which complete muon particle flow object construction before the standard 
+pandora reconstruction.
+Improved PrimaryClustering algorithm to account for possible deletion of clusters during topological 
+association algorithms.
+Improved cluster and track preparation algorithms to deal with content already used in particle flow objects.
+Improved em shower identification, cutting on number of radiation lengths in front of layer90 and shower max layer.
+Improved em shower identification, cutting on shower transverse profile and energy fraction above "high" number of 
+radiation lengths.
+Improved SoftClusterMerging algorithm to avoid adding isolated photons to low energy electrons.
+Removed unused muon hit information from main fragment removal algorithm.
+Moved StatusCode enum and StatusCodeException class to namespace pandora.
+Added default/null lists to cluster, calo hit and track managers.
+Restructured track input list mechanics.
+Added apis to "drop" current lists.
+Addressed warnings produced when early reconstruction removes all hits/tracks/etc. from an event.
+Removed error message in case where no pfos are formed.
+Removed initial division of calo hit list in muon and non-muon lists from the calo hit manager.
+Forbade negative b-field values at helix construction time. For now, user should flip charge sign.
+Removed unused helix constructor.
+Added BFieldCalculator functionality.
+Client application must now specify pseudolayer calculator and bfield calculators.
+Removed TrackSelection algorithm and replaced with EventPreparation algorithm.
+Provided a gnu makefile.
+Tidied GeometryHelper class, separating PseudoLayerCalculator and DetectorGap classes.
+Improved pseudo layer calculation; now uses binary search and has improved treatment for barrel/endcap
+overlap regions.
+Added ability to create and use custom pseudo layer calculator class.
+Added efficiency monitoring algorithm to assess particle identification purity and completeness.
+Set BUILD_32BIT_COMPATIBLE to OFF by default.
 
 
 ================================
@@ -360,7 +394,7 @@ TAG V00-03 FOR ILCSOFT
   MarlinTPC
 ================================
 
-v00-08-01
+v00-08-03
 
      - changed units in KalTest program parts (patch by K. Fujii) to
       match standard units in Marlin
