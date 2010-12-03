@@ -13,8 +13,7 @@ ilcsoft_release='v01-10'
 
 
 # --------- install dir ------------------------------------------------------
-ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
-#ilcsoft_install_prefix = "/scratch/ilcsoft/"
+ilcsoft_install_prefix = "/scratch/ilcsoft/"
 #ilcsoft_install_dir = os.path.join( ilcsoft_install_prefix, ilcsoft_release )
 # ----------------------------------------------------------------------------
 
@@ -22,6 +21,7 @@ ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 # --------- ilcsoft home -----------------------------------------------------
 # python variable for referring the ILC Home directory
 # used to link or use already installed packages (SL4 or SL5)
+# no need to set this variable if using SL4 or SL5 with access to /afs/desy.de/
 #ilcPath = '/afs/desy.de/project/ilcsoft/sw/i386_gcc34_sl4/'
 #ilcPath = ilcsoft_afs_path[ arch ]
 # ----------------------------------------------------------------------------
