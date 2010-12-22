@@ -19,6 +19,7 @@ import time
 import string
 import re
 import fnmatch
+import platform
 
 #--------------------------------------------------------------------------------
 
@@ -28,17 +29,19 @@ class OSDetect(object):
     type = "unknown"
     ver = "unknown"
     platform = "unknown"
+    arch = "unknown" # composed of gcc ver + architecture, e.g.: 'gcc34_32bit'
 
     def __init__(self):
+
         # Linux
         if( sys.platform == "linux2" ):
             self.type = "Linux"
  
-         # MacOs
+        # MacOs
         if( sys.platform == "mac" or sys.platform == "darwin" ):
             self.type = "Darwin"
         
-         # Windows
+        # Windows
         if( sys.platform == "win32" ):
             self.type = "Win"
 
@@ -51,6 +54,16 @@ class OSDetect(object):
             out=getstatusoutput("uname -i")
             if( out[0] == 0 ):
                 self.platform=out[1].strip()
+
+
+        try:
+            sizeofint = platform.architecture()[0]
+            # major minor version of compiler
+            gccver = ''.join( platform.python_compiler().split()[-1].split('.')[:2] )
+            self.arch = 'gcc' + gccver + '_' + sizeofint
+        except:
+            pass
+
 
     def _get_shortver(self):
         if self.isSL():
