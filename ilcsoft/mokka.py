@@ -83,17 +83,19 @@ class Mokka(BaseILC):
         self.envcmds.append(" . $G4ENV_INIT ")
 
         # disable some visualization drivers
-        self.envcmds.append("unset G4VIS_BUILD_OPENGLXM_DRIVER G4VIS_BUILD_OIX_DRIVER" )
-        self.envcmds.append("unset G4VIS_USE_OPENGLXM G4VIS_USE_OIX_DRIVER" )
-        self.envcmds.append("unset G4UI_BUILD_XAW_SESSION G4UI_BUILD_XM_SESSION" )
-        self.envcmds.append("unset G4UI_USE_XAW G4UI_USE_XM" )
+        self.envcmds.append("unset G4VIS_BUILD_OIX_DRIVER G4VIS_USE_OIX_DRIVER G4VIS_USE_OIX" ) # G4VIS_USE_OIX_DRIVER changed in ver 9.3 to G4VIS_USE_OIX
+        self.envcmds.append("unset G4VIS_BUILD_OPENGLXM_DRIVER G4VIS_USE_OPENGLXM" )
+        self.envcmds.append("unset G4UI_BUILD_XAW_SESSION G4UI_USE_XAW" )
+        self.envcmds.append("unset G4UI_BUILD_XM_SESSION G4UI_USE_XM" )
 
-        # small hack required for cross-compiling 32bit on 64bit (check $ARCH in $G4ENV_INIT)
-        d = self.parent.env.copy()
-        d.update(self.env)
-        if d.setdefault('CXXFLAGS','').find('m32') != -1:
-            self.envcmds.append('test -d "$OGLHOME/lib" && export OGLLIBS="-L${OGLHOME}/lib -lGLU -lGL"' )
-            self.envcmds.append('test -d "$CLHEP_BASE_DIR/lib" && export CLHEP_LIB_DIR=${CLHEP_BASE_DIR}/lib' )
+        # ---- DEPRECATED cross-compile of 32bit in 64bit ---------------
+        #d = self.parent.env.copy()
+        #d.update(self.env)
+        #if d.setdefault('CXXFLAGS','').find('m32') != -1:
+        #    self.envcmds.append('test -d "$OGLHOME/lib" && export OGLLIBS="-L${OGLHOME}/lib -lGLU -lGL"' )
+        #    self.envcmds.append('test -d "$CLHEP_BASE_DIR/lib" && export CLHEP_LIB_DIR=${CLHEP_BASE_DIR}/lib' )
+        #    self.envcmds.append('test -d "$OIVHOME/lib" && export OIVLIBS="-L${OIVHOME}/lib -lInventor -lInventorXt"' )
+        #    self.envcmds.append('test -d "$XERCESCROOT/lib32" && export GDMLLIBS="-L${XERCESCROOT}/lib32 -lxerces-c"' )
          
         # compiling Mokka crashes if LDFLAGS is set. # TODO add bug to geant4 bug tracker
         self.envcmds.append("unset LDFLAGS")
