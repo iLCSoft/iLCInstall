@@ -8,6 +8,7 @@ sys.path.append( sys.path[0] + '/ilcsoft' )
 from ilcsoft import ILCSoft
 
 # core software
+from ilcutil import ILCUTIL
 from lcio import LCIO
 from lccd import LCCD
 from gear import GEAR
