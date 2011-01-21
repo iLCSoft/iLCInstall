@@ -240,22 +240,22 @@ class ILCSoft:
             if( mod.name in self.cmakeSupportedMods ):
                 # check if install path from module contains base path from ilcsoft
                 if( mod.installPath.find( self.installPath) == 0 ):
-                    f.write( "SET( " + modname + "_HOME \"${ILC_HOME}/" + mod.alias + "/" + mod.version + "\"" \
+                    f.write( "SET( " + modname + "_DIR \"${ILC_HOME}/" + mod.alias + "/" + mod.version + "\"" \
                             + " CACHE PATH \"Path to " + modname + "\" FORCE)" + os.linesep )
                 else:
-                    f.write( "SET( " + modname + "_HOME \"" + mod.installPath + "\"" \
+                    f.write( "SET( " + modname + "_DIR \"" + mod.installPath + "\"" \
                             + " CACHE PATH \"Path to " + modname + "\" FORCE)" + os.linesep )
 
-                f.write( "SET( " + modname + "_DIR \"${"+modname+"_HOME}\"" \
-                        + " CACHE PATH \"Path to " + modname + "\" FORCE)" + os.linesep )
+                #f.write( "SET( " + modname + "_DIR \"${"+modname+"_HOME}\"" \
+                #        + " CACHE PATH \"Path to " + modname + "\" FORCE)" + os.linesep )
 
-                f.write( "MARK_AS_ADVANCED( " + modname + "_DIR " + modname + "_HOME )" + os.linesep  )
+                #f.write( "MARK_AS_ADVANCED( " + modname + "_DIR " + modname + "_HOME )" + os.linesep  )
 
-                # fix for writing AIDA_HOME
+                # fix for writing AIDA_DIR
                 if mod.name == "RAIDA" or mod.name == "AIDAJNI":
-                    f.write( "SET( AIDA_HOME \"${"+modname+"_HOME}\" CACHE PATH \"Path to AIDA\" FORCE)" + os.linesep )
-                    f.write( "SET( AIDA_DIR \"${"+modname+"_HOME}\" CACHE PATH \"Path to AIDA\" FORCE)" + os.linesep )
-                    f.write( "MARK_AS_ADVANCED( AIDA_HOME AIDA_DIR )" + os.linesep  )
+                    #f.write( "SET( AIDA_HOME \"${"+modname+"_HOME}\" CACHE PATH \"Path to AIDA\" FORCE)" + os.linesep )
+                    f.write( "SET( AIDA_DIR \"${"+modname+"_DIR}\" CACHE PATH \"Path to AIDA\" FORCE)" + os.linesep )
+                    #f.write( "MARK_AS_ADVANCED( AIDA_HOME AIDA_DIR )" + os.linesep  )
 
         cmods = self.module("CMakeModules")
         if( cmods != None ):
