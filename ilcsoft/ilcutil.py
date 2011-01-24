@@ -19,7 +19,7 @@ class ILCUTIL(BaseILC):
         BaseILC.__init__(self, userInput, "ILCUTIL", "ilcutil")
 
         self.reqfiles = [
-            [ "cmakemodules/FindILCSOFT_CMAKE_MODULES.cmake" ],
+            [ "ILCSOFT_CMAKE_MODULESConfig.cmake" ],
             [ "lib/libstreamlog.a", "lib/libstreamlog.so", "lib/libstreamlog.dylib"]
         ]
 
