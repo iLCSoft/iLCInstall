@@ -363,7 +363,8 @@ class BaseILC:
                     if mod in self.cmakebuildmodules:
                         found=True
             if found:
-                self.addExternalDependency( ["CMakeModules"] )
+                #self.addExternalDependency( ["CMakeModules","ILCUTIL"] )
+                self.addExternalDependency( ["ILCUTIL"] )
     
     def postCheckDeps(self):
         """ called after running dependency check
