@@ -227,6 +227,8 @@ class ILCSoft:
         
         f.write( os.linesep + "SET( ILC_HOME \"" + self.installPath + "\"" \
                 + " CACHE PATH \"Path to ILC Software\" FORCE)" + os.linesep + os.linesep )
+        f.write( "MARK_AS_ADVANCED( ILC_HOME )" + os.linesep  )
+       
 
         for mod in self.modules:
             
@@ -250,12 +252,20 @@ class ILCSoft:
                 #        + " CACHE PATH \"Path to " + modname + "\" FORCE)" + os.linesep )
 
                 #f.write( "MARK_AS_ADVANCED( " + modname + "_DIR " + modname + "_HOME )" + os.linesep  )
+                f.write( "MARK_AS_ADVANCED( " + modname + "_DIR )" + os.linesep  )
 
                 # fix for writing AIDA_DIR
                 if mod.name == "RAIDA" or mod.name == "AIDAJNI":
                     #f.write( "SET( AIDA_HOME \"${"+modname+"_HOME}\" CACHE PATH \"Path to AIDA\" FORCE)" + os.linesep )
                     f.write( "SET( AIDA_DIR \"${"+modname+"_DIR}\" CACHE PATH \"Path to AIDA\" FORCE)" + os.linesep )
                     #f.write( "MARK_AS_ADVANCED( AIDA_HOME AIDA_DIR )" + os.linesep  )
+                    f.write( "MARK_AS_ADVANCED( AIDA_DIR )" + os.linesep  )
+
+
+        if self.module("ILCUTIL"):
+            f.write( os.linesep + "# set CMAKE_FIND_ROOT_PATH to find ILCSOFT_CMAKE_MODULES ILCTEST and streamlog" )
+            f.write( os.linesep + "# by setting this variable there is no need to set the correspondent PKG_DIR variables" )
+            f.write( os.linesep + "SET( CMAKE_FIND_ROOT_PATH \"${ILCUTIL_DIR}\" CACHE PATH \"CMAKE_FIND_ROOT_PATH\" FORCE)" + os.linesep )
 
         cmods = self.module("CMakeModules")
         if( cmods != None ):
@@ -265,7 +275,7 @@ class ILCSoft:
             else:
                 f.write( os.linesep + "SET( CMAKE_MODULE_PATH \"" + cmods.installPath + "\"" \
                         + " CACHE PATH \"Path to CMakeModules\" FORCE)" + os.linesep + os.linesep )
-       
+
         # close file
         f.close()
 
