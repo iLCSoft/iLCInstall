@@ -30,7 +30,6 @@ class CondDBMySQL(BaseILC):
 
         if Version( self.version ) > '0.7.3':
             self.hasCMakeBuildSupport = True
-            self.cmakebuildmodules = [ "MySQL" ]
         else:
             self.hasCMakeBuildSupport = False
 

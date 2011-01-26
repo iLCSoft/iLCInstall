@@ -23,9 +23,6 @@ class RAIDA(BaseILC):
         # ROOT is required for building RAIDA
         self.reqmodules = [ "ROOT" ]
 
-        # supported cmake modules
-        self.cmakebuildmodules = [ "ROOT" ]
-
         # cvs root
         self.download.root = "ilctools"
 

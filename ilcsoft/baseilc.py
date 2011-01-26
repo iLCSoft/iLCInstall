@@ -52,7 +52,6 @@ class BaseILC:
         self.useLink = False                    # flag for "link" packages
         self.parent = None                      # parent class (this should be set to the ilcsoft object)
         self.reqfiles = []                      # list of required files to "use" this package (libraries, binaries, etc.)
-        self.cmakebuildmodules = []             # list of possible modules that this package can be built with (only for cmake)
         self.optmodules = []                    # optional modules (this package will try to build itself with this modules)
         self.reqmodules = []                    # required modules for building or using the libraries of this package
         self.reqmodules_external = []           # required modules for only building the package (their versions do not
@@ -353,19 +352,11 @@ class BaseILC:
         
         # add cmake dependency
         if( self.mode == "install" and self.hasCMakeBuildSupport ):
-            self.addExternalDependency( ["CMake"] )
+            self.addExternalDependency( ["CMake" ] )
+            if self.name != "LCIO":
+                self.addExternalDependency( ["ILCUTIL" ] )
 
-            # add CMakeModules dependency
-            found=False
-            mods = self.reqmodules + self.optmodules + self.reqmodules_buildonly
-            if( len(mods) > 0 ):
-                for mod in mods:
-                    if mod in self.cmakebuildmodules:
-                        found=True
-            if found:
-                #self.addExternalDependency( ["CMakeModules","ILCUTIL"] )
-                self.addExternalDependency( ["ILCUTIL"] )
-    
+
     def postCheckDeps(self):
         """ called after running dependency check
             useful for checking version incompatibilities
@@ -771,7 +762,7 @@ class BaseILC:
             # compile module
             if( not self.skipCompile ):
                 if( self.hasCMakeBuildSupport ):
-                    self.setCMakeVars(self,[])
+                    #self.setCMakeVars(self,[])
                     print "+ Generated cmake build command:"
                     print '  $ ', self.genCMakeCmd()
                     print os.linesep
@@ -826,7 +817,7 @@ class BaseILC:
             self.setEnv(self, [], True )
 
             if( self.hasCMakeBuildSupport ):
-                self.setCMakeVars(self, [])
+                #self.setCMakeVars(self, [])
                 print "\n+ Generated CMake command for building " + self.name + ":"
                 print '  $ ',self.genCMakeCmd()
             
@@ -844,49 +835,6 @@ class BaseILC:
 
         return cmd.strip()
 
-    def setCMakeVars(self, origin, checked):
-        """ sets the cmake variables """
-        # resolve circular dependencies
-        if( self.name in checked ):
-            return
-        else:
-            checked.append( self.name )
-
-        # cmake variables
-        if( len(checked) > 1 ):
-            # FIXME for setting JAVA_HOME instead of Java_HOME
-            if( self.name == "Java" ):
-                thisname=self.name.upper()
-            # alias AIDA to RAIDA/AIDAJNI
-            if( self.name == "RAIDA" or self.name == "AIDAJNI" ):
-                thisname="AIDA"
-            else:
-                thisname=self.name
- 
-            ## CMAKE_MODULE_PATH variable
-            #if( self.name == "CMakeModules" ):
-            #    origin.envcmake["CMAKE_MODULE_PATH"]=self.realPath()
-            #
-            ## PKG_HOME variables
-            #if( thisname.upper() in map(str.upper, self.parent.cmakeSupportedMods )):
-            #    if( thisname == "AIDA" ):
-            #        origin.envcmake[self.name+"_HOME"]=self.realPath()
-            #    origin.envcmake[thisname+"_HOME"]=self.realPath()
-            
-            if( thisname.upper() in map( str.upper, origin.cmakebuildmodules )):
-                # BUILD_WITH variable
-                if( thisname.upper() in map(str.upper,origin.optmodules) ):
-                    origin.envcmake["BUILD_WITH"]=origin.envcmake.setdefault('BUILD_WITH','')+thisname+' '
-    
-        # set environment for dependencies
-        if( len( checked ) > 1 ):
-            mods = self.optmodules + self.reqmodules
-        else:
-            # buildonly modules are only used for the package were they are needed
-            mods = self.optmodules + self.reqmodules + self.reqmodules_buildonly + self.reqmodules_external
-        
-        for modname in mods:
-            self.parent.module(modname).setCMakeVars(origin, checked )
 
     def setEnv(self, origin, checked, simOnly=False):
         """ sets the environment variables for this module """

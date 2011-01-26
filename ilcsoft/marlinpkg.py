@@ -31,11 +31,6 @@ class MarlinPKG(BaseILC):
         self.reqfiles = [ [ str("lib/lib" + name + ".a"), str("lib/lib" + name + ".so"), str("lib/lib" + name + ".dylib") ] ]
         self.reqmodules=[ 'LCIO', 'Marlin' ]
     
-    def init(self):
-        BaseILC.init(self)
-        # all supported cmake modules
-        self.cmakebuildmodules = self.parent.cmakeSupportedMods
-    
     def compile(self):
         """ compile MarlinPKG """
         

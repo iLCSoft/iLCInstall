@@ -23,9 +23,6 @@ class LCIO(BaseILC):
         # java required
         self.reqmodules_external = [ "Java" ]
         
-        # supported cmake modules
-        self.cmakebuildmodules = [ "Java" ]
-
         # optional modules
         self.optmodules = [ "dcap", "ROOT" ]
 

@@ -267,14 +267,18 @@ class ILCSoft:
             f.write( os.linesep + "# by setting this variable there is no need to set the correspondent PKG_DIR variables" )
             f.write( os.linesep + "SET( CMAKE_FIND_ROOT_PATH \"${ILCUTIL_DIR}\" CACHE PATH \"CMAKE_FIND_ROOT_PATH\" FORCE)" + os.linesep )
 
-        cmods = self.module("CMakeModules")
-        if( cmods != None ):
-            if( cmods.installPath.find( self.installPath ) == 0 ):
-                f.write( os.linesep + "SET( CMAKE_MODULE_PATH \"${ILC_HOME}/CMakeModules/" + cmods.version + "\"" \
-                        + " CACHE PATH \"Path to CMakeModules\" FORCE)" + os.linesep + os.linesep )
-            else:
-                f.write( os.linesep + "SET( CMAKE_MODULE_PATH \"" + cmods.installPath + "\"" \
-                        + " CACHE PATH \"Path to CMakeModules\" FORCE)" + os.linesep + os.linesep )
+            f.write( os.linesep + "# set CMAKE_MODULE_PATH for backwards compatibility directly to ILCUTIL_DIR/cmakemodules" )
+            f.write( os.linesep + "SET( CMAKE_MODULE_PATH \"${ILCUTIL_DIR}/cmakemodules\" CACHE PATH \"Path to CMakeModules\" FORCE)" + os.linesep )
+        else:
+            # in case ILCUTIL is not present look if we find the old CMakeModules
+            cmods = self.module("CMakeModules")
+            if( cmods != None ):
+                if( cmods.installPath.find( self.installPath ) == 0 ):
+                    f.write( os.linesep + "SET( CMAKE_MODULE_PATH \"${ILC_HOME}/CMakeModules/" + cmods.version + "\"" \
+                            + " CACHE PATH \"Path to CMakeModules\" FORCE)" + os.linesep + os.linesep )
+                else:
+                    f.write( os.linesep + "SET( CMAKE_MODULE_PATH \"" + cmods.installPath + "\"" \
+                            + " CACHE PATH \"Path to CMakeModules\" FORCE)" + os.linesep + os.linesep )
 
         # close file
         f.close()

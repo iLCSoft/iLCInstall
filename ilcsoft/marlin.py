@@ -26,9 +26,6 @@ class Marlin(BaseILC):
         # optional modules
         self.optmodules = [ "CLHEP", "LCCD" , "AIDA" ]
 
-        # supported cmake modules
-        self.cmakebuildmodules = [ "LCIO", "CLHEP", "LCCD", "AIDA" ]
-
         self.envcmake['MARLIN_GUI']='OFF'
     
     def compile(self):

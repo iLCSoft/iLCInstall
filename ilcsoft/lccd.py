@@ -24,10 +24,7 @@ class LCCD(BaseILC):
         self.reqmodules = [ "LCIO" ]
 
         # optional modules
-        self.optmodules = [ "CondDBMySQL", "MySQL" ]
-
-        # supported cmake modules
-        self.cmakebuildmodules = [ "LCIO", "CondDBMySQL" ]
+        self.optmodules = [ "CondDBMySQL" ]
 
     def compile(self):
         """ compile LCCD """
