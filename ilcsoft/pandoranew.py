@@ -20,7 +20,10 @@ class PandoraPFANew(MarlinPKG):
 
         self.download.root = 'PandoraPFANew'
 
-        self.reqfiles = [ [ 'lib/libPandoraFramework.so', 'lib/libPandoraFramework.a', 'lib/libPandoraFramework.dylib' ] ]
+        self.reqfiles = [ [ 
+            'lib/libPandoraFramework.so', 'lib/libPandoraFramework.a', 'lib/libPandoraFramework.dylib',
+            'lib/libPandoraPFANew.so', 'lib/libPandoraPFANew.a', 'lib/libPandoraPFANew.dylib',
+        ] ]
 
 
 class MarlinPandora(MarlinPKG):
