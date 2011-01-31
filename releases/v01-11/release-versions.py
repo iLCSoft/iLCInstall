@@ -95,7 +95,7 @@ Mokka_version = "mokka-07-06" # update?
 
 MarlinReco_version = "v00-19" # TODO
 
-PandoraPFA_version = "v03-02-02" # update/remove??
+#PandoraPFA_version = "v03-02-02" # DEPRECATED
 
 PandoraPFANew_version = "v00-04" # TODO
 MarlinPandora_version = "v00-03" # TODO
