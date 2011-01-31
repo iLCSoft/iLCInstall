@@ -89,7 +89,7 @@ RAIDA_version = "v01-06-pre"
 
 MarlinUtil_version = "v01-02-pre" # TODO update release notes
 
-Marlin_version = "v00-01-pre"
+Marlin_version = "v01-00-pre"
 
 Mokka_version = "mokka-07-06" # update?
 
