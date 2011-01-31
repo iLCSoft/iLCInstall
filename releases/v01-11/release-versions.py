@@ -104,7 +104,7 @@ LCFIVertex_version = "v00-04" # TODO
 
 CEDViewer_version = "v01-01-01" # TODO
 
-Overlay_version = "v00-08" # TODO
+Overlay_version = "v00-09-pre"
 
 Eutelescope_version = "v00-04-04" # TODO    
 
