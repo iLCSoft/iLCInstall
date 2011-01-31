@@ -58,7 +58,7 @@ LCIO_version = "v01-51-02"
 
 GEAR_version = "v00-17-pre"
 
-CED_version = "v01-01-01" # update?
+CED_version = "v01-02-pre" # TODO update release notes
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-3-pre"
 
@@ -71,7 +71,7 @@ FastJet_version = "2.4.2"
 FastJetClustering_version = "v00-02-pre"
 
 
-StandardConfig_version = "v02-02" # update?
+StandardConfig_version = "v02-02" # TODO v03-00-pre
 MokkaDBConfig_version = "v02-02"
 LCFI_MokkaBasedNets_version = "v00-01" 
 
@@ -93,7 +93,7 @@ Marlin_version = "v00-01-pre"
 
 Mokka_version = "mokka-07-06" # update?
 
-MarlinReco_version = "v00-19" # TODO
+MarlinReco_version = "trunk"
 
 #PandoraPFA_version = "v03-02-02" # DEPRECATED
 
