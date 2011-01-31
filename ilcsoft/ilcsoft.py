@@ -263,9 +263,9 @@ class ILCSoft:
 
 
         if self.module("ILCUTIL"):
-            f.write( os.linesep + "# set CMAKE_FIND_ROOT_PATH to find ILCSOFT_CMAKE_MODULES ILCTEST and streamlog" )
+            f.write( os.linesep + "# set CMAKE_PREFIX_PATH to find ILCSOFT_CMAKE_MODULES ILCTEST and streamlog" )
             f.write( os.linesep + "# by setting this variable there is no need to set the correspondent PKG_DIR variables" )
-            f.write( os.linesep + "SET( CMAKE_FIND_ROOT_PATH \"${ILCUTIL_DIR}\" CACHE PATH \"CMAKE_FIND_ROOT_PATH\" FORCE)" + os.linesep )
+            f.write( os.linesep + "SET( CMAKE_PREFIX_PATH \"${ILCUTIL_DIR}\" CACHE PATH \"CMAKE_PREFIX_PATH\" FORCE)" + os.linesep )
 
             f.write( os.linesep + "# set CMAKE_MODULE_PATH for backwards compatibility directly to ILCUTIL_DIR/cmakemodules" )
             f.write( os.linesep + "SET( CMAKE_MODULE_PATH \"${ILCUTIL_DIR}/cmakemodules\" CACHE PATH \"Path to CMakeModules\" FORCE)" + os.linesep )
