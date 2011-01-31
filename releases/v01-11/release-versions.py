@@ -93,7 +93,7 @@ Marlin_version = "v00-01-pre"
 
 Mokka_version = "mokka-07-06" # update?
 
-MarlinReco_version = "trunk"
+MarlinReco_version = "HEAD" # TODO
 
 #PandoraPFA_version = "v03-02-02" # DEPRECATED
 
