@@ -32,7 +32,7 @@ ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 # ======================= PACKAGE VERSIONS ===================================
 
 
-ROOT_version = "5.27.06"
+ROOT_version = "5.28.00"
 
 MySQL_version = "5.0.45"
 
@@ -68,7 +68,7 @@ ILCUTIL_version = "v00-01-pre"
 dcap_version = "1.9.5-5" # remove?
 
 FastJet_version = "2.4.2"
-FastJetClustering_version = "v00-01" # TODO
+FastJetClustering_version = "v00-02-pre"
 
 
 StandardConfig_version = "v02-02" # update?
@@ -87,7 +87,7 @@ LCCD_version = "v01-02-pre"
 
 RAIDA_version = "v01-06-pre" 
 
-MarlinUtil_version = "v01-02-pre"
+MarlinUtil_version = "v01-02-pre" # TODO update release notes
 
 Marlin_version = "v00-14-pre"
 
