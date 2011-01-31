@@ -54,7 +54,7 @@ CMake_version = "2.8.3"
 
 # -------------------------------------------
 
-LCIO_version = "v01-51-02" # update?
+LCIO_version = "v01-51-02"
 
 GEAR_version = "v00-17-pre"
 
@@ -79,7 +79,7 @@ LCFI_MokkaBasedNets_version = "v00-01"
 
 # -------------------------------------------
 
-KalTest_version = "v01-00" # TODO
+KalTest_version = "v01-01-pre"
 
 KalDet_version = "v01-00" # TODO
 
