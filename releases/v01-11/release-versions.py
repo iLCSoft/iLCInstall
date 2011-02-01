@@ -71,7 +71,7 @@ FastJet_version = "2.4.2"
 FastJetClustering_version = "v00-02-pre"
 
 
-StandardConfig_version = "v02-02" # TODO v03-00-pre
+StandardConfig_version = "HEAD" # TODO v03-00-pre
 MokkaDBConfig_version = "v02-02"
 LCFI_MokkaBasedNets_version = "v00-01" 
 
