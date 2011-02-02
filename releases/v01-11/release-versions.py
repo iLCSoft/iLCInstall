@@ -63,7 +63,7 @@ CED_version = "v01-02-pre" # TODO update release notes
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-3-pre"
 
 #CMakeModules_version = "v01-10-01" # DEPRECATED
-ILCUTIL_version = "v00-01-pre"
+ILCUTIL_version = "v00-01-pre02"
 
 dcap_version = "1.9.5-5" # remove?
 
