@@ -13,8 +13,8 @@ ilcsoft_release='v01-11-pre'
 
 
 # --------- install dir ------------------------------------------------------
-#ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
-ilcsoft_install_prefix = "/scratch/$USER/ilcsoft/"
+ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
+#ilcsoft_install_prefix = "/scratch/$USER/ilcsoft/"
 #ilcsoft_install_dir = os.path.join( ilcsoft_install_prefix, ilcsoft_release )
 # ----------------------------------------------------------------------------
 
@@ -100,7 +100,7 @@ MarlinReco_version = "HEAD" # TODO
 PandoraPFANew_version = "v00-04" # TODO
 MarlinPandora_version = "v00-03" # TODO
 
-LCFIVertex_version = "v00-04" # TODO
+LCFIVertex_version = "v00-05-pre"
 
 CEDViewer_version = "v01-02-pre"
 
@@ -108,7 +108,7 @@ Overlay_version = "v00-09-pre"
 
 Eutelescope_version = "v00-04-04" # TODO    
 
-MarlinTPC_version = "v00-08-03" # TODO
+MarlinTPC_version = "v00-08-pre"
 
 SiliconDigi_version = "v00-04-02" # update/remove??
 
