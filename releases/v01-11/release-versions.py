@@ -97,8 +97,8 @@ MarlinReco_version = "HEAD" # TODO
 
 #PandoraPFA_version = "v03-02-02" # DEPRECATED
 
-PandoraPFANew_version = "v00-04" # TODO
-MarlinPandora_version = "v00-03" # TODO
+PandoraPFANew_version = "v00-05"
+MarlinPandora_version = "v00-04"
 
 LCFIVertex_version = "v00-05-pre"
 
