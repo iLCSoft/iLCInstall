@@ -58,7 +58,7 @@ LCIO_version = "v01-51-02"
 
 GEAR_version = "v00-17-pre"
 
-CED_version = "v01-02-pre" # TODO update release notes
+CED_version = "v01-02"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-3-pre"
 
