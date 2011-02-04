@@ -60,7 +60,7 @@ GEAR_version = "v00-17-pre"
 
 CED_version = "v01-02"
 
-CondDBMySQL_version = "CondDBMySQL_ILC-0-9-3-pre"
+CondDBMySQL_version = "CondDBMySQL_ILC-0-9-3"
 
 #CMakeModules_version = "v01-10-01" # DEPRECATED
 ILCUTIL_version = "v00-01-pre02"
