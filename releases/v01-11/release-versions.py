@@ -85,7 +85,7 @@ KalDet_version = "v01-01-pre"
 
 LCCD_version = "v01-02"
 
-RAIDA_version = "v01-06-pre" 
+RAIDA_version = "v01-06" 
 
 MarlinUtil_version = "v01-02-pre" # TODO update release notes
 
