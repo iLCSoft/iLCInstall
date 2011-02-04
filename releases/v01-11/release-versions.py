@@ -114,5 +114,5 @@ SiliconDigi_version = "v00-04-02" # update/remove??
 
 Druid_version = "1.8" 
 
-Garlic_version = "v2.0.3" # TODO
+Garlic_version = "v2.0.4-pre"
 
