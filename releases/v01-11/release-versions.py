@@ -56,7 +56,7 @@ CMake_version = "2.8.3"
 
 LCIO_version = "v01-51-02"
 
-GEAR_version = "v00-17-pre"
+GEAR_version = "v00-17"
 
 CED_version = "v01-02"
 
@@ -83,7 +83,7 @@ KalTest_version = "v01-01-pre"
 
 KalDet_version = "v01-01-pre"
 
-LCCD_version = "v01-02-pre"
+LCCD_version = "v01-02"
 
 RAIDA_version = "v01-06-pre" 
 
