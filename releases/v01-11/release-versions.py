@@ -102,7 +102,7 @@ MarlinPandora_version = "v00-04"
 
 LCFIVertex_version = "v00-05-pre"
 
-CEDViewer_version = "v01-02-pre"
+CEDViewer_version = "v01-02"
 
 Overlay_version = "v00-09-pre"
 
