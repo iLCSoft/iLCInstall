@@ -87,7 +87,7 @@ LCCD_version = "v01-02"
 
 RAIDA_version = "v01-06" 
 
-MarlinUtil_version = "v01-02-pre" # TODO update release notes
+MarlinUtil_version = "v01-02"
 
 Marlin_version = "v01-00-pre"
 
