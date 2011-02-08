@@ -106,7 +106,7 @@ CEDViewer_version = "v01-02"
 
 Overlay_version = "v00-09-pre"
 
-Eutelescope_version = "v00-04-04" # TODO    
+Eutelescope_version = "v00-05-03-pre"
 
 MarlinTPC_version = "v00-08-pre"
 
