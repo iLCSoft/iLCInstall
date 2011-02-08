@@ -104,13 +104,13 @@ LCFIVertex_version = "v00-05-pre"
 
 CEDViewer_version = "v01-02"
 
-Overlay_version = "v00-09-pre"
+Overlay_version = "v00-09"
 
 Eutelescope_version = "v00-05-03-pre"
 
 MarlinTPC_version = "v00-08-pre"
 
-SiliconDigi_version = "v00-04-02" # update/remove??
+#SiliconDigi_version = "v00-04-02" # update/remove??
 
 Druid_version = "1.8" 
 
