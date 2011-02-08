@@ -114,5 +114,5 @@ MarlinTPC_version = "v00-08-pre"
 
 Druid_version = "1.8" 
 
-Garlic_version = "v2.0.4-pre"
+Garlic_version = "v2.0.4"
 
