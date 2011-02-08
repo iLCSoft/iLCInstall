@@ -68,7 +68,7 @@ ILCUTIL_version = "v00-01-pre02"
 dcap_version = "1.9.5-5" # remove?
 
 FastJet_version = "2.4.2"
-FastJetClustering_version = "v00-02-pre"
+FastJetClustering_version = "v00-02"
 
 
 StandardConfig_version = "HEAD" # TODO v03-00-pre
