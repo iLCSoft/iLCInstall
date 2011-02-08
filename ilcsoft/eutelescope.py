@@ -30,22 +30,9 @@ class Eutelescope(MarlinPKG):
     def compile(self):
         """ compile Eutelescope """
 
-        os.chdir( self.installPath )
-
-        # ----- BUILD EUDAQ ---------------------------------
-        if self.env.get( "EUDAQ_VERSION", "" ):
-            os.system( "svn co http://svn.hepforge.org/eudaq/%s eudaq/%s" % (self.env["EUDAQ_VERSION"], self.env["EUDAQ_VERSION"]) )
-
-            os.chdir( self.env[ "EUDAQ" ] ) # defined in preCheckDeps (so it is written to build_env.sh)
-
-            if( self.rebuild ):
-                os.system( "make clean" )
-
-            os.system( "make main" )
-
 
         # ----- BUILD EUTELESCOPE ----------------------------
-        os.chdir( self.installPath + "/build" )
+        os.chdir( self.installPath+"/build" )
 
         if( self.rebuild ):
             tryunlink( "CMakeCache.txt" )
@@ -56,11 +43,20 @@ class Eutelescope(MarlinPKG):
         if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to install!!" )
 
+        os.chdir( self.installPath )
 
-        # ----- RE-BUILD EUDAQ ---------------------------------
+
         if self.env.get( "EUDAQ_VERSION", "" ):
-            os.chdir( self.env[ "EUDAQ" ] )
-            os.system( "make USE_LCIO=1 USE_EUTELESCOPE=1 clean main" )
+
+            # ----- BUILD EUDAQ ---------------------------------
+            os.system( "svn co http://svn.hepforge.org/eudaq/%s eudaq/%s" % (self.env["EUDAQ_VERSION"], self.env["EUDAQ_VERSION"]) )
+
+            os.chdir( self.env[ "EUDAQ" ] ) # needs to be defined in preCheckDeps (so it is written to build_env.sh)
+
+            if( self.rebuild ):
+                os.system( "make clean" )
+
+            os.system( "make USE_LCIO=1 USE_EUTELESCOPE=1 main" )
 
             # ----- RE-BUILD EUTELESCOPE ---------------------------
             os.chdir( self.installPath + "/build" )
@@ -70,10 +66,11 @@ class Eutelescope(MarlinPKG):
 
 
     def preCheckDeps(self):
-        MarlinPKG.postCheckDeps(self)
+        MarlinPKG.preCheckDeps(self)
 
         if self.env.get( "EUDAQ_VERSION", "" ):
             self.env[ "EUDAQ" ] = self.installPath + "/eudaq/" + self.env["EUDAQ_VERSION"]
+
 
 
     def postCheckDeps(self):
