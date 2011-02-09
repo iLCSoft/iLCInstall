@@ -30,7 +30,6 @@ class Eutelescope(MarlinPKG):
     def compile(self):
         """ compile Eutelescope """
 
-
         # ----- BUILD EUTELESCOPE ----------------------------
         os.chdir( self.installPath+"/build" )
 
@@ -43,12 +42,11 @@ class Eutelescope(MarlinPKG):
         if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to install!!" )
 
-        os.chdir( self.installPath )
-
 
         if self.env.get( "EUDAQ_VERSION", "" ):
 
             # ----- BUILD EUDAQ ---------------------------------
+            os.chdir( self.installPath )
             os.system( "svn co http://svn.hepforge.org/eudaq/%s eudaq/%s" % (self.env["EUDAQ_VERSION"], self.env["EUDAQ_VERSION"]) )
 
             os.chdir( self.env[ "EUDAQ" ] ) # needs to be defined in preCheckDeps (so it is written to build_env.sh)
@@ -65,12 +63,23 @@ class Eutelescope(MarlinPKG):
             os.system( "make install" )
 
 
+        if self.env.get( "MILLEPEDEII_VERSION", "" ):
+            # ----- BUILD MILLEPEDEII ---------------------------
+            os.chdir( self.installPath )
+            os.system( "svn co https://svnsrv.desy.de/public/MillepedeII/%s millepede2/%s" % (self.env["MILLEPEDEII_VERSION"], self.env["MILLEPEDEII_VERSION"]) )
+            os.chdir( self.env[ "MILLEPEDEII" ] ) # needs to be defined in preCheckDeps (so it is written to build_env.sh)
+            os.system( "make" )
+
+
     def preCheckDeps(self):
         MarlinPKG.preCheckDeps(self)
 
         if self.env.get( "EUDAQ_VERSION", "" ):
             self.env[ "EUDAQ" ] = self.installPath + "/eudaq/" + self.env["EUDAQ_VERSION"]
 
+        if self.env.get( "MILLEPEDEII_VERSION", "" ):
+            self.env[ "MILLEPEDEII" ] = self.installPath + "/millepede2/" + self.env["MILLEPEDEII_VERSION"]
+            self.envpath["PATH"].append( '$MILLEPEDEII' )
 
 
     def postCheckDeps(self):
