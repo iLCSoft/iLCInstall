@@ -38,9 +38,7 @@ class FastJet(BaseILC):
         self.download.supportHEAD = False
         self.download.supportedTypes = ["wget"]
 
-        self.reqfiles = [[
-                "lib/libfastjet.so",
-        ]]
+        self.reqfiles = [[ "lib/libfastjet.so", "lib/libfastjet.a", "lib/libfastjet.dylib" ]]
     
     def setMode(self, mode):
         BaseILC.setMode(self, mode)       
