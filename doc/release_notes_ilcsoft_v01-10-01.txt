@@ -57,6 +57,9 @@
     release notes (v01-10-01):
     --------------------------
 
+        skip building of Mokka libCGAPack.so (causing too many library
+        dependencies being exported in the link process to libMarlinTPC.so)
+
      - bug fixes:
 
         * [r1399] ilcsoft/mokka.py: added unset G4VIS_USE_OIX (previously
