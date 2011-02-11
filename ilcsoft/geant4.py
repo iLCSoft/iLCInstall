@@ -38,11 +38,13 @@ class Geant4(BaseILC):
             #print "cannot read G4Data versions, this is only supported for Geant4 versions >= 9.0"
             return
 
-        if Version(self.version, max_elements=2 ) == "9.0":
-            datasetsenv = [ "G4LEDATA", "G4NEUTRONHPDATA", "G4LEVELGAMMADATA", "G4RADIOACTIVEDATA" ]
-            
+        datasetsenv = [ "G4LEDATA", "G4NEUTRONHPDATA", "G4LEVELGAMMADATA", "G4RADIOACTIVEDATA" ]
+
         if Version(self.version, max_elements=2 ) >= "9.1":
-            datasetsenv = [ "G4ABLADATA", "G4LEDATA", "G4NEUTRONHPDATA", "G4LEVELGAMMADATA", "G4RADIOACTIVEDATA" ]
+            datasetsenv.insert(0, 'G4ABLADATA')
+
+        if Version(self.version, max_elements=2 ) >= "9.3":
+            datasetsenv.append('G4REALSURFACEDATA')
 
         depsdir=self.parent.installPath+"/.dependencies"
         g4dataversfile = depsdir+"/g4data"
