@@ -91,7 +91,7 @@ Marlin_version = "v00-13-01"
 
 Mokka_version = "mokka-07-06"
 
-MarlinReco_version = "v00-19"
+MarlinReco_version = "v00-19-01"
 
 PandoraPFA_version = "v03-02-02" 
 
