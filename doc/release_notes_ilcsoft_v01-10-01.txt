@@ -1,0 +1,49 @@
+#################################
+#
+#   iLCSoft release - v01-10-01
+#
+#################################
+
+-------------------------------------------------------------------
+ iLCSoft release v01-10-01 is an exact copy of v01-10 except for
+ 2 packages (LCCD and MarlinReco). See changes below:
+
+
+
+    LCCD ChangeLog:
+    -------------------------------------------------------------------------
+    old version: v01-01
+    new version: v01-01-01
+
+
+    release notes (v01-01-01):
+    --------------------------
+
+        - fixed lcio namespace issue in DataFileHandler.cc
+            missing namespace meant lcio exception DataNotAvailableException
+            was not caught as intended
+
+        - made gcc4 compliant
+
+
+
+
+    MarlinReco ChangeLog:
+    -------------------------------------------------------------------------
+    old version: v00-19
+    new version: v00-19-01
+
+
+    release notes (v00-19-01):
+    --------------------------
+
+        * [r2031] TrackDigi/TPCDigi/src/TPCDigiProcessor.cc: fixed a bug
+          where if lowpt hits were present in an event yet no pad row based
+          hits were present then _tpcRowHits was not correctly initialised.
+          Also fixed instance hard coded double hit res in z, it was set to
+          5 which was the default value and that used for studies, so no
+          expect change in behaviour. Also corrected Calculation of
+          pathlength in z for hit merging. It was incorrectly set to
+          pathlength*(pz/pt).
+
+
