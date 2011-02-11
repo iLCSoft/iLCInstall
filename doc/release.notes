@@ -3,6 +3,19 @@
 #####################################################
 
 -----------------------------------------------------
+ v01-10-01
+-----------------------------------------------------
+
+ - bug fixes:
+
+    * [r1399] ilcsoft/mokka.py: added unset G4VIS_USE_OIX (previously
+      G4VIS_USE_OIX_DRIVER)
+    * [r1398] ilcsoft/geant4.py: added G4REALSURFACEDATA (new in 9.3)
+    * [r1397] ilcsoft/fastjet.py: patched for macosx
+
+
+
+-----------------------------------------------------
  v01-10 
 -----------------------------------------------------
  - reorganized the release config scripts:

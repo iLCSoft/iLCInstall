@@ -6,7 +6,7 @@
 
 -------------------------------------------------------------------
  iLCSoft release v01-10-01 is an exact copy of v01-10 except for
- 2 packages (LCCD and MarlinReco). See changes below:
+ 3 packages (LCCD, MarlinReco and ilcinstall). See changes below:
 
 
 
@@ -46,4 +46,23 @@
           pathlength in z for hit merging. It was incorrectly set to
           pathlength*(pz/pt).
 
+
+
+    ilcinstall ChangeLog:
+    -------------------------------------------------------------------------
+    old version: v01-10
+    new version: v01-10-01
+
+
+    release notes (v01-10-01):
+    --------------------------
+
+     - bug fixes:
+
+        * [r1399] ilcsoft/mokka.py: added unset G4VIS_USE_OIX (previously
+          G4VIS_USE_OIX_DRIVER). This bug caused Mokka to link against
+          libInventor.so and libInventorXt.so
+
+        * [r1398] ilcsoft/geant4.py: added G4REALSURFACEDATA (new in 9.3)
+        * [r1397] ilcsoft/fastjet.py: patched for macosx
 
