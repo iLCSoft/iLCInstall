@@ -52,8 +52,6 @@ from clhep import CLHEP
 from heppdt import HepPDT
 from gsl import GSL
 from qt import QT
-from aidajni import AIDAJNI
-from jaida import JAIDA
 from dcap import dcap
 
 # external (without install support)
