@@ -3,9 +3,38 @@
 #####################################################
 
 -----------------------------------------------------
- v01-10 
+ v01-11
 -----------------------------------------------------
 
+ - changed for using ILCUTIL package
+ 
+ - added installation of EUDAQ+Millepede2 in Eutelescope
+    activate with:
+    ilcsoft.module("Eutelescope").env['EUDAQ_VERSION']='trunk'
+    ilcsoft.module("Eutelescope").env['MILLEPEDEII_VERSION']='trunk'
+ 
+ - deprecated CMakeModules, AIDAJNI and JAIDA packages
+    
+ - deprecated use of PKG_HOME cmake variables (now replaced with standard cmake PKG_DIR variables)
+
+
+
+-----------------------------------------------------
+ v01-10-01
+-----------------------------------------------------
+
+ - bug fixes:
+
+    * [r1399] ilcsoft/mokka.py: added unset G4VIS_USE_OIX (previously
+      G4VIS_USE_OIX_DRIVER)
+    * [r1398] ilcsoft/geant4.py: added G4REALSURFACEDATA (new in 9.3)
+    * [r1397] ilcsoft/fastjet.py: patched for macosx
+
+
+
+-----------------------------------------------------
+ v01-10 
+-----------------------------------------------------
  - reorganized the release config scripts:
    new directory:
     ./releases/v01-10
@@ -14,7 +43,7 @@
       release-ilcsoft.cfg
       release-scratch.cfg
       release-versions.py
-   modify as needed (install path in release-versions.py)
+   modify as needed (install path in elease-versions.py)
     
  - added Garlic module
  - changed MarlinTPC svn repository URL to desy
