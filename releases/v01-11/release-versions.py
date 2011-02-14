@@ -108,7 +108,7 @@ Overlay_version = "v00-09"
 
 Eutelescope_version = "v00-05-03-pre"
 
-MarlinTPC_version = "v00-08-pre"
+MarlinTPC_version = "v00-08-04"
 
 #SiliconDigi_version = "v00-04-02" # update/remove??
 
