@@ -104,7 +104,7 @@ LCFIVertex_version = "v00-05-pre"
 
 CEDViewer_version = "v01-02"
 
-Overlay_version = "v00-09"
+Overlay_version = "v00-09-01"
 
 Eutelescope_version = "v00-05-03-pre"
 
