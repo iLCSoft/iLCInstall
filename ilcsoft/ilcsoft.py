@@ -232,7 +232,7 @@ class ILCSoft:
 
         for mod in self.modules:
             
-            # fix for setting JAVA_HOME and not Java_HOME
+            # fix for setting JAVA_DIR and not Java_DIR
             if mod.name == "Java":
                 modname=mod.name.upper()
             else:
@@ -248,17 +248,11 @@ class ILCSoft:
                     f.write( "SET( " + modname + "_DIR \"" + mod.installPath + "\"" \
                             + " CACHE PATH \"Path to " + modname + "\" FORCE)" + os.linesep )
 
-                #f.write( "SET( " + modname + "_DIR \"${"+modname+"_HOME}\"" \
-                #        + " CACHE PATH \"Path to " + modname + "\" FORCE)" + os.linesep )
-
-                #f.write( "MARK_AS_ADVANCED( " + modname + "_DIR " + modname + "_HOME )" + os.linesep  )
                 f.write( "MARK_AS_ADVANCED( " + modname + "_DIR )" + os.linesep  )
 
                 # fix for writing AIDA_DIR
                 if mod.name == "RAIDA" or mod.name == "AIDAJNI":
-                    #f.write( "SET( AIDA_HOME \"${"+modname+"_HOME}\" CACHE PATH \"Path to AIDA\" FORCE)" + os.linesep )
                     f.write( "SET( AIDA_DIR \"${"+modname+"_DIR}\" CACHE PATH \"Path to AIDA\" FORCE)" + os.linesep )
-                    #f.write( "MARK_AS_ADVANCED( AIDA_HOME AIDA_DIR )" + os.linesep  )
                     f.write( "MARK_AS_ADVANCED( AIDA_DIR )" + os.linesep  )
 
 
