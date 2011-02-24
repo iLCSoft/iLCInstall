@@ -19,7 +19,7 @@ class QT(BaseILC):
         BaseILC.__init__(self, userInput, "QT", "QT")
 
         self.hasCMakeBuildSupport = False
-        self.hasCMakeFindSupport = False
+        self.hasCMakeFindSupport = True
         self.download.supportHEAD = False
         self.download.supportedTypes = ["wget"]
 
