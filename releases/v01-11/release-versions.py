@@ -79,13 +79,13 @@ LCFI_MokkaBasedNets_version = "v00-01"
 
 # -------------------------------------------
 
-KalTest_version = "v01-01"
+KalTest_version = "v01-01-01"
 
-KalDet_version = "v01-01"
+KalDet_version = "v01-01-01"
 
 LCCD_version = "v01-02"
 
-RAIDA_version = "v01-06" 
+RAIDA_version = "v01-06-01"
 
 MarlinUtil_version = "v01-02"
 
@@ -97,7 +97,7 @@ MarlinReco_version = "HEAD" # TODO
 
 #PandoraPFA_version = "v03-02-02" # DEPRECATED
 
-PandoraPFANew_version = "v00-05"
+PandoraPFANew_version = "v00-05" # FIXME v01-00 ??
 MarlinPandora_version = "v00-04"
 
 LCFIVertex_version = "v00-05-pre"
