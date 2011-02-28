@@ -89,9 +89,9 @@ RAIDA_version = "v01-06-01"
 
 MarlinUtil_version = "v01-02"
 
-Marlin_version = "v01-00" # TODO v01-00-01 ??
+Marlin_version = "v01-00"
 
-Mokka_version = "mokka-07-06" # update?
+Mokka_version = "mokka-07-06-p01"
 
 MarlinReco_version = "HEAD" # TODO
 
@@ -106,7 +106,7 @@ CEDViewer_version = "v01-02"
 
 Overlay_version = "v00-09-01"
 
-Eutelescope_version = "v00-06-00-pre" # TODO
+Eutelescope_version = "v00-05-03-pre" # TODO v00-06-00-pre # FIXME doxygen
 
 MarlinTPC_version = "v00-08-04"
 
