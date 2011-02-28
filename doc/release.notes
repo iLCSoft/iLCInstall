@@ -8,6 +8,8 @@
 
  - changed for using ILCUTIL package
  
+ - added support for installing ROOT
+
  - added installation of EUDAQ+Millepede2 in Eutelescope
     activate with:
     ilcsoft.module("Eutelescope").env['EUDAQ_VERSION']='trunk'
@@ -15,8 +17,10 @@
  
  - deprecated CMakeModules, AIDAJNI and JAIDA packages
     
- - deprecated use of PKG_HOME cmake variables (now replaced with standard cmake PKG_DIR variables)
+ - deprecated use of PKG_HOME cmake variables
+    - use standard CMAKE_PREFIX_PATH or PKG_DIR variables
 
+ - fixes for macosx
 
 
 -----------------------------------------------------
