@@ -421,12 +421,14 @@ Addressed CppCheck (static analysis package) warnings.
  RAIDA
 ================================
 
-  -------
- | v01-06 |
-  -------
+  -----------
+ | v01-06-01 |
+  -----------
 
     - fixed building of documentation
     - added RAIDAConfigVersion.cmake to check RAIDA version
+    - added AIDAConfig.cmake and AIDAConfigVersion.cmake
+        - wrappers to RAIDAConfig.cmake and RAIDAConfigVersion.cmake
     - updated cmake files to use new ILCUTIL package
 
 
@@ -442,6 +444,8 @@ Addressed CppCheck (static analysis package) warnings.
 
      - changed for using ILCUTIL package
 
+     - added support for installing ROOT
+
      - added installation of EUDAQ+Millepede2 in Eutelescope
         activate with:
         ilcsoft.module("Eutelescope").env['EUDAQ_VERSION']='trunk'
@@ -449,7 +453,8 @@ Addressed CppCheck (static analysis package) warnings.
 
      - deprecated CMakeModules, AIDAJNI and JAIDA packages
 
-     - deprecated use of PKG_HOME cmake variables (now replaced with standard cmake PKG_DIR variables)
+     - deprecated use of PKG_HOME cmake variables
+        - use standard CMAKE_PREFIX_PATH or PKG_DIR variables
 
 
      + bug fixes included in v01-10-01:
