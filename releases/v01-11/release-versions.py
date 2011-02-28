@@ -89,7 +89,7 @@ RAIDA_version = "v01-06-01"
 
 MarlinUtil_version = "v01-02"
 
-Marlin_version = "v01-00"
+Marlin_version = "v01-00" # TODO v01-00-01 ??
 
 Mokka_version = "mokka-07-06" # update?
 
@@ -97,7 +97,7 @@ MarlinReco_version = "HEAD" # TODO
 
 #PandoraPFA_version = "v03-02-02" # DEPRECATED
 
-PandoraPFANew_version = "v00-05" # FIXME v01-00 ??
+PandoraPFANew_version = "v00-05"
 MarlinPandora_version = "v00-04"
 
 LCFIVertex_version = "v00-05-pre"
@@ -106,7 +106,7 @@ CEDViewer_version = "v01-02"
 
 Overlay_version = "v00-09-01"
 
-Eutelescope_version = "v00-05-03-pre"
+Eutelescope_version = "v00-06-00-pre" # TODO
 
 MarlinTPC_version = "v00-08-04"
 
