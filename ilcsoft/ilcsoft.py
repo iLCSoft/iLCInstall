@@ -226,49 +226,59 @@ class ILCSoft:
 
         
         f.write( os.linesep + "SET( ILC_HOME \"" + self.installPath + "\"" \
-                + " CACHE PATH \"Path to ILC Software\" FORCE)" + os.linesep + os.linesep )
-        f.write( "MARK_AS_ADVANCED( ILC_HOME )" + os.linesep  )
+                + " CACHE PATH \"Path to ILC Software\" FORCE)" + os.linesep )
+        f.write( "MARK_AS_ADVANCED( ILC_HOME )" + os.linesep + os.linesep )
        
+
+        f.write( "SET( CMAKE_PREFIX_PATH " + os.linesep )
 
         for mod in self.modules:
             
-            # fix for setting JAVA_HOME and not Java_HOME
-            if mod.name == "Java":
-                modname=mod.name.upper()
-            else:
-                modname=mod.name
-                
+            ## fix for setting JAVA_DIR and not Java_DIR
+            #if mod.name == "Java":
+            #    modname=mod.name.upper()
+            #else:
+            #    modname=mod.name
+            #    
 
             if( mod.name in self.cmakeSupportedMods ):
+
+                f.write( "\t" )
+
                 # check if install path from module contains base path from ilcsoft
                 if( mod.installPath.find( self.installPath) == 0 ):
-                    f.write( "SET( " + modname + "_DIR \"${ILC_HOME}/" + mod.alias + "/" + mod.version + "\"" \
-                            + " CACHE PATH \"Path to " + modname + "\" FORCE)" + os.linesep )
+                    #f.write( "SET( " + modname + "_DIR \"${ILC_HOME}/" + mod.alias + "/" + mod.version + "\"" \
+                    #        + " CACHE PATH \"Path to " + modname + "\" FORCE)" )
+                    f.write( "${ILC_HOME}/" + mod.alias + "/" + mod.version + ';' )
                 else:
-                    f.write( "SET( " + modname + "_DIR \"" + mod.installPath + "\"" \
-                            + " CACHE PATH \"Path to " + modname + "\" FORCE)" + os.linesep )
+                    #f.write( "SET( " + modname + "_DIR \"" + mod.installPath + "\"" \
+                    #        + " CACHE PATH \"Path to " + modname + "\" FORCE)" )
+                    f.write( mod.installPath + ';' )
 
-                #f.write( "SET( " + modname + "_DIR \"${"+modname+"_HOME}\"" \
-                #        + " CACHE PATH \"Path to " + modname + "\" FORCE)" + os.linesep )
+                f.write( os.linesep )
 
-                #f.write( "MARK_AS_ADVANCED( " + modname + "_DIR " + modname + "_HOME )" + os.linesep  )
-                f.write( "MARK_AS_ADVANCED( " + modname + "_DIR )" + os.linesep  )
+                #f.write( "MARK_AS_ADVANCED( " + modname + "_DIR )" + os.linesep  )
 
-                # fix for writing AIDA_DIR
-                if mod.name == "RAIDA" or mod.name == "AIDAJNI":
-                    #f.write( "SET( AIDA_HOME \"${"+modname+"_HOME}\" CACHE PATH \"Path to AIDA\" FORCE)" + os.linesep )
-                    f.write( "SET( AIDA_DIR \"${"+modname+"_DIR}\" CACHE PATH \"Path to AIDA\" FORCE)" + os.linesep )
-                    #f.write( "MARK_AS_ADVANCED( AIDA_HOME AIDA_DIR )" + os.linesep  )
-                    f.write( "MARK_AS_ADVANCED( AIDA_DIR )" + os.linesep  )
+            #    # fix for writing AIDA_DIR
+            #    if mod.name == "RAIDA" or mod.name == "AIDAJNI":
+            #        f.write( "SET( AIDA_DIR \"${"+modname+"_DIR}\" CACHE PATH \"Path to AIDA\" FORCE)" + os.linesep )
+            #        f.write( "MARK_AS_ADVANCED( AIDA_DIR )" + os.linesep  )
 
+        f.write( "CACHE PATH \"CMAKE_PREFIX_PATH\" FORCE )" + os.linesep + os.linesep ) # close CMAKE_PREFIX_PATH
 
-        if self.module("ILCUTIL"):
-            f.write( os.linesep + "# set CMAKE_PREFIX_PATH to find ILCSOFT_CMAKE_MODULES ILCTEST and streamlog" )
-            f.write( os.linesep + "# by setting this variable there is no need to set the correspondent PKG_DIR variables" )
-            f.write( os.linesep + "SET( CMAKE_PREFIX_PATH \"${ILCUTIL_DIR}\" CACHE PATH \"CMAKE_PREFIX_PATH\" FORCE)" + os.linesep )
+        ilcutil = self.module("ILCUTIL")
+        if( ilcutil != None ):
+            #f.write( os.linesep + "# set CMAKE_PREFIX_PATH to find ILCSOFT_CMAKE_MODULES ILCTEST and streamlog" )
+            #f.write( os.linesep + "# by setting this variable there is no need to set the correspondent PKG_DIR variables" )
+            #f.write( os.linesep + "SET( CMAKE_PREFIX_PATH \"${ILCUTIL_DIR}\" CACHE PATH \"CMAKE_PREFIX_PATH\" FORCE)" + os.linesep )
 
             f.write( os.linesep + "# set CMAKE_MODULE_PATH for backwards compatibility directly to ILCUTIL_DIR/cmakemodules" )
-            f.write( os.linesep + "SET( CMAKE_MODULE_PATH \"${ILCUTIL_DIR}/cmakemodules\" CACHE PATH \"Path to CMakeModules\" FORCE)" + os.linesep )
+            if( ilcutil.installPath.find( self.installPath ) == 0 ):
+                f.write( os.linesep + "SET( CMAKE_MODULE_PATH \"${ILC_HOME}/ilcutil/"+ilcutil.version+\
+                    "/cmakemodules\" CACHE PATH \"Path to CMakeModules\" FORCE)" + os.linesep )
+            else:
+                f.write( os.linesep + "SET( CMAKE_MODULE_PATH \""+self.module("ILCUTIL").installPath+\
+                    "/cmakemodules\" CACHE PATH \"Path to CMakeModules\" FORCE)" + os.linesep )
         else:
             # in case ILCUTIL is not present look if we find the old CMakeModules
             cmods = self.module("CMakeModules")
