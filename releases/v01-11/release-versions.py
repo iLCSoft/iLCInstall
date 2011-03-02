@@ -29,18 +29,40 @@ ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 
 
 
+# ======================= PACKAGES WITH NO INSTALL SUPPORT ===================
+
+# these packages need to be pre-installed for your system
+# please adjust the path variables accordingly
+
+# ----- mysql --------------------------------------------------------
+MySQL_version = "5.0.45"
+MySQL_path = ilcPath + "/mysql/" + MySQL_version
+
+
+# ----- java ---------------------------------------------------------
+Java_version = "1.6.0"
+Java_path = ilcPath + "/java/" + Java_version # comment out to try auto-detection
+
+
+# ----- geant4 -------------------------------------------------------
+Geant4_version = "9.3.p02"
+Geant4_path = ilcPath + "/geant4/" + Geant4_version
+# path to geant4 environment initialization script
+# comment out if not needed
+G4ENV_INIT_path = ilcPath + "/geant4/" + "env_" + Geant4_version + ".sh"
+
+
+# ----- CERNLIB ------------------------------------------------------
+CERNLIB_version = "2006" 
+CERNLIB_path = ilcPath + "/cernlib/" + CERNLIB_version
+
+
+
+
 # ======================= PACKAGE VERSIONS ===================================
 
 
 ROOT_version = "5.28.00"
-
-MySQL_version = "5.0.45"
-
-Java_version = "1.6.0"
-
-Geant4_version = "9.3.p02"
-
-CERNLIB_version = "2006" 
 
 CLHEP_version = "2.0.4.5" 
 
