@@ -20,6 +20,8 @@ class PandoraPFANew(MarlinPKG):
 
         self.download.root = 'PandoraPFANew'
 
+        self.hasCMakeFindSupport = True
+
         self.reqfiles = [ [ 
             'lib/libPandoraFramework.so', 'lib/libPandoraFramework.a', 'lib/libPandoraFramework.dylib',
             'lib/libPandoraPFANew.so', 'lib/libPandoraPFANew.a', 'lib/libPandoraPFANew.dylib',

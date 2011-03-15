@@ -16,6 +16,8 @@ class MarlinUtil(MarlinPKG):
     def __init__(self, userInput):
         MarlinPKG.__init__(self, "MarlinUtil", userInput )
 
+        self.hasCMakeFindSupport = True
+
         # required modules
         self.reqmodules = [ "Marlin", "GSL", "CLHEP", "GEAR", "LCIO" , "CED" ]
 

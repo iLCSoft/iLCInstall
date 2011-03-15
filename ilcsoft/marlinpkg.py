@@ -30,6 +30,9 @@ class MarlinPKG(BaseILC):
         BaseILC.__init__(self, userInput, name, name)
         self.reqfiles = [ [ str("lib/lib" + name + ".a"), str("lib/lib" + name + ".so"), str("lib/lib" + name + ".dylib") ] ]
         self.reqmodules=[ 'LCIO', 'Marlin' ]
+
+        if( self.name != "MarlinReco" ):
+            self.hasCMakeFindSupport = False
     
     def compile(self):
         """ compile MarlinPKG """
