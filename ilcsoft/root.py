@@ -71,7 +71,7 @@ class ROOT(BaseILC):
 
         gsl=self.parent.module("GSL")
 
-        if( os.system( "./configure --enable-soversion --enable-roofit --enable-minuit2 --enable-gdml --enable-table --enable-unuran --enable-xrootd --enable-gsl-shared --with-gsl-incdir="+ gsl.installPath +"/include --with-gsl-libdir="+ gsl.installPath + "/lib" ) != 0 ):
+        if( os.system( "./configure --fail-on-missing --enable-builtin-pcre --enable-explicitlink --enable-soversion --enable-roofit --enable-minuit2 --enable-gdml --enable-table --enable-unuran --enable-xrootd --enable-gsl-shared --with-gsl-incdir="+ gsl.installPath +"/include --with-gsl-libdir="+ gsl.installPath + "/lib" ) != 0 ):
             self.abort( "failed to configure!!" )
 
         if( os.system( "make 2>&1 | tee -a " + self.logfile ) != 0 ):
