@@ -34,8 +34,11 @@ class MySQL(BaseILC):
 
         self.env["MYSQL_HOME"] = self.installPath
         self.env["MYSQL"] = "$MYSQL_HOME"
+        self.env["MYSQL_PATH"] = "$MYSQL_HOME" # needed for mokka
 
         self.envpath["PATH"].append( "$MYSQL_HOME/bin" )
+        self.envpath["LD_LIBRARY_PATH"].append( "$MYSQL_HOME/lib64/mysql" )
+        self.envpath["LD_LIBRARY_PATH"].append( "$MYSQL_HOME/lib64" )
         self.envpath["LD_LIBRARY_PATH"].append( "$MYSQL_HOME/lib/mysql" )
         self.envpath["LD_LIBRARY_PATH"].append( "$MYSQL_HOME/lib" )
 
