@@ -70,7 +70,7 @@ class Mokka(BaseILC):
         if self.rebuild:
             os.system( ". ../build_env.sh ; make clean 2>&1 | tee -a "+self.logfile )
             
-        if( os.system( ". ../build_env.sh ; make 2>&1 | tee -a "+self.logfile ) != 0 ):
+        if( os.system( ". ../build_env.sh ; make -j1 2>&1 | tee -a "+self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
 
     def postCheckDeps(self):
