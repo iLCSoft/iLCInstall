@@ -24,7 +24,8 @@ class LCIO(BaseILC):
         self.reqmodules_external = [ "Java" ]
         
         # optional modules
-        self.optmodules = [ "dcap", "ROOT" ]
+        #self.optmodules = [ "dcap", "ROOT" ]
+        self.optmodules = [ "CLHEP", "ROOT" ]
 
         # flag for using cmake to build LCIO
         self.useCMake = True
@@ -39,13 +40,13 @@ class LCIO(BaseILC):
         self.buildFortran = False
 
         # supported download types
-        self.download.supportedTypes = ["cvs"]
+        self.download.supportedTypes = ["svn"]
 
-        # set some cvs variables
-        # export CVSROOT=:pserver:anonymous@cvs.freehep.org:/cvs/lcio
-        self.download.accessmode = "pserver"
-        self.download.server = "cvs.freehep.org"
-        self.download.root = "cvs/lcio"
+        ## set some cvs variables
+        ## export CVSROOT=:pserver:anonymous@cvs.freehep.org:/cvs/lcio
+        #self.download.accessmode = "pserver"
+        #self.download.server = "cvs.freehep.org"
+        #self.download.root = "cvs/lcio"
 
         self.envcmake["INSTALL_JAR"]="ON"
 
@@ -135,23 +136,37 @@ class LCIO(BaseILC):
                         print 80*'*' + "*** WARNING: sth. went wrong with creating the " + \
                             self.name + " reference manual\n" + 80*'*'
 
+
+    def setMode(self, mode):
+        BaseILC.setMode(self, mode)
+
+        self.download.svnurl = 'svn://svn.freehep.org/lcio'
+
+        if( Version( self.version ) == 'HEAD' ):
+            self.download.svnurl += '/trunk'
+        else:
+            self.download.svnurl += '/tags/' + self.version
+
+
+
     def preCheckDeps(self):
         BaseILC.preCheckDeps(self)
        
         if( self.mode == "install" ):
             if( self.buildJava and not self.useCMake ):
                 self.reqfiles.append(["lib/lcio.jar"])
+
             # tests
             if( self.makeTests ):
                 self.envcmake.setdefault("BUILD_LCIO_TESTS","ON")
                 self.envcmake.setdefault("BUILD_LCIO_EXAMPLES","ON")
                 self.envcmake.setdefault("BUILD_F77_TESTJOBS","ON")
 
-            dc = self.envcmake.setdefault('BUILD_WITH_DCAP','OFF')
+            #dc = self.envcmake.setdefault('BUILD_WITH_DCAP','OFF')
 
-            if dc == 'ON':
-                self.addDependency( ['dcap'] )
-                self.envcmake["DCAP_HOME"]=self.parent.module("dcap").installPath
+            #if dc == 'ON':
+            #    self.addDependency( ['dcap'] )
+            #    self.envcmake["DCAP_HOME"]=self.parent.module("dcap").installPath
                 
 
     def postCheckDeps(self):
