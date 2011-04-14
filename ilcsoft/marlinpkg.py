@@ -56,7 +56,7 @@ class MarlinPKG(BaseILC):
         BaseILC.postCheckDeps(self)
 
         # fill MARLIN_DLL
-        if( self.name != "MarlinUtil" and self.name != "PandoraPFANew" ):
+        if( self.name != "MarlinUtil" and self.name != "PandoraPFANew" and self.name != "PandoraMonitoring" ):
             self.parent.module('Marlin').envpath["MARLIN_DLL"].append( 
                 self.installPath+"/lib/lib"+self.name+self.shlib_ext )
 
