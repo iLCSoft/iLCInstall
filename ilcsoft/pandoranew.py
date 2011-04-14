@@ -38,3 +38,36 @@ class MarlinPandora(MarlinPKG):
         self.reqmodules = [ "Marlin", "MarlinUtil", "GEAR", "PandoraPFANew", "LCIO" ]
 
         self.download.root = 'PandoraPFANew'
+
+
+class PandoraAnalysis(MarlinPKG):
+    """ Responsible for the PandoraAnalysis installation process. """
+
+    def __init__(self, userInput):
+        MarlinPKG.__init__(self, "PandoraAnalysis", userInput )
+
+        # required modules
+        self.reqmodules = [ "Marlin", "GEAR", "LCIO", "ROOT" ]
+
+        self.download.root = 'PandoraPFANew'
+
+
+
+class PandoraMonitoring(MarlinPKG):
+    """ Responsible for the PandoraMonitoring installation process. """
+
+    def __init__(self, userInput):
+        MarlinPKG.__init__(self, "PandoraMonitoring", userInput )
+
+        # required modules
+        self.reqmodules = [ "Marlin", "GEAR", "LCIO", "ROOT", "PandoraPFANew" ]
+
+        self.download.root = 'PandoraPFANew'
+
+
+    def preCheckDeps(self):
+        MarlinPKG.preCheckDeps(self)
+
+        if( self.mode == "install" ):
+            self.envcmake["PandoraPFANew_DIR"]=self.parent.module("PandoraPFANew").installPath
+
