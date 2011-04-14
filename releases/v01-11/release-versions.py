@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-11-pre03'
+ilcsoft_release='v01-11-pre04'
 # ----------------------------------------------------------------------------
 
 
@@ -41,7 +41,7 @@ MySQL_path = ilcPath + "/mysql/" + MySQL_version
 
 # ----- java ---------------------------------------------------------
 Java_version = "1.6.0"
-Java_path = ilcPath + "/java/" + Java_version # comment out to try auto-detection
+Java_path = ilcPath + "/java/" + Java_version # comment out to try auto-detect
 
 
 # ----- geant4 -------------------------------------------------------
@@ -84,10 +84,7 @@ CED_version = "v01-02"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-3"
 
-#CMakeModules_version = "v01-10-01" # DEPRECATED
 ILCUTIL_version = "v00-01-pre02"
-
-dcap_version = "1.9.5-5" # remove?
 
 FastJet_version = "2.4.2"
 FastJetClustering_version = "v00-02"
@@ -117,12 +114,12 @@ Mokka_version = "mokka-07-06-p01"
 
 MarlinReco_version = "HEAD" # TODO
 
-#PandoraPFA_version = "v03-02-02" # DEPRECATED
+PandoraPFANew_version = "v00-06"
+PandoraAnalysis_version = "v00-02"
+MarlinPandora_version = "v00-05"
 
-PandoraPFANew_version = "v00-05"
-MarlinPandora_version = "v00-04"
 
-LCFIVertex_version = "v00-05-pre"
+LCFIVertex_version = "v00-05-pre" #TODO
 
 CEDViewer_version = "v01-02"
 
@@ -131,8 +128,6 @@ Overlay_version = "v00-09-01"
 Eutelescope_version = "v00-05-03-pre" # TODO v00-06-00-pre # FIXME doxygen
 
 MarlinTPC_version = "v00-08-04"
-
-#SiliconDigi_version = "v00-04-02" # update/remove??
 
 Druid_version = "1.8" 
 
