@@ -90,7 +90,7 @@ FastJet_version = "2.4.2"
 FastJetClustering_version = "v00-02"
 
 
-StandardConfig_version = "HEAD" # TODO v03-00-pre
+StandardConfig_version = "v03-00-pre"
 MokkaDBConfig_version = "v02-02"
 LCFI_MokkaBasedNets_version = "v00-01" 
 
@@ -106,13 +106,13 @@ LCCD_version = "v01-02"
 
 RAIDA_version = "v01-06-01"
 
-MarlinUtil_version = "v01-02"
+MarlinUtil_version = "v01-03-pre"
 
 Marlin_version = "v01-00"
 
 Mokka_version = "mokka-07-06-p01"
 
-MarlinReco_version = "HEAD" # TODO
+MarlinReco_version = "v00-20-pre"
 
 PandoraPFANew_version = "v00-06"
 PandoraAnalysis_version = "v00-02"
@@ -123,7 +123,7 @@ LCFIVertex_version = "v00-05-pre" #TODO
 
 CEDViewer_version = "v01-02"
 
-Overlay_version = "v00-09-01"
+Overlay_version = "v00-10-pre"
 
 Eutelescope_version = "v00-05-03-pre" # TODO v00-06-00-pre # FIXME doxygen
 
