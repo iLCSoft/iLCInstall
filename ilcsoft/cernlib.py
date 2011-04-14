@@ -18,6 +18,7 @@ class CERNLIB(BaseILC):
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "CERNLIB", "cernlib")
 
+        self.installSupport = False
         self.hasCMakeBuildSupport = False
         self.download.supportHEAD = False
         self.download.supportedTypes = ["wget"]
