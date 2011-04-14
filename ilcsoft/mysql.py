@@ -35,6 +35,8 @@ class MySQL(BaseILC):
         self.env["MYSQL_HOME"] = self.installPath
         self.env["MYSQL"] = "$MYSQL_HOME"
         self.env["MYSQL_PATH"] = "$MYSQL_HOME" # needed for mokka
+        if platform.architecture()[0] == '64bit':
+            self.env["MYSQL_LIBDIR"] = "$MYSQL_HOME/lib64/mysql" # needed for mokka
 
         self.envpath["PATH"].append( "$MYSQL_HOME/bin" )
         self.envpath["LD_LIBRARY_PATH"].append( "$MYSQL_HOME/lib64/mysql" )
