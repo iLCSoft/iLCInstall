@@ -12,7 +12,7 @@ How to use:
         edit the nbuild script and check if the settings meet your needs
         * mail_addresses can also be set in the config file
 
-2nd:    use the template nb-release.cfg and adapt it to your needs
+2nd:    use the template nb-debug.cfg and adapt it to your needs
 
 3rd:    create your cronjob
 
@@ -46,5 +46,5 @@ How to use:
         # 00 5 * * 1-5  workdays @ 5:00
        
         # run daily at 2:00
-        00 2 * * * cd /path/to/ilcinstall && ./nbuild ./nightly_builds/nb-release.cfg
+        00 2 * * * cd /path/to/ilcinstall && ./nbuild ./nightly_builds/nb-debug.cfg
 
