@@ -125,7 +125,7 @@ CEDViewer_version = "v01-02"
 
 Overlay_version = "v00-10"
 
-Eutelescope_version = "v00-05-03-pre" # TODO v00-06-00-pre # FIXME doxygen
+Eutelescope_version = "v00-05-03"
 
 MarlinTPC_version = "v00-08-04"
 
