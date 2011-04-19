@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-11-pre04'
+ilcsoft_release='v01-11'
 # ----------------------------------------------------------------------------
 
 
@@ -84,7 +84,7 @@ CED_version = "v01-02"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-3"
 
-ILCUTIL_version = "v00-01-pre02"
+ILCUTIL_version = "v00-01"
 
 FastJet_version = "2.4.2"
 FastJetClustering_version = "v00-02"
@@ -106,24 +106,24 @@ LCCD_version = "v01-02"
 
 RAIDA_version = "v01-06-01"
 
-MarlinUtil_version = "v01-03-pre"
+MarlinUtil_version = "v01-03"
 
 Marlin_version = "v01-00"
 
 Mokka_version = "mokka-07-06-p02"
 
-MarlinReco_version = "v00-20-pre"
+MarlinReco_version = "v00-20"
 
 PandoraPFANew_version = "v00-06"
 PandoraAnalysis_version = "v00-02"
 MarlinPandora_version = "v00-05"
 
 
-LCFIVertex_version = "v00-05-pre" #TODO
+LCFIVertex_version = "v00-05"
 
 CEDViewer_version = "v01-02"
 
-Overlay_version = "v00-10-pre"
+Overlay_version = "v00-10"
 
 Eutelescope_version = "v00-05-03-pre" # TODO v00-06-00-pre # FIXME doxygen
 
