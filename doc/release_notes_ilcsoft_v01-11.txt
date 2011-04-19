@@ -304,7 +304,7 @@ Release notes of packages that have been changed
 | v03-00 |
  --------
 
-    Added CLIC CDR standard steering files
+    Added configuration files for CLIC CDR production (2011)
 
 
 
