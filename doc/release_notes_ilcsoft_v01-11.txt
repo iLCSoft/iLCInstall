@@ -49,6 +49,10 @@ with subdirectories for different CPUs, operating systems and gcc versions.e.g:
             This package provides a set of logging classes for C++ applications.
 
 
+
+ PandoraAnalysis (v00-02)
+
+
 -------------------------------------------------
 Release notes of packages that have been changed 
 -------------------------------------------------
@@ -258,10 +262,20 @@ Release notes of packages that have been changed
 ================================
 
  --------
-| v01-02 |
+| v01-03 |
  --------
 
+     - Changes (A. Sailer):
+
+        - Rewrote the fast HelixClass::getDistanceToPoint
+
+        - Remove unnecessary code from HelixClass:getDistanceToPoint,
+            add second getDistanceToPoint function, that stops if distXY is
+            larger than given distance, keeps cpu intensive functions from being run.
+
+
     - Changes (H. Hoelbe, DESY):
+
         - Implement remote access to CED:
 
             * Now you are able to connect to an user defined host and portnumber.
@@ -286,7 +300,11 @@ Release notes of packages that have been changed
  StandardConfig
 ================================
 
- .... in development ....
+ --------
+| v03-00 |
+ --------
+
+    Added CLIC CDR standard steering files
 
 
 
@@ -294,15 +312,119 @@ Release notes of packages that have been changed
  MarlinReco   
 ================================
 
- .... in development ....
+ --------
+| v00-20 |
+ --------
+
+        - Tracking
+          - MarlinTrackFit
+           - Use double precision for the conversion from Tanagra to LC Track Parameters. Use of the HelixClass has been removed from the conversion.
+          - FullLDCTracking
+           - Use faster HelixClass::getDistanceToPoint where possible.
+           - Improved dynamic mememory allocation
+           - General clean-up and removal of redundant code.
+          - LEPTracking
+           - Improved dynamic mememory allocation
+           - Upper limit on track momentum now 2 TeV.
+          - KinkFinder
+           - Improved dynamic mememory allocation
+           - Make sure prongDaughters[i] has entries.
+          - SiliconTracking
+           - Protect against missing connection from SimTrackerHit to MCParticle.
+           - Reducing maximum number of allowed FTD combinations
+           - In case of many potential FTD hit combinations, iteratively adjust phi sectors for triplet formation to avoid long processing times
+
+        - TrackDigi
+           - Improved dynamic mememory allocation
+
+        - Analysis
+          - MarlinKinfit
+           - Added new test classes IterationScanner and ParameterScanner
+           - Added NewFitterGSL.
+          - CLICPfoSelector
+           - Put in possibility of applying time of flight corrections to hit times: CorrectHitTimesForTimeOfFlight
+           - Add one final cut to CLICPFOSelector to remove high energy neutral hadrons in the far forward region which are formed from mulitple background pa
+           - Improved monitoring of background/physics pfos.
+           - Added simple analysis processor to loop over pfos separated in to "physics event" and background.
+           - Create Selected PFO Collections as a subset of All PFOs.
+          - RecoMCTruthLink
+           - Use push_back instead of directly assigning entries to the vector, in case we run out of reserved space.
+           - Output cluster truth linked collections for Clusters and Hits can only be created if there are clusters/hits.
+
 
 
 ================================
  Mokka
 ================================
 
- .... in development ....
 
+mokka-07-06-p02
+===============
+
+
+What is new in this Mokka release
+=================================
+
+  I. Fixed lifetime of b-baryons
+ II. Abort if physics list not found
+III. G4EmSaturation patch files removed from Mokka
+ IV. G4LossTableManager patch
+
+=================================
+
+Please note that:
+
+1. This Mokka release co-works with Geant4 9.4 (and 9.4.patch01) and 
+   CLHEP 2.1.0.1 (but it is still compatible with previous Geant4 / CLHEP 
+   versions)
+
+   It was tested against GEAR v00-14-02 and gcc 3.4.6 and 4.1.2, 
+   SL4 and SL5.
+
+
+2. This Mokka release only co-works with LCIO v01-51 and is no longer 
+   compatible with previous LCIO releases, due to changes in LCIO v01-51.
+
+==============================
+
+I. Fixed lifetime of b-baryons
+
+Following the fix for the lifetime of pre-defined decays in the last
+Mokka patch, another independent bug was found concerning the lifetime
+of certain particles, including b-baryons.  Because these particles
+were not known to Mokka/G4, their flight length was previously
+ignored.
+
+The fix again follows the SLIC implementation by reading a text file
+which contains a list of particles.  Any particle not known to Mokka
+is added to the table of known particles, also defining their material
+interaction.  The default filename is particle.tbl (configurable via
+the command /Mokka/init/PDGFile), which is now included in the Mokka
+distribution.
+
+
+ II. Abort if physics list not found
+
+Until now, when the physics list specified by the user was not found
+by the physics list factory, the default physics list was used and a
+warning message was issued.
+
+Since this message can go unnoticed, the behavior was changed: if the
+physics list is not found, then Mokka aborts with the error code
+MOKKA_ERROR_PHYSICS_LIST_NOT_FOUND ().
+
+
+III. G4EmSaturation patch files removed from Mokka
+
+The .cc and .hh files of class G4EmSaturation were removed from Mokka.
+They were added to Mokka when they were not part of Geant4. Now Geant4 
+has an improved version of this class, and we use that one. 
+
+
+ IV. G4LossTableManager patch
+
+In order to be able to compile with Geant4 9.4, Mokka includes a patch
+of file G4LossTableManager.cc from Geant4 9.4.patch01. 
 
 
 
@@ -310,25 +432,15 @@ Release notes of packages that have been changed
  MarlinPandora
 ================================
 
-TAG V00-04 FOR ILCSOFT USAGE
+TAG V00-05 FOR ILCSOFT USAGE
 
-Updated default path length to interaction length (and radiation length) conversion constants to CLIC_ILD_CDR values.
-Updated CMake files to use new ILCUTIL package.
-Updated CMake files to reflect restructuring of PandoraPFANew.
-Updated standalone makefile to reflect restructuring of PandoraPFANew.
-Made use of interfaces to pandora content libraries, allowing for quick registration of multiple algorithms and helper functions.
-Added registration of FineGranularity PseudoLayerCalculator and ShowerProfileCalculator.
-Changed references to "track state at ecal" to "track state at calorimeter".
-Specified track (projected) time at calorimeter.
-Used results of track fit to determine track direction in z.
-Added new definition of reaches calorimeter for FTD tracks.
-Allowed for different barrel/endcap ECalToHadGeV calibration constants.
-Corrected cell unit vectors for HCal ring and other endcap-like detectors, located between the main barrels and endcaps.
-Updated to reflect changes to GeometryHelper.
-Made use of IsMirroredInZ subdetector parameter functionality.
-Updated pandorasettings, adding new (and renaming existing) entries for particle id and energy correction functions.
-Updated pandorasettings clustering parameters, specifying parameters for regions of fine or coarse granularity.
-Updated steering file scripts to specify separate ECalToHadGeV calibration constants for barrel and endcap.
+Added ability to read pandora recluster monitoring output, writing results to collections of lcio GenericObjects and lcio Relations.
+Modifications for use with ILD SDHCal.
+Updated to reflect changes to pandora::CartesianVector class.
+Addressed issues raised by Coverity.
+Updated PandoraSettings scripts to reflect recent algorithm changes.
+Turned off DensityWeight and SurroundingEnergy calculations via PandoraSettings file.
+Updated standalone Makefile: changed default compiler to g++ and added -O2 optimization flag.
 
 
 
@@ -336,43 +448,33 @@ Updated steering file scripts to specify separate ECalToHadGeV calibration const
  PandoraPFANew
 ================================
 
-TAG V00-05 FOR ILCSOFT USAGE
+TAG V00-06 FOR ILCSOFT USAGE
 
-Updated CMake files to use new ILCUTIL package.
-Added CLICPfoSelection algorithm.
-Added one and two dimensional histogram classes.
-Restructured PandoraPFANew, dividing content into separate libraries for framework, fine granularity content and k-means clustering content.
-Moved all content specific to fine granularity detectors from framework (e.g. helper classes) to fine granularity content library.
-Updated CMake files to reflect restructuring of PandoraPFANew.
-Updated standalone makefile to reflect restructuring of PandoraPFANew.
-Added simple content registration options for FineGranularity and k-means content libraries.
-Improved interface classes for BField, ShowerProfile and PseudoLayer calculators
-Added ShowerProfileCalculator interface class and SetShowerProfileCalculator api.
-Changed default values for shower profile start and discrepancy to float max.
-Added ability to register IsEmShowerFast/Full helper functions.
-Added RegisterSettingsFunction api for parsing custom, non-algorithm, xml snippets.
-Improved xml configuration of helper classes and utility classes.
-PandoraSettings and GeometryHelper are no longer singletons.
-Added first implemetation of k-means clustering algorithm.
-Added implementation of InwardClustering algorithm.
-Implemented customisable hit type to granularity mapping, allowing specific references to ECal, HCal etc. to be removed from algorithms.
-Renamed HighGranularityPseudoLayerCalculator to FineGranularityPseudoLayerCalculator, for consistency.
-Added ClusterHelper::FitGeneralPoints function, removing specific barrel and endcap linear fits.
-Improved exception handling for linear cluster fits.
-Added FitLayerCentroids cluster helper function.
-Tidied UpdateClusterProperties method in clustering algorithm.
-Altered CartesianVector operator== to account for limited floating point accuracy.
-Added fixed particle id functionality.
-Added GetEnergyWeightedMeanTime cluster helper function.
-Updated helix interface and usage of helix class in muon reconstruction algorithm.
-Added inner detector parameters to GeometryHelper and PandoraApi.
-Removed TRACK_PROJECTION_LAYER constant and replaced with PseudoLayerCalculator::GetPseudoLayerAtIp functionality.
-Changed uninitialized behaviour of GeometryHelper::SubDetectorParameters class.
-FinalParticleId algorithm now skips pfos already flagged as electrons or muons.
-New api parameter: track time at calorimeter.
-New api parameter: IsMirroredInZ subdetector parameter.
-Renamed api parameter: "track state at ecal" parameters to "track state at calorimeter".
-Addressed CppCheck (static analysis package) warnings.
+Made efficiency improvements to reduce cpu time required for events with overlaid background.
+CartesianVector no longer has a default constructor, allowing IsInitialized flags to be removed.
+Added loose, configurable cuts on cos(angle) between track/hit or cluster/hit directions in GetTrackClusterDistance function and cone-based clustering algorit
+Added mc particle helper class to offer re-usable functions relating to extraction of mc information.
+Added first implementation of recluster monitoring, which currently requires that associations between tracks and the chosen clusters be up-to-date at end of 
+Allowed DensityWeight and SurroundingEnergy calculations to be switched on/off via xml CaloHitHelper config.
+Added FileWriter and FileReader classes to create lightweight pandora binary persistency.
+Parameters for pandora objects, geometry or object relationships can now be written/read to/from pandora binary files.
+Added EventWriting and EventReading algorithms to make writing/reading events and geometry simple. Can skip events, jump-to events, etc.
+Added simple stand-alone pandora test application that can run off pandora binary files.
+Added RepeatEventPreparation api.
+Added Algorithm::GetPandora() functionality.
+Added GeometryHelper::IsInitialized function.
+Added ability to merge new tracks/hits into existing saved lists.
+Allowed TrackManager to tolerate duplicated track parent/daughter and sibling information without returning error.
+Enabled creation of an empty temporary track list, allowing for reclustering without reference to tracks.
+Added extra particle id sanity check to MuonReconstruction algorithm.
+Added first basic implementation of a Hough-transform-based 2D line clustering algorithm.
+Re-implemented cheating/perfect algorithms.
+Tidied and re-organised FineGranularityContent library.
+Improved output of DumpPfosMonitoringAlgorithm, including timing information and more detailed confusion summary averaged over all events
+Corrected name of ReadSettings method in fine granularity shower profile calculator.
+Added forward declarations for all pandora objects to PandoraInternal header.
+Addressed issues raised by Coverity.
+Updated standalone Makefile: changed default compiler to g++ and added -O2 optimization flag.
 
 
 
@@ -394,14 +496,33 @@ Addressed CppCheck (static analysis package) warnings.
  Overlay
 ================================
 
- --------
-| v00-09 |
- --------
+ -----------
+| v00-10-00 |
+ -----------
 
-     - minor modifications
-        -- timing window start time set to small negative value
-        -- simplified cmake files (now uses the new ILCUTIL package)
+    - Several code improvements and corrections to OverlayTiming processor (J. Marshall, A. Sailer)
 
+        - Delete Calorimeter hits that are not added to the collection
+
+        - Timing window is extended so that it runs from -0.25ns to numeric_limits<float>::max() ns if an unrecognized collection name is specified.
+
+        - Time of flight function is now inline, its use of pow() has been removed and any unnecessary calls to this function have also gone.
+
+        - Made MCParticle collection name configurable
+
+        - Setting "lcioDetailedShowerMode false" is now default (see http://indico.cern.ch/conferenceDisplay.py?confId=107327),
+            so calls to "CalorimeterHit->getPDGCont(j)" do not make sense. Remove these calls to avoid logic based on uninitialized variables.
+
+        - Clear DestMap at the end of ModifyEvent, do not only run this in Check() as this can be suppressed.
+
+        - Use one destMap per collection to avoid adding calorimeterHits from one subDetector to a different.
+
+        - Copy MCParticles for physics event into a new collection.
+
+        - Tidied-up code with an emphasis on removing risk posed by uninitialized variables e.g.
+            create stack pointers within for loops, rather than re-using single pointer declared outside loop, etc.
+            Removed unused member variables, tidied header file includes, improved const-correctness and removed tab characters.
+            Use of parentheses to clarify logic in if statements
 
 
 ================================
@@ -446,10 +567,12 @@ Addressed CppCheck (static analysis package) warnings.
 
      - added support for installing ROOT
 
+     - discontinued support for installing CERNLIB
+
      - added installation of EUDAQ+Millepede2 in Eutelescope
         activate with:
-        ilcsoft.module("Eutelescope").env['EUDAQ_VERSION']='trunk'
-        ilcsoft.module("Eutelescope").env['MILLEPEDEII_VERSION']='trunk'
+        ilcsoft.module("Eutelescope").env['EUDAQ_VERSION']='tags/vxx-yy' # please change the tag
+        ilcsoft.module("Eutelescope").env['MILLEPEDEII_VERSION']='tags/vxx-yy' # please change the tag
 
      - deprecated CMakeModules, AIDAJNI and JAIDA packages
 
