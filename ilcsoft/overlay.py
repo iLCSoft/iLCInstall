@@ -17,7 +17,7 @@ class Overlay(MarlinPKG):
         MarlinPKG.__init__(self, "Overlay", userInput )
 
         # required modules
-        self.reqmodules = [ "Marlin", "LCIO", "CLHEP" ]
+        self.reqmodules = [ "Marlin", "LCIO", "CLHEP", "MarlinReco" ]
 
         # cvs root
         self.download.root="marlin"
