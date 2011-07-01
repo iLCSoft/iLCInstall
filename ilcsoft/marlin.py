@@ -48,6 +48,13 @@ class Marlin(BaseILC):
         if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to install!!" )
 
+        # execute ctests
+        if( self.makeTests ):
+
+            if( os.system( "make test" ) != 0 ):
+                self.abort( "failed to execute Marlin tests" )
+
+
     def preCheckDeps(self):
         BaseILC.preCheckDeps(self)
         if( self.mode == "install" ):
