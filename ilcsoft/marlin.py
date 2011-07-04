@@ -51,7 +51,7 @@ class Marlin(BaseILC):
         # execute ctests
         if( self.makeTests ):
 
-            if( os.system( "make test" ) != 0 ):
+            if( os.system( "unset MARLIN_DLL && make test" ) != 0 ):
                 self.abort( "failed to execute Marlin tests" )
 
 
