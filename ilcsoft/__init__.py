@@ -16,6 +16,7 @@ from raida import RAIDA
 from ced import CED
 from kaltest import KalTest, KalDet
 
+
 # marlin & friends
 from marlinpkg import MarlinPKG
 from marlinpkg import ConfigPKG
@@ -35,6 +36,7 @@ from overlay import Overlay
 from marlintpc import MarlinTPC
 from ckfit import CKFit
 from fastjet import FastJet, FastJetClustering
+from marlintrk import MarlinTrk
 
 # simtools
 #from simtoolsmaker import SimToolsMaker
