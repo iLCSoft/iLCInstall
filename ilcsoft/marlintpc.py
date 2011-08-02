@@ -17,9 +17,6 @@ class MarlinTPC(MarlinPKG):
     def __init__(self, userInput):
         MarlinPKG.__init__(self, "MarlinTPC", userInput)
 
-        self.reqfiles = [["lib/libMarlinTPCReconstruction.a", "lib/libMarlinTPCReconstruction.so", "lib/libMarlinTPCReconstruction.dylib"],
-                        [ "lib/libtpcconddata.a", "lib/libtpcconddata.so", "lib/libtpcconddata.dylib"]]
-
         self.reqmodules = [ "LCIO", "GEAR", "GSL", "Marlin", "LCCD", "ROOT", "AIDA", "CLHEP" ]
         self.optmodules = [ "KalTest", "KalDet", "Mokka" ]
 
