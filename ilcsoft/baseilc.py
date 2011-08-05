@@ -288,7 +288,7 @@ class BaseILC:
                 if( len(self.download.url) == 0 ):
                     if Version( self.version ) == 'HEAD':
                         dir='trunk'
-                    elif '-pre' in self.version:
+                    elif '-pre' in self.version or '-dev' in self.version or '-exp' in self.version:
                         dir='branches/%s' % self.version
                     else:
                         dir='tags/%s' % self.version
@@ -317,7 +317,7 @@ class BaseILC:
 
                     if Version( self.version ) == 'HEAD': 
                         self.download.svnurl += 'trunk'
-                    elif '-pre' in self.version:
+                    elif '-pre' in self.version or '-dev' in self.version or '-exp' in self.version:
                         self.download.svnurl += 'branches/'+self.version
                     else:
                         self.download.svnurl += 'tags/'+self.version
