@@ -19,8 +19,18 @@ class MarlinReco(MarlinPKG):
         self.hasCMakeFindSupport = True
 
         # required modules
-        self.reqmodules = [ "Marlin", "MarlinUtil", "CLHEP", "GEAR", "GSL", "CERNLIB", "LCIO" ]
+        self.reqmodules = [ "Marlin", "MarlinUtil", "CLHEP", "GEAR", "GSL", "LCIO" ]
 
         # optional modules
-        self.optmodules = [ "AIDA" ]
+        self.optmodules = [ "CERNLIB", "AIDA" ]
+
+    def preCheckDeps(self):
+        MarlinPKG.preCheckDeps(self)
+
+        if( self.mode == "install" ):
+
+            fflag = str(self.envcmake.setdefault('MARLINRECO_FORTRAN','ON'))
+
+            if fflag == 'ON' or fflag == '1':
+                self.addDependency( ['CERNLIB'] )
 
