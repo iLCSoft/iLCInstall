@@ -68,7 +68,7 @@ CLHEP_version = "2.0.4.5"
 
 GSL_version = "1.14" # p.v. 1.8
 
-QT_version = "4.2.2"
+QT_version = "4.2.2" # mac osx needs version >= 4.7.3
 
 CMake_version = "2.8.5"  # p.v. 2.8.3
 
