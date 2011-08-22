@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-12-dev00'
+ilcsoft_release='v01-12-dev01'
 # ----------------------------------------------------------------------------
 
 
@@ -66,9 +66,9 @@ ROOT_version = "5.30.00" # p.v. 5.28.00
 
 CLHEP_version = "2.0.4.5" 
 
-GSL_version = "1.8"
+GSL_version = "1.14" # p.v. 1.8
 
-QT_version = "4.2.2" 
+QT_version = "4.7.3" # p.v. 4.2.2
 
 CMake_version = "2.8.5"  # p.v. 2.8.3
 
@@ -113,6 +113,8 @@ Marlin_version = "v01-01-pre00" # p.v. v01-00
 Mokka_version = "HEAD" # "mokka-07-06-p03-SDHcal" # p.v. mokka-07-06-p02
 
 MarlinReco_version = "HEAD" # p.v. v00-20
+
+MarlinKinfit_version = "HEAD"
 
 PandoraPFANew_version = "v00-06"
 PandoraAnalysis_version = "v00-02"
