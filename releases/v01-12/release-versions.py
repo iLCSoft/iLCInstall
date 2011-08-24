@@ -114,6 +114,8 @@ Mokka_version = "HEAD" # "mokka-07-06-p03-SDHcal" # p.v. mokka-07-06-p02
 
 MarlinReco_version = "HEAD" # p.v. v00-20
 
+MarlinTrk_version = "HEAD"
+
 MarlinKinfit_version = "HEAD"
 
 PandoraPFANew_version = "v00-06"
