@@ -111,7 +111,11 @@ class BaseILC:
         print "*** ERROR in module [ " + self.name + " ]: DEBUG INFO: " + str(self.parent.debugInfo)
         print
         print "*** ERROR in module [ " + self.name + " ]: " + msg
-        
+
+        if ("logfile" in dir(self)):
+            print
+            print "Logfile for failed module: " + self.logfile
+
         # write error to logfile
         try:
             getoutput( "echo \"*** Error in module [ " + self.name + " ]: DEBUG INFO: " + str(self.parent.debugInfo).replace("\n","") + "\" >> " + self.logfile )
