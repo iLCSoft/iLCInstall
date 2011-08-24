@@ -49,22 +49,22 @@ class ROOT(BaseILC):
             self.download.type="svn-export"
 
 
-    #def downloadSources(self):
-    #    BaseILC.downloadSources(self)
+    def downloadSources(self):
+        BaseILC.downloadSources(self)
 
-    #    # move sources to a subdirectory
-    #    os.renames( self.version, self.name )
-    #    os.renames( self.name, self.version + "/" + self.name )
+        # move sources to a subdirectory
+        os.renames( self.version, self.name )
+        os.renames( self.name, self.version + "/" + self.name )
 
-    #    # create build directory
-    #    trymakedir( self.installPath + "/build" )
-
+    def cleanupInstall(self):
+        BaseILC.cleanupInstall(self)
+        os.chdir( self.installPath )
+        os.system( "rm -rf ./" + self.name )
 
     def compile(self):
         """ compile root """
 
-        #os.chdir( self.installPath + "/build" )
-        os.chdir( self.installPath )
+        os.chdir( self.installPath + "/" + self.name )
 
         #if( self.rebuild ):
         #    os.system( "make clean" )
