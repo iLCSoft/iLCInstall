@@ -1,0 +1,592 @@
+#################################
+#
+#   iLCSoft release - v01-11
+#
+#################################
+
+-------------------------------------------------------------------
+afs reference installations - starting from  release v01-09:
+
+  /afs/desy.de/project/ilcsoft/sw/
+
+with subdirectories for different CPUs, operating systems and gcc versions.e.g:
+
+ i386_gcc34_sl4        # i386 CPU, 32 bit, gcc3.4, SL4 and compatible
+ i386_gcc41_sl5        # i386 CPU, 32 bit, gcc4.1, SL5 and compatible
+ x86_64_gcc41_sl5      # i686 CPU, 64 bit, gcc4.1, SL5 and compatible
+
+------------------------------------------------------------------
+
+
+========================================
+
+ New packages in iLCSoft added in v01-11
+
+========================================
+
+
+ ILCUTIL v00-01 :
+        
+        ILCUTIL is a new utility package for the iLCSoft software framework.
+
+        This new package is intended to be a "meta-package" which packages together
+        a set of independent utility packages living in separate sub-directories.
+
+    Currently ILCUTIL contains the following sub-packages:
+
+        - ILCSOFT_CMAKE_MODULES (Previously known as CMakeModules)
+            This package contains a set of cmake modules and utility macros.
+            Almost all iLCSoft packages depend on this sub-package for the
+            cmake configure/build step.
+
+        - ILCTEST
+            This package provides utilities to help developers write new C++
+            tests in their packages. It consists of a C++ utility header and
+            a set of cmake macros (living inside ILCSOFT_CMAKE_MODULES) to
+            facilitate adding new tests in a straight-forward manner.
+
+        - streamlog
+            This package provides a set of logging classes for C++ applications.
+
+
+
+ PandoraAnalysis (v00-02)
+
+
+-------------------------------------------------
+Release notes of packages that have been changed 
+-------------------------------------------------
+
+
+================================
+ GEAR
+================================
+
+  --------
+ | v00-17 |
+  --------
+
+     - made TGeo implementation of the detailed material properties a plugin,
+       i.e. no dependence on ROOT, unless it is requested in the Gear file that TGeo should be used (tag <GDML>)
+
+     - added old signature of addLayer for backwards compatibility (without layerRotation parameters introduced in v00-16)
+
+     - renamed GearVersion.h to GearConfig.h (to include general purpose configuration definitions)
+
+     - src/gearxml/SiPlanesParametersXML.cc: xmlSen to xmlLad change (bug fix)
+
+     - removed deprecated GEAR_DEFINITIONS (-DUSE_GEAR) from GEARConfig.cmake
+
+     - updated cmake files (now uses the new ILCUTIL package)
+
+
+
+================================
+ LCCD   
+================================
+
+ -----------
+| v01-02    |
+ -----------
+
+        - added configuration header file LCCDConfig.h
+            #defines or #undefines LCCD_CONDDBMYSQL (based on how LCCD was built)
+
+        - removed old makefiles
+
+        - updated cmake files (now uses the new ILCUTIL package):
+
+            - simplified cmake files (cmake macros now live in sub-package ILCSOFT_CMAKE_MODULES from package ILCUTIL)
+
+            - added LCCDConfigVersion.cmake to allow checking version of LCCD at cmake time, e.g.:
+                FIND_PACKAGE( LCCD 1.2 ) # at least version 1.2
+
+            - export of LCIO dependency done through LCCDConfig.cmake, i.e. other packages get LCIO_INCLUDE_DIRS and
+                LCIO_LIBRARIES when building against LCCD, e.g.:
+
+                    FIND_PACKAGE( LCCD 1.2 )
+                    INCLUDE_DIRECTORIES( ${LCCD_INCLUDE_DIRS} )       # also includes ${LCIO_INCLUDE_DIRS}
+                    TARGET_LINK_LIBRARIES( mylib ${LCCD_LIBRARIES} )  # also includes ${LCIO_LIBRARIES}
+
+            - removed deprecated LCCD_DEFINITIONS (-DUSE_LCCD) from LCCDConfig.cmake
+
+            - replaced options BUILD_LCCD_TESTS and BUILD_CONDDB_TESTS with option BUILD_TESTING
+                If BUILD_TESTING is set to ON (default) tests are built with 'make'
+                Otherwise tests are built separately with target 'make tests'
+                (conddb tests are also built if LCCD is built with CondDBMySQL)
+
+            - upgraded CMAKE_MINIMUM_REQUIRED to 2.6
+
+        - fixed lcio::DataNotAvailableException bug in DataFileHandler
+
+        - fixed forward declarations from CondDBMySQL
+
+
+
+================================
+ Marlin
+================================
+
+ --------
+| v01-00 |
+ --------
+
+        - Added a global random seed for Marlin processors.
+          This is used to provide individual pseudo-random numbers to Processors on
+          an event-by-event and run-by-run basis. These may be used by Processors to
+      seed their random number generator of choice. In order to use this service
+      a Processor must register itself in the init method using:
+
+                Global::EVENTSEEDER->registerProcessor(this);
+
+          and should retrieve its allocated event seed during processEvent using:
+
+                int eventSeed = Global::EVENTSEEDER->getSeed(this);
+
+      and include the header file:
+
+        #include "marlin/ProcessorEventSeeder.h"
+
+          The global seed is used for a complete job and is set in the Global steering parameters thus:
+
+                <parameter name="RandomSeed" value="1234567890"/>
+
+          Note that the value must be a positive integer, with max value 2,147,483,647
+          A pseudo-random event seed is generated using a three step hashing function of unsigned ints,
+      in the following order: event_number, run_number, RandomSeed. The hashed int from each step
+      in the above order is used as input to the next hash step. This is used to ensure that in
+      the likely event of similar values of event_number, run_number and RandomSeed, different
+      event seeds will be generated.
+
+      The event seed is then used to seed rand via srand(seed) and then rand is used to
+      generate one seed per registered processor.
+
+      This mechanism ensures reproducible results for every event, regardless of the sequence
+      in which the event is processed in a Marlin job, whilst maintaining the full 32bit range
+      for event and run numbers.
+
+
+        - allow RunHeaders to be modified in EventModifier interface
+      (https://jira.slac.stanford.edu/browse/MAR-35)
+
+
+    - added ./test directory with some initial marlin tests
+          (use 'make test' to run the tests)
+
+    - improved CMake files and build procedure  (now uses the new ILCUTIL package)
+
+    - simplified examples/mymarlin  (now uses the new ILCUTIL package)
+
+        - added MarlinConfig.h to include general purpose configuration definitions
+        - removed deprecated build mode: MARLIN_NO_DLL
+
+
+
+================================
+ CED
+================================
+
+ --------
+| v01-02 |
+ --------
+
+    New features (H. Hoelbe, DESY):
+        - Remote access to CED:
+            * Per default CED rejects connects from remote hosts, to
+              enable remote access, start CED with option --trust <hostname>.
+
+            * Example: To allow remote access from host xyz:
+                   glced --trust xyz
+
+        - Use user defined port:
+            * To start ced several times on the same host, it is necessary
+              that each instance of CED use a different port. To do that,
+              you are able to set the CED port by set the enviroment
+              variable CED_PORT.
+
+            * Example: Start CED listen on port 8888:
+                    export CED_PORT=8888
+                    glced
+
+            * Hint: To connect on this CED with Marlin you must set
+              the enviroment variable CED_PORT (and for remote access
+              also CED_HOST) before starting Marlin.
+
+    Fixes/Intern stuff
+        - Move (Middle mouse button):
+               * Now works correct with rotate
+               * Adjusted the move speed, to get the same speed for
+                 each zoom level and window size.
+
+        - rotate3d:
+              * Helper function: rotates a vector in the 3d room
+
+        - ced_geobox_r_ID:
+              * do the same as ced_geobox_r (plus lcio_id) but use
+                ced_line_ID, this ensure working picking, fisheye view and
+                layerdescription. All other geobox functions ced_geobox_r,
+                ced_geobox_ID, ced_geobox, now can use this new function
+                instead of having own code.
+
+    Simplified CMakeLists  (now uses the new ILCUTIL package)
+
+
+
+================================
+ CEDViewer
+================================
+
+ --------
+| v01-02 |
+ --------
+
+ - cmake changes:
+    - simplified CMakeLists.txt  (now uses the new ILCUTIL package)
+    - improvements in dependency handling:
+        - removed dependencies GEAR, LCIO and streamlog (now exported through Marlin)
+        - removed dependencies CED and CLHEP (now exported thorough MarlinUtil)
+        - removed dependency to GSL (not used anywhere in CEDViewer). Dependency was propagated
+            from a "bug" in MarlinUtil header files ( #include <gsl/...> statements )
+        - exchanged CMakeModules dependency with new package ILCUTIL
+
+    - removed CEDViewerConfig.cmake.in
+    - removed BuildSetup.cmake
+
+ - removed old makefile
+ - removed old steering file
+
+
+
+================================
+ MarlinUtil
+================================
+
+ --------
+| v01-03 |
+ --------
+
+     - Changes (A. Sailer):
+
+        - Rewrote the fast HelixClass::getDistanceToPoint
+
+        - Remove unnecessary code from HelixClass:getDistanceToPoint,
+            add second getDistanceToPoint function, that stops if distXY is
+            larger than given distance, keeps cpu intensive functions from being run.
+
+
+    - Changes (H. Hoelbe, DESY):
+
+        - Implement remote access to CED:
+
+            * Now you are able to connect to an user defined host and portnumber.
+
+            * Example: To run CED on host "foo" port 7777 and Marlin on host "bar":
+                      ssh foo
+                      export CED_PORT="7777"
+                      glced --trust bar
+
+                      ssh bar
+                      export CED_HOST="foo"
+                      export CED_PORT="7777"
+                      Marlin viewer.xml
+
+    - Simplified cmake files (now uses the new ILCUTIL package)
+        Improved dependencies:
+            - removed dependencies GEAR, LCIO and streamlog (now exported through Marlin)
+            - exchanged CMakeModules dependency with new package ILCUTIL
+
+
+================================
+ StandardConfig
+================================
+
+ --------
+| v03-00 |
+ --------
+
+    Added configuration files for CLIC CDR production (2011)
+
+
+
+================================
+ MarlinReco   
+================================
+
+ --------
+| v00-20 |
+ --------
+
+        - Tracking
+          - MarlinTrackFit
+           - Use double precision for the conversion from Tanagra to LC Track Parameters. Use of the HelixClass has been removed from the conversion.
+          - FullLDCTracking
+           - Use faster HelixClass::getDistanceToPoint where possible.
+           - Improved dynamic mememory allocation
+           - General clean-up and removal of redundant code.
+          - LEPTracking
+           - Improved dynamic mememory allocation
+           - Upper limit on track momentum now 2 TeV.
+          - KinkFinder
+           - Improved dynamic mememory allocation
+           - Make sure prongDaughters[i] has entries.
+          - SiliconTracking
+           - Protect against missing connection from SimTrackerHit to MCParticle.
+           - Reducing maximum number of allowed FTD combinations
+           - In case of many potential FTD hit combinations, iteratively adjust phi sectors for triplet formation to avoid long processing times
+
+        - TrackDigi
+           - Improved dynamic mememory allocation
+
+        - Analysis
+          - MarlinKinfit
+           - Added new test classes IterationScanner and ParameterScanner
+           - Added NewFitterGSL.
+          - CLICPfoSelector
+           - Put in possibility of applying time of flight corrections to hit times: CorrectHitTimesForTimeOfFlight
+           - Add one final cut to CLICPFOSelector to remove high energy neutral hadrons in the far forward region which are formed from mulitple background pa
+           - Improved monitoring of background/physics pfos.
+           - Added simple analysis processor to loop over pfos separated in to "physics event" and background.
+           - Create Selected PFO Collections as a subset of All PFOs.
+          - RecoMCTruthLink
+           - Use push_back instead of directly assigning entries to the vector, in case we run out of reserved space.
+           - Output cluster truth linked collections for Clusters and Hits can only be created if there are clusters/hits.
+
+
+
+================================
+ Mokka
+================================
+
+
+mokka-07-06-p02
+===============
+
+
+What is new in this Mokka release
+=================================
+
+  I. Fixed lifetime of b-baryons
+ II. Abort if physics list not found
+III. G4EmSaturation patch files removed from Mokka
+ IV. G4LossTableManager patch
+
+=================================
+
+Please note that:
+
+1. This Mokka release co-works with Geant4 9.4 (and 9.4.patch01) and 
+   CLHEP 2.1.0.1 (but it is still compatible with previous Geant4 / CLHEP 
+   versions)
+
+   It was tested against GEAR v00-14-02 and gcc 3.4.6 and 4.1.2, 
+   SL4 and SL5.
+
+
+2. This Mokka release only co-works with LCIO v01-51 and is no longer 
+   compatible with previous LCIO releases, due to changes in LCIO v01-51.
+
+==============================
+
+I. Fixed lifetime of b-baryons
+
+Following the fix for the lifetime of pre-defined decays in the last
+Mokka patch, another independent bug was found concerning the lifetime
+of certain particles, including b-baryons.  Because these particles
+were not known to Mokka/G4, their flight length was previously
+ignored.
+
+The fix again follows the SLIC implementation by reading a text file
+which contains a list of particles.  Any particle not known to Mokka
+is added to the table of known particles, also defining their material
+interaction.  The default filename is particle.tbl (configurable via
+the command /Mokka/init/PDGFile), which is now included in the Mokka
+distribution.
+
+
+ II. Abort if physics list not found
+
+Until now, when the physics list specified by the user was not found
+by the physics list factory, the default physics list was used and a
+warning message was issued.
+
+Since this message can go unnoticed, the behavior was changed: if the
+physics list is not found, then Mokka aborts with the error code
+MOKKA_ERROR_PHYSICS_LIST_NOT_FOUND ().
+
+
+III. G4EmSaturation patch files removed from Mokka
+
+The .cc and .hh files of class G4EmSaturation were removed from Mokka.
+They were added to Mokka when they were not part of Geant4. Now Geant4 
+has an improved version of this class, and we use that one. 
+
+
+ IV. G4LossTableManager patch
+
+In order to be able to compile with Geant4 9.4, Mokka includes a patch
+of file G4LossTableManager.cc from Geant4 9.4.patch01. 
+
+
+
+================================
+ MarlinPandora
+================================
+
+TAG V00-05 FOR ILCSOFT USAGE
+
+Added ability to read pandora recluster monitoring output, writing results to collections of lcio GenericObjects and lcio Relations.
+Modifications for use with ILD SDHCal.
+Updated to reflect changes to pandora::CartesianVector class.
+Addressed issues raised by Coverity.
+Updated PandoraSettings scripts to reflect recent algorithm changes.
+Turned off DensityWeight and SurroundingEnergy calculations via PandoraSettings file.
+Updated standalone Makefile: changed default compiler to g++ and added -O2 optimization flag.
+
+
+
+================================
+ PandoraPFANew
+================================
+
+TAG V00-06 FOR ILCSOFT USAGE
+
+Made efficiency improvements to reduce cpu time required for events with overlaid background.
+CartesianVector no longer has a default constructor, allowing IsInitialized flags to be removed.
+Added loose, configurable cuts on cos(angle) between track/hit or cluster/hit directions in GetTrackClusterDistance function and cone-based clustering algorit
+Added mc particle helper class to offer re-usable functions relating to extraction of mc information.
+Added first implementation of recluster monitoring, which currently requires that associations between tracks and the chosen clusters be up-to-date at end of 
+Allowed DensityWeight and SurroundingEnergy calculations to be switched on/off via xml CaloHitHelper config.
+Added FileWriter and FileReader classes to create lightweight pandora binary persistency.
+Parameters for pandora objects, geometry or object relationships can now be written/read to/from pandora binary files.
+Added EventWriting and EventReading algorithms to make writing/reading events and geometry simple. Can skip events, jump-to events, etc.
+Added simple stand-alone pandora test application that can run off pandora binary files.
+Added RepeatEventPreparation api.
+Added Algorithm::GetPandora() functionality.
+Added GeometryHelper::IsInitialized function.
+Added ability to merge new tracks/hits into existing saved lists.
+Allowed TrackManager to tolerate duplicated track parent/daughter and sibling information without returning error.
+Enabled creation of an empty temporary track list, allowing for reclustering without reference to tracks.
+Added extra particle id sanity check to MuonReconstruction algorithm.
+Added first basic implementation of a Hough-transform-based 2D line clustering algorithm.
+Re-implemented cheating/perfect algorithms.
+Tidied and re-organised FineGranularityContent library.
+Improved output of DumpPfosMonitoringAlgorithm, including timing information and more detailed confusion summary averaged over all events
+Corrected name of ReadSettings method in fine granularity shower profile calculator.
+Added forward declarations for all pandora objects to PandoraInternal header.
+Addressed issues raised by Coverity.
+Updated standalone Makefile: changed default compiler to g++ and added -O2 optimization flag.
+
+
+
+================================
+ LCFIVertex
+================================
+
+ --------
+| v00-05 |
+ --------
+
+  * simplified cmake scripts (now uses the new ILCUTIL package )
+
+  * bug fix for building documentation in SL5.5
+
+
+
+================================
+ Overlay
+================================
+
+ -----------
+| v00-10-00 |
+ -----------
+
+    - Several code improvements and corrections to OverlayTiming processor (J. Marshall, A. Sailer)
+
+        - Delete Calorimeter hits that are not added to the collection
+
+        - Timing window is extended so that it runs from -0.25ns to numeric_limits<float>::max() ns if an unrecognized collection name is specified.
+
+        - Time of flight function is now inline, its use of pow() has been removed and any unnecessary calls to this function have also gone.
+
+        - Made MCParticle collection name configurable
+
+        - Setting "lcioDetailedShowerMode false" is now default (see http://indico.cern.ch/conferenceDisplay.py?confId=107327),
+            so calls to "CalorimeterHit->getPDGCont(j)" do not make sense. Remove these calls to avoid logic based on uninitialized variables.
+
+        - Clear DestMap at the end of ModifyEvent, do not only run this in Check() as this can be suppressed.
+
+        - Use one destMap per collection to avoid adding calorimeterHits from one subDetector to a different.
+
+        - Copy MCParticles for physics event into a new collection.
+
+        - Tidied-up code with an emphasis on removing risk posed by uninitialized variables e.g.
+            create stack pointers within for loops, rather than re-using single pointer declared outside loop, etc.
+            Removed unused member variables, tidied header file includes, improved const-correctness and removed tab characters.
+            Use of parentheses to clarify logic in if statements
+
+
+================================
+ MarlinTPC
+================================
+
+  -----------
+ | v00-08-04 |
+  -----------
+
+    updated build structure (cmake files)
+    No code changes, only a simple patch release
+
+
+
+================================
+ RAIDA
+================================
+
+  -----------
+ | v01-06-01 |
+  -----------
+
+    - fixed building of documentation
+    - added RAIDAConfigVersion.cmake to check RAIDA version
+    - added AIDAConfig.cmake and AIDAConfigVersion.cmake
+        - wrappers to RAIDAConfig.cmake and RAIDAConfigVersion.cmake
+    - updated cmake files to use new ILCUTIL package
+
+
+
+================================
+ ilcinstall
+================================
+
+
+  --------
+ | v01-11 |
+  --------
+
+     - changed for using ILCUTIL package
+
+     - added support for installing ROOT
+
+     - discontinued support for installing CERNLIB
+
+     - added installation of EUDAQ+Millepede2 in Eutelescope
+        activate with:
+        ilcsoft.module("Eutelescope").env['EUDAQ_VERSION']='tags/vxx-yy' # please change the tag
+        ilcsoft.module("Eutelescope").env['MILLEPEDEII_VERSION']='tags/vxx-yy' # please change the tag
+
+     - deprecated CMakeModules, AIDAJNI and JAIDA packages
+
+     - deprecated use of PKG_HOME cmake variables
+        - use standard CMAKE_PREFIX_PATH or PKG_DIR variables
+
+
+     + bug fixes included in v01-10-01:
+
+        * ilcsoft/mokka.py: added unset G4VIS_USE_OIX (previously known as G4VIS_USE_OIX_DRIVER)
+
+        * ilcsoft/geant4.py: added G4REALSURFACEDATA (new in 9.3)
+        
+        * ilcsoft/fastjet.py: patched for macosx
+
+
+
