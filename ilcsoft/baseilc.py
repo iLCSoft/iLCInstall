@@ -66,6 +66,8 @@ class BaseILC:
             "PATH" : [],
             "LD_LIBRARY_PATH" : [],
             "CLASSPATH" : [],
+            "LD_RUN_PATH" : [],
+            "DT_RUN_PATH" : [],
             "MARLIN_DLL" : []
         }
 
