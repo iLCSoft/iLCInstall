@@ -23,7 +23,7 @@ ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 # python variable for referring the ILC Home directory
 # used to link or use already installed packages (SL4 or SL5)
 # no need to set this variable if using SL4 or SL5 with access to /afs/desy.de/
-#ilcPath = '/afs/desy.de/project/ilcsoft/sw/i386_gcc34_sl4/'
+#ilcPath = '/afs/desy.de/project/ilcsoft/sw/i386_gcc41_sl5/'
 #ilcPath = ilcsoft_afs_path[ arch ]
 # ----------------------------------------------------------------------------
 
@@ -37,6 +37,7 @@ ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 # ----- mysql --------------------------------------------------------
 MySQL_version = "5.0.45"
 MySQL_path = ilcPath + "/mysql/" + MySQL_version
+#MySQL_path = "/usr"
 
 
 # ----- java ---------------------------------------------------------
@@ -62,7 +63,7 @@ CERNLIB_path = ilcPath + "/cernlib/" + CERNLIB_version
 # ======================= PACKAGE VERSIONS ===================================
 
 
-ROOT_version = "5.30.00" # p.v. 5.28.00
+ROOT_version = "5.28.00f" # p.v. 5.28.00
 
 CLHEP_version = "2.0.4.5" 
 
