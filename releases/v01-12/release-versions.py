@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-12-dev02'
+ilcsoft_release='v01-12-dev03'
 # ----------------------------------------------------------------------------
 
 
@@ -128,7 +128,7 @@ LCFIVertex_version = "HEAD" # p.v. v00-05
 
 CEDViewer_version = "HEAD" # p.v. v01-02
 
-Overlay_version = "HEAD" # p.v. v00-10
+Overlay_version = "v00-11-pre00" # p.v. v00-10
 
 #Eutelescope_version = "v00-05-03"
 
