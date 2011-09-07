@@ -117,7 +117,7 @@ MarlinReco_version = "HEAD" # p.v. v00-20
 
 MarlinTrk_version = "HEAD"
 
-MarlinKinfit_version = "HEAD"
+MarlinKinfit_version = "v00-01-pre00"
 
 PandoraPFANew_version = "v00-06"
 PandoraAnalysis_version = "v00-02"
