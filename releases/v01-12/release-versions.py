@@ -107,7 +107,7 @@ LCCD_version = "v01-02"
 
 RAIDA_version = "v01-06-01"
 
-MarlinUtil_version = "HEAD" # p.v. v01-03
+MarlinUtil_version = "v01-04-pre00" # p.v. v01-03
 
 Marlin_version = "v01-01-pre00" # p.v. v01-00
 
