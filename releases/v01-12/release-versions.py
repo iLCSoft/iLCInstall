@@ -119,9 +119,9 @@ MarlinTrk_version = "HEAD"
 
 MarlinKinfit_version = "v00-01-pre00"
 
-PandoraPFANew_version = "v00-06"
-PandoraAnalysis_version = "v00-02"
-MarlinPandora_version = "v00-05"
+PandoraPFANew_version = "v00-07"
+MarlinPandora_version = "v00-06"
+PandoraAnalysis_version = "v00-03"
 
 
 LCFIVertex_version = "HEAD" # p.v. v00-05
