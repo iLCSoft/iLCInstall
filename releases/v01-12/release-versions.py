@@ -83,7 +83,7 @@ GEAR_version = "HEAD" # p.v. v00-17
 
 CED_version = "v01-03-pre01" # p.v. v01-02
 
-CondDBMySQL_version = "CondDBMySQL_ILC-0-9-3"
+CondDBMySQL_version = "CondDBMySQL_ILC-0-9-4" # p.v. CondDBMySQL_ILC-0-9-3
 
 ILCUTIL_version = "v00-02-pre01" # p.v. v00-01
 
