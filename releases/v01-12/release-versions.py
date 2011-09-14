@@ -126,7 +126,7 @@ PandoraAnalysis_version = "v00-03"
 
 LCFIVertex_version = "HEAD" # p.v. v00-05
 
-CEDViewer_version = "HEAD" # p.v. v01-02
+CEDViewer_version = "v01-03-pre00" # p.v. v01-02
 
 Overlay_version = "v00-11-pre00" # p.v. v00-10
 
