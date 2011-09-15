@@ -130,9 +130,9 @@ CEDViewer_version = "v01-03-pre00" # p.v. v01-02
 
 Overlay_version = "v00-11-pre00" # p.v. v00-10
 
-#Eutelescope_version = "v00-05-03"
+Eutelescope_version = "v00-06-03-pre" # p.v. v00-05-03
 
-MarlinTPC_version =  "HEAD" # p.v. v00-08-04
+MarlinTPC_version =  "v00-09-pre" # p.v. v00-08-04
 
 Druid_version = "1.8" 
 
