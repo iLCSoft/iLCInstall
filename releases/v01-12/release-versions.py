@@ -89,7 +89,7 @@ ILCUTIL_version = "v00-02-pre01" # p.v. v00-01
 
 FastJet_version = "2.4.2"
 FastJetClustering_version = "v00-02"
-MarlinFastJet_version = "HEAD"
+MarlinFastJet_version = "v00-01-pre00"
 
 
 StandardConfig_version = "v03-00"
