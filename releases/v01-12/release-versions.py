@@ -100,9 +100,9 @@ LCFI_MokkaBasedNets_version = "v00-01"
 
 # -------------------------------------------
 
-KalTest_version = "HEAD" # p.v. v01-01-01
+KalTest_version = "v01-02-pre00" # p.v. v01-01-01
 
-KalDet_version = "HEAD" # p.v. v01-01-01
+KalDet_version = "v01-02-pre00" # p.v. v01-01-01
 
 LCCD_version = "v01-02"
 
