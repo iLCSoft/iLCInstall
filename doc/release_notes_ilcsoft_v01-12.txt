@@ -253,6 +253,32 @@ Release notes of packages that have been changed
 
 
 ================================
+ KalTest : v01-02
+================================
+
+    - modified to use bounded planes
+    - examples provided in hybrid example to demonstrate use of bounded planes in VXD and FTD 
+    - added extra Transport method to transport directly to a measurement layer and modified the 
+      previous Transport to site method to use this method. No change in previous functionality, 
+      only additional functionality added
+
+
+
+================================
+ KalDet : v01-02
+================================
+
+
+    - Updated for ILD detector reconstruction with KalTest and MarlinTrk
+    - ILD detectors added in new ild directory. 
+            - VXD, TPC, FTD(both simple disk and petal based)
+            - SIT is currently only a placeholder using simple planar design
+    - common hit and plane classes added to ild/common subdirectory
+    - uses UTIL/ILDConf.h from lcio for detector element encoding
+
+
+
+================================
  CED : v01-03
 ================================
 
@@ -463,6 +489,18 @@ Release notes of packages that have been changed
    - New processor (OverlayEvents) to merge a number of events in a LCIO file into one event.
    - First version of background overlay processor for FPCCD (FPCCDOverlayBX)
    - Added dependency to MarlinReco
+
+
+
+================================
+ CondDBMySQL : ILC-0-9-5
+================================
+
+    - bug fixes in MySqlTypes.h: (P. Klenze)
+
+        - activated mysql reconnect option
+        - fixed uninitialized variable theLog
+
 
 
 
