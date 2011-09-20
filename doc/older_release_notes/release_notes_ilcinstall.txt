@@ -2,6 +2,13 @@
 # ILCInstall - Release Notes
 #####################################################
 
+# this file is deprecated
+
+# please find the ilcinstall release notes from version
+# v01-12 and above in the following file:
+# release_notes_ilcsoft_v01-XX.txt
+
+
 -----------------------------------------------------
  v01-11
 -----------------------------------------------------

@@ -1,0 +1,499 @@
+#################################
+#
+#   iLCSoft release - v01-12
+#
+#################################
+
+-------------------------------------------------------------------
+afs reference installations - starting from  release v01-09:
+
+  /afs/desy.de/project/ilcsoft/sw/
+
+with subdirectories for different CPUs, operating systems and gcc versions.e.g:
+
+ i386_gcc34_sl4        # i386 CPU, 32 bit, gcc3.4, SL4 and compatible
+ i386_gcc41_sl5        # i386 CPU, 32 bit, gcc4.1, SL5 and compatible
+ x86_64_gcc41_sl5      # i686 CPU, 64 bit, gcc4.1, SL5 and compatible
+
+NOTE: if you haven't upgraded your system to SL5 yet, please do it as soon as possible.
+      Support for SL4 systems will be deprecated after this release!
+------------------------------------------------------------------
+
+
+========================================
+
+ New packages in iLCSoft added in v01-12
+
+========================================
+
+
+ MarlinFastJet:
+    MarlinFastJet is a small wrapper around the FastJet library for Jet Finding.
+    It has access to a many of the Infrared and Collinear Safe jet finding algorithms like kt_algorithm, anti_kt_algorithm and SISCone.         
+
+ MarlinTrack:
+
+    TODO !!
+
+ MarlinKinfit (standalone):
+
+    TODO !!
+
+
+ LCFIPlus ?
+
+
+
+========================================
+
+ Updated versions of external tools 
+
+========================================
+
+ ROOT: 5.28.00f
+
+ GSL: 1.14
+
+ CMake: 2.8.5
+
+
+-------------------------------------------------
+Release notes of packages that have been changed 
+-------------------------------------------------
+
+
+================================
+ LCIO : v02-00
+================================
+
+    - added multiple trackstates for Track
+
+        - Original functions getX() of Track will return: trk.getTrackStates()[0].getX()
+
+        - TrackState::getLocation() returns one of the predefined locations:
+            AtOther = 0 ; // any location other than the ones defined below
+            AtIP = 1 ;
+            AtFirstHit = 2 ;
+            AtLastHit = 3 ;
+            AtCalorimeter = 4 ;
+            AtVertex = 5 ;
+            LastLocation = AtVertex  ;
+
+        - TrackState* getTrackState(int location)
+            returns the trackstate at the given location, where location is given by one
+            of the predefined locations specified above
+
+        - TrackState* getClosestTrackState(float x, float y, float z)
+            returns the trackstate closest to the given location
+
+        - getTrackState( TrackState::AtFirstHit )->getReferencePoint()
+        - getTrackState( TrackState::AtLastHit )->getReferencePoint()
+
+        - deprecated isReferecePointPCA()
+
+
+    - added TrackerHitPlane and TrackerHitZCylinder for extending the TrackerHit interface
+
+    - added BitField64::reset()
+
+    - added constructor in CellIDDecoder which takes a string argument for the encoding
+
+    - added some useful definitions that are used in the ILD software framework
+        - in particular for encoding and decoding cellIDs.
+
+    - add spin and color flow information to MCParticle if available in stdhep file (LCStdHepRdr)
+
+    - clarified use of addMCParticleContribution
+        - now two method signatures for standard mode and 'detailed' mode
+        - no excpetion is thrown if stepPos==Null in detailed mode - use (0.,0.,0.) instead
+
+    - new tests added:
+
+        - added some tests for the canonical ILD CellIDEncoding (under test_trackerhit)
+        - added tests for TrackerHitPlane and TrackerHitZCylinder classes
+        - added tests for the TrackState class
+        - added a test for LCRTRelations (extensions)
+
+
+
+    - bug fixes:
+
+        - added printout of ndf for tracks
+        - added printout of Cluster EnergyError
+        - added printout of TrackerHit and SimTrackerHit cellid's in LCIO_LONG operators
+        - fixed strict aliasing warning for RTRelations in gcc when compiled with -O3 (Release mode)
+        - fixed constness of member functions (LCTime)
+        - applied fortran patches for gcc4.4 on ubuntu 32bit (Phillip Klenze, MPI)
+        - removed generation of cpp headers in build.xml (from ant aid.generate target)
+        - removed duplicate FindJAVA.cmake module
+        - fixed path to MacroCheckPackageLibs.cmake and MacroCheckPackageVersion.cmake in LCIOConfig.cmake
+
+
+    - changes included from v01-60
+    ------------------------------
+
+     - implemented new methods:
+
+              LCReader::readRunHeader(int runNumber )
+
+          -  C++ only:
+                  LCReader::getNumberOfEvents()
+                  LCReader::getNumberOfRuns()
+             (anajob now prints number of runs and events in the files it is going to read)
+
+     - added access mode to
+         LCReader::readRunHeader(int runNumber, int accessMode )
+         LCReader::readEvent(int runNumber, int evtNumber, int accessMode )
+
+     - added example for creating a simple NTuple from MCParticle collection
+       (  ./examples/cpp/rootDict/writeNTuple.C )
+
+
+    - added spin and color flow information to MCParticle:
+
+        float[3] getSpin()
+        int[2] getColorFlow()
+
+        void setSpin( float[3] )
+        void setColorFlow( int[2] )
+
+    - added cellID0 and cellID1 to TrackerHit and SimTrackerHit:
+
+        int getCellID0()
+        int getCellID1()
+
+        void setCellID0( int )
+        void setCellID1( int )
+
+        * in SimTrackerHit the methods get/setCellID() were deprecated
+            these methods now call get/setCellID0()
+
+    - added optional storing of the position where the energy deposition (step) occurred in SimCalorimeterHit
+        only if bit flag LCIO.CHBIT_STEP is set
+
+        float[3] getStepPosition( int i )
+
+        * LCIO.CHBIT_PDG was deprecated
+            should now use LCIO.CHBIT_STEP
+
+    - added get/setEnergyError to Cluster (c++/java/fortran)
+
+    - added ostream operators (H. Hoelbe)
+
+    - added example for creating a simple NTuple from MCParticle collection (examples/cpp/rootDict/writeNTuple.C)
+
+    - added new methods (C++ only):
+        LCReader::getNumberOfEvents()
+        LCReader::readRunHeader(int runNumber )
+
+    - added tool lcio_event_counter for counting events in slcio / stdhep files
+
+    - anajob now prints number of runs and events in the files it is going to read
+
+    - removed old makefiles used by ant.cpp
+
+    - improved CMakeLists.txt (compatible with ilcsoft v01-11)
+        - reduced build time of lcioDict library to 50%
+
+    - bug fixes:
+        fix printout of TrackerHit (last element of cov matrix was missing(wrong))
+        fixed typo in CalorimeterHit documentation (CHBIT should be RCHBIT)
+        some protections against NULL pointers (A.Sailer)
+        added missing fortran wrappers from cfortran.h for CalorimeterHit ( CPPFORT/lccah.h )
+        fixed several issues found by coverity (https://coverity.cern.ch)
+        fixed bug with unsorted indices for direct access (java) - to be reviewed
+
+
+
+
+================================
+ GEAR : v01-00
+================================
+
+     - added FTDParameters and FTDLayerLayout  by J. Duarte Campderros, IFCA
+
+     - renamed VXDParameters and VXDLayerLayout to ZPlanarParameters and ZPlanarLayerLayout
+       which can also be used for SIT and SET
+
+        - changes should be backward compatible through typedefs
+
+     - added get/setSITParameters()  and get/setSETParameters() to GearMgr
+
+
+     - added simple material description to Gear
+
+        - allowd to have materials of the form
+             SimpleMaterial( name , A , Z, density, radLength, intLength )
+          stored in the GearMgr
+
+        - materials are referenced via their names (stored in user parameters)
+
+
+     - added constructors for double[3] and float[3] to Vector3D
+       - could be used with LCIO classes, e.g.:
+            gear::Vector3D pos( hit->getPosition() ) ;
+
+     - added src/test/testXMLCopy.cc   (simple copy of xml files through GearXML)
+
+
+
+================================
+ Marlin : v01-01
+================================
+
+    - Added dynamic command line options (see example by calling Marlin -h)
+    - Added checking of duplicate processor entries in the steering file
+
+    Bug fixes:
+        - skip linking of lcio libraries through lccd (cause warning on mac osx)
+        - examples/mymarlin/src/MyProcessor.cc: protected against non-existing collections
+        - made gcc 4.4.3 compliant
+        - removed compiler warnings
+
+
+
+================================
+ CED : v01-03
+================================
+
+   - New features (H. Hoelbe, DESY):
+        * Save/Load settings option (saves zoom, background color, view position, etc in ~/.glced)
+        * Detector components have now layers and layer description
+        * Increased the number of available layers
+        * Add side view projection (press 'S' to toggle)
+        * Add front view projection (press 'F' to toggle)
+        * Add perspectivical option (objects far away apairs smaller)
+        * Its possible to toggle the visible of the axes (select it from the menu)
+        * Show frames per secounds (select it from the menu)
+        * Enhanced fisheye view by adding zoom levels when view mode toggles,
+          or when switches to side, front or reset view
+
+        * Add a new optional draw style for the detector, called "New view" includes:
+            * Detector cuts: longitudinal (press and hold 'z' or 'Z')
+              and transversal cuts (select it from the menu)
+            * Its possible to change the value of the transparence (menu)
+            * in 3d-view also added a line model for better identification
+            * Inner edges can be different from outeredges, and the inner cylinder can be
+              rotated with an other angle as the outer cylinder shape
+            * Its possible to set a flag in GEO_Tube objects, so that they only
+              get drawn in new view, see marlinCED.c for an example
+
+
+   * Fixes/Intern stuff (H. Hoelbe, DESY):
+        * Fixed mouse-wheel functionality for Ubuntu
+        * Changed CED from a c to a c++ project
+        * Change order of drawing items
+        * Removed zoom level reset from side and front view
+        * Update deepfilter and blend function
+
+
+    - added OpenGL library paths to the rpath list for preventing LD_LIBRARY_PATH
+        (set by geant4 env init script) to overwrite the opengl system libraries used
+        in the linking of glced with the ones from Mesa (installed in afs), which might
+        cause a dramatic performance penalty
+
+
+
+================================
+ CEDViewer : v01-03
+================================
+
+   -  added new TrackerRawViewer
+
+       - displays raw data from LCTPC large prototype
+
+       - needs CEDViewer to be build with MarlinTPC and LCCD
+       - see example/viewTrackerRawData.xml and example/reconstructLCTPCRawData.xml
+
+
+   - CEDViewer
+      - added new steering parameters
+        "DrawHelixForTrack" and "DrawDetectorID"
+
+      - fixed display of ReconstructParticles (did not respect
+    the marker flags - patch provided by T. Tanabe)
+
+
+
+================================
+ MarlinUtil : v01-04
+================================
+
+    New features:
+
+        - MarlinCED:
+            - added more subdetectors: FTD, LHCal, LCal, Coil, Yoke, SIT
+
+            - changed detector colors to match the default colors used in Mokka
+
+            - detector components have now layers and layer description
+
+            - Cylinder: inner edges can be different from outeredges, and the inner
+                cylinder can be rotated with an other angle as the outer cylinder shape
+
+            - made compatible with CLIC (no LHCal and 11 FTD layers):
+               LHCal is now optional and the FTD is drawn dynamically from gear....
+
+
+         To use the new CED features use CED_GeoTube instead of CED_GeoCylinder.
+
+
+        - added ILDCellIDEncoding which is needed for development of new tracking
+          system, could be removed at a later stage of development
+
+        - header files now installed into subdirectory (marlinutil) to avoid name clashes
+            still backwards compatible
+
+    Fixes:
+
+        - MarlinCED:
+            - old ced_hit_id is now deprecated (the old ced_hit_id used one int to store type and layer number).
+                The new one have one argument more, (layer and type are now 2 fields)
+            - Added try/catch blocks to prevent gear::UnknownParameterException, while accessing undefined detector components.
+            - fixed drawGEARDetector
+            - fixed length of VXD detector ( had used half size only !)
+            - allow to toggle visibility of VXD
+            - made compatible with new gear (used for ILD_01):
+            - use optionally FTDParameters
+            - use size of SIT arrays (will have to be changed to ZPlanarLayout)
+            - optionally use new coil parameter names
+
+
+
+================================
+ MarlinReco : v00-21
+================================
+
+
+ !!! FIXME: NEEDS UPDATE !!!
+
+
+    - General
+
+      - Enabled build without cernlib (option MARLINRECO_CERNLIB=off) - e.g. for macos-64bit
+        sub packages (BrahmsTracking, Satoru, MarlinKinfit,...) that need cernlib will not be built
+
+    - Analysis
+      - Removed MarlinKinfit processor
+      - RecoMCTruthLinker
+        - Modification to allow Bremsstrahlung photons to be written to Skimmed list (off by default)
+
+    - Tracking
+      - Use ILDCellID0 from lcio Util
+      - Removed deprecated setIsReferencePointPCA
+      - New processor FPCCDClustering.cc was added ( Daisuke Kamai )
+      - TPCDigiProcessor
+        - Changed exception to warning for the case of points with the same x-y coordinates being passed to getPadTheta and getPadPhi.
+          Corrected the check function which was previously using float == float, to use fabs(float-float) < tolerance.
+          In this case tolerance has been set to a tenth of a micron
+
+
+
+
+================================
+ MarlinPandora : v00-06
+================================
+
+    Fixed problem where minimum number of ftd hits obtained from xml steering file was assigned to wrong variable.
+    Updated to account for new monitoring location and added ability to link against PandoraMonitoring library.
+    Updated to use new pandora API for pfo extraction.
+    Updated to reflect recent changes to pandora APIs, including typedef changes and use of CaloHitLists, rather than OrderedCaloHitLists.
+    Removed PathLengthCalculator class, now unused (no longer need to specify path lengths from interaction point).
+    Added new PandoraSettings files following addition of new PhotonReconstruction algorithm to Pandora fine granularity content library.
+    Added xml files containing photon likelihood PDFs, for both one and nine bins of reconstructed cluster energy.
+    Updated PandoraSettings files to use new functionality of soft cluster merging and isolated hit merging algorithms.
+    Updated to handle "à la Videau" geometry more elegantly.
+
+
+
+================================
+ PandoraPFANew : v00-07
+================================
+
+    Moved PandoraMonitoring to PandoraPFANew repository and updated CMake and standalone makefiles accordingly.
+    Addressed warnings produced when compiling without monitoring.
+    Restructured pandora manager classes, separating common functionality into Manager base class.
+    Separated common functionality of CaloHit and Track managers into InputObjectManager class.
+    Separated common functionality of Cluster and Pfo managers into AlgorithmObjectManager class.
+    Exposed CreateTemporaryListAndSetCurrent APIs to enable Cluster or Pfo creation without need for nested algorithms.
+    Made GetPfoList API available to client applications.
+    Added new PfoPreparation and PfoCreationParent algorithms.
+    Updated VisualMonitoring algorithm to deal with multiple pfo lists.
+    Modified CaloHit manager to allow for division/fragmentation and re-merging of CaloHits, including during reclustering operations.
+    CaloHit availability monitoring updated and moved from CaloHit helper to CaloHit manager.
+    CaloHit manager now saves CaloHitLists, rather than OrderedCaloHitLists; APIs now work with CaloHitLists, resulting in algorithm changes.
+    Added new types of CaloHit: Rectangular CaloHit (existing type) and new Pointing CaloHit, with dimensions specified in delta(eta) and delta(phi).
+    Implemented GetCellCorners and GetCellLengthScale functions for Rectangular and Pointing CaloHits.
+    Updated file reader/writer classes following changes to CaloHits and interfaces.
+    Added new PhotonReconstruction algorithm, for clustering and identification of photons before standard pandora reconstruction.
+    Added implementation of multivariate/pid analysis for photon identification, supporting separate PDFs for bins of reconstructed cluster energy.
+    Added ability to read/write pandora histograms from xml.
+    Added new interface for use when calculating transverse shower profile. Function can return list of identified shower peaks.
+    Renamed functions for calculation of longitudinal and transverse shower profiles. Calculations are accessible via ParticleIdHelper.
+    Updated isolated hit merging algorithm and soft cluster merging algorithm to handle (neutral) clusters from multiple specified cluster lists.
+    Added new algorithms: MergeSplitPhotons and BeamHaloMuonRemoval.
+    Replaced efficiency monitoring algorithm (no longer maintained) with simple algorithm for evaluating efficiency of particle id for single particle samples.
+    Added ECAL-only option to PerfectClustering algorithm.
+    Changed behaviour of V0PfoCreation algorithm in case where predicted mass squared is negative.
+    Added option to visual monitoring algorithm allowing use of new hit colour scheme, which uses continuous palette to reflect energy of hits.
+    Altered behaviour of MCManager::GetMCParticleList function, returning success for case where no mc particles have been created.
+    Removed unnecessary const qualifier from pointer returned by value in MCParticleHelper.
+    Corrected update of inner and outer pseudolayers when calo hit is removed from a cluster.
+    Removed possibility of deleting a cluster that is currently part of a pfo.
+
+
+
+================================
+ PandoraAnalysis : v00-03
+================================
+
+    Added new PandoraPFACalibrator processor, courtesy of A. Lucaci-Timoce.
+    Added example steering file for PandoraPFACalibrator.
+    Updated PandoraAnalysis example steering file.
+    Updated to deal with missing trees more gracefully.
+    Updated to deal with zombie root files more gracefully.
+    Included <cstdlib> header to allow use of atoi and atof functions under gcc4.3 onwards.
+
+
+
+================================
+ Overlay : v00-11
+================================
+
+   - New processor (OverlayEvents) to merge a number of events in a LCIO file into one event.
+   - First version of background overlay processor for FPCCD (FPCCDOverlayBX)
+   - Added dependency to MarlinReco
+
+
+
+================================
+ ilcinstall : v01-12
+================================
+
+
+    new modules added:
+
+        - marlintrk.py
+
+
+    changes in modules:
+
+        - root.py: fixed bug when configuring with gsl (LD_RUN_PATH needs to be set in order to link against the correct gsl libraries)
+        - kaltest.py: added MarlinUtil dependency to KalDet
+        - marlinreco.py : made cernlib optional
+        - cedviewer.py: added optional dependency to LCCD and MarlinTPC
+        - marlinpkg.py: added cmake find support for MarlinTPC
+        - marlin.py: added tests (ctest)
+        - lcio.py: removed ant support
+        - overlay.py: added dependency to MarlinReco
+
+    
+    general changes and bug fixes:
+
+        - removed backwards compatibility for CMakeModules
+
+        - baseilc.py: added logfile info in case of error (by P. Klenze)
+        - baseilc.py: added -dev and -exp suffixes to lookup versions in branches instead of tags
+        - marlin.py: need to unset MARLIN_DLL for running tests (MARLIN_DLL could otherwise include a plugin which has not yet been built)
+
+
