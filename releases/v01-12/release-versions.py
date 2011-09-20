@@ -83,7 +83,7 @@ GEAR_version = "HEAD" # p.v. v00-17
 
 CED_version = "v01-03-pre01" # p.v. v01-02
 
-CondDBMySQL_version = "CondDBMySQL_ILC-0-9-4" # p.v. CondDBMySQL_ILC-0-9-3
+CondDBMySQL_version = "CondDBMySQL_ILC-0-9-5-pre" # p.v. CondDBMySQL_ILC-0-9-3
 
 ILCUTIL_version = "v00-02-pre01" # p.v. v00-01
 
@@ -133,7 +133,7 @@ Overlay_version = "v00-11-pre00" # p.v. v00-10
 
 Eutelescope_version = "v00-06-03-pre" # p.v. v00-05-03
 
-MarlinTPC_version =  "v00-09-pre" # p.v. v00-08-04
+MarlinTPC_version =  "v00-09-00" # p.v. v00-08-04
 
 Druid_version = "1.8" 
 
