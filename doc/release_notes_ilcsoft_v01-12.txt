@@ -365,10 +365,14 @@ Release notes of packages that have been changed
 
 
         - added ILDCellIDEncoding which is needed for development of new tracking
-          system, could be removed at a later stage of development
+            system, could be removed at a later stage of development
 
         - header files now installed into subdirectory (marlinutil) to avoid name clashes
             still backwards compatible
+
+        - moved classes FPCCDData and FPCCDPixelHit from MarlinReco
+            to MarlinUtil to avoid dependency of Overlay on MarlinReco
+
 
     Fixes:
 
@@ -387,17 +391,14 @@ Release notes of packages that have been changed
 
 
 ================================
- MarlinReco : v00-21
+ MarlinReco : v00-30
 ================================
 
 
- !!! FIXME: NEEDS UPDATE !!!
-
-
     - General
-
       - Enabled build without cernlib (option MARLINRECO_CERNLIB=off) - e.g. for macos-64bit
         sub packages (BrahmsTracking, Satoru, MarlinKinfit,...) that need cernlib will not be built
+      - Removed cmake configuration files to avoid linking/compiling against MarlinReco
 
     - Analysis
       - Removed MarlinKinfit processor
@@ -408,6 +409,7 @@ Release notes of packages that have been changed
       - Use ILDCellID0 from lcio Util
       - Removed deprecated setIsReferencePointPCA
       - New processor FPCCDClustering.cc was added ( Daisuke Kamai )
+        (FPCCDData and FPCCDPixelHit classes are in MarlinUtil )
       - TPCDigiProcessor
         - Changed exception to warning for the case of points with the same x-y coordinates being passed to getPadTheta and getPadPhi.
           Corrected the check function which was previously using float == float, to use fabs(float-float) < tolerance.
@@ -488,7 +490,7 @@ Release notes of packages that have been changed
 
    - New processor (OverlayEvents) to merge a number of events in a LCIO file into one event.
    - First version of background overlay processor for FPCCD (FPCCDOverlayBX)
-   - Added dependency to MarlinReco
+   - Added dependency to MarlinUtil (needed by FPCCOverlay )
 
 
 
