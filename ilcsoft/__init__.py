@@ -27,7 +27,6 @@ from cedviewer import CEDViewer
 from pandora import PandoraPFA
 from pandoranew import PandoraPFANew
 from pandoranew import PandoraAnalysis
-#from pandoranew import PandoraMonitoring
 from pandoranew import MarlinPandora
 from silicondigi import SiliconDigi
 from lcfivertex import LCFIVertex

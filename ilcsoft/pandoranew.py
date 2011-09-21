@@ -22,6 +22,8 @@ class PandoraPFANew(MarlinPKG):
 
         self.hasCMakeFindSupport = True
 
+        self.optmodules = [ "ROOT" ]
+
         self.reqfiles = [ [ 
             'lib/libPandoraFramework.so', 'lib/libPandoraFramework.a', 'lib/libPandoraFramework.dylib',
             'lib/libPandoraPFANew.so', 'lib/libPandoraPFANew.a', 'lib/libPandoraPFANew.dylib',
@@ -50,24 +52,4 @@ class PandoraAnalysis(MarlinPKG):
         self.reqmodules = [ "Marlin", "GEAR", "LCIO", "ROOT" ]
 
         self.download.root = 'PandoraPFANew'
-
-
-
-class PandoraMonitoring(MarlinPKG):
-    """ Responsible for the PandoraMonitoring installation process. """
-
-    def __init__(self, userInput):
-        MarlinPKG.__init__(self, "PandoraMonitoring", userInput )
-
-        # required modules
-        self.reqmodules = [ "Marlin", "GEAR", "LCIO", "ROOT", "PandoraPFANew" ]
-
-        self.download.root = 'PandoraPFANew'
-
-
-    def preCheckDeps(self):
-        MarlinPKG.preCheckDeps(self)
-
-        if( self.mode == "install" ):
-            self.envcmake["PandoraPFANew_DIR"]=self.parent.module("PandoraPFANew").installPath
 

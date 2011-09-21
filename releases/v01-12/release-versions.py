@@ -108,13 +108,13 @@ LCCD_version = "v01-02"
 
 RAIDA_version = "v01-06-01"
 
-MarlinUtil_version = "v01-04-pre00" # p.v. v01-03
+MarlinUtil_version = "v01-04-pre01" # p.v. v01-03
 
 Marlin_version = "v01-01-pre00" # p.v. v01-00
 
 Mokka_version = "HEAD" # "mokka-07-06-p03-SDHcal" # p.v. mokka-07-06-p02
 
-MarlinReco_version = "v00-21-pre00" # p.v. v00-20
+MarlinReco_version = "v00-30-pre00" # p.v. v00-20
 
 MarlinTrk_version = "HEAD"
 
@@ -129,7 +129,7 @@ LCFIVertex_version = "HEAD" # p.v. v00-05
 
 CEDViewer_version = "v01-03-pre00" # p.v. v01-02
 
-Overlay_version = "v00-11-pre00" # p.v. v00-10
+Overlay_version = "v00-11-pre01" # p.v. v00-10
 
 Eutelescope_version = "v00-06-03-pre" # p.v. v00-05-03
 
