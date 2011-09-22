@@ -210,7 +210,7 @@ Release notes of packages that have been changed
  GEAR : v01-00
 ================================
 
-     - added FTDParameters and FTDLayerLayout  by J. Duarte Campderros, IFCA
+    - Added and FTDLayerLayout  by J. Duarte Campderros, IFCA
 
      - renamed VXDParameters and VXDLayerLayout to ZPlanarParameters and ZPlanarLayerLayout
        which can also be used for SIT and SET
@@ -234,6 +234,7 @@ Release notes of packages that have been changed
             gear::Vector3D pos( hit->getPosition() ) ;
 
      - added src/test/testXMLCopy.cc   (simple copy of xml files through GearXML)
+
 
 
 
