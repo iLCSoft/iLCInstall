@@ -126,7 +126,7 @@ MarlinPandora_version = "v00-06"
 PandoraAnalysis_version = "v00-03"
 
 
-LCFIVertex_version = "HEAD" # p.v. v00-05
+LCFIVertex_version = "v00-06-pre00" # p.v. v00-05
 
 CEDViewer_version = "v01-03-pre00" # p.v. v01-02
 
