@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-12-dev05'
+ilcsoft_release='v01-12'
 # ----------------------------------------------------------------------------
 
 
@@ -79,17 +79,17 @@ CMake_version = "2.8.5"  # p.v. 2.8.3
 
 LCIO_version = "v02-00"
 
-GEAR_version = "v01-00-pre01" # p.v. v00-17
+GEAR_version = "v01-00" # p.v. v00-17
 
-CED_version = "v01-03-pre01" # p.v. v01-02
+CED_version = "v01-03" # p.v. v01-02
 
-CondDBMySQL_version = "CondDBMySQL_ILC-0-9-5-pre" # p.v. CondDBMySQL_ILC-0-9-3
+CondDBMySQL_version = "CondDBMySQL_ILC-0-9-5" # p.v. CondDBMySQL_ILC-0-9-3
 
 ILCUTIL_version = "v00-02-pre01" # p.v. v00-01
 
 FastJet_version = "2.4.2"
 FastJetClustering_version = "v00-02"
-MarlinFastJet_version = "v00-01-pre00"
+MarlinFastJet_version = "v00-01"
 
 
 StandardConfig_version = "v03-00"
@@ -100,39 +100,39 @@ LCFI_MokkaBasedNets_version = "v00-01"
 
 # -------------------------------------------
 
-KalTest_version = "v01-02-pre00" # p.v. v01-01-01
+KalTest_version = "v01-02" # p.v. v01-01-01
 
-KalDet_version = "v01-02-pre01" # p.v. v01-01-01
+KalDet_version = "v01-02" # p.v. v01-01-01
 
 LCCD_version = "v01-02"
 
 RAIDA_version = "v01-06-01"
 
-MarlinUtil_version = "v01-04-pre01" # p.v. v01-03
+MarlinUtil_version = "v01-04" # p.v. v01-03
 
-Marlin_version = "v01-01-pre00" # p.v. v01-00
+Marlin_version = "v01-01" # p.v. v01-00
 
 Mokka_version = "mokka-07-07" # p.v. mokka-07-06-p02
 
-MarlinReco_version = "v00-30-pre00" # p.v. v00-20
+MarlinReco_version = "v00-30" # p.v. v00-20
 
 MarlinTrk_version = "v01-00"
 #MarlinTrkProcessors_version = "HEAD"
 
-MarlinKinfit_version = "v00-01-pre00"
+MarlinKinfit_version = "v00-01"
 
 PandoraPFANew_version = "v00-07"
 MarlinPandora_version = "v00-06"
 PandoraAnalysis_version = "v00-03"
 
 
-LCFIVertex_version = "v00-06-pre00" # p.v. v00-05
+LCFIVertex_version = "v00-06" # p.v. v00-05
 
-CEDViewer_version = "v01-03-pre00" # p.v. v01-02
+CEDViewer_version = "v01-03" # p.v. v01-02
 
-Overlay_version = "v00-11-pre01" # p.v. v00-10
+Overlay_version = "v00-11" # p.v. v00-10
 
-Eutelescope_version = "v00-06-03-pre" # p.v. v00-05-03
+Eutelescope_version = "v00-06-03" # p.v. v00-05-03
 
 MarlinTPC_version =  "v00-09-00" # p.v. v00-08-04
 
