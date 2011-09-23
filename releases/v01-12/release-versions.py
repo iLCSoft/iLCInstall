@@ -85,7 +85,7 @@ CED_version = "v01-03" # p.v. v01-02
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-5" # p.v. CondDBMySQL_ILC-0-9-3
 
-ILCUTIL_version = "v00-02-pre01" # p.v. v00-01
+ILCUTIL_version = "v00-02" # p.v. v00-01
 
 FastJet_version = "2.4.2"
 FastJetClustering_version = "v00-02"
