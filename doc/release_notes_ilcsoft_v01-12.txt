@@ -260,7 +260,9 @@ Release notes of packages that have been changed
 ================================
 
     - modified to use bounded planes
+
     - examples provided in hybrid example to demonstrate use of bounded planes in VXD and FTD 
+    
     - added extra Transport method to transport directly to a measurement layer and modified the 
       previous Transport to site method to use this method. No change in previous functionality, 
       only additional functionality added
@@ -674,7 +676,10 @@ Release notes of packages that have been changed
     
     general changes and bug fixes:
 
-        - removed backwards compatibility for CMakeModules
+        - added ILCSoft.cmake.env.sh to initialize environment for developers
+            - any package can be configured by simply typing: cmake ..
+
+        - removed backwards compatibility for older CMakeModules
 
         - baseilc.py: added logfile info in case of error (by P. Klenze)
         - baseilc.py: added -dev and -exp suffixes to lookup versions in branches instead of tags
