@@ -678,6 +678,25 @@ Release notes of packages that have been changed
 
         - added ILCSoft.cmake.env.sh to initialize environment for developers
             - any package can be configured by simply typing: cmake ..
+            - the following order is used to find packages:
+
+                1. CMAKE_PREFIX_PATH environment variable defined in ILCSoft.cmake.env.sh
+                    or by setting/exporting into current shell
+                
+                2. CMAKE_PREFIX_PATH cmake variable defined in ILCSoft.cmake
+                    or using cmake's -D command line argument
+                
+                3. manually defined <PKG>_DIR variables using cmake's -D
+                    command line argument
+
+                1. has the lowest precedence and 3. the highest, i.e.
+                    <PKG>_DIR variables override any previous
+                    CMAKE_PREFIX_PATH variables.
+
+                NOTE: This order of precedence only applies if variables are
+                not already stored in CMakeCache.txt !! In order to clear the
+                cache erase CMakeCache.txt or the build directory.
+
 
         - removed backwards compatibility for older CMakeModules
 
