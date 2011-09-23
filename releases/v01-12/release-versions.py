@@ -117,7 +117,7 @@ Mokka_version = "HEAD" # "mokka-07-06-p03-SDHcal" # p.v. mokka-07-06-p02
 MarlinReco_version = "v00-30-pre00" # p.v. v00-20
 
 MarlinTrk_version = "HEAD"
-MarlinTrkProcessors_version = "HEAD"
+#MarlinTrkProcessors_version = "HEAD"
 
 MarlinKinfit_version = "v00-01-pre00"
 
