@@ -27,23 +27,21 @@ NOTE: if you haven't upgraded your system to SL5 yet, please do it as soon as po
 
 ========================================
 
+ MarlinTrk:
+
+    New tracking package for Marlin, using LCIO, GEAR and KalTest and KalDet.
+    Defines an abstract interface for pattern recognition and track fitting.
+    The current implementation of the fitter is done with KalTest and KalDet.
 
  MarlinFastJet:
 
     MarlinFastJet is a small wrapper around the FastJet library for Jet Finding.
     It has access to a many of the Infrared and Collinear Safe jet finding algorithms like kt_algorithm, anti_kt_algorithm and SISCone.         
 
-
- MarlinTrack:
-
-    Tracking Package based on LCIO and GEAR, primarily aimed at providing track fitting in Marlin
-
-
  MarlinKinfit (standalone):
 
     Kinematic fitting library for Marlin.
     https://www.desy.de/~blist/kinfit/doc/html/
-
 
 
 ========================================
@@ -131,7 +129,7 @@ Release notes of packages that have been changed
         - fixed path to MacroCheckPackageLibs.cmake and MacroCheckPackageVersion.cmake in LCIOConfig.cmake
 
 
-    - changes included from v01-60
+    - changes (already pre-released in v01-60 )
     ------------------------------
 
      - implemented new methods:
@@ -245,6 +243,7 @@ Release notes of packages that have been changed
 ================================
 
     - Added dynamic command line options (see example by calling Marlin -h)
+
     - Added checking of duplicate processor entries in the steering file
 
     Bug fixes:
@@ -259,7 +258,7 @@ Release notes of packages that have been changed
  KalTest : v01-02
 ================================
 
-    - modified to use bounded planes
+    - introduced bounded planes (D.Kamai)
 
     - examples provided in hybrid example to demonstrate use of bounded planes in VXD and FTD 
     
@@ -510,9 +509,6 @@ Release notes of packages that have been changed
          To use the new CED features use CED_GeoTube instead of CED_GeoCylinder.
 
 
-        - added ILDCellIDEncoding which is needed for development of new tracking
-            system, could be removed at a later stage of development
-
         - header files now installed into subdirectory (marlinutil) to avoid name clashes
             still backwards compatible
 
@@ -635,7 +631,7 @@ Release notes of packages that have been changed
 ================================
 
    - New processor (OverlayEvents) to merge a number of events in a LCIO file into one event.
-   - First version of background overlay processor for FPCCD (FPCCDOverlayBX)
+   - First version of background overlay processor for FPCCD (FPCCDOverlayBX) (D.Kamai)
    - Added dependency to MarlinUtil (needed by FPCCOverlay )
 
 
