@@ -69,7 +69,13 @@ class ROOT(BaseILC):
         #if( self.rebuild ):
         #    os.system( "make clean" )
 
-        if( os.system( "./configure --fail-on-missing --enable-builtin-pcre --enable-explicitlink --enable-soversion --enable-roofit --enable-minuit2 --enable-gdml --enable-table --enable-unuran --enable-xrootd --enable-gsl-shared --with-gsl-incdir="+ self.gsl_incdir +" --with-gsl-libdir="+ self.gsl_libdir ) != 0 ):
+        gsl=self.parent.module("GSL")
+        gsl_libdir = gsl.installPath + "/lib"
+        gsl_incdir = gsl.installPath + "/include"
+
+        os.environ["LD_RUN_PATH"] = gsl_libdir
+
+        if( os.system( "./configure --fail-on-missing --enable-builtin-pcre --enable-explicitlink --enable-soversion --enable-roofit --enable-minuit2 --enable-gdml --enable-table --enable-unuran --enable-xrootd --enable-gsl-shared --with-gsl-incdir="+ gsl_incdir +" --with-gsl-libdir="+ gsl_libdir ) != 0 ):
             self.abort( "failed to configure!!" )
 
         if( os.system( "make 2>&1 | tee -a " + self.logfile ) != 0 ):
@@ -82,12 +88,7 @@ class ROOT(BaseILC):
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
 
-        gsl=self.parent.module("GSL")
-        self.gsl_libdir = gsl.installPath + "/lib"
-        self.gsl_incdir = gsl.installPath + "/include"
-
         self.env["ROOTSYS"] = self.installPath
-        self.envpath["LD_RUN_PATH"].append( self.gsl_libdir )
         self.envpath["PATH"].append( "$ROOTSYS/bin" )
         self.envpath["LD_LIBRARY_PATH"].append( "$ROOTSYS/lib" )
 
