@@ -8,13 +8,13 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-12'
+ilcsoft_release='v01-12-01'
 # ----------------------------------------------------------------------------
 
 
 # --------- install dir ------------------------------------------------------
-#ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 ilcsoft_install_prefix = "/scratch/$USER/ilcsoft/"
+#ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 #ilcsoft_install_dir = os.path.join( ilcsoft_install_prefix, ilcsoft_release )
 # ----------------------------------------------------------------------------
 
@@ -77,7 +77,7 @@ CMake_version = "2.8.5"  # p.v. 2.8.3
 
 # -------------------------------------------
 
-LCIO_version = "v02-00"
+LCIO_version = "v02-00-01"
 
 GEAR_version = "v01-00" # p.v. v00-17
 
