@@ -20,6 +20,10 @@ class MarlinTPC(MarlinPKG):
         self.reqmodules = [ "LCIO", "GEAR", "GSL", "Marlin", "LCCD", "ROOT", "AIDA", "CLHEP" ]
         self.optmodules = [ "KalTest", "KalDet", "Mokka" ]
 
+        # serves as base pkg for cedviewer
+        # FIXME this dependency should be removed
+        self.hasCMakeFindSupport = True
+
     def setMode(self, mode):
         MarlinPKG.setMode(self, mode)
         

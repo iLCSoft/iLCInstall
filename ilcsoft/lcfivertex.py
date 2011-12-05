@@ -26,6 +26,9 @@ class LCFIVertex(MarlinPKG):
         # cvs root
         self.download.root="marlinreco"
 
+        # serves as base pkg for lcfiplus
+        self.hasCMakeFindSupport = True
+
     def downloadSources(self):
         MarlinPKG.downloadSources(self)
 
