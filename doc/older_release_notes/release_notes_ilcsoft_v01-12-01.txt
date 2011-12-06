@@ -1,8 +1,44 @@
 #################################
 #
-#   iLCSoft release - v01-12
+#   iLCSoft release - v01-12-01
 #
 #################################
+
+
+
+=============================================
+
+ Changes in v01-12-01 w.r.t. iLCSoft v01-12
+
+=============================================
+
+ v01-12-01 is a patch release containing only a newer patch release of lcio (v02-00-01).
+
+ Please find the ChangeLog from lcio v02-00-01 below for more details:
+
+============
+ v02-00-01
+============
+
+    - patch release including following patches/bug fixes:
+
+        - fixed constness of 'getter' methods' parameters
+        - root dictionary library not beeing built correctly
+        - src/cpp/include/IMPL/SimTrackerHitImpl.h: - workaround for ROOT bug ( don't store MCParcticle pointer )
+        - src/cpp/include/rootDict/rootio_templates.h: - added missing template instantiations for vectors of LCIO classes
+        - src/cpp/src/UTIL/LCStdHepRdr.cc: applied patch which tries to fix mc particles with gen status 2 and no daughters where a PDG of 94 is present (B. V
+        - SimCalorimeterHit::addMCParticleContribution did not add energy contribution to hit energy ( -> Mokka created sim hits with zero energy ...)
+       - fixed printout of Vertex in LCTOOLS::printVertices() and thus in dumpevent
+
+
+
+
+=============================================
+
+ Release notes from iLCSoft v01-12
+
+=============================================
+
 
 -------------------------------------------------------------------
 afs reference installations - starting from  release v01-09:
@@ -18,6 +54,7 @@ with subdirectories for different CPUs, operating systems and gcc versions.e.g:
 NOTE: if you haven't upgraded your system to SL5 yet, please do it as soon as possible.
       Support for SL4 systems will be deprecated after this release!
 ------------------------------------------------------------------
+
 
 
 
