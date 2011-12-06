@@ -43,18 +43,18 @@ USAGE EXAMPLES:
 
     # note that root, mysql, geant4, java and cernlib installations are not supported in ilcinstall
     # this packages need to be installed on your system. Please change the paths to this packages in
-    # the file releases/v01-11/release-versions.py
+    # the file releases/v01-13/release-versions.py
 
 
-    edit releases/v01-11/release-versions.py and modify ilcsoft_install_prefix, e.g.:
+    edit releases/v01-13/release-versions.py and modify ilcsoft_install_prefix, e.g.:
 
         ilcsoft_install_prefix = "/scratch/ilcsoft/"    # version suffix will be added to prefix
     
-    edit releases/v01-11/release-scratch.cfg and comment out any unneeded packages.
+    edit releases/v01-13/release-scratch.cfg and comment out any unneeded packages.
 
     run:
-    ./ilcsoft-install releases/v01-11/release-scratch.cfg      # display installation summary
-    ./ilcsoft-install releases/v01-11/release-scratch.cfg -i   # install
+    ./ilcsoft-install releases/v01-13/release-scratch.cfg      # display installation summary
+    ./ilcsoft-install releases/v01-13/release-scratch.cfg -i   # install
 
 
 
@@ -73,15 +73,15 @@ USAGE EXAMPLES:
         # -------------------------------------------------------------------------------------
 
 
-    edit releases/v01-11/release-versions.py and modify ilcsoft_install_prefix, e.g.:
+    edit releases/v01-13/release-versions.py and modify ilcsoft_install_prefix, e.g.:
             
         ilcsoft_install_prefix = "/scratch/ilcsoft/"   # version suffix will be added to prefix
 
-        edit releases/v01-11/release-ilcsoft.cfg and comment out any unneeded packages.
+        edit releases/v01-13/release-ilcsoft.cfg and comment out any unneeded packages.
 
     run:
-    ./ilcsoft-install releases/v01-11/release-ilcsoft.cfg      # display installation summary
-    ./ilcsoft-install releases/v01-11/release-ilcsoft.cfg -i   # install ilcsoft core tools (no external dependencies)
+    ./ilcsoft-install releases/v01-13/release-ilcsoft.cfg      # display installation summary
+    ./ilcsoft-install releases/v01-13/release-ilcsoft.cfg -i   # install ilcsoft core tools (no external dependencies)
 
 
 
