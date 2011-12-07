@@ -14,7 +14,7 @@ ilcsoft_release='v01-13-pre00'
 
 # --------- install dir ------------------------------------------------------
 ilcsoft_install_prefix = "/scratch/$USER/ilcsoft/"
-#ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
+ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 #ilcsoft_install_dir = os.path.join( ilcsoft_install_prefix, ilcsoft_release )
 # ----------------------------------------------------------------------------
 
@@ -79,7 +79,7 @@ CMake_version = "2.8.5"
 
 LCIO_version = "v02-00-02-pre00" # p.v. v02-00-01
 
-GEAR_version = "HEAD" # p.v. v01-00
+GEAR_version = "v01-01-pre00" # p.v. v01-00
 
 CED_version = "HEAD" # p.v. v01-03
 
@@ -110,7 +110,7 @@ RAIDA_version = "v01-06-02" # p.v. v01-06-01
 
 MarlinUtil_version = "HEAD" # p.v. v01-04
 
-Marlin_version = "HEAD" # p.v. v01-01
+Marlin_version = "v01-02-pre00" # p.v. v01-01
 
 Mokka_version = "HEAD" # p.v. mokka-07-07
 
