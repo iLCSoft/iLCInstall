@@ -79,20 +79,20 @@ CMake_version = "2.8.5"
 
 LCIO_version = "v02-00-02-pre00" # p.v. v02-00-01
 
-GEAR_version = "v01-00"
+GEAR_version = "HEAD" # p.v. v01-00
 
-CED_version = "v01-03"
+CED_version = "HEAD" # p.v. v01-03
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-5"
 
-ILCUTIL_version = "v00-02"
+ILCUTIL_version = "HEAD" # p.v. v00-02
 
 FastJet_version = "2.4.2"
 FastJetClustering_version = "v00-02"
 MarlinFastJet_version = "v00-01"
 
 
-StandardConfig_version = "v03-00"
+StandardConfig_version = "HEAD" # p.v. v03-00
 MokkaDBConfig_version = "v03-02"
 LCFI_MokkaBasedNets_version = "v00-01" 
 
@@ -108,11 +108,11 @@ LCCD_version = "v01-02"
 
 RAIDA_version = "v01-06-02" # p.v. v01-06-01
 
-MarlinUtil_version = "v01-04"
+MarlinUtil_version = "HEAD" # p.v. v01-04
 
-Marlin_version = "v01-01"
+Marlin_version = "HEAD" # p.v. v01-01
 
-Mokka_version = "mokka-07-07"
+Mokka_version = "HEAD" # p.v. mokka-07-07
 
 MarlinReco_version = "v01-00-pre00" # p.v. v00-30
 
@@ -135,7 +135,7 @@ PandoraAnalysis_version = "v00-03"
 
 LCFIVertex_version = "v00-06-01-pre00" # p.v. v00-06
 
-CEDViewer_version = "v01-03"
+CEDViewer_version = "HEAD" # p.v. v01-03
 
 Overlay_version = "v00-11-01-pre00" # p.v. v00-11
 
