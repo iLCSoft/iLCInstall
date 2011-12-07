@@ -63,29 +63,29 @@ CERNLIB_path = ilcPath + "/cernlib/" + CERNLIB_version
 # ======================= PACKAGE VERSIONS ===================================
 
 
-ROOT_version = "5.28.00f" # p.v. 5.28.00
+ROOT_version = "5.28.00f"
 
 CLHEP_version = "2.0.4.5" 
 
-GSL_version = "1.14" # p.v. 1.8
+GSL_version = "1.14"
 
 QT_version = "4.2.2" # mac osx needs version >= 4.7.3
 
-CMake_version = "2.8.5"  # p.v. 2.8.3
+CMake_version = "2.8.5"
 
 
 
 # -------------------------------------------
 
-LCIO_version = "v02-00-01"
+LCIO_version = "v02-00-02-pre00" # p.v. v02-00-01
 
-GEAR_version = "v01-00" # p.v. v00-17
+GEAR_version = "v01-00"
 
-CED_version = "v01-03" # p.v. v01-02
+CED_version = "v01-03"
 
-CondDBMySQL_version = "CondDBMySQL_ILC-0-9-5" # p.v. CondDBMySQL_ILC-0-9-3
+CondDBMySQL_version = "CondDBMySQL_ILC-0-9-5"
 
-ILCUTIL_version = "v00-02" # p.v. v00-01
+ILCUTIL_version = "v00-02"
 
 FastJet_version = "2.4.2"
 FastJetClustering_version = "v00-02"
@@ -93,31 +93,38 @@ MarlinFastJet_version = "v00-01"
 
 
 StandardConfig_version = "v03-00"
-MokkaDBConfig_version = "v03-02" # p.v. v02-02
+MokkaDBConfig_version = "v03-02"
 LCFI_MokkaBasedNets_version = "v00-01" 
 
 
 
 # -------------------------------------------
 
-KalTest_version = "v01-02" # p.v. v01-01-01
+KalTest_version = "v01-03-pre00" # p.v. v01-02
 
-KalDet_version = "v01-02" # p.v. v01-01-01
+KalDet_version = "v01-03-pre00" # p.v. v01-02
 
 LCCD_version = "v01-02"
 
-RAIDA_version = "v01-06-01"
+RAIDA_version = "v01-06-02" # p.v. v01-06-01
 
-MarlinUtil_version = "v01-04" # p.v. v01-03
+MarlinUtil_version = "v01-04"
 
-Marlin_version = "v01-01" # p.v. v01-00
+Marlin_version = "v01-01"
 
-Mokka_version = "mokka-07-07" # p.v. mokka-07-06-p02
+Mokka_version = "mokka-07-07"
 
-MarlinReco_version = "v00-30" # p.v. v00-20
+MarlinReco_version = "v01-00-pre00" # p.v. v00-30
 
-MarlinTrk_version = "v01-00"
-#MarlinTrkProcessors_version = "HEAD"
+MarlinTrk_version = "v01-01-pre00" # p.v. v01-00
+
+MarlinTrkProcessors_version = "v01-00-pre00"
+
+Clupatra_version = "HEAD"
+
+LCFIPlus_version = "HEAD"
+
+ForwardTracking_version = "HEAD"
 
 MarlinKinfit_version = "v00-01"
 
@@ -126,15 +133,15 @@ MarlinPandora_version = "v00-06"
 PandoraAnalysis_version = "v00-03"
 
 
-LCFIVertex_version = "v00-06" # p.v. v00-05
+LCFIVertex_version = "v00-06-01-pre00" # p.v. v00-06
 
-CEDViewer_version = "v01-03" # p.v. v01-02
+CEDViewer_version = "v01-03"
 
-Overlay_version = "v00-11" # p.v. v00-10
+Overlay_version = "v00-11-01-pre00" # p.v. v00-11
 
-Eutelescope_version = "v00-06-03" # p.v. v00-05-03
+Eutelescope_version = "v00-06-03"
 
-MarlinTPC_version =  "v00-09-00" # p.v. v00-08-04
+MarlinTPC_version =  "v00-09-00"
 
 Druid_version = "1.8" 
 

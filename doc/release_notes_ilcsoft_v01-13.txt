@@ -31,7 +31,7 @@ NOTE: if you haven't upgraded your system to SL5 yet, please do it as soon as po
 
 ========================================
 
- New packages in iLCSoft added in v01-13
+ New packages added in v01-13
 
 ========================================
 
@@ -54,20 +54,13 @@ NOTE: if you haven't upgraded your system to SL5 yet, please do it as soon as po
 
 =============================================
 
- Changes in v01-13
+ Changed packages in v01-13
 
 =============================================
 
  v01-13 is a developers release containing ...
 
 
-
-
-========================================
-
- Updated versions of external tools 
-
-========================================
 
 
 
@@ -77,18 +70,37 @@ Release notes of packages that have been changed
 
 
 ================================
- LCIO : v02-01
+ LCIO : v02-00-02
 ================================
 
 
 ================================
- KalTest : 
+ KalTest : v01-03
 ================================
 
+    - added name member and corresponding getName memeber function to TVMeasLayer
+
+
 
 ================================
- KalDet : 
+ KalDet : v01-03
 ================================
+
+    ILD:
+    - Multilayer measurement layers added, which allow a single kaltest layer to represent numbers detector layers.
+    - Added names to support measurement layers
+    - ILDParallelStripPlanarMeasLayer and ILDPlanarStripHit First shot at 1-D strip hits.
+      Only measurements purely in the transverse plane are implemeted so far.
+    - ILDVMeasLayer Name attribute moved up to TVMeasLayer in KalTest, added new method getIntersectionAndCellID.
+          This enables multilayers to efficiently return the crossing point and cellID of the intersected sub layer.
+        - ILDSupportKalDetector added calo face to support detector, added beryllium and corrected rad length of aluminium
+    - ILDVXDKalDetector corrected calculation of overlap region
+    - ILDSITKalDetector added support for double layer SIT with layers facing away from the IP
+    - ILDTPCKalDetector corrected TPC field cage for new TPC10.cc from Mokka
+    - ILDFTDKalDetector corrected sign issue and corrected sortpolicy, fixed bug in material, carbon vs air, corrected measurement layer order
+    - ILDSegmentedDiscMeasLayer Added segmented disc needed for FTD
+        - Removed unnecessary casting
+
 
 
 ================================
@@ -112,8 +124,45 @@ Release notes of packages that have been changed
 
 
 ================================
- MarlinReco : 
+ MarlinTrk : v01-01
 ================================
+
+    - Support for KalDet Multilayer added
+     - Added calo face to support detector
+     - Made use of new method in  ILDVMeasLayer "getIntersectionAndCellID"
+     - Change GetMLName to GetName in line with KalTest
+     - Fixed phi range of helixtrack
+     - MarlinKalTestTrack fixed definition of phi0 in  initialise(TS& ts)
+       corrected conversion from LCIO to KalTest track parameters in initialise
+
+
+
+================================
+ MarlinReco : v01-00
+================================
+
+    - General
+      - New release for preparation for the DBD.
+
+    - Added hybridEcalSplitter (K. Kotera)
+
+    - SiStripDigi: Processor to digitize and clusterize hits for the FTD subdtector
+                       First release of the code, still missing full validation; (J. Duarte)
+
+    - VTXDigiProcessor: corrected smearing to be along ladder, previously it was incorrectly perpendicular to the ladder,
+                            due to the use of the ladders phi angle instead of it angle of inclination
+
+    - FPCCDDigitizer: Fixed bug in helix approximation.- in previous version the intersection between particle and ladder
+                          could be rotated to the opposite side.
+
+        - RecoMCTruthLinker: Bug fix: protect against undefined mother pointer (T.Tanabe )
+                 Modified to be able to use TrackerHit relations, though not yet the default.
+                 Enable by setting UseTrackerHitRelations true in steering file
+
+    - TPCDigiProcessor: Corrected problem where hits from alternative z halves could be considered to be adjacent
+                Removed SimHits from RawHits and Used Relations. The deprecated feature to store them in the
+                rawhits can be enabled by setting UseRawHitsToStoreSimhitPointer true.
+
 
 
 ================================
@@ -130,6 +179,29 @@ Release notes of packages that have been changed
  PandoraAnalysis : ??
 ================================
 
+
+================================
+ LCFIVertex : v00-06-01
+================================
+
+    - fixed cmake scripts for out-of-source installations
+
+================================
+ Overlay : v01-11-01
+================================
+
+    - bug fixes:
+
+        - OverlayTiming.cc: fixed correct particle time for background MCParticles based on their BX (M. Killenberg)
+
+        - FPCCDOverlayBX.cc: fixed gcc 4.5 issue (D. Kamai)
+
+
+================================
+ RAIDA : v01-06-02
+================================
+
+    - added BEFORE to INCLUDE_DIRECTORIES
 
 
 ================================
