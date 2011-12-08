@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-13-pre02'
+ilcsoft_release='v01-13-pre03'
 # ----------------------------------------------------------------------------
 
 
@@ -85,7 +85,7 @@ CED_version = "v01-04-pre00" # p.v. v01-03
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-5"
 
-ILCUTIL_version = "HEAD" # p.v. v00-02
+ILCUTIL_version = "v00-03-pre00" # p.v. v00-02
 
 FastJet_version = "2.4.2"
 FastJetClustering_version = "v00-02"
@@ -93,7 +93,7 @@ MarlinFastJet_version = "v00-01"
 
 
 StandardConfig_version = "HEAD" # p.v. v03-00
-MokkaDBConfig_version = "HEAD" # p.v. v03-02
+MokkaDBConfig_version = "v03-03-pre00" # p.v. v03-02
 LCFI_MokkaBasedNets_version = "v00-01" 
 
 
@@ -112,7 +112,7 @@ MarlinUtil_version = "v01-05-pre00" # p.v. v01-04
 
 Marlin_version = "v01-02-pre00" # p.v. v01-01
 
-Mokka_version = "mokka-07-07-p02-pre" # p.v. mokka-07-07
+Mokka_version = "mokka-07-07-p01" # p.v. mokka-07-07
 
 MarlinReco_version = "v01-00-pre00" # p.v. v00-30
 
