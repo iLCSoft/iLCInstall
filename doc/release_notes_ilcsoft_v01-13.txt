@@ -73,6 +73,34 @@ Release notes of packages that have been changed
  LCIO : v02-00-02
 ================================
 
+    - patch release including following patches/bug fixes:
+        - added printout of all TrackStates for Track
+        - removed "using namespace lcio " from src/cpp/include/UTIL/CellIDEncoder.h
+            -> avoid 'implicit' using declarations that might lead to ambiguous declarations of Exception
+        - updated documentation od reference point in TrackState
+        - allow runtime extensions also to be read on const pointers to LCObjects (made typemap mutable)
+        - added lcio_check_col_elements tool for checking the number of elements from a given collection in a set of lcio files
+
+
+================================
+ GEAR : v01-01
+================================
+
+      - added SensorID helper class with side, layer, module, sensor to Gear.h
+
+      - added ZPlanarParameters::isPointInSensitive(Vector3D p, SensorID* sensorID=0 )
+        to compute the detector element (sensor) that contains the point
+
+      - added test program testMaterialBudgetNew
+        computes material budget in cylinders just inside the SIT, TPC and ECal
+
+      - fixed FTDLayerLayoutImpl  ( J.Duarte)
+          Added in the layeer instantiation relative methods the new parameters:
+      - zposition (centered position of the disk support)
+      - zsign0 ( sign of the offset of the first petal)
+      Removed the zposition for the support and sensors from the layer
+
+
 
 ================================
  KalTest : v01-03
@@ -104,23 +132,117 @@ Release notes of packages that have been changed
 
 
 ================================
+ Marlin : v01-02
+================================
+
+     - made command line options case sensitive
+
+     - check spelling of command line options
+       and enforce that parameters are present
+       in steering file
+
+     - increased verbosity threshold levels - added:
+       DEBUG5-DEBUG9, MESSAGE5,....,ERROR9
+
+
+
+================================
  Mokka : 
 ================================
 
+================================
+ MokkaDBConfig : v03-03
+================================
 
-================================
- CED : 
-================================
+    - added particle.tbl
 
-
-================================
- CEDViewer : 
-================================
 
 
 ================================
- MarlinUtil : 
+ StandardConfig : v03-01
 ================================
+
+
+================================
+ CED : v01-04
+================================
+
+    - New features (H. Hoelbe, DESY):
+        * Add screenshot function
+            - Select screenshot from popup menu, resolution options depending on the size of your glced window.
+              This will save a screenshot under /tmp/glced.tga.
+              To convert the screenshot into a compressed format Use for example "convert /tmp/glced.tga screenshot.png".
+        * New help frame
+            - New concept: not a extra window. Insteat a orthogonal projection inside of the original ced window
+              this should fix: focus problems, crashes, and its transparence now
+            - Detector and data layer now also have a visibility field which is shown
+            - Help frame now change its size in hight so that always all elements fit into it
+
+    - Changes/Bugfixes
+        * Removed grafical artifact in detector components who have differ amount of inner and outer edges
+        * Outer line of detector are now smooth and are drawn at least to remove a grafical artifact
+        * Add fading into the background color for bigger distance as a menu feature.
+        * New order of popup menu items
+        * Add some new shortcut keys
+        * Add 4 extra slots to save user settings
+        * fixed typo S for F and added brackets for ((a && b) || (c && d))  if condition
+        * renamed MAX_LAYER to CED_MAX_LAYER in order to avoid name clashes with other tools (e.g. calice event display )
+
+
+
+================================
+ CEDViewer : v01-04
+================================
+
+    - Added option to supply limits to helix drawing, other than the extent of the TPC
+    - Added option for drawing MC truth info for particle gun events
+    - switched to TPC drawing with surfaces and cuts
+
+    - adopted steering example steering files:
+       - renamed ChannelMapperProcessor to ChannelMappingProcessor
+       - changed raw data file pathes on afs
+
+    - changed parameter DrawHelixForTrack to int:
+       draw a helix for Track objects:
+       0 none, 1: atIP, 2: atFirstHit, 3: atLastHit, 4: atCalorimeter
+
+    - changes in DSTViewer processor:
+      - code cleanup
+      - use streamlog instead of cout
+      - added parameter DrawDetectorID
+      - this processor needs to be revisited ....
+
+    - color code SimTrackerHits and SimCalorimeterHits by the MCParticle
+    - changed drawing of track helix color to light grey
+
+    - added parameter MCParticleEnergyCut
+    - fixed drawing of neutrals
+         - neg. pz particles where drawn in wrong direction
+         - start drawing particles at their vertex
+    - added lightgrey color for neutrinos
+
+    - added drawing of TrackerHitPlanae and TrackerHitZCylinder
+
+    - added various color schemes for displaying particles, tracks and clusters
+      -> steering parameter ColorScheme
+    - print evt/run numbers at the end of the event
+
+    - cmake changes:
+        - added cmake policy CMP0008
+        - removed obsolete install of header files
+
+
+
+================================
+ MarlinUtil : v01-05
+================================
+
+    - added drawing of the SET
+    - added picking print funtions for TrackerHitPlane and TrackerHitZCylinder
+    - changed drawing of SIT to 3D shape with surface
+    - modified to match change of MAX_LAYER to CED_MAX_LAYER in ced_cli.h (requires CED 1.4)
+    - added plannar SIT and protected against Gear exceptions for missing parameters
+
 
 
 ================================
@@ -175,10 +297,6 @@ Release notes of packages that have been changed
 ================================
 
 
-================================
- PandoraAnalysis : ??
-================================
-
 
 ================================
  LCFIVertex : v00-06-01
@@ -190,11 +308,9 @@ Release notes of packages that have been changed
  Overlay : v01-11-01
 ================================
 
-    - bug fixes:
+    - OverlayTiming.cc: fixed correct particle time for background MCParticles based on their BX (M. Killenberg)
+    - FPCCDOverlayBX.cc: fixed gcc 4.5 issue (D. Kamai)
 
-        - OverlayTiming.cc: fixed correct particle time for background MCParticles based on their BX (M. Killenberg)
-
-        - FPCCDOverlayBX.cc: fixed gcc 4.5 issue (D. Kamai)
 
 
 ================================
@@ -204,9 +320,12 @@ Release notes of packages that have been changed
     - added BEFORE to INCLUDE_DIRECTORIES
 
 
+
 ================================
  ilcinstall : v01-13
 ================================
+
+    - fixed mokka.py to download -pre and -dev versions from branches
 
     - lcfivertex is now a base package (needed for lcfiplus)
 
