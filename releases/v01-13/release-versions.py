@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-13-pre00'
+ilcsoft_release='v01-13-pre01'
 # ----------------------------------------------------------------------------
 
 
@@ -128,9 +128,9 @@ ForwardTracking_version = "HEAD"
 
 MarlinKinfit_version = "v00-01"
 
-PandoraPFANew_version = "v00-07"
-MarlinPandora_version = "v00-06"
-PandoraAnalysis_version = "v00-03"
+PandoraPFANew_version = "HEAD" # p.v. v00-07
+MarlinPandora_version = "HEAD" # p.v. v00-06
+PandoraAnalysis_version = "HEAD" # p.v. v00-03
 
 
 LCFIVertex_version = "v00-06-01-pre00" # p.v. v00-06
@@ -139,7 +139,7 @@ CEDViewer_version = "HEAD" # p.v. v01-03
 
 Overlay_version = "v00-11-01-pre00" # p.v. v00-11
 
-Eutelescope_version = "v00-06-03"
+#Eutelescope_version = "v00-06-03"
 
 MarlinTPC_version =  "v00-09-00"
 
