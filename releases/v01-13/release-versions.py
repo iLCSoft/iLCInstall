@@ -81,7 +81,7 @@ LCIO_version = "v02-00-02-pre00" # p.v. v02-00-01
 
 GEAR_version = "v01-01-pre00" # p.v. v01-00
 
-CED_version = "HEAD" # p.v. v01-03
+CED_version = "v01-04-pre00" # p.v. v01-03
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-5"
 
@@ -108,7 +108,7 @@ LCCD_version = "v01-02"
 
 RAIDA_version = "v01-06-02" # p.v. v01-06-01
 
-MarlinUtil_version = "HEAD" # p.v. v01-04
+MarlinUtil_version = "v01-05-pre00" # p.v. v01-04
 
 Marlin_version = "v01-02-pre00" # p.v. v01-01
 
@@ -135,7 +135,7 @@ PandoraAnalysis_version = "HEAD" # p.v. v00-03
 
 LCFIVertex_version = "v00-06-01-pre00" # p.v. v00-06
 
-CEDViewer_version = "HEAD" # p.v. v01-03
+CEDViewer_version = "v01-04-pre00" # p.v. v01-03
 
 Overlay_version = "v00-11-01-pre00" # p.v. v00-11
 
