@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-13-pre01'
+ilcsoft_release='v01-13-pre02'
 # ----------------------------------------------------------------------------
 
 
@@ -93,7 +93,7 @@ MarlinFastJet_version = "v00-01"
 
 
 StandardConfig_version = "HEAD" # p.v. v03-00
-MokkaDBConfig_version = "v03-02"
+MokkaDBConfig_version = "HEAD" # p.v. v03-02
 LCFI_MokkaBasedNets_version = "v00-01" 
 
 
@@ -112,19 +112,19 @@ MarlinUtil_version = "HEAD" # p.v. v01-04
 
 Marlin_version = "v01-02-pre00" # p.v. v01-01
 
-Mokka_version = "HEAD" # p.v. mokka-07-07
+Mokka_version = "mokka-07-07-p02-pre" # p.v. mokka-07-07
 
 MarlinReco_version = "v01-00-pre00" # p.v. v00-30
 
-MarlinTrk_version = "v01-01-pre00" # p.v. v01-00
+MarlinTrk_version = "v01-01-pre01" # p.v. v01-00
 
 MarlinTrkProcessors_version = "v01-00-pre00"
 
-Clupatra_version = "HEAD"
+Clupatra_version = "v00-03-pre00"
 
-LCFIPlus_version = "HEAD"
+LCFIPlus_version = "v00-02-pre"
 
-ForwardTracking_version = "HEAD"
+ForwardTracking_version = "v01-01-pre"
 
 MarlinKinfit_version = "v00-01"
 
