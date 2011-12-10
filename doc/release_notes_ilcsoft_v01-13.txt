@@ -4,6 +4,24 @@
 #
 #################################
 
+
+v01-13 is a developers release containing a first version of 
+simulation and reconstruction software to be used for the DBD.
+
+Main features of this release: 
+
+  - Mokka model ILD_01_dev 
+  - new tracking code 
+     - Clupatra (TPC pat rec)
+     - SiliconTracking/FullLDCTracking C++ versions
+     - new ForwardTracking
+  - updated versions of PandoraPFANew
+  - first version of LCFIPlus
+    new vertexing code
+  - first version of standard reconstruction steering
+    StandardConfig/current
+
+
 =============================================
 
  Release notes from iLCSoft v01-13
@@ -27,29 +45,29 @@ NOTE: if you haven't upgraded your system to SL5 yet, please do it as soon as po
 ------------------------------------------------------------------
 
 
-
-
 ========================================
 
  New packages added in v01-13
 
 ========================================
 
- MarlinTrkProcessors:
+ MarlinTrkProcessors (S.Aplin):
+  Tracking code based on MarlinTrk (C++) :
+   - simplified digitizers for planar and disc geometries
+   - C++ rewrites of SiliconTracking and FullLDCTracking
+   - TruthTracker (simple track cheater)
 
-    ....
+ Clupatra (F.Gaede):
+   TPC pattern recognition based on topological seeds and 
+   Kalman filter.    
 
- Clupatra:
-    
-    .....
+ ForwardTracking (R.Glattauer):
+   New forward tracking based on cellular automatons.
 
- ForwardTracking:
+ LCFIPlus (T.Tanabe, TSuehara):
 
-    ....
-
- LCFIPlus:
-
-    .....
+  A collection of algorithms for performing vertex finding, 
+  jet clustering, and flavor tagging. Builds on and extends LCFIVertex.
 
 
 =============================================
@@ -57,11 +75,6 @@ NOTE: if you haven't upgraded your system to SL5 yet, please do it as soon as po
  Changed packages in v01-13
 
 =============================================
-
- v01-13 is a developers release containing ...
-
-
-
 
 
 -------------------------------------------------
@@ -146,55 +159,55 @@ Release notes of packages that have been changed
 
 
 
-================================
- Mokka : mokka-07-07-p02
-================================
+===============================================
+ Mokka : mokka-07-07-p02 (incl. mokka-07-07-p01 ) 
+==============================================
 
 
-    release notes from: mokka-07-07-p02
-    ===================================
+   release notes from: mokka-07-07-p02
+   ===================================
 
-        What is new in this Mokka release
-        =================================
+     What is new in this Mokka release
+     =================================
 
-          I. New scheme of reading Mont Carlo information form generator files
-             (stdhep and hepevt) by B.Vormwald
+       I. New scheme of reading Mont Carlo information form generator files
+          (stdhep and hepevt) by B.Vormwald
 
-          II. new model of endcap in SHcal03 by Sh.Lu
+       II. new model of endcap in SHcal03 by Sh.Lu
 
-          III. made compatible with geant4 9.5
+       III. made compatible with geant4 9.5
 
-          IV.  added command line option -e pdgfile (F.Gaede)
-        =================================
+       IV.  added command line option -e pdgfile (F.Gaede)
+     =================================
 
-        Please note that:
+     Please note that:
 
-           This Mokka release co-works with Geant4 9.5 and 9.4 (and 9.4.patch01) and
-           CLHEP 2.1.0.1
+        This Mokka release co-works with Geant4 9.5 and 9.4 (and 9.4.patch01) and
+        CLHEP 2.1.0.1
 
-           It was tested against GEAR v01-01 and LCIO v02-00-02, gcc 3.4.6 and 4.1.2,
-           SL4 and SL5.
+        It was tested against GEAR v01-01 and LCIO v02-00-02, gcc 3.4.6 and 4.1.2,
+        SL4 and SL5.
 
-        =================================
+     =================================
 
 
-         I.  new scheme for passing MC truth to geant4 by B. Vormwald, DESY
-           - class HepLCIOInterfaceNew :
-           - only particles with proper decay time larger than zero
-             are passed to geant4
-           - the old treatment can be activated with
-             /Mokka/init/useOldHEPLCIO true
-             (default is false)
+      I.  new scheme for passing MC truth to geant4 by B. Vormwald, DESY
+        - class HepLCIOInterfaceNew :
+        - only particles with proper decay time larger than zero
+          are passed to geant4
+        - the old treatment can be activated with
+          /Mokka/init/useOldHEPLCIO true
+          (default is false)
 
-        II.  new model of endcap in SHcal03 by Sh.Lu
+     II.  new model of endcap in SHcal03 by Sh.Lu
 
-        III. made compatible with geant4 9.5
+     III. made compatible with geant4 9.5
 
-        IV.  added command line option -e pdgfile (F.Gaede)
-             to set the file with extra particles
-             (same as "/Mokka/init/PDGFile" )
-             -> usefull for running on the Grid where
-                the path to particle.tbl is only known at runtime
+     IV.  added command line option -e pdgfile (F.Gaede)
+          to set the file with extra particles
+          (same as "/Mokka/init/PDGFile" )
+          -> usefull for running on the Grid where
+             the path to particle.tbl is only known at runtime
 
 
 
@@ -202,64 +215,64 @@ Release notes of packages that have been changed
     ===================================
 
 
-        What is new in this Mokka release
-        =================================
+     What is new in this Mokka release
+     =================================
 
-          I. Improvements of the VXD driver
+       I. Improvements of the VXD driver
 
-         II. New version of Analogue Hadron Calorimeter for ILD with Videau geometry 
-             of the Barrel.
+      II. New version of Analogue Hadron Calorimeter for ILD with Videau geometry 
+          of the Barrel.
 
-        III. Definition of a new development detector model
+     III. Definition of a new development detector model
 
-        =================================
+     =================================
 
-        Please note that:
+     Please note that:
 
-           This Mokka release co-works with Geant4 9.4 (and 9.4.patch01) and
-           CLHEP 2.1.0.1
+        This Mokka release co-works with Geant4 9.4 (and 9.4.patch01) and
+        CLHEP 2.1.0.1
 
-           It was tested against GEAR r386 and LCIO v02-00-pre00, gcc 3.4.6 and 4.1.2, 
-           SL4 and SL5.
+        It was tested against GEAR r386 and LCIO v02-00-pre00, gcc 3.4.6 and 4.1.2, 
+        SL4 and SL5.
 
-        =================================
+     =================================
 
-          I. Improvements of the VXD driver
+       I. Improvements of the VXD driver
 
-             Thanks to Georgios Gerasimos Voutsinas, we have now a new and more 
-             realistic VXD implementation, following the description made by 
-             Yasuhiro Sugimoto (details at 
-             http://llr.in2p3.fr/~musat/VXD/YasuhiroSugimoto/VTX_design110823.pdf). 
+          Thanks to Georgios Gerasimos Voutsinas, we have now a new and more 
+          realistic VXD implementation, following the description made by 
+          Yasuhiro Sugimoto (details at 
+          http://llr.in2p3.fr/~musat/VXD/YasuhiroSugimoto/VTX_design110823.pdf). 
 
-             Currently only the inner part pf the VXD is improved.
+          Currently only the inner part pf the VXD is improved.
 
-             In the mokka steering file, this sub-detector can be switch on with
-            
-            /Mokka/init/subDetector vxd07
-
-
-         II. New version of Analogue Hadron Calorimeter for ILD with Videau geometry 
-             of the Barrel.
-
-             Thanks to Shaojun Lu we have a new driver SHcalScV01 for the AHCal with
-             the Barrel geometry suggested by Henri Videau. It has a new sensitive 
-             detector for the 'A la Videau' barrel filled with scintillator sensitive 
-             layers. The endCap and endCapRing are identical to SHcalSc03.
-
-             In the mokka steering file, this sub-detector can be switch on with
-            
-            /Mokka/init/subDetector SHcalScV01
+          In the mokka steering file, this sub-detector can be switch on with
+         
+         /Mokka/init/subDetector vxd07
 
 
-        III. Definition of a new development detector model
+      II. New version of Analogue Hadron Calorimeter for ILD with Videau geometry 
+          of the Barrel.
 
-             Thanks to Steve Aplin we have a development detector model 'ILD_01_dev', 
-             which is  based on ILD_01pre02, with the following changes:
+          Thanks to Shaojun Lu we have a new driver SHcalScV01 for the AHCal with
+          the Barrel geometry suggested by Henri Videau. It has a new sensitive 
+          detector for the 'A la Videau' barrel filled with scintillator sensitive 
+          layers. The endCap and endCapRing are identical to SHcalSc03.
 
-            - sit_simple_planar instead of SSit04, 
-            - ftd_simple_staggered instead of SFtd10
-            - set_simple_planar instead of SSet03 
-            - and SEtd03 removed 
+          In the mokka steering file, this sub-detector can be switch on with
+         
+         /Mokka/init/subDetector SHcalScV01
+
+
+     III. Definition of a new development detector model
+
+          Thanks to Steve Aplin we have a development detector model 'ILD_01_dev', 
+          which is  based on ILD_01pre02, with the following changes:
+
+         - sit_simple_planar instead of SSit04, 
+         - ftd_simple_staggered instead of SFtd10
+         - set_simple_planar instead of SSet03 
+         - and SEtd03 removed 
 
 
 
