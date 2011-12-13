@@ -1,0 +1,460 @@
+#################################
+#
+#   iLCSoft release - v01-13
+#
+#################################
+
+
+v01-13 is a developers release containing a first version of 
+simulation and reconstruction software to be used for the DBD.
+
+Main features of this release: 
+
+  - Mokka model ILD_01_dev 
+  - new tracking code 
+     - Clupatra (TPC pat rec)
+     - SiliconTracking/FullLDCTracking C++ versions
+     - new ForwardTracking
+  - updated versions of PandoraPFANew
+  - first version of LCFIPlus
+    new vertexing code
+  - first version of standard reconstruction steering
+    StandardConfig/current
+
+
+=============================================
+
+ Release notes from iLCSoft v01-13
+
+=============================================
+
+
+-------------------------------------------------------------------
+afs reference installations - starting from  release v01-09:
+
+  /afs/desy.de/project/ilcsoft/sw/
+
+with subdirectories for different CPUs, operating systems and gcc versions.e.g:
+
+ i386_gcc34_sl4        # i386 CPU, 32 bit, gcc3.4, SL4 and compatible
+ i386_gcc41_sl5        # i386 CPU, 32 bit, gcc4.1, SL5 and compatible
+ x86_64_gcc41_sl5      # i686 CPU, 64 bit, gcc4.1, SL5 and compatible
+
+NOTE: if you haven't upgraded your system to SL5 yet, please do it as soon as possible.
+      Support for SL4 systems will be deprecated after this release!
+------------------------------------------------------------------
+
+
+========================================
+
+ New packages added in v01-13
+
+========================================
+
+ MarlinTrkProcessors (S.Aplin):
+  Tracking code based on MarlinTrk (C++) :
+   - simplified digitizers for planar and disc geometries
+   - C++ rewrites of SiliconTracking and FullLDCTracking
+   - TruthTracker (simple track cheater)
+
+ Clupatra (F.Gaede):
+   TPC pattern recognition based on topological seeds and 
+   Kalman filter.    
+
+ ForwardTracking (R.Glattauer):
+   New forward tracking based on cellular automatons.
+
+ LCFIPlus (T.Tanabe, TSuehara):
+
+  A collection of algorithms for performing vertex finding, 
+  jet clustering, and flavor tagging. Builds on and extends LCFIVertex.
+
+
+=============================================
+
+ Changed packages in v01-13
+
+=============================================
+
+
+-------------------------------------------------
+Release notes of packages that have been changed 
+-------------------------------------------------
+
+
+================================
+ LCIO : v02-00-02
+================================
+
+    - patch release including following patches/bug fixes:
+        - added printout of all TrackStates for Track
+        - removed "using namespace lcio " from src/cpp/include/UTIL/CellIDEncoder.h
+            -> avoid 'implicit' using declarations that might lead to ambiguous declarations of Exception
+        - updated documentation od reference point in TrackState
+        - allow runtime extensions also to be read on const pointers to LCObjects (made typemap mutable)
+        - added lcio_check_col_elements tool for checking the number of elements from a given collection in a set of lcio files
+
+
+================================
+ GEAR : v01-01
+================================
+
+      - added SensorID helper class with side, layer, module, sensor to Gear.h
+
+      - added ZPlanarParameters::isPointInSensitive(Vector3D p, SensorID* sensorID=0 )
+        to compute the detector element (sensor) that contains the point
+
+      - added test program testMaterialBudgetNew
+        computes material budget in cylinders just inside the SIT, TPC and ECal
+
+      - fixed FTDLayerLayoutImpl  ( J.Duarte)
+          Added in the layeer instantiation relative methods the new parameters:
+      - zposition (centered position of the disk support)
+      - zsign0 ( sign of the offset of the first petal)
+      Removed the zposition for the support and sensors from the layer
+
+
+
+================================
+ KalTest : v01-03
+================================
+
+    - added name member and corresponding getName memeber function to TVMeasLayer
+
+
+
+================================
+ KalDet : v01-03
+================================
+
+    ILD:
+    - Multilayer measurement layers added, which allow a single kaltest layer to represent numbers detector layers.
+    - Added names to support measurement layers
+    - ILDParallelStripPlanarMeasLayer and ILDPlanarStripHit First shot at 1-D strip hits.
+      Only measurements purely in the transverse plane are implemeted so far.
+    - ILDVMeasLayer Name attribute moved up to TVMeasLayer in KalTest, added new method getIntersectionAndCellID.
+          This enables multilayers to efficiently return the crossing point and cellID of the intersected sub layer.
+        - ILDSupportKalDetector added calo face to support detector, added beryllium and corrected rad length of aluminium
+    - ILDVXDKalDetector corrected calculation of overlap region
+    - ILDSITKalDetector added support for double layer SIT with layers facing away from the IP
+    - ILDTPCKalDetector corrected TPC field cage for new TPC10.cc from Mokka
+    - ILDFTDKalDetector corrected sign issue and corrected sortpolicy, fixed bug in material, carbon vs air, corrected measurement layer order
+    - ILDSegmentedDiscMeasLayer Added segmented disc needed for FTD
+        - Removed unnecessary casting
+
+
+
+================================
+ Marlin : v01-02
+================================
+
+     - made command line options case sensitive
+
+     - check spelling of command line options
+       and enforce that parameters are present
+       in steering file
+
+     - increased verbosity threshold levels - added:
+       DEBUG5-DEBUG9, MESSAGE5,....,ERROR9
+
+
+
+===============================================
+ Mokka : mokka-07-07-p02 (incl. mokka-07-07-p01 ) 
+==============================================
+
+
+   release notes from: mokka-07-07-p02
+   ===================================
+
+     What is new in this Mokka release
+     =================================
+
+       I. New scheme of reading Mont Carlo information form generator files
+          (stdhep and hepevt) by B.Vormwald
+
+       II. new model of endcap in SHcal03 by Sh.Lu
+
+       III. made compatible with geant4 9.5
+
+       IV.  added command line option -e pdgfile (F.Gaede)
+     =================================
+
+     Please note that:
+
+        This Mokka release co-works with Geant4 9.5 and 9.4 (and 9.4.patch01) and
+        CLHEP 2.1.0.1
+
+        It was tested against GEAR v01-01 and LCIO v02-00-02, gcc 3.4.6 and 4.1.2,
+        SL4 and SL5.
+
+     =================================
+
+
+      I.  new scheme for passing MC truth to geant4 by B. Vormwald, DESY
+        - class HepLCIOInterfaceNew :
+        - only particles with proper decay time larger than zero
+          are passed to geant4
+        - the old treatment can be activated with
+          /Mokka/init/useOldHEPLCIO true
+          (default is false)
+
+     II.  new model of endcap in SHcal03 by Sh.Lu
+
+     III. made compatible with geant4 9.5
+
+     IV.  added command line option -e pdgfile (F.Gaede)
+          to set the file with extra particles
+          (same as "/Mokka/init/PDGFile" )
+          -> usefull for running on the Grid where
+             the path to particle.tbl is only known at runtime
+
+
+
+    release notes from: mokka-07-07-p01
+    ===================================
+
+
+     What is new in this Mokka release
+     =================================
+
+       I. Improvements of the VXD driver
+
+      II. New version of Analogue Hadron Calorimeter for ILD with Videau geometry 
+          of the Barrel.
+
+     III. Definition of a new development detector model
+
+     =================================
+
+     Please note that:
+
+        This Mokka release co-works with Geant4 9.4 (and 9.4.patch01) and
+        CLHEP 2.1.0.1
+
+        It was tested against GEAR r386 and LCIO v02-00-pre00, gcc 3.4.6 and 4.1.2, 
+        SL4 and SL5.
+
+     =================================
+
+       I. Improvements of the VXD driver
+
+          Thanks to Georgios Gerasimos Voutsinas, we have now a new and more 
+          realistic VXD implementation, following the description made by 
+          Yasuhiro Sugimoto (details at 
+          http://llr.in2p3.fr/~musat/VXD/YasuhiroSugimoto/VTX_design110823.pdf). 
+
+          Currently only the inner part pf the VXD is improved.
+
+          In the mokka steering file, this sub-detector can be switch on with
+         
+         /Mokka/init/subDetector vxd07
+
+
+      II. New version of Analogue Hadron Calorimeter for ILD with Videau geometry 
+          of the Barrel.
+
+          Thanks to Shaojun Lu we have a new driver SHcalScV01 for the AHCal with
+          the Barrel geometry suggested by Henri Videau. It has a new sensitive 
+          detector for the 'A la Videau' barrel filled with scintillator sensitive 
+          layers. The endCap and endCapRing are identical to SHcalSc03.
+
+          In the mokka steering file, this sub-detector can be switch on with
+         
+         /Mokka/init/subDetector SHcalScV01
+
+
+     III. Definition of a new development detector model
+
+          Thanks to Steve Aplin we have a development detector model 'ILD_01_dev', 
+          which is  based on ILD_01pre02, with the following changes:
+
+         - sit_simple_planar instead of SSit04, 
+         - ftd_simple_staggered instead of SFtd10
+         - set_simple_planar instead of SSet03 
+         - and SEtd03 removed 
+
+
+
+================================
+ MokkaDBConfig : v03-03
+================================
+
+    - added particle.tbl
+    - updated mokka-dbdump.sql.tgz (2011-12-08 18:00)
+
+
+
+================================
+ StandardConfig : v03-01
+================================
+
+
+================================
+ CED : v01-04
+================================
+
+    - New features (H. Hoelbe, DESY):
+        * Add screenshot function
+            - Select screenshot from popup menu, resolution options depending on the size of your glced window.
+              This will save a screenshot under /tmp/glced.tga.
+              To convert the screenshot into a compressed format Use for example "convert /tmp/glced.tga screenshot.png".
+        * New help frame
+            - New concept: not a extra window. Insteat a orthogonal projection inside of the original ced window
+              this should fix: focus problems, crashes, and its transparence now
+            - Detector and data layer now also have a visibility field which is shown
+            - Help frame now change its size in hight so that always all elements fit into it
+
+    - Changes/Bugfixes
+        * Removed grafical artifact in detector components who have differ amount of inner and outer edges
+        * Outer line of detector are now smooth and are drawn at least to remove a grafical artifact
+        * Add fading into the background color for bigger distance as a menu feature.
+        * New order of popup menu items
+        * Add some new shortcut keys
+        * Add 4 extra slots to save user settings
+        * fixed typo S for F and added brackets for ((a && b) || (c && d))  if condition
+        * renamed MAX_LAYER to CED_MAX_LAYER in order to avoid name clashes with other tools (e.g. calice event display )
+
+
+
+================================
+ CEDViewer : v01-04
+================================
+
+    - Added option to supply limits to helix drawing, other than the extent of the TPC
+    - Added option for drawing MC truth info for particle gun events
+    - switched to TPC drawing with surfaces and cuts
+
+    - adopted steering example steering files:
+       - renamed ChannelMapperProcessor to ChannelMappingProcessor
+       - changed raw data file pathes on afs
+
+    - changed parameter DrawHelixForTrack to int:
+       draw a helix for Track objects:
+       0 none, 1: atIP, 2: atFirstHit, 3: atLastHit, 4: atCalorimeter
+
+    - changes in DSTViewer processor:
+      - code cleanup
+      - use streamlog instead of cout
+      - added parameter DrawDetectorID
+      - this processor needs to be revisited ....
+
+    - color code SimTrackerHits and SimCalorimeterHits by the MCParticle
+    - changed drawing of track helix color to light grey
+
+    - added parameter MCParticleEnergyCut
+    - fixed drawing of neutrals
+         - neg. pz particles where drawn in wrong direction
+         - start drawing particles at their vertex
+    - added lightgrey color for neutrinos
+
+    - added drawing of TrackerHitPlanae and TrackerHitZCylinder
+
+    - added various color schemes for displaying particles, tracks and clusters
+      -> steering parameter ColorScheme
+    - print evt/run numbers at the end of the event
+
+    - cmake changes:
+        - added cmake policy CMP0008
+        - removed obsolete install of header files
+
+
+
+================================
+ MarlinUtil : v01-05
+================================
+
+    - added drawing of the SET
+    - added picking print funtions for TrackerHitPlane and TrackerHitZCylinder
+    - changed drawing of SIT to 3D shape with surface
+    - modified to match change of MAX_LAYER to CED_MAX_LAYER in ced_cli.h (requires CED 1.4)
+    - added plannar SIT and protected against Gear exceptions for missing parameters
+
+
+
+================================
+ MarlinTrk : v01-01
+================================
+
+    - Support for KalDet Multilayer added
+     - Added calo face to support detector
+     - Made use of new method in  ILDVMeasLayer "getIntersectionAndCellID"
+     - Change GetMLName to GetName in line with KalTest
+     - Fixed phi range of helixtrack
+     - MarlinKalTestTrack fixed definition of phi0 in  initialise(TS& ts)
+       corrected conversion from LCIO to KalTest track parameters in initialise
+
+
+
+================================
+ MarlinReco : v01-00
+================================
+
+    - General
+      - New release for preparation for the DBD.
+
+    - Added hybridEcalSplitter (K. Kotera)
+
+    - SiStripDigi: Processor to digitize and clusterize hits for the FTD subdtector
+                       First release of the code, still missing full validation; (J. Duarte)
+
+    - VTXDigiProcessor: corrected smearing to be along ladder, previously it was incorrectly perpendicular to the ladder,
+                            due to the use of the ladders phi angle instead of it angle of inclination
+
+    - FPCCDDigitizer: Fixed bug in helix approximation.- in previous version the intersection between particle and ladder
+                          could be rotated to the opposite side.
+
+        - RecoMCTruthLinker: Bug fix: protect against undefined mother pointer (T.Tanabe )
+                 Modified to be able to use TrackerHit relations, though not yet the default.
+                 Enable by setting UseTrackerHitRelations true in steering file
+
+    - TPCDigiProcessor: Corrected problem where hits from alternative z halves could be considered to be adjacent
+                Removed SimHits from RawHits and Used Relations. The deprecated feature to store them in the
+                rawhits can be enabled by setting UseRawHitsToStoreSimhitPointer true.
+
+
+
+================================
+ MarlinPandora : ??
+================================
+
+
+================================
+ PandoraPFANew : ??
+================================
+
+
+
+================================
+ LCFIVertex : v00-06-01
+================================
+
+    - fixed cmake scripts for out-of-source installations
+
+================================
+ Overlay : v01-11-01
+================================
+
+    - OverlayTiming.cc: fixed correct particle time for background MCParticles based on their BX (M. Killenberg)
+    - FPCCDOverlayBX.cc: fixed gcc 4.5 issue (D. Kamai)
+
+
+
+================================
+ RAIDA : v01-06-02
+================================
+
+    - added BEFORE to INCLUDE_DIRECTORIES
+
+
+
+================================
+ ilcinstall : v01-13
+================================
+
+    - fixed mokka.py to download -pre and -dev versions from branches
+
+    - lcfivertex is now a base package (needed for lcfiplus)
+
+    - updated nightly build configuration files
+
