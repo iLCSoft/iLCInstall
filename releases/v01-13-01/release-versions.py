@@ -1,6 +1,6 @@
 ###########################################
 #
-# iLCSoft versions for release v01-13
+# iLCSoft versions for release v01-13-01
 #
 # F.Gaede, DESY 09.12.2011
 #
@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-13'
+ilcsoft_release='v01-13-01-pre00'
 # ----------------------------------------------------------------------------
 
 
@@ -102,7 +102,7 @@ LCFI_MokkaBasedNets_version = "v00-01"
 
 KalTest_version = "v01-03" # p.v. v01-02
 
-KalDet_version = "v01-03" # p.v. v01-02
+KalDet_version = "v01-04-pre00" # p.v. v01-03
 
 LCCD_version = "v01-02"
 
@@ -116,9 +116,9 @@ Mokka_version = "mokka-07-07-p02" # p.v. mokka-07-07
 
 MarlinReco_version = "v01-00" # p.v. v00-30
 
-MarlinTrk_version = "v01-01" # p.v. v01-00
+MarlinTrk_version = "v01-02-pre00" # p.v. v01-01
 
-MarlinTrkProcessors_version = "v01-00-01"
+MarlinTrkProcessors_version = "v01-01-pre00" # p.v. v01-00-01
 
 Clupatra_version = "v00-03"
 
