@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-13-01-pre00'
+ilcsoft_release='v01-13-01-pre01'
 # ----------------------------------------------------------------------------
 
 
@@ -46,7 +46,7 @@ Java_path = ilcPath + "/java/" + Java_version # comment out to try auto-detect
 
 
 # ----- geant4 -------------------------------------------------------
-Geant4_version = "9.3.p02"
+Geant4_version = "9.4.p03"
 Geant4_path = ilcPath + "/geant4/" + Geant4_version
 # path to geant4 environment initialization script
 # comment out if not needed
@@ -65,7 +65,7 @@ CERNLIB_path = ilcPath + "/cernlib/" + CERNLIB_version
 
 ROOT_version = "5.28.00f"
 
-CLHEP_version = "2.0.4.5" 
+CLHEP_version = "2.1.0.1" 
 
 GSL_version = "1.14"
 
