@@ -1,6 +1,6 @@
 #################################
 #
-#   iLCSoft release - v01-12-01
+#   iLCSoft release - v01-12-02
 #
 #################################
 
@@ -8,27 +8,46 @@
 
 =============================================
 
- Changes in v01-12-01 w.r.t. iLCSoft v01-12
+ Changes in v01-12-02 w.r.t. iLCSoft v01-12-01
 
 =============================================
 
- v01-12-01 is a patch release containing only a newer patch release of lcio (v02-00-01).
+ v01-12-02 is a patch release containing newer versions of Geant4 and CLHEP.
 
- Please find the ChangeLog from lcio v02-00-01 below for more details:
+ It also contains a few patches made to LCIO and RAIDA. Please see ChangeLogs
+ below for more details:
 
-============
- v02-00-01
-============
+
+==================
+ LCIO: v02-00-02
+==================
 
     - patch release including following patches/bug fixes:
+        - added printout of all TrackStates for Track
+        - removed "using namespace lcio " from src/cpp/include/UTIL/CellIDEncoder.h
+            -> avoid 'implicit' using declarations that might lead to ambiguous declarations of Exception
+        - updated documentation od reference point in TrackState
+        - allow runtime extensions also to be read on const pointers to LCObjects (made typemap mutable)
+        - added lcio_check_col_elements tool for checking the number of elements from a given collection in a set of lcio files
 
-        - fixed constness of 'getter' methods' parameters
-        - root dictionary library not beeing built correctly
-        - src/cpp/include/IMPL/SimTrackerHitImpl.h: - workaround for ROOT bug ( don't store MCParcticle pointer )
-        - src/cpp/include/rootDict/rootio_templates.h: - added missing template instantiations for vectors of LCIO classes
-        - src/cpp/src/UTIL/LCStdHepRdr.cc: applied patch which tries to fix mc particles with gen status 2 and no daughters where a PDG of 94 is present (B. V
-        - SimCalorimeterHit::addMCParticleContribution did not add energy contribution to hit energy ( -> Mokka created sim hits with zero energy ...)
-       - fixed printout of Vertex in LCTOOLS::printVertices() and thus in dumpevent
+
+================================
+ RAIDA : v01-06-02
+================================
+
+    - added BEFORE to INCLUDE_DIRECTORIES
+
+
+
+========================================
+ Updated versions of external tools
+========================================
+
+ Geant4: 9.4.p03
+
+ CLHEP: 2.1.0.1
+
+
 
 
 
