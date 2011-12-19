@@ -46,6 +46,10 @@ class Geant4(BaseILC):
         if Version(self.version, max_elements=2 ) >= "9.3":
             datasetsenv.append('G4REALSURFACEDATA')
 
+        if Version(self.version, max_elements=2 ) >= "9.4":
+            datasetsenv.append('G4PIIDATA')
+
+
         depsdir=self.parent.installPath+"/.dependencies"
         g4dataversfile = depsdir+"/g4data"
 
