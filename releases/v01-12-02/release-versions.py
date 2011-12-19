@@ -1,6 +1,6 @@
 ###########################################
 #
-# iLCSoft versions for release v01-12
+# iLCSoft versions for release v01-12-02
 #
 # F.Gaede, DESY 07.10.2010
 #
@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-12-01'
+ilcsoft_release='v01-12-02'
 # ----------------------------------------------------------------------------
 
 
@@ -46,7 +46,7 @@ Java_path = ilcPath + "/java/" + Java_version # comment out to try auto-detect
 
 
 # ----- geant4 -------------------------------------------------------
-Geant4_version = "9.3.p02"
+Geant4_version = "9.4.p03"
 Geant4_path = ilcPath + "/geant4/" + Geant4_version
 # path to geant4 environment initialization script
 # comment out if not needed
@@ -65,7 +65,7 @@ CERNLIB_path = ilcPath + "/cernlib/" + CERNLIB_version
 
 ROOT_version = "5.28.00f" # p.v. 5.28.00
 
-CLHEP_version = "2.0.4.5" 
+CLHEP_version = "2.1.0.1" 
 
 GSL_version = "1.14" # p.v. 1.8
 
@@ -77,7 +77,7 @@ CMake_version = "2.8.5"  # p.v. 2.8.3
 
 # -------------------------------------------
 
-LCIO_version = "v02-00-01"
+LCIO_version = "v02-00-02"
 
 GEAR_version = "v01-00" # p.v. v00-17
 
@@ -106,7 +106,7 @@ KalDet_version = "v01-02" # p.v. v01-01-01
 
 LCCD_version = "v01-02"
 
-RAIDA_version = "v01-06-01"
+RAIDA_version = "v01-06-02"
 
 MarlinUtil_version = "v01-04" # p.v. v01-03
 
