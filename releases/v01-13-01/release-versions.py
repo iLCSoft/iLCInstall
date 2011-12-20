@@ -81,7 +81,7 @@ LCIO_version = "v02-00-02" # p.v. v02-00-01
 
 GEAR_version = "v01-01" # p.v. v01-00
 
-CED_version = "v01-04" # p.v. v01-03
+CED_version = "v01-04-01-pre" # p.v. v01-04
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-5"
 
@@ -93,7 +93,7 @@ MarlinFastJet_version = "v00-01"
 
 
 StandardConfig_version = "v03-50" # p.v. v03-00
-MokkaDBConfig_version = "v03-03" # p.v. v03-02
+MokkaDBConfig_version = "v03-04" # p.v. v03-03
 LCFI_MokkaBasedNets_version = "v00-01" 
 
 
@@ -112,7 +112,7 @@ MarlinUtil_version = "v01-05" # p.v. v01-04
 
 Marlin_version = "v01-02" # p.v. v01-01
 
-Mokka_version = "HEAD" # p.v. mokka-07-07-p02
+Mokka_version = "mokka-07-07-p03" # p.v. mokka-07-07-p02
 
 MarlinReco_version = "v01-00" # p.v. v00-30
 
@@ -135,7 +135,7 @@ PandoraAnalysis_version = "v00-03" # p.v. v00-03
 
 LCFIVertex_version = "v00-06-01" # p.v. v00-06
 
-CEDViewer_version = "v01-04" # p.v. v01-03
+CEDViewer_version = "v01-04-01-pre" # p.v. v01-04
 
 Overlay_version = "v00-11-01" # p.v. v00-11
 
