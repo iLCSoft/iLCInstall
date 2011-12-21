@@ -81,7 +81,7 @@ LCIO_version = "v02-00-02" # p.v. v02-00-01
 
 GEAR_version = "v01-01" # p.v. v01-00
 
-CED_version = "v01-04" # v01-04-01 ?
+CED_version = "v01-04-01"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-5"
 
@@ -112,7 +112,7 @@ MarlinUtil_version = "v01-05" # p.v. v01-04
 
 Marlin_version = "v01-02" # p.v. v01-01
 
-Mokka_version = "mokka-07-07-p03" # p.v. mokka-07-07-p02
+Mokka_version = "mokka-07-07-p04" # p.v. mokka-07-07-p02
 
 MarlinReco_version = "v01-00" # p.v. v00-30
 
