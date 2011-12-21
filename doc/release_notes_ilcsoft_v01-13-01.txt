@@ -25,9 +25,40 @@ bug fixes to the packages listed below. Please check the ChangeLogs for more det
 
 
 
-================================
- Mokka: mokka-07-07-p03
-================================
+=================================================================
+ Mokka: mokka-07-07-p04 (including changes from mokka-07-07-p03)
+=================================================================
+
+    What is new in this Mokka release
+    =================================
+
+      I. fixed possible overlaps in Hcal (endcap Shaojun Lu)
+
+    =================================
+
+    Please note that:
+
+       This Mokka release co-works with Geant4 9.5 and 9.4 (and 9.4.patch01) and
+       CLHEP 2.1.0.1
+
+       It was tested against GEAR v01-01 and LCIO v02-00-02, gcc 3.4.6 and 4.1.2,
+       SL4 and SL5.
+
+    =================================
+
+
+      I. fixed possible overlaps in Hcal (endcap Shaojun Lu)
+        1. One "static const double eps" has been add into the header file, and set to 10E-6.
+           The "eps" has been used to avoid touch surface in the Geant4 geometry for AHCAL endcap.
+        2. The EndcapsAhcal has been improved by fixing the touch surface.
+        3. Also improved the EndcapLogical placement in the for loop, for more easy read.
+        4. Cleanup the SDAHcalEndCap sensitive detecor driver.
+
+
+
+    ==================================
+    Release Notes from mokka-07-07-p03
+    ==================================
 
 
     What is new in this Mokka release
@@ -122,6 +153,17 @@ bug fixes to the packages listed below. Please check the ChangeLogs for more det
       - increase maxdeltaChi2
     - src/FixCellIDs.cc: - reduced verbosity level from WARNING to
       DEBUG5 for missing collections
+
+
+
+================================
+ CED : v01-04-01
+================================
+
+   - fixed memory leak
+    - changes method of adding pickable points to lines from splitting lines to add more points to.
+    - add new flag client_connected to avoid crashes after picking when client ist disconnected
+
 
 
 ================================
