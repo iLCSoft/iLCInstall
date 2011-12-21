@@ -64,6 +64,13 @@
 
 
 
+================================
+ MokkaDBConfig : v03-04
+================================
+
+    - updated mokka-dbdump.sql.tgz (2011-12-20 - 17:00)
+
+
 
 ========================================
  Updated versions of external tools
