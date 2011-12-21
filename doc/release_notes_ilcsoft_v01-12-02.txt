@@ -15,9 +15,41 @@
  v01-12-02 is a patch release containing newer versions of Geant4, Mokka and CLHEP.
 
 
-================================
- Mokka: mokka-07-07-p03
-================================
+=================================================================
+ Mokka: mokka-07-07-p04 (including changes from mokka-07-07-p03)
+=================================================================
+
+    What is new in this Mokka release
+    =================================
+
+      I. fixed possible overlaps in Hcal (endcap Shaojun Lu)
+
+    =================================
+
+    Please note that:
+
+       This Mokka release co-works with Geant4 9.5 and 9.4 (and 9.4.patch01) and
+       CLHEP 2.1.0.1
+
+       It was tested against GEAR v01-01 and LCIO v02-00-02, gcc 3.4.6 and 4.1.2,
+       SL4 and SL5.
+
+    =================================
+
+
+      I. fixed possible overlaps in Hcal (endcap Shaojun Lu)
+        1. One "static const double eps" has been add into the header file, and set to 10E-6.
+           The "eps" has been used to avoid touch surface in the Geant4 geometry for AHCAL endcap.
+        2. The EndcapsAhcal has been improved by fixing the touch surface.
+        3. Also improved the EndcapLogical placement in the for loop, for more easy read.
+        4. Cleanup the SDAHcalEndCap sensitive detecor driver.
+
+
+
+
+    ==================================
+    Release Notes from mokka-07-07-p03
+    ==================================
 
 
     What is new in this Mokka release

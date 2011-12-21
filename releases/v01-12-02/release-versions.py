@@ -112,7 +112,7 @@ MarlinUtil_version = "v01-04" # p.v. v01-03
 
 Marlin_version = "v01-01" # p.v. v01-00
 
-Mokka_version = "mokka-07-07-p03" # p.v. mokka-07-07
+Mokka_version = "mokka-07-07-p04" # p.v. mokka-07-07
 
 MarlinReco_version = "v00-30" # p.v. v00-20
 
