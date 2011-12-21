@@ -12,10 +12,59 @@
 
 =============================================
 
- v01-12-02 is a patch release containing newer versions of Geant4 and CLHEP.
+ v01-12-02 is a patch release containing newer versions of Geant4, Mokka and CLHEP.
 
  It also contains a few patches made to LCIO and RAIDA. Please see ChangeLogs
  below for more details:
+
+
+================================
+ Mokka: mokka-07-07-p03
+================================
+
+
+    What is new in this Mokka release
+    =================================
+
+      I. Fixed duplicate map in InputFileGenerator, by Frank Gaede
+
+     II. New model of Tail Catcher for Fnal 2008 TB model by Sh.Lu
+
+    III. Changes to the Simple FTD and the TPC drivers, by Steve Aplin
+
+    =================================
+
+    Please note that:
+
+       This Mokka release co-works with Geant4 9.5 and 9.4 (and 9.4.patch01) and
+       CLHEP 2.1.0.1
+
+       It was tested against GEAR v01-01 and LCIO v02-00-02, gcc 3.4.6 and 4.1.2,
+       SL4 and SL5.
+
+    =================================
+
+
+      I. Fixed duplicate map in InputFileGenerator, by Frank Gaede
+
+        - now only use HepLCIOInterfaceNew::Map
+
+
+     II. New driver for Tail Catcher for Fnal 2008 TB model by Sh.Lu
+
+         Tail Catcher y shift bug was fixed for TBFnal 2008 model, and new
+         detector model ' TBFnal0508_p1211 ' was created, based on old
+         model ' TBFnal0508_p0709 ' whith driver ' TBcatcher06 ' replaced by
+         new ' TBcatcher07 ' driver.
+
+
+    III. Changes to the Simple FTD and the TPC drivers, by Steve Aplin
+
+         - a few small changes to the Simple FTD and the TPC drivers were made
+         - new driver TPC09 from Martin Killenberg, was added; this driver was
+           used for some of the CLIC studies
+         - the DB was updated accordingly
+
 
 
 ==================
@@ -36,6 +85,8 @@
 ================================
 
     - added BEFORE to INCLUDE_DIRECTORIES
+
+
 
 
 
