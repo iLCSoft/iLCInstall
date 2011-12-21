@@ -93,7 +93,7 @@ MarlinFastJet_version = "v00-01"
 
 
 StandardConfig_version = "v03-00"
-MokkaDBConfig_version = "v03-02" # p.v. v02-02
+MokkaDBConfig_version = "v03-04" # p.v. v03-02
 LCFI_MokkaBasedNets_version = "v00-01" 
 
 
@@ -112,7 +112,7 @@ MarlinUtil_version = "v01-04" # p.v. v01-03
 
 Marlin_version = "v01-01" # p.v. v01-00
 
-Mokka_version = "mokka-07-07" # p.v. mokka-07-06-p02
+Mokka_version = "mokka-07-07-p03" # p.v. mokka-07-07
 
 MarlinReco_version = "v00-30" # p.v. v00-20
 
