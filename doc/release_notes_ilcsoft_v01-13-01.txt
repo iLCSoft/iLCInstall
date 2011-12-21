@@ -107,10 +107,10 @@ bug fixes to the packages listed below. Please check the ChangeLogs for more det
 
 
 ================================
- MokkaDBConfig : v03-04
+ MokkaDBConfig : v03-05
 ================================
 
-    - updated mokka-dbdump.sql.tgz (2011-12-20 - 17:00)
+    - updated mokka-dbdump.sql.tgz (2011-12-21 - 18:00)
 
 
 
