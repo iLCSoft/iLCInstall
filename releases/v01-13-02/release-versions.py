@@ -1,6 +1,6 @@
 ###########################################
 #
-# iLCSoft versions for release v01-13
+# iLCSoft versions for release v01-13-02
 #
 # F.Gaede, DESY 09.12.2011
 #
@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-13'
+ilcsoft_release='v01-13-02'
 # ----------------------------------------------------------------------------
 
 
@@ -46,7 +46,7 @@ Java_path = ilcPath + "/java/" + Java_version # comment out to try auto-detect
 
 
 # ----- geant4 -------------------------------------------------------
-Geant4_version = "9.3.p02"
+Geant4_version = "9.4.p03"
 Geant4_path = ilcPath + "/geant4/" + Geant4_version
 # path to geant4 environment initialization script
 # comment out if not needed
@@ -65,7 +65,7 @@ CERNLIB_path = ilcPath + "/cernlib/" + CERNLIB_version
 
 ROOT_version = "5.28.00f"
 
-CLHEP_version = "2.0.4.5" 
+CLHEP_version = "2.1.0.1" 
 
 GSL_version = "1.14"
 
@@ -77,67 +77,67 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-00-02" # p.v. v02-00-01
+LCIO_version = "v02-00-03" # v02-00-02
 
-GEAR_version = "v01-01" # p.v. v01-00
+GEAR_version = "v01-01"
 
-CED_version = "v01-04" # p.v. v01-03
+CED_version = "v01-04-01"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-5"
 
-ILCUTIL_version = "v00-03" # p.v. v00-02
+ILCUTIL_version = "v00-03"
 
 FastJet_version = "2.4.2"
 FastJetClustering_version = "v00-02"
 MarlinFastJet_version = "v00-01"
 
 
-StandardConfig_version = "v03-50" # p.v. v03-00
-MokkaDBConfig_version = "v03-03" # p.v. v03-02
+StandardConfig_version = "v03-50"
+MokkaDBConfig_version = "v03-05"
 LCFI_MokkaBasedNets_version = "v00-01" 
 
 
 
 # -------------------------------------------
 
-KalTest_version = "v01-03" # p.v. v01-02
+KalTest_version = "v01-03"
 
-KalDet_version = "v01-03" # p.v. v01-02
+KalDet_version = "v01-04"
 
 LCCD_version = "v01-02"
 
-RAIDA_version = "v01-06-02" # p.v. v01-06-01
+RAIDA_version = "v01-06-02"
 
-MarlinUtil_version = "v01-05" # p.v. v01-04
+MarlinUtil_version = "v01-05"
 
-Marlin_version = "v01-02" # p.v. v01-01
+Marlin_version = "v01-02"
 
-Mokka_version = "mokka-07-07-p02" # p.v. mokka-07-07  
+Mokka_version = "mokka-07-07-p04"
 
-MarlinReco_version = "v01-00" # p.v. v00-30
+MarlinReco_version = "v01-00"
 
-MarlinTrk_version = "v01-01" # p.v. v01-00
+MarlinTrk_version = "v01-02"
 
-MarlinTrkProcessors_version = "v01-00-01"
+MarlinTrkProcessors_version = "v01-01"
 
-Clupatra_version = "v00-03"
+Clupatra_version = "v00-04"
 
 LCFIPlus_version = "v00-02"
 
-ForwardTracking_version = "v01-01"
+ForwardTracking_version = "v01-01-01" # v01-01
 
 MarlinKinfit_version = "v00-01"
 
-PandoraPFANew_version = "v00-08" # p.v. v00-07
-MarlinPandora_version = "v00-07" # p.v. v00-06
-PandoraAnalysis_version = "v00-03" # p.v. v00-03
+PandoraPFANew_version = "v00-08"
+MarlinPandora_version = "v00-07"
+PandoraAnalysis_version = "v00-03"
 
 
-LCFIVertex_version = "v00-06-01" # p.v. v00-06
+LCFIVertex_version = "v00-06-01"
 
-CEDViewer_version = "v01-04" # p.v. v01-03
+CEDViewer_version = "v01-04-01"
 
-Overlay_version = "v00-11-01" # p.v. v00-11
+Overlay_version = "v00-11-01"
 
 #Eutelescope_version = "v00-06-03"
 
