@@ -41,7 +41,7 @@ USAGE EXAMPLES:
 
 ###### Install the full ilc software tools + external dependencies on your local disk ##########
 
-    # note that root, mysql, geant4, java and cernlib installations are not supported in ilcinstall
+    # note that mysql, geant4, java and cernlib installations are not supported in ilcinstall
     # this packages need to be installed on your system. Please change the paths to this packages in
     # the file releases/v01-13/release-versions.py
 
@@ -61,13 +61,12 @@ USAGE EXAMPLES:
 
 ###### Install the core ilc software tools on your local disk using dependencies from /afs/desy.de/project/ilcsoft/sw/ #########
 
-        # ---- THIS ONLY WORKS FOR SL4 32BIT AND SL5 32/64BIT OR COMPATIBLE SYSTEMS ----------
+        # ---- THIS ONLY WORKS WITH SL5 32/64BIT OR COMPATIBLE SYSTEMS ------------------------
         #
         #   tools are installed in afs under:
         #
         #   /afs/desy.de/project/ilcsoft/sw/
         #
-        #      i386_gcc34_sl4        # i386 CPU, 32 bit, gcc3.4, SL4 and compatible
         #      i386_gcc41_sl5        # i386 CPU, 32 bit, gcc4.1, SL5 and compatible
         #      x86_64_gcc41_sl5      # i686 CPU, 64 bit, gcc4.1, SL5 and compatible
         # -------------------------------------------------------------------------------------
