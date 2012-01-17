@@ -45,6 +45,8 @@ USAGE EXAMPLES:
     # this packages need to be installed on your system. Please change the paths to this packages in
     # the file releases/v01-13/release-versions.py
 
+    # for debian/ubuntu distributions you may need to install a few packages beforehand such as:
+    # apt-get install build-essential cmake subversion libmysqlclient-dev freeglut3-dev zlib1g-dev libqt4-dev cernlib-core-dev default-jdk libxpm-dev libxmu-dev lesstif2-dev
 
     edit releases/v01-13/release-versions.py and modify ilcsoft_install_prefix, e.g.:
 
