@@ -85,4 +85,10 @@ USAGE EXAMPLES:
     ./ilcsoft-install releases/v01-13/release-ilcsoft.cfg -i   # install ilcsoft core tools (no external dependencies)
 
 
+DOCUMENTATION:
+
+Please find more detailed documentation under:
+
+http://ilcsoft.desy.de/portal/general_documentation/ilcinstall_documentation/
+
 
