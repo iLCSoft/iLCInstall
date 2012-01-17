@@ -46,7 +46,7 @@ USAGE EXAMPLES:
     # the file releases/v01-13/release-versions.py
 
     # for debian/ubuntu distributions you may need to install a few packages beforehand such as:
-    # apt-get install build-essential cmake subversion libmysqlclient-dev freeglut3-dev zlib1g-dev libqt4-dev cernlib-core-dev default-jdk libxpm-dev libxmu-dev lesstif2-dev
+    # apt-get install build-essential cmake subversion libmysqlclient-dev freeglut3-dev zlib1g-dev libqt4-dev cernlib-core-dev default-jdk libxpm-dev libxmu-dev lesstif2-dev doxygen latex2html
 
     edit releases/v01-13/release-versions.py and modify ilcsoft_install_prefix, e.g.:
 
