@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-13-02'
+ilcsoft_release='v01-13-02-pre00'
 # ----------------------------------------------------------------------------
 
 
@@ -77,7 +77,7 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-00-03" # v02-00-02
+LCIO_version = "v02-00-03-pre" # v02-00-02
 
 GEAR_version = "v01-01"
 
@@ -141,7 +141,8 @@ Overlay_version = "v00-11-01"
 
 #Eutelescope_version = "v00-06-03"
 
-MarlinTPC_version =  "v00-09-00"
+PathFinder_version =  "v00-01-pre"
+MarlinTPC_version =  "v00-09-pre" # v00-09-00
 
 Druid_version = "1.8" 
 

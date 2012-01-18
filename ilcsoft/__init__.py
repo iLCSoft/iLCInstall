@@ -15,6 +15,7 @@ from gear import GEAR
 from raida import RAIDA
 from ced import CED
 from kaltest import KalTest, KalDet
+from pathfinder import PathFinder
 
 
 # marlin & friends

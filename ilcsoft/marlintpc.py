@@ -18,7 +18,7 @@ class MarlinTPC(MarlinPKG):
         MarlinPKG.__init__(self, "MarlinTPC", userInput)
 
         self.reqmodules = [ "LCIO", "GEAR", "GSL", "Marlin", "LCCD", "ROOT", "AIDA", "CLHEP" ]
-        self.optmodules = [ "KalTest", "KalDet", "Mokka" ]
+        self.optmodules = [ "KalTest", "KalDet", "Mokka", "PathFinder" ]
 
         # serves as base pkg for cedviewer
         # FIXME this dependency should be removed
