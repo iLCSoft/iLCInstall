@@ -8,13 +8,13 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-13-02-pre00'
+ilcsoft_release='v01-13-02-pre01'
 # ----------------------------------------------------------------------------
 
 
 # --------- install dir ------------------------------------------------------
 ilcsoft_install_prefix = "/scratch/$USER/ilcsoft/"
-#ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
+ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 #ilcsoft_install_dir = os.path.join( ilcsoft_install_prefix, ilcsoft_release )
 # ----------------------------------------------------------------------------
 
@@ -81,7 +81,7 @@ LCIO_version = "v02-00-03-pre" # v02-00-02
 
 GEAR_version = "v01-01"
 
-CED_version = "v01-04-01"
+CED_version = "v01-05-pre" # "v01-04-01"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-5"
 
@@ -100,9 +100,9 @@ LCFI_MokkaBasedNets_version = "v00-01"
 
 # -------------------------------------------
 
-KalTest_version = "v01-03"
+KalTest_version = "HEAD" # "v01-03"
 
-KalDet_version = "v01-04"
+KalDet_version = "HEAD" # "v01-04"
 
 LCCD_version = "v01-02"
 
@@ -112,17 +112,17 @@ MarlinUtil_version = "v01-05"
 
 Marlin_version = "v01-02"
 
-Mokka_version = "mokka-07-07-p04"
+Mokka_version = "HEAD" # "mokka-07-07-p04"
 
-MarlinReco_version = "v01-00"
+MarlinReco_version = "HEAD" # "v01-00"
 
-MarlinTrk_version = "v01-02"
+MarlinTrk_version = "HEAD" # "v01-02"
 
-MarlinTrkProcessors_version = "v01-01"
+MarlinTrkProcessors_version = "HEAD" # "v01-01"
 
 Clupatra_version = "v00-04"
 
-LCFIPlus_version = "v00-02"
+LCFIPlus_version = "v00-02" # v00-02-01 ?
 
 ForwardTracking_version = "v01-01-01" # v01-01
 
