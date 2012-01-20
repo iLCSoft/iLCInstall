@@ -120,7 +120,7 @@ MarlinTrk_version = "v01-03-00-pre" # "v01-02"
 
 MarlinTrkProcessors_version = "v01-02-00-pre" # "v01-01"
 
-Clupatra_version = "v00-04"
+Clupatra_version = "v00-04-01"
 
 LCFIPlus_version = "v00-03-pre"
 
@@ -141,8 +141,8 @@ Overlay_version = "v00-11-01"
 
 #Eutelescope_version = "v00-06-03"
 
-PathFinder_version =  "v00-01-pre"
-MarlinTPC_version =  "v00-09-pre" # v00-09-00
+PathFinder_version =  "v00-01-00"
+MarlinTPC_version =  "v00-09-01" # v00-09-00
 
 Druid_version = "1.8" 
 
