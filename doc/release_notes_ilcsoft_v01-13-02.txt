@@ -4,35 +4,24 @@
 #
 #################################
 
+=============================================
+
+ Release notes from iLCSoft v01-13-02
+
+=============================================
+
+
+v01-13-02 is a patch release ...
+
+Please check the ChangeLogs below for more technical details.
+
+
+
 =================================================
 
  Changes in v01-13-02 w.r.t. iLCSoft v01-13-01
 
 =================================================
-
-v01-13-02 is a patch release ...
-
-Please check the ChangeLogs below for more technical details:
-
-
-...
-
-...
-
-...
-
-
-
-
-
-
-
-
-=============================================
-
- Release notes from iLCSoft v01-13-01
-
-=============================================
 
 
 ================================
