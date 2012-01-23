@@ -24,11 +24,175 @@ Please check the ChangeLogs below for more technical details:
 
 
 
+
+
+
+
 =============================================
 
  Release notes from iLCSoft v01-13-01
 
 =============================================
+
+
+================================
+ LCIO : v02-00-03
+================================
+
+    - patch release including following patches/bug fixes:
+
+          - bug fix for writing random access records with LCSplitWriter ( all but first file had corrupt TOC for random access)
+            ( added clear() method to LCIORandomAccessMgr called when closing a file in LCWriter )
+          - added 'undocumented' option -f to addRandomAccess.cc that will force the recreation of the random access records
+            -> can be used to fix files on writeable storage
+          - added tool lcio_split_file.cc to split large files
+          - bug fixed in lcio_check_col_elements where tests would still pass with a non-existing collection
+          - updated member template specialization to conform to ISO C++03 14.2/4: see http://stackoverflow.com/questions/3786360/confusing-template-error
+
+          - improved testing
+
+
+
+================================
+ CED : v01-05
+================================
+
+    - Z-cutting now only affects the detector components, not the hits,tracks etc
+      this change has been made to be consistency with phi-cutting
+
+    - Fisheye options are now in the ced_config file
+
+    - Improve the look of geocylinder objects
+
+    (- Front view and front projection now shows the detector from the different side)
+
+    - Add ced_config.h: collects all options which can be set before build CED
+
+
+
+================================
+ MokkaDBConfig : v03-06
+================================
+
+    - updated mokka-dbdump.sql.tgz (2012-01-20 - 16:55:15)
+
+
+
+================================
+ StandardConfig : v03-51
+================================
+
+    -  bbudsc_3evt.steer: - removed detector model from steering file
+        -> use "Mokka -M ILD_Ox_v01" instead
+     -  bbudsc_3evt_stdreco.xml:   added BCalReco processor for beam cal reconstruction
+
+
+
+================================
+ KalTest : v01-04
+================================
+
+    - geomlib
+        - TCylinder IsOnSurface now checks if point is on the surface (r) not just between +/-z
+
+
+
+================================
+ KalDet : v01-05
+================================
+
+    - ild
+      - Simple cylinder based SIT design added for loi data
+      - ILDCylinderMeasLayer, added overriding IsOnSurface method to permit control of the tolerance for the surface comparison.
+        Added use of TrackerHitZCylinder from LCIO.
+      - ILDDiscMeasLayer, added dedicated CalcXingPointWith method to override the one from TPlane which is based on newtonian method.
+
+
+
+
+=========================
+ Mokka: mokka-07-07-p05
+=========================
+
+    What is new in this Mokka release
+    =================================
+
+      I. Improved boost for crossing angle (B.Vormwald, DESY)
+
+      II. Updated SILC drivers (K.Androsov)
+
+    =================================
+
+    Please note that:
+
+       This Mokka release co-works with Geant4 9.5 and 9.4 (and 9.4.patch01) and
+       CLHEP 2.1.0.1
+
+       It was tested against GEAR v01-01 and LCIO v02-00-03, gcc 3.4.6 and 4.1.2,
+       SL4 and SL5.
+
+    =================================
+
+
+      I. Improved boost for crossing angle:
+       for HepLCIOInterfaceNew the boost is now applied to the complete
+       MCParticle list before G4Primaries are created. Also the vertex positions
+       are boosted accordingly.
+      ( for guinea-pig and hepevt filea the old boost is used)
+
+      II. Updated SILC drivers (K.Androsov)
+
+
+
+================================
+ MarlinReco : v01-00-01
+================================
+
+    - FPCCDDigi
+      - Fixed setting of the cov matrix values.
+      - Modified to make link to mcp only for single particle event.
+      - Chaged the algorithm to find pixels.
+
+    - BCalReco
+      - Added reconstructed particle collection and check histograms.
+      - New parameter for bg map file: BackgroundFilename
+
+
+
+================================
+ MarlinTrk : v01-03
+================================
+
+       - Added cylindrical SIT for LOI data.
+       - improve use of MarlinTrk namespace.
+       - Fixed use of covariance matrix in initialise.
+       - Changed getSiteFromLCIOHit from taking an iterator to taking a pointer to a site.
+       - Corrected smoothed state when used.
+
+
+
+================================
+ MarlinTrkProcessors : v01-02
+================================
+
+     SiliconTracking_MarlinTrk & First version which is able to reconstruct LOI data.
+     FullLDCTracking_MarlinTrk:     Fixed situation where, although more that 3 hits are excepted for fitting,
+                    less than 3 actually are included in the fit, by the kalman filter.
+
+     SimpleCylinderDigiProcessor:   New - Uses simple gaussian smearing for cylinders.
+
+     TruthTracker:          Fixed bug in SimTrackerHitSortPredicate.
+
+     SimpleDiscDigiProcessor:   For LOI data the z coordinate is now set to that of the disk and the tolerance for dz has been increased to 10 microns.
+
+
+
+================================
+ LCFIPlus : v01-03
+================================
+
+    Applied small patch needed to compile with newer gcc versions, see:
+    http://forum.linearcollider.org/index.php?t=tree&goto=2197&rid=151&S=0fd8fd0af3a416ce6a3b8c7f929deea3#msg_2197
 
 
 

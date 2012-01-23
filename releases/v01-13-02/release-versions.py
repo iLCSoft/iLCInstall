@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-13-02-pre02'
+ilcsoft_release='v01-13-02'
 # ----------------------------------------------------------------------------
 
 
@@ -77,11 +77,11 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-00-03-pre" # v02-00-02
+LCIO_version = "v02-00-03" # v02-00-02
 
 GEAR_version = "v01-01"
 
-CED_version = "v01-05-pre" # "v01-04-01"
+CED_version = "v01-05" # "v01-04-01"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-5"
 
@@ -92,17 +92,17 @@ FastJetClustering_version = "v00-02"
 MarlinFastJet_version = "v00-01"
 
 
-StandardConfig_version = "v03-50" # FIXME
-MokkaDBConfig_version = "v03-05"  # FIXME
+StandardConfig_version = "v03-51"
+MokkaDBConfig_version = "v03-06"
 LCFI_MokkaBasedNets_version = "v00-01" 
 
 
 
 # -------------------------------------------
 
-KalTest_version = "v01-04-00-pre" # "v01-03"
+KalTest_version = "v01-04" # "v01-03"
 
-KalDet_version = "v01-05-00-pre" # "v01-04"
+KalDet_version = "v01-05" # "v01-04"
 
 LCCD_version = "v01-02"
 
@@ -114,15 +114,15 @@ Marlin_version = "v01-02"
 
 Mokka_version = "mokka-07-07-p05"
 
-MarlinReco_version = "v01-00-01-pre" # "v01-00"
+MarlinReco_version = "v01-00-01" # "v01-00"
 
-MarlinTrk_version = "v01-03-00-pre" # "v01-02"
+MarlinTrk_version = "v01-03" # "v01-02"
 
-MarlinTrkProcessors_version = "v01-02-00-pre" # "v01-01"
+MarlinTrkProcessors_version = "v01-02" # "v01-01"
 
 Clupatra_version = "v00-04-01"
 
-LCFIPlus_version = "v00-03-pre"
+LCFIPlus_version = "v00-03"
 
 ForwardTracking_version = "v01-01-01" # v01-01
 
