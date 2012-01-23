@@ -68,7 +68,7 @@ Please check the ChangeLogs below for more technical details.
 
 
 ================================
- StandardConfig : v03-51
+ StandardConfig : v03-51-01
 ================================
 
     -  bbudsc_3evt.steer: - removed detector model from steering file

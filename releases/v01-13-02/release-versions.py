@@ -92,7 +92,7 @@ FastJetClustering_version = "v00-02"
 MarlinFastJet_version = "v00-01"
 
 
-StandardConfig_version = "v03-51"
+StandardConfig_version = "v03-51-01"
 MokkaDBConfig_version = "v03-06"
 LCFI_MokkaBasedNets_version = "v00-01" 
 
