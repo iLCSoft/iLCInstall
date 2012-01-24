@@ -25,7 +25,7 @@ class Geant4(BaseILC):
         # Linux-g++ / Darwin-g++
         self.env["G4SYSTEM"] = self.os_ver.type+"-g++"
 
-        self.reqfiles = [ ["lib/"+self.env["G4SYSTEM"]+"/libG4run.a", "sharedlib/"+self.env["G4SYSTEM"]+"/libG4run.so", "sharedlib/"+self.env["G4SYSTEM"]+"/libG4run.dylib"] ]
+        self.reqfiles = [ ["lib/"+self.env["G4SYSTEM"]+"/libG4run.a", "sharedlib/"+self.env["G4SYSTEM"]+"/libG4run.so", "sharedlib/"+self.env["G4SYSTEM"]+"/libG4run.dylib", "lib/Geant4-9.5.0/"+self.env["G4SYSTEM"]+"/libG4run.dylib"] ]
 
     def createLink(self):
         BaseILC.createLink(self)
