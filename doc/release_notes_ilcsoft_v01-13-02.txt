@@ -11,9 +11,25 @@
 =============================================
 
 
-v01-13-02 is a patch release ...
+v01-13-02 is a patch release with some bug fixes and improvements:
 
-Please check the ChangeLogs below for more technical details.
+   - more correct treatment of lorentz boost for crossing angle in Mokka
+
+   - new development simulation models:
+
+       ILD_O1_v01 "ILD simulation reference Model for DBD using Analog HCal"
+       ILD_O2_v01 "ILD simulation reference Model for DBD using SD HCal"
+       ILD_O3_v01 "ILD simulation reference Model for DBD using SciW Ecal and Analog HCal"
+
+   - bug fix in LCIO for reading split files in direct access mode
+  
+   - first  version of BCal reconstruction added
+
+   - made new C++ tracking also compatible with old simulated files from LOI
+     ( cylinder and disc tracking detectors)
+       
+  
+Please check the ChangeLogs below for details.
 
 
 
