@@ -14,7 +14,7 @@ ilcsoft_release='v01-13-02'
 
 # --------- install dir ------------------------------------------------------
 ilcsoft_install_prefix = "/scratch/$USER/ilcsoft/"
-ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
+#ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 #ilcsoft_install_dir = os.path.join( ilcsoft_install_prefix, ilcsoft_release )
 # ----------------------------------------------------------------------------
 
