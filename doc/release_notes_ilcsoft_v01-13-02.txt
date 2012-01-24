@@ -32,6 +32,20 @@ v01-13-02 is a patch release with some bug fixes and improvements:
 Please check the ChangeLogs below for details.
 
 
+========================================
+
+ New packages added in v01-13-02
+
+========================================
+
+
+ PathFinder : v00-01-00 (I. Heinze)
+
+    Pathfinder is a package which provides a track finding algorithm using Hough transformation and was written to find tracks in TPC prototype data.
+    It takes hits (points in 3D space) as input and it can find straight tracks as well as helicoidal tracks.
+    For more information see http://www-flc.desy.de/flc/flcwiki/PATHFINDER 
+
+
 
 =================================================
 
@@ -200,6 +214,47 @@ Please check the ChangeLogs below for details.
     http://forum.linearcollider.org/index.php?t=tree&goto=2197&rid=151&S=0fd8fd0af3a416ce6a3b8c7f929deea3#msg_2197
 
 
+================================
+ MarlinTPC : v00-09-01
+================================
+
+Patch release
+
+Additions:
+
++ Added PathFinder (hough trafo track finder project), including an example; will be installable also via ilcinstall
++ An interface processor to PathFinder
++ Added a new example with the reconstruction, up to track finding of the data acquired with the DESY GEM module
+
++ Added a new tool called TPCConditions2LCCD which will write in the condition database a TPCCondition object based on a text file provided by the user
++ Created a couple of new processor to elaborate the data at the raw level:
+    RawDataCutterProcessor will shrink the effective time window of the raw data cutting from them all the pulses or part of those pulses that are coming some time after the maximum possible drift time. This value can be calculated by the processor using condition data or can be overridden by the user
+    PedSubRawDataFilterProcessor is a conditional processor that will select an event based on the amount of pulses in an event and the average amplitude of these pulses. It can be useful to perform an event preselection based on these parameter or to subdivide the sample in two event classes to process with different algorithms (noise and data samples for example)
++ Added the RowCutApplicationProcessor developed by Martin Ljunggren from Lund to remove all the hits from a specific pad row
+
+Changes:
+o Added TrackerRawData to LCObjectCopier
+o Several improvements and bug fixes in the digitisation:
+o Moved theTrackerRawDatatoDataConverterProcessor to the general subfolder from the padbased subfolder
+o Removed duplicate entry of ADD_MARLINTPC_LIBDIR( ./reconstruction/photoelectric ) from CMakeLists.txt file.
+o GenericADCElectronicsParameters class:
+o Added 2 bool values: PedestalSubstracted, ZeroSupressed. 
+o Adjusted SignalDigitisationProcessor.cc to handle the modified class correctly.
+o ADCElectronicsListener:
+o Extended to handle the two new bool values of the GenericADCElectronicsParameters.
+o PulseFinder upgraded to include overflow information after pedestal subtraction
+
+
+Bug fixes
+- added the value of cosine for track connection as a parameter in TrackMergerProcessor
+- Fixed bug in a cast in the TPCConditionsListener.
+- Small modification in the tool to convert the ALTRO Raw data file to LCIO which will store the version of the converter in the final file in the x.x.x format
+- Corrected some typos in multiple processor documentations
+- Modified the CMake file to solve a compilation problem caused by the reference to a tool not present in the repository
+- added <algorithm> needed for gcc 4.4.3
+- made reconstruction_curler and reconstruction_straight_tracks examples work again
+
+For a full and detailed list of changes, refer to the log.
 
 
 
