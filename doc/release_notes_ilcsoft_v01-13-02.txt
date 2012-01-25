@@ -212,6 +212,12 @@ Please check the ChangeLogs below for details.
      - fixed (small) memory leak in src/ClupatraProcessor.cc
 
 ================================
+ ForwardTracking/v01-01-01
+================================
+     - bug fix for seg. fault
+
+
+================================
  LCFIPlus : v01-03
 ================================
 
