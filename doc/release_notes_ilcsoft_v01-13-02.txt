@@ -205,6 +205,11 @@ Please check the ChangeLogs below for details.
      SimpleDiscDigiProcessor:   For LOI data the z coordinate is now set to that of the disk and the tolerance for dz has been increased to 10 microns.
 
 
+================================
+ Clupatra : v00-04-01 
+================================
+
+     - fixed (small) memory leak in src/ClupatraProcessor.cc
 
 ================================
  LCFIPlus : v01-03
