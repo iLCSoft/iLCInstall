@@ -10,11 +10,11 @@
 
 =============================================
 
-v01-13-03 does not contain any changes made to the software other than minor bug fixes in order to compile with newer gcc versions.
+v01-13-03 does not contain any changes made to the software other than a minor bug fix in the PathFinder package needed for compiling with newer gcc versions.
 
 The major change in this release is the removal of the configuration packages (StandardConfig, MokkaDBConfig and LCFI_MokkaBasedNets) which
 are, as of this release, decoupled from iLCSoft and merged into a separate configuration package called ILDConfig. The ILDConfig package will
-be released separately and not necessarily in the same release cycle as iLCSoft.
+be released separately and not necessarily in the same release cycles as iLCSoft.
 
 
 
