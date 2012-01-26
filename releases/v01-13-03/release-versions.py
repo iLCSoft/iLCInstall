@@ -141,7 +141,7 @@ Overlay_version = "v00-11-01"
 
 #Eutelescope_version = "v00-06-03"
 
-PathFinder_version =  "v00-01-00"
+PathFinder_version =  "v00-01-01"
 MarlinTPC_version =  "v00-09-01" # v00-09-00
 
 Druid_version = "1.8" 
