@@ -41,7 +41,7 @@ USAGE EXAMPLES:
 
 ###### Install the full ilc software tools + external dependencies on your local disk ##########
 
-    # note that mysql, geant4, java and cernlib installations are not supported in ilcinstall
+    # note that mysql, java and cernlib installations are not supported in ilcinstall
     # this packages need to be installed on your system. Please change the paths to this packages in
     # the file releases/v01-13-03/release-versions.py
 

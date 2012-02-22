@@ -18,7 +18,7 @@ class Mokka(BaseILC):
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "Mokka", "Mokka")
 
-        self.hasCMakeBuildSupport = False
+        #self.hasCMakeBuildSupport = False
         #self.hasCMakeFindSupport = False
 
         self.download.supportedTypes = [ "svn", "svn-export", "cvs" ]
@@ -28,7 +28,7 @@ class Mokka(BaseILC):
         self.download.server = "pollin1.in2p3.fr"
         self.download.root = "home/flc/cvs"
 
-        self.reqfiles = [ ["bin/"+self.os_ver.type+"-g++/Mokka"] ]
+        self.reqfiles = [ ["bin/"+self.os_ver.type+"-g++/Mokka", "bin/Mokka"] ]
         self.reqmodules = [ "LCIO", "GEAR", "Geant4", "MySQL" ]
 
 
@@ -57,6 +57,9 @@ class Mokka(BaseILC):
         """ init Mokka """
         BaseILC.init(self)
 
+        g4mod = self.parent.module("Geant4")
+        self.g4ver = Version( g4mod.version )
+
         if( self.download.type == "svn" ):
             self.download.accessmode = 'http'
             self.download.server = 'llrforge.in2p3.fr'
@@ -65,15 +68,31 @@ class Mokka(BaseILC):
     def compile(self):
         """ compile Mokka """
 
-        os.chdir( self.installPath + "/source" )
+        if self.g4ver < '9.5':
+            os.chdir( self.installPath + "/source" )
 
-        # TODO for grid binary: export G4VIS_NONE (no visualization drivers built or used)
+            # TODO for grid binary: export G4VIS_NONE (no visualization drivers built or used)
 
-        if self.rebuild:
-            os.system( ". ../build_env.sh ; make clean 2>&1 | tee -a "+self.logfile )
-            
-        if( os.system( ". ../build_env.sh ; make -j1 2>&1 | tee -a "+self.logfile ) != 0 ):
-            self.abort( "failed to compile!!" )
+            if self.rebuild:
+                os.system( ". ../build_env.sh ; make clean 2>&1 | tee -a "+self.logfile )
+                
+            if( os.system( ". ../build_env.sh ; make -j1 2>&1 | tee -a "+self.logfile ) != 0 ):
+                self.abort( "failed to compile!!" )
+        else:
+            trymakedir( self.installPath + "/build" )
+            os.chdir( self.installPath + "/build" )
+
+            if( self.rebuild ):
+                tryunlink( "CMakeCache.txt" )
+
+            if( os.system( self.genCMakeCmd() + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+                self.abort( "failed to configure!!" )
+            if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
+                self.abort( "failed to compile!!" )
+            if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
+                self.abort( "failed to install!!" )
+
+
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
@@ -81,24 +100,33 @@ class Mokka(BaseILC):
         self.env[ 'MOKKA' ] = self.installPath
 
         self.envcmds.append("export G4WORKDIR=$MOKKA")
-        self.envpath["PATH"].append( "$MOKKA/bin/"+self.os_ver.type+"-g++" )
-        self.envcmds.append(" . $G4ENV_INIT ")
 
-        # disable some visualization drivers
-        self.envcmds.append("unset G4VIS_BUILD_OIX_DRIVER G4VIS_USE_OIX_DRIVER G4VIS_USE_OIX" ) # G4VIS_USE_OIX_DRIVER changed in ver 9.3 to G4VIS_USE_OIX
-        self.envcmds.append("unset G4VIS_BUILD_OPENGLXM_DRIVER G4VIS_USE_OPENGLXM" )
-        self.envcmds.append("unset G4UI_BUILD_XAW_SESSION G4UI_USE_XAW" )
-        self.envcmds.append("unset G4UI_BUILD_XM_SESSION G4UI_USE_XM" )
+        if self.g4ver < '9.5':
+            self.envpath["PATH"].append( "$MOKKA/bin/"+self.os_ver.type+"-g++" )
+        else:
+            self.envpath["PATH"].append( "$MOKKA/bin" )
 
-        # ---- DEPRECATED cross-compile of 32bit in 64bit ---------------
-        #d = self.parent.env.copy()
-        #d.update(self.env)
-        #if d.setdefault('CXXFLAGS','').find('m32') != -1:
-        #    self.envcmds.append('test -d "$OGLHOME/lib" && export OGLLIBS="-L${OGLHOME}/lib -lGLU -lGL"' )
-        #    self.envcmds.append('test -d "$CLHEP_BASE_DIR/lib" && export CLHEP_LIB_DIR=${CLHEP_BASE_DIR}/lib' )
-        #    self.envcmds.append('test -d "$OIVHOME/lib" && export OIVLIBS="-L${OIVHOME}/lib -lInventor -lInventorXt"' )
-        #    self.envcmds.append('test -d "$XERCESCROOT/lib32" && export GDMLLIBS="-L${XERCESCROOT}/lib32 -lxerces-c"' )
-         
-        # compiling Mokka crashes if LDFLAGS is set. # TODO add bug to geant4 bug tracker
-        self.envcmds.append("unset LDFLAGS")
+        self.envcmds.append('. $G4ENV_INIT')
+
+        if self.g4ver < '9.5':
+            # disable visualization drivers
+            self.envcmds.append("unset G4VIS_BUILD_OIX_DRIVER G4VIS_USE_OIX_DRIVER G4VIS_USE_OIX" ) # G4VIS_USE_OIX_DRIVER changed in ver 9.3 to G4VIS_USE_OIX
+            #self.envcmds.append("unset G4VIS_BUILD_DAWN_DRIVER G4VIS_USE_DAWN" )
+            #self.envcmds.append("unset G4UI_BUILD_QT_SESSION G4VIS_BUILD_OPENGLQT_DRIVER G4VIS_USE_OPENGLQT G4UI_USE_QT" )
+            #self.envcmds.append("unset G4VIS_BUILD_OPENGLX_DRIVER G4VIS_USE_OPENGLX" )
+            self.envcmds.append("unset G4VIS_BUILD_OPENGLXM_DRIVER G4VIS_USE_OPENGLXM" )
+            self.envcmds.append("unset G4UI_BUILD_XAW_SESSION G4UI_USE_XAW" )
+            self.envcmds.append("unset G4UI_BUILD_XM_SESSION G4UI_USE_XM" )
+
+            # ---- DEPRECATED cross-compile of 32bit in 64bit ---------------
+            #d = self.parent.env.copy()
+            #d.update(self.env)
+            #if d.setdefault('CXXFLAGS','').find('m32') != -1:
+            #    self.envcmds.append('test -d "$OGLHOME/lib" && export OGLLIBS="-L${OGLHOME}/lib -lGLU -lGL"' )
+            #    self.envcmds.append('test -d "$CLHEP_BASE_DIR/lib" && export CLHEP_LIB_DIR=${CLHEP_BASE_DIR}/lib' )
+            #    self.envcmds.append('test -d "$OIVHOME/lib" && export OIVLIBS="-L${OIVHOME}/lib -lInventor -lInventorXt"' )
+            #    self.envcmds.append('test -d "$XERCESCROOT/lib32" && export GDMLLIBS="-L${XERCESCROOT}/lib32 -lxerces-c"' )
+             
+            # compiling Mokka crashes if LDFLAGS is set. # TODO add bug to geant4 bug tracker
+            self.envcmds.append("unset LDFLAGS")
 

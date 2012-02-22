@@ -595,6 +595,22 @@ class BaseILC:
                 return False
         return True
     
+
+    def updateSources(self):
+        """ update sources """
+        
+        if Version( self.version ) == 'HEAD':
+
+            if 'svn' in self.download.type and not 'export' in self.download.type:
+
+
+                cmd = "svn update %s" % self.installPath
+                print cmd
+
+                if( os.system( cmd ) != 0 ):
+                    self.abort( "error updating sources" )
+
+
     def downloadSources(self):
         """ download sources """
         

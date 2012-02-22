@@ -364,7 +364,7 @@ class ILCSoft:
         geant=self.module('Geant4')
         if geant:
             f.write( os.linesep + '# --- source GEANT4 INIT script ---' + os.linesep )
-            f.write( '. ${G4ENV_INIT}' + os.linesep  )
+            f.write( 'test -r ${G4ENV_INIT} && . ${G4ENV_INIT}' + os.linesep  )
         if self.os.type == "Darwin":
             f.write( os.linesep + '# --- set DYLD_LIBRARY_PATH to LD_LIBRARY_PATH for MAC compatibility ---' + os.linesep )
             f.write( 'export DYLD_LIBRARY_PATH=$LD_LIBRARY_PATH:$DYLD_LIBRARY_PATH' + os.linesep + os.linesep )
@@ -378,9 +378,14 @@ class ILCSoft:
             mod.confirmRebuild()
         print "\n" + 30*'*' + " Downloading sources " + 30*'*' + "\n"
         for mod in self.modules:
-            if( (mod.mode == "install") and (not os.path.exists( mod.installPath ))):
-                print 80*'*' + "\n*** Downloading sources for " + mod.name + " version " + mod.version + "...\n" + 80*'*'
-                mod.downloadSources()
+            if mod.mode == "install":
+                if not os.path.exists( mod.installPath ):
+                    print 80*'*' + "\n*** Downloading sources for " + mod.name + " version " + mod.version + "...\n" + 80*'*'
+                    mod.downloadSources()
+                # no point in updating the sources unless 'make install' is called for each of those packages afterwards
+                # do we really want this?
+                #else:
+                #    mod.updateSources()
 
         # apply patches
         if self.patch:
