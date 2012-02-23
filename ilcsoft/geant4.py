@@ -38,7 +38,7 @@ class Geant4(BaseILC):
             "lib/Geant4-9.5.0/"+self.env["G4SYSTEM"]+"/libG4run.dylib"
         ] ]
 
-        self.optmodules = [ 'QT' ]
+        self.optmodules = [ 'QT', 'CLHEP' ]
 
     def createLink(self):
         BaseILC.createLink(self)
@@ -113,6 +113,14 @@ class Geant4(BaseILC):
         BaseILC.preCheckDeps(self)
 
         if( self.mode == "install" ):
+
+            if self.cmakeBoolOptionIsSet( "GEANT4_USE_SYSTEM_CLHEP" ):
+
+                self.addExternalDependency( ["CLHEP"] )
+
+                clhepmod = self.parent.module("CLHEP")
+                if not clhepmod:
+                    self.abort( "please set GEANT4_USE_SYSTEM_CLHEP=OFF or add CLHEP to your ilcinstall cfg file")
 
             if self.cmakeBoolOptionIsSet( "GEANT4_USE_QT" ):
 
