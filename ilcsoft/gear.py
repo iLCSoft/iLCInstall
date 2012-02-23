@@ -19,6 +19,7 @@ class GEAR(BaseILC):
         BaseILC.__init__(self, userInput, "GEAR", "gear")
 
         self.optmodules = [ "ROOT" ]
+        self.reqmodules = [ "CLHEP" ]
 
         self.reqfiles = [
                 ["lib/libgear.a", "lib/libgear.so", "lib/libgear.dylib"],
