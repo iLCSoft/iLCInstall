@@ -1,6 +1,6 @@
 ###########################################
 #
-# iLCSoft versions for release v01-13-03
+# iLCSoft versions for release v01-13-04
 #
 # F.Gaede, DESY 09.12.2011
 #
@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-13-03'
+ilcsoft_release='v01-13-04-pre00'
 # ----------------------------------------------------------------------------
 
 
@@ -45,23 +45,20 @@ Java_version = "1.6.0"
 Java_path = ilcPath + "/java/" + Java_version # comment out to try auto-detect
 
 
-# ----- geant4 -------------------------------------------------------
-Geant4_version = "9.4.p03"
-Geant4_path = ilcPath + "/geant4/" + Geant4_version
-# path to geant4 environment initialization script
-# comment out if not needed
-G4ENV_INIT_path = ilcPath + "/geant4/" + "env_" + Geant4_version + ".sh"
-
-
 # ----- CERNLIB ------------------------------------------------------
 CERNLIB_version = "2006" 
 CERNLIB_path = ilcPath + "/cernlib/" + CERNLIB_version
 
 
+# xerces-c (needed by geant4 for building gdml support - required by mokka)
+XERCESC_INCLUDE_DIR = ilcPath + "xercesc/2.7.0/include"
+XERCESC_LIBRARY = ilcPath + "xercesc/2.7.0/lib/libxerces-c.so"
+
 
 
 # ======================= PACKAGE VERSIONS ===================================
 
+Geant4_version = "9.5"
 
 ROOT_version = "5.28.00f"
 
@@ -77,11 +74,11 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-00-03" # v02-00-02
+LCIO_version = "HEAD" # "v02-00-03"
 
-GEAR_version = "v01-01"
+GEAR_version = "HEAD" # "v01-01"
 
-CED_version = "v01-05" # "v01-04-01"
+CED_version = "HEAD" # "v01-05"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-5"
 
@@ -100,49 +97,49 @@ MarlinFastJet_version = "v00-01"
 
 # -------------------------------------------
 
-KalTest_version = "v01-04" # "v01-03"
+KalTest_version = "HEAD" # "v01-04"
 
-KalDet_version = "v01-05" # "v01-04"
+KalDet_version = "HEAD" # "v01-05"
 
 LCCD_version = "v01-02"
 
 RAIDA_version = "v01-06-02"
 
-MarlinUtil_version = "v01-05"
+MarlinUtil_version = "HEAD" # "v01-05"
 
-Marlin_version = "v01-02"
+Marlin_version = "HEAD" # "v01-02"
 
-Mokka_version = "mokka-07-07-p05"
+Mokka_version = "HEAD" # "mokka-07-07-p05"
 
-MarlinReco_version = "v01-00-01" # "v01-00"
+MarlinReco_version = "HEAD" # "v01-00-01"
 
-MarlinTrk_version = "v01-03" # "v01-02"
+MarlinTrk_version = "HEAD" # "v01-03"
 
-MarlinTrkProcessors_version = "v01-02" # "v01-01"
+MarlinTrkProcessors_version = "HEAD" # "v01-02"
 
-Clupatra_version = "v00-04-01"
+Clupatra_version = "HEAD" # "v00-04-01"
 
-LCFIPlus_version = "v00-03"
+LCFIPlus_version = "HEAD" # "v00-03"
 
-ForwardTracking_version = "v01-01-01" # v01-01
+ForwardTracking_version = "HEAD" # "v01-01-01"
 
-MarlinKinfit_version = "v00-01"
+MarlinKinfit_version = "HEAD" # "v00-01"
 
-PandoraPFANew_version = "v00-08"
-MarlinPandora_version = "v00-07"
-PandoraAnalysis_version = "v00-03"
+PandoraPFANew_version = "HEAD" # "v00-08"
+MarlinPandora_version = "HEAD" # "v00-07"
+PandoraAnalysis_version = "HEAD" # "v00-03"
 
 
 LCFIVertex_version = "v00-06-01"
 
-CEDViewer_version = "v01-04-01"
+CEDViewer_version = "HEAD" # "v01-04-01"
 
 Overlay_version = "v00-11-01"
 
 #Eutelescope_version = "v00-06-03"
 
-PathFinder_version =  "v00-01-01"
-MarlinTPC_version =  "v00-09-01" # v00-09-00
+PathFinder_version =  "HEAD" # "v00-01-01"
+MarlinTPC_version =  "HEAD" # "v00-09-01"
 
 Druid_version = "1.8" 
 
