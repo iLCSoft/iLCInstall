@@ -89,8 +89,8 @@ class Geant4(BaseILC):
     def compile(self):
         """ compile Geant4 """
 
-        trymakedir( self.installPath + "/../build" )
-        os.chdir( self.installPath + "/../build" )
+        trymakedir( self.installPath + "/../build-" + self.version )
+        os.chdir( self.installPath + "/../build-" + self.version )
 
         if( self.rebuild ):
             tryunlink( "CMakeCache.txt" )
