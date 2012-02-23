@@ -846,6 +846,21 @@ class BaseILC:
             print "\n+ " + self.name + " installation finished."
             print '\n' + 20*'-' + " Finished " + self.name + " Installation Test " + 20*'-' + '\n'
 
+
+    def cmakeBoolOptionIsSet(self, opt):
+        """ checks if a cmake option is set """
+
+        if self.envcmake.has_key( opt ):
+
+            val = str(self.envcmake.get(opt,""))
+
+            if val == "1" or val == "ON" or val == "YES":
+
+                return True
+
+        return False
+        
+
     def genCMakeCmd(self):
         """ generates a CMake command out of envcmake """
         

@@ -45,8 +45,9 @@ class CED(BaseILC):
         BaseILC.postCheckDeps(self)
         self.envpath["PATH"].append( self.installPath + '/bin' )
 
-        if( self.mode == "install" and self.envcmake.has_key("CED_SERVER") ):
-            if( str(self.envcmake["CED_SERVER"]) == "1" or self.envcmake["CED_SERVER"] == "ON" ):
+        if self.mode == "install":
+
+            if self.cmakeBoolOptionIsSet( "CED_SERVER" ):
 
                 if self.os_ver.type == "Darwin":
                     if( not os.path.exists( "/usr/X11/include/GL/glut.h" ) and not os.path.exists( "/System/Library/Frameworks/GLUT.framework/Versions/A/Headers/glut.h" )):

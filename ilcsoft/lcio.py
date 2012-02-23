@@ -80,9 +80,7 @@ class LCIO(BaseILC):
                 self.envcmake.setdefault("BUILD_LCIO_EXAMPLES","ON")
                 self.envcmake.setdefault("BUILD_F77_TESTJOBS","ON")
 
-            #dc = self.envcmake.setdefault('BUILD_WITH_DCAP','OFF')
-
-            #if dc == 'ON':
+            #if self.cmakeBoolOptionIsSet( "BUILD_WITH_DCAP" ):
             #    self.addDependency( ['dcap'] )
             #    self.envcmake["DCAP_HOME"]=self.parent.module("dcap").installPath
                 

@@ -114,7 +114,7 @@ class Geant4(BaseILC):
 
         if( self.mode == "install" ):
 
-            if( str(self.envcmake.get("GEANT4_USE_QT","")) == "1" or self.envcmake.get("GEANT4_USE_QT","") == "ON" ):
+            if self.cmakeBoolOptionIsSet( "GEANT4_USE_QT" ):
 
                 if not self.envcmake.has_key('QT_QMAKE_EXECUTABLE'):
 
@@ -128,7 +128,7 @@ class Geant4(BaseILC):
 
 
 
-            if( str(self.envcmake.get("GEANT4_USE_GDML","")) == "1" or self.envcmake.get("GEANT4_USE_GDML","") == "ON" ):
+            if self.cmakeBoolOptionIsSet( "GEANT4_USE_GDML" ):
 
                 if not self.envcmake.has_key( "XERCESC_INCLUDE_DIR" ):
                     self.abort( "XERCESC_INCLUDE_DIR not specified" )

@@ -24,13 +24,14 @@ class MarlinReco(MarlinPKG):
         # optional modules
         self.optmodules = [ "CERNLIB", "AIDA" ]
 
+        self.envcmake["MARLINRECO_FORTRAN"] = "ON"
+
     def preCheckDeps(self):
         MarlinPKG.preCheckDeps(self)
 
         if( self.mode == "install" ):
 
-            fflag = str(self.envcmake.setdefault('MARLINRECO_FORTRAN','ON'))
+            if self.cmakeBoolOptionIsSet( "MARLINRECO_FORTRAN" ):
 
-            if fflag == 'ON' or fflag == '1':
                 self.addDependency( ['CERNLIB'] )
 

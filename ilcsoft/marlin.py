@@ -58,11 +58,7 @@ class Marlin(BaseILC):
     def preCheckDeps(self):
         BaseILC.preCheckDeps(self)
         if( self.mode == "install" ):
-            # for compatibility of older cfg files
-            if( self.env.has_key("MARLIN_GUI") and str(self.env["MARLIN_GUI"]) == "1" ):
-                self.envcmake["MARLIN_GUI"]="ON"
-
-            if( str(self.envcmake["MARLIN_GUI"]) == "1" or self.envcmake["MARLIN_GUI"] == "ON" ):
+            if self.cmakeBoolOptionIsSet( "MARLIN_GUI" ):
                 if( sys.platform != "mac" and sys.platform != "darwin" ):
                     self.addExternalDependency( ["QT"] )
                 self.reqfiles.append(["bin/MarlinGUI"])
