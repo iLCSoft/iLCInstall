@@ -133,6 +133,11 @@ class Geant4(BaseILC):
                         self.abort( "please set QT_QMAKE_EXECUTABLE if using option GEANT4_USE_QT or add QT to your ilcinstall cfg file")
                     
                     self.envcmake[ "QT_QMAKE_EXECUTABLE"] = qtmod.installPath + "/bin/qmake"
+                else:
+                    self.envcmake["QT_QMAKE_EXECUTABLE"]=fixPath( self.envcmake["QT_QMAKE_EXECUTABLE"] )
+                    if not os.path.exists( self.envcmake["QT_QMAKE_EXECUTABLE"] ):
+                        self.abort( "QT_QMAKE_EXECUTABLE points to an invalid location: " + self.envcmake["QT_QMAKE_EXECUTABLE"] )
+
 
 
 
@@ -141,9 +146,18 @@ class Geant4(BaseILC):
                 if not self.envcmake.has_key( "XERCESC_INCLUDE_DIR" ):
                     self.abort( "XERCESC_INCLUDE_DIR not specified" )
 
+                self.envcmake["XERCESC_INCLUDE_DIR"]=fixPath( self.envcmake["XERCESC_INCLUDE_DIR"] )
+
+                if not os.path.exists( self.envcmake["XERCESC_INCLUDE_DIR"] ):
+                    self.abort( "XERCESC_INCLUDE_DIR points to an invalid location: " + self.envcmake["XERCESC_INCLUDE_DIR"] )
+
                 if not self.envcmake.has_key( "XERCESC_LIBRARY" ):
                     self.abort( "XERCESC_LIBRARY not specified" )
 
+                self.envcmake["XERCESC_LIBRARY"]=fixPath( self.envcmake["XERCESC_LIBRARY"] )
+
+                if not os.path.exists( self.envcmake["XERCESC_LIBRARY"] ):
+                    self.abort( "XERCESC_LIBRARY points to an invalid location: " + self.envcmake["XERCESC_LIBRARY"] )
 
 
 
