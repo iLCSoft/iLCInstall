@@ -14,7 +14,7 @@ ilcsoft_release='v01-13-04-pre00'
 
 # --------- install dir ------------------------------------------------------
 ilcsoft_install_prefix = "/scratch/$USER/ilcsoft/"
-#ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
+ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 #ilcsoft_install_dir = os.path.join( ilcsoft_install_prefix, ilcsoft_release )
 # ----------------------------------------------------------------------------
 
@@ -25,6 +25,7 @@ ilcsoft_install_prefix = "/scratch/$USER/ilcsoft/"
 # no need to set this variable if using SL4 or SL5 with access to /afs/desy.de/
 #ilcPath = '/afs/desy.de/project/ilcsoft/sw/i386_gcc41_sl5/'
 #ilcPath = ilcsoft_afs_path[ arch ]
+#ilcPath = ilcsoft_install_prefix
 # ----------------------------------------------------------------------------
 
 
@@ -78,7 +79,7 @@ LCIO_version = "HEAD" # "v02-00-03"
 
 GEAR_version = "HEAD" # "v01-01"
 
-CED_version = "HEAD" # "v01-05"
+CED_version = "v01-05" # "v01-05"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-5"
 
@@ -87,12 +88,6 @@ ILCUTIL_version = "v00-03"
 FastJet_version = "2.4.2"
 FastJetClustering_version = "v00-02"
 MarlinFastJet_version = "v00-01"
-
-
-#StandardConfig_version = "v03-51-01"
-#MokkaDBConfig_version = "v03-06"
-#LCFI_MokkaBasedNets_version = "v00-01" 
-
 
 
 # -------------------------------------------
@@ -132,7 +127,7 @@ PandoraAnalysis_version = "HEAD" # "v00-03"
 
 LCFIVertex_version = "v00-06-01"
 
-CEDViewer_version = "HEAD" # "v01-04-01"
+CEDViewer_version = "v01-05-pre" # "v01-04-01"
 
 Overlay_version = "v00-11-01"
 
