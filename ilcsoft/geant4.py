@@ -98,7 +98,7 @@ class Geant4(BaseILC):
 
         self.envcmake['CMAKE_INSTALL_PREFIX']=self.installPath
         self.envcmake.setdefault( 'GEANT4_INSTALL_DATA', 'ON' )
-        self.envcmake.setdefault( 'CMAKE_INSTALL_DATAROOTDIR', self.installPath + "/../g4data" )
+        #self.envcmake.setdefault( 'CMAKE_INSTALL_DATAROOTDIR', self.installPath + "/../g4data" )
 
 
         if( os.system( self.genCMakeCmd() + " 2>&1 | tee -a " + self.logfile ) != 0 ):
