@@ -104,15 +104,15 @@ MarlinUtil_version = "v01-05-01-pre" # "v01-05"
 
 Marlin_version = "v01-02-01-pre" # "v01-02"
 
-Mokka_version = "HEAD" # "mokka-07-07-p05"
+Mokka_version = "mokka-07-07-p06-pre" # "mokka-07-07-p05"
 
-MarlinReco_version = "v01-00-02-pre" # "v01-00-01"
+MarlinReco_version = "v01-01-pre" # "v01-00-01"
 
 MarlinTrk_version = "v01-04-pre" # "v01-03"
 
 MarlinTrkProcessors_version = "HEAD" # "v01-02"
 
-Clupatra_version = "HEAD" # "v00-04-01"
+Clupatra_version = "v00-05-pre" # "v00-04-01"
 
 LCFIPlus_version = "v00-03" # "v00-03"
 
