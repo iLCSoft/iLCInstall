@@ -10,6 +10,25 @@
 
 =============================================
 
+v01-13-04 is a developers release with bug fixes and improvements:
+
+   - new development simulation models:
+
+       ILD_O1_v02 "ILD simulation reference Model for DBD using Analog HCal"
+       ILD_O2_v02 "ILD simulation reference Model for DBD using SD HCal"
+       ILD_O3_v02 "ILD simulation reference Model for DBD using SciW Ecal and Analog HCal"
+
+       with improvements to  the Si-tracking drivers and includsion of 
+       cables and services for the inner detectors
+ 
+   - first version of Si-tracking that deals with strip hits from SIT/SET
+     ( not yet FTD )
+
+   - considerably improved TPC pattern recognition 
+
+  
+Please check the ChangeLogs below for details.
+
 
 
 =================================================
@@ -178,9 +197,25 @@ MarlinTrk v01-04
      - Cleaned up depedencies
 
 
-=============================================
-MarlinTrkProcessors HEAD: FIXME...
-=============================================
+===========================
+MarlinTrkProcessors v01-03
+===========================
+
+  General:			Make use of MeasurementSurface classes from GEAR, as well as new UTIL::BitSet32 and 
+   				UTIL::ILDTrkHitTypeBit from ILDConf (LCIO). 			
+
+  SiliconTracking_MarlinTrk: 	Adapted to use composite Space-points composed from strip hits. 
+     			    	Added new parameter NHitsChi2 which controls the maximal number of hits for which a track 
+				with n hits is aways better than one with n-1 hits.
+				General Cleanup and merger from changes from CLIC CDR. 				
+
+  FullLDCTracking_MarlinTrk:	Adapted to use composite Space-points composed from strip hits.
+	
+  SimplePlanarDigiProcessor:	Adapted to have option to produce strip hits.
+
+  TruthTracker:			Flexible collection input and able to construct track including composite Space-points.
+
+  SpacePointBuilder:		New - Builds 3D composite Space-points from strip hits.
 
 
 ================
