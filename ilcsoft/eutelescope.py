@@ -47,7 +47,8 @@ class Eutelescope(MarlinPKG):
 
             # ----- BUILD EUDAQ ---------------------------------
             os.chdir( self.installPath )
-            os.system( "svn co http://svn.hepforge.org/eudaq/%s eudaq/%s" % (self.env["EUDAQ_VERSION"], self.env["EUDAQ_VERSION"]) )
+            #os.system( "svn co http://svn.hepforge.org/eudaq/%s eudaq/%s" % (self.env["EUDAQ_VERSION"], self.env["EUDAQ_VERSION"]) )
+            os.system( "svn co http://eudaq.hepforge.org/svn/%s eudaq/%s" % (self.env["EUDAQ_VERSION"], self.env["EUDAQ_VERSION"]) )
 
             os.chdir( self.env[ "EUDAQ" ] ) # needs to be defined in preCheckDeps (so it is written to build_env.sh)
 
