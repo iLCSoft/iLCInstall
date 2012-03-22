@@ -1,6 +1,6 @@
 ###########################################
 #
-# iLCSoft versions for release v01-13-04
+# iLCSoft versions for release v01-13-05
 #
 # F.Gaede, DESY 09.12.2011
 #
@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-13-04'
+ilcsoft_release='v01-13-05'
 # ----------------------------------------------------------------------------
 
 
