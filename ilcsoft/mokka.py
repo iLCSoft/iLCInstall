@@ -106,7 +106,7 @@ class Mokka(BaseILC):
         else:
             self.envpath["PATH"].append( "$MOKKA/bin" )
 
-        self.envcmds.append('. $G4ENV_INIT')
+        self.envcmds.append('test -r ${G4ENV_INIT} && { cd $(dirname ${G4ENV_INIT}) ; . ./$(basename ${G4ENV_INIT}) ; cd $OLDPWD ; }')
 
         if self.g4ver < '9.5':
             # disable visualization drivers
