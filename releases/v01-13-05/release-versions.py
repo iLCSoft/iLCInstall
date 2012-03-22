@@ -1,6 +1,6 @@
 ###########################################
 #
-# iLCSoft versions for release v01-13-05
+# iLCSoft versions for release v01-13-04
 #
 # F.Gaede, DESY 09.12.2011
 #
@@ -8,13 +8,13 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-13-05'
+ilcsoft_release='v01-13-04'
 # ----------------------------------------------------------------------------
 
 
 # --------- install dir ------------------------------------------------------
 ilcsoft_install_prefix = "/scratch/$USER/ilcsoft/"
-ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
+#ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 #ilcsoft_install_dir = os.path.join( ilcsoft_install_prefix, ilcsoft_release )
 # ----------------------------------------------------------------------------
 
@@ -52,8 +52,9 @@ CERNLIB_path = ilcPath + "/cernlib/" + CERNLIB_version
 
 
 # xerces-c (needed by geant4 for building gdml support - required by mokka)
-XERCESC_INCLUDE_DIR = ilcPath + "xercesc/2.7.0/include"
-XERCESC_LIBRARY = ilcPath + "xercesc/2.7.0/lib/libxerces-c.so"
+XERCESC_ROOT_DIR = ilcPath + "xercesc/2.7.0"
+#XERCESC_INCLUDE_DIR = XERCESC_ROOT_DIR + "/include"
+#XERCESC_LIBRARY = XERCESC_ROOT_DIR + "/lib/libxerces-c.so"
 
 
 
@@ -63,11 +64,11 @@ Geant4_version = "9.5"
 
 ROOT_version = "5.28.00f"
 
-CLHEP_version = "2.1.0.1" 
+CLHEP_version = "2.1.1.0"  # "2.1.0.1"
 
 GSL_version = "1.14"
 
-QT_version = "4.2.2" # mac osx needs version >= 4.7.3
+QT_version = "4.7.4" # "4.2.2"
 
 CMake_version = "2.8.5"
 

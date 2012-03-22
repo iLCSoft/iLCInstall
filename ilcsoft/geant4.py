@@ -159,6 +159,12 @@ class Geant4(BaseILC):
                 if not os.path.exists( self.envcmake["XERCESC_LIBRARY"] ):
                     self.abort( "XERCESC_LIBRARY points to an invalid location: " + self.envcmake["XERCESC_LIBRARY"] )
 
+            if self.envcmake.has_key( "XERCESC_ROOT" ):
+                import platform
+                if platform.architecture()[0] == '64bit':
+                    self.envpath["LD_LIBRARY_PATH"].append( self.envcmake[ "XERCESC_ROOT" ] + "/lib64" )
+                else:
+                    self.envpath["LD_LIBRARY_PATH"].append( self.envcmake[ "XERCESC_ROOT" ] + "/lib" )
 
 
     def postCheckDeps(self):
