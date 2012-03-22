@@ -116,11 +116,15 @@ class Geant4(BaseILC):
 
             if self.cmakeBoolOptionIsSet( "GEANT4_USE_SYSTEM_CLHEP" ):
 
-                self.addExternalDependency( ["CLHEP"] )
+                if not self.envcmake.has_key('CLHEP_ROOT_DIR'):
 
-                clhepmod = self.parent.module("CLHEP")
-                if not clhepmod:
-                    self.abort( "please set GEANT4_USE_SYSTEM_CLHEP=OFF or add CLHEP to your ilcinstall cfg file")
+                    self.addExternalDependency( ["CLHEP"] )
+
+                    clhepmod = self.parent.module("CLHEP")
+                    if not clhepmod:
+                        self.abort( "please set GEANT4_USE_SYSTEM_CLHEP=OFF or add CLHEP to your ilcinstall cfg file")
+
+                    self.envcmake[ "CLHEP_ROOT_DIR"] = clhepmod.installPath
 
             if self.cmakeBoolOptionIsSet( "GEANT4_USE_QT" ):
 
@@ -140,24 +144,24 @@ class Geant4(BaseILC):
 
 
 
+            #if self.cmakeBoolOptionIsSet( "GEANT4_USE_GDML" ):
 
-            if self.cmakeBoolOptionIsSet( "GEANT4_USE_GDML" ):
+            #    if not self.envcmake.has_key( "XERCESC_INCLUDE_DIR" ):
+            #        self.abort( "XERCESC_INCLUDE_DIR not specified" )
 
-                if not self.envcmake.has_key( "XERCESC_INCLUDE_DIR" ):
-                    self.abort( "XERCESC_INCLUDE_DIR not specified" )
+            #    self.envcmake["XERCESC_INCLUDE_DIR"]=fixPath( self.envcmake["XERCESC_INCLUDE_DIR"] )
 
-                self.envcmake["XERCESC_INCLUDE_DIR"]=fixPath( self.envcmake["XERCESC_INCLUDE_DIR"] )
+            #    if not os.path.exists( self.envcmake["XERCESC_INCLUDE_DIR"] ):
+            #        self.abort( "XERCESC_INCLUDE_DIR points to an invalid location: " + self.envcmake["XERCESC_INCLUDE_DIR"] )
 
-                if not os.path.exists( self.envcmake["XERCESC_INCLUDE_DIR"] ):
-                    self.abort( "XERCESC_INCLUDE_DIR points to an invalid location: " + self.envcmake["XERCESC_INCLUDE_DIR"] )
+            #    if not self.envcmake.has_key( "XERCESC_LIBRARY" ):
+            #        self.abort( "XERCESC_LIBRARY not specified" )
 
-                if not self.envcmake.has_key( "XERCESC_LIBRARY" ):
-                    self.abort( "XERCESC_LIBRARY not specified" )
+            #    self.envcmake["XERCESC_LIBRARY"]=fixPath( self.envcmake["XERCESC_LIBRARY"] )
 
-                self.envcmake["XERCESC_LIBRARY"]=fixPath( self.envcmake["XERCESC_LIBRARY"] )
+            #    if not os.path.exists( self.envcmake["XERCESC_LIBRARY"] ):
+            #        self.abort( "XERCESC_LIBRARY points to an invalid location: " + self.envcmake["XERCESC_LIBRARY"] )
 
-                if not os.path.exists( self.envcmake["XERCESC_LIBRARY"] ):
-                    self.abort( "XERCESC_LIBRARY points to an invalid location: " + self.envcmake["XERCESC_LIBRARY"] )
 
             if self.envcmake.has_key( "XERCESC_ROOT" ):
                 import platform
