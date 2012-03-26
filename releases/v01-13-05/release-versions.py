@@ -1,6 +1,6 @@
 ###########################################
 #
-# iLCSoft versions for release v01-13-04
+# iLCSoft versions for release v01-13-05
 #
 # F.Gaede, DESY 09.12.2011
 #
@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-13-04'
+ilcsoft_release='v01-13-05-pre01'
 # ----------------------------------------------------------------------------
 
 
@@ -53,8 +53,6 @@ CERNLIB_path = ilcPath + "/cernlib/" + CERNLIB_version
 
 # xerces-c (needed by geant4 for building gdml support - required by mokka)
 XERCESC_ROOT_DIR = ilcPath + "xercesc/2.7.0"
-#XERCESC_INCLUDE_DIR = XERCESC_ROOT_DIR + "/include"
-#XERCESC_LIBRARY = XERCESC_ROOT_DIR + "/lib/libxerces-c.so"
 
 
 
@@ -76,7 +74,7 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-01" # "v02-00-03"
+LCIO_version = "v02-01-01-pre" # "v02-01"
 
 GEAR_version = "v01-02" # "v01-01"
 
@@ -95,7 +93,7 @@ MarlinFastJet_version = "v00-01"
 
 KalTest_version = "v01-05" # "v01-04"
 
-KalDet_version = "v01-06" # "v01-05"
+KalDet_version = "v01-07-pre" # "v01-06"
 
 LCCD_version = "v01-02"
 
@@ -105,13 +103,13 @@ MarlinUtil_version = "v01-05-01" # "v01-05"
 
 Marlin_version = "v01-02-01" # "v01-02"
 
-Mokka_version = "mokka-07-07-p06" # "mokka-07-07-p05"
+Mokka_version = "HEAD" # "mokka-07-07-p06"
 
 MarlinReco_version = "v01-01" # "v01-00-01"
 
-MarlinTrk_version = "v01-04" # "v01-03"
+MarlinTrk_version = "v01-05-pre" # "v01-04"
 
-MarlinTrkProcessors_version = "v01-03" # "v01-02"
+MarlinTrkProcessors_version = "HEAD" # "v01-03"
 
 Clupatra_version = "v00-05-01" # "v00-04-01"
 
