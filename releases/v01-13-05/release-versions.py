@@ -58,7 +58,7 @@ XERCESC_ROOT_DIR = ilcPath + "xercesc/2.7.0"
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version = "9.5"
+Geant4_version = "9.5.p01"
 
 ROOT_version = "5.28.00f"
 
