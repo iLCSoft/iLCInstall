@@ -25,11 +25,9 @@ from marlin import Marlin
 from marlinutil import MarlinUtil
 from marlinreco import MarlinReco
 from cedviewer import CEDViewer
-from pandora import PandoraPFA
 from pandoranew import PandoraPFANew
 from pandoranew import PandoraAnalysis
 from pandoranew import MarlinPandora
-from silicondigi import SiliconDigi
 from lcfivertex import LCFIVertex
 from eutelescope import Eutelescope
 from overlay import Overlay
@@ -44,7 +42,6 @@ from simtools import *  # modules defined in simtools/__init__.py
 
 # cmake
 from cmake import CMake
-from cmakemods import CMakeModules
 
 # external (with install support)
 from druid import Druid
