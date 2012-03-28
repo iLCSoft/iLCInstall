@@ -5,8 +5,113 @@
 #################################
 
 
-... TODO ...
+=============================================
 
+ Release notes from iLCSoft v01-13-05
+
+=============================================
+
+v01-13-05 is a developers release ...
+
+...
+
+Please check the ChangeLogs below for details.
+
+
+
+========================================
+ Updated versions of external tools
+========================================
+
+ Geant4: 9.5.p01
+
+ CLHEP: 2.1.1.0
+
+ QT: 4.7.4
+
+
+
+=================================================
+
+ Changes in v01-13-05 w.r.t. iLCSoft v01-13-04
+
+=================================================
+
+
+
+===============
+LCIO: v02-01-01
+===============
+
+   - patch release with fixes for issues identified by coverity
+     ( https://coverity.cern.ch/defects/index.htm?projectId=10017 )
+      - uninitialized c'tors and memory leaks
+
+
+
+==============
+KalDet v01-07 
+==============
+
+    - ild
+      - Added Strip Measurements for Segmented Disc Measurement Layers.
+      - Added proper local coordinates for segments in ILDSegmentedDiscMeasLayer, so that it is no longer restricted to global X and Y.
+          - Corrected getIntersectionAndCellID so that it returns the correct module ID, previously it was returning the Nth segment in the segmented disk, so
+      - In ILDMeasurementSurfaceStoreFiller FTD now reads from GEAR parameters. Fixed counting problem for sensor. std::vector access out of range.
+      - Renamed ILDParallelStripPlanarMeasLayer as ILDParallelPlanarStripMeasLayer.
+      - Cleaned up use of cout and removed unnecessary includes.
+
+
+
+=======================
+Mokka: mokka-07-07-p07
+=======================
+
+    What is new in this Mokka release
+    =================================
+
+      I. New code that allows to smear the z-position of the vertex.
+
+     II. Fixes on the visualization and GUI when building with cmake.
+
+    III. Memory Leak fixes.
+
+    =================================
+
+    Please note that:
+
+       This Mokka release co-works with Geant4 9.5 and 9.4 (and 9.4.patch01) and
+       CLHEP 2.1.0.1
+
+       It was tested against GEAR v01-01 and LCIO v02-00-03, gcc 3.4.6 and 4.1.2,
+       SL4 and SL5.
+
+    =================================
+
+
+
+================
+MarlinTrk v01-05
+================ 
+
+       - MarlinKalTestTrack:
+         - Protect against initializing before any hits have been added.
+         - Allow starting from strip hit in debug mode.
+
+       - HelixTrack:
+         - Take account of direction of helix for fit.
+
+       - LCIOTrackPropagators:
+         - Corrected phi range for propagation.
+
+
+
+===========================
+MarlinTrkProcessors v01-04
+===========================
+
+
+ ...
 
 
 
