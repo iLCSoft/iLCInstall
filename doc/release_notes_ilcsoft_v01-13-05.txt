@@ -50,7 +50,7 @@ LCIO: v02-01-01
 
 
 ==============
-KalDet v01-07 
+KalDet: v01-07 
 ==============
 
     - ild
@@ -90,9 +90,9 @@ Mokka: mokka-07-07-p07
 
 
 
-================
-MarlinTrk v01-05
-================ 
+=================
+MarlinTrk: v01-05
+=================
 
        - MarlinKalTestTrack:
          - Protect against initializing before any hits have been added.
@@ -106,8 +106,24 @@ MarlinTrk v01-05
 
 
 
+========================
+ ForwardTracking: v01-02
+========================
+
+      - added finalising of tracks (final refit, radius of innermost hit, hitnumbers of detectors,... see method ForwardTracking::finaliseTrack )
+      - modified fitting: now done in one central place by the class Fitter
+      - changed initialisation of FTDTrack: now a MarlinTrkSystem* has to be passed, which can be used by the track to fit
+      - Modified to use spacepoints
+      - Added steering parameter: TakeBestVersionOfTrack
+      - Added steering parameter for the best track subset
+      - Use new gear params for FTD (getNSensors)
+      - patched memory leaks
+      - some renaming of classes and documentation
+
+
+
 ===========================
-MarlinTrkProcessors v01-04
+MarlinTrkProcessors: v01-04
 ===========================
 
 

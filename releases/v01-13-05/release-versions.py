@@ -115,7 +115,7 @@ Clupatra_version = "v00-05-01" # "v00-04-01"
 
 LCFIPlus_version = "v00-03" # "v00-03"
 
-ForwardTracking_version = "v01-01-01" # "v01-01-01"
+ForwardTracking_version = "v01-02-pre" # "v01-01-01"
 
 MarlinKinfit_version = "v00-01-01" # "v00-01"
 
