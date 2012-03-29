@@ -136,8 +136,25 @@ MarlinTrk: v01-05
 MarlinTrkProcessors: v01-04
 ===========================
 
+    SimplePlanarDigiProcessor:     When calling getLadderNumber the "ladderNumber" was given as input instead of the "layerNumber" (typo).
+                   In getLadderNumber some hits were not assigned to the right layer due to rounding errors
+                   (they got INT_MAX which caused an exception when writing it to the bit field). Introduced a (hard coded) 1 nm rounding
+                   acceptance and all hits were found to be in their layer. In the case this should fail additionally put in that
+                   the layer with the closest distance to the layer centre is returned.
+                   Fixes from M. Killenberg
+    
+    SimplePlanarTestDigiProcessor: Updated to be able to work for all planar sub detectors, VXD, SIT, SET and FTD.
+                   Will very likely supperseed SimplePlanarDigiProcessor in the next release.
+    
+    SiliconTracking_MarlinTrk &    Added Strip Hits for FTD.
+    FullLDCTracking_MarlinTrk:     FTD restored to track finding and fitting.
+    
+    
+    RefitProcessor:        Updated to deal with recent addition of Strip Hits in FTD.
+    
+    TruthTracker:          Allow Helix parameters for fit to be take from MCParticle using UseMCParticleParametersFotInitOfFit == true.
+                   Allow steering of values used for the initial diagonal elements of the trackfit via InitialTrackErrors.
 
- ...
 
 
 
