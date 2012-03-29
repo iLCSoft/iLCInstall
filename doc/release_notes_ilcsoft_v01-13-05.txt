@@ -121,6 +121,16 @@ MarlinTrk: v01-05
       - some renaming of classes and documentation
 
 
+========================
+ MarlinReco: v01-01-01
+========================
+
+    - bug fixes in Analysis/RecoMCTruthLink/src/RecoMCTruthLinker.cc:
+
+        - create track and cluster relations in any case as they are needed for the final recomctruth-link
+        - converted exit to exception
+
+
 
 ===========================
 MarlinTrkProcessors: v01-04
