@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-13-05-pre01'
+ilcsoft_release='v01-13-05'
 # ----------------------------------------------------------------------------
 
 
@@ -74,7 +74,7 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-01-01-pre" # "v02-01"
+LCIO_version = "v02-01-01" # "v02-01"
 
 GEAR_version = "v01-02" # "v01-01"
 
@@ -93,7 +93,7 @@ MarlinFastJet_version = "v00-01"
 
 KalTest_version = "v01-05" # "v01-04"
 
-KalDet_version = "v01-07-pre" # "v01-06"
+KalDet_version = "v01-07" # "v01-06"
 
 LCCD_version = "v01-02"
 
@@ -105,17 +105,17 @@ Marlin_version = "v01-02-01" # "v01-02"
 
 Mokka_version = "mokka-07-07-p07" # "mokka-07-07-p06"
 
-MarlinReco_version = "v01-01-01-pre" # "v01-01"
+MarlinReco_version = "v01-01-01" # "v01-01"
 
-MarlinTrk_version = "v01-05-pre" # "v01-04"
+MarlinTrk_version = "v01-05" # "v01-04"
 
-MarlinTrkProcessors_version = "v01-04-pre" # "v01-03"
+MarlinTrkProcessors_version = "v01-04" # "v01-03"
 
 Clupatra_version = "v00-05-01" # "v00-04-01"
 
 LCFIPlus_version = "v00-03" # "v00-03"
 
-ForwardTracking_version = "v01-02-pre" # "v01-01-01"
+ForwardTracking_version = "v01-02" # "v01-01-01"
 
 MarlinKinfit_version = "v00-01-01" # "v00-01"
 
