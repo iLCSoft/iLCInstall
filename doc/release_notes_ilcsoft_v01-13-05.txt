@@ -76,6 +76,8 @@ Mokka: mokka-07-07-p07
 
     III. Memory Leak fixes.
 
+     IV. Overlap fix in Ecal Endcap Rings
+
     =================================
 
     Please note that:
