@@ -11,7 +11,7 @@
 
 =============================================
 
-v01-13-05 is a developers release which includes mainly bug fixes for several issues found in previous releases concerning the visualization in Mokka. The QT version has been updated accordingly to take full advantage of the new QT based UI within Geant4.
+v01-13-05 is a developers release which includes mainly bug fixes for several issues found in the previous v01-13-XX releases concerning the visualization in Mokka. The QT version has been updated accordingly to take full advantage of the new QT based UI within Geant4.
 
 The main changes in the tracking concern the addition of stereo strip hits for the SIT and FTD. SiliconTracking and FullLDCTracking have been modified accordingly to make use of this new functionality.
 
