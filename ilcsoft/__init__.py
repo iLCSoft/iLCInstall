@@ -35,6 +35,7 @@ from marlintpc import MarlinTPC
 from ckfit import CKFit
 from fastjet import FastJet, FastJetClustering
 from marlintrk import MarlinTrk
+from kitrack import KiTrack, KiTrackMarlin
 
 # simtools
 #from simtoolsmaker import SimToolsMaker
