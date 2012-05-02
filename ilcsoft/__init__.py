@@ -16,6 +16,7 @@ from raida import RAIDA
 from ced import CED
 from kaltest import KalTest, KalDet
 from pathfinder import PathFinder
+from bbq import BBQ
 
 
 # marlin & friends
