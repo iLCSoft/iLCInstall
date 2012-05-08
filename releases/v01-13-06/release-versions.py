@@ -111,7 +111,7 @@ MarlinTrk_version = "v01-07-pre" # "v01-05"
 
 MarlinTrkProcessors_version = "v01-05-pre" # "v01-04"
 
-Clupatra_version = "v00-05-01"
+Clupatra_version = "v00-05-01" # ???
 
 LCFIPlus_version = "v00-04-pre-03" # "v00-03" 
 
@@ -128,7 +128,7 @@ PandoraAnalysis_version = "v00-03"
 
 LCFIVertex_version = "v00-06-01"
 
-CEDViewer_version = "v01-05" # v01-05-01 ??
+CEDViewer_version = "v01-05-01-pre"
 
 Overlay_version = "v00-11-01" # v01-11-02 ??
 

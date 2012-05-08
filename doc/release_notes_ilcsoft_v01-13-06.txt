@@ -10,6 +10,10 @@
 
 =============================================
 
+v01-13-06 is a developers release ... TODO
+
+
+
 
 ========================================
 
@@ -25,13 +29,121 @@
 
  KiTrack & KiTrackMarlin (R. Glattauer):
 
-    ...
+    KiTrack: Contains algorithms for track finding and (abstract) base classes used by those algorithms. The two main algorithms are the Cellular Automaton and the Hopfield Neural Network.
+
+    KiTrackMarlin: Implementation of the KiTrack base classes in the Marlin framework and some tools.
 
 
 
-TODO
 
-...
+=================================================
+
+ Changes in v01-13-06 w.r.t. iLCSoft v01-13-05
+
+=================================================
+
+
+===========================
+GEAR: v01-02-01
+===========================
+
+    - extended functionality of GlobalPadIndex of the TPC (M. Killenberg)
+    - fixed bug in globalToLocal of TPCModule (check for identical coorinate systems was wrong)
+    - restore stream formatting after use
+    - added CMP0008 cmake policy statement
+    - removed unnecessary const in function declarations (clang++ warning)
+
+
+
+===========================
+KalDet: v01-08
+===========================
+
+    - ild
+      - Added SET detector
+
+
+
+===========================
+MarlinUtil: v01-05-02
+===========================
+
+     - bug fix MarlinCED: high pt track straight line was sometimes drawn in wrong direction
+     - fixed warnings and made compatible w/ clang++
+
+
+
+===========================
+Marlin: v01-03
+===========================
+
+   - changed error handling:
+     have global try-catch block in main in order to not have to rely on
+     std::terminate/std::unexpeted (machine dependent and not compatible with ROOT)
+
+
+
+===========================
+Mokka: mokka-07-07-p08
+===========================
+
+    TODO
+
+
+
+===========================
+MarlinReco: v01-01-02
+===========================
+
+    - TrackDigi/FPCCDDigi/src/FPCCDDigitizer: bug fixed - unified the layer number in each function.
+    - TrackDigi/TPCDigi/src/TPCDigiProcessor: use lcio::ILDDetID::barrel instead of 0
+    - made compatible w/ clang++ compiler
+
+
+
+===========================
+MarlinTrk: v01-07
+===========================
+
+     - Added convenient utility methods for fitting and producing LCIO tracks.
+     - Added SET.
+     - Moved initial pivot from the origin to the point where the initial helix crossed the layer containing the first hit to be filtered. 
+     - Replaced NULL C macro with 0 for pointers value.
+     - Corrected phi range for moveRefPoint in HelixTrack.
+
+
+    
+===========================
+MarlinTrkProcessors: v01-05
+===========================
+
+ General:            Added dependencies on KiTrack and KiTrackMarlin to MarlinTrkProcessors.
+
+ Refitting:          Added the TrackSubsetProcessor, to get the best subset from a redundant set of tracks.
+                     TruthTracker restructured to use new convenience methods from MarlinTrk to produce cannonical trackstates. The diagonal elements of the Initial error matrix can now be set individually.
+ 
+ SiliconTracking_MarlinTrk   Removed the creation of relations for MC <-> Tracks.
+& FullLDCTracking_MarlinTrk
+
+
+    
+===========================
+LCFIPlus: v00-04
+===========================
+
+    - lcfiplus processor should work with multiple instances
+    - single track pseudo-vertex added
+    - jet vertex refiner algorithm added
+    - improved v0 rejection
+    - new flavor tagging variables + various bug fixes
+
+    
+===========================
+Garlic: v2.10
+===========================
+
+    TODO
+
 
 
 
