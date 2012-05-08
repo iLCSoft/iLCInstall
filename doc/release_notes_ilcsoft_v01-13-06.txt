@@ -11,6 +11,24 @@
 =============================================
 
 
+========================================
+
+ New packages added in v01-13-06
+
+========================================
+
+
+ BBQ : v00-01-02 (M. Killenberg)
+
+    BBQ is an event display for detailed TPC studies, based on TEve and ILCSoft. It can display the reconstructed tracks and 3D hits, as well as pulse information as projection onto the pads and in voxels (3D space bucktes). All pad planes currently available in GEAR are fully supported. 
+
+
+ KiTrack & KiTrackMarlin (R. Glattauer):
+
+    ...
+
+
+
 TODO
 
 ...
