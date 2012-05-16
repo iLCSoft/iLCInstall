@@ -116,7 +116,7 @@ Clupatra_version = "v00-06-pre" # "v00-05-01"
 LCFIVertex_version = "v00-06-01"
 LCFIPlus_version = "v00-04" # "v00-03" 
 
-KiTrack_version = "v01-01-pre"
+KiTrack_version = "v01-01"
 KiTrackMarlin_version = "v01-01-pre"
 ForwardTracking_version = "v01-04-pre"
 
@@ -126,7 +126,7 @@ PandoraPFANew_version = "v00-08"
 MarlinPandora_version = "v00-07"
 PandoraAnalysis_version = "v00-03"
 
-CEDViewer_version = "v01-05-01-pre01" #v01-05
+CEDViewer_version = "v01-05-01" #v01-05
 
 Overlay_version = "v00-11-01"
 
