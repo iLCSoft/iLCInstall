@@ -33,14 +33,6 @@ class CMake(BaseILC):
             - returns empty string in case of failure
             - otherwise returns cmake dir """
 
-        # look for SL afs installation
-        if os.path.exists( self.ilcHome ):
-            if self.os_ver.isSL():
-                for v in [ '2.6.2', '2.4.6' ]:
-                    cpath = fixPath( self.ilcHome+'/'+self.alias+'/'+v )
-                    if os.path.exists( cpath ):
-                        return cpath
-
         # else try to get from cmake
         if( isinPath("cmake")):
             out = getoutput("which cmake").strip()

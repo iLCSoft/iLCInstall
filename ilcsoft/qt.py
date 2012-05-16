@@ -38,14 +38,6 @@ class QT(BaseILC):
             - returns empty string in case of failure
             - otherwise returns qt dir """
 
-        # look for SL afs installations
-        if os.path.exists( self.ilcHome ):
-            if self.os_ver.isSL():
-                for v in [ '4.2.2' ]:
-                    qtdir = fixPath( self.ilcHome+'/'+self.alias+'/'+v )
-                    if os.path.exists( qtdir ):
-                        return qtdir
-
         # if $QTDIR is set use it
         if os.getenv("QTDIR",""):
             return os.getenv("QTDIR")
