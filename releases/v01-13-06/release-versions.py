@@ -109,7 +109,7 @@ MarlinReco_version = "v01-02-pre" # "v01-01-01"
 
 MarlinTrk_version = "v01-06-pre" # "v01-05"
 
-MarlinTrkProcessors_version = "v01-05-pre03" # "HEAD" # "v01-05-pre02" # "v01-04"
+MarlinTrkProcessors_version = "v01-05-pre03" # "v01-04"
 
 Clupatra_version = "v00-06-pre" #"HEAD" # ???
 
@@ -120,7 +120,7 @@ KiTrack_version = "v01-01-pre"
 KiTrackMarlin_version = "v01-01-pre"
 ForwardTracking_version = "v01-04-pre"
 
-MarlinKinfit_version = "v00-01-01"
+MarlinKinfit_version = "v00-01-02-pre"
 
 PandoraPFANew_version = "v00-08"
 MarlinPandora_version = "v00-07"
