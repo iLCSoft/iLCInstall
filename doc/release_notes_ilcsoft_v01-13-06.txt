@@ -87,7 +87,15 @@ Marlin: v01-03
 Mokka: mokka-07-07-p08
 ===========================
 
-    TODO
+    - added the space frames on the microstrips petals
+    - fix the problem in G4Polyhedra for HcalEndCapRingSolid:
+    - updated parameters name with "Ring" for HcalEndcapRing.
+    - VXD04: fixed the overlap of ladders: no again  overlapped per layer
+    - corrected gear parameters for layers 2,4,6, VXDSimpleMaterial registered
+      in gear file
+    - removing ' false ' overlaps in SEcal04
+    - fixing overlaps in ServicesHcalModuleZ+/- , SServices_02_v00,
+      SIT_Simple_Planar, SET_Simple_Planar, SHcalRPc01
 
 
 
@@ -102,7 +110,7 @@ MarlinReco: v01-01-02
 
 
 ===========================
-MarlinTrk: v01-07
+MarlinTrk: v01-06
 ===========================
 
      - Added convenient utility methods for fitting and producing LCIO tracks.
@@ -117,13 +125,36 @@ MarlinTrk: v01-07
 MarlinTrkProcessors: v01-05
 ===========================
 
- General:            Added dependencies on KiTrack and KiTrackMarlin to MarlinTrkProcessors.
+     General:            Added dependencies on KiTrack and KiTrackMarlin to MarlinTrkProcessors.
 
- Refitting:          Added the TrackSubsetProcessor, to get the best subset from a redundant set of tracks.
-                     TruthTracker restructured to use new convenience methods from MarlinTrk to produce cannonical trackstates. The diagonal elements of the Initial error matrix can now be set individually.
- 
- SiliconTracking_MarlinTrk   Removed the creation of relations for MC <-> Tracks.
-& FullLDCTracking_MarlinTrk
+     Refitting:          Added the TrackSubsetProcessor, to get the best subset from a redundant set of tracks.
+                         TruthTracker restructured to use new convenience methods from MarlinTrk to produce cannonical trackstates. The diagonal elements of the Initial error matrix can now be set individually.
+     
+     SiliconTracking_MarlinTrk   Removed the creation of relations for MC <-> Tracks.
+     & FullLDCTracking_MarlinTrk
+
+
+
+===========================
+Clupatra: v00-06
+===========================
+
+    - added new TrackSegmentMerger for merging split tracks
+
+    - add ppointer to original track segments for
+      merged curling tracks
+
+    - added parameter SegmentCollectionName
+
+    - added steering parameters TrackStartsInnerDist, TrackEndsOuterCentralDist,
+      TrackEndsOuterForwardDist, TrackIsCurlerOmega  to define "incomplete" track segments
+
+    - adapted pickupSiTracks to use strip hits for the SIT
+
+    - fixed issue w/ split seed tracks (occured, e.g. if hit distance is larger than current
+      cut in the loop for one hit pair ...)
+
+    - made compatible with llvmgcc4.2 and clang
 
 
     
@@ -136,15 +167,15 @@ LCFIPlus: v00-04
     - jet vertex refiner algorithm added
     - improved v0 rejection
     - new flavor tagging variables + various bug fixes
+    - updated steering files
 
-    
+
+
 ===========================
 Garlic: v2.10
 ===========================
 
-    TODO
-
-
+    ...
 
 
 

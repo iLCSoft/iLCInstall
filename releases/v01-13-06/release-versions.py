@@ -78,7 +78,7 @@ LCIO_version = "v02-01-01"
 
 GEAR_version = "v01-02-01-pre" # "v01-02"
 
-CED_version = "v01-05" # v01-06 ??
+CED_version = "v01-05"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-5"
 
@@ -128,7 +128,7 @@ PandoraAnalysis_version = "v00-03"
 
 CEDViewer_version = "v01-05-01-pre"
 
-Overlay_version = "v00-11-01" # v01-11-02
+Overlay_version = "v00-11-01"
 
 #Eutelescope_version = "v00-06-03"
 
