@@ -126,7 +126,7 @@ PandoraPFANew_version = "v00-08"
 MarlinPandora_version = "v00-07"
 PandoraAnalysis_version = "v00-03"
 
-CEDViewer_version = "v01-05-01-pre"
+CEDViewer_version = "v01-05-01-pre01" #v01-05-01-pre"
 
 Overlay_version = "v00-11-01"
 
