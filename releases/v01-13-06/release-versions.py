@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-13-06-pre00'
+ilcsoft_release='v01-13-06-pre01'
 # ----------------------------------------------------------------------------
 
 
@@ -82,7 +82,7 @@ CED_version = "v01-05"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-5"
 
-ILCUTIL_version = "v01-00-pre" # "v00-03"
+ILCUTIL_version = "v01-00" # "v00-03"
 
 FastJet_version = "2.4.2"
 FastJetClustering_version = "v00-02"
