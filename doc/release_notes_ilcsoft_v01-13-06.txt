@@ -10,7 +10,8 @@
 
 =============================================
 
-v01-13-06 is a developers release ... TODO
+v01-13-06 is a developers release to allow people to produce test samples for the ild meeting in may. This release contains updates to the tracking code and additions to the simulation models.
+Please use ILD_Ox_v03 series. Incompatibilities will occur when trying to use older ILD_Ox_v0{1,2} series.
 
 
 
@@ -124,11 +125,18 @@ MarlinReco: v01-01-02
 MarlinTrk: v01-06
 ===========================
 
-     - Added convenient utility methods for fitting and producing LCIO tracks.
-     - Added SET.
-     - Moved initial pivot from the origin to the point where the initial helix crossed the layer containing the first hit to be filtered. 
-     - Replaced NULL C macro with 0 for pointers value.
-     - Corrected phi range for moveRefPoint in HelixTrack.
+   	  - Added convenient utility methods for fitting and producing LCIO tracks.
+	  - Added SET.
+	  - Moved initial pivot from the origin to the point where the initial helix crossed the layer containing the first hit to be filtered. 
+	  - Replaced NULL C macro with 0 for pointers value.
+	  - Corrected phi range for moveRefPoint in HelixTrack.
+	  - Corrected the direction of the helix fit in HelixTrack
+   	  - Added diagnostic functionality. 
+	     This needs to be enabled via the #define statement MARLINTRK_DIAGNOSTICS_ON in MarlinTrkDiagnostics.h. 
+	     The recording of diagnostics is controlled via DiagnosticsController, with recording off by default. 
+             To enable recording use getDiagnositicsPointer on the IMarlinTrkSystem and cast to DiagnosticsController, 
+	     then call init(std::string root_file_name, std::string root_tree_name, bool recording_on) 
+	     with recording_on set to true.
 
 
     
@@ -136,13 +144,47 @@ MarlinTrk: v01-06
 MarlinTrkProcessors: v01-05
 ===========================
 
-     General:            Added dependencies on KiTrack and KiTrackMarlin to MarlinTrkProcessors.
-
-     Refitting:          Added the TrackSubsetProcessor, to get the best subset from a redundant set of tracks.
-                         TruthTracker restructured to use new convenience methods from MarlinTrk to produce cannonical trackstates. The diagonal elements of the Initial error matrix can now be set individually.
+     General:			 Added dependencies on KiTrack and KiTrackMarlin to MarlinTrkProcessors.
      
-     SiliconTracking_MarlinTrk   Removed the creation of relations for MC <-> Tracks.
-     & FullLDCTracking_MarlinTrk
+     Refitting:			 Added the TrackSubsetProcessor, to get the best subset from a redundant set of tracks. 
+                     TruthTracker restructured to use new convenience methods from MarlinTrk to produce 
+                     cannonical trackstates. The diagonal elements of the Initial error matrix can now be set individually.
+                     Fixed r_comparison sort problem.
+
+     SiliconTracking_MarlinTrk	 Use convenience functions for track fitting from MarlinTrk. Provide steering of initial covariance matrix,  				 
+    & FullLDCTracking_MarlinTrk	 and max delta chi2 for adding hits. 
+                     Removed the creation of relations for MC <-> Tracks.
+
+     SpacePointBuilder:		 Corrected bias in position by using vertex constraint	
+
+
+
+===========================
+ForwardTracking: v01-04
+===========================
+
+      - ForwardTracking: As FTDTrack now only takes IFTDHit pointers, the passed arguments are changed
+      - Added FTDBackgroundProcessor which adds salt and pepper background to the FTD TrackerHit collections
+      - Erased the executables worker and worker_time as they were outdated
+      - Added executable param_runner, to rerun Marlin several times while altering a steering parameter
+      - Added executable param_runner_background a version of param_runner specialised for the FTDBackgroundProcessor
+      - TrueTrackCritAnalyser:
+         + no more fitting is done, tracks are assumed to be already fitted
+         + chi2prob is now stored for the criteria branches as well
+      - wrote overview for the doxygen
+      - switched to new subset classes (SubsetHopfieldNN and SubsetSimple)
+      - TrueTrackCritAnalyser:
+         + added output of the distances of 2 hits in the tracks
+         + renamed the cut steer parameters to start with Cut
+         + added doxygen documentation
+      - TrackingFeedback:
+         + added new class RecoTrack and reworked TrueTrack as well
+            (now every true track gets a TrueTrack object and every reconstructed track gets a RecoTrack object.
+            In the checking they are then linked: RecoTracks now their assigned TrueTracks and vice versa )
+         + added output to a root file
+         + renamed the cut steer parameters to start with Cut
+         + added doxygen documentation
+      - Added the folder rootscripts containing the root scripts I use to make graphs
 
 
 

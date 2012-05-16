@@ -8,13 +8,13 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-13-06-pre01'
+ilcsoft_release='v01-13-06'
 # ----------------------------------------------------------------------------
 
 
 # --------- install dir ------------------------------------------------------
 ilcsoft_install_prefix = "/scratch/$USER/ilcsoft/"
-ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
+#ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 #ilcsoft_install_dir = os.path.join( ilcsoft_install_prefix, ilcsoft_release )
 # ----------------------------------------------------------------------------
 
@@ -107,18 +107,18 @@ Mokka_version = "mokka-07-07-p08" # "mokka-07-07-p07"
 
 MarlinReco_version = "v01-02" # "v01-01-01"
 
-MarlinTrk_version = "v01-06-pre01" # "v01-05"
+MarlinTrk_version = "v01-06" # "v01-05"
 
-MarlinTrkProcessors_version = "v01-05-pre04" # "v01-04"
+MarlinTrkProcessors_version = "v01-05" # "v01-04"
 
-Clupatra_version = "v00-06-pre" # "v00-05-01"
+Clupatra_version = "v00-06" # "v00-05-01"
 
 LCFIVertex_version = "v00-06-01"
 LCFIPlus_version = "v00-04" # "v00-03" 
 
 KiTrack_version = "v01-01"
-KiTrackMarlin_version = "v01-01-pre"
-ForwardTracking_version = "v01-04-pre"
+KiTrackMarlin_version = "v01-01"
+ForwardTracking_version = "v01-04"
 
 MarlinKinfit_version = "v00-01-02"
 
