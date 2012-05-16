@@ -74,6 +74,16 @@ MarlinUtil: v01-05-02
 
 
 ===========================
+CEDViewer: v01-05-01
+===========================
+
+    - added drawing of the strip measurment for SIT TrackerHitPlane
+    - fixed ced2go in case variable STANDARDCONFIG is not set
+    - made compatible with clang++
+
+
+
+===========================
 Marlin: v01-03
 ===========================
 

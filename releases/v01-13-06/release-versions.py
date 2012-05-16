@@ -76,7 +76,7 @@ CMake_version = "2.8.5"
 
 LCIO_version = "v02-01-01"
 
-GEAR_version = "v01-02-01-pre" # "v01-02"
+GEAR_version = "v01-02-01" # "v01-02"
 
 CED_version = "v01-05"
 
@@ -93,40 +93,40 @@ MarlinFastJet_version = "v00-01"
 
 KalTest_version = "v01-05"
 
-KalDet_version = "v01-08-pre" # "v01-07"
+KalDet_version = "v01-08" # "v01-07"
 
 LCCD_version = "v01-02"
 
 RAIDA_version = "v01-06-02"
 
-MarlinUtil_version = "v01-05-02-pre" # "v01-05-01"
+MarlinUtil_version = "v01-05-02" # "v01-05-01"
 
-Marlin_version = "v01-03-pre" # "v01-02-01"
+Marlin_version = "v01-03" # "v01-02-01"
 
 Mokka_version = "mokka-07-07-p08" # "mokka-07-07-p07"
 
-MarlinReco_version = "v01-02-pre" # "v01-01-01"
+MarlinReco_version = "v01-02" # "v01-01-01"
 
-MarlinTrk_version = "v01-06-pre" # "v01-05"
+MarlinTrk_version = "v01-06-pre01" # "v01-05"
 
-MarlinTrkProcessors_version = "v01-05-pre03" # "v01-04"
+MarlinTrkProcessors_version = "v01-05-pre04" # "v01-04"
 
 Clupatra_version = "v00-06-pre" # "v00-05-01"
 
 LCFIVertex_version = "v00-06-01"
-LCFIPlus_version = "v00-04-pre-06" # "v00-03" 
+LCFIPlus_version = "v00-04" # "v00-03" 
 
 KiTrack_version = "v01-01-pre"
 KiTrackMarlin_version = "v01-01-pre"
 ForwardTracking_version = "v01-04-pre"
 
-MarlinKinfit_version = "v00-01-02-pre"
+MarlinKinfit_version = "v00-01-02"
 
 PandoraPFANew_version = "v00-08"
 MarlinPandora_version = "v00-07"
 PandoraAnalysis_version = "v00-03"
 
-CEDViewer_version = "v01-05-01-pre01" #v01-05-01-pre"
+CEDViewer_version = "v01-05-01-pre01" #v01-05
 
 Overlay_version = "v00-11-01"
 
@@ -139,5 +139,5 @@ BBQ_version =  "v00-01-02"
 
 Druid_version = "1.8" 
 
-Garlic_version = "v2.10-pre" # "v2.0.4"
+Garlic_version = "v2.10" # "v2.0.4"
 
