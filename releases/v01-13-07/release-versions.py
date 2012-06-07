@@ -8,13 +8,13 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-13-07'
+ilcsoft_release='v01-13-07-pre00'
 # ----------------------------------------------------------------------------
 
 
 # --------- install dir ------------------------------------------------------
 ilcsoft_install_prefix = "/scratch/$USER/ilcsoft/"
-#ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
+ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 #ilcsoft_install_dir = os.path.join( ilcsoft_install_prefix, ilcsoft_release )
 # ----------------------------------------------------------------------------
 
@@ -74,11 +74,11 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-01-01"
+LCIO_version = "v02-01-02-pre" # "v02-01-01"
 
-GEAR_version = "v01-02-01"
+GEAR_version = "v01-02-02-pre" # "v01-02-01"
 
-CED_version = "v01-05"
+CED_version = "v01-06-pre" # "v01-05"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-5"
 
@@ -93,32 +93,32 @@ MarlinFastJet_version = "v00-01"
 
 KalTest_version = "v01-05"
 
-KalDet_version = "v01-08"
+KalDet_version = "HEAD" #"v01-08"
 
 LCCD_version = "v01-02"
 
 RAIDA_version = "v01-06-02"
 
-MarlinUtil_version = "v01-05-02"
+MarlinUtil_version = "HEAD" # "v01-05-02"
 
 Marlin_version = "v01-03"
 
-Mokka_version = "mokka-07-07-p08"
+Mokka_version = "HEAD" # "mokka-07-07-p08"
 
-MarlinReco_version = "v01-02"
+MarlinReco_version = "HEAD" # "v01-02"
 
-MarlinTrk_version = "v01-06"
+MarlinTrk_version = "HEAD" # "v01-06"
 
-MarlinTrkProcessors_version = "v01-05"
+MarlinTrkProcessors_version = "HEAD" # "v01-05"
 
-Clupatra_version = "v00-06"
+Clupatra_version = "HEAD" # "v00-06"
 
 LCFIVertex_version = "v00-06-01"
-LCFIPlus_version = "v00-04"
+LCFIPlus_version = "v00-05-pre" # "v00-04"
 
-KiTrack_version = "v01-01"
-KiTrackMarlin_version = "v01-01"
-ForwardTracking_version = "v01-04"
+KiTrack_version = "HEAD" # "v01-01"
+KiTrackMarlin_version = "HEAD" # "v01-01"
+ForwardTracking_version = "HEAD" # "v01-04"
 
 MarlinKinfit_version = "v00-01-02"
 
@@ -128,7 +128,7 @@ PandoraAnalysis_version = "v00-03"
 
 CEDViewer_version = "v01-05-01"
 
-Overlay_version = "v00-11-01"
+Overlay_version = "v00-11-02" # "v00-11-01"
 
 #Eutelescope_version = "v00-06-03"
 
