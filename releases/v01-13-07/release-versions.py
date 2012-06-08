@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-13-07-pre00'
+ilcsoft_release='v01-13-07-pre01'
 # ----------------------------------------------------------------------------
 
 
@@ -93,32 +93,32 @@ MarlinFastJet_version = "v00-01"
 
 KalTest_version = "v01-05"
 
-KalDet_version = "HEAD" #"v01-08"
+KalDet_version = "v01-09-pre" #"v01-08"
 
 LCCD_version = "v01-02"
 
 RAIDA_version = "v01-06-02"
 
-MarlinUtil_version = "HEAD" # "v01-05-02"
+MarlinUtil_version = "v01-05-03" # "v01-05-02"
 
 Marlin_version = "v01-03"
 
 Mokka_version = "HEAD" # "mokka-07-07-p08"
 
-MarlinReco_version = "HEAD" # "v01-02"
+MarlinReco_version = "v01-02-01-pre" # "v01-02"
 
-MarlinTrk_version = "HEAD" # "v01-06"
+MarlinTrk_version = "v01-07-pre" # "v01-06"
 
-MarlinTrkProcessors_version = "HEAD" # "v01-05"
+MarlinTrkProcessors_version = "v01-06-pre" # "v01-05"
 
 Clupatra_version = "v00-07-pre00" # "v00-06"
 
 LCFIVertex_version = "v00-06-01"
-LCFIPlus_version = "v00-05-pre" # "v00-04"
+LCFIPlus_version = "v00-05-pre-02" # "v00-04"
 
-KiTrack_version = "HEAD" # "v01-01"
-KiTrackMarlin_version = "HEAD" # "v01-01"
-ForwardTracking_version = "HEAD" # "v01-04"
+KiTrack_version = "v01-01"
+KiTrackMarlin_version = "v01-02-pre" # "v01-01"
+ForwardTracking_version = "v01-05-pre" # "v01-04"
 
 MarlinKinfit_version = "v00-01-02"
 
