@@ -23,7 +23,253 @@
 =================================================
 
 
-...
+
+===========================
+LCIO: v02-01-02
+===========================
+
+    - fixed short print out of MCParticle
+    - fixed warnings w/ unused variables (in function argument list)
+
+
+
+===========================
+GEAR: v01-02-02
+===========================
+
+     - new utility printMaterials to print material between two points
+     - added some debug printout to testMaterialBudgetNew.cc
+
+
+
+===========================
+ CED : v01-06
+===========================
+
+    NOTE: Old config files (created by CED by save settings) are not longer readable, sorry!
+
+    New features (H.Hoelbe, DESY):
+        - split reset ced into two parts: reset everything (shortcut R), reset view (shortcut r)
+        - menu and popup menu expands now to left/top if right/button is not enough space.
+        - update the manual (not finished yet)
+        - Undo function is build in. (shortkey: 'u')
+        - Replaced the GLUT popup menu by a selfmade main menu drawn at the top of the window and a selfmade context based popup menu.
+          (The popup menu entrys depend on with object you click)
+        - It is now possible to pick detector components
+        - Marker which highlights the last picked object
+            - Toggle this option in menu->graphics->picking marker. (Default option is off)
+
+        Menus:
+            - Popup/Main menu entrys now shown a little triangle at the right when they are have subitems
+            - Add a menu option with allows to change the text size
+            - Main menu now show current status of
+                - axis visibility
+                - layers
+                - detector
+                - transparency
+                - projections
+                - cuts
+                - graphics settings
+                - font size
+                - fps
+                - help
+                - additionaly the screenshot function show the pixel x pixel size of the image
+                - New available cut values for angle and z-cut added to popup and main menu
+                - Selecting a detector component by righclick now allows to change its transparency (>,<), cutangle (m,M) and z-cut value (z,Z)
+                - Selecting the background allows to change transparency, cutangle, z-cut value for all components starting at the individual values of each component
+                - Save/Load now saves the individual values for each detector component
+                - popup menu now allow to change detector transparence and phi-cut exclusive for one specific layer
+             - Layer menu now contains visible/not visible flag
+             - popup menu now contains data and detector layers too
+        - Add some of the normals to the draw detector function to improve lighting, still under construction!
+        - Layer description text is now shown in popup menu
+
+
+    Small changes (H. Hoelbe, DESY):
+        - X,Y,Z-Axis now always get drawn at the point (0,0,0) (not obligatory at the center of the detector).
+          I think this change will bring more overview when moving the detector and rotate it after this.
+
+        - shortcut help frame now changes color depending on background color
+
+        - It is now possible to decrease transparency by using the '<'-key to 0. (before it stops at an value of 0.05)
+          (transparency of 0.0 is special because at this value only the outline of the detector will drawn)
+
+        - In the DST viewer, a legend get drawn. Now the color of this legend will switch from white to black
+          when the background color is to light. (white letters on white background was not readable)
+
+        - Detector outline lines will now always set to no transparency. (default value in ced_config.h)
+
+        - arrow keys moves the detector:
+              arrow key left: z-axis,
+              right arrow: -z-axis,
+              up-arraw: y-axis,  (new)
+              down-arrow: -y-axis (new)
+
+
+    Bugfixes (H. Hoelbe, DESY):
+        - layer visibility  is now shown correctly in the menus
+        - layer description is now shown in the menus
+        - undo function is moved from shortkey 'u' to x or ctrl+z
+        - undo function now does not cause in strange behavior when pressing after startup
+        - save light settings
+        - screenshot with light
+        - load default settings
+        - toggle z and phi projection
+        - fixed picking problem (calculate the distance for each method in the same way)
+        - axis are now drawn always in the middle of the detector (enquired by frank)
+        - subsubmenu and submenu are now able to draw horizontal lines
+        - data and detector layer menus (main and popup) now shows the layer description
+        - workaround for mac - draw bogus GLUT menu
+        - Fixed bug in the picking line feature
+        - Shortcut frame: now works correct for diverent font sizes
+        - Popup menu now supports subitems
+        - Popup menu for detector components now shows phi-cut submenu
+        - Removed compiler warnings
+        - Reset CED (shortkey: 'R'): Now also reset light and the visibly of the axis
+        - Save function now also store the position, picking marker and detector picking.
+        - Fixed an issue with the popup menu.
+
+
+
+===========================
+KalDet: v01-09
+===========================
+
+        - ild
+          - Re-worked MaterialDataBase registerForService will need to be called at least once, trigger
+ing initialisation from the gear manager, subsequent calls will check that the gear managers are the sa
+me as those which was used to initialise. 
+          - VXD support material added. 
+          - Optimisation of Debug verbosity.
+
+
+
+===========================
+MarlinUtil: v01-05-03
+===========================
+
+    - fixed drawing of Hcal endcap (outer radius in gear file)
+    - fixed uninitialised variables
+
+
+
+===========================
+Mokka: mokka-07-07-p09
+===========================
+
+    ...
+
+
+
+===========================
+MarlinReco: v01-02-01
+===========================
+
+    - Analysis/RecoMCTruthLink: Corrected track <-> mcparticle weight regarding space points, nhits+=2.
+ Reduce verbosity levels on MESSA
+    GE.
+    - Analysis/CLICPfoSelector: corrected logic to stop ihit90 index becoming negative.
+    - removed/fixed several compiler/linker warnings
+
+
+
+===========================
+MarlinTrk: v01-07
+===========================
+
+      - HelixFit
+        - Correct pass by reference in argument list
+
+      - MarlinTrkUtils
+        - laced definition of finaliseLCIOTrack in header making it publicly available. 
+        - Corrected track state at first and last hit.
+
+      - Improved Diagnostics.
+
+
+
+===========================
+MarlinTrkProcessors: v01-06
+===========================
+
+  General:                       Removed use of sort predicate. Use sorted list of std pairs instead.
+                                 Use _maxChi2PerHit in fits. 
+
+  FullLDCTracking_MarlinTrk:     Corrected uninitialised covariance matrix in combine tracks method.
+
+  TruthTracker:                  Added new mode to fit tracks iteratively, off by default. Allow the CE
+D event display to be used during track creation.
+
+  SpacePointBuilder:             Corrected SpacePoint creation bug. Endpoint of rear strip swapped with
+ endpoint of front strip. Added debug output for checking whether a strip is created from a real combin
+ation or ghost combination.
+
+
+
+===========================
+Clupatra: v00-07
+===========================
+
+    - added code to merge split tracks seeds - this happens sometimes if one link of a track seed
+      is just a bit further than the current distance cut ( artefact of loops with increasing 
+      distance cuts )
+
+    - introduced parameter CosAlphaCut and merge hits from consecutive rows if
+      their angle is smaller than acos(CosAlphaCut)
+      -> helps to recover some stiff tracks in forward region   
+
+    - added parameter NLoopForSeeding (default 4 )
+      defining the number of loops for seeding with different distance cuts 
+
+    - restrict segment merging to two segments at a time in order to
+      prevent falsly merging almost complete tracks (through a small 'common' stub)
+      - repeat this procedure once in order to get also tracks split into three 
+
+    - use track state at first hit also for outward extrapolation as this is more 
+      accurate when merging segments
+
+
+
+===========================
+LCFIPlus: v00-05
+===========================
+
+    - vertex-assisted jet clustering now adjustable with vertex pairing penalties
+    - flavor tagging input variables added
+    - can apply preselections to samples used in training
+
+
+
+===========================
+KiTrackMarlin: v01-02
+===========================
+
+    - Added FTDHelixFitter class, to fast fit a track with the HelixFit class from MarlinTrk
+
+
+
+===========================
+ForwardTracking: v01-05
+===========================
+
+      - TrackingFeedbackProcessor: 
+         + Added output of theta and nHits of true tracks to root output (so one can plot efficiency ov
+er theta or nHits)
+         + Added output of mcp vertex position to root file
+      - ForwardTracking: 
+         + Added a HelixFit before the Kalman Fit to increase the speed
+         + Nested the CA inside a while loop, repeating it with tightened cut until not too many connec
+tions are made.
+            Also added the steering parameters for that
+      - TrueTrackCritAnalyser: Added saving of chi2, Ndf and chi2/Ndf from helix fit to root file
+
+
+
+===========================
+Overlay: v00-11-02
+===========================
+
+    - bug fixed in Merger.cc - undo the unnecessary comment out
 
 
 
