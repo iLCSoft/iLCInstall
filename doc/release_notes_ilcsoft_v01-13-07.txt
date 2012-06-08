@@ -157,7 +157,37 @@ MarlinUtil: v01-05-03
 Mokka: mokka-07-07-p09
 ===========================
 
-    ...
+    - started to addressed issue with MCParticles from calorimeter showers stored in LCIO file:
+      commented out SetToBeSaved()  in Control::GetPIDForCalHit()
+      - much less shower particles will be added
+      - we still get neutrons that cause hits in other parts of the calorimneter
+      use
+        /Mokka/init/lcioWriteParentsForBackscatter false
+      to activate new treatment ( experimental - needs checking)
+
+
+
+
+    - TRKSiSD00 -- Corrected the storing of the MCParticle responsible for TrackerHits to reflect the way it is done for the other tracking detectors.
+               It was previously following the old Calo style from which the code was originally branched.
+
+    - TPC10     -- Corrected parameter reading for dz_Readout which was incorrectly read as dz_Endplate,
+                   which lead to a 75mm section of gas being placed behind the readout instead of infront.
+                   Corrected copy number of cathode, was 1 in places and should have been 0.
+
+    - ParticleGunGenerator -- Added Uniform Smearing for momentum over a defined interval, smearing values mean half the width.
+                           -- Use /gun/momentumSmearingMode uniform
+
+
+    - SHcalSc03 : changed to slightly rounded outer edges in the barrel to follow the engineering model (Sh.Lu)
+
+    - the beamcal driver has been switched back to the new BeamCal08
+    - a 1mm air gap has been added to the AHcal
+    - switched back the treatment of MCParticles in the calorimeter to
+      the old behavior, where parents of back scattered particles are stored...
+
+    - implemented services for internal detectors in all three options of ILD models
+    - changed thicknesses of Al beam pipe sections modeling services
 
 
 
@@ -244,7 +274,8 @@ LCFIPlus: v00-05
 KiTrack: v01-02
 ===========================
 
-    ...
+    - Automaton: Added a counter of the connections between the segments
+
 
 
 ===========================
