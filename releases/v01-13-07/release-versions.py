@@ -116,7 +116,7 @@ Clupatra_version = "v00-07-pre00" # "v00-06"
 LCFIVertex_version = "v00-06-01"
 LCFIPlus_version = "v00-05-pre-02" # "v00-04"
 
-KiTrack_version = "v01-01"
+KiTrack_version = "v01-02-pre" # "v01-01"
 KiTrackMarlin_version = "v01-02-pre" # "v01-01"
 ForwardTracking_version = "v01-05-pre" # "v01-04"
 
