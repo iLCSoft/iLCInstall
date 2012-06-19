@@ -1,6 +1,6 @@
 ###########################################
 #
-# iLCSoft versions for release v01-13-07
+# iLCSoft versions for release v01-14
 #
 # F.Gaede, DESY 09.12.2011
 #
@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-13-07-pre02'
+ilcsoft_release='v01-14-pre00'
 # ----------------------------------------------------------------------------
 
 
@@ -74,11 +74,11 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-01-02-pre" # "v02-01-01"
+LCIO_version = "v02-01-02-pre01" # "v02-01-01"
 
 GEAR_version = "v01-02-02-pre" # "v01-02-01"
 
-CED_version = "v01-06-pre" # "v01-05"
+CED_version = "v01-06-pre02" # "v01-05"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-5"
 
@@ -103,18 +103,18 @@ MarlinUtil_version = "v01-05-03" # "v01-05-02"
 
 Marlin_version = "v01-03"
 
-Mokka_version = "mokka-07-07-p10" # "mokka-07-07-p08"
+Mokka_version = "mokka-07-07-p11" # "mokka-07-07-p08"
 
-MarlinReco_version = "v01-02-01-pre" # "v01-02"
+MarlinReco_version = "v01-02-01-pre-02" # "v01-02"
 
 MarlinTrk_version = "v01-07-pre" # "v01-06"
 
 MarlinTrkProcessors_version = "v01-06-pre" # "v01-05"
 
-Clupatra_version = "v00-07-pre00" # "v00-06"
+Clupatra_version = "v00-07-01-pre" # "v00-06"
 
 LCFIVertex_version = "v00-06-01"
-LCFIPlus_version = "v00-05-pre-03" # "v00-04"
+LCFIPlus_version = "v00-05-pre-04" # "v00-04"
 
 KiTrack_version = "v01-02-pre" # "v01-01"
 KiTrackMarlin_version = "v01-02-pre" # "v01-01"

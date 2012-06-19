@@ -43,20 +43,20 @@ USAGE EXAMPLES:
 
     # note that mysql, java and cernlib installations are not supported in ilcinstall
     # this packages need to be installed on your system. Please change the paths to this packages in
-    # the file releases/v01-13-07/release-versions.py
+    # the file releases/v01-14/release-versions.py
 
     # for debian/ubuntu distributions you may need to install a few packages beforehand such as:
     # apt-get install build-essential cmake subversion libmysqlclient-dev freeglut3-dev zlib1g-dev libqt4-dev cernlib-core-dev default-jdk libxpm-dev libxmu-dev lesstif2-dev doxygen latex2html
 
-    edit releases/v01-13-07/release-versions.py and modify ilcsoft_install_prefix, e.g.:
+    edit releases/v01-14/release-versions.py and modify ilcsoft_install_prefix, e.g.:
 
         ilcsoft_install_prefix = "/scratch/ilcsoft/"    # version suffix will be added to prefix
     
-    edit releases/v01-13-07/release-scratch.cfg and comment out any unneeded packages.
+    edit releases/v01-14/release-scratch.cfg and comment out any unneeded packages.
 
     run:
-    ./ilcsoft-install releases/v01-13-07/release-scratch.cfg      # display installation summary
-    ./ilcsoft-install releases/v01-13-07/release-scratch.cfg -i   # install
+    ./ilcsoft-install releases/v01-14/release-scratch.cfg      # display installation summary
+    ./ilcsoft-install releases/v01-14/release-scratch.cfg -i   # install
 
 
 
@@ -74,15 +74,15 @@ USAGE EXAMPLES:
         # -------------------------------------------------------------------------------------
 
 
-    edit releases/v01-13-07/release-versions.py and modify ilcsoft_install_prefix, e.g.:
+    edit releases/v01-14/release-versions.py and modify ilcsoft_install_prefix, e.g.:
             
         ilcsoft_install_prefix = "/scratch/ilcsoft/"   # version suffix will be added to prefix
 
-        edit releases/v01-13-07/release-ilcsoft.cfg and comment out any unneeded packages.
+        edit releases/v01-14/release-ilcsoft.cfg and comment out any unneeded packages.
 
     run:
-    ./ilcsoft-install releases/v01-13-07/release-ilcsoft.cfg      # display installation summary
-    ./ilcsoft-install releases/v01-13-07/release-ilcsoft.cfg -i   # install ilcsoft core tools (no external dependencies)
+    ./ilcsoft-install releases/v01-14/release-ilcsoft.cfg      # display installation summary
+    ./ilcsoft-install releases/v01-14/release-ilcsoft.cfg -i   # install ilcsoft core tools (no external dependencies)
 
 
 DOCUMENTATION:
