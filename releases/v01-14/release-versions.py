@@ -93,7 +93,7 @@ MarlinFastJet_version = "v00-01"
 
 KalTest_version = "v01-05"
 
-KalDet_version = "v01-09-pre" #"v01-08"
+KalDet_version = "v01-09-pre01" #"v01-08"
 
 LCCD_version = "v01-02"
 
@@ -122,9 +122,9 @@ ForwardTracking_version = "v01-05-pre01" # "v01-04"
 
 MarlinKinfit_version = "v00-01-02"
 
-PandoraPFANew_version = "v00-08"
-MarlinPandora_version = "HEAD" # "v00-07"
-PandoraAnalysis_version = "HEAD" # "v00-03"
+PandoraPFANew_version = "v00-09" # "v00-08"
+MarlinPandora_version = "v00-08" # "v00-07"
+PandoraAnalysis_version = "v00-04" # "v00-03"
 
 CEDViewer_version = "v01-05-01"
 
