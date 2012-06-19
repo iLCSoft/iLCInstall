@@ -122,9 +122,9 @@ ForwardTracking_version = "HEAD" # "v01-04"
 
 MarlinKinfit_version = "v00-01-02"
 
-PandoraPFANew_version = "v00-08"
-MarlinPandora_version = "v00-07"
-PandoraAnalysis_version = "v00-03"
+PandoraPFANew_version = "HEAD" # "v00-08"
+MarlinPandora_version = "HEAD" # "v00-07"
+PandoraAnalysis_version = "HEAD" # "v00-03"
 
 CEDViewer_version = "v01-05-01"
 
