@@ -105,7 +105,7 @@ Marlin_version = "v01-03"
 
 Mokka_version = "mokka-07-07-p11" # "mokka-07-07-p08"
 
-MarlinReco_version = "v01-02-01-pre-03" # "v01-02"
+MarlinReco_version = "v01-03-pre" # "v01-02"
 
 MarlinTrk_version = "v01-07-pre01" # "v01-06"
 
