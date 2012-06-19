@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-14-pre00'
+ilcsoft_release='v01-14-pre01'
 # ----------------------------------------------------------------------------
 
 
@@ -103,26 +103,26 @@ MarlinUtil_version = "v01-05-03" # "v01-05-02"
 
 Marlin_version = "v01-03"
 
-Mokka_version = "mokka-07-07-p11" # "mokka-07-07-p08"
+Mokka_version = "mokka-08-00" # "mokka-07-07-p08"
 
 MarlinReco_version = "v01-03-pre" # "v01-02"
 
 MarlinTrk_version = "v01-07-pre01" # "v01-06"
 
-MarlinTrkProcessors_version = "v01-06-pre03" # "v01-05"
+MarlinTrkProcessors_version = "v01-06-pre04" # "v01-05"
 
 Clupatra_version = "v00-07-01-pre" # "v00-06"
 
 LCFIVertex_version = "v00-06-01"
 LCFIPlus_version = "v00-05-pre-04" # "v00-04"
 
-KiTrack_version = "HEAD" # "v01-01"
-KiTrackMarlin_version = "v01-02-pre" # "v01-01"
-ForwardTracking_version = "HEAD" # "v01-04"
+KiTrack_version = "v01-02-pre01" # "v01-01"
+KiTrackMarlin_version = "v01-02-pre01" # "v01-01"
+ForwardTracking_version = "v01-05-pre01" # "v01-04"
 
 MarlinKinfit_version = "v00-01-02"
 
-PandoraPFANew_version = "HEAD" # "v00-08"
+PandoraPFANew_version = "v00-08"
 MarlinPandora_version = "HEAD" # "v00-07"
 PandoraAnalysis_version = "HEAD" # "v00-03"
 
