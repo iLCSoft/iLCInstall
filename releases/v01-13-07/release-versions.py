@@ -107,9 +107,9 @@ Mokka_version = "mokka-07-07-p11" # "mokka-07-07-p08"
 
 MarlinReco_version = "v01-02-01-pre-02" # "v01-02"
 
-MarlinTrk_version = "v01-07-pre" # "v01-06"
+MarlinTrk_version = "v01-07-pre01" # "v01-06"
 
-MarlinTrkProcessors_version = "v01-06-pre" # "v01-05"
+MarlinTrkProcessors_version = "v01-06-pre03" # "v01-05"
 
 Clupatra_version = "v00-07-01-pre" # "v00-06"
 
