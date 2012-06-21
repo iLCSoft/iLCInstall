@@ -109,7 +109,7 @@ MarlinReco_version = "v01-03-pre02" # "v01-02"
 
 MarlinTrk_version = "v01-07-pre01" # "v01-06"
 
-MarlinTrkProcessors_version = "v01-06-pre05" # "v01-05"
+MarlinTrkProcessors_version = "v01-06-pre06" # "v01-05"
 
 Clupatra_version = "v00-07-01-pre" # "v00-06"
 
@@ -118,7 +118,7 @@ LCFIPlus_version = "v00-05-pre-04" # "v00-04"
 
 KiTrack_version = "v01-02-pre01" # "v01-01"
 KiTrackMarlin_version = "v01-02-pre01" # "v01-01"
-ForwardTracking_version = "v01-05-pre01" # "v01-04"
+ForwardTracking_version = "v01-05-pre02" # "v01-04"
 
 MarlinKinfit_version = "v00-01-02"
 
