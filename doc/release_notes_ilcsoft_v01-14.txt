@@ -30,6 +30,8 @@ LCIO: v02-01-02
 
     - fixed short print out of MCParticle
     - fixed warnings w/ unused variables (in function argument list)
+    - fix in LCStdhepReader.cc (B.Vormwald) for dealing with multiple 94 objects
+    - fixed typo in CPPFORT/lcmcp.h : lcmcpsetcolowflow -> lcmcpsetcolorflow
 
 
 
@@ -163,7 +165,7 @@ MarlinUtil: v01-05-03
 
 
 ===========================
-Mokka: mokka-07-07-p09
+Mokka: mokka-08-00
 ===========================
 
     - started to addressed issue with MCParticles from calorimeter showers stored in LCIO file:
@@ -204,9 +206,15 @@ Mokka: mokka-07-07-p09
 MarlinReco: v01-02-01
 ===========================
 
+    - added option to enable/disable output of root file containing histograms to BCalReco.cc (T.Tanabe)
+
+    - fixed SIT parameters (new ZPlanarParameters )  in KinkFinder.cc (F.Gaede)
+
+    - use streamlog for messages in EventShapes and SatoruJetFinder packages (T.Tanabe)
+
     - Analysis/RecoMCTruthLink: Corrected track <-> mcparticle weight regarding space points, nhits+=2.
- Reduce verbosity levels on MESSA
-    GE.
+        Reduce verbosity levels on MESSA
+        GE.
     - Analysis/CLICPfoSelector: corrected logic to stop ihit90 index becoming negative.
     - removed/fixed several compiler/linker warnings
 
@@ -236,12 +244,34 @@ MarlinTrkProcessors: v01-06
 
   FullLDCTracking_MarlinTrk:     Corrected uninitialised covariance matrix in combine tracks method.
 
-  TruthTracker:                  Added new mode to fit tracks iteratively, off by default. Allow the CE
-D event display to be used during track creation.
+  TruthTracker:                  Added new mode to fit tracks iteratively, off by default. Allow the 
+CED event display to be used during track creation.
+                                 
+                                 For the iterative mode split Tracks now have the individual segments
+ added to a separate collection. 
+                                 These segments are used to produce a combined track which uses the i
+nnermost and outermost segments to 
+                                 provided the track states at the IP, FirstHit, LastHit and Calo resp
+ectively. 
+                                 The combined track is added to the main track collection, the NDF an
+d chi2 are set with the values from the innermost segment.
+                                 The NDF and chi2 values for the other segments can be retrieved from
+ the tracks added to the composite track.  
+                                 
+                                 Hits with no MCParticle are discarded.
 
-  SpacePointBuilder:             Corrected SpacePoint creation bug. Endpoint of rear strip swapped with
- endpoint of front strip. Added debug output for checking whether a strip is created from a real combin
-ation or ghost combination.
+  SiliconTracking_MarlinTrk:     Added protection against being overwhelmed by a very large number of
+ hits within one sector. 
+                                 The default is set to 100. For now an ERROR message is printed and S
+kipEventException thrown. 
+                                 This will be removed when the problem is more properly addressed.
+                                 Make sure sort predicate for chi2 fulfils strict weak ordering.
+                                 Fixed problem where using return instead of continue caused loss of 
+all fitted tracks when single track fit failed.
+                                 
+  SpacePointBuilder:             Corrected SpacePoint creation bug. Endpoint of rear strip swapped wi
+th endpoint of front strip. Added debug output for checking whether a strip is created from a real co
+mbination or ghost combination.
 
 
 
