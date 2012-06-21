@@ -132,6 +132,15 @@ GEAR: v01-02-02
 
 
 ===========================
+ CEDViewer : v01-05-02
+===========================
+
+ - fixed FTD hit collection names
+ - draw all tracks and clusters for recoparticles.
+
+
+
+===========================
 KalDet: v01-09
 ===========================
 

@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-14-pre01'
+ilcsoft_release='v01-14-pre02'
 # ----------------------------------------------------------------------------
 
 
@@ -93,7 +93,7 @@ MarlinFastJet_version = "v00-01"
 
 KalTest_version = "v01-05"
 
-KalDet_version = "v01-09-pre01" #"v01-08"
+KalDet_version = "v01-09-pre02" #"v01-08"
 
 LCCD_version = "v01-02"
 
@@ -105,11 +105,11 @@ Marlin_version = "v01-03"
 
 Mokka_version = "mokka-08-00" # "mokka-07-07-p08"
 
-MarlinReco_version = "v01-03-pre" # "v01-02"
+MarlinReco_version = "v01-03-pre02" # "v01-02"
 
 MarlinTrk_version = "v01-07-pre01" # "v01-06"
 
-MarlinTrkProcessors_version = "v01-06-pre04" # "v01-05"
+MarlinTrkProcessors_version = "v01-06-pre05" # "v01-05"
 
 Clupatra_version = "v00-07-01-pre" # "v00-06"
 
@@ -126,7 +126,7 @@ PandoraPFANew_version = "v00-09" # "v00-08"
 MarlinPandora_version = "v00-08" # "v00-07"
 PandoraAnalysis_version = "v00-04" # "v00-03"
 
-CEDViewer_version = "v01-05-01"
+CEDViewer_version = "v01-05-02-pre"
 
 Overlay_version = "v00-11-02" # "v00-11-01"
 
