@@ -8,13 +8,13 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-14-pre02'
+ilcsoft_release='v01-14'
 # ----------------------------------------------------------------------------
 
 
 # --------- install dir ------------------------------------------------------
 ilcsoft_install_prefix = "/scratch/$USER/ilcsoft/"
-ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
+#ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 #ilcsoft_install_dir = os.path.join( ilcsoft_install_prefix, ilcsoft_release )
 # ----------------------------------------------------------------------------
 
@@ -74,11 +74,11 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-01-02-pre03" # "v02-01-01"
+LCIO_version = "v02-01-02" # "v02-01-01"
 
-GEAR_version = "v01-02-02-pre" # "v01-02-01"
+GEAR_version = "v01-02-02" # "v01-02-01"
 
-CED_version = "v01-06-pre02" # "v01-05"
+CED_version = "v01-06" # "v01-05"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-5"
 
@@ -93,7 +93,7 @@ MarlinFastJet_version = "v00-01"
 
 KalTest_version = "v01-05"
 
-KalDet_version = "v01-09-pre02" #"v01-08"
+KalDet_version = "v01-09" #"v01-08"
 
 LCCD_version = "v01-02"
 
@@ -103,22 +103,22 @@ MarlinUtil_version = "v01-05-03" # "v01-05-02"
 
 Marlin_version = "v01-03"
 
-Mokka_version = "mokka-08-00" # "mokka-07-07-p08"
+Mokka_version = "mokka-08-00-02" # "mokka-07-07-p08"
 
-MarlinReco_version = "v01-03-pre02" # "v01-02"
+MarlinReco_version = "v01-03" # "v01-02"
 
-MarlinTrk_version = "v01-07-pre01" # "v01-06"
+MarlinTrk_version = "v01-07" # "v01-06"
 
-MarlinTrkProcessors_version = "v01-06-pre06" # "v01-05"
+MarlinTrkProcessors_version = "v01-06" # "v01-05"
 
-Clupatra_version = "v00-07-01-pre" # "v00-06"
+Clupatra_version = "v00-07-01" # "v00-06"
 
 LCFIVertex_version = "v00-06-01"
-LCFIPlus_version = "v00-05-pre-04" # "v00-04"
+LCFIPlus_version = "v00-05" # "v00-04"
 
-KiTrack_version = "v01-02-pre01" # "v01-01"
-KiTrackMarlin_version = "v01-02-pre01" # "v01-01"
-ForwardTracking_version = "v01-05-pre02" # "v01-04"
+KiTrack_version = "v01-02" # "v01-01"
+KiTrackMarlin_version = "v01-02" # "v01-01"
+ForwardTracking_version = "v01-05" # "v01-04"
 
 MarlinKinfit_version = "v00-01-02"
 
@@ -126,7 +126,7 @@ PandoraPFANew_version = "v00-09" # "v00-08"
 MarlinPandora_version = "v00-08" # "v00-07"
 PandoraAnalysis_version = "v00-04" # "v00-03"
 
-CEDViewer_version = "v01-05-02-pre"
+CEDViewer_version = "v01-05-02"
 
 Overlay_version = "v00-11-02" # "v00-11-01"
 
@@ -135,7 +135,7 @@ Overlay_version = "v00-11-02" # "v00-11-01"
 PathFinder_version =  "v00-01-01"
 MarlinTPC_version =  "v00-09-01"
 
-LCTuple_version = "v01-00-pre"
+LCTuple_version = "v01-00"
 
 BBQ_version =  "v00-01-02"
 
