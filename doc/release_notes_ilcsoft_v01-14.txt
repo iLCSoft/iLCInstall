@@ -15,6 +15,15 @@
 
 ...
 
+========================================
+
+ New packages added in v01-14
+
+========================================
+
+    LCTuple : v00-01-02: ....
+
+
 
 =================================================
 
@@ -165,7 +174,7 @@ MarlinUtil: v01-05-03
 
 
 ===========================
-Mokka: mokka-08-00
+Mokka: mokka-08-00-02
 ===========================
 
     - started to addressed issue with MCParticles from calorimeter showers stored in LCIO file:
@@ -276,7 +285,7 @@ mbination or ghost combination.
 
 
 ===========================
-Clupatra: v00-07
+Clupatra: v00-07-01
 ===========================
 
     - added code to merge split tracks seeds - this happens sometimes if one link of a track seed
