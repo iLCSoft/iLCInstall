@@ -12,24 +12,70 @@
 =============================================
 
 
+Production release for the DBD simulation.
+Works with current detector models 
+      ILD_o1_v05
+      ILD_o2_v05
+      ILD_o3_v05
 
-...
+ - finalization of Mokka model for DBD production ILD_o1_v05 
+ - some iprovements in core tools
+ - some imporvments and bug fixes for the new tracking code
+
 
 ========================================
 
- New packages added in v01-14
+ New packages added in v01-14      ILD_o1_v05
+
 
 ========================================
 
-    LCTuple : v00-01-02: ....
-
+  LCTuple : v01-00
+  Marlin package for creating simple ROOT TTrees with column-wise 
+  ntuple structure using only arrays of basic types.
 
 
 =================================================
 
  Changes in v01-14 w.r.t. iLCSoft v01-13-06
-
+ 
 =================================================
+
+
+===========================
+Mokka: mokka-08-00-02
+===========================
+
+    - fixed small issue in HepLCIOInterfaceNew with comparison of double to 0.0
+    
+    - started to addressed issue with MCParticles from calorimeter showers stored in LCIO file:
+      commented out SetToBeSaved()  in Control::GetPIDForCalHit()
+      - much less shower particles will be added
+      - we still get neutrons that cause hits in other parts of the calorimneter use
+        /Mokka/init/lcioWriteParentsForBackscatter false
+      to activate new treatment ( experimental - needs checking)
+
+
+    - TRKSiSD00 -- Corrected the storing of the MCParticle responsible for TrackerHits to reflect the way it is done for the other tracking detectors.
+               It was previously following the old Calo style from which the code was originally branched.
+
+    - TPC10     -- Corrected parameter reading for dz_Readout which was incorrectly read as dz_Endplate,
+                   which lead to a 75mm section of gas being placed behind the readout instead of infront.
+                   Corrected copy number of cathode, was 1 in places and should have been 0.
+
+    - ParticleGunGenerator -- Added Uniform Smearing for momentum over a defined interval, smearing values mean half the width.
+                           -- Use /gun/momentumSmearingMode uniform
+
+
+    - SHcalSc03 : changed to slightly rounded outer edges in the barrel to follow the engineering model (Sh.Lu)
+
+    - the beamcal driver has been switched back to the new BeamCal08
+    - a 1mm air gap has been added to the AHcal
+    - switched back the treatment of MCParticles in the calorimeter to
+      the old behavior, where parents of back scattered particles are stored...
+
+    - implemented services for internal detectors in all three options of ILD models
+    - changed thicknesses of Al beam pipe sections modeling services
 
 
 
@@ -174,44 +220,6 @@ MarlinUtil: v01-05-03
 
 
 ===========================
-Mokka: mokka-08-00-02
-===========================
-
-    - started to addressed issue with MCParticles from calorimeter showers stored in LCIO file:
-      commented out SetToBeSaved()  in Control::GetPIDForCalHit()
-      - much less shower particles will be added
-      - we still get neutrons that cause hits in other parts of the calorimneter
-      use
-        /Mokka/init/lcioWriteParentsForBackscatter false
-      to activate new treatment ( experimental - needs checking)
-
-
-
-
-    - TRKSiSD00 -- Corrected the storing of the MCParticle responsible for TrackerHits to reflect the way it is done for the other tracking detectors.
-               It was previously following the old Calo style from which the code was originally branched.
-
-    - TPC10     -- Corrected parameter reading for dz_Readout which was incorrectly read as dz_Endplate,
-                   which lead to a 75mm section of gas being placed behind the readout instead of infront.
-                   Corrected copy number of cathode, was 1 in places and should have been 0.
-
-    - ParticleGunGenerator -- Added Uniform Smearing for momentum over a defined interval, smearing values mean half the width.
-                           -- Use /gun/momentumSmearingMode uniform
-
-
-    - SHcalSc03 : changed to slightly rounded outer edges in the barrel to follow the engineering model (Sh.Lu)
-
-    - the beamcal driver has been switched back to the new BeamCal08
-    - a 1mm air gap has been added to the AHcal
-    - switched back the treatment of MCParticles in the calorimeter to
-      the old behavior, where parents of back scattered particles are stored...
-
-    - implemented services for internal detectors in all three options of ILD models
-    - changed thicknesses of Al beam pipe sections modeling services
-
-
-
-===========================
 MarlinReco: v01-02-01
 ===========================
 
@@ -254,33 +262,32 @@ MarlinTrkProcessors: v01-06
   FullLDCTracking_MarlinTrk:     Corrected uninitialised covariance matrix in combine tracks method.
 
   TruthTracker:                  Added new mode to fit tracks iteratively, off by default. Allow the 
-CED event display to be used during track creation.
+                                 CED event display to be used during track creation.
                                  
                                  For the iterative mode split Tracks now have the individual segments
- added to a separate collection. 
-                                 These segments are used to produce a combined track which uses the i
-nnermost and outermost segments to 
-                                 provided the track states at the IP, FirstHit, LastHit and Calo resp
-ectively. 
-                                 The combined track is added to the main track collection, the NDF an
-d chi2 are set with the values from the innermost segment.
+                                 added to a separate collection. 
+                                 These segments are used to produce a combined track which uses the
+                                 innermost and outermost segments to provided the track states at the IP,
+                                 FirstHit, LastHit and Calo respectively. 
+                                 The combined track is added to the main track collection, the NDF 
+                                 and chi2 are set with the values from the innermost segment.
                                  The NDF and chi2 values for the other segments can be retrieved from
- the tracks added to the composite track.  
+                                 the tracks added to the composite track.  
                                  
                                  Hits with no MCParticle are discarded.
 
   SiliconTracking_MarlinTrk:     Added protection against being overwhelmed by a very large number of
- hits within one sector. 
-                                 The default is set to 100. For now an ERROR message is printed and S
-kipEventException thrown. 
+                                 hits within one sector. 
+                                 The default is set to 100. For now an ERROR message is printed and 
+                                 SkipEventException thrown. 
                                  This will be removed when the problem is more properly addressed.
                                  Make sure sort predicate for chi2 fulfils strict weak ordering.
-                                 Fixed problem where using return instead of continue caused loss of 
-all fitted tracks when single track fit failed.
+                                 Fixed problem where using return instead of continue caused loss of all
+                                 fitted tracks when single track fit failed.
                                  
-  SpacePointBuilder:             Corrected SpacePoint creation bug. Endpoint of rear strip swapped wi
-th endpoint of front strip. Added debug output for checking whether a strip is created from a real co
-mbination or ghost combination.
+  SpacePointBuilder:             Corrected SpacePoint creation bug. Endpoint of rear strip swapped 
+                                 with endpoint of front strip. Added debug output for checking whether
+                                 a strip is created from a real combination or ghost combination.
 
 
 
