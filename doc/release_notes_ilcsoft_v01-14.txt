@@ -19,20 +19,23 @@ Works with current detector models
       ILD_o3_v05
 
  - finalization of Mokka model for DBD production ILD_o1_v05 
- - some iprovements in core tools
- - some imporvments and bug fixes for the new tracking code
+ - some improvements in core tools
+ - some improvements and bug fixes for the new tracking code
+
 
 
 ========================================
 
- New packages added in v01-14      ILD_o1_v05
-
+ New packages added in v01-14
 
 ========================================
 
   LCTuple : v01-00
-  Marlin package for creating simple ROOT TTrees with column-wise 
-  ntuple structure using only arrays of basic types.
+
+    Marlin package for creating simple ROOT TTrees with column-wise 
+        ntuple structure using only arrays of basic types.
+
+
 
 
 =================================================
@@ -202,9 +205,9 @@ KalDet: v01-09
 ===========================
 
         - ild
-          - Re-worked MaterialDataBase registerForService will need to be called at least once, trigger
-ing initialisation from the gear manager, subsequent calls will check that the gear managers are the sa
-me as those which was used to initialise. 
+          - Re-worked MaterialDataBase registerForService will need to be called at least once, 
+            triggering initialisation from the gear manager, subsequent calls will check that the gear 
+            managers are the same as those which was used to initialise. 
           - VXD support material added. 
           - Optimisation of Debug verbosity.
 
@@ -346,13 +349,11 @@ ForwardTracking: v01-05
 ===========================
 
       - TrackingFeedbackProcessor: 
-         + Added output of theta and nHits of true tracks to root output (so one can plot efficiency ov
-er theta or nHits)
+         + Added output of theta and nHits of true tracks to root output (so one can plot efficiency over theta or nHits)
          + Added output of mcp vertex position to root file
       - ForwardTracking: 
          + Added a HelixFit before the Kalman Fit to increase the speed
-         + Nested the CA inside a while loop, repeating it with tightened cut until not too many connec
-tions are made.
+         + Nested the CA inside a while loop, repeating it with tightened cut until not too many connections are made.
             Also added the steering parameters for that
       - TrueTrackCritAnalyser: Added saving of chi2, Ndf and chi2/Ndf from helix fit to root file
 
