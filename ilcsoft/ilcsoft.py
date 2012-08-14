@@ -17,12 +17,13 @@ from cmake import CMake
 class ILCSoft:
     """ Container class for the ILC software modules.
     
-        contains the installation path for the whole ILC software 
+`        contains the installation path for the whole ILC software 
         and the modules/packages which should be installed """
     
     def __init__(self, installPath):
         self.os = OSDetect()        # operating system detection
         self.installPath = fixPath(installPath)
+        self.patchPath = fixPath(installPath)
         self.logsdir = self.installPath + "/.ilcinstall-logs/"
         self.ilcinstallDir = os.path.abspath(sys.path[0])
         self.patch = []             # list of patches
@@ -87,7 +88,13 @@ class ILCSoft:
         # check if a module with the same name already exists
         if( self.module(module.name) == None ):
             module.parent = self
+
+            # set the patch path - if it exists 
+            if( not os.path.exists( module.userInput() ) and len( self.patchPath ) > 0 ):
+                module.patchPath = self.patchPath
+
             module.setMode("link")
+
             self.modules.append(module)
         else:
             print "module " + module.name + " defined more than once in your config file!!"

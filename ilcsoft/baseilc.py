@@ -39,6 +39,7 @@ class BaseILC:
         shlib_ext=".so"
 
     def __init__(self, userInput, name, alias):
+        self.patchPath = ""
         self.__userInput = userInput
         self.name = name                        # module name (e.g. LCIO, GEAR, Marlin, CEDViewer)
         self.alias = alias                      # module alias (e.g. lcio, gear, Marlin, CEDViewer)
@@ -138,6 +139,9 @@ class BaseILC:
 #
 #        return r
 
+    def userInput(self):
+        return self.__userInput
+
     def autoDetect(self):
         """ auto detect module """
 
@@ -205,8 +209,11 @@ class BaseILC:
             # set link flag to true
             self.useLink = True
 
-            # backup linkPath
-            self.linkPath = fixPath( self.__userInput )
+            # linkPath
+            if( len( self.patchPath ) > 0 ):
+                self.linkPath = fixPath( self.patchPath + "/" + self.alias + "/" + self.__userInput )
+            else:
+                self.linkPath = fixPath( self.__userInput )
             
             # check if installation where the link points to is ok 
             self.checkInstall(True)
