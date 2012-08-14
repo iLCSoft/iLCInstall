@@ -128,7 +128,7 @@ PandoraAnalysis_version = "v00-04"
 
 CEDViewer_version = "v01-05-02"
 
-Overlay_version = "v01-12-pre" #"v00-11-02"
+Overlay_version = "v00-12-pre" #"v00-11-02"
 
 #Eutelescope_version = "v00-06-03"
 
