@@ -8,12 +8,12 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-15-pre00'
+ilcsoft_release='v01-15-pre03'
 # ----------------------------------------------------------------------------
 
 
 # --------- install dir ------------------------------------------------------
-ilcsoft_install_prefix = "/scratch/$USER/ilcsoft/"
+#ilcsoft_install_prefix = "/scratch/$USER/ilcsoft/"
 ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 #ilcsoft_install_dir = os.path.join( ilcsoft_install_prefix, ilcsoft_release )
 # ----------------------------------------------------------------------------
@@ -28,7 +28,7 @@ ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 #ilcPath = ilcsoft_install_prefix
 # ----------------------------------------------------------------------------
 
-
+ilcPatchPath = "/afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-15-pre00"
 
 # ======================= PACKAGES WITH NO INSTALL SUPPORT ===================
 
@@ -109,9 +109,9 @@ MarlinReco_version = "v01-04-pre" #"v01-03"
 
 MarlinTrk_version = "v01-08-pre" #"v01-07"
 
-MarlinTrkProcessors_version = "v01-06-01-pre01" #"v01-06"
+MarlinTrkProcessors_version = "v01-06-01-pre03" #"v01-06"
 
-Clupatra_version = "v00-07-01"
+Clupatra_version = "v00-08-pre01" # "v00-07-01"
 
 LCFIVertex_version = "v00-06-01"
 LCFIPlus_version = "v00-05"
@@ -123,12 +123,12 @@ ForwardTracking_version = "v01-06-pre" #"v01-05"
 MarlinKinfit_version = "v00-01-02"
 
 PandoraPFANew_version = "v00-09"
-MarlinPandora_version = "v00-09" # "v00-08"
+MarlinPandora_version = "v00-09-01-pre" #"v00-09" # "v00-08"
 PandoraAnalysis_version = "v00-04"
 
 CEDViewer_version = "v01-05-02"
 
-Overlay_version = "v00-12-pre" #"v00-11-02"
+Overlay_version = "v00-12-pre03" #"v00-12-pre" #"v00-11-02"
 
 #Eutelescope_version = "v00-06-03"
 
