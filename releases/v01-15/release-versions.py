@@ -135,7 +135,7 @@ Overlay_version = "v00-12" # "v00-11-02"
 PathFinder_version =  "v00-01-01"
 MarlinTPC_version =  "v00-09-01"
 
-LCTuple_version = "v01-00"
+LCTuple_version = "v01-01" # "v01-00"
 
 BBQ_version =  "v00-01-02"
 
