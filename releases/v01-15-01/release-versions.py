@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-15'
+ilcsoft_release='v01-15-01-pre00'
 # ----------------------------------------------------------------------------
 
 
@@ -74,11 +74,11 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-01-02"
+LCIO_version = "v02-02-pre" # "v02-01-02"
 
 GEAR_version = "v01-02-02"
 
-CED_version = "v01-07" #"v01-06"
+CED_version = "v01-07"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-5"
 
@@ -93,7 +93,7 @@ MarlinFastJet_version = "v00-01"
 
 KalTest_version = "v01-05"
 
-KalDet_version = "v01-09"
+KalDet_version = "v01-09-01-pre" # "v01-09"
 
 LCCD_version = "v01-02"
 
@@ -105,41 +105,41 @@ Marlin_version = "v01-03"
 
 Mokka_version = "mokka-08-00-03"
 
-MarlinReco_version = "v01-04" # "v01-03"
+MarlinReco_version = "v01-04"
 
-MarlinTrk_version = "v01-08" # "v01-07"
+MarlinTrk_version = "v01-08-01-pre" # "v01-08"
 
-MarlinTrkProcessors_version = "v01-06-01" # "v01-06"
+MarlinTrkProcessors_version = "v01-07-pre" # "v01-06-01"
 
-Clupatra_version = "v00-08" # "v00-07-01"
+Clupatra_version = "v00-09-pre" # "v00-08"
 
 LCFIVertex_version = "v00-06-01"
-LCFIPlus_version = "v00-05-01" # "v00-05"
+LCFIPlus_version = "v00-05-01"
 
-KiTrack_version = "v01-03" # "v01-02"
-KiTrackMarlin_version = "v01-03" # "v01-02"
-ForwardTracking_version = "v01-06" # "v01-05"
+KiTrack_version = "v01-03"
+KiTrackMarlin_version = "v01-03"
+ForwardTracking_version = "v01-06"
 
 MarlinKinfit_version = "v00-01-02"
 
 PandoraPFANew_version = "v00-09"
-MarlinPandora_version = "v00-09-01-pre" # "v00-09" # "v00-08"
+MarlinPandora_version = "v00-09-01-pre"
 PandoraAnalysis_version = "v00-04"
 
 CEDViewer_version = "v01-05-02"
 
-Overlay_version = "v00-12" # "v00-11-02"
+Overlay_version = "v00-12"
 
 #Eutelescope_version = "v00-06-03"
 
 PathFinder_version =  "v00-01-01"
 MarlinTPC_version =  "v00-09-01"
 
-LCTuple_version = "v01-01" # "v01-00"
+LCTuple_version = "v01-01"
 
 BBQ_version =  "v00-01-02"
 
 Druid_version = "1.8" 
 
-Garlic_version = "v2.10.1" # "v2.10"
+Garlic_version = "v2.10.1"
 
