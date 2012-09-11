@@ -33,5 +33,6 @@ class MarlinTPC(MarlinPKG):
     def postCheckDeps(self):
         MarlinPKG.postCheckDeps(self)
 
-        self.envpath["PATH"].append( self.installPath+'/bin' )
+        self.env["MARLINTPC"] = self.installPath
+        self.envpath["PATH"].append( '$MARLINTPC/bin' )
 
