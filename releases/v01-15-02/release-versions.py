@@ -111,7 +111,7 @@ MarlinTrk_version = "v01-09"
 
 MarlinTrkProcessors_version = "v01-07"
 
-Clupatra_version = "v00-09-01-pre" # "v00-09"
+Clupatra_version = "v00-09-01-pre01" # "v00-09"
 
 LCFIVertex_version = "v00-06-01"
 LCFIPlus_version = "v00-05-01"

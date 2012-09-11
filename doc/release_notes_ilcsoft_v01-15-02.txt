@@ -74,6 +74,15 @@ Clupatra: v00-09-01
       first constrained fit ( ~= 3rd hit) smoothed to extrapolate
       back to the calorimeter
 
+    - fixed issue in ClupatraProcessor::check() when no
+      TPCTrackerHits are present ( using LCIterator )
+
+    - moved local LCIterator to LCIO as UTIL::LCIterator
+      use this in all processors
+
+    - updated to use new PlanarDigiProcessor
+      (was: SimplePlanarTestDigiprocessor )
+
 
 
 ===========================
