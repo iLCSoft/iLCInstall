@@ -8,13 +8,13 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-15-01'
+ilcsoft_release='v01-15-02-pre00'
 # ----------------------------------------------------------------------------
 
 
 # --------- install dir ------------------------------------------------------
 ilcsoft_install_prefix = "/scratch/$USER/ilcsoft/"
-#ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
+ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 #ilcsoft_install_dir = os.path.join( ilcsoft_install_prefix, ilcsoft_release )
 # ----------------------------------------------------------------------------
 
@@ -74,7 +74,7 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-02" # "v02-01-02"
+LCIO_version = "v02-03-pre" # "v02-02"
 
 GEAR_version = "v01-02-02"
 
@@ -93,7 +93,7 @@ MarlinFastJet_version = "v00-01"
 
 KalTest_version = "v01-05"
 
-KalDet_version = "v01-09-01" # "v01-09"
+KalDet_version = "v01-09-01"
 
 LCCD_version = "v01-02"
 
@@ -101,39 +101,37 @@ RAIDA_version = "v01-06-02"
 
 MarlinUtil_version = "v01-05-03"
 
-Marlin_version = "v01-03"
+Marlin_version = "v01-04-pre" # "v01-03"
 
 Mokka_version = "mokka-08-00-03"
 
 MarlinReco_version = "v01-04"
 
-MarlinTrk_version = "v01-09" # "v01-08"
+MarlinTrk_version = "v01-09"
 
-MarlinTrkProcessors_version = "v01-07" # "v01-06-01"
+MarlinTrkProcessors_version = "v01-07"
 
-Clupatra_version = "v00-09" # "v00-08"
+Clupatra_version = "v00-09-01-pre" # "v00-09"
 
 LCFIVertex_version = "v00-06-01"
 LCFIPlus_version = "v00-05-01"
 
 KiTrack_version = "v01-03"
-KiTrackMarlin_version = "v01-03-01" # "v01-03"
-ForwardTracking_version = "v01-06-01" # "v01-06"
+KiTrackMarlin_version = "v01-03-01"
+ForwardTracking_version = "v01-06-01"
 
 MarlinKinfit_version = "v00-01-02"
 
 PandoraPFANew_version = "v00-09"
-MarlinPandora_version = "v00-09-01" # "v00-09"
+MarlinPandora_version = "v00-09-01"
 PandoraAnalysis_version = "v00-04"
 
-CEDViewer_version = "v01-06" # "v01-05-02"
+CEDViewer_version = "v01-06"
 
-Overlay_version = "v00-12"
+Overlay_version = "v00-13-pre" # "v00-12"
 
-#Eutelescope_version = "v00-06-03"
-
-PathFinder_version =  "v00-02" # "v00-01-01"
-MarlinTPC_version =  "v00-10" # "v00-09-01"
+PathFinder_version =  "v00-02"
+MarlinTPC_version =  "v00-10"
 
 LCTuple_version = "v01-01"
 
