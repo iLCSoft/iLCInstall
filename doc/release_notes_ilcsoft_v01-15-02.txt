@@ -15,10 +15,92 @@ iLCSoft release for running final tests before starting the DBD reconstruction.
 
 
 
-....
+=================================================
+
+ Changes in v01-15-02 w.r.t. iLCSoft v01-15-01
+ 
+=================================================
+
+
+===========================
+LCIO: v02-03
+===========================
+
+   - added new flag bit to simulator status word:
+     MCParticle::BITOverlay=23 and methods
+     MCParticle::isOverlay()
+     MCParticle::setOverlay(bool v)
+     - print as 'o' in LCTOOLS/Operators
+
+   -  added new methods (in C++)
+       LCReader::getRuns(EVENT::IntVec & runs)  and
+        LCReader::getEvents(EVENT::IntVec & events)
+      that return the run and event numbers in a given file
+      - to be used in randomly reading events for bg overlay
+      - implemented in SIOReader
+      - minimal testing in test_randomaccess.cc
+
+
+   - changed the gnu jel dependency in pom.xml to 2.0.1 from 0.9
+     plus small change in SIODump.java
+
+   - added example cpp/draw_event: displays one event in
+     ROOT-OGL and writes ascii file
+
+   - made UTIL::LCIterator<T> compatibel with gcc 4.3.2
+     (#include <typeinfo>, reported by M.Killenberg)
 
 
 
+===========================
+Marlin: v01-04
+===========================
+
+   -  added EventSelector processor
+      - use Marlin -x and uncomment lines with EventSelector and <if>
+        and specify run and event number in MyEventSelector
+
+   -  bug fix: call Global::EVENTSEEDER->refreshSeeds( evt ) ;
+      also for modifyEvent() which is needed for BG Overlay
+   -  prevent implicit copy c'tors and assignment operators for Processors
+
+
+
+===========================
+Clupatra: v00-09-01
+===========================
+
+    - changed  LCIOTrackConverter::operator() to use the
+      first constrained fit ( ~= 3rd hit) smoothed to extrapolate
+      back to the calorimeter
+
+
+
+===========================
+Overlay: v00-13
+===========================
+
+   - changes in Overlay processor:
+
+       - updated to use MCParticle::setOverlay()
+
+       - added method Overlay::readNextEvent() to properly
+         read the next event - either with direct access (only one
+         input file given ) or with skipNEvents
+
+       - fixed logic to ensure same event gets same overlay
+         events - regardless of SkipNEvents parameter
+
+   - changes to OverlayBX processor:
+
+       - switched to use  Global::EVENTSEEDER mechanism for
+         reproducible random numbers
+
+   - introduced namespace overlay in all classes
+
+   - removed using namespace from header files
+
+   - added propset Id
 
 
 
