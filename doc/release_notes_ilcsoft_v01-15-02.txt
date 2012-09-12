@@ -93,6 +93,11 @@ Clupatra: v00-09-01
     - updated to use new PlanarDigiProcessor
       (was: SimplePlanarTestDigiprocessor )
 
+    - fixed coverity issues: mostly unitialized c'tor, some unchecked dynamic_casts and division by zero (nhit++)
+
+    - deactivate pick'n save feature 
+      (#define WRITE_PICKED_DEBUG_TRACKS false)
+
 
 
 ===========================
@@ -122,6 +127,36 @@ Overlay: v00-13
    - added propset Id
 
 
+==========================
+ MarlinReco v01-04-01
+==========================
+
+     - fixed TPCDigiProcessor :
+        - added bfield correction factor to point resolution
+          ( 4.0 / bField )
+
+==========================
+  MarlinTrk v01-10 
+==========================
+     - General
+       - Made Debug output more consistent
+
+     - MarlinKalTestTrack
+       - Changed smooth() to do _kaltrack->SmoothAll(), previously _hitIndexAtPositiveNDF + 1
+       - Corrected orientation regarding transporting inwards or outwards in propagate.
+
+==========================
+  KalTest v01-05-01
+==========================
+
+            - Fixed orientation for in/out transportation in TKalDetCradle, previously only inward transportation was correct.
+
+==========================
+ KalDet v01-10 
+==========================
+     - ild
+        - Reduced the tolerance for the is on surface to 1micron in ILDCylinderMeasLayer.
+        - Corrected sign of phi in CalcXingPointWith. ILDDiscMeasLayer, ILDSegmentedDiscMeasLayer, ILDParallelPlanarMeasLayer.
 
 
 =============================================
