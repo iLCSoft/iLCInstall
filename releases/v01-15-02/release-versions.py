@@ -91,7 +91,7 @@ MarlinFastJet_version = "v00-01"
 
 # -------------------------------------------
 
-KalTest_version = "v01-05-01" #"v01-05"
+KalTest_version = "v01-05-01-pre" # "v01-05"
 
 KalDet_version = "v01-10-pre" # "v01-09-01"
 
@@ -109,7 +109,7 @@ MarlinReco_version = "v01-04-01-pre"
 
 MarlinTrk_version = "v01-10-pre" # "v01-09"
 
-MarlinTrkProcessors_version = "v01-07"
+MarlinTrkProcessors_version = "v01-08-pre" # "v01-07"
 
 Clupatra_version = "v00-09-01-pre02" # "v00-09"
 
