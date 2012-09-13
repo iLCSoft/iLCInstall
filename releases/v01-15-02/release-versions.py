@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-15-02-pre00'
+ilcsoft_release='v01-15-02-pre01'
 # ----------------------------------------------------------------------------
 
 
@@ -109,7 +109,7 @@ MarlinReco_version = "v01-04-01-pre"
 
 MarlinTrk_version = "v01-10-pre" # "v01-09"
 
-MarlinTrkProcessors_version = "v01-08-pre" # "v01-07"
+MarlinTrkProcessors_version = "v01-08-pre01" # "v01-07"
 
 Clupatra_version = "v00-09-01-pre02" # "v00-09"
 
