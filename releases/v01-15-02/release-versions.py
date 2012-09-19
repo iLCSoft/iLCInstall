@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-15-02-pre01'
+ilcsoft_release='v01-15-02-pre02'
 # ----------------------------------------------------------------------------
 
 
@@ -91,9 +91,9 @@ MarlinFastJet_version = "v00-01"
 
 # -------------------------------------------
 
-KalTest_version = "v01-05-01-pre" # "v01-05"
+KalTest_version = "v01-05-01-pre01" # "v01-05"
 
-KalDet_version = "v01-10-pre01" # "v01-09-01"
+KalDet_version = "v01-10-pre02" # "v01-09-01"
 
 LCCD_version = "v01-02"
 
@@ -105,7 +105,7 @@ Marlin_version = "v01-04-pre" # "v01-03"
 
 Mokka_version = "mokka-08-00-03"
 
-MarlinReco_version = "v01-04-01-pre"
+MarlinReco_version = "v01-04-01-pre01" # "v01-04"
 
 MarlinTrk_version = "v01-10-pre" # "v01-09"
 
