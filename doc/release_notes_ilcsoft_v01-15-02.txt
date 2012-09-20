@@ -40,6 +40,8 @@ LCIO: v02-03
       - implemented in SIOReader
       - minimal testing in test_randomaccess.cc
 
+   - in Operators.cc:
+     print covariance matrix as lower triangle matrix for Track and TrackState
 
    - changed the gnu jel dependency in pom.xml to 2.0.1 from 0.9
      plus small change in SIODump.java
@@ -131,9 +133,19 @@ Overlay: v00-13
  MarlinReco v01-04-01
 ==========================
 
-     - fixed TPCDigiProcessor :
+    - fixed TPCDigiProcessor :
         - added bfield correction factor to point resolution
           ( 4.0 / bField )
+     - BCalRec:
+       - cleaned up code (removed unnecessary code)
+       - introduced new default bg map file
+       - enclosed code with
+             if( nHits > 0 ) {...}
+         in order to prevent warning about missing CellIDEncoder string
+       - fixed indentation of code (using emacs defaults) (r4088)
+         No code change, i.e. same code as r4087 (use this for diffs)
+
+
 
 ==========================
   MarlinTrk v01-10 
@@ -149,14 +161,28 @@ Overlay: v00-13
   KalTest v01-05-01
 ==========================
 
-            - Fixed orientation for in/out transportation in TKalDetCradle, previously only inward transportation was correct.
+            - Fixed orientation for in/out transportation in TKalDetCradle, previously only inward transportation was
+ correct.
+            - Ensure that material effects are treated correctly by only including material effects from present surf
+ace to destination surface.
+            - THelicalTrack:MoveTo modified to make sure the helix really moves to the new reference point and is not
+ out by more than 2PI.
+
+
 
 ==========================
  KalDet v01-10 
 ==========================
      - ild
-        - Reduced the tolerance for the is on surface to 1micron in ILDCylinderMeasLayer.
-        - Corrected sign of phi in CalcXingPointWith. ILDDiscMeasLayer, ILDSegmentedDiscMeasLayer, ILDParallelPlanarMeasLayer.
+          - Reduced the tolerance for the is on surface to 1micron in ILDCylinderMeasLayer.
+          - Corrected sign of phi in CalcXingPointWith. ILDDiscMeasLayer, ILDSegmentedDiscMeasLayer, ILDParallelPlana
+rMeasLayer.
+          -Added necessary mode check for determining intersection correctly based on the direction of travel, i.e. f
+wd or bwd mode =+1 or -1
+            ILDConeMeasLayer, ILDDiscMeasLayer, ILDPolygonBarrelMeasLayer, ILDSegmentedDiscMeasLayer, ILDParallelPlan
+arMeasLayer.
+
+
 
 
 =============================================

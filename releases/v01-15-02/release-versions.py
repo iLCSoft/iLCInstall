@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-15-02-pre02'
+ilcsoft_release='v01-15-02-pre03'
 # ----------------------------------------------------------------------------
 
 
@@ -91,7 +91,7 @@ MarlinFastJet_version = "v00-01"
 
 # -------------------------------------------
 
-KalTest_version = "v01-05-01-pre01" # "v01-05"
+KalTest_version = "v01-05-01-pre02" # "v01-05"
 
 KalDet_version = "v01-10-pre02" # "v01-09-01"
 
