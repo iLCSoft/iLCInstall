@@ -41,7 +41,8 @@ LCIO: v02-03
       - minimal testing in test_randomaccess.cc
 
    - in Operators.cc:
-     print covariance matrix as lower triangle matrix for Track and TrackState
+     - print covariance matrix as lower triangle matrix for Track and TrackState
+     - added GoodnessOfPID to dumpe of ReconstructedParticle
 
    - changed the gnu jel dependency in pom.xml to 2.0.1 from 0.9
      plus small change in SIODump.java
@@ -76,30 +77,49 @@ MarlinReco: v01-04-01
         - added bfield correction factor to point resolution
           ( 4.0 / bField )
 
+     - BCalRec (A.Rosca)
+       - cleaned up code (removed unnecessary code)
+       - introduced new default bg map file
+       - enclosed code with  
+             if( nHits > 0 ) {...}
+         in order to prevent warning about missing CellIDEncoder string
+
+       - fixed indentation of code (fg, using emacs defaults) (r4088)
+         No code change, i.e. same code as r4087 (use this for diffs)
+
+     - BCalTagEfficiency (J.List) 
+       - veryfied unchanged performance on LoI samples (modulo a bug fix); steering flag for
+         map format added
 
 
 ===========================
 Clupatra: v00-09-01
 ===========================
 
+    - in TrackCircleDistance::operator()():
+      adapted to fix in KalTest where curler segments
+      now have correct Z0 (typically close to the IP)
+      - do not merge segements if the z-positions of
+        both their first hits is within 20 mm of the
+        IP
+
     - changed  LCIOTrackConverter::operator() to use the
       first constrained fit ( ~= 3rd hit) smoothed to extrapolate
       back to the calorimeter
 
-    - fixed issue in ClupatraProcessor::check() when no
-      TPCTrackerHits are present ( using LCIterator )
-
+    - fixed issue in ClupatraProcessor::check() when no 
+      TPCTrackerHits are present ( using LCIterator ) 
+ 
     - moved local LCIterator to LCIO as UTIL::LCIterator
       use this in all processors
 
-    - updated to use new PlanarDigiProcessor
+    - updated to use new PlanarDigiProcessor 
       (was: SimplePlanarTestDigiprocessor )
 
     - fixed coverity issues: mostly unitialized c'tor, some unchecked dynamic_casts and division by zero (nhit++)
 
     - deactivate pick'n save feature 
       (#define WRITE_PICKED_DEBUG_TRACKS false)
-
 
 
 ===========================
@@ -129,23 +149,6 @@ Overlay: v00-13
    - added propset Id
 
 
-==========================
- MarlinReco v01-04-01
-==========================
-
-    - fixed TPCDigiProcessor :
-        - added bfield correction factor to point resolution
-          ( 4.0 / bField )
-     - BCalRec:
-       - cleaned up code (removed unnecessary code)
-       - introduced new default bg map file
-       - enclosed code with
-             if( nHits > 0 ) {...}
-         in order to prevent warning about missing CellIDEncoder string
-       - fixed indentation of code (using emacs defaults) (r4088)
-         No code change, i.e. same code as r4087 (use this for diffs)
-
-
 
 ==========================
   MarlinTrk v01-10 
@@ -156,6 +159,10 @@ Overlay: v00-13
      - MarlinKalTestTrack
        - Changed smooth() to do _kaltrack->SmoothAll(), previously _hitIndexAtPositiveNDF + 1
        - Corrected orientation regarding transporting inwards or outwards in propagate.
+       - Fixed problem where initial covariance term kappa,tanL wrongly set as  kappa,z0.
+         Minimal impact excepted. (Tino Calancha) 
+       - Ensure that hits which are rejected for reasons other that Chi2 cut are added to the 
+         list of outliers. 
 
 ==========================
   KalTest v01-05-01
