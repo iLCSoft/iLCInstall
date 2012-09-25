@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-15-02-pre05'
+ilcsoft_release='v01-15-02'
 # ----------------------------------------------------------------------------
 
 
@@ -74,7 +74,7 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-03-pre02" # "v02-02"
+LCIO_version = "v02-03" # "v02-02"
 
 GEAR_version = "v01-02-02"
 
@@ -91,9 +91,9 @@ MarlinFastJet_version = "v00-01"
 
 # -------------------------------------------
 
-KalTest_version = "v01-05-01-pre03" # "v01-05"
+KalTest_version = "v01-05-01" # "v01-05"
 
-KalDet_version = "v01-10-pre02" # "v01-09-01"
+KalDet_version = "v01-10" # "v01-09-01"
 
 LCCD_version = "v01-02"
 
@@ -101,17 +101,17 @@ RAIDA_version = "v01-06-02"
 
 MarlinUtil_version = "v01-05-03"
 
-Marlin_version = "v01-04-pre" # "v01-03"
+Marlin_version = "v01-04" # "v01-03"
 
 Mokka_version = "mokka-08-00-03"
 
-MarlinReco_version = "v01-04-01-pre02" # "v01-04"
+MarlinReco_version = "v01-04-01" # "v01-04"
 
-MarlinTrk_version = "v01-10-pre02" # "v01-09"
+MarlinTrk_version = "v01-10" # "v01-09"
 
-MarlinTrkProcessors_version = "v01-08-pre03" # "v01-07"
+MarlinTrkProcessors_version = "v01-08" # "v01-07"
 
-Clupatra_version = "v00-09-01-pre04" # "v00-09"
+Clupatra_version = "v00-09-01" # "v00-09"
 
 LCFIVertex_version = "v00-06-01"
 LCFIPlus_version = "v00-05-01"
@@ -126,9 +126,9 @@ PandoraPFANew_version = "v00-09"
 MarlinPandora_version = "v00-09-01"
 PandoraAnalysis_version = "v00-04"
 
-CEDViewer_version = "v01-06-01-pre"
+CEDViewer_version = "v01-06-01"
 
-Overlay_version = "v00-13-pre" # "v00-12"
+Overlay_version = "v00-13" # "v00-12"
 
 PathFinder_version =  "v00-02"
 MarlinTPC_version =  "v00-10"
