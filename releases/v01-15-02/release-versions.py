@@ -74,7 +74,7 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-03-pre01" # "v02-02"
+LCIO_version = "v02-03-pre02" # "v02-02"
 
 GEAR_version = "v01-02-02"
 
