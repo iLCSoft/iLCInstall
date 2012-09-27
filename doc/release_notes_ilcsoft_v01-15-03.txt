@@ -12,6 +12,10 @@
 =============================================
 
 
+iLCSoft release for running final tests before starting the DBD reconstruction.
+
+
+
 =================================================
 
  Changes in v01-15-03 w.r.t. iLCSoft v01-15-02
@@ -20,7 +24,38 @@
 
 
 
-...
+===========================
+MarlinReco: v01-04-02
+===========================
+
+    - BCalTagEfficiency:
+        - threw out interpolation between BeamCal cells, introduced optional write-out of background map
+        - uses LCRelationNavigator now, cleaned up example steering
+        - write out also empty collections
+        - added 3.5T background map and up to date example steering for ILD00
+
+    - BCalReco:
+        - improved calculation of Cartesian coordinates from cell position given
+            in terms of ring/pad number.
+
+    - RecoMCTruthLink:
+        - exchanged ttrlcol and ctrlcol in makeSkim()
+            ( will have no effect except code sanity )
+
+    - LDCCaloDigi:
+        - Bug fix to get output hits stored in output collection+increase speed of integration
+
+    - FPCCDDigi:
+        - t.mori enable to difine pixel size for each layer.
+
+
+
+==========================
+ KalDet v01-11 
+==========================
+
+       - ild
+         - final change to FTD and Beam-pipe material
 
 
 
