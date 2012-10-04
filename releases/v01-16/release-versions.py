@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-15-03'
+ilcsoft_release='v01-16-pre'
 # ----------------------------------------------------------------------------
 
 
@@ -105,20 +105,20 @@ Marlin_version = "v01-04"
 
 Mokka_version = "mokka-08-00-03"
 
-MarlinReco_version = "v01-04-02" # "v01-04-01"
+MarlinReco_version = "v01-05-pre" # "v01-04-01"
 
-MarlinTrk_version = "v01-10"
+MarlinTrk_version = "v01-10-01-pre"
 
-MarlinTrkProcessors_version = "v01-08"
+MarlinTrkProcessors_version = "v01-09-pre"
 
 Clupatra_version = "v00-09-01"
 
 LCFIVertex_version = "v00-06-01"
 LCFIPlus_version = "v00-05-01"
 
-KiTrack_version = "v01-03"
-KiTrackMarlin_version = "v01-03-01"
-ForwardTracking_version = "v01-06-01"
+KiTrack_version = "v01-04-pre"
+KiTrackMarlin_version = "v01-04-pre"
+ForwardTracking_version = "v01-07-pre3"
 
 MarlinKinfit_version = "v00-01-02"
 
