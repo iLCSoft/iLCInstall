@@ -74,7 +74,7 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-03"
+LCIO_version = "v02-03-01"
 
 GEAR_version = "v01-02-02"
 
@@ -105,7 +105,7 @@ Marlin_version = "v01-04"
 
 Mokka_version = "mokka-08-00-03"
 
-MarlinReco_version = "v01-05-pre" # "v01-04-01"
+MarlinReco_version = "v01-05-pre01" # "v01-04-01"
 
 MarlinTrk_version = "v01-10-01-pre"
 
@@ -114,16 +114,16 @@ MarlinTrkProcessors_version = "v01-09-pre"
 Clupatra_version = "v00-09-01"
 
 LCFIVertex_version = "v00-06-01"
-LCFIPlus_version = "v00-05-01"
+LCFIPlus_version = "v00-05-02-pre02"
 
 KiTrack_version = "v01-04-pre"
 KiTrackMarlin_version = "v01-04-pre"
-ForwardTracking_version = "v01-07-pre3"
+ForwardTracking_version = "v01-07-pre"
 
 MarlinKinfit_version = "v00-01-02"
 
 PandoraPFANew_version = "v00-09"
-MarlinPandora_version = "v00-09-01"
+MarlinPandora_version = "v00-09-02-pre"
 PandoraAnalysis_version = "v00-04"
 
 CEDViewer_version = "v01-06-01"
