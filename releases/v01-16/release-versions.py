@@ -8,13 +8,13 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-16-pre'
+ilcsoft_release='v01-16'
 # ----------------------------------------------------------------------------
 
 
 # --------- install dir ------------------------------------------------------
 ilcsoft_install_prefix = "/scratch/$USER/ilcsoft/"
-ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
+#ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 #ilcsoft_install_dir = os.path.join( ilcsoft_install_prefix, ilcsoft_release )
 # ----------------------------------------------------------------------------
 
@@ -93,7 +93,7 @@ MarlinFastJet_version = "v00-01"
 
 KalTest_version = "v01-05-01"
 
-KalDet_version = "v01-11" # "v01-10"
+KalDet_version = "v01-11"
 
 LCCD_version = "v01-02"
 
@@ -105,25 +105,25 @@ Marlin_version = "v01-04"
 
 Mokka_version = "mokka-08-00-03"
 
-MarlinReco_version = "v01-05-pre01" # "v01-04-01"
+MarlinReco_version = "v01-05"
 
-MarlinTrk_version = "v01-10-01-pre"
+MarlinTrk_version = "v01-10-01"
 
-MarlinTrkProcessors_version = "v01-09-pre"
+MarlinTrkProcessors_version = "v01-09"
 
 Clupatra_version = "v00-09-01"
 
 LCFIVertex_version = "v00-06-01"
-LCFIPlus_version = "v00-05-02-pre02"
+LCFIPlus_version = "v00-05-02"
 
-KiTrack_version = "v01-04-pre"
-KiTrackMarlin_version = "v01-04-pre"
-ForwardTracking_version = "v01-07-pre"
+KiTrack_version = "v01-04"
+KiTrackMarlin_version = "v01-04"
+ForwardTracking_version = "v01-07"
 
 MarlinKinfit_version = "v00-01-02"
 
 PandoraPFANew_version = "v00-09"
-MarlinPandora_version = "v00-09-02-pre"
+MarlinPandora_version = "v00-09-02"
 PandoraAnalysis_version = "v00-04"
 
 CEDViewer_version = "v01-06-01"

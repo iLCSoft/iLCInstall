@@ -1,8 +1,102 @@
 #################################
 #
-#   iLCSoft release - v01-15-03
+#   iLCSoft release - v01-16
 #
 #################################
+
+=============================================
+
+ Release notes from iLCSoft v01-16
+
+=============================================
+
+
+iLCSoft release for running the DBD reconstruction.
+
+
+=================================================
+
+ Changes in v01-16 w.r.t. iLCSoft v01-15-03
+ 
+=================================================
+
+
+===========================
+MarlinReco: v01-05
+===========================
+
+   - BCalReco (A.Rosca)
+     - in BCalReco.h reduce memory use: #define MAXNENTR 80000
+     - introduced new variable EdepErr.
+     - small changes to read new variable, EdepErr, from the background map.
+     - fixed bug in SearchTowers().
+     - write also empty BCal collections
+     - fixed several programming flaws/reimplemented parts of code
+
+   - BCalTagEfficiency (J.List)
+     - removed local copy of TDR background map, updated README and bcal_ild_05_v05.xml
+     - some minor clean-up of print statements, comments etc
+
+
+
+==========================
+  MarlinTrk: v01-10-01
+==========================
+
+    - Added some more diagnostics, no change to algorithms.
+
+
+==============================
+  MarlinTrkProcessors: v01-09
+==============================
+
+     - FullLDCTracking_MarlinTrk
+       - Use the Chi2 probability to remove badly fitted silicon tracks so that the don't pollute the TPC Si track merging.
+       - Reject combinations of TPC and Silicon Tracks if more that a certain number of Silicon Hits, default 2, get rejected by the fit of the combined track.
+
+
+===========================
+LCFIPlus: v00-05-02
+===========================
+
+    - Fixed type conversion error in track hits
+    - Fixed MC vertex information
+    - Added option to choose track hit ordering
+    - Modifications to track selection criteria involving subdetector hits
+    - Vertex-jet reassociation no longer throws exception to cope with cases
+      where tracks are dropped such as when running kt algorithm before LCFIPlus
+
+
+===========================
+KiTrack: v01-04
+===========================
+
+     - SegmentBuilder: added output of failed criterion
+     - SubsetHopfieldNN: set the activation threshold down to 0.5
+
+
+===========================
+KiTrackMarlin: v01-04
+===========================
+
+    - KiTrackMarlinTools: added convenience methods for output of track-hit information
+
+
+===========================
+ForwardTracking: v01-07
+===========================
+
+      - TrueTrackCritAnalyser: added pdg and theta angle to root output
+      - TrackingFeedbackProcessor:
+            + added possibility to use only hits from different layers for the nHit cut
+            + added cut for theta
+            + added chi2, Ndf and chi2prob to the reco tracks in the root output
+            + added a cut for failed tracks
+      - ForwardTracking:
+            + added a new quality indicator, especially for the simple subset and 3-hit tracks
+            + changed lastLayerToIP to 5
+            + changed the > in the chi2prob cut to >=
+
 
 
 =============================================
