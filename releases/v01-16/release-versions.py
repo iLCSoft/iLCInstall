@@ -1,6 +1,6 @@
 ###########################################
 #
-# iLCSoft versions for release v01-15
+# iLCSoft versions for release v01-16
 #
 # F.Gaede, DESY 09.12.2011
 #
@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-16'
+ilcsoft_release='v01-16-01'
 # ----------------------------------------------------------------------------
 
 
@@ -58,7 +58,7 @@ XERCESC_ROOT_DIR = ilcPath + "xercesc/2.7.0"
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version = "9.5.p01"
+Geant4_version = "9.5.p02"
 
 ROOT_version = "5.28.00f"
 
@@ -74,7 +74,7 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-03-01"
+LCIO_version = "v02-03-03" # "v02-03-01"
 
 GEAR_version = "v01-02-02"
 
