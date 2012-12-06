@@ -52,7 +52,7 @@
         <p>This document puts together a bunch of steps and procedures needed for releasing and deploying the ilc software framework.</p>
         <p>It starts from the very beginning of creating and installing a new "developers release" on afs, goes through the iterative process of testing and validating the "developer releases" and ends with the installation and announcement of the final "production release".</p>
         <p>The release procedure is based on an even-odd versioning scheme where "developers releases" are odd numbered and "production releases" are evenly numbered.
-        In this document the releases used for demonstration purposes are v01-19 (developers) v01-20 (production).</p>
+        In this document the releases used for demonstration purposes are v01-19 (developers) v01-20 (production) for the x86_64_gcc41_sl5 architecture.</p>
 
 		<div class="center">
 		<h2><a name="step01">Step 1</a></h2>   
@@ -98,7 +98,7 @@
         ilcsoft_release='v01-19-pre00'
 
         # uncomment the following line to automatically set the installation path, e.g.:
-        # /afs/desy.de/project/ilcsoft/sw/i386_gcc41_sl5/v01-19-pre00
+        # /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-19-pre00
         ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 
         # update other package versions as needed
@@ -154,7 +154,7 @@
 			A new iLCSoft release cycle has started. The release cycle ends in ~ 9 weeks from now.
 
             An initial ilcsoft installation for testing purposes is available in afs under the following path:
-            /afs/desy.de/project/ilcsoft/sw/$ARCH/v01-19-pre00/
+            /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-19-pre00/
 
             New "developer releases" will follow under a new sequence number: v01-19-preXX
                         
@@ -224,7 +224,7 @@
 		<div class="code">
         # 1. make sure the package release notes are updated
         # 2. run the tagpackage.sh script in the pre-tag directory, e.g.:
-        ./scripts/tagpackage.sh /afs/desy.de/project/ilcsoft/sw/i386_gcc41_sl5/v01-19-preXX/lcio/vXX-YY-preXX
+        ./scripts/tagpackage.sh /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-19-preXX/lcio/vXX-YY-preXX
         # 3. make sure the version in the CMakeLists.txt file is correct
         # 4. create the tag
         # 5. remove the "-preXX" suffix from the package version in releases/v01-20/release-versions.py
@@ -263,11 +263,71 @@
         <h3>Installing the ilcsoft release on the grid.</h3>
         </div>
 
+		<p>1. ssh into a machine with the required platform for compiling the software, e.g.:</p>
+        <div class="code">
+			ssh sl5-64bit-machine
+        </div><div class="clear"></div>
 
-		<p>!!!TODO!!!</p>
-		<div class="code">
-		!!!TODO!!!
-		</div><div class="clear"></div>
+		<p>2. Unpack previous release tarball with the appropriate architecture, e.g.:</p>
+        <div class="code">
+            rm -rf /tmp/ilcsoft
+            tar xzf /afs/desy.de/project/ilcsoft/www/html/ilcsoft-bin-releases/ilcsoft-v01-19-x86_64_gcc41_sl5-full.tar.gz -C /tmp
+            cd /tmp/ilcsoft
+        </div><div class="clear"></div>
+
+		<p>3. Check for correct versions of base tools, e.g.:</p>
+        <div class="code">
+            ls -ld g4data/*
+            ls -ld x86_64_gcc41_sl5/{CLHEP,FastJet,gsl,geant4,mysql,root}/*
+
+            # update versions (if needed) by copying from afs, e.g.:
+            # rm -rf ./x86_64_gcc41_sl5/root/5.28.00f
+            # cp -a /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/root/5.28.00h x86_64_gcc41_sl5/root
+        </div><div class="clear"></div>
+
+		<p>4. Run pack2Grid.py script</p>
+        <div class="code">
+			cd x86_64_gcc41_sl5
+            # preview
+            pack2BinRelTool.py /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-20
+            # copy binaries and libraries
+            pack2BinRelTool.py /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-20
+        </div><div class="clear"></div>
+
+		<p>5. Copy external library dependencies</p>
+        <div class="code">
+            for i in v01-20/{bin,lib}/* ; do packSharedLibDeps.sh $i ; done
+
+            # dependencies from base tools (e.g. root, CLHEP) need to be checked separately!
+        </div><div class="clear"></div>
+
+		<p>6. Erase previous release and update init_ilcsoft.sh (if needed)</p>
+        <div class="code">
+            rm -rf v01-19
+            
+            # edit ./init_ilcsoft.sh
+        </div><div class="clear"></div>
+
+		<p>7. Create release tarball</p>
+        <div class="code">
+            cd /tmp
+            tar czf ilcsoft-v01-20-x86_64_gcc41_sl5-full.tar.gz ilcsoft
+        </div><div class="clear"></div>
+
+		<p>8. Copy tarball to the grid</p>
+        <div class="code">
+            # checkout gridtools
+            svn co https://svnsrv.desy.de/desy/ilctools/mcprdsys/trunk/gridtools
+
+            # initialize grid with lcgadmin rights
+
+            ./gridtools/grid-ul-file.py ilcsoft-v01-20-x86_64_gcc41_sl5-full.tar.gz ilcsoft/
+        </div><div class="clear"></div>
+
+		<p>9. Send install job to the grid</p>
+        <div class="code">
+            send-install-job.sh desy.de /grid/ilc/ilcsoft/ilcsoft-v01-20-x86_64_gcc41_sl5-full.tar.gz
+        </div><div class="clear"></div>
 
 
 		<div class="center">
@@ -276,8 +336,6 @@
         </div>
 
 		<p>The iLCsoft Portal can be updated using <a href="https://wof-cluster.desy.de/sites/site_ilcsoft/content/manage">this link</a>.</p>
-
-		<p>TODO!!! Update binary releases tarballs</p>
 
 		<div class="center">
 		<h2><a name="step07">Step 7</a></h2>   
