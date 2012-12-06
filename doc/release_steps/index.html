@@ -1,0 +1,323 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="Content-Style-Type" content="text/css">
+        <style type="text/css">
+            div.code {
+                font-family: "Courier New", monospace;
+                font-size:0.8em;
+                white-space: pre-line;
+                text-indent:3em;
+                background: #eee;
+                border: 1px dashed #bbb;
+                padding: 0em 1em 1em 2em;
+                margin: 1em 5em 0em 3em;
+                float: left;
+            }
+            div.clear {
+                clear: both;
+            }
+            body {
+                white-space: pre-line;
+                margin: 0% 10% 5% 10%;
+            }
+            div.center {
+                text-align: center;
+            }
+            h1 {
+                text-align: center;
+            }
+            h3 {
+                text-align: center;
+                
+            }
+            h5 {
+                text-indent: 2em;
+            }
+            p {
+				text-indent: 2em;
+                white-space: normal;
+            }
+        </style>
+        <title>iLCSoft releases</title>
+    </head>
+    <body>
+
+        <h1>Releasing the iLCSoft framework</h1>
+
+        <h3>Jan Engels, Desy - IT</h3>
+
+        <p>This document puts together a bunch of steps and procedures needed for releasing and deploying the ilc software framework.</p>
+        <p>It starts from the very beginning of creating and installing a new "developers release" on afs, goes through the iterative process of testing and validating the "developer releases" and ends with the installation and announcement of the final "production release".</p>
+        <p>The release procedure is based on an even-odd versioning scheme where "developers releases" are odd numbered and "production releases" are evenly numbered.
+        In this document the releases used for demonstration purposes are v01-19 (developers) v01-20 (production).</p>
+
+		<div class="center">
+		<h2><a name="step01">Step 1</a></h2>   
+        <h3>Installing an initial ilcsoft "developers release" on afs.</h3>
+        </div>
+
+		<p>The first step in an ilcsoft release cycle is to provide a new "developers release" installation on afs.</p>
+		<p>1. ssh into a machine with the required platform for compiling the software, e.g.:</p>
+        <div class="code">
+			ssh sl5-64bit-machine
+        </div><div class="clear"></div>
+
+		<p>2. Download ilcinstall from svn</p>
+        <div class="code">
+			svn co https://svnsrv.desy.de/desy/ilctools/ilcinstall/trunk ilcinstall-trunk
+            cd ilcinstall-trunk
+        </div><div class="clear"></div>
+
+		<p>3. Update version of <i>ilcsoft-install</i> script</p>
+		<div class="code">
+		edit ./ilcsoft-install
+		
+		# change line:
+		_version = "v01-19"
+		</div><div class="clear"></div>
+
+		<p>4. Rename the ilcinstall configuration files:</p>
+		<div class="code">
+
+        svn mv releases/OLD releases/v01-19
+        
+        # if a new package is added in this release you may also need to edit the following configuration files:
+		releases/v01-19/release-base.cfg
+		releases/v01-19/release-ilcsoft.cfg
+		releases/v01-19/release-scratch.cfg
+		</div><div class="clear"></div>
+
+		<p>5. Update versions in <i>releases/v01-19/release-versions.py</i></p>
+		<div class="code">
+        edit ./releases/v01-19/release-versions.py
+
+        # update ilcsoft version
+        ilcsoft_release='v01-19-pre00'
+
+        # uncomment the following line to automatically set the installation path, e.g.:
+        # /afs/desy.de/project/ilcsoft/sw/i386_gcc41_sl5/v01-19-pre00
+        ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
+
+        # update other package versions as needed
+		</div><div class="clear"></div>
+
+		<p>6. Install base tools (only if required)</p>
+		<div class="code">
+        # preview
+		./ilcsoft-install releases/v01-19/release-base.cfg
+
+        # install
+		./ilcsoft-install -i releases/v01-19/release-base.cfg
+		</div><div class="clear"></div>
+
+		<p>7. Launch the ilcsoft installation</p>
+		<div class="code">
+        # preview
+		./ilcsoft-install releases/v01-19/release-ilcsoft.cfg
+
+        # install
+		./ilcsoft-install -i releases/v01-19/release-ilcsoft.cfg
+		</div><div class="clear"></div>
+
+		<p>8. Test installation</p>
+		<div class="code">
+        # e.g. run the 3 event test in ILDConfig
+        svn co /afs/desy.de/user/e/engels/work/ilcsoft/dev/ILDConfig/trunk ildconfig-trunk
+        cd ildconfig-trunk/StandardConfig/current
+        less README # follow steps in README
+        ...
+		</div><div class="clear"></div>
+
+		<p>9. Commit the version changes into svn</p>
+		<div class="code">
+		svn ci -m"installed v01-19-pre00"
+		</div><div class="clear"></div>
+
+ 
+		<div class="center">
+        <h2><a name="step02">Step 2</a></h2>
+        <h3>Announce the upcoming release.</h3>
+		</div>
+		
+        <p>All ilcsoft developers need to be notified about the upcoming release in order to meet the required preparation steps.</p>
+
+        <div class="code">
+			mailto: ild-software-discussion@desy.de
+			
+			Dear all,
+			
+			-- apologies if you get this email more than once --
+			
+			A new iLCSoft release cycle has started. The release cycle ends in ~ 9 weeks from now.
+
+            An initial ilcsoft installation for testing purposes is available in afs under the following path:
+            /afs/desy.de/project/ilcsoft/sw/$ARCH/v01-19-pre00/
+
+            New "developer releases" will follow under a new sequence number: v01-19-preXX
+                        
+			If you are planning to update or add a new package in this release the following steps are recommended:
+				1. compile your package against the latest "developers release" installation referenced above
+				2. iterate on source code until it is properly tested and running
+				3. create a new pre-tag in your package svn repository (branches/vXX-YY-pre)
+				4. reply to this email and let us know that the new pre-tag should be included
+				5. if step 3 has been completed and a bug is found:
+				5.1. create a new pre-tag (-pre01) including the bugfix (branches/vXX-YY-pre01)
+				5.2. repeat step 3
+				5.3. follow this procedure until all bugs have been fixed :)
+
+                P.S. The -pre suffix in the version string is required!
+			
+			The iLCSoft team.
+        </div><div class="clear"></div>
+
+
+		<div class="center">
+		<h2><a name="step03">Step 3</a></h2>   
+        <h3>Iterating on "developer releases".</h3>
+        </div>
+
+		<p>After having installed the initial "developers release" one needs to iterate on the whole software chain until the release is "production-ready".</p>
+
+		<p>This is basically done by receiving feedback from the ilcsoft developers and repeating <a href="#step01">Step 1</a> with updated versions in <i>release-versions.py</i></p>
+		<div class="code">
+        edit releases/v01-19/release-versions.py
+
+        # update ilcsoft version
+        ilcsoft_release='v01-19-pre01'
+
+        # update other package versions as needed
+		</div><div class="clear"></div>
+
+
+		<div class="center">
+		<h2><a name="step04">Step 4</a></h2>   
+        <h3>Installing the ilcsoft "production release" on afs.</h3>
+        </div>
+
+		<p>The release is usually "production-ready" after iterating on the "developers releases" until most bugs/issues have been found and fixed."</p>
+
+		<p>The "production release" is installed by following the procedures described in <a href="#step01">Step 1</a> with a few changes:</p>
+
+		<p>Update version of <i>ilcsoft-install</i> script</p>
+		<div class="code">
+		edit ./ilcsoft-install
+		
+		# change line:
+		_version = "v01-20"
+		</div><div class="clear"></div>
+
+		<p>Rename the ilcinstall configuration files:</p>
+		<div class="code">
+
+        svn mv releases/v01-19 releases/v01-20
+		</div><div class="clear"></div>
+
+		<p>Check which packages are still pre-tagged</p>
+		<div class="code">
+        grep '\-pre' releases/v01-20/release-versions.py
+		</div><div class="clear"></div>
+
+		<p>Follow this steps for each of the pre-tagged packages found in the previous step:</p>
+		<div class="code">
+        # 1. make sure the package release notes are updated
+        # 2. run the tagpackage.sh script in the pre-tag directory, e.g.:
+        ./scripts/tagpackage.sh /afs/desy.de/project/ilcsoft/sw/i386_gcc41_sl5/v01-19-preXX/lcio/vXX-YY-preXX
+        # 3. make sure the version in the CMakeLists.txt file is correct
+        # 4. create the tag
+        # 5. remove the "-preXX" suffix from the package version in releases/v01-20/release-versions.py
+		</div><div class="clear"></div>
+
+		<p>Update ilcsoft version in <i>releases/v01-20/release-versions.py</i></p>
+		<div class="code">
+        edit releases/v01-20/release-versions.py
+
+        # change line:
+        ilcsoft_release='v01-20'
+		</div><div class="clear"></div>
+
+		<p>Update the ilcsoft release notes</p>
+		<div class="code">
+		cp doc/release_notes_ilcsoft_OLD.txt doc/release_notes_ilcsoft_v01-20.txt
+		svn mv doc/release_notes_ilcsoft_OLD.txt doc/older_release_notes/
+		</div><div class="clear"></div>
+
+		<p>Launch the installation</p>
+		<div class="code">
+        # preview
+		./ilcsoft-install releases/v01-20/release-ilcsoft.cfg
+        # install
+		./ilcsoft-install -i releases/v01-20/release-ilcsoft.cfg
+		</div><div class="clear"></div>
+
+		<p>Tag ilcinstall</p>
+		<div class="code">
+		svn cp https://svnsrv.desy.de/desy/ilctools/ilcinstall/trunk https://svnsrv.desy.de/desy/ilctools/ilcinstall/tags/v01-20
+		</div><div class="clear"></div>
+
+
+		<div class="center">
+		<h2><a name="step05">Step 5</a></h2>   
+        <h3>Installing the ilcsoft release on the grid.</h3>
+        </div>
+
+
+		<p>!!!TODO!!!</p>
+		<div class="code">
+		!!!TODO!!!
+		</div><div class="clear"></div>
+
+
+		<div class="center">
+		<h2><a name="step06">Step 6</a></h2>   
+        <h3>Updating the ilcsoft portal</h3>
+        </div>
+
+		<p>The iLCsoft Portal can be updated using <a href="https://wof-cluster.desy.de/sites/site_ilcsoft/content/manage">this link</a>.</p>
+
+		<p>TODO!!! Update binary releases tarballs</p>
+
+		<div class="center">
+		<h2><a name="step07">Step 7</a></h2>   
+        <h3>Announcing the new release</h3>
+        </div>
+
+		<p>The new release should be announced in the <a href="http://forum.linearcollider.org/">Linear Collider Forum</a> under Software Tools: Marlin et al.</p>
+
+
+        <div class="code">
+			mailto: ild-software-discussion@desy.de
+			
+			Dear all,
+			
+			-- apologies if you get this email more than once --
+			
+			A new iLCSoft release (v01-20) is available.
+
+            More details on the release can be found under the following link:
+            http://forum.linearcollider.org/...
+
+            Please report any problems and questions regarding this release in the forum referenced above.
+
+            Don't forget to subscribe to the topic if you are interested in getting updates and feedback on the release. 
+		
+			The iLCSoft team.
+        </div><div class="clear"></div>
+
+
+        <h4><a name="ref">Links and References:</a></h4>
+        <p><a href="http://ilcsoft.desy.de/portal">iLCSoft Portal</a></p>
+        <p><a href="http://ilcsoft.desy.de/portal/general_documentation/ilcinstall_documentation/">ilcinstall documentation</a></p>
+        <p><a href="https://svnsrv.desy.de/">Desy SVN Repository</a></p>
+        <p><a href="http://grid.desy.de">Grid computing at Desy</a></p>
+
+
+        <p><a href="http://www.validome.org/referer"><img style="border:none"
+            src="http://www.validome.org/images/set6/valid_html_4_0_1.gif"
+            alt="Valid HTML 4.01" width="80" height="15"></a>
+        </p>
+    </body>
+</html>
+
