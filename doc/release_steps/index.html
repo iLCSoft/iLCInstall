@@ -135,7 +135,7 @@
 		<p>8. Test installation</p>
 		<div class="code">
         # e.g. run the 3 event test in ILDConfig
-        svn co /afs/desy.de/user/e/engels/work/ilcsoft/dev/ILDConfig/trunk ildconfig-trunk
+        svn co https://svnsrv.desy.de/desy/marlinreco/ILDConfig/trunk ildconfig-trunk
         cd ildconfig-trunk/StandardConfig/current
         less README # follow steps in README
         ...
@@ -301,7 +301,7 @@
             # preview
             pack2BinRelTool.py /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-20
             # copy binaries and libraries
-            pack2BinRelTool.py /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-20
+            pack2BinRelTool.py -o /afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-20
         </div><div class="clear"></div>
 
 		<p>5. Copy external library dependencies</p>
