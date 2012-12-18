@@ -25,6 +25,24 @@ if( len(sys.argv) < 2 ):
     print "usage: %s install.cfg" % (sys.argv[0],)
     sys.exit(1)
 
+# desy afs directories
+ilcsoft_afs_path={}
+ilcsoft_afs_path['base']  = '/afs/desy.de/project/ilcsoft/sw'
+ilcsoft_afs_path['gcc34_32bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'i386_gcc34_sl4'   ))
+ilcsoft_afs_path['gcc41_32bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'i386_gcc41_sl5' ))
+ilcsoft_afs_path['gcc41_64bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc41_sl5' ))
+
+ilcPath = None
+try:
+    import platform
+    sizeofint = platform.architecture()[0]
+    gccver = ''.join( platform.python_compiler().split()[-1].split('.')[:2] )
+    arch = 'gcc' + gccver + '_' + sizeofint
+    ilcPath = ilcsoft_afs_path[ arch ] + '/'
+except:
+    pass
+
+
 # extract config file
 config_file = os.path.abspath(sys.argv[1])
 config_file_basename = config_file[config_file.rfind( '/' )+1:config_file.rfind(".")]
