@@ -8,13 +8,14 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-16-01'
+ilcsoft_release='v01-16-02-pre'
 # ----------------------------------------------------------------------------
 
 
 # --------- install dir ------------------------------------------------------
-ilcsoft_install_prefix = "/scratch/$USER/ilcsoft/"
-#ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
+#ilcsoft_install_prefix = "/scratch/$USER/ilcsoft/"
+ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
+#ilcsoft_install_prefix = "/scratch/rosem/v01-16-02_pre/"
 #ilcsoft_install_dir = os.path.join( ilcsoft_install_prefix, ilcsoft_release )
 # ----------------------------------------------------------------------------
 
@@ -91,7 +92,7 @@ MarlinFastJet_version = "v00-01"
 
 # -------------------------------------------
 
-KalTest_version = "v01-05-01"
+KalTest_version = "v01-05-pre"
 
 KalDet_version = "v01-11"
 
@@ -105,7 +106,7 @@ Marlin_version = "v01-04"
 
 Mokka_version = "mokka-08-00-03"
 
-MarlinReco_version = "v01-05"
+MarlinReco_version = "v01-06-pre"
 
 MarlinTrk_version = "v01-10-01"
 
@@ -130,8 +131,8 @@ CEDViewer_version = "v01-06-01"
 
 Overlay_version = "v00-13"
 
-PathFinder_version =  "v00-02"
-MarlinTPC_version =  "v00-10"
+PathFinder_version =  "v00-03-pre"
+MarlinTPC_version =  "v00-11-pre"
 
 LCTuple_version = "v01-01"
 
