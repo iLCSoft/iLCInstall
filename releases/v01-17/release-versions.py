@@ -8,14 +8,14 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-16-02-pre'
+ilcsoft_release='v01-17-pre'
 # ----------------------------------------------------------------------------
 
 
 # --------- install dir ------------------------------------------------------
 #ilcsoft_install_prefix = "/scratch/$USER/ilcsoft/"
-ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
-#ilcsoft_install_prefix = "/scratch/rosem/v01-16-02_pre/"
+#ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
+ilcsoft_install_prefix = "/scratch/rosem/"
 #ilcsoft_install_dir = os.path.join( ilcsoft_install_prefix, ilcsoft_release )
 # ----------------------------------------------------------------------------
 
@@ -59,11 +59,11 @@ XERCESC_ROOT_DIR = ilcPath + "xercesc/2.7.0"
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version = "9.5.p02"
+Geant4_version = "9.6"
 
 ROOT_version = "5.28.00f"
 
-CLHEP_version = "2.1.1.0"
+CLHEP_version = "2.1.3.1"
 
 GSL_version = "1.14"
 
@@ -77,9 +77,9 @@ CMake_version = "2.8.5"
 
 LCIO_version = "v02-03-03" # "v02-03-01"
 
-GEAR_version = "v01-02-02"
+GEAR_version = "v01-03-pre"
 
-CED_version = "v01-07"
+CED_version = "v01-08-pre"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-5"
 
@@ -92,23 +92,23 @@ MarlinFastJet_version = "v00-01"
 
 # -------------------------------------------
 
-KalTest_version = "v01-05-pre"
+KalTest_version = "v01-05-02"
 
-KalDet_version = "v01-11"
+KalDet_version = "v01-11-01-pre"
 
-LCCD_version = "v01-02"
+LCCD_version = "v01-02-01-pre"
 
 RAIDA_version = "v01-06-02"
 
-MarlinUtil_version = "v01-05-03"
+MarlinUtil_version = "v01-06-pre"
 
-Marlin_version = "v01-04"
+Marlin_version = "v01-04-01-pre"
 
 Mokka_version = "mokka-08-00-03"
 
-MarlinReco_version = "v01-06-pre"
+MarlinReco_version = "v01-07-pre"
 
-MarlinTrk_version = "v01-10-01"
+MarlinTrk_version = "v01-10-02-pre"
 
 MarlinTrkProcessors_version = "v01-09"
 
@@ -131,10 +131,10 @@ CEDViewer_version = "v01-06-01"
 
 Overlay_version = "v00-13"
 
-PathFinder_version =  "v00-03-pre"
-MarlinTPC_version =  "v00-11-pre"
+PathFinder_version =  "v00-04-pre"
+MarlinTPC_version =  "v00-12-pre"
 
-LCTuple_version = "v01-01"
+LCTuple_version = "v01-02-pre"
 
 BBQ_version =  "v00-01-02"
 
