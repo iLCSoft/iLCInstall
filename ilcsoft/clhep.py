@@ -47,12 +47,12 @@ class CLHEP(BaseILC):
         BaseILC.downloadSources(self)
 
         # create build directory
-        trymakedir( self.installPath + "/build" )
+        trymakedir( self.installPath + "../clhep_build_"+ self.version )
     
     def compile(self):
         """ compile CLHEP """
 
-        os.chdir( self.installPath + "/build" )
+        os.chdir( self.installPath + "../clhep_build_"+ self.version )
 
         if( os.system( "../CLHEP/configure --prefix=" + self.installPath + " 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
@@ -65,7 +65,7 @@ class CLHEP(BaseILC):
     
     def cleanupInstall(self):
         BaseILC.cleanupInstall(self)
-        os.chdir( self.installPath + "/build" )
+        os.chdir( self.installPath + "../clhep_build_"+ self.version )
         os.system( "make clean" )
 
     def postCheckDeps(self):
