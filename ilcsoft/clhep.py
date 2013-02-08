@@ -79,7 +79,7 @@ class CLHEP(BaseILC):
 
     def cleanupInstall(self):
         BaseILC.cleanupInstall(self)
-        os.chdir( self.build_path ) 
+        os.chdir( self.buildPath ) 
         os.system( "make clean" )
 
     def postCheckDeps(self):
