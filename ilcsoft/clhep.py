@@ -42,30 +42,55 @@ class CLHEP(BaseILC):
             else:
                 self.download.url = "http://proj-clhep.web.cern.ch/proj-clhep/DISTRIBUTION/distributions/clhep-%s.tgz" \
                         % (self.version,)
-    
+            
+            if( Version( self.version ) < "2.1.3.0" ):
+                self.old_build  = True
+                self.build_path =  self.installPath + "/build"
+            else:
+                self.old_build = False
+                self.build_path =  self.installPath + "/../clhep_build_"+ self.version
+                
+
+           
+
     def downloadSources(self):
         BaseILC.downloadSources(self)
 
         # create build directory
-        trymakedir( self.installPath + "../clhep_build_"+ self.version )
+        trymakedir(self.build_path   )
     
     def compile(self):
         """ compile CLHEP """
 
-        os.chdir( self.installPath + "../clhep_build_"+ self.version )
+        os.chdir( self.build_path   )
 
-        if( os.system( "../CLHEP/configure --prefix=" + self.installPath + " 2>&1 | tee -a " + self.logfile ) != 0 ):
-            self.abort( "failed to configure!!" )
+        if( self.old_build ):
+
+            if( os.system( "../CLHEP/configure --prefix=" + self.installPath + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+                self.abort( "failed to configure!!" )
+
+        else:  # cmake build
+
+            if( self.rebuild ):
+                tryunlink( "CMakeCache.txt" )
+
+            # build software
+            #fg: new clhep source is in extra subdirectory CLHEP ; default INSTALL_PREFIX is /usr/
+            if( os.system( self.genCMakeCmd() + "/CLHEP -DCMAKE_INSTALL_PREFIX=" + self.installPath 
+                           + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+                self.abort( "failed to configure!!" )
+
 
         if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
-
+                    
         if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to install!!" )
-    
+                        
+
     def cleanupInstall(self):
         BaseILC.cleanupInstall(self)
-        os.chdir( self.installPath + "../clhep_build_"+ self.version )
+        os.chdir( self.build_path ) 
         os.system( "make clean" )
 
     def postCheckDeps(self):
