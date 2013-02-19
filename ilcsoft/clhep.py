@@ -63,8 +63,6 @@ class CLHEP(BaseILC):
             if( self.rebuild ):
                  tryunlink( "CMakeCache.txt" )
 				
-            self.envcmake['CMAKE_INSTALL_PREFIX']=self.installPath
-
             # build software
             #fg: new clhep source is in extra subdirectory CLHEP ; default INSTALL_PREFIX is /usr/ 
             if( os.system( self.genCMakeCmd() + "/CLHEP -DCMAKE_INSTALL_PREFIX=" + self.installPath + " 2>&1 | tee -a " + self.logfile ) != 0 ):
