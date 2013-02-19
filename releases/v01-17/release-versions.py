@@ -15,7 +15,9 @@ ilcsoft_release='v01-17-pre'
 # --------- install dir ------------------------------------------------------
 #ilcsoft_install_prefix = "/scratch/$USER/ilcsoft/"
 #ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
-ilcsoft_install_prefix = "/scratch/rosem/"
+#ilcsoft_install_prefix = '/afs/desy.de/project/ilcsoft/sw/x86_64_gcc44_sl6'
+#ilcsoft_install_prefix = "/scratch/gaede/ilcsoft/"
+
 #ilcsoft_install_dir = os.path.join( ilcsoft_install_prefix, ilcsoft_release )
 # ----------------------------------------------------------------------------
 
@@ -24,9 +26,9 @@ ilcsoft_install_prefix = "/scratch/rosem/"
 # python variable for referring the ILC Home directory
 # used to link or use already installed packages (SL4 or SL5)
 # no need to set this variable if using SL4 or SL5 with access to /afs/desy.de/
-#ilcPath = '/afs/desy.de/project/ilcsoft/sw/i386_gcc41_sl5/'
+#ilcPath = '/afs/desy.de/project/ilcsoft/sw/x86_64_gcc44_sl6'
 #ilcPath = ilcsoft_afs_path[ arch ]
-#ilcPath = ilcsoft_install_prefix
+ilcPath = ilcsoft_install_prefix
 # ----------------------------------------------------------------------------
 
 #ilcPatchPath = "/afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-15"
@@ -53,7 +55,7 @@ CERNLIB_path = ilcPath + "/cernlib/" + CERNLIB_version
 
 
 # xerces-c (needed by geant4 for building gdml support - required by mokka)
-XERCESC_ROOT_DIR = ilcPath + "xercesc/2.7.0"
+XERCESC_ROOT_DIR = ilcPath + "/xercesc/2.7.0"
 
 
 
@@ -61,7 +63,7 @@ XERCESC_ROOT_DIR = ilcPath + "xercesc/2.7.0"
 
 Geant4_version = "9.6.p01"
 
-ROOT_version = "5.28.00f"
+ROOT_version = "5.34.03" #5.28.00f"
 
 CLHEP_version = "2.1.3.1"
 
@@ -104,7 +106,7 @@ MarlinUtil_version = "v01-06-pre"
 
 Marlin_version = "v01-04-01-pre"
 
-Mokka_version = "mokka-08-00-03"
+Mokka_version = "HEAD" # "mokka-08-00-03"
 
 MarlinReco_version = "v01-07-pre"
 
@@ -132,7 +134,8 @@ CEDViewer_version = "v01-06-01"
 Overlay_version = "v00-13"
 
 PathFinder_version =  "v00-04-pre"
-MarlinTPC_version =  "v00-12-pre"
+
+MarlinTPC_version =   "HEAD" # "v00-12-pre"
 
 LCTuple_version = "v01-02-pre"
 
