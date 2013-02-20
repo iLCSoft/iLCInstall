@@ -15,8 +15,6 @@ ilcsoft_release='v01-17-pre'
 # --------- install dir ------------------------------------------------------
 #ilcsoft_install_prefix = "/scratch/$USER/ilcsoft/"
 ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
-#ilcsoft_install_prefix = '/afs/desy.de/project/ilcsoft/sw/x86_64_gcc44_sl6'
-ilcsoft_install_prefix = '/afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5'
 #ilcsoft_install_prefix = "/scratch/gaede/ilcsoft/"
 #ilcsoft_install_prefix = "/scratch/rosem/ilcsoft/"
 
@@ -109,7 +107,7 @@ MarlinUtil_version = "v01-06-pre"
 
 Marlin_version = "v01-04-01-pre"
 
-Mokka_version = "HEAD" # "mokka-08-00-03"
+Mokka_version = "mokka-08-01-pre"
 
 MarlinReco_version = "v01-07-pre"
 
