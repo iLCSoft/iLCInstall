@@ -16,7 +16,10 @@ ilcsoft_release='v01-17-pre'
 #ilcsoft_install_prefix = "/scratch/$USER/ilcsoft/"
 #ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 #ilcsoft_install_prefix = '/afs/desy.de/project/ilcsoft/sw/x86_64_gcc44_sl6'
+ilcsoft_install_prefix = '/afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5'
 #ilcsoft_install_prefix = "/scratch/gaede/ilcsoft/"
+#ilcsoft_install_prefix = "/scratch/rosem/ilcsoft/"
+
 
 #ilcsoft_install_dir = os.path.join( ilcsoft_install_prefix, ilcsoft_release )
 # ----------------------------------------------------------------------------
