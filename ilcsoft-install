@@ -55,6 +55,7 @@ ilcsoft_afs_path['base']  = '/afs/desy.de/project/ilcsoft/sw'
 ilcsoft_afs_path['gcc34_32bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'i386_gcc34_sl4'   ))
 ilcsoft_afs_path['gcc41_32bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'i386_gcc41_sl5' ))
 ilcsoft_afs_path['gcc41_64bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc41_sl5' ))
+ilcsoft_afs_path['gcc44_64bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc44_sl6' ))
 
 ilcPath = None
 try:
