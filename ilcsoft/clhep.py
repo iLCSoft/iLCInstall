@@ -41,15 +41,15 @@ class CLHEP(BaseILC):
                 self.download.url = "http://proj-clhep.web.cern.ch/proj-clhep/DISTRIBUTION/distributions/clhep-%s.tgz" \
                         % (self.version,)
 		   
+        if( Version( self.version ) >= "2.1.3.0" ):
+            self.hasCMakeBuildSupport = True
+
+
     def downloadSources(self):
         BaseILC.downloadSources(self)
 	
     def compile(self):
         """ compile CLHEP """
-
-        if( Version( self.version ) >= "2.1.3.0" ):
-            self.buildPath = "%s/../clhep_build-%s" % (self.installPath, self.version)
-            self.hasCMakeBuildSupport = True
 
 	     	
         trymakedir( self.buildPath )
