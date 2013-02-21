@@ -64,7 +64,7 @@ XERCESC_ROOT_DIR = ilcPath + "/xercesc/2.7.0"
 
 Geant4_version = "9.6.p01"
 
-ROOT_version = "5.34.03" #5.28.00f"
+ROOT_version = "5.34.05" #5.28.00f"
 
 CLHEP_version = "2.1.3.1"
 
