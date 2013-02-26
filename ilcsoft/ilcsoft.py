@@ -63,7 +63,11 @@ class ILCSoft:
         self.debugInfo['LSB_RELEASE']=getoutput( "lsb_release -a 2>/dev/null" ).strip()
         self.debugInfo['GCC_VERSION']=getoutput( "gcc --version | head -n1" ).strip()
         release_string = getoutput( "lsb_release -d 2>/dev/null").strip()
-        self.release_number = release_string[re.search('\d', release_string).start()]
+
+        #fg: release_string might be empty, e.g. if lsb_release does not exis (MacOs)
+        self.release_number = '-1'
+        if len( release_string ): 
+            self.release_number = release_string[re.search('\d', release_string).start()]
         
         for k,v in self.debugInfo.iteritems():
             print "+", k, '\t', str(v).replace("\n","\n\t\t")
