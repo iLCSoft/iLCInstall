@@ -382,7 +382,7 @@ class ILCSoft:
             f.write( os.linesep + '# --- set DYLD_LIBRARY_PATH to LD_LIBRARY_PATH for MAC compatibility ---' + os.linesep )
             f.write( 'export DYLD_LIBRARY_PATH=$LD_LIBRARY_PATH:$DYLD_LIBRARY_PATH' + os.linesep + os.linesep )
         if ( self.os.ver.find("cientific") and self.release_number == '6'):
-            f.write( os.linesep + '# --- MOKKA needs a special environment variable under SL6  ---' + os.linesep )
+            f.write( os.linesep + '# ---  Workaraund for OpenGl bug on SL6  ---' + os.linesep )
             f.write( 'export LIBGL_ALWAYS_INDIRECT=1' + os.linesep  )
 
 
