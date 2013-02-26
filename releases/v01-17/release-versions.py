@@ -64,7 +64,8 @@ XERCESC_ROOT_DIR = ilcPath + "/xercesc/2.7.0"
 
 Geant4_version = "9.6.p01"
 
-ROOT_version = "5.34.05" #5.28.00f"
+ROOT_version = "5.34.05" 
+#ROOT_version = "5.28.00f"
 
 CLHEP_version = "2.1.3.1"
 
@@ -109,7 +110,7 @@ Marlin_version = "v01-04-01-pre"
 
 Mokka_version = "mokka-08-01-pre"
 
-MarlinReco_version = "v01-07-pre"
+MarlinReco_version = "v01-07-pre01"
 
 MarlinTrk_version = "v01-10-02-pre"
 
@@ -142,7 +143,7 @@ LCTuple_version = "v01-02-pre"
 
 BBQ_version =  "v00-01-02"
 
-Druid_version = "1.8" 
+Druid_version = "2.2-pre" # "1.8" 
 
 Garlic_version = "v2.10.1"
 
