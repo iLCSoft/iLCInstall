@@ -28,6 +28,7 @@ ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 # used to link or use already installed packages (SL4 or SL5)
 # no need to set this variable if using SL4 or SL5 with access to /afs/desy.de/
 #ilcPath = '/afs/desy.de/project/ilcsoft/sw/x86_64_gcc44_sl6'
+#ilcPath = '/afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5'
 #ilcPath = ilcsoft_afs_path[ arch ]
 ilcPath = ilcsoft_install_prefix
 # ----------------------------------------------------------------------------
@@ -81,7 +82,7 @@ CMake_version = "2.8.5"
 
 LCIO_version = "v02-03-03" # "v02-03-01"
 
-GEAR_version = "v01-03-pre"
+GEAR_version = "v01-03-pre01"
 
 CED_version = "v01-08-pre"
 
