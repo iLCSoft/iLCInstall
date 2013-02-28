@@ -109,7 +109,7 @@ MarlinUtil_version = "v01-06-pre"
 
 Marlin_version = "v01-04-01-pre"
 
-Mokka_version = "mokka-08-01-pre01"
+Mokka_version = "mokka-08-01-pre02"
 
 MarlinReco_version = "v01-07-pre01"
 
