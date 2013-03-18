@@ -84,7 +84,9 @@ class QT(BaseILC):
         if( self.rebuild ):
             os.system( "make distclean" )
 
-        qt_cfg_options = " -prefix-install -fast -make libs -no-separate-debug-info -no-xkb -no-xinerama -no-qt3support"
+#        qt_cfg_options = " -prefix-install -fast -make libs -no-separate-debug-info -no-xkb -no-xinerama -no-qt3support"
+#fg: enable qt3-support (on request from Klaus)       
+        qt_cfg_options = " -prefix-install -fast -make libs -no-separate-debug-info -no-xkb -no-xinerama"
         
         if( Version( self.version ) < '4.5' ):
             qt_cfg_options += " -no-tablet"
