@@ -17,7 +17,7 @@ from ced import CED
 from kaltest import KalTest, KalDet
 from pathfinder import PathFinder
 from bbq import BBQ
-
+from gbl import GBL
 
 # marlin & friends
 from marlinpkg import MarlinPKG
