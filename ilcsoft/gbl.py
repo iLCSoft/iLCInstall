@@ -52,8 +52,8 @@ class GBL(BaseILC):
         self.download.svnurl = 'https://svnsrv.desy.de/public/GeneralBrokenLines'
 
         if( Version( self.version ) == 'HEAD' ):
-            self.download.svnurl += '/trunk'
+            self.download.svnurl += '/trunk/cpp'
         elif '-pre' in self.version or '-dev' in self.version:
-            self.download.svnurl += '/branches/' + self.version
+            self.download.svnurl += '/branches/' + self.version + '/cpp'
         else:
-            self.download.svnurl += '/tags/' + self.version
+            self.download.svnurl += '/tags/' + self.version + '/cpp'
