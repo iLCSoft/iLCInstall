@@ -101,6 +101,8 @@ KalTest_version = "v01-05-02"
 
 KalDet_version = "v01-11-01-pre"
 
+GBL_version = "v01-15-pre"
+
 LCCD_version = "v01-02-01-pre"
 
 RAIDA_version = "v01-06-02"
@@ -109,7 +111,7 @@ MarlinUtil_version = "v01-06-pre"
 
 Marlin_version = "v01-04-01-pre"
 
-Mokka_version = "mokka-08-01-pre02"
+Mokka_version = "mokka-08-01-pre03"
 
 MarlinReco_version = "v01-07-pre01"
 
@@ -138,7 +140,7 @@ Overlay_version = "v00-13"
 
 PathFinder_version =  "v00-04-pre"
 
-MarlinTPC_version =   "HEAD" # "v00-12-pre"
+MarlinTPC_version = "v00-12-pre"
 
 LCTuple_version = "v01-02-pre"
 
