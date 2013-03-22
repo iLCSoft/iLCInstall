@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-pre'
+ilcsoft_release='v01-17'
 # ----------------------------------------------------------------------------
 
 
@@ -82,9 +82,9 @@ CMake_version = "2.8.5"
 
 LCIO_version = "v02-03-03" # "v02-03-01"
 
-GEAR_version = "v01-03-pre01"
+GEAR_version = "v01-03"
 
-CED_version = "v01-08-pre"
+CED_version = "v01-08"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-5"
 
@@ -97,25 +97,25 @@ MarlinFastJet_version = "v00-01"
 
 # -------------------------------------------
 
-KalTest_version = "v01-05-03-pre"
+KalTest_version = "v01-05-03"
 
-KalDet_version = "v01-11-01-pre"
+KalDet_version = "v01-11-01"
 
-GBL_version = "v01-15-pre"
+GBL_version = "v01-15"
 
-LCCD_version = "v01-02-01-pre"
+LCCD_version = "v01-02-01"
 
 RAIDA_version = "v01-06-02"
 
-MarlinUtil_version = "v01-06-pre"
+MarlinUtil_version = "v01-06"
 
-Marlin_version = "v01-04-01-pre"
+Marlin_version = "v01-04-01"
 
-Mokka_version = "mokka-08-01-pre03"
+Mokka_version = "mokka-08-01"
 
-MarlinReco_version = "v01-07-pre01"
+MarlinReco_version = "v01-07"
 
-MarlinTrk_version = "v01-10-02-pre"
+MarlinTrk_version = "v01-10-02"
 
 MarlinTrkProcessors_version = "v01-09"
 
@@ -138,15 +138,15 @@ CEDViewer_version = "v01-06-01"
 
 Overlay_version = "v00-13"
 
-PathFinder_version =  "v00-04-pre"
+PathFinder_version =  "v00-04"
 
-MarlinTPC_version = "v00-12-pre"
+MarlinTPC_version = "v00-12"
 
-LCTuple_version = "v01-02-pre"
+LCTuple_version = "v01-02"
 
 BBQ_version =  "v00-01-02"
 
-Druid_version = "2.2-pre" # "1.8" 
+Druid_version = "2.2" # "1.8" 
 
 Garlic_version = "v2.10.1"
 
