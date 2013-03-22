@@ -146,7 +146,7 @@ LCTuple_version = "v01-02"
 
 BBQ_version =  "v00-01-02"
 
-Druid_version = "2.2-pre" # "1.8" 
+Druid_version = "2.2" # "1.8" 
 
 Garlic_version = "v2.10.1"
 
