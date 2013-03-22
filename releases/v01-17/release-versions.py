@@ -97,7 +97,7 @@ MarlinFastJet_version = "v00-01"
 
 # -------------------------------------------
 
-KalTest_version = "v01-05-02"
+KalTest_version = "v01-05-03-pre"
 
 KalDet_version = "v01-11-01-pre"
 
