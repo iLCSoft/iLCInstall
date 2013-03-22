@@ -101,7 +101,7 @@ KalTest_version = "v01-05-03"
 
 KalDet_version = "v01-11-01"
 
-GBL_version = "v01-15"
+GBL_version = "v01-15-00"
 
 LCCD_version = "v01-02-01"
 
@@ -146,7 +146,7 @@ LCTuple_version = "v01-02"
 
 BBQ_version =  "v00-01-02"
 
-Druid_version = "2.2" # "1.8" 
+Druid_version = "2.2-pre" # "1.8" 
 
 Garlic_version = "v2.10.1"
 
