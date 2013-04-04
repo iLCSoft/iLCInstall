@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17'
+ilcsoft_release='v01-17-01-pre'
 # ----------------------------------------------------------------------------
 
 
@@ -61,6 +61,12 @@ XERCESC_ROOT_DIR = ilcPath + "/xercesc/2.7.0"
 
 
 
+# ======================= PATCHED VERSIONS v01-17-01 ===================================
+
+Marlin_version = "v01-04-02-pre"
+
+
+
 # ======================= PACKAGE VERSIONS ===================================
 
 Geant4_version = "9.6.p01"
@@ -109,7 +115,7 @@ RAIDA_version = "v01-06-02"
 
 MarlinUtil_version = "v01-06"
 
-Marlin_version = "v01-04-01"
+#Marlin_version = "v01-04-01"
 
 Mokka_version = "mokka-08-01"
 
