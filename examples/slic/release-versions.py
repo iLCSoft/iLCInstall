@@ -45,6 +45,8 @@ Java_path = "/usr/"
 
 XercesC_version = "3.1.1" 
 
+HepPDT_version = "3.04.01"
+
 Geant4_version = "9.6.p01"
 
 #ROOT_version = "5.34.05" 

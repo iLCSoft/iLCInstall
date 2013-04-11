@@ -55,6 +55,7 @@ from clhep import CLHEP
 from heppdt import HepPDT
 from gsl import GSL
 from xercesc import XercesC
+from heppdt import HepPDT
 from qt import QT
 from dcap import dcap
 
