@@ -54,6 +54,7 @@ from cernlib import CERNLIB
 from clhep import CLHEP
 from heppdt import HepPDT
 from gsl import GSL
+from xercesc import XercesC
 from qt import QT
 from dcap import dcap
 
