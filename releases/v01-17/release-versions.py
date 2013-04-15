@@ -57,7 +57,8 @@ CERNLIB_path = ilcPath + "/cernlib/" + CERNLIB_version
 
 
 # xerces-c (needed by geant4 for building gdml support - required by mokka)
-XERCESC_ROOT_DIR = ilcPath + "/xercesc/2.7.0"
+#XERCESC_ROOT_DIR = ilcPath + "/xercesc/2.7.0"
+
 
 
 
@@ -155,4 +156,20 @@ BBQ_version =  "v00-01-02"
 Druid_version = "2.2" # "1.8" 
 
 Garlic_version = "v2.10.1"
+
+
+
+#--- slic et al:
+
+XercesC_version = "3.1.1" 
+
+HepPDT_version = "3.04.01"
+
+GDML_version = "HEAD"
+
+LCDD_version = "HEAD"
+
+SLIC_version = "HEAD"
+
+
 
