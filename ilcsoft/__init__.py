@@ -38,6 +38,12 @@ from fastjet import FastJet, FastJetClustering
 from marlintrk import MarlinTrk
 from kitrack import KiTrack, KiTrackMarlin
 
+#slic et al
+from gdml import GDML
+from lcdd import LCDD
+from slic import SLIC
+
+
 # simtools
 #from simtoolsmaker import SimToolsMaker
 from simtools import *  # modules defined in simtools/__init__.py
@@ -58,6 +64,8 @@ from xercesc import XercesC
 from heppdt import HepPDT
 from qt import QT
 from dcap import dcap
+
+
 
 # external (without install support)
 from root import ROOT
