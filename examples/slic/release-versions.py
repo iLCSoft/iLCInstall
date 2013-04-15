@@ -45,19 +45,22 @@ Java_path = "/usr/"
 
 XercesC_version = "3.1.1" 
 
-HepPDT_version = "3.04.01"
-
-Geant4_version = "9.6.p01"
-
-#ROOT_version = "5.34.05" 
-#CLHEP_version = "2.1.3.1"
-
-CMake_version = "2.8.5"
-
 LCIO_version = "v02-03-03"
 
 ILCUTIL_version = "v01-00"
 
-#LCDD_version = "???"
+
+Geant4_version = "9.6.p01"
+
+CMake_version = "2.8.5"
+
+HepPDT_version = "3.04.01"
+
+GDML_version = "HEAD"
+
+LCDD_version = "HEAD"
+
+SLIC_version = "HEAD"
+
 
 
