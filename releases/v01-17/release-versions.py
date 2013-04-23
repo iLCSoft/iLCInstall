@@ -108,7 +108,7 @@ KalTest_version = "v01-05-03"
 
 KalDet_version = "v01-11-01"
 
-GBL_version = "v01-15-00"
+GBL_version = "v01-15-01"
 
 LCCD_version = "v01-02-01"
 
