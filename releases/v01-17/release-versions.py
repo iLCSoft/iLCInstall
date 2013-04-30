@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-01-pre'
+ilcsoft_release='v01-17-01-pre02'
 # ----------------------------------------------------------------------------
 
 
@@ -64,7 +64,7 @@ CERNLIB_path = ilcPath + "/cernlib/" + CERNLIB_version
 
 # ======================= PATCHED VERSIONS v01-17-01 ===================================
 
-Marlin_version = "v01-04-02-pre"
+Marlin_version = "v01-05-pre"
 
 
 
@@ -87,7 +87,7 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-03-03" # "v02-03-01"
+LCIO_version = "v02-03-04-pre01" # "v02-03-01"
 
 GEAR_version = "v01-03"
 
@@ -106,7 +106,7 @@ MarlinFastJet_version = "v00-01"
 
 KalTest_version = "v01-05-03"
 
-KalDet_version = "v01-11-01"
+KalDet_version = "v01-12-pre"
 
 GBL_version = "v01-15-02"
 
@@ -114,7 +114,7 @@ LCCD_version = "v01-02-01"
 
 RAIDA_version = "v01-06-02"
 
-MarlinUtil_version = "v01-06"
+MarlinUtil_version = "v01-06-01-pre"
 
 #Marlin_version = "v01-04-01"
 
@@ -122,11 +122,11 @@ Mokka_version = "mokka-08-01"
 
 MarlinReco_version = "v01-07"
 
-MarlinTrk_version = "v01-10-02"
+MarlinTrk_version = "v01-11-pre"
 
 MarlinTrkProcessors_version = "v01-09"
 
-Clupatra_version = "v00-09-01"
+Clupatra_version = "v00-10-pre02"
 
 LCFIVertex_version = "v00-06-01"
 LCFIPlus_version = "v00-05-02"
@@ -147,7 +147,7 @@ Overlay_version = "v00-13"
 
 PathFinder_version =  "v00-04"
 
-MarlinTPC_version = "v00-12"
+MarlinTPC_version = "v00-13-pre02"
 
 LCTuple_version = "v01-02"
 
