@@ -82,7 +82,8 @@ class LCDD(BaseILC):
         BaseILC.postCheckDeps(self)
 
         self.env["LCDD"] = self.installPath
-        
+        self.env["GDML_SCHEMA_DIR"]= "$LCDD"            
+
         # PATH
         #        self.envpath["PATH"].append( "$LCDD/tools" )
         #        self.envpath["PATH"].append( "$LCDD/bin" )
