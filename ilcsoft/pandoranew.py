@@ -30,6 +30,12 @@ class PandoraPFANew(MarlinPKG):
             'lib/libPandoraSDK.so', 'lib/libPandoraSDK.a', 'lib/libPandoraSDK.dylib',
         ] ]
 
+    def postCheckDeps(self):
+
+        self.env["PANDORAPFANEW"] = self.installPath        
+        
+        self.envpath["LD_LIBRARY_PATH"].append( "$PANDORAPFANEW/lib" )
+
 
 class MarlinPandora(MarlinPKG):
     """ Responsible for the MarlinPandora installation process. """
