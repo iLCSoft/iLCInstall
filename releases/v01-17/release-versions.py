@@ -172,4 +172,9 @@ LCDD_version = "HEAD"
 SLIC_version = "HEAD"
 
 
+#--- EUTelescope et al:
+Eutelescope_version = "v00-08-02"
 
+Eudaq_version = "tags/v01-00-00"
+
+Millepede2_version = 'trunk'
