@@ -11,12 +11,13 @@ from util import *
 
 # custom imports
 from marlinpkg import MarlinPKG
+from baseilc import BaseILC
 
-class PandoraPFANew(MarlinPKG):
+class PandoraPFANew(BaseILC):
     """ Responsible for the PandoraPFANew installation process. """
     
     def __init__(self, userInput):
-        MarlinPKG.__init__(self, "PandoraPFANew", userInput )
+        BaseILC.__init__(self, userInput, "PandoraPFANew","PandoraPFANew" )
 
         self.download.root = 'PandoraPFANew'
 
@@ -29,6 +30,23 @@ class PandoraPFANew(MarlinPKG):
             'lib/libPandoraPFANew.so', 'lib/libPandoraPFANew.a', 'lib/libPandoraPFANew.dylib',
             'lib/libPandoraSDK.so', 'lib/libPandoraSDK.a', 'lib/libPandoraSDK.dylib',
         ] ]
+
+    def compile(self):
+        """ compile  PandoraPFANew"""
+        
+        os.chdir( self.installPath+'/build' )
+        
+        if self.rebuild:
+            tryunlink( "CMakeCache.txt" )
+
+        if( os.system( self.genCMakeCmd() + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+            self.abort( "failed to configure!!" )
+
+        if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
+            self.abort( "failed to compile!!" )
+
+        if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
+            self.abort( "failed to install!!" )
 
     def postCheckDeps(self):
 
