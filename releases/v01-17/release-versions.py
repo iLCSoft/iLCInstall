@@ -64,7 +64,7 @@ CERNLIB_path = ilcPath + "/cernlib/" + CERNLIB_version
 
 # ======================= PATCHED VERSIONS v01-17-01 ===================================
 
-Marlin_version = "v01-05-pre"
+Marlin_version = "v01-05-pre01"
 
 
 
@@ -87,7 +87,7 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-03-03" # "v02-03-01"
+LCIO_version = "v02-04-pre" # "v02-03-01"
 
 GEAR_version = "v01-03"
 
