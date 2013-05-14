@@ -171,6 +171,9 @@ LCDD_version = "HEAD"
 
 SLIC_version = "HEAD"
 
+DD4hep_version = "HEAD"
+
+
 
 #--- EUTelescope et al:
 Eutelescope_version = "v00-08-02"
