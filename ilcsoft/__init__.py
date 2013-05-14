@@ -43,6 +43,8 @@ from gdml import GDML
 from lcdd import LCDD
 from slic import SLIC
 
+#aida
+from dd4hep import DD4hep 
 
 # simtools
 #from simtoolsmaker import SimToolsMaker
