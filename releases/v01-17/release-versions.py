@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-01-pre03'
+ilcsoft_release='v01-17-01-pre04'
 # ----------------------------------------------------------------------------
 
 
@@ -65,6 +65,16 @@ CERNLIB_path = ilcPath + "/cernlib/" + CERNLIB_version
 # ======================= PATCHED VERSIONS v01-17-01 ===================================
 
 Marlin_version = "v01-05-pre01"
+LCIO_version = "v02-04-pre01" 
+KalDet_version = "v01-12-pre"
+MarlinUtil_version = "v01-06-01-pre"
+MarlinTrk_version = "v01-11-pre"
+Clupatra_version = "v00-10-pre02"
+MarlinTPC_version = "HEAD" #"v00-13-pre02"
+LCTuple_version = "v01-03-pre"
+CED_version = "v01-09-pre"
+CEDViewer_version = "v01-07-pre02"
+MarlinTrkProcessors_version = "v01-09-01-pre"
 
 
 
@@ -73,7 +83,6 @@ Marlin_version = "v01-05-pre01"
 Geant4_version = "9.6.p01"
 
 ROOT_version = "5.34.05" 
-#ROOT_version = "5.28.00f"
 
 CLHEP_version = "2.1.3.1"
 
@@ -84,14 +93,13 @@ QT_version = "4.7.4"
 CMake_version = "2.8.5"
 
 
-
 # -------------------------------------------
 
-LCIO_version = "v02-04-pre" # "v02-03-01"
+#LCIO_version = "v02-04-pre" # "v02-03-01"
 
 GEAR_version = "v01-03"
 
-CED_version = "v01-08"
+#CED_version = "v01-08"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-5"
 
@@ -106,7 +114,7 @@ MarlinFastJet_version = "v00-01"
 
 KalTest_version = "v01-05-03"
 
-KalDet_version = "v01-12-pre"
+#KalDet_version = "v01-12-pre"
 
 GBL_version = "V01-15-02"
 
@@ -114,7 +122,7 @@ LCCD_version = "v01-02-01"
 
 RAIDA_version = "v01-06-02"
 
-MarlinUtil_version = "v01-06-01-pre"
+#MarlinUtil_version = "v01-06-01-pre"
 
 #Marlin_version = "v01-04-01"
 
@@ -122,11 +130,11 @@ Mokka_version = "mokka-08-01"
 
 MarlinReco_version = "v01-07"
 
-MarlinTrk_version = "v01-11-pre"
+#MarlinTrk_version = "v01-11-pre"
 
-MarlinTrkProcessors_version = "v01-09"
+#MarlinTrkProcessors_version = "v01-09"
 
-Clupatra_version = "v00-10-pre02"
+#Clupatra_version = "v00-10-pre02"
 
 LCFIVertex_version = "v00-06-01"
 LCFIPlus_version = "v00-05-02"
@@ -141,15 +149,15 @@ PandoraPFANew_version = "v00-09"
 MarlinPandora_version = "v00-09-02"
 PandoraAnalysis_version = "v00-04"
 
-CEDViewer_version = "v01-06-01"
+#CEDViewer_version = "v01-06-01"
 
 Overlay_version = "v00-13"
 
 PathFinder_version =  "v00-04"
 
-MarlinTPC_version = "v00-13-pre02"
+#MarlinTPC_version = "v00-13-pre02"
 
-LCTuple_version = "v01-03-pre"
+#LCTuple_version = "v01-03-pre"
 
 BBQ_version =  "v00-01-02"
 
@@ -165,19 +173,16 @@ XercesC_version = "3.1.1"
 
 HepPDT_version = "3.04.01"
 
-GDML_version = "HEAD"
+GDML_version = "HEAD" # "v03-00-00"
+LCDD_version = "v03-00-00"
+SLIC_version = "v03-01-00"
 
-LCDD_version = "HEAD"
 
-SLIC_version = "HEAD"
-
-DD4hep_version = "HEAD"
+DD4hep_version = "v00-01-pre"
 
 
 
 #--- EUTelescope et al:
 Eutelescope_version = "v00-08-02"
-
 Eudaq_version = "tags/v01-00-00"
-
 Millepede2_version = 'trunk'
