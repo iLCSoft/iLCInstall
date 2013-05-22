@@ -65,7 +65,7 @@ CERNLIB_path = ilcPath + "/cernlib/" + CERNLIB_version
 # ======================= PATCHED VERSIONS v01-17-01 ===================================
 
 Marlin_version = "v01-05-pre01"
-LCIO_version = "v02-04-pre01" 
+LCIO_version = "v02-04-pre02" 
 KalDet_version = "v01-12-pre"
 MarlinUtil_version = "v01-06-01-pre"
 MarlinTrk_version = "v01-11-pre"
