@@ -1,14 +1,14 @@
 ###########################################
 #
-# iLCSoft versions for release v01-16
+# iLCSoft versions for release v01-17-01
 #
-# F.Gaede, DESY 09.12.2011
+# Ch. Rosemann, DESY 23.05.2013
 #
 ###########################################
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-01-pre04'
+ilcsoft_release='v01-17-01'
 # ----------------------------------------------------------------------------
 
 
@@ -62,22 +62,6 @@ CERNLIB_path = ilcPath + "/cernlib/" + CERNLIB_version
 
 
 
-# ======================= PATCHED VERSIONS v01-17-01 ===================================
-
-Marlin_version = "v01-05-pre01"
-LCIO_version = "v02-04-pre02" 
-KalDet_version = "v01-12-pre"
-MarlinUtil_version = "v01-06-01-pre"
-MarlinTrk_version = "v01-11-pre"
-Clupatra_version = "v00-10-pre02"
-MarlinTPC_version = "v00-13-pre03"
-LCTuple_version = "v01-03-pre"
-CED_version = "v01-09-pre"
-CEDViewer_version = "v01-07-pre02"
-MarlinTrkProcessors_version = "v01-09-01-pre"
-
-
-
 # ======================= PACKAGE VERSIONS ===================================
 
 Geant4_version = "9.6.p01"
@@ -95,11 +79,11 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-#LCIO_version = "v02-04-pre" # "v02-03-01"
+LCIO_version = "v02-04"
 
 GEAR_version = "v01-03"
 
-#CED_version = "v01-08"
+CED_version = "v01-09"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-5"
 
@@ -114,7 +98,7 @@ MarlinFastJet_version = "v00-01"
 
 KalTest_version = "v01-05-03"
 
-#KalDet_version = "v01-12-pre"
+KalDet_version = "v01-12"
 
 GBL_version = "V01-15-02"
 
@@ -122,19 +106,19 @@ LCCD_version = "v01-02-01"
 
 RAIDA_version = "v01-06-02"
 
-#MarlinUtil_version = "v01-06-01-pre"
+MarlinUtil_version = "v01-06-01"
 
-#Marlin_version = "v01-04-01"
+Marlin_version = "v01-05"
 
 Mokka_version = "mokka-08-01"
 
 MarlinReco_version = "v01-07"
 
-#MarlinTrk_version = "v01-11-pre"
+MarlinTrk_version = "v01-11"
 
-#MarlinTrkProcessors_version = "v01-09"
+MarlinTrkProcessors_version = "v01-09-01"
 
-#Clupatra_version = "v00-10-pre02"
+Clupatra_version = "v00-10"
 
 LCFIVertex_version = "v00-06-01"
 LCFIPlus_version = "v00-05-02"
@@ -149,15 +133,15 @@ PandoraPFANew_version = "v00-09"
 MarlinPandora_version = "v00-09-02"
 PandoraAnalysis_version = "v00-04"
 
-#CEDViewer_version = "v01-06-01"
+CEDViewer_version = "v01-07"
 
 Overlay_version = "v00-13"
 
 PathFinder_version =  "v00-04"
 
-#MarlinTPC_version = "v00-13-pre02"
+MarlinTPC_version = "v00-13"
 
-#LCTuple_version = "v01-03-pre"
+LCTuple_version = "v01-03"
 
 BBQ_version =  "v00-01-02"
 
