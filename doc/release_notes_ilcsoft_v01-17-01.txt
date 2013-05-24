@@ -4,11 +4,26 @@
 #
 #################################
 
+Developers release that provides many smaller fixes and a 
+number of new features as well as a number of new packages.
+
+
 =================================================
 
  Changes in v01-17-01  w.r.t. iLCSoft v01-17
  
 =================================================
+
+New packages added to iLCSoft:
+
+
+GBL: General Broken Lines (K.Kleinworth, Ch.Rosemann)
+
+DD4hep: Geometry description (M.Frank, P.Mato)
+
+SLIC, XercesC, HepPDT, GDML, LCDD - Slic geant4 simulation (J.McCormick)
+
+
 
 ===============
  LCIO: v02-04

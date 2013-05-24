@@ -162,7 +162,7 @@ LCDD_version = "v03-00-00"
 SLIC_version = "v03-01-00"
 
 
-DD4hep_version = "v00-01-pre"
+DD4hep_version = "v00-01"
 
 
 
