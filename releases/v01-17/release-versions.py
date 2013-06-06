@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-01'
+ilcsoft_release='v01-17-02-pre'
 # ----------------------------------------------------------------------------
 
 
@@ -85,7 +85,7 @@ GEAR_version = "v01-03"
 
 CED_version = "v01-09"
 
-CondDBMySQL_version = "CondDBMySQL_ILC-0-9-5"
+CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6-pre"
 
 ILCUTIL_version = "v01-00"
 
@@ -102,11 +102,11 @@ KalDet_version = "v01-12"
 
 GBL_version = "V01-15-02"
 
-LCCD_version = "v01-02-01"
+LCCD_version = "v01-03-pre"
 
 RAIDA_version = "v01-06-02"
 
-MarlinUtil_version = "v01-06-01"
+MarlinUtil_version = "v01-07-pre"
 
 Marlin_version = "v01-05"
 
