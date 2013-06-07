@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-02-pre'
+ilcsoft_release='v01-17-02-pre01'
 # ----------------------------------------------------------------------------
 
 
@@ -79,7 +79,7 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-04"
+LCIO_version = "v02-04-01-pre"
 
 GEAR_version = "v01-03"
 
@@ -106,7 +106,7 @@ LCCD_version = "v01-03-pre"
 
 RAIDA_version = "v01-06-02"
 
-MarlinUtil_version = "v01-07-pre"
+MarlinUtil_version = "v01-07-pre01"
 
 Marlin_version = "v01-05"
 
