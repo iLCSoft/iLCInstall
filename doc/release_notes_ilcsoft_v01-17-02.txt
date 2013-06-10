@@ -16,6 +16,16 @@ number of new features as well as a number of new packages.
 Quick patch release that fixes bugs in LCCD and CondDBMySql and adds
 functionality in MarlinUtil
 
+===================
+ LCIO v02-04-01
+===================
+
+    - LCReader/SIOReader sets the RunHeader parameter "LCIOFileName" to the current file name (usefull if a list of files is processed)
+    
+    - bug fix in SIOReader:  used to hold pointer to StringVec argument of SIOReader::open(StringVec& files) - now the filenames are copied to local class member variable 
+   
+    - added missing const keywords for getValue() and highestBit() in UTIL::BitField64  (Ch.Grefe)
+
 
 ===================
  MarlinUtil v01-07

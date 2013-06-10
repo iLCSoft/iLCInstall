@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-02-pre01'
+ilcsoft_release='v01-17-02'
 # ----------------------------------------------------------------------------
 
 
@@ -79,13 +79,13 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-04-01-pre"
+LCIO_version = "v02-04-01"
 
 GEAR_version = "v01-03"
 
 CED_version = "v01-09"
 
-CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6-pre"
+CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
 
 ILCUTIL_version = "v01-00"
 
@@ -102,11 +102,11 @@ KalDet_version = "v01-12"
 
 GBL_version = "V01-15-02"
 
-LCCD_version = "v01-03-pre"
+LCCD_version = "v01-03"
 
 RAIDA_version = "v01-06-02"
 
-MarlinUtil_version = "v01-07-pre01"
+MarlinUtil_version = "v01-07"
 
 Marlin_version = "v01-05"
 
