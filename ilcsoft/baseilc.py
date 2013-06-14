@@ -936,6 +936,8 @@ class BaseILC:
         for modname in mods:
             self.parent.module(modname).setEnv(origin, checked, simOnly)
 
+        # list of "trivial" paths we do not want to add again to PATH and co
+        ignorepaths = ['/usr/bin','/usr/lib','/sbin','/usr/sbin']
         # set path environment variables
         for k, v in self.envpath.iteritems():
             if( len(v) != 0 ):
@@ -943,6 +945,8 @@ class BaseILC:
                 newvalues = ""
                 for i in v:
                     rpath = fixPath(i)
+                    if rpath in ignorepaths:
+                        continue
                     newvalues = newvalues + rpath + ':'
                 os.environ[k] = newvalues + env
 
@@ -1013,7 +1017,7 @@ class BaseILC:
         if self.env or sum(map(len, self.envpath.values()), 0):
             f.write( 2*os.linesep + "#" + 80*'-' + os.linesep + "#" + 5*' ' \
                     + self.name + os.linesep + "#" + 80*'-' + os.linesep )
-           
+        
         # first write the priority values
         for k in self.envorder:
             f.write( "export " + str(k) + "=\"" + str(self.env[k]) + "\"" + os.linesep )
@@ -1022,9 +1026,19 @@ class BaseILC:
             if k not in self.envorder:
                 f.write( "export " + str(k) + "=\"" + str(self.env[k]) + "\"" + os.linesep )
 
+        # list of "trivial" paths we do not want to add again to PATH and co
+        ignorepaths = ['/usr/bin','/usr/lib','/sbin','/usr/sbin']
         # path environment variables
         for k, v in self.envpath.iteritems():
             if( len(v) != 0 ):
+                # expand every variable we introduced previously
+                exp = str().join(v)
+                for e, ev in self.env.iteritems():
+                    p = re.compile(r"\$"+str(e)) # compile regular expression to match shell variable
+                    exp = p.sub(str(ev), exp)  # replace with expanded variable for absolute path
+                # check for match
+                if exp in ignorepaths:
+                    continue
                 path = str.join(':', v)
                 path = path + ':'
                 f.write( "export " + k + "=\"" + path + "$" + k + "\"" + os.linesep )
