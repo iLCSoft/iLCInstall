@@ -647,6 +647,9 @@ class BaseILC:
             if( cvsroot.count(":",0,i1) == 3 ):
                 i2=cvsroot.rfind(':',0,i1)
                 cvsroot_nopass = cvsroot[:i2]+cvsroot[i1:]
+            # use default
+            else:
+                cvsroot_nopass = cvsroot
 
             # dirty hack (but works ;)
             i2=cvsroot_nopass.rfind(':',0,i1)
