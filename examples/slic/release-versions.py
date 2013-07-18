@@ -56,11 +56,11 @@ CMake_version = "2.8.5"
 
 HepPDT_version = "3.04.01"
 
-GDML_version = "HEAD"
+GDML_version = "v03-00-00"
 
-LCDD_version = "HEAD"
+LCDD_version = "v03-02-00_pre1"
 
-SLIC_version = "HEAD"
+SLIC_version = "v03-01-01"
 
 
 
