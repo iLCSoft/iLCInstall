@@ -20,9 +20,6 @@ class LCIO(BaseILC):
         
         self.reqfiles = [ ["lib/liblcio.a", "lib/liblcio.so", "lib/liblcio.dylib"] ]
         
-        # java required
-        self.reqmodules_external = [ "Java" ]
-        
         # optional modules
         #self.optmodules = [ "dcap", "ROOT" ]
         self.optmodules = [ "CLHEP", "ROOT" ]
@@ -79,6 +76,10 @@ class LCIO(BaseILC):
             if( self.makeTests ):
                 self.envcmake.setdefault("BUILD_LCIO_EXAMPLES","ON")
                 self.envcmake.setdefault("BUILD_F77_TESTJOBS","ON")
+                
+        # check if java's required
+        if ( self.cmakeBoolOptionIsSet( "LCIO_GENERATE_HEADERS" ) or self.cmakeBoolOptionIsSet( "INSTALL_JAR" ) ):
+            self.addExternalDependency( ["Java"] )
 
             #if self.cmakeBoolOptionIsSet( "BUILD_WITH_DCAP" ):
             #    self.addDependency( ['dcap'] )
