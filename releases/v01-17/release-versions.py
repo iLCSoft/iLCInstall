@@ -1,14 +1,14 @@
 ###########################################
 #
-# iLCSoft versions for release v01-17-01
+# iLCSoft versions for release v01-17-03-pre
 #
-# Ch. Rosemann, DESY 23.05.2013
+# Ch. Rosemann, DESY 01.08.2013
 #
 ###########################################
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-02'
+ilcsoft_release='v01-17-03-pre'
 # ----------------------------------------------------------------------------
 
 
@@ -79,15 +79,15 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-04-01"
+LCIO_version = "v02-04-02-pre01" # pre version
 
-GEAR_version = "v01-03"
+GEAR_version = "v01-03-01-pre" # pre version
 
 CED_version = "v01-09"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
 
-ILCUTIL_version = "v01-01-pre"
+ILCUTIL_version = "v01-01-pre" # pre version
 
 FastJet_version = "2.4.2"
 FastJetClustering_version = "v00-02"
@@ -110,7 +110,7 @@ MarlinUtil_version = "v01-07"
 
 Marlin_version = "v01-05"
 
-Mokka_version = "mokka-08-01"
+Mokka_version = "mokka-08-02-pre" # pre version!
 
 MarlinReco_version = "v01-07"
 
@@ -137,9 +137,9 @@ CEDViewer_version = "v01-07"
 
 Overlay_version = "v00-13"
 
-PathFinder_version =  "v00-04"
+PathFinder_version =  "v00-05-pre" # pre version
 
-MarlinTPC_version = "v00-13"
+MarlinTPC_version = "v00-14-pre" # pre version
 
 LCTuple_version = "v01-03"
 
@@ -157,10 +157,11 @@ XercesC_version = "3.1.1"
 
 HepPDT_version = "3.04.01"
 
+# new versions by J. McCormick
 GDML_version = "v03-00-00"
-LCDD_version = "v03-00-00"
-SLIC_version = "v03-01-00"
-
+LCDD_version = "v03-02-00_pre1" # ! pre version
+SLIC_version = "v03-01-01"
+ 
 
 DD4hep_version = "v00-02"
 
