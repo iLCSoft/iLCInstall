@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-03-pre'
+ilcsoft_release='v01-17-03-pre02'
 # ----------------------------------------------------------------------------
 
 
@@ -159,9 +159,8 @@ HepPDT_version = "3.04.01"
 
 # new versions by J. McCormick
 GDML_version = "v03-00-00"
-LCDD_version = "v03-02-00_pre1" # ! pre version
-SLIC_version = "v03-01-01"
- 
+LCDD_version = "v03-02-00"
+SLIC_version = "v03-01-03"  
 
 DD4hep_version = "v00-02"
 
