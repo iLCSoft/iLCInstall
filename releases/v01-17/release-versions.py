@@ -15,7 +15,7 @@ ilcsoft_release='v01-17-03-pre01'
 # --------- install dir ------------------------------------------------------
 #ilcsoft_install_prefix = "/scratch/$USER/ilcsoft/"
 ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
-#ilcsoft_install_prefix = "/scratch/gaede/ilcsoft/"
+#ilcsoft_install_prefix = "/space/ilcsoft/"
 #ilcsoft_install_prefix = "/scratch/rosem/ilcsoft/"
 
 
@@ -106,7 +106,7 @@ LCCD_version = "v01-03"
 
 RAIDA_version = "v01-06-02"
 
-MarlinUtil_version = "v01-07"
+MarlinUtil_version = "v01-07-01-pre"
 
 Marlin_version = "v01-05"
 
