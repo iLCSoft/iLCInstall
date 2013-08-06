@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-03-pre02'
+ilcsoft_release='v01-17-03-pre01'
 # ----------------------------------------------------------------------------
 
 
@@ -162,7 +162,7 @@ GDML_version = "v03-00-00"
 LCDD_version = "v03-02-00"
 SLIC_version = "v03-01-03"  
 
-DD4hep_version = "v00-02"
+DD4hep_version = "v00-04-pre" # pre version
 
 
 
