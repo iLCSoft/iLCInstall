@@ -83,7 +83,7 @@ LCIO_version = "v02-04-02-pre01" # pre version
 
 GEAR_version = "v01-03-01-pre" # pre version
 
-CED_version = "v01-09"
+CED_version = "v01-09-01-pre"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
 
