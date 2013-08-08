@@ -167,6 +167,6 @@ DD4hep_version = "v00-04-pre" # pre version
 
 
 #--- EUTelescope et al:
-Eutelescope_version = "v00-08-04"
+Eutelescope_version = "v00-09-00"
 Eudaq_version = "tags/v01-00-00"
 Millepede2_version = 'trunk'
