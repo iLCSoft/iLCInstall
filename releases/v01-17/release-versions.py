@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-03-pre01'
+ilcsoft_release='v01-17-03-pre02'
 # ----------------------------------------------------------------------------
 
 
@@ -106,7 +106,7 @@ LCCD_version = "v01-03"
 
 RAIDA_version = "v01-06-02"
 
-MarlinUtil_version = "v01-07-01-pre"
+MarlinUtil_version = "v01-07-01-pre" # pre version!
 
 Marlin_version = "v01-05"
 
@@ -137,9 +137,9 @@ CEDViewer_version = "v01-07"
 
 Overlay_version = "v00-13"
 
-PathFinder_version =  "v00-05-pre" # pre version
+PathFinder_version =  "v00-05-pre01" # pre version
 
-MarlinTPC_version = "v00-14-pre" # pre version
+MarlinTPC_version = "v00-14-pre01" # pre version
 
 LCTuple_version = "v01-03"
 
