@@ -162,7 +162,7 @@ GDML_version = "v03-00-00"
 LCDD_version = "v03-02-00"
 SLIC_version = "v03-01-03"  
 
-DD4hep_version = "v00-04-pre" # pre version
+DD4hep_version = "v00-04-pre01" # pre version
 
 
 
