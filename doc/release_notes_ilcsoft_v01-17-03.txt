@@ -1,0 +1,602 @@
+#################################
+#
+#   iLCSoft release - v01-17-03
+#
+#################################
+
+Developers release that provides many smaller fixes and a 
+number of new features as well as a number of new packages.
+
+=================================================
+
+ Changes in v01-17-03  w.r.t. iLCSoft v01-17-02
+ 
+=================================================
+
+Developers release with some updated packages:
+
+
+===============
+LCIO  v02-04-02
+===============
+
+     - add template std::string toString(const T* obj) for
+       easy printing w/o operators (e.g. from Python)
+
+     - cleanup of Cmake code for BUILD_ROOTDICT
+     - fixed (again) target dylib2so for APPLE
+
+     - Updated the StdHepReader to use the exact same interface as the LcioReader
+       (Ch.Grefe)
+
+
+==============
+GEAR v01-03-01
+==============
+
+    - added convenience wrapper BField::at(double x, double y, double z)
+
+
+===================
+ Mokka mokka-08-02:
+===================
+  - B.Pawlik:
+    - bug fix for global position of LumiCal hits.
+
+  - A.Lucaci:
+    - Updated Ecal driver SEcal05 (J.Marshall)
+      Fixed variable cell sizes, layer number. (J.Marshall)
+      Fixed EndCap problem in case of cells with varying cell sizes for hybrid ECAL. (J.Marshall)
+
+  - S.Lu: Added a scalable Ahcal driver SHcalSc04. (a copy of SHcalSc03)
+          The geomemtry of Ahcal Barrel and Ahcal Endcaps have been updated.
+
+          Added a scalable sensitive detector driver SDAHcalEndCapScalable.
+          Implement a scalable AhcalEndcaps driver, the Endcaps modules number
+          and the modules length are derived from the hcal barrel maximum radius
+          at the run time.
+
+
+  - S.Lu: Created Mokka model "ILD_o1_v06" on "pollin1.in2p3.fr".
+          using "SEcal05" as default ECAL driver, (Silicon ECAL)
+          and a scalable driver "SHcalSc04" as default Ahcal driver.
+
+          Created Mokka model "ILD_o2_v06" on "pollin1.in2p3.fr".
+          using "SEcal05" as default ECAL driver.
+          (SD HCAL).
+
+          Created Mokka model "ILD_o3_v06" on "pollin1.in2p3.fr".
+          using "SEcal05" as default ECAL driver, (Scintillator ECAL)
+          and a scalable driver "SHcalSc04" as default Ahcal driver.
+
+
+==============
+CED v01-09-01 
+=============
+
+     - fixed wrappper function ced_hit(...,type,...) to call
+       ced_hit_ID(...., type & 0xFF,type >> CED_LAYER_SHIFT ,....)
+       for backward compatibility with old code
+
+
+==============
+ilcutil v01-01 
+==============
+
+ cmakemodules v01-14 :
+ - Changes to FindROOT.cmake (H.Perrey)
+    - modified findroot module to first check for ROOT in $ROOTSYS, then
+      in $PATH directories, before looking in /usr/bin; this makes sure
+      that the ROOT version installed with ILCsoft or local
+      installations (if existing/set up correctly) are preferred over
+      system-wide packages and avoids conflicts between the
+      installtions.
+
+=====================
+MarlinUtil  v01-07-01  
+=====================
+
+    - added wrapper function (extern "C")
+      void draw_helix( ... ) to MarlinCED::drawHelix(...)
+
+
+
+====================
+MarlinTPC  v00-14-00 
+====================
+
+     - F. Mueller: 
+            + added simple fit processors for straight line and helix
+            + added listener for FieldSetting
+        - A. Muennich: work on Distortion processors, several namespace and doxygen fixes
+        - C. Kleinwort: added new GBL interface processor that also works for helices; includes the straight line case,
+                decision is made depending on magnet field data
+        - K. Zenker: updating  photodot reconstruction
+        - Ch. Rosemann: removal of old GBL interface processor, completely superseded by new one
+                + new way to access the b field data from the measurement survey: via conditions data, using the gear::BField interface
+                 check svn log for further info
+        + several bug fixes
+
+=================
+PathFinder v00-05 
+=================
+
+  - several bug fixes that enhances track finding efficiency:
+    ! wrong sign in some cases of the sz projection fit
+    ! straight line hough space fixed ranges of parameters
+    ! input binning used coherently
+
+
+=============
+DD4hep v00-04 
+=============
+          - placement options are now compatible with geant4
+            - fixed Geant4SensitiveDetector::getVolumeID()
+            - modified ILDEx model to not use assemblies (for now !?)
+            - removed obsolete geant4 example ILDEx
+            - Fix population procedure of volume manager
+            - Fix uniqueness of volume identifiers.
+            - Remove call with lookups by placed volume to the volume manager
+            - improved ILDEx toy example:
+              - fixed creation of cellIDS for simhits
+              - creates SimTrackerHits for VXD, SIT and TPC
+              - creates SimCalorimeterHits for AHcal barrele and endcap
+              - works now wigth ILDExSimu _and_ SLIC if no assemblies are used
+            - assemblies work with the DD4hep Geant4Converter and VolumeManager
+            - added a prototype example for a ROOT independent
+              plugin mechanism for SensitiveDetectors
+        - added example implemetation for Calice test beam
+          calorimeters: CaliceTbeam  (Shaojun Lu, DESY)
+
+
+
+
+################################################################################################
+=================================================
+
+ Changes in v01-17-02  w.r.t. iLCSoft v01-17-01
+ 
+=================================================
+
+
+===================
+ LCIO v02-04-01
+===================
+
+    - LCReader/SIOReader sets the RunHeader parameter "LCIOFileName" to the current file name (usefull if a list of files is processed)
+    
+    - bug fix in SIOReader:  used to hold pointer to StringVec argument of SIOReader::open(StringVec& files) - now the filenames are copied to local class member variable 
+   
+    - added missing const keywords for getValue() and highestBit() in UTIL::BitField64  (Ch.Grefe)
+
+
+===================
+ MarlinUtil v01-07
+==================
+ - split up library into libMarlinUtil and libMarlinUtil_ann
+
+=============
+ LCCD v01-03:
+=============
+      - updated all database test binaries 
+         source/test/conddbtests/multiblefolders.cc
+         source/test/conddbtests/calfiletodb.cc
+         source/test/conddbtests/calfilefromdb.cc
+         source/test/conddbtests/createdbfile.cc
+       to take the db folder as argument on the command line as part of the DBcol name
+       example:
+       ./bin/calfiletodb condDB_channelmapping_HEAD_20130604_155014.slcio channelmapping /lctpc/test/channelmapping 0 999999
+
+     - bug fix: wrong declaration logic (made obvious by coverity bugfix):
+       move declaration and initialization outside loop in LCGenericObjectStreamer
+
+======================
+CondDBMySQL_ILC-0-9-6
+======================
+	- updated boot-sql.h to newer MySQL syntax
+
+
+=================================================
+
+ Changes in v01-17-01  w.r.t. iLCSoft v01-17
+ 
+=================================================
+
+New packages added to iLCSoft:
+
+
+GBL: General Broken Lines (K.Kleinworth, Ch.Rosemann)
+
+DD4hep: Geometry description (M.Frank, P.Mato)
+
+SLIC, XercesC, HepPDT, GDML, LCDD - Slic geant4 simulation (J.McCormick)
+
+
+
+===============
+ LCIO: v02-04
+===============
+  
+  - Ch.Grefe, CERN
+    added a new python binding: pyLCIO based on the optional ROOT dictionary
+    see: $LCIO/examples/python/README for examples on how to use it
+
+ 
+  - added new method to limit the collections that are going to be read 
+    from a file:
+      LCReader::setReadCollectionNames(const std::vector<std::string>& cn)
+    - C++ only so far
+    - anajob and dumpevent now read variable LCIO_READ_COL_NAMES with
+      space separated list of colection names to read only these
+
+  - pointers to LCObjects that are not in the event are now set to NULL
+    
+  - an Exception is thrown if a null pointer is found in a subset collection
+    (e.g. if LCIO_READ_COL_NAMES is set inconsistently such that 
+     the collection(s) holding the elements is not read )
+
+    - this behavior can be deactivated with setting the environment variable
+      LCIO_IGNORE_NULL_IN_SUBSET_COLLECTIONS=1
+      if really needed, e.g. to read inconsistent or corrupt files
+
+  - added build option for C++ only builds
+    using pre-genetarated header files:
+     cmake -DLCIO_GENERATE_HEADERS=OFF ..
+
+    - note: header files will have to be updated manually by developers
+      after changing the class layout
+
+  - some minor fixes:
+    - fix missing include issue in UTIL/LCIterator.h for latest ubuntu
+    - update freehep-sio dep to 2.3
+    - enforce cmake version >= 2.8
+
+
+================
+ Marlin: v01-05
+===============
+
+      - new optional global parameter: "LCIOReadCollectionNames"
+        allows to restrict the collection that are read from the 
+        LCIO file(s) to the ones given 
+        ( needs LCIO v02-04 )
+
+      - new command line option (H.Perrey, DESY):
+         -u : consistency check and updated version of xml file
+
+      - fix problem with ROOT seg fault at program end:
+        do not call dlclose on shared libraries anymmore
+        (A.Sailer)
+
+
+
+=================
+  CED: v01-09
+=================
+
+    - turned off C++ name mangling in client library libCED.so/dylib
+      to facilitate calling ced from python
+
+===================
+ CEDViewer: v01-07
+===================
+
+   - changed calling attributes of ced_hit_ID to newer version
+     -> needed for CED v01-09 which has no function overloading 
+        in library anymore (c-style)
+ 
+  - changed the default conventions for the track state to be drawn. Now the
+    following processor options are valid
+    -1: do not draw helix
+     0: default track state (the 0-th element in the track state vector)
+      (the rest options as before)
+     1: AtIP
+     2: AtFirstHit
+     3: AtLastHit
+     4: AtCalorimeter
+    If no track state were found, exit with an error
+
+ - avoid wrong values for the helix parameters for the case of small curvature
+   or zero magnetic field by assigning large value of Pt to the track
+
+ - update for the multi-module support via generic GEAR interface
+
+===================
+ Clupatra: v00-10
+===================
+
+    - bug fix: remove sqrt from computation of r_phi_res^2 for finding best
+      hit
+    - included multi-module TPC support via GEAR interface
+    - ignore hits that are outside of the TPC range (possible in data)
+    - added new processor FixCellIDs_Error_TestBeam (based on the original
+      FixCellIDs)
+       that sets the correct hit CellIDs and hit uncertainties for test beam
+data
+    - added examples for test beam data. Look at examples/README for more
+      details
+
+===================
+ LCTuple: v01-03
+===================
+   -  added support for TrackerHits
+
+
+================
+ KalDet: v01-12
+================
+
+         - added detector geometry for lctpc which is now based on ild
+           classes. Notes:
+         - it is compatible with Clupatra/MarlinTrk
+         - the correspondence between row number and module is represented in
+           a different way
+           compared to the original class GearTPCKalDetector. In the current
+implementation,
+           row numbers are global, i.e. rows of different modules but with the
+same center are
+           now the same rows! This is needed to unify the measurement layers
+that are
+           combinations of several modules.
+
+====================
+ MarlinTPC: v00-13
+====================
+
+   - A. Muennich: added preparation processors for Clupatra test beam data
+     usage
+                  added a processor ADC2PrimaryElectronFactorCalculator (needs
+conditions object transformation)
+                  added a helper tool to calculate intersection between circle
+and track in global coordinates
+                  Reimplementation of the splitting in the PulseFinder:
+                  bug fix to HitCopier
+   - F. Mueller:  added two more methods to calculate pulse time
+                  correction of hit error calculation
+   - S. Caiazza:  added documentation
+   - F. Gaede:    added extension to CED
+   - I. Heinze: Extended CutApplicationProcessor so that tracks with more than
+     one hit per row can be cut out.
+   - O . Volynets introduced new track description with MarlinTrk
+   - M. Killenberg: Wrote documentation for the IntersectionCalculator
+   - Ch. Rosemann: added first version of straight line fitting in row based
+     TPC with general broken lines
+                   HitCopier added
+   + Bug fixes by I. Heinze, A. Muennich, M. Killenberg, T. Krautscheid, O.
+Volynets, F. Mueller, F. Gaede, Ch. Rosemann
+
+
+===================
+ MarlinTrk: v01-11
+===================
+
+         - Improved readability of the MarlinTrkUtils functions
+         - Added LCTPC-specific modifications:
+           - geometry building is now based on the detector name from GEAR
+           - Magnetic field may be zero -> avoid the value of infinity for
+             kappa
+           - Interaction Point (IP) meas. layer may not exist for LCTPC
+           - Do not throw exception if the layer is not found, return
+             "no_intersection" code
+             instead. This avoids the problem if some of the state is not or
+cannot be available,
+             e.g. the IP and CaloFace states are not (yet?) defined for the
+LCTPC geometry
+
+================================
+ MarlinTrkProcessors: v01-09-01
+================================
+
+      - updated calling attrinbutes of ced_hit_ID to new CED v01-09
+
+==============================
+ MarlinUtil: v01-06-01
+==============================
+
+    - adopted for multi-module support in MarlinCED for the TPC detector
+
+
+
+
+
+
+
+=============================================
+
+ Release notes from iLCSoft v01-17
+
+=============================================
+
+
+New developers release of ilcsoft: v01-17
+
+
+Please note: there is a seemingly unfixable bug in RooT; it causes a segfault at the end of a Marlin job. From the ilcsoft side everything is fine and properly finished.
+       Despite great effort no clear cause nor fix could be found; please report if you have a solution.
+
+
+=================================================
+
+ Changes in v01-17  w.r.t. iLCSoft v01-16-02
+ 
+=================================================
+
+
+
+========================================
+ Updated versions of external tools
+========================================
+
+===========================
+ Geant4: 9.6.p01
+===========================
+
+
+===========================
+ RooT: v5-34-05
+===========================
+
+
+========================================
+ New package
+========================================
+
+The General Broken Lines packages by Claus Kleinwort is now installable by ilcsoft.
+
+===========================
+GBL: v01-15
+===========================
+
+
+
+=========================================
+ Changed packages with interface changes
+=========================================
+
+
+===========================
+ GEAR v01-03:
+===========================
+     - F.Gaede: added test/testInteractionLengths
+      new example program to print interaction lengths as a function
+      of theta for different cylinders between the calorimeters
+    - updated testMaterialBudgetNew.cc: incl. 1st layer of Ecal
+
+    - added example macros for DBD material plots:
+       ./example/drawintlen_DBD.C
+       ./example/drawmat_DBD.C
+       ./example/treeFromAscii.C
+
+  - C.Rosemann: fixed many issues found by coverity
+    mostly unitialized member variables
+    GearMgrImpl.cc:make assignment operator and copy c'tor private
+    -> see Changelog for details
+
+  - M.Killenberg: wrote XML documentation for the VersatileDiskRowLayout
+     doc/VersatileDiskRowLayoutXML.*
+    - improved the documentation of localToGlobal and globalToLocal in TPCModule
+    - speedup of TPCParametersImpl::getModule(), removed duplicate search in map
+    - getDistanceToPad called distanceToBox with wrong oder of arguments
+
+
+  - bug fixes:
+     - fixed error handling in stepping in ./src/geartgeo/TGeoGearDistanceProperties.cc
+     - two bug fixes for the RectangularPadRowLayout (M.Killenberg)
+     - fixed endless loop in case of rounding errors TPCParametersImpl/RectangularPadRowLayout
+     - two pi wrap around for coordinates in TPCModuleImpl (Bo Li)
+
+
+
+===========================
+ CED v01-08:
+===========================
+      New features (A. Miyamoto):
+
+    - Add "Auto shot" flag in Tools menu of glced.
+      When set, glced write a screen image to a file when new event is received from
+      CED client. The file is written in a directory where glced is executed with
+      a name, glced-N.tga, where N is a sequence number.  If an environment variable,
+      CED_IMAGEFILE is set, output file name is ${CED_IMAGEFILE}-N.tga.  Note that
+      a file could be written at any place by including a directory in ${CED_IMAGEFILE}.
+
+      A menu, Tools->Auto scale, can be used to select the scale of output image.
+
+    - A CMake variable, CED_NOT_INCLUDE_OPENGL_LINKER_PATH.  If set,
+      OpenGL linker path is not included in rpath of glced. Inclusion of
+      the OpenGL path caused a problem at run time when gcc used for OpenGL
+      is older than those used to build glced.
+
+    - Add 2 more CED_HIT_TYPE, CED_HIT_BOX and CED_HIT_VXD. Then will be used
+      to display pixel hits of FPCCD.
+
+      New feature (O. Volynets):
+
+    - Added shortcut ctrl+s for fast saving of screenshots in original size (i.e. without scaling)
+
+
+===========================
+ MarlinReco v01-07:
+===========================
+   
+  - Manqi Ruan: added new clas G2D:
+     Include G2CD, a general digitizer for gaseous hadron calorimeter. It takes 1mm simulated Hcal hits as input,
+     and output digitized hits with tunable sell size. Efficiency and Multiplicity effects are also taken into 
+     account, which can be adjusted in the steering file
+  
+  - J.List: fixed BCalTagEfficiency:
+      adapted efficiency parametrisation for ECM=1TeV
+
+  - Katsushige Coterra: updated NewLDCCaloDigi.cc
+    for the Scintillator Strip Ecal reconstruction
+
+===========================
+ MarlinUtil v01-06:
+===========================
+   - Akiya Miyamoto:
+	   implemented flags to turn On and Off geometry of EcalBarrel, EcalEndcap, HcalBarrel, HcalRing, HcalEndcap individually. 
+
+===========================
+ Mokka mokka-08-01:
+===========================
+      A. Lucacci-Timoce: added new drivers for the test beam
+	     Add drivers for TBCern2011WAHCAL model
+      S. Lu: added new physics list from GEANT4.9.6 to PhysicsListFactor
+
+
+===========================
+ PathFinder v00-04:
+===========================
+   - development by I. Heinze
+   - coverity bug fixes by Ch. Rosemann and corrections to this by O. Volynets  
+
+===========================
+ MarlinTPC v00-12:
+===========================
+    - Bug fixes by K. Fujii, A. Muennich, I. Heinze, M. Killenberg, T. Krautscheid, Ch. Rosemann
+    - Added functionality by I. Heinze, A. Muennich, M. Killenberg, F. Gaede, Ch. Rosemann
+    - Severely updated versions of the RowBasedHitFinder and PulseFinder
+    - confer the logs for detailed information
+
+===========================
+LCTuple v01-02:
+===========================
+	  J. List: added some variables
+
+===========================
+ Druid 2.2:
+===========================
+	 by Manqi Ruan
+
+
+=======================================================
+ Changed packages with fixes without interface changes
+=======================================================
+
+===========================
+KalTest v01-05-03
+===========================
+    - bug fix provided by K.Fujii
+     that makes adjusting of the z0 for curlers in ThelicalTrack::MoveTo  unnecessary
+
+
+=======================================
+ Coverity fixes
+=======================================
+
+Fixes from the static code checker coverity caused a minor version update in the following packages; no interface changes.
+Please refer to the specific commit logs for more information:
+
+===========================
+ KalDet v01-11-01
+===========================
+ LCCD v01-02-01
+===========================
+ Marlin v01-04-01
+===========================
+ MarlinTrk_version v01-10-02
+===========================
+
+
+
+
+
