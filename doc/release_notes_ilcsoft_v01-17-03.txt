@@ -149,6 +149,94 @@ DD4hep v00-04
           calorimeters: CaliceTbeam  (Shaojun Lu, DESY)
 
 
+==============================
+ MarlinPandora: v00-11
+==============================
+
+************************************************************************
+TAG V00-11 FOR ILCSOFT USAGE
+************************************************************************
+Protect against missing/unavailable TrackStates.
+Add modifications to allow use of hybrid ScW/SiW and full ScW ECAL models.
+
+************************************************************************
+TAG V00-10 FOLLOWING REPOSITORY RESTRUCTURING
+************************************************************************
+CMake and Makefile changes following updated treatment of the libraries that constitute the PandoraPFANew package.
+
+GENERAL INFO:
+Pandora consists of the PandoraSDK (Software Development Kit), which comprises a single library and header files with flexible APIs.
+There is also an optional PandoraMonitoring library, which contains event display and tree/histogram-writing functionality.
+The PandoraMonitoring library depends on the PandoraSDK and ROOT.
+Pandora algorithms will necessarily depend upon the PandoraSDK (and also PandoraMonitoring, if desired).
+The algorithms can be built as part of a Pandora client application, such as MarlinPandora, or the standalone TestPandora binary.
+Algorithms declared to be suitably generic may be designed for use by multiple client applications.
+Such re-usable algorithms are best bundled together into a Pandora "content" library.
+Algorithms are always registered via the client application, using the PandoraAPIs, but the client app can link against as many content libraries as required.
+
+
+Recover daughter or sibling tracks if they are flagged as unable to form a pfo.
+Copy track states from input lcio tracks.
+Fix subdetector hit number encoding.
+Write out track subset collections to investigate different track usage in pfa.
+Updated TrackCreator class to work with either ILD00 or ILD01 geometry.
+
+
+==============================
+ PandoraPFANew: v00-12
+==============================
+
+************************************************************************
+TAG V00-12 FOR ILCSOFT USAGE
+************************************************************************
+Updated daughter package versions.
+
+************************************************************************
+TAG V00-11 FOLLOWING REPOSITORY RESTRUCTURING
+************************************************************************
+PandoraPFANew is now a "metadata" package containing only Makefiles for downloading and building relevant Pandora libraries.
+
+GENERAL INFO:
+Pandora consists of the PandoraSDK (Software Development Kit), which comprises a single library and header files with flexible APIs.
+There is also an optional PandoraMonitoring library, which contains event display and tree/histogram-writing functionality.
+The PandoraMonitoring library depends on the PandoraSDK and ROOT.
+Pandora algorithms will necessarily depend upon the PandoraSDK (and also PandoraMonitoring, if desired).
+The algorithms can be built as part of a Pandora client application, such as MarlinPandora, or the standalone TestPandora binary.
+Algorithms declared to be suitably generic may be designed for use by multiple client applications.
+Such re-usable algorithms are best bundled together into a Pandora "content" library.
+Algorithms are always registered via the client application, using the PandoraAPIs, but the client app can link against as many content libraries as required.
+
+
+************************************************************************
+TAG V00-10 FOR Liquid Argon TPC reconstruction usage
+************************************************************************
+Redesign of MC Manager, enabling creation of multiple MC particle lists.
+Add MCParticleType API parameter.
+Improve manner in which pandora content is reset between events, adding ability to register reset functions.
+Move core EventWriting and EventReading algorithms into Framework library.
+Add HitTypes VIEW_U, VIEW_V, VIEW_W, registered with FINE granularity.
+Allow visualization of marker at a specified position.
+Move FineGranularityContent library to separate repository.
+Makefile updates.
+
+
+
+=======================
+PandoraAnanlysis V00-05 
+======================
+FOR ILCSOFT USAGE
+************************************************************************
+AnalysePerformance binary now reads TChains, rather than a single TTree.
+Included new PfoTarget information in PfoAnalysis tree.
+PfoAnalysis now attempts to store an estimate of energy deposited in coil.
+Explicitly set ROOT directory for output tree and histograms.
+Finalise steering parameters in init method, rather than in constructor.
+Added Calibrate test binary.
+Added run and event counters for display of number of runs and events processed.
+Altered PandoraPFACalibrator histogram binning and names.
+Removed unused histograms.
+Cosmetic changes.
+Makefile update, including basic dependency tracking.
 
 
 ################################################################################################
@@ -397,94 +485,6 @@ LCTPC geometry
 
 
 
-==============================
- MarlinPandora: v00-11
-==============================
-
-************************************************************************
-TAG V00-11 FOR ILCSOFT USAGE
-************************************************************************
-Protect against missing/unavailable TrackStates.
-Add modifications to allow use of hybrid ScW/SiW and full ScW ECAL models.
-
-************************************************************************
-TAG V00-10 FOLLOWING REPOSITORY RESTRUCTURING
-************************************************************************
-CMake and Makefile changes following updated treatment of the libraries that constitute the PandoraPFANew package.
-
-GENERAL INFO:
-Pandora consists of the PandoraSDK (Software Development Kit), which comprises a single library and header files with flexible APIs.
-There is also an optional PandoraMonitoring library, which contains event display and tree/histogram-writing functionality.
-The PandoraMonitoring library depends on the PandoraSDK and ROOT.
-Pandora algorithms will necessarily depend upon the PandoraSDK (and also PandoraMonitoring, if desired).
-The algorithms can be built as part of a Pandora client application, such as MarlinPandora, or the standalone TestPandora binary.
-Algorithms declared to be suitably generic may be designed for use by multiple client applications.
-Such re-usable algorithms are best bundled together into a Pandora "content" library.
-Algorithms are always registered via the client application, using the PandoraAPIs, but the client app can link against as many content libraries as required.
-
-
-Recover daughter or sibling tracks if they are flagged as unable to form a pfo.
-Copy track states from input lcio tracks.
-Fix subdetector hit number encoding.
-Write out track subset collections to investigate different track usage in pfa.
-Updated TrackCreator class to work with either ILD00 or ILD01 geometry.
-
-
-==============================
- PandoraPFANew: v00-12
-==============================
-
-************************************************************************
-TAG V00-12 FOR ILCSOFT USAGE
-************************************************************************
-Updated daughter package versions.
-
-************************************************************************
-TAG V00-11 FOLLOWING REPOSITORY RESTRUCTURING
-************************************************************************
-PandoraPFANew is now a "metadata" package containing only Makefiles for downloading and building relevant Pandora libraries.
-
-GENERAL INFO:
-Pandora consists of the PandoraSDK (Software Development Kit), which comprises a single library and header files with flexible APIs.
-There is also an optional PandoraMonitoring library, which contains event display and tree/histogram-writing functionality.
-The PandoraMonitoring library depends on the PandoraSDK and ROOT.
-Pandora algorithms will necessarily depend upon the PandoraSDK (and also PandoraMonitoring, if desired).
-The algorithms can be built as part of a Pandora client application, such as MarlinPandora, or the standalone TestPandora binary.
-Algorithms declared to be suitably generic may be designed for use by multiple client applications.
-Such re-usable algorithms are best bundled together into a Pandora "content" library.
-Algorithms are always registered via the client application, using the PandoraAPIs, but the client app can link against as many content libraries as required.
-
-
-************************************************************************
-TAG V00-10 FOR Liquid Argon TPC reconstruction usage
-************************************************************************
-Redesign of MC Manager, enabling creation of multiple MC particle lists.
-Add MCParticleType API parameter.
-Improve manner in which pandora content is reset between events, adding ability to register reset functions.
-Move core EventWriting and EventReading algorithms into Framework library.
-Add HitTypes VIEW_U, VIEW_V, VIEW_W, registered with FINE granularity.
-Allow visualization of marker at a specified position.
-Move FineGranularityContent library to separate repository.
-Makefile updates.
-
-
-
-=======================
-PandoraAnanlysis V00-05 
-======================
-FOR ILCSOFT USAGE
-************************************************************************
-AnalysePerformance binary now reads TChains, rather than a single TTree.
-Included new PfoTarget information in PfoAnalysis tree.
-PfoAnalysis now attempts to store an estimate of energy deposited in coil.
-Explicitly set ROOT directory for output tree and histograms.
-Finalise steering parameters in init method, rather than in constructor.
-Added Calibrate test binary.
-Added run and event counters for display of number of runs and events processed.
-Altered PandoraPFACalibrator histogram binning and names.
-Removed unused histograms.
-Cosmetic changes.
-Makefile update, including basic dependency tracking.
 
 =============================================
 
