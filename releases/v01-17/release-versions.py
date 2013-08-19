@@ -1,14 +1,14 @@
 ###########################################
 #
-# iLCSoft versions for release v01-17-03-pre
+# iLCSoft versions for release v01-17-03
 #
 # Ch. Rosemann, DESY 01.08.2013
-#
+# F.G. 14.08
 ###########################################
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-03-pre02'
+ilcsoft_release='v01-17-03'
 # ----------------------------------------------------------------------------
 
 
@@ -79,15 +79,15 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-04-02-pre01" # pre version
+LCIO_version = "v02-04-02" 
 
-GEAR_version = "v01-03-01-pre" # pre version
+GEAR_version = "v01-03-01" 
 
-CED_version = "v01-09-01-pre"
+CED_version = "v01-09-01"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
 
-ILCUTIL_version = "v01-01-pre" # pre version
+ILCUTIL_version = "v01-01" 
 
 FastJet_version = "2.4.2"
 FastJetClustering_version = "v00-02"
@@ -106,11 +106,11 @@ LCCD_version = "v01-03"
 
 RAIDA_version = "v01-06-02"
 
-MarlinUtil_version = "v01-07-01-pre" # pre version!
+MarlinUtil_version = "v01-07-01"
 
 Marlin_version = "v01-05"
 
-Mokka_version = "mokka-08-02-pre01" # pre version!
+Mokka_version = "mokka-08-02" 
 
 MarlinReco_version = "v01-07"
 
@@ -129,17 +129,17 @@ ForwardTracking_version = "v01-07"
 
 MarlinKinfit_version = "v00-01-02"
 
-PandoraPFANew_version = "v00-09"
-MarlinPandora_version = "v00-09-02"
-PandoraAnalysis_version = "v00-04"
+PandoraPFANew_version = "v00-12" #"v00-09"
+MarlinPandora_version = "v00-11" #"v00-09-02"
+PandoraAnalysis_version = "v00-05" #"v00-04"
 
 CEDViewer_version = "v01-07"
 
 Overlay_version = "v00-13"
 
-PathFinder_version =  "v00-05-pre01" # pre version
+PathFinder_version =  "v00-05"
 
-MarlinTPC_version = "v00-14-pre01" # pre version
+MarlinTPC_version = "v00-14"
 
 LCTuple_version = "v01-03"
 
@@ -162,7 +162,7 @@ GDML_version = "v03-00-00"
 LCDD_version = "v03-02-00"
 SLIC_version = "v03-01-03"  
 
-DD4hep_version = "v00-04-pre01" # pre version
+DD4hep_version = "v00-04"
 
 
 
