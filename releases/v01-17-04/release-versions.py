@@ -79,7 +79,7 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-04-02" 
+LCIO_version = "v02-04-03-pre" 
 
 GEAR_version = "v01-03-01" 
 
@@ -110,7 +110,7 @@ MarlinUtil_version = "v01-07-01"
 
 Marlin_version = "v01-05"
 
-Mokka_version = "mokka-08-02" 
+Mokka_version = "mokka-08-03-pre" 
 
 MarlinReco_version = "v01-07"
 
@@ -162,7 +162,7 @@ GDML_version = "v03-00-00"
 LCDD_version = "v03-02-00"
 SLIC_version = "v03-01-03"  
 
-DD4hep_version = "v00-04"
+DD4hep_version = "v00-05-pre"
 
 
 
