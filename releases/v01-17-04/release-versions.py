@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-03'
+ilcsoft_release='v01-17-04-pre'
 # ----------------------------------------------------------------------------
 
 
@@ -100,7 +100,7 @@ KalTest_version = "v01-05-03"
 
 KalDet_version = "v01-12"
 
-GBL_version = "V01-15-03"
+GBL_version = "V01-16-01"
 
 LCCD_version = "v01-03"
 
@@ -139,7 +139,7 @@ Overlay_version = "v00-13"
 
 PathFinder_version =  "v00-05"
 
-MarlinTPC_version = "v00-14"
+MarlinTPC_version = "v00-15-pre"
 
 LCTuple_version = "v01-03"
 
