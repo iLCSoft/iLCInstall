@@ -42,6 +42,7 @@ from kitrack import KiTrack, KiTrackMarlin
 from gdml import GDML
 from lcdd import LCDD
 from slic import SLIC
+from slicpandora import SlicPandora
 
 #aida
 from dd4hep import DD4hep 

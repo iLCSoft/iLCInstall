@@ -139,7 +139,7 @@ Overlay_version = "v00-13"
 
 PathFinder_version =  "v00-05"
 
-MarlinTPC_version = "v00-15-pre"
+MarlinTPC_version = "v00-15-pre1"
 
 LCTuple_version = "v01-03"
 
@@ -161,6 +161,8 @@ HepPDT_version = "3.04.01"
 GDML_version = "v03-00-00"
 LCDD_version = "v03-02-00"
 SLIC_version = "v03-01-03"  
+
+SlicPandora_version = "v01-00-00"
 
 DD4hep_version = "v00-05-pre"
 
