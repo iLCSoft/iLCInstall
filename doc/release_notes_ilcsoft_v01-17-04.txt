@@ -13,9 +13,169 @@ number of new features as well as a number of new packages.
  
 =================================================
 
+Introduces a new package:
+=====================
+SlicPandora v01-00-00
+=====================
+	by J. McCormick
+
+
+==============
+LCIO v02-04-03
+==============
+
+        - Added a statement about the minimum python version to use
+
+        - Adapted the example to the changed interface in EventLoop.
+
+
+=================
+MOKKA mokka-08-03
+=================
+
+! Corrected the density value of Nitrogen gas, and Changed the input  density
+of Cherenkov gas by the pressure. (Shaojun Lu)
+
++ Add new driver TBcatcher09 for the CALICE TailCatcher (Angela Lucaci-Timoce)
+
+- the previous driver (TBcatcher08) had a bug in the
+  TBcatcher08::BuildCatcherLayers()
+ 
+  for (G4int i = 0; i < n_layers; i++)
+     {
+       // here is the line with the bug
+       // bool withCassette = (_layerPattern.data()[i-1] == '1');
+       // the line below is the correct one
+       bool withCassette = (_layerPattern.data()[i] == '1');
+
+the boolean withCassette was always false for i=0 (i.e. for the first layer).
+As a result, the first fine layer was never build.
+
+- The sensitive detector was changed to TBSD_VCell04.
+  With respect to the AHCAL case, for the TailCatcher a 1 is added 
+  in the layer number (otherwise we get layers from 0 to 15, instead of layers from 1 to 16)
+
+ (I checked that previous TailCatcher drivers use TBSD_VCell03 as sensitive detector,
+  therefore they will not affected by this change.)
+
+
+! fixed naming of pointer variables: (Frank Gaede)
+   removed duplicate class name qualifiers (TBSD_VCell03::TBSD_VCell03)
+
+
+====================
+DD4HEP DD4hep v00-05
+====================
+
+        Markus Frank:
+  - Throw exception if the expression evaluator sees a problem.
+    The message printed before was often not seen.
+  - Improve printout on exceptions and plugin abortion
+  - Remove the typedef RotationZYX -> Rotation and
+    import the type RotationZYX from ROOT::Math.
+
+  - Add more explicit error messages in case a plugin is not found.
+  - Add file TGeoUnits.h, which allows to use the "usual SystemOfUnits"
+    from CLHEP using TGeo with the namespace tgeo::xxx
+    Example: tgeo::mm -> 0.1 (Geant3: cm, sec,  GeV, degree)
+                 ::mm -> 1.0 (Geant4: mm, nsec, MeV, radian)
+    I hope I got all translations right.
+    Geant4                                   Geant3
+    ----------------------------------------------------------------
+    millimeter         mm=1,cm=10            centimeter  mm=0.1,cm=1
+    nanosecond         s=1e9                 second      ns=1e-9,s=1
+    Mega electron Volt GeV=1e3               GeV         GeV=1
+    radian             rad=1                 degree      rad=180/pi
+
+    Unclear to me was if in Geant3 steradian is also 2*2*pi or 2*2*180 degree.
+
+        F. Gaede:
+       - changes to build system:
+         (see ReadMe.txt for details)
+
+         - moved examples to ./example directory   
+           - they are not built as part of DD4hep anymore
+
+         - install thisdd4hep.sh in ./bin
+           (modified to have the correct pathes) 
+
+         - added -DINSTALL_DOC=on/off option
+           to build doxygen documentation (in ./doc/html/index.html)
+
+         - create DD4hepConfig.cmake for easy building against DD4hep
+           ( see examples CMakeLists.txt)
+
+       - fixed doxygen API documentation (C.Rosemann)
+          (greatly improved with many graphs)
+
+
+=================
+MarlinReco v01-08
+=================
+
+
+ - John Marshall:
+	Update fillECALGaps function, so that it remains identical to that implemented in NewLDCCaloDigi processor (i.e. copy the NewLDCCaloDigi updates from 9th Jan 2013).
+   Apply HCAL "other" calibration constant to both ring and plug calorimeter hit types.
+
 ================
 MarlinTPC v00-15
 ================
+        General remarks: Following the analysis workshop at KEK several new analysis processors were
+        developed and added. Each comes with a corresponding root script to make the corresponding graph/plot.
+        A style file has been added to be used to make plots, so they look consistent.
+        Authors so far:  F. Mueller and A. Muennich
+        New in analysis/:
+                        ChargeQualityProcessor
+                        DistortionPerformanceProcessor
+                        HitQualityProcessor
+                        AnalysisCutSelectorProcessor
+                        TrackParametersDistributionProcessor
+                        ResolutionPerformanceProcessor
+                        TripletResolutionPerformanceProcessor
+                        HistogramWidthExtractionTools
+                        TripletCalculationTool
+        New in analysis/rootscripts             
+                        LCTPCStyle.C
+                        TrackParametersDistribution.C
+                        ProcessAllAnalyses.C
+                        LoadAnalysisScripts.C
+                        ChargeQuality.C
+                        HitQuality.C
+                        TripletResolutionPerformance.C
+                        ResolutionPerformance.C
+                        DistortionPerformance.C
+                        AnalysisCutSelector.C
+                        
+
+        - F. Mueller: added: a processor to synchronize the hit time of data taken with several RCUs
+                
+        - A. Muennich:  added additional time method in PulseFinder to get  time from center of gravity of region around maximum. 
+							added usage of reference point in ModuleDistortionCalculator
+
+        - P. Hayman: added Micromegas analysis tools: MMPulseFinderProcessor
+                                                      MMHitFinderProcessor
+                                                      MMPadResponseFunction
+                                                      MMHitTimeCorrectionProcessor
+                                                      MMCalibrationProcessor
+
+        - C. Kleinwort: New RowTripletBasedTrackFinderProcessor; FixCellID,
+          FixErrors adjusted
+                        New track finder (for LPTPC) based on triplets of rows.
+                        TPCHitFixErrors overwrites covariance matrix (instead of adding).
+                        TPCHitFixCellIDs encodes ModuleID in CellID0, need to be switched off for Clupatra 
+								(<parameter name="EncodeModuleID" type="bool">false </parameter>).
+
+        - Bo Li: update for tracking in multi-module of the branch
+          KalDet_GearTPC_devel 
+
+        - C. Menzen: added Multicheap read-in. Reads individual data files for
+          each chip individually
+                      multichip capability in InGridSimpleClusterFinder and TimepixHitAndTrackChargeprocessor
+
+        + minor small improvements on plots and several bug fixes
+
+
 
 =============
 GBL v01-16-01

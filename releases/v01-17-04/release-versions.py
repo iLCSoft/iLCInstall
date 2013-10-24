@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-04-pre'
+ilcsoft_release='v01-17-04'
 # ----------------------------------------------------------------------------
 
 
@@ -79,7 +79,7 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-04-03-pre" 
+LCIO_version = "v02-04-03" 
 
 GEAR_version = "v01-03-01" 
 
@@ -110,9 +110,9 @@ MarlinUtil_version = "v01-07-01"
 
 Marlin_version = "v01-05"
 
-Mokka_version = "mokka-08-03-pre" 
+Mokka_version = "mokka-08-03" 
 
-MarlinReco_version = "v01-08-pre"
+MarlinReco_version = "v01-08"
 
 MarlinTrk_version = "v01-11"
 
@@ -139,7 +139,7 @@ Overlay_version = "v00-13"
 
 PathFinder_version =  "v00-05"
 
-MarlinTPC_version = "v00-15-pre1"
+MarlinTPC_version = "v00-15"
 
 LCTuple_version = "v01-03"
 
@@ -164,7 +164,7 @@ SLIC_version = "v03-01-03"
 
 SlicPandora_version = "v01-00-00"
 
-DD4hep_version = "v00-05-pre"
+DD4hep_version = "v00-05"
 
 
 
