@@ -58,7 +58,7 @@ HepPDT_version = "3.04.01"
 
 GDML_version = "v03-00-02"
 
-LCDD_version = "v03-02-01"
+LCDD_version = "v03-02-02"
 
 SLIC_version = "v03-01-04"
 
