@@ -44,24 +44,16 @@ class Eutelescope(MarlinPKG):
 
 
         if self.env.get( "EUDAQ_VERSION", "" ):
-
             # ----- BUILD EUDAQ ---------------------------------
             os.chdir( self.installPath+"/external" )
             os.system( "svn co https://github.com/eudaq/eudaq/%s eudaq/%s" % (self.env["EUDAQ_VERSION"], os.path.basename(self.env["EUDAQ_VERSION"])) )
 
-            os.chdir( self.env[ "EUDAQ" ] ) # needs to be defined in preCheckDeps (so it is written to build_env.sh)
+            os.chdir( self.env[ "EUDAQ" ] + "/build" ) # needs to be defined in preCheckDeps (so it is written to build_env.sh)
 
             if( self.rebuild ):
-                os.system( "make clean" )
+                os.system( "cmake -D BUILD_gui=OFF -D BUILD_main=OFF -D BUILD_nreader=ON" )
 
-            os.system( "make USE_LCIO=1 USE_EUTELESCOPE=1 main" )
-
-            # ----- RE-BUILD EUTELESCOPE ---------------------------
-            os.chdir( self.installPath + "/build" )
-
-            os.system( self.genCMakeCmd() + " -DEUDAQ_DIR="+self.env[ "EUDAQ" ] )
             os.system( "make install" )
-
 
         if self.env.get( "MILLEPEDEII_VERSION", "" ):
             # ----- BUILD MILLEPEDEII ---------------------------
@@ -77,6 +69,7 @@ class Eutelescope(MarlinPKG):
         if self.env.get( "EUDAQ_VERSION", "" ):
             self.env[ "EUDAQ" ] = self.installPath + "/external/eudaq/" + os.path.basename(self.env["EUDAQ_VERSION"])
 
+
         if self.env.get( "MILLEPEDEII_VERSION", "" ):
             self.env[ "MILLEPEDEII" ] = self.installPath + "/external/millepede2/" + self.env["MILLEPEDEII_VERSION"]
             self.envpath["PATH"].append( '$MILLEPEDEII' )
@@ -88,4 +81,8 @@ class Eutelescope(MarlinPKG):
         self.env["EUTELESCOPE"] = self.installPath
         self.envpath["PATH"].append( '$EUTELESCOPE/bin' )
         self.envpath["LD_LIBRARY_PATH"].append( '$EUTELESCOPE/lib' )
+        # if EUDAQ is installed, adjust paths and Marlin libraries to be loaded
+        if self.env.get( "EUDAQ_VERSION", "" ):
+            self.envpath["LD_LIBRARY_PATH"].append( '$EUDAQ/lib' )
+            self.env["MARLIN_DLL"].append( '$EUDAQ/lib/libNativeReader.so' )
 
