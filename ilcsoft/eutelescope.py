@@ -50,8 +50,7 @@ class Eutelescope(MarlinPKG):
 
             os.chdir( self.env[ "EUDAQ" ] + "/build" ) # needs to be defined in preCheckDeps (so it is written to build_env.sh)
 
-            if( self.rebuild ):
-                os.system( "cmake -D BUILD_gui=OFF -D BUILD_main=OFF -D BUILD_nreader=ON .." )
+            os.system( "cmake -D BUILD_gui=OFF -D BUILD_main=OFF -D BUILD_nreader=ON .." )
 
             os.system( "make install" )
 
