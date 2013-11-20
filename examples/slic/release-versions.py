@@ -49,7 +49,6 @@ LCIO_version = "v02-03-03"
 
 ILCUTIL_version = "v01-00"
 
-
 Geant4_version = "9.6.p01"
 
 CMake_version = "2.8.5"
@@ -61,6 +60,3 @@ GDML_version = "v03-00-02"
 LCDD_version = "v03-02-02"
 
 SLIC_version = "v03-01-04"
-
-
-
