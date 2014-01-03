@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-04'
+ilcsoft_release='v01-17-05'
 # ----------------------------------------------------------------------------
 
 
@@ -133,7 +133,7 @@ PandoraPFANew_version = "v00-12" #"v00-09"
 MarlinPandora_version = "v00-11" #"v00-09-02"
 PandoraAnalysis_version = "v00-05" #"v00-04"
 
-CEDViewer_version = "v01-07"
+CEDViewer_version = "v01-07-01"
 
 Overlay_version = "v00-13"
 
@@ -169,6 +169,6 @@ DD4hep_version = "v00-05"
 
 
 #--- EUTelescope et al:
-Eutelescope_version = "v00-09-02" # or: "HEAD" for dev version
-Eudaq_version = "tags/v01-01-00" # or: "trunk" for dev version (i.e. git master at https://github.com/eudaq/eudaq)
+Eutelescope_version = "HEAD" # or: "HEAD" for dev version
+Eudaq_version = "trunk" # e.g. "tags/v01-01-00" or "trunk" for dev version (i.e. git master at https://github.com/eudaq/eudaq)
 Millepede2_version = 'tags/V04-00-02'

@@ -14,6 +14,7 @@ ilcsoft_release='v00-00'
 
 # --------- install dir ------------------------------------------------------
 ilcsoft_install_prefix = "/scratch/$USER/slic/"
+#ilcsoft_install_prefix = "/u1/projects/slic/"
 
 #ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 #ilcsoft_install_prefix = "/scratch/gaede/ilcsoft/"
@@ -49,7 +50,6 @@ LCIO_version = "v02-03-03"
 
 ILCUTIL_version = "v01-00"
 
-
 Geant4_version = "9.6.p01"
 
 CMake_version = "2.8.5"
@@ -58,9 +58,6 @@ HepPDT_version = "3.04.01"
 
 GDML_version = "v03-00-02"
 
-LCDD_version = "v03-02-02"
+LCDD_version = "v03-02-03"
 
 SLIC_version = "v03-01-04"
-
-
-

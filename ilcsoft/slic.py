@@ -19,21 +19,9 @@ class SLIC(BaseILC):
         BaseILC.__init__(self, userInput, "SLIC", "slic")
         
         self.reqfiles = [ ["build/lib/libslic.so", "build/lib/libslic.dylib", "build/bin/slic" ] ]
-        
-        # java required
-        # self.reqmodules_external = [ "Java" ]
-        
+                
+        self.download.supportedTypes = ["svn"]
 
-       # set some cvs variables
-        #self.download.env["CVSROOT"]=":pserver:anonymous@cvs.freehep.org:/cvs/lcd"
-
-        self.download.supportedTypes = ["cvs"]
-        self.download.accessmode = "pserver"
-        self.download.server = "cvs.freehep.org"
-        self.download.root = "cvs/lcd"
-        self.download.project = "slic"
-
-#        self.reqfiles = [ ["buildtools"] ]
         self.reqmodules = [ "LCDD", "GDML", "HepPDT", "XercesC" ]
 
     def compile(self):
@@ -63,6 +51,15 @@ class SLIC(BaseILC):
 
     def setMode(self, mode):
         BaseILC.setMode(self, mode)
+        
+        self.download.svnurl = 'svn://svn.freehep.org/lcdet/projects/slic'
+
+        if( Version( self.version ) == 'HEAD' ):
+            self.download.svnurl += '/trunk'
+        elif '-pre' in self.version or '-dev' in self.version:
+            self.download.svnurl += '/branches/' + self.version
+        else:
+            self.download.svnurl += '/tags/' + self.version
 
 
     def preCheckDeps(self):
@@ -71,13 +68,7 @@ class SLIC(BaseILC):
 #        if( self.mode == "install" ):
             # tests
 #            if( self.makeTests ):
-#                self.envcmake.setdefault("BUILD_SLIC_EXAMPLES","ON")
-#                self.envcmake.setdefault("BUILD_F77_TESTJOBS","ON")
-
-            #if self.cmakeBoolOptionIsSet( "BUILD_WITH_DCAP" ):
-            #    self.addDependency( ['dcap'] )
-            #    self.envcmake["DCAP_HOME"]=self.parent.module("dcap").installPath
-                
+#                self.envcmake.setdefault("BUILD_SLIC_EXAMPLES","ON")                
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
@@ -88,5 +79,3 @@ class SLIC(BaseILC):
         #        self.envpath["PATH"].append( "$SLIC/tools" )
         self.envpath["PATH"].append( "$SLIC/build/bin" )
         self.envpath["LD_LIBRARY_PATH"].append( "$SLIC/build/lib" )
-
-

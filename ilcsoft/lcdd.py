@@ -19,21 +19,9 @@ class LCDD(BaseILC):
         BaseILC.__init__(self, userInput, "LCDD", "lcdd")
         
         self.reqfiles = [ ["lib/liblcdd.so", "lib/liblcdd.dylib"] ]
-        
-        # java required
-        # self.reqmodules_external = [ "Java" ]
-        
+                
+        self.download.supportedTypes = ["svn"]
 
-       # set some cvs variables
-        #self.download.env["CVSROOT"]=":pserver:anonymous@cvs.freehep.org:/cvs/lcd"
-
-        self.download.supportedTypes = ["cvs"]
-        self.download.accessmode = "pserver"
-        self.download.server = "cvs.freehep.org"
-        self.download.root = "cvs/lcd"
-        self.download.project = "lcdd"
-
-#        self.reqfiles = [ ["buildtools"] ]
         self.reqmodules = [ "GDML" ]
 
     def compile(self):
@@ -61,22 +49,21 @@ class LCDD(BaseILC):
 
 
     def setMode(self, mode):
+        
         BaseILC.setMode(self, mode)
+        
+        self.download.svnurl = 'svn://svn.freehep.org/lcdet/projects/lcdd'
+
+        if( Version( self.version ) == 'HEAD' ):
+            self.download.svnurl += '/trunk'
+        elif '-pre' in self.version or '-dev' in self.version:
+            self.download.svnurl += '/branches/' + self.version
+        else:
+            self.download.svnurl += '/tags/' + self.version
 
 
     def preCheckDeps(self):
-        BaseILC.preCheckDeps(self)
-       
-#        if( self.mode == "install" ):
-            # tests
-#            if( self.makeTests ):
-#                self.envcmake.setdefault("BUILD_LCDD_EXAMPLES","ON")
-#                self.envcmake.setdefault("BUILD_F77_TESTJOBS","ON")
-
-            #if self.cmakeBoolOptionIsSet( "BUILD_WITH_DCAP" ):
-            #    self.addDependency( ['dcap'] )
-            #    self.envcmake["DCAP_HOME"]=self.parent.module("dcap").installPath
-                
+        BaseILC.preCheckDeps(self)                    
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
@@ -84,9 +71,4 @@ class LCDD(BaseILC):
         self.env["LCDD"] = self.installPath
         self.env["GDML_SCHEMA_DIR"]= "$LCDD"            
 
-        # PATH
-        #        self.envpath["PATH"].append( "$LCDD/tools" )
-        #        self.envpath["PATH"].append( "$LCDD/bin" )
         self.envpath["LD_LIBRARY_PATH"].append( "$LCDD/lib" )
-
-
