@@ -23,8 +23,9 @@ class Eutelescope(MarlinPKG):
         # optional modules
         self.optmodules = [ "GEAR", "AIDA" , "MarlinUtil", "CLHEP", "GSL", "CED", "ROOT", "GBL" ]
 
-        # cvs root
-        self.download.root = "eutelescope"
+        # github download via svn
+        self.download.type = "svn"
+        self.download.svnurl = 'https://github.com/eutelescope/eutelescope/'+userInput
 
 
     def compile(self):
