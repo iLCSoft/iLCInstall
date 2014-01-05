@@ -15,7 +15,12 @@ class Eutelescope(MarlinPKG):
     """ Responsible for the Eutelescope installation process. """
     
     def __init__(self, userInput):
-        MarlinPKG.__init__(self, "Eutelescope", userInput )
+        # strip potential 'tags/' or 'branches/' parts from version string
+        if os.path.basename(userInput):
+            myversion=os.path.basename(userInput)
+        else:
+            myversion=os.path.dirname(userInput)
+        MarlinPKG.__init__(self, "Eutelescope", myversion )
 
         # required modules
         self.reqmodules = [ "Marlin",  "LCIO" ]
@@ -30,6 +35,9 @@ class Eutelescope(MarlinPKG):
 
     def compile(self):
         """ compile Eutelescope """
+        # ----- DOWNLOAD EXTERNAL DEPENDENCIES ----------------------------
+        os.system( "sh "+self.installPath+"/tools/install-externals/install-externals.sh "
+                   + self.installPath+"/external" )
 
         # ----- BUILD EUTELESCOPE ----------------------------
         os.chdir( self.installPath+"/build" )
