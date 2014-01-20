@@ -64,7 +64,7 @@ CERNLIB_path = ilcPath + "/cernlib/" + CERNLIB_version
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version = "9.6.p01"
+Geant4_version = "10.00"
 
 ROOT_version = "5.34.05" 
 
