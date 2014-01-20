@@ -13,6 +13,24 @@ number of new features as well as a number of new packages.
  
 =================================================
 
+
+
+BIG ONE: 
+ =========================
+	GEANT 4.10.00
+=========================
+new Geant4 version, use with extreme care
+
+=========================
+ Gear v01-04
+=========================
+ 
+ Bug fix by A. Muennich for FixedPadAngleDiskLayout::getNearestPad; wrap
+around angle was wrong
+
+ I. Rubinsky:     add set methods to SiPlanesLayerLayout
+
+
 Package updates:
 
 ==================================

@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-05'
+ilcsoft_release='v01-17-05-pre'
 # ----------------------------------------------------------------------------
 
 
@@ -81,7 +81,7 @@ CMake_version = "2.8.5"
 
 LCIO_version = "v02-04-03" 
 
-GEAR_version = "v01-03-01" 
+GEAR_version = "v01-04-pre" 
 
 CED_version = "v01-09-01"
 
