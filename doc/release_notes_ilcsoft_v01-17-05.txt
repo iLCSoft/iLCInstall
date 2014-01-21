@@ -21,6 +21,13 @@ BIG ONE:
 =========================
 new Geant4 version, use with extreme care
 
+
+====================
+	GDML v03-00-02
+====================
+forced change, older version disappeared
+
+
 =========================
  Gear v01-04
 =========================
