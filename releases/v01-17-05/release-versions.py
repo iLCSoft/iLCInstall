@@ -158,7 +158,7 @@ XercesC_version = "3.1.1"
 HepPDT_version = "3.04.01"
 
 # new versions by J. McCormick
-GDML_version = "v03-00-00"
+GDML_version = "v03-00-02"
 LCDD_version = "v03-02-00"
 SLIC_version = "v03-01-03"  
 
