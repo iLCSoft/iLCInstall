@@ -81,7 +81,7 @@ CMake_version = "2.8.5"
 
 LCIO_version = "v02-04-03" 
 
-GEAR_version = "v01-04-pre" 
+GEAR_version = "v01-04-pre01" 
 
 CED_version = "v01-09-01"
 
