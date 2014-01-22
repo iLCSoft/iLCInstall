@@ -56,9 +56,6 @@ CERNLIB_version = "2006"
 CERNLIB_path = ilcPath + "/cernlib/" + CERNLIB_version
 
 
-# xerces-c (needed by geant4 for building gdml support - required by mokka)
-#XERCESC_ROOT_DIR = ilcPath + "/xercesc/2.7.0"
-
 
 
 
@@ -68,7 +65,7 @@ Geant4_version = "10.00"
 
 ROOT_version = "5.34.05" 
 
-CLHEP_version = "2.1.3.1"
+CLHEP_version = "2.1.4.1"
 
 GSL_version = "1.14"
 
@@ -152,6 +149,9 @@ Garlic_version = "v2.10.1"
 
 
 #--- slic et al:
+
+# xerces-c (needed by geant4 for building gdml support - required by mokka)
+XERCESC_ROOT_DIR = ilcPath + "/xercesc/3.1.1"
 
 XercesC_version = "3.1.1" 
 
