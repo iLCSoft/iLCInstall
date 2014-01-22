@@ -13,14 +13,10 @@ number of new features as well as a number of new packages.
  
 =================================================
 
-
-
-BIG ONE: 
- =========================
-	GEANT 4.10.00
-=========================
-new Geant4 version, use with extreme care
-
+TO BE FILLED:
+- new MarlinTrkProcesser v01-10-pre
+- new MarlinUTIL v01-08-pre
+- new KalDet v01-13-pre
 
 ====================
 	GDML v03-00-02

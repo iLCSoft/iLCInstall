@@ -61,7 +61,8 @@ CERNLIB_path = ilcPath + "/cernlib/" + CERNLIB_version
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version = "10.00"
+Geant4_version = "9.6.p01" 
+#version 10.00 is on disk
 
 ROOT_version = "5.34.05" 
 
@@ -95,7 +96,7 @@ MarlinFastJet_version = "v00-01"
 
 KalTest_version = "v01-05-03"
 
-KalDet_version = "HEAD"   # -> "v01-13"
+KalDet_version = "v01-13-pre"
 
 GBL_version = "V01-16-02"
 
@@ -103,7 +104,7 @@ LCCD_version = "v01-03"
 
 RAIDA_version = "v01-06-02"
 
-MarlinUtil_version = "HEAD" # -> "v01-08"
+MarlinUtil_version = "v01-08-pre"
 
 Marlin_version = "v01-05"
 
@@ -113,7 +114,7 @@ MarlinReco_version = "v01-08"
 
 MarlinTrk_version = "v01-11"
 
-MarlinTrkProcessors_version = "HEAD" # -> "v01-10"
+MarlinTrkProcessors_version = "v01-10-pre"
 
 Clupatra_version = "v00-10"
 
