@@ -66,7 +66,7 @@ Geant4_version = "9.6.p01"
 
 ROOT_version = "5.34.10" 
 
-CLHEP_version = "2.1.4.1"
+CLHEP_version = "2.1.3.1"
 
 GSL_version = "1.14"
 
@@ -165,7 +165,7 @@ SLIC_version = "v03-01-03"
 
 SlicPandora_version = "v01-00-00"
 
-DD4hep_version = "v00-05"
+DD4hep_version = "HEAD"
 
 
 
