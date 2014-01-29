@@ -13,13 +13,72 @@ number of new features as well as a number of new packages.
  
 =================================================
 
-TO BE FILLED:
-- new MarlinTrkProcesser v01-10-pre
-- new MarlinUTIL v01-08-pre
-- new KalDet v01-13-pre
+===========================
+ MarlinTrkProcessor v01-10
+===========================
+  -  added FPCCDTracking code by Tatsuya Mori
+
+===========================
+MarlinUtil v01-08
+===========================
+     - improved FPCCD classes (T.Mori)
+     - added HelixClass_double 
+
+
+
+===========================
+Kaldet v01-13 (by F. Gaede)
+===========================
+
+ - modified ILDVXDKalDetector:
+  
+   - modified to optionally change the relative position of
+    the measurement surface within the sensitive layer
+     => needed for example in the FPCCD
+
+  - optionally users can add
+     <parameter name="relative_position_of_measurement_surface" type="double"value="0.15"/>
+   to the VXD parameter section in the GEAR file
+
+
+===========================
+ dd4HEP v00-06
+===========================
+
+
+===========================
+ ROOT v05-34-10
+===========================
+- initially forced by dd4HEP requirement
+- now uses git
+
+
+===========================
+ CEDViewer v01-07-02 (by F. Gaede)
+===========================
+some minor improvements to pyced 
+         - added userDraw() method for
+           drawing additional objects
+         - added example for track cut function
+
+==========================
+ MarlinFastJet v00-02 (by A. Sailer)
+===========================
+* Add optional feature to store PFOs clustered into physics jets in separate  recParticleOut collection, which can be passed to later processors (S. Redford)
+* Add support for FastJet v3
+* bug fixes
+
+===========================
+ MarlinReco v01-08-01 (by G.Grenier)
+===========================
+
+SDHCAL digitizer : charge simulation : simplifies Polya function. Charge
+dispatching on pads : fix integration if using functions (slows the process)
+and add new dispatching using sum of Erf functions (recommended option)
+
 
 ====================
-	GDML v03-00-02
+	GDML v03-00-02 (by J. McCormick)
 ====================
 forced change, older version disappeared
 
@@ -34,12 +93,13 @@ around angle was wrong
  I. Rubinsky:     add set methods to SiPlanesLayerLayout
 
 
-Package updates:
-
 ==================================
-GeneralBrokenLines (GBL) v01-16-02
+GeneralBrokenLines (GBL) v01-16-03
 ==================================
- by Claus Kleinwort
+   - documentation augmented
+   - cmake config file exports ROOT dependencies
+	- diagonalization of scatters
+	- trajectories require at least two points  
 
 
 =================================================
