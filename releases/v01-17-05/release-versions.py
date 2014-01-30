@@ -66,6 +66,7 @@ Geant4_version = "9.6.p01"
 
 ROOT_version = "5.34.10" 
 
+#CLHEP_version = "2.1.4.1" already on disk -- needed for geant4.10
 CLHEP_version = "2.1.3.1"
 
 GSL_version = "1.14"
@@ -98,7 +99,7 @@ KalTest_version = "v01-05-03"
 
 KalDet_version = "v01-13-pre"
 
-GBL_version = "V01-16-02"
+GBL_version = "V01-16-03"
 
 LCCD_version = "v01-03"
 
@@ -135,7 +136,7 @@ CEDViewer_version = "v01-07-02"
 
 Overlay_version = "v00-13"
 
-PathFinder_version =  "v00-05"
+PathFinder_version =  "v00-06-pre"
 
 MarlinTPC_version = "v00-15"
 
@@ -165,7 +166,7 @@ SLIC_version = "v03-01-03"
 
 SlicPandora_version = "v01-00-00"
 
-DD4hep_version = "HEAD"
+DD4hep_version = "HEAD" #"v00-05"
 
 
 
