@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-05-pre'
+ilcsoft_release='v01-17-05-pre01'
 # ----------------------------------------------------------------------------
 
 
@@ -166,7 +166,7 @@ SLIC_version = "v03-01-03"
 
 SlicPandora_version = "v01-00-00"
 
-DD4hep_version = "HEAD" #"v00-05"
+DD4hep_version = "v00-06-pre"
 
 
 
