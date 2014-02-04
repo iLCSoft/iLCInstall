@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-05-pre01'
+ilcsoft_release='v01-17-05-pre02'
 # ----------------------------------------------------------------------------
 
 
@@ -111,7 +111,7 @@ Marlin_version = "v01-05"
 
 Mokka_version = "mokka-08-03" 
 
-MarlinReco_version = "v01-08"
+MarlinReco_version = "v01-09-pre"
 
 MarlinTrk_version = "v01-11"
 
