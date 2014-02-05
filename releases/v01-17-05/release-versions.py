@@ -171,6 +171,6 @@ DD4hep_version = "v00-06-pre"
 
 
 #--- EUTelescope et al:
-Eutelescope_version = "trunk" # e.g. "tags/v00-09-00" or "trunk" for dev version
-Eudaq_version = "trunk" # e.g. "tags/v01-01-00" or "trunk" for dev version (i.e. git master at https://github.com/eudaq/eudaq)
+Eutelescope_version = "tags/v1.0.0-alpha.1" # e.g. "tags/v00-09-00" or "trunk" for dev version
+Eudaq_version = "tags/v1.2.0-beta" # e.g. "tags/v01-01-00" or "trunk" for dev version (i.e. git master at https://github.com/eudaq/eudaq)
 Millepede2_version = 'tags/V04-00-02'
