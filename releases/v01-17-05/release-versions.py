@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-05-pre03'
+ilcsoft_release='v01-17-05'
 # ----------------------------------------------------------------------------
 
 
@@ -80,7 +80,7 @@ CMake_version = "2.8.5"
 
 LCIO_version = "v02-04-03" 
 
-GEAR_version = "v01-04-pre01" 
+GEAR_version = "v01-04" 
 
 CED_version = "v01-09-01"
 
@@ -90,14 +90,14 @@ ILCUTIL_version = "v01-01"
 
 FastJet_version = "2.4.2"
 FastJetClustering_version = "v00-02"
-MarlinFastJet_version = "v00-02-pre"
+MarlinFastJet_version = "v00-02"
 
 
 # -------------------------------------------
 
 KalTest_version = "v01-05-03"
 
-KalDet_version = "v01-13-pre"
+KalDet_version = "v01-13"
 
 GBL_version = "V01-16-03"
 
@@ -105,17 +105,17 @@ LCCD_version = "v01-03"
 
 RAIDA_version = "v01-06-02"
 
-MarlinUtil_version = "v01-08-pre"
+MarlinUtil_version = "v01-08"
 
 Marlin_version = "v01-05"
 
 Mokka_version = "mokka-08-03" 
 
-MarlinReco_version = "v01-09-pre"
+MarlinReco_version = "v01-09"
 
 MarlinTrk_version = "v01-11"
 
-MarlinTrkProcessors_version = "v01-10-pre"
+MarlinTrkProcessors_version = "v01-10"
 
 Clupatra_version = "v00-10"
 
@@ -136,9 +136,9 @@ CEDViewer_version = "v01-07-02"
 
 Overlay_version = "v00-13"
 
-PathFinder_version =  "v00-06-pre"
+PathFinder_version =  "v00-06"
 
-MarlinTPC_version = "v00-16-pre"
+MarlinTPC_version = "v00-16"
 
 LCTuple_version = "v01-03"
 
@@ -166,7 +166,7 @@ SLIC_version = "v03-01-03"
 
 SlicPandora_version = "v01-00-00"
 
-DD4hep_version = "v00-06-pre"
+DD4hep_version = "v00-06"
 
 
 
