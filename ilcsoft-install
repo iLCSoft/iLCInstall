@@ -4,7 +4,7 @@ import logging
 import commands
 from ilcsoft import *
 
-_version = "v01-17-05_pre"
+_version = "v01-17-05"
 
 _usage = """%prog [options] INSTALL_CONFIG_FILE
 if called with no options only an installation summary is shown
@@ -56,6 +56,7 @@ ilcsoft_afs_path['gcc34_32bit'] = os.path.normpath( os.path.join( ilcsoft_afs_pa
 ilcsoft_afs_path['gcc41_32bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'i386_gcc41_sl5' ))
 ilcsoft_afs_path['gcc41_64bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc41_sl5' ))
 ilcsoft_afs_path['gcc44_64bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc44_sl6' ))
+ilcsoft_afs_path['gcc46_64bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc46_ub1204' ))
 
 ilcPath = None
 try:
