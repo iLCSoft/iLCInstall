@@ -8,13 +8,13 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v00-00'
+ilcsoft_release='release_v03-01-04'
 # ----------------------------------------------------------------------------
 
 
 # --------- install dir ------------------------------------------------------
-ilcsoft_install_prefix = "/scratch/$USER/slic/"
-#ilcsoft_install_prefix = "/u1/projects/slic/"
+#ilcsoft_install_prefix = "/scratch/$USER/slic/"
+ilcsoft_install_prefix = "/u1/projects/slic/"
 
 #ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 #ilcsoft_install_prefix = "/scratch/gaede/ilcsoft/"
@@ -58,6 +58,6 @@ HepPDT_version = "3.04.01"
 
 GDML_version = "v03-00-02"
 
-LCDD_version = "v03-02-03"
+LCDD_version = "v03-03-00"
 
 SLIC_version = "v03-01-04"
