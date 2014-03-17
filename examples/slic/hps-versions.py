@@ -11,8 +11,15 @@ ilcsoft_release='hps_v01-00-02'
 # ----------------------------------------------------------------------------
 
 # --------- install dir ------------------------------------------------------
+
+# local install for users
 #ilcsoft_install_prefix = "/scratch/$USER/slic/"
-ilcsoft_install_prefix = "/u1/projects/slic/"
+
+# Jeremy's local config 
+#ilcsoft_install_prefix = "/u1/projects/slic/"
+
+# JLab install dir
+ilcsoft_install_prefix = "/u/group/hps/hps_soft/slic/"
 
 # ======================= PACKAGE VERSIONS ===================================
 
