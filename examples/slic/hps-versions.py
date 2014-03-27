@@ -16,10 +16,10 @@ ilcsoft_release='hps_v01-00-02'
 #ilcsoft_install_prefix = "/scratch/$USER/slic/"
 
 # Jeremy's local config 
-#ilcsoft_install_prefix = "/u1/projects/slic/"
+ilcsoft_install_prefix = "/u1/projects/slic/"
 
 # JLab install dir
-ilcsoft_install_prefix = "/u/group/hps/hps_soft/slic/"
+#ilcsoft_install_prefix = "/u/group/hps/hps_soft/slic/"
 
 # ======================= PACKAGE VERSIONS ===================================
 
@@ -31,4 +31,4 @@ Geant4_version = "9.6.p01"
 HepPDT_version = "3.04.01"
 GDML_version = "v03-00-02"
 LCDD_version = "v03-03-04"
-SLIC_version = "v03-01-04"
+SLIC_version = "v03-01-05"
