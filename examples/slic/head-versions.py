@@ -16,14 +16,14 @@ ilcsoft_release='HEAD'
 # --------- install dir ------------------------------------------------------
 #ilcsoft_install_prefix = "/scratch/$USER/slic/"
 ilcsoft_install_prefix = "/u1/projects/slic"
+#ilcsoft_install_prefix = "/work/projects/slic"
 
 # ======================= PACKAGE VERSIONS ===================================
 
 XercesC_version = "3.1.1" 
 LCIO_version = "HEAD"
 ILCUTIL_version = "v01-00"
-Geant4_version = "9.6.p01"
-#Geant4_version = "10.00"
+Geant4_version = "10.00.p01"
 CMake_version = "2.8.12.2"
 HepPDT_version = "3.04.01"
 GDML_version = "HEAD"
