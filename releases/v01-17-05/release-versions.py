@@ -56,18 +56,17 @@ CERNLIB_version = "2006"
 CERNLIB_path = ilcPath + "/cernlib/" + CERNLIB_version
 
 
-# xerces-c (needed by geant4 for building gdml support - required by mokka)
-#XERCESC_ROOT_DIR = ilcPath + "/xercesc/2.7.0"
-
 
 
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version = "9.6.p01"
+Geant4_version = "9.6.p01" 
+#version 10.00 is on disk
 
-ROOT_version = "5.34.05" 
+ROOT_version = "5.34.10" 
 
+#CLHEP_version = "2.1.4.1" already on disk -- needed for geant4.10
 CLHEP_version = "2.1.3.1"
 
 GSL_version = "1.14"
@@ -91,32 +90,32 @@ ILCUTIL_version = "v01-01"
 
 FastJet_version = "2.4.2"
 FastJetClustering_version = "v00-02"
-MarlinFastJet_version = "v00-01"
+MarlinFastJet_version = "v00-02"
 
 
 # -------------------------------------------
 
 KalTest_version = "v01-05-03"
 
-KalDet_version = "HEAD"   # -> "v01-13"
+KalDet_version = "v01-13"
 
-GBL_version = "V01-16-02"
+GBL_version = "V01-16-03"
 
 LCCD_version = "v01-03"
 
 RAIDA_version = "v01-06-02"
 
-MarlinUtil_version = "HEAD" # -> "v01-08"
+MarlinUtil_version = "v01-08"
 
 Marlin_version = "v01-05"
 
 Mokka_version = "mokka-08-03" 
 
-MarlinReco_version = "v01-08"
+MarlinReco_version = "v01-09"
 
 MarlinTrk_version = "v01-11"
 
-MarlinTrkProcessors_version = "HEAD" # -> "v01-10"
+MarlinTrkProcessors_version = "v01-10"
 
 Clupatra_version = "v00-10"
 
@@ -133,13 +132,13 @@ PandoraPFANew_version = "v00-12" #"v00-09"
 MarlinPandora_version = "v00-11" #"v00-09-02"
 PandoraAnalysis_version = "v00-05" #"v00-04"
 
-CEDViewer_version = "v01-07-01"
+CEDViewer_version = "v01-07-02"
 
 Overlay_version = "v00-13"
 
-PathFinder_version =  "v00-05"
+PathFinder_version =  "v00-06"
 
-MarlinTPC_version = "v00-15"
+MarlinTPC_version = "v00-16"
 
 LCTuple_version = "v01-03"
 
@@ -153,22 +152,25 @@ Garlic_version = "v2.10.1"
 
 #--- slic et al:
 
+# xerces-c (needed by geant4 for building gdml support - required by mokka)
+XERCESC_ROOT_DIR = ilcPath + "/xercesc/3.1.1"
+
 XercesC_version = "3.1.1" 
 
 HepPDT_version = "3.04.01"
 
 # new versions by J. McCormick
-GDML_version = "v03-00-00"
+GDML_version = "v03-00-02"
 LCDD_version = "v03-02-00"
 SLIC_version = "v03-01-03"  
 
 SlicPandora_version = "v01-00-00"
 
-DD4hep_version = "v00-05"
+DD4hep_version = "v00-06"
 
 
 
 #--- EUTelescope et al:
-Eutelescope_version = "trunk" # e.g. "tags/v00-09-00" or "trunk" for dev version
-Eudaq_version = "trunk" # e.g. "tags/v01-01-00" or "trunk" for dev version (i.e. git master at https://github.com/eudaq/eudaq)
+Eutelescope_version = "trunk" # e.g. "tags/v00-09-00" (checked out via SVN) or "trunk" for git clone of the current dev version
+Eudaq_version = "tags/v1.2.1" # e.g. "tags/v1.2.1" (checked out via SVN) or "trunk" for a full git clone of the current development version
 Millepede2_version = 'tags/V04-00-02'

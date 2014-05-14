@@ -21,7 +21,7 @@ class FastJetClustering(MarlinPKG):
         MarlinPKG.__init__(self, "FastJetClustering", userInput )
 
         # required modules
-        self.reqmodules = [ "Marlin", "MarlinUtil", "CLHEP", "GEAR", "GSL", "CERNLIB", "LCIO", "FastJet" ]
+        self.reqmodules = [ "Marlin", "MarlinUtil", "CLHEP", "GEAR", "GSL",  "LCIO", "FastJet" ]
 
         self.download.root = "marlinreco"
 

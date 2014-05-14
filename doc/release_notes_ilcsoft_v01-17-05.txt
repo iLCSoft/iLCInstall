@@ -13,12 +13,259 @@ number of new features as well as a number of new packages.
  
 =================================================
 
-Package updates:
+===========================
+ MarlinTrkProcessor v01-10
+===========================
+  -  added FPCCDTracking code by Tatsuya Mori
+
+===========================
+MarlinUtil v01-08
+===========================
+     - improved FPCCD classes (T.Mori)
+     - added HelixClass_double 
+
+
+
+===========================
+Kaldet v01-13 (by F. Gaede)
+===========================
+
+ - modified ILDVXDKalDetector:
+  
+   - modified to optionally change the relative position of
+    the measurement surface within the sensitive layer
+     => needed for example in the FPCCD
+
+  - optionally users can add
+     <parameter name="relative_position_of_measurement_surface" type="double"value="0.15"/>
+   to the VXD parameter section in the GEAR file
+
+
+===========================
+ dd4HEP v00-06
+===========================
+
+2014/02/04  Frank Gaede
+-----------------------
+  - fixed environment scripts thisdd4hep.sh and this${PackageName}.sh
+    to also export library pathes for external libraries (CLHEP, LCIO, gear)
+
+  - added some simple tests to ILDExDet, ILDExSimu and noviceN04
+    - provide cmake script run_test_package.sh ( configured as run_test_${PackageName} ) 
+      to call test binaries after initializing the environment
+      (needed for automated/nightly tests)
+
+  - updated Readme.txt wrt build procedure and running the tests
+
+
+2014/01/17    Markus Frank
+--------------------------
+  - Prepare implementation of Alignment using Release and Grap features of TGeoVolume
+    and TGeoNode. In principle this was done in a backwards compatible way, but 
+    I cannot really check 100% the #ifdef's.
+  - Fix handling of XML collections using XercesC.
+    (Bug reported by P.Kostka).
+  - Fix several compiler warnings issued by Coverity.
+
+2013/12/17    Markus Frank
+--------------------------
+  - Whole load of fixes to keep coverity quiet....
+  - Fix bug in DDG4 field interface component
+  - Allow the usage of units, positions and lorentzvectors and in DDG4 properties.
+    Example using a position property (ROOT::Math::XYZVector):
+    Idle> /ddg4/Gun/position (1*mm,1*cm,0.01*m) 
+    Geant4UIMessenger: +++ Gun> Setting property value position = (1*mm,1*cm,0.01*m)  
+                       native:( 1 , 10 , 10 ).
+
+  - Support for std::vector<T>/std::list<T>/std::set<T> properties.
+
+  - Support for include directives of the format
+        <include ref="file-name"/>
+    for the top level <lccdd> tags
+       Parent tag    Included root tag  Data content
+    -- <lccdd>       <define>           See below.
+                     <detectors>
+                     <detector>
+                     <display>
+                     <lccdd>            Nested includes (with DTD validation for Xerces-C)
+    -- <define>      <define>           Set of constants
+    -- <detectors>   <detector>         Single XML subdetector description
+    -- <detectors>   <detectors>        Multiple XML subdetector descriptions
+    -- <display>     <display>          Set ov visualization attributes
+
+    DTD validation is only performed using Xerces-C for root tags <lccdd>.
+
+    Note: 
+    <lccdd> include directives are executed BEFORE any other directive!
+    Other include directives are executed BEFORE the corresponding named directive!
+
+2013/11/14    Markus Frank
+--------------------------
+  - Reformat files in DDCode and DDG4 to remove the <TAB>s from the source files.
+    Hopefully the content is now more readable.
+  - DDCore: Remove empty and named constructors for shapes. Empty constructors
+    were simply a dangerous hook to memory leaks, named constructors are 
+    deprecated since along time.
+  - DDG4: add support for messengers to access and modify properties from
+    the Geant4 prompt. For the test hit classes and the simple sensitive 
+    detector a ROOT I/O plugin was provided.
+  - DDG4: Split into several libraries:
+     -- libDD4hepG4.so pure    link library without any plugins
+     -- libDD4hepG4Legacy.so   'Old' plugins. The old stuff at some point
+                               will have to disappear.
+     -- libDD4hepG4Plugins.so  New framework plugins
+     -- libDD4hepG4LCIO.so     LCIO output plugin for new framework
+
+2013/11/03    Markus Frank
+--------------------------
+  - doc: Add CHEP2013 paper about DD4hep as a start of the documentation 
+    section. More to come hopefully.
+  - DDCore: several small improvements:
+    - Segmentations are no longer Ref_t's.
+    - Base internal implementing object directly on the segmentations 
+      classes from Christian.
+    - Rearrangement of some code from Handle.h to Primitives.h
+    - Allow to attach extensions to LCDD
+  - DDG4: Fix Frank's simulation problem, which he caused himself
+    introducing his famous factories....
+  - DDG4: First attempt to fix simulation problem with mignetic field.
+    Ready for testing.
+  - DDG4: First commit of a independent simulation aimed for LHCb and LHeC
+    + other newcomers. Documentation needs to be written.
+    Features:
+    - Modular setup of all Geant4 action routines as plugins, including the
+      Run-, event-, tracking-, stacking-, stepping- and generator-actions 
+      as well as the physics lists with particle and physics constructors.
+    - Setup is possible in XML or with C++ either as an AClick in root or
+      standalone. Python based starter to come.
+    - Missing is a modular description of the G4 UI and VIS manager(s).
+    - Documentation is to come. Before documentation is not present
+      the usage is discouraged.
+    Note:
+    - This version of DDG4 uses boost::spirit. It will compile without
+      the BOOST include files and the old functionality is preserved, 
+      but it will not work.
+      To use BOOST add to the cmake statement the following tags:
+      cmake <regular tags> \
+      -DDD4HEP_USE_BOOST=ON \
+      -DBOOST_INCLUDE_DIR=${BOOST_INCLUDE_DIR}  ....
+      Where BOOST_INCLUDE_DIR should point to the boost header directory.
+      BOOST libraries are not used.
+
+
+===========================
+ ROOT v05-34-10
+===========================
+- initially forced by dd4HEP requirement
+- now uses git
+
+
+===========================
+ CEDViewer v01-07-02 (by F. Gaede)
+===========================
+some minor improvements to pyced 
+         - added userDraw() method for
+           drawing additional objects
+         - added example for track cut function
+
+==========================
+ MarlinFastJet v00-02 (by A. Sailer)
+===========================
+* Add optional feature to store PFOs clustered into physics jets in separate  recParticleOut collection, which can be passed to later processors (S. Redford)
+* Add support for FastJet v3
+* bug fixes
+
+===========================
+ MarlinReco v01-08-01 (by G.Grenier)
+===========================
+
+SDHCAL digitizer : charge simulation : simplifies Polya function. Charge
+dispatching on pads : fix integration if using functions (slows the process)
+and add new dispatching using sum of Erf functions (recommended option)
+
+
+====================
+	GDML v03-00-02 (by J. McCormick)
+====================
+forced change, older version disappeared
+
+
+=========================
+ Gear v01-04
+=========================
+    - added set methods to SiPlanesLayerLayout (I.Rubinsky)
+
+   - bug fix for  FixedPadAngleDiskLayout::getNearestPad (A.Muennich)
+     - Wrap around of angle was not done correctly.
+
 
 ==================================
-GeneralBrokenLines (GBL) v01-16-02
+GeneralBrokenLines (GBL) v01-16-03
 ==================================
- by Claus Kleinwort
+   - documentation augmented
+   - cmake config file exports ROOT dependencies
+	- diagonalization of scatters
+	- trajectories require at least two points  
+
+==================================
+ pathfinder v00-06 (by I. Heinze)
+==================================
+  - cleaned up code & directories , fix typos
+  - added doxygen comments everywhere
+  - added class HoughSpaceAnalyser to save plots of Hough spaces
+  - added class HoughMapMaximumCandidateFinder, which does the search of the Hough maps for the maxima, before this was done in every kind of Hough map
+  - added a class called HoughMap2DuntIntersectionMethod, which is not used yet, but it is an idea for further development
+  - fixed bug in TrackGenerator
+
+
+
+
+====================
+  MarlinTPC v00-16
+====================
+(A. Munnich, P. Hayman, C. Kleinwort, F. Mueller, Li Bo, Ch. Krieger, D. Sankar, Ch. Rosemann) -- lots of bug fixes
+
+(P. Hayman )
+- Addition of MM reconstruction (see log for details)
+
+(A. Munnich)
+- Added a new flag for the pulses with a plateau. They were previously flagges as anomolous shape. Added a electron particle gun for our LP1 test beam geometry in preparation for detailed simulation.
+- First version of analysis processor for dEdx. Needs some more testing and tweaking probably. + root scripts
+-  several updates to detailed simulation (check logs for details)
+- fixes in ModuleDistortionCalculator.
+- Major rewrite of the HitDistributor (detailes see below). It should now work more correctly. Full testing not finished. Charge fluctuation on pads still seem somewhat large, but could also be due to electronics processor.
+
+Modified:  HitDistributor called from ChargeDistributionProcessor
+           - Fixed errors, e.g. list of hit pads was wrong
+	   - Rewrite of code for clearer structure, avoiding the same code repeating in different functions
+	   - Introduced correct handling and usage of TPCModule
+	   - Introduced local and global coordinate systems. Now also translated and rotated modules work
+Added:  
+- test for the behaviour of the HitDistributor
+- test for the new TPCGas class
+
+(Ch. Rosemann)
+Changed BField access method from strange to 
+ 1) initialization of data by ConditionsProcessor
+ 2) loading of the field with the LoadFieldFromConditionsDataProcessor [takes as option the coil coordinate system]
+ 3) getting it with 
+		gear::Vector3D bfield = marlin::Global::GEAR->getBField().at( gear::Vector3D arbitrary_position);
+NOTE: needs a b field map; still to be loaded into the database
+
+C. Kleinwort
+- StepWiseHelixGeneralBrokenLineInterfaceProcessor (following changes in Bz) implemented.
+Needs track reference point inside magnet. RowTripletBasedTrackFinderProcessor uses as default now 1. hit as reference point. 
+- A local helix with bending plane perpendicular to an arbitray magnetic field is now used by StepWiseHelixGeneralBrokenLineInterfaceProcessor to propagate in an changing (only locally constant) field
+
+(Li Bo)
+- Added modulesNotUsed in TrackMakingKalmanFilterProcessor 
+
+(Ch. Krieger)
+ Changed TimePixMaskCreatorProcessor so it does not need any more an occupancy histogram (which was required but not used before), dead and noisy pixels are now defined via processor params instead of setting them in the processors source code
+
+
+
+
 
 
 =================================================
