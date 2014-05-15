@@ -64,7 +64,7 @@ CERNLIB_path = ilcPath + "/cernlib/" + CERNLIB_version
 Geant4_version = "9.6.p01" 
 #version 10.00 is on disk
 
-ROOT_version = "5.34.10" 
+ROOT_version = "5.34.18" 
 
 #CLHEP_version = "2.1.4.1" already on disk -- needed for geant4.10
 CLHEP_version = "2.1.3.1"
@@ -73,7 +73,7 @@ GSL_version = "1.14"
 
 QT_version = "4.7.4"
 
-CMake_version = "2.8.5"
+CMake_version = "2.8.12"
 
 
 # -------------------------------------------
