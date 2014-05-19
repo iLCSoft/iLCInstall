@@ -64,7 +64,7 @@ CERNLIB_path = ilcPath + "/cernlib/" + CERNLIB_version
 Geant4_version = "9.6.p01" 
 #version 10.00 is on disk
 
-ROOT_version = "5.34.10" 
+ROOT_version = "5.34.18" 
 
 #CLHEP_version = "2.1.4.1" already on disk -- needed for geant4.10
 CLHEP_version = "2.1.3.1"
@@ -73,7 +73,7 @@ GSL_version = "1.14"
 
 QT_version = "4.7.4"
 
-CMake_version = "2.8.5"
+CMake_version = "2.8.12"
 
 
 # -------------------------------------------
@@ -171,6 +171,6 @@ DD4hep_version = "v00-06"
 
 
 #--- EUTelescope et al:
-Eutelescope_version = "tags/v1.0.0-alpha.1" # e.g. "tags/v00-09-00" or "trunk" for dev version
-Eudaq_version = "tags/v1.2.0-beta" # e.g. "tags/v01-01-00" or "trunk" for dev version (i.e. git master at https://github.com/eudaq/eudaq)
+Eutelescope_version = "trunk" # e.g. "tags/v00-09-00" (checked out via SVN) or "trunk" for git clone of the current dev version
+Eudaq_version = "tags/v1.2.1" # e.g. "tags/v1.2.1" (checked out via SVN) or "trunk" for a full git clone of the current development version
 Millepede2_version = 'tags/V04-00-02'

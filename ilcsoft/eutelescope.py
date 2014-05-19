@@ -27,9 +27,8 @@ class Eutelescope(MarlinPKG):
 
         # optional modules
         self.optmodules = [ "GEAR", "AIDA" , "MarlinUtil", "CLHEP", "GSL", "CED", "ROOT", "GBL" ]
-
-        # github download via svn
-        self.download.type = "svn"
+        
+        # set download url with full path
         self.download.svnurl = 'https://github.com/eutelescope/eutelescope/'+userInput
 
 
@@ -55,7 +54,12 @@ class Eutelescope(MarlinPKG):
         if self.env.get( "EUDAQ_VERSION", "" ):
             # ----- BUILD EUDAQ ---------------------------------
             os.chdir( self.installPath+"/external" )
-            os.system( "svn co https://github.com/eudaq/eudaq/%s eudaq/%s" % (self.env["EUDAQ_VERSION"], os.path.basename(self.env["EUDAQ_VERSION"])) )
+            if( not self.env["EUDAQ_VERSION"] == 'trunk' ):
+                # check out e.g. the tagged version (using svn)
+                os.system( "svn co https://github.com/eudaq/eudaq/%s eudaq/%s" % (self.env["EUDAQ_VERSION"], os.path.basename(self.env["EUDAQ_VERSION"])) )
+            else:
+                # check out a full git clone of the repository
+                os.system( "git clone https://github.com/eudaq/eudaq eudaq/%s" % (self.env["EUDAQ_VERSION"], os.path.basename(self.env["EUDAQ_VERSION"])) )
 
             os.chdir( self.env[ "EUDAQ" ] + "/build" ) # needs to be defined in preCheckDeps (so it is written to build_env.sh)
 
@@ -94,3 +98,13 @@ class Eutelescope(MarlinPKG):
             self.envpath["LD_LIBRARY_PATH"].append( '$EUDAQ/lib' )
             self.parent.module('Marlin').envpath["MARLIN_DLL"].append( '$EUDAQ/lib/libNativeReader.so' )
 
+    def setMode(self, mode):
+        MarlinPKG.setMode(self, mode)
+
+        # github download via svn or git clone depending on the chosen version
+        if( not self.version == 'trunk' ):
+            self.download.type = "svn"
+        else: # devel version -- use git clone
+            self.download.type = "git-clone"
+            # reset url to remove path to branches, trunk, etc.
+            self.download.svnurl = 'https://github.com/eutelescope/eutelescope'

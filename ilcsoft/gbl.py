@@ -49,6 +49,7 @@ class GBL(BaseILC):
     def setMode(self, mode):
         BaseILC.setMode(self, mode)
 
+        self.download.type = 'svn'
         self.download.svnurl = 'https://svnsrv.desy.de/public/GeneralBrokenLines'
 
         if( Version( self.version ) == 'HEAD' ):

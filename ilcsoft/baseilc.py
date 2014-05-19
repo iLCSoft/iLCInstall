@@ -334,6 +334,18 @@ class BaseILC:
                         self.download.svnurl += 'branches/'+self.version
                     else:
                         self.download.svnurl += 'tags/'+self.version
+            # git access to repository
+            elif ( self.download.type[:3] == "git" ):
+                if( not isinPath("git") ):
+                    self.abort( "git not found on your system!!" )
+
+                # if svnurl not set by user generate a default one
+                if( len(self.download.svnurl) == 0 ):
+                    # initialize svn settings for github
+                    self.download.accessmode = "https"
+                    self.download.server = "github.com"
+                    self.download.root = self.download.project
+                    self.download.svnurl = "%s://%s/%s/%s/" % (self.download.accessmode,self.download.server,self.download.root,self.download.project)
             else:
                 self.abort( "download type " + self.download.type + " not recognized!!" )
 
@@ -616,6 +628,12 @@ class BaseILC:
 
                 if( os.system( cmd ) != 0 ):
                     self.abort( "error updating sources" )
+            elif 'git' in self.download.type:
+                cmd = "cd %s && git pull origin && cd -" % self.installPath
+                print cmd
+
+                if( os.system( cmd ) != 0 ):
+                    self.abort( "error updating sources" )
 
 
     def downloadSources(self):
@@ -686,6 +704,16 @@ class BaseILC:
                 cmd="%s %s %s" % (svncmd, self.download.svnurl, self.version)
 
             print "svn download cmd:",cmd
+            if( os.system( cmd ) != 0 ):
+                self.abort( "Problems ocurred downloading sources with "+self.download.type+"!!")
+
+        elif( self.download.type[:3] == "git" ):
+
+            # defaults to clone
+            gitcmd = "git clone"
+            cmd="%s %s %s" % (gitcmd, self.download.svnurl, self.version)
+
+            print "git download cmd:",cmd
             if( os.system( cmd ) != 0 ):
                 self.abort( "Problems ocurred downloading sources with "+self.download.type+"!!")
 
@@ -1211,7 +1239,7 @@ class Download:
         self.env = {}                               # environment (CVSROOT, CVS_RSH)
         self.type = "wget"                          # download type (wget, cvs, ccvssh)
         self.supportHEAD = True                     # support for downloading HEAD version
-        self.supportedTypes = [ "wget", "svn", "svn-desy", "svn-p12cert", "svn-export", "ccvssh" ]  # supported download types for the module
+        self.supportedTypes = [ "wget", "svn", "svn-desy", "svn-p12cert", "svn-export", "git", "git-clone", "ccvssh" ]  # supported download types for the module
         self.url = {}
         self.cmd = "wget"
 
@@ -1220,6 +1248,8 @@ class Download:
             return "\t\t+ URL [ " + self.url + " ]"
         elif ( self.type[:3] == "svn" ):
             return "\t\t+ SVN [ " + self.svnurl + " ]"
+        elif ( self.type[:3] == "git" ):
+            return "\t\t+ git [ " + self.svnurl + " ]"
         else:
             return "\t\t+ CVSROOT [ " + self.env["CVSROOT"] + " ]"
 
