@@ -172,5 +172,5 @@ DD4hep_version = "v00-06"
 
 #--- EUTelescope et al:
 Eutelescope_version = "trunk" # e.g. "tags/v00-09-00" (checked out via SVN) or "trunk" for git clone of the current dev version
-Eudaq_version = "tags/v1.2.1" # e.g. "tags/v1.2.1" (checked out via SVN) or "trunk" for a full git clone of the current development version
+Eudaq_version = "tags/v1.2.2" # e.g. "tags/v1.2.2" (checked out via SVN) or "trunk" for a full git clone of the current development version
 Millepede2_version = 'tags/V04-00-02'
