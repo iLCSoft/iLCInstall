@@ -56,23 +56,29 @@ class Eutelescope(MarlinPKG):
             os.chdir( self.installPath+"/external" )
             if( not self.env["EUDAQ_VERSION"] == 'trunk' ):
                 # check out e.g. the tagged version (using svn)
-                os.system( "svn co https://github.com/eudaq/eudaq/%s eudaq/%s" % (self.env["EUDAQ_VERSION"], os.path.basename(self.env["EUDAQ_VERSION"])) )
+                if( os.system( "svn co https://github.com/eudaq/eudaq/%s eudaq/%s" % (self.env["EUDAQ_VERSION"], os.path.basename(self.env["EUDAQ_VERSION"])) + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+                    self.abort( "failed to checkout EUDAQ!" )
             else:
                 # check out a full git clone of the repository
-                os.system( "git clone https://github.com/eudaq/eudaq eudaq/%s" % (self.env["EUDAQ_VERSION"], os.path.basename(self.env["EUDAQ_VERSION"])) )
+                if( os.system( "git clone https://github.com/eudaq/eudaq eudaq/%s" % (os.path.basename(self.env["EUDAQ_VERSION"])) + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+                    self.abort( "failed to clone EUDAQ!" )
 
             os.chdir( self.env[ "EUDAQ" ] + "/build" ) # needs to be defined in preCheckDeps (so it is written to build_env.sh)
 
-            os.system( "cmake -D BUILD_gui=OFF -D BUILD_main=OFF -D BUILD_nreader=ON .." )
+            if( os.system( "cmake -D BUILD_gui=OFF -D BUILD_main=OFF -D BUILD_nreader=ON .." + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+                self.abort( "failed to configure EUDAQ!" )
 
-            os.system( "make install" )
+            if( os.system( "make install" + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+                self.abort( "failed to build EUDAQ!" )
 
         if self.env.get( "MILLEPEDEII_VERSION", "" ):
             # ----- BUILD MILLEPEDEII ---------------------------
             os.chdir( self.installPath+"/external" )
-            os.system( "svn co https://svnsrv.desy.de/public/MillepedeII/%s millepede2/%s" % (self.env["MILLEPEDEII_VERSION"], self.env["MILLEPEDEII_VERSION"]) )
+            if( os.system( "svn co https://svnsrv.desy.de/public/MillepedeII/%s millepede2/%s" % (self.env["MILLEPEDEII_VERSION"], self.env["MILLEPEDEII_VERSION"]) + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+                self.abort( "failed to build MILLEPEDE2!" )
             os.chdir( self.env[ "MILLEPEDEII" ] ) # needs to be defined in preCheckDeps (so it is written to build_env.sh)
-            os.system( "make" )
+            if( os.system( "make" + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+                self.abort( "failed to build MILLEPEDE2!" )
 
 
     def preCheckDeps(self):
