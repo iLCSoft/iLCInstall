@@ -11,8 +11,8 @@
 ilcsoft_release = "v04-00-00-pre"
 
 # --------- install dir ------------------------------------------------------
-#ilcsoft_install_prefix = "/scratch/$USER/slic/"
-ilcsoft_install_prefix = "/u1/projects/slic"
+ilcsoft_install_prefix = "/scratch/$USER/slic/"
+#ilcsoft_install_prefix = "/u1/projects/slic"
 
 # ======================= PACKAGE VERSIONS ===================================
 
