@@ -168,7 +168,7 @@ SlicPandora_version = "v01-00-00"
 
 DD4hep_version = "v00-06"
 
-
+Physsim_version = "HEAD" # fixme - need version ...
 
 #--- EUTelescope et al:
 Eutelescope_version = "trunk" # e.g. "tags/v00-09-00" (checked out via SVN) or "trunk" for git clone of the current dev version
