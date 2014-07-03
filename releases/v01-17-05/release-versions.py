@@ -73,7 +73,7 @@ GSL_version = "1.14"
 
 QT_version = "4.7.4"
 
-CMake_version = "2.8.12"
+CMake_version = "2.8.5"
 
 
 # -------------------------------------------
