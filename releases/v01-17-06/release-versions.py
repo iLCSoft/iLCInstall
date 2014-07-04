@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-05'
+ilcsoft_release='v01-17-06'
 # ----------------------------------------------------------------------------
 
 
@@ -78,53 +78,53 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-04-03" 
+LCIO_version = "HEAD" 
 
-GEAR_version = "v01-04" 
+GEAR_version = "HEAD" 
 
 CED_version = "v01-09-01"
 
-CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
+CondDBMySQL_version = "HEAD"
 
 ILCUTIL_version = "v01-01" 
 
 FastJet_version = "2.4.2"
-FastJetClustering_version = "v00-02"
-MarlinFastJet_version = "v00-02"
+FastJetClustering_version = "HEAD"
+MarlinFastJet_version = "HEAD"
 
 
 # -------------------------------------------
 
-KalTest_version = "v01-05-03"
+KalTest_version = "HEAD"
 
-KalDet_version = "v01-13"
+KalDet_version = "HEAD"
 
-GBL_version = "V01-16-03"
+GBL_version = "HEAD"
 
-LCCD_version = "v01-03"
+LCCD_version = "HEAD"
 
-RAIDA_version = "v01-06-02"
+RAIDA_version = "HEAD"
 
-MarlinUtil_version = "v01-08"
+MarlinUtil_version = "HEAD"
 
-Marlin_version = "v01-05"
+Marlin_version = "HEAD"
 
-Mokka_version = "mokka-08-03" 
+Mokka_version = "HEAD" 
 
-MarlinReco_version = "v01-09"
+MarlinReco_version = "HEAD"
 
-MarlinTrk_version = "v01-11"
+MarlinTrk_version = "HEAD"
 
-MarlinTrkProcessors_version = "v01-10"
+MarlinTrkProcessors_version = "HEAD"
 
-Clupatra_version = "v00-10"
+Clupatra_version = "HEAD"
 
-LCFIVertex_version = "v00-06-01"
-LCFIPlus_version = "v00-05-02"
+LCFIVertex_version = "HEAD"
+LCFIPlus_version = "HEAD"
 
-KiTrack_version = "v01-04"
-KiTrackMarlin_version = "v01-04"
-ForwardTracking_version = "v01-07"
+KiTrack_version = "HEAD"
+KiTrackMarlin_version = "HEAD"
+ForwardTracking_version = "HEAD"
 
 MarlinKinfit_version = "v00-01-02"
 
@@ -134,19 +134,19 @@ PandoraAnalysis_version = "v00-06" #"v00-04"
 
 CEDViewer_version = "v01-07-02"
 
-Overlay_version = "v00-13"
+Overlay_version = "HEAD"
 
-PathFinder_version =  "v00-06"
+PathFinder_version =  "HEAD"
 
-MarlinTPC_version = "v00-16"
+MarlinTPC_version = "HEAD"
 
-LCTuple_version = "v01-03"
+LCTuple_version = "HEAD"
 
-BBQ_version =  "v00-01-02"
+BBQ_version =  "HEAD"
 
-Druid_version = "2.2" # "1.8" 
+Druid_version = "HEAD" # "1.8" 
 
-Garlic_version = "v2.10.1"
+Garlic_version = "HEAD"
 
 
 
@@ -160,17 +160,17 @@ XercesC_version = "3.1.1"
 HepPDT_version = "3.04.01"
 
 # new versions by J. McCormick
-GDML_version = "v03-00-02"
-LCDD_version = "v03-02-00"
-SLIC_version = "v03-01-03"  
+GDML_version = "HEAD"
+LCDD_version = "HEAD"
+SLIC_version = "HEAD"  
 
 SlicPandora_version = "v01-00-00"
 
-DD4hep_version = "v00-06"
+DD4hep_version = "HEAD"
 
 Physsim_version = "HEAD" # fixme - need version ...
 
 #--- EUTelescope et al:
 Eutelescope_version = "trunk" # e.g. "tags/v00-09-00" (checked out via SVN) or "trunk" for git clone of the current dev version
-Eudaq_version = "tags/v1.2.2" # e.g. "tags/v1.2.2" (checked out via SVN) or "trunk" for a full git clone of the current development version
-Millepede2_version = 'tags/V04-00-02'
+Eudaq_version = "trunk" # e.g. "tags/v1.2.2" (checked out via SVN) or "trunk" for a full git clone of the current development version
+Millepede2_version = 'trunk'
