@@ -46,6 +46,7 @@ from slicpandora import SlicPandora
 
 #aida
 from dd4hep import DD4hep 
+from ddsim import DDSim 
 
 # simtools
 #from simtoolsmaker import SimToolsMaker
