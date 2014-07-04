@@ -167,6 +167,7 @@ SLIC_version = "HEAD"
 SlicPandora_version = "v01-00-00"
 
 DD4hep_version = "HEAD"
+DDSim_version = "HEAD"
 
 Physsim_version = "HEAD" # fixme - need version ...
 
