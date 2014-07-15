@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-06'
+ilcsoft_release='v01-17-06pre'
 # ----------------------------------------------------------------------------
 
 
@@ -61,10 +61,10 @@ CERNLIB_path = ilcPath + "/cernlib/" + CERNLIB_version
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version = "9.6.p01" 
+Geant4_version = "9.5.p02" 
 #version 10.00 is on disk
 
-ROOT_version = "5.34.10" 
+ROOT_version = "5.34.18" 
 
 #CLHEP_version = "2.1.4.1" already on disk -- needed for geant4.10
 CLHEP_version = "2.1.3.1"
@@ -84,9 +84,9 @@ GEAR_version = "HEAD"
 
 CED_version = "v01-09-01"
 
-CondDBMySQL_version = "HEAD"
+CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
 
-ILCUTIL_version = "v01-01" 
+ILCUTIL_version = "HEAD" 
 
 FastJet_version = "2.4.2"
 FastJetClustering_version = "HEAD"
@@ -101,25 +101,25 @@ KalDet_version = "HEAD"
 
 GBL_version = "HEAD"
 
-LCCD_version = "HEAD"
+LCCD_version = "v01-03"
 
 RAIDA_version = "HEAD"
 
 MarlinUtil_version = "HEAD"
 
-Marlin_version = "HEAD"
+Marlin_version = "v01-05"
 
 Mokka_version = "HEAD" 
 
 MarlinReco_version = "HEAD"
 
-MarlinTrk_version = "HEAD"
+MarlinTrk_version = "v01-11"
 
 MarlinTrkProcessors_version = "HEAD"
 
-Clupatra_version = "HEAD"
+Clupatra_version = "v00-10"
 
-LCFIVertex_version = "HEAD"
+LCFIVertex_version = "v00-06-01"
 LCFIPlus_version = "HEAD"
 
 KiTrack_version = "HEAD"
@@ -142,11 +142,11 @@ MarlinTPC_version = "HEAD"
 
 LCTuple_version = "HEAD"
 
-BBQ_version =  "HEAD"
+BBQ_version =  "v00-01-02"
 
-Druid_version = "HEAD" # "1.8" 
+Druid_version = "2.2" # "1.8" 
 
-Garlic_version = "HEAD"
+Garlic_version = "v2.10.1"
 
 
 
@@ -164,7 +164,7 @@ GDML_version = "HEAD"
 LCDD_version = "HEAD"
 SLIC_version = "HEAD"  
 
-SlicPandora_version = "v01-00-00"
+#SlicPandora_version = "HEAD"
 
 DD4hep_version = "HEAD"
 DDSim_version = "HEAD"
