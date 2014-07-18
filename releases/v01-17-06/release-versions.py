@@ -67,7 +67,7 @@ Geant4_version = "9.5.p02"
 ROOT_version = "5.34.18" 
 
 #CLHEP_version = "2.1.4.1" already on disk -- needed for geant4.10
-CLHEP_version = "2.1.3.1"
+CLHEP_version = "2.1.1.0" # needed for g4 9.5   # ----- "2.1.3.1"
 
 GSL_version = "1.14"
 
@@ -164,10 +164,10 @@ GDML_version = "HEAD"
 LCDD_version = "HEAD"
 SLIC_version = "HEAD"  
 
-#SlicPandora_version = "HEAD"
+SlicPandora_version = "HEAD"
 
-DD4hep_version = "HEAD"
-DDSim_version = "HEAD"
+DD4hep_version = "v00-07-pre"
+DDSim_version = "v00-01-pre"
 
 Physsim_version = "HEAD" # fixme - need version ...
 
