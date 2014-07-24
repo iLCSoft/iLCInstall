@@ -95,9 +95,9 @@ MarlinFastJet_version = "HEAD"
 
 # -------------------------------------------
 
-KalTest_version = "HEAD"
+KalTest_version = "v01-05-04pre"
 
-KalDet_version = "HEAD"
+KalDet_version = "v01-13-01pre"
 
 GBL_version = "HEAD"
 
@@ -105,26 +105,26 @@ LCCD_version = "v01-03"
 
 RAIDA_version = "HEAD"
 
-MarlinUtil_version = "HEAD"
+MarlinUtil_version = "v01-08-01pre"
 
 Marlin_version = "v01-05"
 
 Mokka_version = "HEAD" 
 
-MarlinReco_version = "HEAD"
+MarlinReco_version = "v01-10pre"
 
 MarlinTrk_version = "v01-11"
 
-MarlinTrkProcessors_version = "HEAD"
+MarlinTrkProcessors_version = "v01-11pre"
 
 Clupatra_version = "v00-10"
 
 LCFIVertex_version = "v00-06-01"
 LCFIPlus_version = "HEAD"
 
-KiTrack_version = "HEAD"
-KiTrackMarlin_version = "HEAD"
-ForwardTracking_version = "HEAD"
+KiTrack_version = "v01-05pre"
+KiTrackMarlin_version = "v01-05pre"
+ForwardTracking_version = "v01-07pre"
 
 MarlinKinfit_version = "v00-01-02"
 
@@ -140,7 +140,7 @@ PathFinder_version =  "HEAD"
 
 MarlinTPC_version = "HEAD"
 
-LCTuple_version = "HEAD"
+LCTuple_version = "v01-03-01pre"
 
 BBQ_version =  "v00-01-02"
 
