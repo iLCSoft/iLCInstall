@@ -80,24 +80,24 @@ CMake_version = "2.8.5"
 
 LCIO_version = "HEAD" 
 
-GEAR_version = "HEAD" 
+GEAR_version = "v01-04-01-pre" 
 
 CED_version = "v01-09-01"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
 
-ILCUTIL_version = "HEAD" 
+ILCUTIL_version = "v01-02" 
 
 FastJet_version = "2.4.2"
-FastJetClustering_version = "HEAD"
-MarlinFastJet_version = "HEAD"
+FastJetClustering_version = "v00-02"
+MarlinFastJet_version = "v00-02"
 
 
 # -------------------------------------------
 
-KalTest_version = "v01-05-04pre"
+KalTest_version = "v01-05-04-pre"
 
-KalDet_version = "v01-13-01pre"
+KalDet_version = "v01-13-01-pre"
 
 GBL_version = "HEAD"
 
@@ -105,26 +105,26 @@ LCCD_version = "v01-03"
 
 RAIDA_version = "HEAD"
 
-MarlinUtil_version = "v01-08-01pre"
+MarlinUtil_version = "v01-08-01-pre"
 
 Marlin_version = "v01-05"
 
 Mokka_version = "HEAD" 
 
-MarlinReco_version = "v01-10pre"
+MarlinReco_version = "v01-10-pre"
 
 MarlinTrk_version = "v01-11"
 
-MarlinTrkProcessors_version = "v01-11pre"
+MarlinTrkProcessors_version = "v01-11-pre"
 
 Clupatra_version = "v00-10"
 
-LCFIVertex_version = "v00-06-01"
-LCFIPlus_version = "HEAD"
+LCFIVertex_version = "v00-06-02-pre"
+LCFIPlus_version = "v00-05-02"
 
-KiTrack_version = "v01-05pre"
-KiTrackMarlin_version = "v01-05pre"
-ForwardTracking_version = "v01-07pre"
+KiTrack_version = "v01-05-pre"
+KiTrackMarlin_version = "v01-05-pre"
+ForwardTracking_version = "v01-07"
 
 MarlinKinfit_version = "v00-01-02"
 
@@ -134,13 +134,13 @@ PandoraAnalysis_version = "v00-06" #"v00-04"
 
 CEDViewer_version = "v01-07-02"
 
-Overlay_version = "HEAD"
+Overlay_version = "v00-14-pre"
 
-PathFinder_version =  "HEAD"
+PathFinder_version =  "v00-06"
 
-MarlinTPC_version = "HEAD"
+MarlinTPC_version = "v00-17-pre"
 
-LCTuple_version = "v01-03-01pre"
+LCTuple_version = "v01-03-01-pre"
 
 BBQ_version =  "v00-01-02"
 
