@@ -86,7 +86,7 @@ CED_version = "v01-09-01"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
 
-ILCUTIL_version = "v01-01" 
+ILCUTIL_version = "v01-02-pre" 
 
 FastJet_version = "2.4.2"
 FastJetClustering_version = "v00-02"
@@ -103,7 +103,7 @@ GBL_version = "HEAD"
 
 LCCD_version = "v01-03"
 
-RAIDA_version = "HEAD"
+RAIDA_version = "v01-06-02"
 
 MarlinUtil_version = "v01-08-01-pre"
 
@@ -169,7 +169,7 @@ SlicPandora_version = "HEAD"
 DD4hep_version = "v00-07-pre"
 DDSim_version = "v00-01-pre"
 
-Physsim_version = "HEAD" # fixme - need version ...
+Physsim_version = "v00-01-pre" # fixme - need version ...
 
 #--- EUTelescope et al:
 Eutelescope_version = "trunk" # e.g. "tags/v00-09-00" (checked out via SVN) or "trunk" for git clone of the current dev version
