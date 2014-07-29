@@ -31,6 +31,7 @@ from pandoranew import PandoraAnalysis
 from pandoranew import MarlinPandora
 from lcfivertex import LCFIVertex
 from eutelescope import Eutelescope
+from allpix import AllPix
 from overlay import Overlay
 from marlintpc import MarlinTPC
 from ckfit import CKFit
