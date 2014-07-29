@@ -74,7 +74,6 @@ CLHEP_version = "2.1.3.1"
 GSL_version = "1.14"
 
 QT_version = "4.7.4"
-QT_path = ilcPath + "/QT/" + QT_version
 
 CMake_version = "2.8.12"
 
@@ -158,6 +157,8 @@ Garlic_version = "v2.10.1"
 
 # xerces-c (needed by geant4 for building gdml support - required by mokka)
 XERCESC_ROOT_DIR = ilcPath + "/xercesc/3.1.1"
+XERCESC_INCLUDE_DIR = XERCESC_ROOT_DIR + "/include/"
+XERCESC_LIBRARY = XERCESC_ROOT_DIR + "/lib/"
 
 XercesC_version = "3.1.1" 
 
