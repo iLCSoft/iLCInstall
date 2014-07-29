@@ -74,6 +74,7 @@ CLHEP_version = "2.1.3.1"
 GSL_version = "1.14"
 
 QT_version = "4.7.4"
+QT_path = ilcPath + "/QT/" + QT_version
 
 CMake_version = "2.8.12"
 
