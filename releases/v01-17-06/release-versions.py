@@ -78,7 +78,7 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "HEAD" 
+LCIO_version = "v02-05-pre" 
 
 GEAR_version = "v01-04-01-pre" 
 
@@ -99,7 +99,7 @@ KalTest_version = "v01-05-04-pre"
 
 KalDet_version = "v01-13-01-pre"
 
-GBL_version = "HEAD"
+GBL_version = "V01-16-04-pre"
 
 LCCD_version = "v01-03"
 
@@ -109,7 +109,7 @@ MarlinUtil_version = "v01-08-01-pre"
 
 Marlin_version = "v01-05"
 
-Mokka_version = "HEAD" 
+Mokka_version = "mokka-08-04-pre" 
 
 MarlinReco_version = "v01-10-pre"
 
