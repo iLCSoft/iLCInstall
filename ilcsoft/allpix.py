@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#! /usr/bin/env python
 
 ##################################################
 #
@@ -18,8 +18,8 @@ from util import *
 from subprocess import Popen, PIPE
 #from subprocess import check_output
 #from pipes import quote
-from pprint import pprint
-from os import environ
+#from pprint import pprint
+#from os import environ
 
 #import os
 #import re
@@ -117,10 +117,16 @@ class AllPix(BaseILC):
         os.chdir( self.installPath )
 
         os.environ["G4WORKDIR"]=self.installPath + "/bin/"
-        os.mkdir( os.environ["G4WORKDIR"] ) 
+	if not os.path.exists(  os.environ["G4WORKDIR"] ) :       
+		os.mkdir( os.environ["G4WORKDIR"] ) 
+
+
+#        qt=self.parent.module("QT").installPath
+#        os.environ["QTHOME"] = qt
+#        print os.environ["QTHOME"]
+
 
         root=self.parent.module("ROOT")
-
         os.environ["ROOTSYS"]="old/value/before/sourcing/./bin/thisroot.sh" 
         print "ROOTSYS: "  + os.environ["ROOTSYS"]
         source( root.installPath, "./bin/thisroot.sh"  )
@@ -128,7 +134,6 @@ class AllPix(BaseILC):
 
         g4=self.parent.module("Geant4")
         g4_cd      = "%s/share/Geant4-9.6.1/geant4make/" % (g4.installPath )
-
         os.environ["G4LIB_USE_GDML"]="old/value/before/sourcing/./geant4make.sh"
         print "G4LIB_USE_GDML: " + os.environ["G4LIB_USE_GDML"]
         source( g4_cd, "./geant4make.sh" )
@@ -138,17 +143,19 @@ class AllPix(BaseILC):
         print xercesc_lib
         os.environ["LD_LIBRARY_PATH"]=os.environ["LD_LIBRARY_PATH"]+":"+xercesc_lib
         os.environ["LD_LIBRARY_PATH"]=os.environ["LD_LIBRARY_PATH"]+":"+os.environ["G4LIB"]+"/../"
+        print os.environ["LD_LIBRARY_PATH"]
 
-        qt=self.parent.module("QT").installPath
-        os.environ["QTHOME"] = qt
 
         nproc = available_cpu_count()
         print "processor : %d" % ( nproc )
         
+        os.chdir( self.installPath  )
+#        os.system( "make clean" )
+
         command = "make -j %d 2>&1 | tee -a %s" % (nproc, self.logfile)
         print command
-#        if( os.system( command ) != 0 ):
-#            self.abort( "failed to install!!" )
+        if( os.system( command ) != 0 ):
+            self.abort( "failed to install!!" )
 
     def preCheckDeps(self):
         BaseILC.preCheckDeps(self)
