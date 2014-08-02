@@ -160,11 +160,11 @@ XercesC_version = "3.1.1"
 HepPDT_version = "3.04.01"
 
 # new versions by J. McCormick
-GDML_version = "HEAD"
-LCDD_version = "HEAD"
-SLIC_version = "HEAD"  
+GDML_version = "v03-01-01"
+LCDD_version = "v04-00-00"
+SLIC_version = "v04-00-00"
 
-SlicPandora_version = "HEAD"
+SlicPandora_version = "v01-00-00"
 
 DD4hep_version = "v00-07-pre"
 DDSim_version = "v00-01-pre"
@@ -172,6 +172,6 @@ DDSim_version = "v00-01-pre"
 Physsim_version = "v00-01-pre" # fixme - need version ...
 
 #--- EUTelescope et al:
-Eutelescope_version = "trunk" # e.g. "tags/v00-09-00" (checked out via SVN) or "trunk" for git clone of the current dev version
-Eudaq_version = "trunk" # e.g. "tags/v1.2.2" (checked out via SVN) or "trunk" for a full git clone of the current development version
-Millepede2_version = 'trunk'
+#Eutelescope_version = "trunk" # e.g. "tags/v00-09-00" (checked out via SVN) or "trunk" for git clone of the current dev version
+#Eudaq_version = "trunk" # e.g. "tags/v1.2.2" (checked out via SVN) or "trunk" for a full git clone of the current development version
+#Millepede2_version = 'trunk'
