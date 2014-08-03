@@ -29,13 +29,16 @@ Introduces 3 new packages:
          by J.Tian
 
 
+==========================
+GDML v03-01-01
+LCDD v04-00-00
+SLIC v04-00-00
+==========================
 
-=====================
- aidaTT
-=====================
-         by C.Rosemann  
-
-
+-SLIC MCParticle handling code was almost completely rewritten.  
+The output MCParticle collection is now in the proper order, with generator primaries listed first and simulation particleslisted after these.  
+These changes have been extensively tested over the last several weeks. 
+Overall event processing runtime performance should now be about 10-15% faster, too.
 
 
 ==============
