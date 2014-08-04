@@ -80,13 +80,13 @@ CMake_version = "2.8.5"
 
 LCIO_version = "v02-05-pre" 
 
-GEAR_version = "v01-04-01-pre" 
+GEAR_version = "v01-04-01" 
 
 CED_version = "v01-09-01"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
 
-ILCUTIL_version = "v01-02-pre" 
+ILCUTIL_version = "v01-02" 
 
 FastJet_version = "2.4.2"
 FastJetClustering_version = "v00-02"
@@ -97,7 +97,7 @@ MarlinFastJet_version = "v00-02"
 
 KalTest_version = "v01-05-04-pre"
 
-KalDet_version = "v01-13-01-pre"
+KalDet_version = "v01-13-01"
 
 GBL_version = "V01-16-04-pre"
 
@@ -105,25 +105,25 @@ LCCD_version = "v01-03"
 
 RAIDA_version = "v01-06-02"
 
-MarlinUtil_version = "v01-08-01-pre"
+MarlinUtil_version = "v01-08-01"
 
 Marlin_version = "v01-05"
 
 Mokka_version = "mokka-08-04-pre" 
 
-MarlinReco_version = "v01-10-pre"
+MarlinReco_version = "v01-10"
 
 MarlinTrk_version = "v01-11"
 
-MarlinTrkProcessors_version = "v01-11-pre"
+MarlinTrkProcessors_version = "v01-11"
 
 Clupatra_version = "v00-10"
 
-LCFIVertex_version = "v00-06-02-pre"
+LCFIVertex_version = "v00-06-02"
 LCFIPlus_version = "v00-05-02"
 
-KiTrack_version = "v01-05-pre"
-KiTrackMarlin_version = "v01-05-pre"
+KiTrack_version = "v01-05"
+KiTrackMarlin_version = "v01-05"
 ForwardTracking_version = "v01-07"
 
 MarlinKinfit_version = "v00-01-02"
@@ -134,13 +134,13 @@ PandoraAnalysis_version = "v00-06" #"v00-04"
 
 CEDViewer_version = "v01-07-02"
 
-Overlay_version = "v00-14-pre"
+Overlay_version = "v00-14"
 
 PathFinder_version =  "v00-06"
 
-MarlinTPC_version = "v00-17-pre02"
+MarlinTPC_version = "v00-17"
 
-LCTuple_version = "v01-03-01-pre"
+LCTuple_version = "v01-03-01"
 
 BBQ_version =  "v00-01-02"
 
@@ -167,9 +167,9 @@ SLIC_version = "v04-00-00"
 SlicPandora_version = "v01-00-00"
 
 DD4hep_version = "v00-07-pre"
-DDSim_version = "v00-01-pre"
+DDSim_version = "v00-01"
 
-Physsim_version = "v00-01-pre" # fixme - need version ...
+Physsim_version = "v00-01" 
 
 #--- EUTelescope et al:
 #Eutelescope_version = "trunk" # e.g. "tags/v00-09-00" (checked out via SVN) or "trunk" for git clone of the current dev version
