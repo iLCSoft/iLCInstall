@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-06pre'
+ilcsoft_release='v01-17-06'
 # ----------------------------------------------------------------------------
 
 
@@ -78,7 +78,7 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-05-pre" 
+LCIO_version = "v02-05" 
 
 GEAR_version = "v01-04-01" 
 
@@ -95,11 +95,11 @@ MarlinFastJet_version = "v00-02"
 
 # -------------------------------------------
 
-KalTest_version = "v01-05-04-pre"
+KalTest_version = "v01-05-04"
 
 KalDet_version = "v01-13-01"
 
-GBL_version = "V01-16-04-pre"
+GBL_version = "V01-16-04"
 
 LCCD_version = "v01-03"
 
@@ -109,7 +109,7 @@ MarlinUtil_version = "v01-08-01"
 
 Marlin_version = "v01-05"
 
-Mokka_version = "mokka-08-04-pre" 
+Mokka_version = "mokka-08-04" 
 
 MarlinReco_version = "v01-10"
 
@@ -166,7 +166,7 @@ SLIC_version = "v04-00-00"
 
 SlicPandora_version = "v01-00-00"
 
-DD4hep_version = "v00-07-pre"
+DD4hep_version = "v00-08"
 DDSim_version = "v00-01"
 
 Physsim_version = "v00-01" 
