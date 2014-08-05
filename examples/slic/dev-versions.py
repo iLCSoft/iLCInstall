@@ -8,7 +8,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release = "v04-00-00-pre"
+ilcsoft_release = "DEV"
 
 # --------- install dir ------------------------------------------------------
 ilcsoft_install_prefix = "/scratch/$USER/slic/"
@@ -19,9 +19,9 @@ ilcsoft_install_prefix = "/scratch/$USER/slic/"
 ILCUTIL_version = "v01-00"
 CMake_version = "2.8.12"
 XercesC_version = "3.1.1" 
-Geant4_version = "10.00.p01"
+Geant4_version = "10.00.p02"
 HepPDT_version = "3.04.01"
 LCIO_version = "HEAD"
 GDML_version = "HEAD"
-LCDD_version = "v04-00-00-pre"
-SLIC_version = "v04-00-00-pre"
+LCDD_version = "v04-01-00-pre"
+SLIC_version = "v04-01-00-pre"
