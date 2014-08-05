@@ -119,7 +119,7 @@ Overall event processing runtime performance should now be about 10-15% faster, 
 
 
 ===========================
- DD4Hep v00-07
+ DD4Hep v00-08
 ===========================
 
 
