@@ -102,7 +102,7 @@ class Eutelescope(MarlinPKG):
         # if EUDAQ is installed, adjust paths and Marlin libraries to be loaded
         if self.env.get( "EUDAQ_VERSION", "" ):
             self.envpath["LD_LIBRARY_PATH"].append( '$EUDAQ/lib' )
-            self.parent.module('Marlin').envpath["MARLIN_DLL"].append( '$EUDAQ/lib/libNativeReader.so' )
+            self.parent.module('Marlin').envpath["MARLIN_DLL"].append( self.env["EUDAQ"]+"/lib/libNativeReader.so" )
 
     def setMode(self, mode):
         MarlinPKG.setMode(self, mode)
