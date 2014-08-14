@@ -40,6 +40,7 @@ from kitrack import KiTrack, KiTrackMarlin
 
 #slic et al
 from gdml import GDML
+from ddsegmentation import DDSegmentation # standalone DDSegmentation install
 from lcdd import LCDD
 from slic import SLIC
 from slicpandora import SlicPandora
