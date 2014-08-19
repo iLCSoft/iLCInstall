@@ -164,7 +164,7 @@ GDML_version = "v03-01-01"
 LCDD_version = "v04-00-00"
 SLIC_version = "v04-00-00"
 
-SlicPandora_version = "v01-00-00"
+SlicPandora_version = "v01-01-01"
 
 DD4hep_version = "v00-08"
 DDSim_version = "v00-01"
