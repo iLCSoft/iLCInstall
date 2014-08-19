@@ -1,6 +1,6 @@
 #################################
 #
-#   iLCSoft release - v01-17-05
+#   iLCSoft release - v01-17-06
 #
 #################################
 
@@ -15,9 +15,9 @@
 
 Introduces 3 new packages:
 =====================
- DDSim   v00-01
+ DDSim   v00-02
 =====================
-          by F.Gaede
+          by F.Gaede et al.
 
   - Linear collider simulation models based on DD4hep and Geant4
 
@@ -119,9 +119,76 @@ Overall event processing runtime performance should now be about 10-15% faster, 
 
 
 ===========================
- DD4Hep v00-08
+ DD4Hep v00-10
 ===========================
 
+
+Frank Gaede
+------------
+  - fixed version numbers and release notes for release v00-08 and v00-09
+   ( both have the wrong version number for the libraries 0.7 !)
+  - added ./doc/prepare_a_release.howto
+  - added new method to BitField64: setValue(unsigned lowWord, unsigned highWord )
+  - added some simple unit tests for BitField64
+
+
+2014/08/15 Markus Frank
+-----------------------
+    - DDG4 Add possibility for user hook to the particle handler +
+      Data member to store additionbal particle data for the
+      output stage.
+    - Allow to display MC particles in DDEve
+      Add small help file describing how to start DDEve.
+      doc/DDEveManual.pdf
+    - Update CLICSiD Example.
+
+
+ --------
+| v00-09 |
+ --------
+
+
+2014/08/07 Markus Frank
+-----------------------
+    - DDG4: First version to support MC truth in DDG4 including
+      particle filtering to optimize the size of the MC record.
+    - DDG4 fix SimpleCalorimter sensitive action and properly support
+      hit aggregations.
+    - DDEve smaller modifications to support DDG4IO if DD4hep was
+      built with the Geant4 option ON.
+
+
+ --------
+| v00-08 |  eighth beta release ...
+ --------
+
+ - Some minor fixes:
+    - made compatible with older geant4 versions (9.5)
+    - add Bitflag to store CellID1 in SimCalorimeterHit collections
+    - fix position conversion from Geant4 to ROOT
+    - add cellID determination to SensitiveAction
+    - ...
+
+Andre Sailer, 2014-07-17
+------------------------
+  Unify cmake option variables, small cmake corrections
+  Change options _WITH_ to _USE_
+  Print Warning that variables with _WITH_ are deprecated
+  Change Defintions to _USE_ as well
+  Add REQUIRED to find_package geant4 and xercesc if they are turned on
+  Updated documentation
+  Updated ILDExDet example
+
+Christian.Grefe, 2014-07-15
+---------------------------
+  made DDSegmentation optionally a stand-alone package
+  create DDSgementationConfig.cmake when build as part of DD4hep
+
+
+ Markus Frank, 2014-07-02
+ ------------------------
+    - add LCIO conversions from DDSim - sensitive detectors
+      can now simply instantiate LCIO Sim hits
 
 2014/06/30 Markus Frank
 -----------------------
