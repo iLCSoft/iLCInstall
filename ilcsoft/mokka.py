@@ -38,7 +38,7 @@ class Mokka(BaseILC):
         if( Version( self.version ) >= '7.0' ):
             self.download.type = "svn"
 
-            self.download.svnurl = 'http://llrforge.in2p3.fr/svn/Mokka'
+            self.download.svnurl = 'https://llrforge.in2p3.fr/svn/Mokka'
 
             if( Version( self.version ) == 'HEAD' ):
                 self.download.svnurl += '/trunk'
@@ -61,7 +61,7 @@ class Mokka(BaseILC):
         self.g4ver = Version( g4mod.version )
 
         if( self.download.type == "svn" ):
-            self.download.accessmode = 'http'
+            self.download.accessmode = 'https'
             self.download.server = 'llrforge.in2p3.fr'
             self.download.root = 'svn'
 
