@@ -20,7 +20,7 @@ class MarlinTrk(BaseILC):
 
         self.reqfiles = [ ["lib/libMarlinTrk.so","lib/libMarlinTrk.a","lib/libMarlinTrk.dylib"] ]
 
-        self.reqmodules = [ "LCIO", "GEAR", "GSL", "Marlin", "MarlinUtil", "KalTest", "KalDet", "ROOT" ]
+        self.reqmodules = [ "LCIO", "GEAR", "GSL", "Marlin", "MarlinUtil", "KalTest", "KalDet", "ROOT" , "DD4hep" ]
 
         # svn root
         self.download.root = "marlinreco"
