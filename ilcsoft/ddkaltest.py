@@ -1,9 +1,9 @@
 ##################################################
 #
-# MarlinTrk module
+# DDKalTest
 #
-# Author: Jan Engels, DESY
-# Date: Jan, 2007
+# Author: F.Gaede CERN/DESY
+# Date: Nov, 2014
 #
 ##################################################
 
@@ -12,21 +12,25 @@ from baseilc import BaseILC
 from util import *
 
 
-class MarlinTrk(BaseILC):
-    """ Responsible for the MarlinTrk software installation process. """
+##################################################
+# DDKalTest module
+##################################################
+
+
+class DDKalTest(BaseILC):
+    """ Responsible for the DDKalTest software installation process. """
     
     def __init__(self, userInput):
-        BaseILC.__init__(self, userInput, "MarlinTrk", "MarlinTrk")
+        BaseILC.__init__(self, userInput, "DDKalTest", "DDKalTest")
 
-        self.reqfiles = [ ["lib/libMarlinTrk.so","lib/libMarlinTrk.a","lib/libMarlinTrk.dylib"] ]
+        self.reqfiles = [ ["lib/libDDKalTest.so","lib/libDDKalTest.a","lib/libDDKalTest.dylib"] ]
 
-        self.reqmodules = [ "LCIO", "GEAR", "GSL", "Marlin", "MarlinUtil", "KalTest", "KalDet", "ROOT",  "DDKalTest", "DD4hep" ]
+        self.reqmodules = [ "LCIO", "KalTest", "aidaTT", "GSL" ]
 
-        # svn root
-        self.download.root = "marlinreco"
+        self.download.root = "kaltest"
 
     def compile(self):
-        """ compile MarlinTrk """
+        """ compile DDKalTest """
         
         os.chdir( self.installPath+'/build' )
 

@@ -19,6 +19,8 @@ from pathfinder import PathFinder
 from bbq import BBQ
 from gbl import GBL
 
+from ddkaltest import DDKalTest
+
 # marlin & friends
 from marlinpkg import MarlinPKG
 from marlinpkg import ConfigPKG
@@ -48,6 +50,8 @@ from slicpandora import SlicPandora
 #aida
 from dd4hep import DD4hep 
 from ddsim import DDSim 
+
+from aidaTT import aidaTT 
 
 # simtools
 #from simtoolsmaker import SimToolsMaker
