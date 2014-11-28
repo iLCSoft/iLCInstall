@@ -1,6 +1,6 @@
 ##################################################
 #
-# DDSim module
+# lcgeo module
 #
 # Author: F.Gaede, DESY
 # Date: May, 2013
@@ -12,11 +12,11 @@ from baseilc import BaseILC
 from util import *
 
 
-class DDSim(BaseILC):
-    """ Responsible for the DDSim configuration process. """
+class lcgeo(BaseILC):
+    """ Responsible for the lcgeo configuration process. """
     
     def __init__(self, userInput):
-        BaseILC.__init__(self, userInput, "DDSim", "DDSim")
+        BaseILC.__init__(self, userInput, "lcgeo", "lcgeo")
 
         #self.hasCMakeBuildSupport = False
         #self.hasCMakeFindSupport = False
@@ -24,7 +24,7 @@ class DDSim(BaseILC):
         self.download.supportedTypes = [ "svn"]
         self.download.root = "ddsim"
 
-        self.reqfiles = [ ["lib/libDDSim.so", "lib/libDDSim.dylib" ]]
+        self.reqfiles = [ ["lib/liblcgeo.so", "lib/liblcgeo.dylib" ]]
 
         self.reqmodules = [ "DD4hep" , "ROOT" , "LCIO", "GEAR", "Geant4" ]
 #        self.reqmodules = [ "DD4hep" , "ROOT" , "LCIO", "GEAR", "Geant4" , "CLHEP" ]
@@ -35,7 +35,7 @@ class DDSim(BaseILC):
 #
 #        self.download.type = "svn"
 #        
-#        self.download.svnurl = 'http://llrforge.in2p3.fr/svn/DDSim'
+#        self.download.svnurl = 'http://llrforge.in2p3.fr/svn/lcgeo'
 #
 #        if( Version( self.version ) == 'HEAD' ):
 #            self.download.svnurl += '/trunk'
@@ -46,7 +46,7 @@ class DDSim(BaseILC):
 
 
     def init(self):
-        """ init DDSim """
+        """ init lcgeo """
         BaseILC.init(self)
 
 #        g4mod = self.parent.module("Geant4")
@@ -54,7 +54,7 @@ class DDSim(BaseILC):
 
 
     def compile(self):
-        """ compile DDSim """
+        """ compile lcgeo """
 
         trymakedir( self.installPath + "/build" )
         os.chdir( self.installPath + "/build" )

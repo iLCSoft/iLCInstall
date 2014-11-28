@@ -49,7 +49,7 @@ from slicpandora import SlicPandora
 
 #aida
 from dd4hep import DD4hep 
-from ddsim import DDSim 
+from lcgeo import lcgeo
 
 from aidaTT import aidaTT 
 
