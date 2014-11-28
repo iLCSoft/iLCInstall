@@ -167,7 +167,7 @@ SLIC_version = "v04-00-00"
 SlicPandora_version = "v01-01-01"
 
 DD4hep_version = "v00-10"
-DDSim_version = "v00-02"
+lcgeo_version = "v00-02"
 
 Physsim_version = "v00-01" 
 
