@@ -24,7 +24,7 @@ class Marlin(BaseILC):
         self.reqmodules = [ "LCIO", "GEAR" ]
 
         # optional modules
-        self.optmodules = [ "CLHEP", "LCCD" , "AIDA" ]
+        self.optmodules = [ "CLHEP", "LCCD" , "AIDA" , "DD4hep" ]
 
         self.envcmake['MARLIN_GUI']='OFF'
     
