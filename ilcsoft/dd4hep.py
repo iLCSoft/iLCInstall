@@ -72,7 +72,7 @@ class DD4hep(BaseILC):
                 if( os.system( "make ${MAKEOPTS} " + targetName + " 2>&1 | tee -a " + self.logfile ) != 0 ):
                     self.abort( "failed to compile!!" )
         else:
-            if( os.system( "source ../build_env.sh ; make ${MAKEOPTS} ${ADD_MAKE_TARGETS} 2>&1 | tee -a " + self.logfile ) != 0 ):
+            if( os.system( "source ../build_env.sh ; make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to compile!!" )
             if( os.system( "source ../build_env.sh ; make install 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to install!!" )
