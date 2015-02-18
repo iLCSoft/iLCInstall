@@ -33,6 +33,8 @@ class ILCSoft:
         self.downloadUser = ""      # global download cvs/ccvssh username
         self.downloadPass = ""      # global download cvs/ccvssh password
         self.downloadType = ""      # global download cvs/ccvssh password
+        self.nightlyTargets = []    # targets for running nightly builds with cmake
+        self.nightlyBuild = False   # flag for nightly builds
         self.makeTests = False      # global flag for calling "make test" after building the software
         self.noAutomaticRebuilds = False # global flag for automatic rebuilding
         self.rebuild = False        # global flag for rebuilding ilcsoft

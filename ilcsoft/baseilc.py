@@ -43,6 +43,7 @@ class BaseILC:
         self.__userInput = userInput
         self.name = name                        # module name (e.g. LCIO, GEAR, Marlin, CEDViewer)
         self.alias = alias                      # module alias (e.g. lcio, gear, Marlin, CEDViewer)
+#        self.nightlyBuild = False               # flag for nightly builds
         self.installSupport = True              # flag for install support
         self.download = Download(self)          # download struct ( groups together a bunch of download variables )
         self.hasCMakeBuildSupport = True        # can the package be built with cmake?
@@ -185,6 +186,10 @@ class BaseILC:
         self.cleanInstall = self.parent.cleanInstall
         
         self.rebuild = self.parent.rebuild
+
+        self.nightlyTargets = self.parent.nightlyTargets
+
+        self.nightlyBuild = self.parent.nightlyBuild
 
         self.envcmake.update(self.parent.envcmake)
         self.makeTests = self.parent.makeTests
