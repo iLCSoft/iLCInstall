@@ -49,6 +49,8 @@ from slicpandora import SlicPandora
 
 #aida
 from dd4hep import DD4hep 
+from dd4hep_examples import DD4hepExamples
+ 
 from lcgeo import lcgeo
 
 from aidaTT import aidaTT 
