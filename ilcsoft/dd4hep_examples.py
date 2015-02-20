@@ -26,7 +26,7 @@ class DD4hepExamples(BaseILC):
 
         self.reqfiles = [ ["lib/libSimpleDetector.so", "lib/libDD4hepSimpleDetector.dylib" ]]
 
-        self.reqmodules = [ "DD4hep" , "ROOT" , "LCIO", "GEAR", "Geant4" ]
+        self.reqmodules = [ "DD4hep" , "ROOT" , "LCIO", "GEAR", "Geant4", "XercesC"]
 
 
     def setMode(self, mode):
@@ -65,10 +65,8 @@ class DD4hepExamples(BaseILC):
 
         if (self.nightlyBuild == True):
 
-            if( os.system( " source ../build_env.sh 2>&1 | tee -a " + self.logfile ) != 0 ):
-                self.abort( "failed to source ../build_env.sh" )
             for targetName in self.nightlyTargets:
-                if( os.system( "make ${MAKEOPTS} " + targetName + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+                if( os.system( "source ../build_env.sh ; make ${MAKEOPTS} " + targetName + " 2>&1 | tee -a " + self.logfile ) != 0 ):
                     self.abort( "failed to compile!!" )
         else:
             if( os.system( "source ../build_env.sh ; make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
@@ -80,12 +78,12 @@ class DD4hepExamples(BaseILC):
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
 
-        self.env[ 'DDSIM' ] = self.installPath
+        self.env[ 'DD4hepExamples_DIR' ] = self.installPath
 
-#        self.envcmds.append("export G4WORKDIR=$DDSIM")
+#        self.envcmds.append("export G4WORKDIR=$DD4hepExamples_DIR")
 
-        self.envpath["PATH"].append( "$DDSIM/bin" )
-        self.envpath["LD_LIBRARY_PATH"].append( "$DDSIM/lib" )
+        self.envpath["PATH"].append( "$DD4hepExamples/bin" )
+        self.envpath["LD_LIBRARY_PATH"].append( "$DD4hepExamples_DIR/lib" )
 
         self.envcmds.append('test -r ${G4ENV_INIT} && { cd $(dirname ${G4ENV_INIT}) ; . ./$(basename ${G4ENV_INIT}) ; cd $OLDPWD ; }')
         

@@ -27,6 +27,7 @@ class XercesC(BaseILC):
 
         self.reqfiles = [[
                 "lib/libxerces-c.a",
+                "lib/libxerces-c.so",
                 "lib/libxerces-c.dylib",
         ]]
     
