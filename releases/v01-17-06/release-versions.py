@@ -61,13 +61,13 @@ CERNLIB_path = ilcPath + "/cernlib/" + CERNLIB_version
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version = "9.5.p02" 
+Geant4_version = "10.01"  #"9.5.p02" 
 #version 10.00 is on disk
 
 ROOT_version = "5.34.18" 
 
-#CLHEP_version = "2.1.4.1" already on disk -- needed for geant4.10
-CLHEP_version = "2.1.1.0" # needed for g4 9.5   # ----- "2.1.3.1"
+CLHEP_version = "2.1.4.1" #already on disk -- needed for geant4.10
+#CLHEP_version = "2.1.1.0" # needed for g4 9.5   # ----- "2.1.3.1"
 
 GSL_version = "1.14"
 
