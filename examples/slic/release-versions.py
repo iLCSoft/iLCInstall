@@ -1,26 +1,27 @@
 ###########################################
 #
-# SLIC versions for v03-01-04 release
+# SLIC versions for v05-00-00 release
 #
 # Jeremy McCormick 
 #
 ###########################################
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v04-00-00'
+ilcsoft_release='release-v05-00-00'
 # ----------------------------------------------------------------------------
 
 # --------- install dir ------------------------------------------------------
-#ilcsoft_install_prefix = "/scratch/$USER/slic/"
-ilcsoft_install_prefix = "/u1/projects/slic/"
+ilcsoft_install_prefix = "/scratch/$USER/slic/"
 
 # ======================= PACKAGE VERSIONS ===================================
-XercesC_version = "3.1.1" 
+XercesC_version = "3.1.2" 
 LCIO_version = "v02-04-03"
 ILCUTIL_version = "v01-00"
-Geant4_version = "10.00.p02"
-CMake_version = "2.8.5"
+#Geant4_version = "10.00.p02"
+Geant4_version = "10.01"
+CMake_version = "2.8.12"
 HepPDT_version = "3.04.01"
+DDSegmentation_version = "v00-11"
 GDML_version = "v03-01-01"
-LCDD_version = "v04-00-00"
-SLIC_version = "v04-00-00"
+LCDD_version = "v04-01-00"
+SLIC_version = "v05-00-00"
