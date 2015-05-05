@@ -1,0 +1,243 @@
+#################################
+#
+#   iLCSoft release - v01-17-07
+#
+#################################
+
+
+=================================================
+
+ Changes in v01-17-07  w.r.t. iLCSoft v01-17-06
+ 
+=================================================
+
+
+
+Introduces 4 new package:
+
+=====================
+ DD4KalTest v00-01
+=====================
+          by F. Gaede 
+
+  - description...
+
+
+=====================
+ ILDPerformance v00-01
+=====================
+          by Y. Voutsinas & Alberto Guerrero Llorrente
+
+  - description...
+
+
+
+=====================
+ AidaTT v00-01
+=====================
+          by C. Rosemann et al
+
+  - description...
+
+
+
+=====================
+ DD4hepExamples v00-01
+=====================
+          by F. Gaede & M. Frank
+
+  - description...
+
+                     _____________________
+                    |                     |
+                    |   Updated packages  |
+                    |_____________________|
+
+
+===========================
+ CEDViewer v01-07-02 -> v01-08-01 (by F. Gaede & M. Petric)
+===========================
+
+  - release notes...
+
+
+===================
+ Clupatra: v00-10 -> v00-10-01
+===================
+
+  - release notes...
+
+
+
+===========================
+ DD4Hep v00-10 -> v00-11
+===========================
+
+  - release notes...
+
+
+
+===========================
+ ForwardTracking v01-07 -> v01-07-01
+===========================
+
+  - release notes...  by F. Gaede
+
+
+===========================
+ Garlic v2.10.1 -> v3.0.3
+===========================
+
+  - release notes...  by D. Jeans
+
+
+===========================
+ ILDConfig (do we add it as a separate package?)
+===========================
+
+
+
+===========================
+ KalDet v01-13-01 -> v01-13-02
+===========================
+
+  - added some debug printout (F. Gaede)
+
+
+
+===========================
+ KalTest v01-05-04 -> v01-05-05
+===========================
+
+  - added some debug printout (F. Gaede)
+
+
+
+===========================
+ KiTrack v01-05 -> v01-05-01
+===========================
+
+  - adding criterio for minimum PT to mini-vector tracking (Y. Voutsinas)
+
+
+================================
+ LCFIPlus v00-05-02 -> v00-05-03
+===============================
+ 
+  - New joint probability introduced (T. Suehara)
+  - added utility processor to convert Track to ReconstructedParticle (T. Tanabe)
+
+
+
+==============================
+ Marlin: v01-05 -> v01-05-01
+=============================
+
+  - added geant library if built w/ dd4hep (F. Gaede)
+
+
+===========================
+ MarlinTrk v01-11 -> v01-12
+===========================
+
+  - release notes...
+
+
+
+===========================
+ MarlinTrkProcessor v01-11 -> v01-12
+===========================
+ 
+  - release notes...
+
+
+=====================================
+ MarlinKinfit v00-01-02 -> v00-01-03
+=====================================
+ 
+  - release notes...
+
+
+==============================
+ MarlinPandora v00-14 -> ?
+==============================
+
+  - release notes...
+
+
+===========================
+ MarlinReco v01-10 -> v01-11
+===========================
+
+  - release notes...
+
+
+
+===========================
+ MarlinTPC v00-17 -> ?
+===========================
+
+  - release notes...
+
+
+================================
+ MOKKA mokka-08-04 -> mokka-08-05
+===============================
+
+  - release notes...
+
+
+===========================
+ Overlay v00-14 -> ?
+===========================
+ 
+  - NOT updated but want to update it soon - maybe before the release
+
+
+============================
+PandoraAnanlysis V00-06 -> ? 
+============================
+
+  - release notes...
+
+
+==============================
+ PandoraPFANew v00-16
+==============================
+
+  - release notes...
+
+
+==============================
+ PhysSim v00-01 -> v00-02
+==============================
+
+  - a major update including more processes and features; see detail of update in my talk at ILD Analysis/Software Meeting, https://agenda.linearcollider.org/event/6599/  (J. Tian)
+
+
+===========================
+ Gear v01-04-01 -> v01-04-02
+===========================
+
+  - F. Gaede
+    - fixed a few warning wrt unused parameters  (F. Gaede)
+    - made some methods public in FTDParametersImpl
+    - fix in ZPlanarParametersImpl::isPointInLadder for missing shell (shell parameters zero)
+
+
+
+============================== 
+ DDSim v00-02 -> lcgeo v00-01 ???
+===============================
+
+  - release notes...
+
+
+======================
+ LCIO v02-05 -> v02-06
+======================
+
+  - Include Jaxen runtime dep so siodump does not barf. (J. McCormick)
+
+
+
