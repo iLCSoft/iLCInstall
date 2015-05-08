@@ -38,7 +38,7 @@ class Geant4(BaseILC):
             "lib/Geant4-9.5.0/"+self.env["G4SYSTEM"]+"/libG4run.dylib"
         ] ]
 
-        self.optmodules = [ 'QT', 'CLHEP' ]
+        self.optmodules = [ 'QT', 'CLHEP' , "XercesC"]
 
     def createLink(self):
         BaseILC.createLink(self)

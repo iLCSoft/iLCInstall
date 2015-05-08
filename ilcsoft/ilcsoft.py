@@ -474,3 +474,14 @@ class ILCSoft:
                 mod.previewinstall()
         print "\n" + 30*'=' + " End of Installation Simulation: " + 30*'=' + "\n"
 
+
+    def showDependencies(self):
+
+        print "digraph iLCSoftPackages {"
+        print "node [ fontname = \"Helvetica\",style = filled ]; "
+
+        for mod in self.modules:
+            if( mod.mode == "install" ):
+                mod.showDependencies()
+
+        print "};"

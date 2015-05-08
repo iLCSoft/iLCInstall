@@ -21,12 +21,12 @@ class DD4hep(BaseILC):
         #self.hasCMakeBuildSupport = False
         #self.hasCMakeFindSupport = False
 
-        self.download.supportedTypes = [ "svn"]
+        self.download.supportedTypes = [ "svn", "svn-desy"]
         self.download.root = "aidasoft"
 
-        self.reqfiles = [ ["lib/libDD4hepCore.so", "lib/libDD4hepCore.dylib" ]]
+        self.reqfiles = [ ["lib/libDDCore.so", "lib/libDDCore.dylib" ]]
 
-        self.reqmodules = [ "ROOT" , "LCIO", "GEAR", "Geant4" , "CLHEP" ]
+        self.reqmodules = [ "ROOT" , "LCIO", "GEAR", "Geant4" , "CLHEP" ,"Boost" ]
 
 
 #    def setMode(self, mode):

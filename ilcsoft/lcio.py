@@ -22,7 +22,7 @@ class LCIO(BaseILC):
         
         # optional modules
         #self.optmodules = [ "dcap", "ROOT" ]
-        self.optmodules = [ "CLHEP", "ROOT" ]
+        self.optmodules = [ "ROOT" ]
 
         # supported download types
         self.download.supportedTypes = ["svn"]

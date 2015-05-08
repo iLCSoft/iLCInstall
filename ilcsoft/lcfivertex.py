@@ -32,7 +32,7 @@ class LCFIVertex(MarlinPKG):
     def downloadSources(self):
         MarlinPKG.downloadSources(self)
 
-        print "+ Unpacking Boost..."
-        os.chdir( self.installPath )
-        os.system( "tar -xzvf boost.tgz" )
+#        print "+ Unpacking Boost..."
+#        os.chdir( self.installPath )
+#        os.system( "tar -xzvf boost.tgz" )
 

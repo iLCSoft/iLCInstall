@@ -890,6 +890,43 @@ class BaseILC:
             print '\n' + 20*'-' + " Finished " + self.name + " Installation Test " + 20*'-' + '\n'
 
 
+    def showDependencies(self, installed=[]):
+        """ preview installation of this module """
+
+        if( self.mode == "install"):
+            
+            # resolve circular dependencies
+            if( self.name in installed ):
+                return
+            else:
+                installed.append( self.name )
+        
+         
+            print self.name + "[color=orange1, fontcolor=white, label=\"" + self.name + "\"shape=rectangle];"
+            
+            # additional modules
+            mods = self.optmodules + self.reqmodules + self.reqmodules_external + self.reqmodules_buildonly
+            if( len(mods) > 0 ):
+                for modname in mods:
+                    mod = self.parent.module(modname)
+#                    if( mod.mode == "install" and not mod.name in installed ):
+#                        print "+ " + self.name + " will launch installation of " + mod.name
+#                    mod.previewinstall(installed)
+                    print self.name + " -> " + mod.name + ";"
+
+#            print "\n+ Environment Settings used for building " + self.name + ":"
+            # print environment settings recursively
+#            self.setEnv(self, [], True )
+
+#            if( self.hasCMakeBuildSupport ):
+#                #self.setCMakeVars(self, [])
+#                print "\n+ Generated CMake command for building " + self.name + ":"
+#                print '  $ ',self.genCMakeCmd()
+#            
+#            print "\n+ " + self.name + " installation finished."
+#            print '\n' + 20*'-' + " Finished " + self.name + " Installation Test " + 20*'-' + '\n'
+
+
     def cmakeBoolOptionIsSet(self, opt):
         """ checks if a cmake option is set """
 
@@ -1037,6 +1074,10 @@ class BaseILC:
         for c in self.envcmds:
             f.write( c + os.linesep ) 
             print "\n   ----- adding additional command to build_env.sh " + c + "\n"
+
+        if self.os_ver.type == "Darwin":
+            f.write( os.linesep + '# --- set DYLD_LIBRARY_PATH to LD_LIBRARY_PATH for MAC compatibility ---' + os.linesep )
+            f.write( 'export DYLD_LIBRARY_PATH=$LD_LIBRARY_PATH:$DYLD_LIBRARY_PATH' + os.linesep + os.linesep )
 
         # close file
         f.close()

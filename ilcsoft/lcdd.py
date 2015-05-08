@@ -22,7 +22,7 @@ class LCDD(BaseILC):
                 
         self.download.supportedTypes = ["svn"]
 
-        self.reqmodules = [ "GDML" ]
+        self.reqmodules = [ "GDML", "DD4hep" ]
 
     def compile(self):
         """ compile LCDD """
