@@ -30,18 +30,6 @@ class Boost(BaseILC):
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
 
-        self.envorder = [ "BOOST_HOME" ]
-        
-        self.env["BOOST_HOME"] = self.installPath
-
-##        self.env["BOOST"] = "$BOOST_HOME"
-##        self.env["BOOST_PATH"] = "$BOOST_HOME" # needed for mokka
-##        if platform.architecture()[0] == '64bit':
-##            self.env["BOOST_LIBDIR"] = "$BOOST_HOME/lib64/boost" # needed for mokka
-##
-##        self.envpath["PATH"].append( "$BOOST_HOME/bin" )
-##        self.envpath["LD_LIBRARY_PATH"].append( "$BOOST_HOME/lib64/boost" )
-##        self.envpath["LD_LIBRARY_PATH"].append( "$BOOST_HOME/lib64" )
-##        self.envpath["LD_LIBRARY_PATH"].append( "$BOOST_HOME/lib/boost" )
-##        self.envpath["LD_LIBRARY_PATH"].append( "$BOOST _HOME/lib" )
+        self.envorder = [ "BOOST_ROOT" ]
+        self.env["BOOST_ROOT"] = self.installPath
 
