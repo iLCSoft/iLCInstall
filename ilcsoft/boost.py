@@ -24,7 +24,7 @@ class Boost(BaseILC):
         self.hasCMakeBuildSupport = False
 
         self.reqfiles = [
-            ["boost/version.hpp", "boost/spirit.hpp"]
+            ["include/boost/version.hpp", "include/boost/spirit.hpp"]
         ]
 
     def postCheckDeps(self):
