@@ -54,6 +54,14 @@ class FastJet(BaseILC):
         # create build directory
         trymakedir( self.installPath + "/build" )
 
+        #optionally donwload the fjcontrib package
+        if len(self.fjcontrib_version) > 0:
+            os.chdir( self.installPath )
+            print "+ Downloading FastJetContrib version : ", self.fjcontrib_version
+
+            os.system( "wget http://fastjet.hepforge.org/contrib/downloads/fjcontrib-"+self.fjcontrib_version+".tar.gz")
+            os.system( "tar -xzvf fjcontrib-"+self.fjcontrib_version+".tar.gz")
+
     def compile(self):
         """ compile FastJet """
 
@@ -70,6 +78,20 @@ class FastJet(BaseILC):
 
         if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to install!!" )
+
+
+        if( len(self.fjcontrib_version) > 0) :
+            
+            os.chdir( self.installPath+"/fjcontrib-"+self.fjcontrib_version )
+            
+            if( os.system( "./configure --fastjet-config="+self.installPath+"/bin/fastjet-config 2>&1 | tee -a " + self.logfile ) != 0 ):
+                self.abort( "failed to compile!!" )
+                
+            if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
+                self.abort( "failed to compile!!" )
+
+            if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
+                self.abort( "failed to install!!" )            
 
     def cleanupInstall(self):
         BaseILC.cleanupInstall(self)
