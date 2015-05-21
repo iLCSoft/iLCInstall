@@ -122,7 +122,9 @@ RAIDA_version = "v01-06-02"
 
 MarlinUtil_version = "v01-08-01"
 
-Marlin_version = "v01-05"
+Marlin_version = "v01-06-pre"
+
+MarlinDD4hep_version = "HEAD"
 
 Mokka_version = "HEAD" 
 
