@@ -1,14 +1,13 @@
 ###########################################
 #
-# iLCSoft versions for release v01-17-03
+# iLCSoft versions for release v01-17-07
 #
-# Ch. Rosemann, DESY 01.08.2013
-# F.G. 14.08
+# DESY ilcsoft team
 ###########################################
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-07-pre'
+ilcsoft_release='v01-17-07-pre00'
 # ----------------------------------------------------------------------------
 
 
@@ -45,6 +44,13 @@ MySQL_version = "5.0.45"
 MySQL_path = ilcPath + "/mysql/" + MySQL_version
 #MySQL_path = "/usr"
 
+Boost_path = "/afs/desy.de/project/ilcsoft/sw/boost/1.58.0"
+
+
+
+
+
+
 
 # ----- java ---------------------------------------------------------
 Java_version = "1.6.0"
@@ -55,6 +61,9 @@ Java_path = ilcPath + "/java/" + Java_version # comment out to try auto-detect
 CERNLIB_version = "2006" 
 CERNLIB_path = ilcPath + "/cernlib/" + CERNLIB_version
 
+
+# ----- if fortran is needed give a hint where to find the libary
+Fortran_lib_path = "/afs/cern.ch/sw/lcg/contrib/gcc/4.8.1/x86_64-slc6-gcc48-opt/lib64"
 
 
 
@@ -86,10 +95,12 @@ CED_version = "v01-09-01"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
 
-ILCUTIL_version = "v01-02" 
+ILCUTIL_version = "v01-02-01" 
 
-FastJet_version = "2.4.2"
+FastJet_version = "3.1.2"
+
 FastJetClustering_version = "v00-02"
+
 MarlinFastJet_version = "v00-02"
 
 
@@ -159,9 +170,9 @@ Garlic_version = "HEAD"
 #--- slic et al:
 
 # xerces-c (needed by geant4 for building gdml support - required by mokka)
-XERCESC_ROOT_DIR = ilcPath + "/xercesc/3.1.1"
+XERCESC_ROOT_DIR = ilcPath + "/xercesc/3.1.2"
 
-XercesC_version = "3.1.1" 
+XercesC_version = "3.1.2" 
 
 HepPDT_version = "3.04.01"
 
