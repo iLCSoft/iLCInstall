@@ -67,6 +67,7 @@ class BaseILC:
         self.envpath = {                        # path environment variables (e.g. PATH, LD_LIBRARY_PATH, CLASSPATH)
             "PATH" : [],
             "LD_LIBRARY_PATH" : [],
+            "PYTHONPATH" : [],
             "CLASSPATH" : [],
             "LD_RUN_PATH" : [],
             "DT_RUN_PATH" : [],
