@@ -7,7 +7,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-07-pre00'
+ilcsoft_release='v01-17-07-pre02'
 # ----------------------------------------------------------------------------
 
 
@@ -18,7 +18,7 @@ ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 #ilcsoft_install_prefix = "/scratch/rosem/ilcsoft/"
 
 
-#ilcsoft_install_dir = os.path.join( ilcsoft_install_prefix, ilcsoft_release )
+#ilcsoft_install_dir = "/afs/desy.de/project/ilcsoft/sw/x86_64_gcc44_sl6/v01-17-07-pre01/"
 # ----------------------------------------------------------------------------
 
 
@@ -59,7 +59,7 @@ Java_path = ilcPath + "/java/" + Java_version # comment out to try auto-detect
 
 # ----- CERNLIB ------------------------------------------------------
 CERNLIB_version = "2006" 
-CERNLIB_path = ilcPath + "/cernlib/" + CERNLIB_version
+CERNLIB_path = "/afs/desy.de/project/ilcsoft/sw/x86_64_gcc44_sl6/cernlib/" + CERNLIB_version
 
 
 # ----- if fortran is needed give a hint where to find the libary
