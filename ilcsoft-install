@@ -1,4 +1,5 @@
 #! /usr/bin/python
+####!/afs/cern.ch/sw/lcg/external/Python/2.7.4/x86_64-slc6-gcc48-opt/bin/python
 import os, sys
 import logging
 import commands
@@ -66,6 +67,11 @@ try:
     gccver = ''.join( platform.python_compiler().split()[-1].split('.')[:2] )
     arch = 'gcc' + gccver + '_' + sizeofint
     ilcPath = ilcsoft_afs_path[ arch ] + '/'
+    gcccheck = platform.python_compiler()
+    print gcccheck
+    print ilcPath
+    print arch
+    print gccver
 except:
     pass
 
