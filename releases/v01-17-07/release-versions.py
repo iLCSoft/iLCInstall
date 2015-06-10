@@ -70,13 +70,11 @@ Fortran_lib_path = "/afs/cern.ch/sw/lcg/contrib/gcc/4.8.1/x86_64-slc6-gcc48-opt/
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version = "10.01"  #"9.5.p02" 
-#version 10.00 is on disk
+Geant4_version = "10.01"  
 
-ROOT_version = "5.34.18" 
+ROOT_version = "5.34.30" 
 
-CLHEP_version = "2.1.4.1" #already on disk -- needed for geant4.10
-#CLHEP_version = "2.1.1.0" # needed for g4 9.5   # ----- "2.1.3.1"
+CLHEP_version = "2.1.4.1" 
 
 GSL_version = "1.14"
 
@@ -106,13 +104,27 @@ MarlinFastJet_version = "v00-02"
 
 # -------------------------------------------
 
-KalTest_version = "HEAD"
+KalTest_version = "v02-00-pre"  
 
-KalDet_version = "HEAD"
+KalDet_version = "v01-13-02-pre"
 
-DDKalTest_version = "HEAD"
+aidaTT_version = "v00-01-pre"
 
-aidaTT_version = "HEAD"
+DDKalTest_version = "v00-01-pre"
+
+MarlinTrk_version = "v02-00-pre"
+
+MarlinTrkProcessors_version = "v02-00-pre"
+
+Clupatra_version = "v00-11-pre"
+
+KiTrack_version = "v01-06-pre"
+
+KiTrackMarlin_version = "v01-05"
+
+ForwardTracking_version = "v01-08-pre"
+
+# -------------------------------------------
 
 GBL_version = "V01-16-04"
 
@@ -130,20 +142,13 @@ Mokka_version = "HEAD"
 
 MarlinReco_version = "HEAD"
 
-MarlinTrk_version = "HEAD"
-
-MarlinTrkProcessors_version = "HEAD"
 
 ILDPerformance_version = "HEAD"
 
-Clupatra_version = "HEAD"
 
 LCFIVertex_version = "v00-06-02"
 LCFIPlus_version = "HEAD"
 
-KiTrack_version = "HEAD"
-KiTrackMarlin_version = "v01-05"
-ForwardTracking_version = "HEAD"
 
 MarlinKinfit_version = "HEAD"
 
