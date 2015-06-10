@@ -152,9 +152,9 @@ LCFIPlus_version = "HEAD"
 
 MarlinKinfit_version = "HEAD"
 
-PandoraPFANew_version = "HEAD" #"v00-16"
-MarlinPandora_version = "HEAD" #"v00-14"
-PandoraAnalysis_version = "HEAD" #"v00-06"
+PandoraPFANew_version = "v02-00-00"
+MarlinPandora_version = "v02-00-00"
+PandoraAnalysis_version = "v01-00-01" 
 
 CEDViewer_version = "HEAD"
 
