@@ -147,16 +147,16 @@ ILDPerformance_version = "HEAD"
 
 
 LCFIVertex_version = "v00-06-02"
-LCFIPlus_version = "HEAD"
+LCFIPlus_version = "v00-05-03-pre"
 
 
-MarlinKinfit_version = "HEAD"
+MarlinKinfit_version = "v00-01-05-pre"
 
 PandoraPFANew_version = "v02-00-00"
 MarlinPandora_version = "v02-00-00"
 PandoraAnalysis_version = "v01-00-01" 
 
-CEDViewer_version = "HEAD"
+CEDViewer_version = "v01-09-pre"
 
 Overlay_version = "v00-14"
 
@@ -194,7 +194,7 @@ DD4hep_version = "HEAD"
 DD4hepExamples_version = "HEAD"
 lcgeo_version = "HEAD"
 
-Physsim_version = "HEAD" 
+Physsim_version = "v00-02-pre" 
 
 #--- EUTelescope et al:
 #Eutelescope_version = "trunk" # e.g. "tags/v00-09-00" (checked out via SVN) or "trunk" for git clone of the current dev version

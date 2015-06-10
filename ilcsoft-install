@@ -5,7 +5,7 @@ import logging
 import commands
 from ilcsoft import *
 
-_version = "v01-17-07pre"
+_version = "v01-17-07-pre01"
 
 _usage = """%prog [options] INSTALL_CONFIG_FILE
 if called with no options only an installation summary is shown
