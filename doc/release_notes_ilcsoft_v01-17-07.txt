@@ -55,14 +55,14 @@ Introduces 4 new package:
 
 
 ===========================
- CEDViewer v01-07-02 -> v01-08-01 (by F. Gaede & M. Petric)
+ CEDViewer v01-09 (by F. Gaede & M. Petric)
 ===========================
 
   - release notes...
 
 
 ===================
- Clupatra: v00-10 -> v00-10-01
+ Clupatra: v00-11
 ===================
 
   - release notes...
@@ -78,27 +78,22 @@ Introduces 4 new package:
 
 
 ===========================
- ForwardTracking v01-07 -> v01-07-01
+ ForwardTracking v01-08
 ===========================
 
   - release notes...  by F. Gaede
 
 
 ===========================
- Garlic v2.10.1 -> v3.0.3
+ Garlic v3.0.3
 ===========================
 
   - release notes...  by D. Jeans
 
 
-===========================
- ILDConfig (do we add it as a separate package?)
-===========================
-
-
 
 ===========================
- KalDet v01-13-01 -> v01-13-02
+ KalDet v01-13-02
 ===========================
 
   - added some debug printout (F. Gaede)
@@ -106,7 +101,7 @@ Introduces 4 new package:
 
 
 ===========================
- KalTest v01-05-04 -> v01-05-05
+ KalTest v02-00
 ===========================
 
   - added some debug printout (F. Gaede)
@@ -114,14 +109,14 @@ Introduces 4 new package:
 
 
 ===========================
- KiTrack v01-05 -> v01-05-01
+ KiTrack v01-06
 ===========================
 
   - adding criterio for minimum PT to mini-vector tracking (Y. Voutsinas)
 
 
 ================================
- LCFIPlus v00-05-02 -> v00-05-03
+ LCFIPlus v00-05-03
 ===============================
  
   - New joint probability introduced (T. Suehara)
@@ -130,14 +125,14 @@ Introduces 4 new package:
 
 
 ==============================
- Marlin: v01-05 -> v01-05-01
+ Marlin: v01-06
 =============================
 
   - added geant library if built w/ dd4hep (F. Gaede)
 
 
 ===========================
- MarlinTrk v01-11 -> v01-12
+ MarlinTrk v02-00
 ===========================
 
   - release notes...
@@ -145,31 +140,67 @@ Introduces 4 new package:
 
 
 ===========================
- MarlinTrkProcessor v01-11 -> v01-12
+ MarlinTrkProcessors v02-00-pre
 ===========================
  
   - release notes...
 
 
 =====================================
- MarlinKinfit v00-01-02 -> v00-01-03
+ MarlinKinfit v00-01-05 
 =====================================
- 
-  - release notes...
+
+   - J. List
+    adjusted version number in CMakeLists.txt, removed obsolete PConstraint,  
+    added directory not_used and moved there all the Track / Vertex fitting stuff which
+    had only recently (r4750) been transfered from H1 version and is now being
+    overhauled by Daniel Jeans.  
+
+    First version after refactoring of FitObject inheritance tree (D. Jeans)
+    Minimized duplication of code in derived classes at the price of a
+    overall limit on the maximum number of parameters, to be set in BaseDefs.h/cc
+    As a consequence, the logic of the copy constructors / assignment operators
+    had to be adjusted. 
 
 
 ==============================
- MarlinPandora v00-14 -> ?
+ MarlinPandora v02-00-00
 ==============================
 
   - release notes...
 
 
 ===========================
- MarlinReco v01-10 -> v01-11
+ MarlinReco v01-11
 ===========================
 
-  - release notes...
+
+     LDCCaloDigi/ILDCaloDigi: D.Jeans & O. Hartbrich
+     - improved realism of silicon and sintillator/PPD calorimeter hit digitisation
+     - ScintillatorPpdDigi class defines PPD response model
+     - default behaviour is no realism: must be switched on in steering file
+     - added documentation (also described in LC-TOOL-2014-011)
+     - can regroup the virtual cells of a scintillator strip
+     
+     Clustering/hybridEcalSplitter: D. Jeans
+     - can deal with scintillator strips with >1 virtual cells
+
+    - S.Bilokin: new package TruthVertexFinder added 
+      ( see ./Analysis/TruthVertexFinder )
+
+    - M.Berggren: added new packages TrueJet and TrueJet_Parser 
+      (./Analysis/TrueJet, ./Analysis/TrueJet_Parser)
+
+    - F.Gaede: add parameter DontEncodeSide to TPCDigiProcessor
+        - allows to process old Mokka and new DD4hep based simulation 
+       
+    - F.Gaede: modified calo digitizers in CaloDigi/LDCCaloDigi:
+      ILDCaloDigi, NewLDCCaloDigi, SimpleLCalDigi, SimpleLHCalDigi, SimpleMuonDigi
+      added parameters
+        CellIDLayerString, CellIDModuleString, CellIDStaveString
+      to allow to switch between old cellId encoding string
+      using K/K-1,M,S and new one using layer,module,sensor
+      ( additionally added CellIDIndexIString, CellIDIndexJString to ILDCaloDigi)
 
 
 
@@ -181,42 +212,35 @@ Introduces 4 new package:
 
 
 ================================
- MOKKA mokka-08-04 -> mokka-08-05
+ MOKKA mokka-08-05
 ===============================
 
   - release notes...
 
 
-===========================
- Overlay v00-14 -> ?
-===========================
- 
-  - NOT updated but want to update it soon - maybe before the release
-
-
 ============================
-PandoraAnanlysis V00-06 -> ? 
+PandoraAnanlysis v01-00-01
 ============================
 
   - release notes...
 
 
 ==============================
- PandoraPFANew v00-16
+ PandoraPFANew v02-00-00
 ==============================
 
   - release notes...
 
 
 ==============================
- PhysSim v00-01 -> v00-02
+ PhysSim v00-02
 ==============================
 
   - a major update including more processes and features; see detail of update in my talk at ILD Analysis/Software Meeting, https://agenda.linearcollider.org/event/6599/  (J. Tian)
 
 
 ===========================
- Gear v01-04-01 -> v01-04-02
+ Gear v01-04-02
 ===========================
 
   - F. Gaede
@@ -234,7 +258,7 @@ PandoraAnanlysis V00-06 -> ?
 
 
 ======================
- LCIO v02-05 -> v02-06
+ LCIO v02-06
 ======================
 
   - Include Jaxen runtime dep so siodump does not barf. (J. McCormick)
