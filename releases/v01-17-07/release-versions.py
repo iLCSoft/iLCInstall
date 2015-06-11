@@ -140,7 +140,7 @@ MarlinDD4hep_version = "HEAD"
 
 Mokka_version = "HEAD" 
 
-MarlinReco_version = "HEAD"
+MarlinReco_version = "v01-11-pre01"
 
 
 ILDPerformance_version = "HEAD"
