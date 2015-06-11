@@ -87,7 +87,7 @@ CMake_version = "2.8.5"
 
 LCIO_version = "HEAD" 
 
-GEAR_version = "HEAD" 
+GEAR_version = "v01-04-02-pre" 
 
 CED_version = "v01-09-01"
 
@@ -143,7 +143,7 @@ Mokka_version = "HEAD"
 MarlinReco_version = "v01-11-pre01"
 
 
-ILDPerformance_version = "HEAD"
+ILDPerformance_version = "v00-01-pre"
 
 
 LCFIVertex_version = "v00-06-02"
@@ -170,7 +170,7 @@ BBQ_version =  "v00-01-02"
 
 Druid_version = "2.2" # "1.8" 
 
-Garlic_version = "HEAD"
+Garlic_version = "v3.0.3"
 
 
 
