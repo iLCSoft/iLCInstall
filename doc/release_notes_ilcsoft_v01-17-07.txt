@@ -55,10 +55,17 @@ Introduces 4 new package:
 
 
 ===========================
- CEDViewer v01-09 (by F. Gaede & M. Petric)
+ CEDViewer v01-09 
 ===========================
 
-  - release notes...
+  - use cluster position for drawing orientation of clusters (pointing to IP) if ITheat,IPhi are 0.0 (F. Gaede)
+
+  - fixed drawing of strip hits: now based on bit ILDTrkHitTypeBit::ONE_DIMENSIONAL in type ( was collection name ) (F. Gaede)
+
+  - Modifications to template and gear file for proper functionality with DSTViewer (M. Petric)
+
+  - fixed layer id description (F. Gaede)
+
 
 
 ===================
@@ -88,7 +95,7 @@ Introduces 4 new package:
  Garlic v3.0.3
 ===========================
 
-  - release notes...  by D. Jeans
+  - release notes...  
 
 
 
@@ -104,8 +111,9 @@ Introduces 4 new package:
  KalTest v02-00
 ===========================
 
-  - added some debug printout (F. Gaede)
-
+   - implemented the optional use of a non-uniform B field ( Li Bo) as described in 
+     Bo Li, Keisuke Fujii, Yuanning Gao, "Kalman-filter-based track fitting in non-uniform magnetic field with segment-wise helical track model"
+     [http://arxiv.org/abs/1305.7300]
 
 
 ===========================
@@ -135,15 +143,86 @@ Introduces 4 new package:
  MarlinTrk v02-00
 ===========================
 
-  - release notes...
+
+ by F. Gaede
+
+   - added implementation of MarlinDDKalTest:
+     KalTest implementation of MarlinTrk working
+     with DD4hep surfaces and DDKalTest
+
+
+    - changed Marlin(DD)KalTestTrack::initialise(  const EVENT::TrackState& ts, double bfield_z, bool fitDirection )
+      to ignore the bfield_z parameter and get it from the first hit
+    - fixes issue in MarlinTrkUtils/finaliseLCIOTrack() where the method above is used 
+      but the bfield is not available
+    - should consider changing IMarlinTrkTrack interface ...
+  
+    - use new LCDD detector lists to create DDKalDetectors only 
+      for "tracker" and "passive" sub detectors, 
+      i.e. calorimeters are ignored
+    
+     - made MarlinTrk::Factory a singleton
+     - sub sequent calls to init() can only change the options (MSQ,Eloss)
+     - Factory caches one IMarlinTrkSystem of every type 
+ 
+  - USERS SHOULD NO LONGER DELETE THE IMarlinTrkSystem POINTER
+    IN THEIR CODE (Marlin processor)
+  
+
+    - fixed MarlinTrkUtils::createFinalisedLCIOTrack for
+      fitting insode out (forward ):
+       - smooth back to last constrained hit 
+       - add innermost hits with a proper Kalman filter step
+         to get track state at the IP
+     - added fit_direction to finaliseLCIOTrack() et al
+     - made treatment of fit_direction more consistent
+
+
+   - added an IP layer to MarlinDDKalTest
+     ( DDCylinderMeasLayer w/ smallest radius )
+   - debug printout in MarlinTrkUtils
+
+
+   - ignore missing track state at calo face (for now)
+     -> just print warning
+   - added debug printout
 
 
 
 ===========================
- MarlinTrkProcessors v02-00-pre
+ MarlinTrkProcessors v02-00
 ===========================
  
-  - release notes...
+
+   - adapted to  DD4hep::Surfaces and DDKalTest
+
+   - DDCellsAutomatonMV: adapted CA to DD4hep (R.Simoniello)
+
+   - modified RefitProcessor (F.Gaede)
+    - InitialTrackState: allows to select one of the track states (or use hits) 
+    - FitDirection: allow to fit forwards or backwards (default)
+    -> can use for CLIC SiBarrel tracker to refit TrackState AtIP 
+       in forward direction
+
+   - adapted to new MarlinTrk::Factory: no longer delete the IMarlinTrkSystem pointer
+     at the end of the processing for all fitters
+
+   - ExtrToTracker: add new processor that extracts an existing track to another 
+     tracking subdetector (R.Simoniello)
+
+   - added DDPlanarDigiProcessor which uses the DDRec::Surface
+     for smearing the hits (no gear needed) (F.Gaede)
+
+   - add option to use DDKalTest to all fitters (TrackSubsetProcessor, FullLDCTracking_MarlinTrk,
+      TrackSubsetProcessor, RefittProcessor)    (F.Gaede)
+      - set parameter "TrackSystemName" to "DDKalTest"
+
+   - PlanarDigiProcessor: add new utility processor that allows to split a collection 
+    of hits into several collections, based on the layerID
+    of the hits (works for all lcio hit types) (F.Gaede)
+
+   - ExtrToSIT: added processor for refitting and propagating track from TPC or VXD to SIT (Y.Voutsinas)
+
 
 
 =====================================
