@@ -85,9 +85,9 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "HEAD" 
+LCIO_version = "v02-05-01-pre"
 
-GEAR_version = "v01-04-02-pre" 
+GEAR_version = "v01-04-02-pre01" 
 
 CED_version = "v01-09-01"
 
@@ -136,12 +136,13 @@ MarlinUtil_version = "v01-08-01"
 
 Marlin_version = "v01-06-pre"
 
-MarlinDD4hep_version = "HEAD"
+MarlinDD4hep_version = "v00-01-pre"
 
-Mokka_version = "HEAD" 
+Mokka_version = "mokka-08-05-pre" 
 
 MarlinReco_version = "v01-11-pre01"
 
+FCalClusterer_version = "HEAD"
 
 ILDPerformance_version = "v00-01-pre"
 
@@ -190,11 +191,12 @@ SLIC_version = "HEAD"
 
 SlicPandora_version = "HEAD"
 
-DD4hep_version = "HEAD"
-DD4hepExamples_version = "HEAD"
+DD4hep_version = "v00-12-pre01"
+DD4hepExamples_version = "v00-12-pre01"
 lcgeo_version = "HEAD"
 
 Physsim_version = "v00-02-pre" 
+
 
 #--- EUTelescope et al:
 #Eutelescope_version = "trunk" # e.g. "tags/v00-09-00" (checked out via SVN) or "trunk" for git clone of the current dev version
