@@ -22,8 +22,7 @@ class LCDD(BaseILC):
                 
         self.download.supportedTypes = ["svn"]
 
-        self.reqmodules = [ "GDML", "DD4hep" ]
-        #fg: only  use DDSegmentation, which in ilcsoft is installed w/ DD4hep
+        self.reqmodules = [ "GDML" ]
 
     def compile(self):
         """ compile LCDD """
