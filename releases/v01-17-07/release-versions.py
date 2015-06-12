@@ -191,7 +191,7 @@ SLIC_version = "HEAD"
 
 SlicPandora_version = "HEAD"
 
-DD4hep_version = "v00-12-pre01"
+DD4hep_version = "v00-12-pre02"
 DD4hepExamples_version = "v00-12-pre01"
 lcgeo_version = "HEAD"
 
