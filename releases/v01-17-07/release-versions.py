@@ -114,13 +114,13 @@ DDKalTest_version = "v00-01-pre"
 
 MarlinTrk_version = "v02-00-pre"
 
-MarlinTrkProcessors_version = "v02-00-pre"
+MarlinTrkProcessors_version = "v02-00-pre01"
 
 Clupatra_version = "v00-11-pre"
 
 KiTrack_version = "v01-06-pre"
 
-KiTrackMarlin_version = "v01-05"
+KiTrackMarlin_version = "v01-06-pre"
 
 ForwardTracking_version = "v01-08-pre"
 
@@ -142,7 +142,7 @@ Mokka_version = "mokka-08-05-pre"
 
 MarlinReco_version = "v01-11-pre01"
 
-FCalClusterer_version = "HEAD"
+FCalClusterer_version = "v00-01-pre"
 
 ILDPerformance_version = "v00-01-pre"
 
@@ -165,7 +165,7 @@ PathFinder_version =  "v00-06"
 
 MarlinTPC_version = "HEAD"
 
-LCTuple_version = "v01-03-01"
+LCTuple_version = "HEAD" #"v01-03-01"
 
 BBQ_version =  "v00-01-02"
 
@@ -192,7 +192,7 @@ SLIC_version = "HEAD"
 SlicPandora_version = "HEAD"
 
 DD4hep_version = "v00-12-pre02"
-DD4hepExamples_version = "v00-12-pre01"
+DD4hepExamples_version = "v00-12-pre02"
 lcgeo_version = "HEAD"
 
 Physsim_version = "v00-02-pre" 
