@@ -7,7 +7,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-07-pre02'
+ilcsoft_release='v01-17-07-pre03'
 # ----------------------------------------------------------------------------
 
 
@@ -53,8 +53,8 @@ Boost_path = "/afs/desy.de/project/ilcsoft/sw/boost/1.58.0"
 
 
 # ----- java ---------------------------------------------------------
-Java_version = "1.6.0"
-Java_path = ilcPath + "/java/" + Java_version # comment out to try auto-detect
+#Java_version = "1.6.0"
+#Java_path = ilcPath + "/java/" + Java_version # comment out to try auto-detect
 
 
 # ----- CERNLIB ------------------------------------------------------
