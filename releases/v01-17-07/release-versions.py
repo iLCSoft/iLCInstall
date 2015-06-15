@@ -163,7 +163,7 @@ Overlay_version = "v00-14"
 
 PathFinder_version =  "v00-06"
 
-MarlinTPC_version = "HEAD"
+MarlinTPC_version = "v01-00-pre"
 
 LCTuple_version = "v01-04-pre"
 
