@@ -22,14 +22,30 @@ class SlicPandora(BaseILC):
             
         # set some cvs variables
         #self.download.env["CVSROOT"]=":pserver:anonymous@cvs.freehep.org:/cvs/lcd"
+        #self.download.supportedTypes = ["cvs"]
+        #self.download.accessmode = "pserver"
+        #self.download.server = "cvs.freehep.org"
+        #self.download.root = "cvs/lcd"
+        #self.download.project = "slicPandora"
 
-        self.download.supportedTypes = ["cvs"]
-        self.download.accessmode = "pserver"
-        self.download.server = "cvs.freehep.org"
-        self.download.root = "cvs/lcd"
-        self.download.project = "slicPandora"
+        self.download.supportedTypes = [ "svn" ]
 
         self.reqmodules = [ "LCIO", "PandoraPFANew" ]
+
+    def setMode(self, mode):
+
+        BaseILC.setMode(self, mode)
+
+        self.download.svnurl = 'svn://svn.freehep.org/lcdet/projects/slicPandora'
+
+        if( Version( self.version ) == 'HEAD' ):
+            self.download.svnurl += '/trunk'
+        elif '-pre' in self.version or '-dev' in self.version:
+            self.download.svnurl += '/branches/' + self.version
+        else:
+            self.download.svnurl += '/tags/' + self.version
+
+        print "slicPandora SVN URL: ", self.download.svnurl
 
     def compile(self):
         """ compile slicPandora """
@@ -51,11 +67,6 @@ class SlicPandora(BaseILC):
             if( os.system( "make tests && make test" ) != 0 ):
                 self.abort( "failed to execute slic tests" )
 
-
-    def setMode(self, mode):
-        BaseILC.setMode(self, mode)
-
-
     def preCheckDeps(self):
         BaseILC.preCheckDeps(self)                       
 
@@ -67,4 +78,3 @@ class SlicPandora(BaseILC):
         # PATH
         self.envpath["PATH"].append( "$SLICPANDORA/build/bin" )
         self.envpath["LD_LIBRARY_PATH"].append( "$SLICPANDORA/build/lib" )
-
