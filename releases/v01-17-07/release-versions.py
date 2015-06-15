@@ -165,7 +165,7 @@ PathFinder_version =  "v00-06"
 
 MarlinTPC_version = "HEAD"
 
-LCTuple_version = "HEAD" #"v01-03-01"
+LCTuple_version = "v01-04-pre"
 
 BBQ_version =  "v00-01-02"
 
@@ -193,7 +193,7 @@ SlicPandora_version = "HEAD"
 
 DD4hep_version = "v00-12-pre02"
 DD4hepExamples_version = "v00-12-pre02"
-lcgeo_version = "HEAD"
+lcgeo_version = "v00-04-pre"
 
 Physsim_version = "v00-02-pre" 
 
