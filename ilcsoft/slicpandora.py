@@ -61,6 +61,9 @@ class SlicPandora(BaseILC):
         if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
 
+        if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
+            self.abort( "failed to install!!" )
+
         # execute ctests
         if( self.makeTests ):
             
