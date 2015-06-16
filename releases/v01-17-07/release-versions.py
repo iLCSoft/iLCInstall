@@ -19,6 +19,7 @@ ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 
 
 #ilcsoft_install_dir = "/afs/desy.de/project/ilcsoft/sw/x86_64_gcc44_sl6/v01-17-07-pre01/"
+#ilcsoft_install_dir = os.path.join( "/scratch/ilcsoft", ilcsoft_release )
 # ----------------------------------------------------------------------------
 
 
@@ -193,7 +194,7 @@ SlicPandora_version = "HEAD"
 
 DD4hep_version = "v00-12-pre02"
 DD4hepExamples_version = "v00-12-pre02"
-lcgeo_version = "v00-04-pre"
+lcgeo_version = "v00-04-pre01"
 
 Physsim_version = "v00-02-pre" 
 
