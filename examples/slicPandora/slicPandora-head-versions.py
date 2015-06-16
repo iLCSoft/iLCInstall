@@ -12,15 +12,8 @@ ilcsoft_release = "HEAD"
 # ----------------------------------------------------------------------------
 
 # --------- install dir ------------------------------------------------------
-#ilcsoft_install_prefix = "/u1/projects/slicPandora/"
-
-#ilcsoft_install_prefix = "/work/projects/ilcsoft/installations/slicPandora/"
-ilcsoft_install_prefix = "/nfs/slac/g/lcd/mc/prj/users/jeremym/slicPandora/build/"
-
-#ilcsoft_install_prefix = "/u1/projects/slic/"
-#ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
-#ilcsoft_install_prefix = "/scratch/gaede/ilcsoft/"
-#ilcsoft_install_prefix = "/scratch/rosem/ilcsoft/"
+#ilcsoft_install_prefix = "/nfs/slac/g/lcd/mc/prj/users/jeremym/slicPandora/build/"
+ilcsoft_install_prefix = "/scratch/$USER/slicPandora/"
 
 #ilcsoft_install_dir = os.path.join( ilcsoft_install_prefix, ilcsoft_release )
 
