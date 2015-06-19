@@ -7,7 +7,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-07-pre03'
+ilcsoft_release='v01-17-07-pre04'
 # ----------------------------------------------------------------------------
 
 
@@ -109,13 +109,13 @@ KalTest_version = "v02-00-pre"
 
 KalDet_version = "v01-13-02-pre"
 
-aidaTT_version = "v00-01-pre"
+aidaTT_version = "v00-01-pre01"
 
 DDKalTest_version = "v00-01-pre"
 
-MarlinTrk_version = "v02-00-pre"
+MarlinTrk_version = "v02-00-pre01"
 
-MarlinTrkProcessors_version = "v02-00-pre01"
+MarlinTrkProcessors_version = "v02-00-pre02"
 
 Clupatra_version = "v00-11-pre"
 
@@ -133,7 +133,7 @@ LCCD_version = "v01-03"
 
 RAIDA_version = "v01-06-02"
 
-MarlinUtil_version = "v01-08-01"
+MarlinUtil_version = "v01-08-01-pre02"
 
 Marlin_version = "v01-06-pre"
 
@@ -141,7 +141,7 @@ MarlinDD4hep_version = "v00-01-pre"
 
 Mokka_version = "mokka-08-05-pre" 
 
-MarlinReco_version = "v01-11-pre01"
+MarlinReco_version = "v01-11-pre02"
 
 FCalClusterer_version = "v00-01-pre"
 
@@ -192,9 +192,10 @@ SLIC_version = "HEAD"
 
 SlicPandora_version = "HEAD"
 
-DD4hep_version = "v00-12-pre02"
-DD4hepExamples_version = "v00-12-pre02"
-lcgeo_version = "v00-04-pre01"
+DD4hep_version = "v00-12-pre04"
+DD4hepExamples_version = "v00-12-pre04"
+
+lcgeo_version = "v00-04-pre02"
 
 Physsim_version = "v00-02-pre" 
 
