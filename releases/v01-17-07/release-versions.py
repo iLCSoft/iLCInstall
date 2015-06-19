@@ -145,7 +145,7 @@ MarlinReco_version = "v01-11-pre03"
 
 FCalClusterer_version = "v00-01-pre"
 
-ILDPerformance_version = "v00-01-pre"
+ILDPerformance_version = "v00-01-pre02"
 
 
 LCFIVertex_version = "v00-06-02"

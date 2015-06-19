@@ -20,7 +20,7 @@ Introduces 4 new package:
 =====================
           by F. Gaede 
 
-  - description...
+  -  DDKalTest - interface between KalTest fitter and DD4hep based geometry
 
 
 =====================
@@ -28,7 +28,7 @@ Introduces 4 new package:
 =====================
           by Y. Voutsinas & Alberto Guerrero Llorrente
 
-  - description...
+  Collection of scripts and steering files for creating canonical ILD performance plots
 
 
 
@@ -37,7 +37,9 @@ Introduces 4 new package:
 =====================
           by C. Rosemann et al
 
-  - description...
+  - tracking toolkit developed in the AIDA project
+      - implementation of GBL fitting using a DD4hep model that provides DDRec::Surfaces
+      - implementation of multiple scattering still under validation.
 
 
 
@@ -72,15 +74,118 @@ Introduces 4 new package:
  Clupatra: v00-11
 ===================
 
-  - release notes...
+ by F. Gaede
+   - add option to use DDKalTest
+     - parameter "TrackSystemName"
 
+   - added parameter "SetSideForTPC" to allow for setting the side to +/- 1
+ 
+  - added new parameters
+    - FTDCollectionName: set cellIDs for FTD
+    - SetSideForVXD: set side to +-1 if true
+    - LayerOffset: offset applied to layer number (ZPalanar)
+
+  - added SET hits ( used for debugging mainly)
 
 
 ===========================
- DD4Hep v00-10 -> v00-11
+ DD4Hep v00-12
 ===========================
 
-  - release notes...
+2015/06/17 Markus Frank
+-----------------------
+  - Add possibility to block access to constants by name from LCDD.
+    Functionality enabled by a constant named "LCDD_InhibitConstants" with value "1", "True", "Yes".
+    Test: geoDisplay -compact file:../DD4hep.trunk/examples/ClientTests/compact/InhibitConstants.xml 
+
+  - Add LCDDHelper handle object to easily access the sensitive detector object of a detector
+    using either the subdetector name or the detector element (or one of its children).
+    See: DD4hep/LCDDHelper.h
+    Test: geoPluginRun -input file:../DD4hep.trunk/examples/CLICSiD/compact/compact.xml \
+                       -plugin CLICSiD_LCDDHelperTest  \
+            optional:  -<detector-name (default:SiVertexEndcap)>  [Note the '-'!!!]
+
+  - Check when adding new sub-detector detector elements if a given one already exists.
+    if yes: exception.
+    Test: geoDisplay -compact file:../DD4hep.trunk/examples/ClientTests/compact/DuplicateSysID.xml
+
+
+A. Sailer
+-----
+  - DDSegmentation: Added function cellDimension which returns the dimension of any given cell
+
+
+S.Lu:
+-----
+  - Added a switch for BirksLaw to Geant4StepHandler. 
+    For backward compatable, by default, do not apply BirksLaw, and apply BirksLaw with call 'doApplyBirksLaw()'.
+    added optional Geant4ScintillatorCalorimeterAction
+  - Added one 'Geant4ScintillatorCalorimeterAction' into DDG4 plugins Geant4SDActions for  scintillator to take 
+    Geant4 BirksLaw effect as sensitive detector active layer.
+
+F.Gaede
+-------
+   - added SurfaceManager class that holds maps of surfaces for 
+     "world","tracker","calorimeter","passive" and all individual subdetectors
+      - to be used in reconstruction code where a lookup from cellID
+        to corresponding surface is needed
+      - needs plugin "InstallSurfaceManager" to be in the compact file
+      - access via:  
+        SurfaceManager surfMan = *lcdd.extension< SurfaceManager >() ;
+        const SurfaceMap& surfMap = *surfMan.map( "world" ) ;
+   - renamed old SurfaceManager to SurfaceHelper
+
+   - added method: Geometry::Volume createPlacedEnvelope()
+     - to be used in all LC detector drivers to create a placed envelope volume
+       rest of the detector is then instantiate in this volume
+
+  - added BooleanShape plugin for creating generic boolean
+    shapes (subtraction, union or intersection )
+      - to be used for envelope definition in xml
+
+   - added new build_type: BUILD_ENVELOPE 
+      - can be used to visulize envelopes only (geoDisplay, teveDisplay,...)
+
+2015/05/22 Nikiforos Nikiforou
+-----------------------
+  - Fixed bug in DDG4/lcio/LCIOConversions.cpp, which stored only the PDG of the primary particle 
+    in multiple particle contributions in SimCalorimeterHits instead of both the primary and secondary PDGs.
+
+
+2015/05/13 Markus Frank
+-----------------------
+  - Fix bug in DDG4, which forced DDG4 to exit if a property from the Geant4 prompt could
+    not be set. No an error message is printed and the prompt is returned to the user.
+    (Bug submitted by A. Sailer)
+
+2015/05/11 Andre Sailer
+-----------------------
+  - CMake updates:
+         - Split libraries into components: use find_package(DD4hep COMPONENTS <component> [...] )
+           to find the components you need.
+         - At the moment there are these components are sensible to link against: DDRec, DDG4, DDEve, DDSegmentation
+         - To link against the librarie use either DD4hep_COMPONENT_LIBRARIES or DD4hep_<COMPONENT>_LIBRARY,
+           where <COMPONENT> needs to be replaced by the UPPER case name of the component
+
+2015/05/09 Markus Frank
+-----------------------
+  - Allow to access detectors by type from lcdd.
+         - The sensitive type of a detector is set in the 'detector constructor'.
+         - Not sensitive detector structures have the name 'passive'
+         - Compounds (ie. nested detectors) are of type 'compound'
+  - Dump detector types using plugin:
+         geoPluginRun -plugin DD4hepDetectorTypes -input <compact-file>
+
+2015/03/12 Markus Frank
+-----------------------
+  - Add support for ellipsoids in gdml/lcdd and geant4 conversion.
+  - Allow to include files with environment variables from compact notation.
+
+2015/03/09 Markus Frank
+-----------------------
+  - Finalize move to geant4 version 10, started by A.Sailer
+  - Add non-isotrop particle generator in DDG4 (request P.Kostka)
+  - Isolate ROOT plugin manager as start to move to ROOT 6
 
 
 
@@ -88,15 +193,27 @@ Introduces 4 new package:
  ForwardTracking v01-08
 ===========================
 
-  - release notes...  by F. Gaede
+  
+   - modified ForwardTracking (F.Gaede): 
+
+     - use a constant map in getOverlapConnectionMap
+       (was filled with uneeded empty hit vectors)
+
+     - added processor parameters:
+       TrackSystemName: KalTest, DDKalTest, ...
+       GetTrackStateAtCaloFace: allow to run w/o Ecal surfaces
+
+     - no change in algorithm
 
 
 ===========================
  Garlic v3.0.3
 ===========================
 
-  - release notes...  
-
+  by D. Jeans
+  - fix to pseudo-layer calculation (for last ECAL layer)
+  - fix calculation of ECAL layer positions for older mokka models (mokka-08-04 and earlier)
+  - implemented energy-dependent cluster merge distance cut
 
 
 ===========================
@@ -121,6 +238,13 @@ Introduces 4 new package:
 ===========================
 
   - adding criterio for minimum PT to mini-vector tracking (Y. Voutsinas)
+
+
+===========================
+ KiTrackMarlin v01-06
+===========================
+
+   - replaced hardcoded B-Field in tools/Fitter with gear::BField ( R.Simoniello)
 
 
 ================================
@@ -223,6 +347,8 @@ Introduces 4 new package:
 
    - ExtrToSIT: added processor for refitting and propagating track from TPC or VXD to SIT (Y.Voutsinas)
 
+   - reverted changes for dEdx calculationin FullLDCMarlinTrk: moved to new processor (M.Kurata)
+
 
 
 =====================================
@@ -242,17 +368,75 @@ Introduces 4 new package:
     had to be adjusted. 
 
 
+=====================================
+ LCTuple v01-04
+=====================================
+
+
+ F. Mueller, C. Duerig, A. Ebrahimi
+   - Added JetBranches which holds branches created from a jet collection
+     created by Satoru Jet Finder processor.
+     JetBranches has two steerable parameters which are optionally
+     set in the steering file:
+      * writeExtraParameters: if set to TRUE, the fill function
+        calculates some extra parameters using parameters provided
+        by the jet finding algorithm. Default value is FALSE.
+        See class data members for a list of extra parameters.
+      * writeTaggingParameters: if set to TRUE, the fill function
+        creates branches for jet parameters coming form flavor tagging
+        processor. If no flavor tagging processr is used, this should
+        be set to FALSE to prevent errors. Default value is FALSE.
+        See class data members for a list of extra parameters.
+   - Added isolated lepton branches
+   - Added MC particle from relation branches
+   - Added MC particle remove overlay branches
+
+
 ==============================
  MarlinPandora v02-00-00
 ==============================
 
-  - release notes...
+ by J. Marshall
+
+  Update to reflect change to calo hit creation API.
+  Allow for names "layer" and "stave" in cellID encoding string.
+
+  --------------------------------------------------------------------------------------------------------------------------------------------
+  --------------------------------------------------------------------------------------------------------------------------------------------
+  TAG v01-00-01
+  --------------------------------------------------------------------------------------------------------------------------------------------
+  Improve specification of CMAKE_CXX_FLAGS.
+  Handle cases where c++11 is not available.
+
+  --------------------------------------------------------------------------------------------------------------------------------------------
+  TAG v01-00-00
+  --------------------------------------------------------------------------------------------------------------------------------------------
+  Milestone v01 release.
+  Update to reflect recent changes to PandoraSDK.
+  Improved const-correctness. Algorithms are now only exposed to pointers to const managed-objects. Access to managed-object non-const functionality is now only via Pandora APIs.
+  Use LCContentFast if c++11 is available: contains faster versions of algorithms in the LCContent library, using e.g. KD-trees and relying on c++11.
+  Corrected radiation length and nuclear interaction lengths specified for Pandora CaloHits and Pandora SubDetectors.
+  Restored PandoraSettingsBasic.xml to repository.
+  Added to list of cheated neutral hadrons in PandoraSettingsPerfectPhotonNeutronK0L.xml
+  Updated PandoraSettings readme.
+  CMakeLists overhaul.
+
+  --------------------------------------------------------------------------------------------------------------------------------------------
+  --------------------------------------------------------------------------------------------------------------------------------------------
+  TAG v00-15
+  --------------------------------------------------------------------------------------------------------------------------------------------
+  Update to reflect recent changes to PandoraSDK and LCContent.
+  Overhaul, with emphasis on ensuring that client applications can instantiate and use multiple concurrent pandora instances.
+  Address issues highlighted by Coverity.
+  Improved member variable initialization, with default constructors for settings and local algorithms.
+  Move some re-usable plugins from MarlinPandora into LCContent.
+  Update PandoraSettings files, adding new CaloHitPreparation algorithm, using new configuration for plugins and improving list management.
+  Add HCAL Ring geometry details (missing from gear file; ring is treated as an endcap, so symmetry order is not specified)
 
 
 ===========================
  MarlinReco v01-11
 ===========================
-
 
      LDCCaloDigi/ILDCaloDigi: D.Jeans & O. Hartbrich
      - improved realism of silicon and sintillator/PPD calorimeter hit digitisation
@@ -280,35 +464,125 @@ Introduces 4 new package:
       to allow to switch between old cellId encoding string
       using K/K-1,M,S and new one using layer,module,sensor
       ( additionally added CellIDIndexIString, CellIDIndexJString to ILDCaloDigi)
+  
+    - C.Calancha: new package Analysis/FourMomentumCovMat
+ 
+    - M.Kurata: new package Analysis/PIDTools: TPC track dEdx calculation, 
+      Cluster shower profile extraction, and Likelihood Particle Identification
 
 
 
 ===========================
- MarlinTPC v00-17 -> ?
+ MarlinTPC v01-00
 ===========================
 
-  - release notes...
+  Major changes! (O. Schaefer)
+
+Restructured build mechanism of MarlinTPC and TPCCondData, such that the latter
+is now a subproject and can be built stand alone with way less dependencies.
+The MarlinTPC build works the same as in the past and automatically triggers the
+build of TPCCondData. Details are specified in the cmake_README and README
+files.
+
+There where some dependencies introduced from TPCCondData on MarlinTPC
+(Exceptions). These where rectified. Such dependencies can't be reintroduced in
+future, as in that case the build of TPCCondData, and thus MarlinTPC, will fail.
+TPCCondData doesn't know about MarlinTPC anymore, but vice verser.
+
+The build procedure for documentation was also affected. If the option
+-DINSTALL_DOC=ON was supplied to the cmake command, there is the possibillity to
+execute "make TPCCondDatadoc". "make doc" was already in use for MarlinTPC
+documentation, so this other name was chosen instead.
+
+Several formal errors where discovered in the documentation. Due to a former
+mistake in the script createProcessor.py, comments would be placed above the
+"namespace" keyword and be included into the namespace documentation. I
+corrected for that in the script and the affected processors. Additionally there
+is now a header file "general/MarlinTPCNamespaceDoc.h" to contain the namespace
+documentation in a central place. A similar header exists for TPCCondData.
+In the affected processors also a credit was placed, indicating the usage of the
+createProcessor.py script. This should allow to track possible errors in the
+script and affected processors in future.
+
+Furthermore, all compiler warnings where removed. There where "ambiguous else
+statements", "variable set but not used", "signed/unsigned comparison" and "not
+used" warnings. I corrected these and added TODO comments, for the programmers
+to check, if these corrections didn't alter the meaning of the code.
+
+  - Many other developments - bug fixes
+
+
+===============================
+ MarlinUtil v01-08-01
+===============================
+
+   - added functions for cluster shape calculation (M. Kurata) 
+
 
 
 ================================
  MOKKA mokka-08-05
 ===============================
 
-  - release notes...
+  What is new in this Mokka release
+  ==============================
+ 	
+ 	 - patch by A.Sailer, CERN
+ 	   made compatible w/ Geant4 10.1
+ 	   Changes:
+ 	     - G4EmSaturation() constructor now takes verbosity as mandatory argument (default used to be 1)
+  	     - RunManager previousEvents changed from std::vector to std::list (which does not have operator[], but front() both of them have)
+	     - Added "CLHEP::" to some units, which were not known otherwise
+	
+	  - S.Lu, DESY:
+	     Added a new driver TubeX02, same as TubeX01. Added userInitString Beam_Residual_Gas_Material,
+	     and allow user to update the beam gas material at mokka run time. The available beam gas materials will be defined in the mokka database.
+	
+	  - D.Jeans:
+	    - bug fix in  ./source/Kernel/src/LCAscHepRdr.cc
+	    - the vertex (and time) info which is read in a .hepevt file, is completely ignored in the current code,
+	      and doesn't make it into the lcio MCParticle, the added correction reads vertex information
+	    - updated ./source/Geometry/LDC/src/SEcal05.cc
+	      added additional parameters to the ECAL description in the gear file including also for the preshower
+	
+	   - E. Becheva:
+	     Adapt Mokka for working with geant4.10
+	     ( many changes - almost all drivers modified)
 
 
 ============================
 PandoraAnanlysis v01-00-01
 ============================
 
-  - release notes...
+  by J. Marshall
+  Fix production of output root files when using multiple instances of the PfoAnalysis processor.
+  
+  --------------------------------------------------------------------------------------------------------------------------------------------
+  TAG v01-00-00
+  --------------------------------------------------------------------------------------------------------------------------------------------
+  Milestone v01 release.
+  Added full set of calibration tools for automated calibration of PandoraPFA in ilcsoft.
+  Added calibration documentation.
+  Reorganised PandoraAnalysis test applications into calibration and performance directories.
+  Tweaked MC Pfo selection mechanisms for filling Pfo analysis tree.
+  Addressed issues highlighted by Coverity.
+  CMakeLists overhaul.
+
+  --------------------------------------------------------------------------------------------------------------------------------------------
+  --------------------------------------------------------------------------------------------------------------------------------------------
+  TAG v00-07
+  --------------------------------------------------------------------------------------------------------------------------------------------
+  Unify MC Pfo selection with approach used within Pandora.
+  Simplify use of MC particles in pfo analysis, removing need for separate input MCPfo and QuarkPfo collections.
+  Address issues highlighted by Coverity.
+  Remove some unused functionality.
+  Fix for MIP direction-correction.
 
 
 ==============================
  PandoraPFANew v02-00-00
 ==============================
 
-  - release notes...
 
 
 ==============================
@@ -330,10 +604,21 @@ PandoraAnanlysis v01-00-01
 
 
 ============================== 
- DDSim v00-02 -> lcgeo v00-01 ???
+ lcgeo v00-04
 ===============================
 
-  - release notes...
+   -ddsim renamed to lcgeo
+   - many changes and developements:
+
+     - first 'complete' prototypes of ILD_o1_v05 
+       and CLIC_o2_v01 simulation models
+
+     - introduced envelopes for all sub detector
+
+     - added examples/ddsim.py for running the 
+       simulation
+
+     - plugins for adding surfaces to the CLIC model
 
 
 ======================
