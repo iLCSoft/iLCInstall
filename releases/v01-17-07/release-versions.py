@@ -115,7 +115,7 @@ DDKalTest_version = "v00-01-pre"
 
 MarlinTrk_version = "v02-00-pre01"
 
-MarlinTrkProcessors_version = "v02-00-pre02"
+MarlinTrkProcessors_version = "v02-00-pre03"
 
 Clupatra_version = "v00-11-pre"
 
@@ -141,7 +141,7 @@ MarlinDD4hep_version = "v00-01-pre"
 
 Mokka_version = "mokka-08-05-pre" 
 
-MarlinReco_version = "v01-11-pre02"
+MarlinReco_version = "v01-11-pre03"
 
 FCalClusterer_version = "v00-01-pre"
 
