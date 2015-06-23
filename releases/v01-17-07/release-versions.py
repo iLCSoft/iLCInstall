@@ -36,7 +36,7 @@ ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 
 
 #ilcsoft_install_dir = "/afs/desy.de/project/ilcsoft/sw/x86_64_gcc44_sl6/v01-17-07-pre01/"
-ilcsoft_install_dir = os.path.join( "/scratch/ilcsoft", ilcsoft_release )
+ilcsoft_install_dir = os.path.join(ilcsoft_install_prefix , ilcsoft_release )
 # ----------------------------------------------------------------------------
 
 
