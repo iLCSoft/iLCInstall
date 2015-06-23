@@ -10,6 +10,22 @@
 ilcsoft_release='v01-17-07-pre05'
 # ----------------------------------------------------------------------------
 
+CMAKE_CXX_FLAGS = '-Wall'
+
+#CMAKE_CXX_FLAGS = '-Wall -std=c++11'
+# c++11 - needs a newer compiler and compatible python, e.g. run
+'''
+ source /afs/cern.ch/sw/lcg/external/gcc/4.8.1/x86_64-slc6-gcc48-opt/setup.sh
+ export PATH=/afs/cern.ch/sw/lcg/external/Python/2.7.4/x86_64-slc6-gcc48-opt/bin/:$PATH
+ export LD_LIBRARY_PATH=/afs/cern.ch/sw/lcg/external/Python/2.7.4/x86_64-slc6-gcc48-opt/lib/:$LD_LIBRARY_PATH
+'''
+# before starting the installation
+
+# ----- if fortran is needed give a hint where to find the libary, e.g. for c++-11 w/ gcc 4.8 :
+#Fortran_lib_path = "/afs/cern.ch/sw/lcg/contrib/gcc/4.8.1/x86_64-slc6-gcc48-opt/lib64"
+
+# ----------------------------------------------------------------------------
+
 
 # --------- install dir ------------------------------------------------------
 #ilcsoft_install_prefix = "/scratch/$USER/ilcsoft/"
@@ -61,11 +77,6 @@ Boost_path = "/afs/desy.de/project/ilcsoft/sw/boost/1.58.0"
 # ----- CERNLIB ------------------------------------------------------
 CERNLIB_version = "2006" 
 CERNLIB_path = "/afs/desy.de/project/ilcsoft/sw/x86_64_gcc44_sl6/cernlib/" + CERNLIB_version
-
-
-# ----- if fortran is needed give a hint where to find the libary
-Fortran_lib_path = "/afs/cern.ch/sw/lcg/contrib/gcc/4.8.1/x86_64-slc6-gcc48-opt/lib64"
-
 
 
 
@@ -200,7 +211,3 @@ lcgeo_version = "v00-04-pre03"
 Physsim_version = "v00-02-pre" 
 
 
-#--- EUTelescope et al:
-#Eutelescope_version = "trunk" # e.g. "tags/v00-09-00" (checked out via SVN) or "trunk" for git clone of the current dev version
-#Eudaq_version = "trunk" # e.g. "tags/v1.2.2" (checked out via SVN) or "trunk" for a full git clone of the current development version
-#Millepede2_version = 'trunk'
