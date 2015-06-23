@@ -22,8 +22,8 @@ CMAKE_CXX_FLAGS = '-Wall'
 # before starting the installation
 
 # ----- if fortran is needed give a hint where to find the libary, e.g. for c++-11 w/ gcc 4.8 :
-Fortran_lib_path = ""
-#Fortran_lib_path = "/afs/cern.ch/sw/lcg/contrib/gcc/4.8.1/x86_64-slc6-gcc48-opt/lib64"
+#Fortran_lib_path = ""
+Fortran_lib_path = "/afs/cern.ch/sw/lcg/contrib/gcc/4.8.1/x86_64-slc6-gcc48-opt/lib64"
 
 # ----------------------------------------------------------------------------
 
