@@ -133,7 +133,7 @@ LCCD_version = "v01-03"
 
 RAIDA_version = "v01-06-02"
 
-MarlinUtil_version = "v01-08-01-pre02"
+MarlinUtil_version = "v01-08-01-pre03"
 
 Marlin_version = "v01-06-pre"
 
@@ -143,7 +143,7 @@ Mokka_version = "mokka-08-05-pre"
 
 MarlinReco_version = "v01-11-pre03"
 
-FCalClusterer_version = "v00-01-pre"
+FCalClusterer_version = "v00-01-pre01"
 
 ILDPerformance_version = "v00-01-pre02"
 
@@ -192,10 +192,10 @@ SLIC_version = "HEAD"
 
 SlicPandora_version = "HEAD"
 
-DD4hep_version = "v00-12-pre04"
-DD4hepExamples_version = "v00-12-pre04"
+DD4hep_version = "v00-12-pre05"
+DD4hepExamples_version = "v00-12-pre05"
 
-lcgeo_version = "v00-04-pre02"
+lcgeo_version = "v00-04-pre03"
 
 Physsim_version = "v00-02-pre" 
 
