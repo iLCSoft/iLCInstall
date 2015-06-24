@@ -48,7 +48,8 @@ Introduces 4 new package:
 =====================
           by F. Gaede & M. Frank
 
-  - description...
+  - standalone package build from the examples in DD4hep
+  - mostly needed for nightly builds
 
                      _____________________
                     |                     |
@@ -625,7 +626,18 @@ PandoraAnanlysis v01-00-01
  LCIO v02-06
 ======================
 
-  - Include Jaxen runtime dep so siodump does not barf. (J. McCormick)
+    - patched C++ documentation (F.Gaede):
+      - create a search field on the doxygen page
+      - allow to create doxygen only (no latex and/or html)
+
+    - added method  ParticleIDVec UTIL::PIDHandler::getParticleIDs() (F.G.)
+
+    - improved printing of ParticleIDs for ReconstructedParticles (F.G.)
+      (e.g. in dumpevent)
+
+    - use Jaxen runtime in siodump (J.McCormick)
+
+     - Include Jaxen runtime dep so siodump does not barf. (J. McCormick)
 
 
 

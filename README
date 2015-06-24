@@ -5,7 +5,8 @@
 # Author: Jan Engels, DESY
 # Date: Jan, 2007
 #
-#
+#  June, 2015 updated to no longer use release-scratch.cfg
+#  and added cvmfs directories F.Gaede, DESY/CERN
 ##################################################
 
 
@@ -20,7 +21,7 @@ USAGE:
 
 	The script can be called with the following syntax:
 	
-		ilcsoft-install [ -p, -i ] install.cfg
+		ilcsoft-install install.cfg [ -p, -i ]
 
 		options description:
 			
@@ -29,7 +30,6 @@ USAGE:
 
 
     If called without options a summary of the installation is displayed
-
 
     Examples of configuration files can be found under releases.
 
@@ -41,50 +41,96 @@ USAGE EXAMPLES:
 
 ###### Install the full ilc software tools + external dependencies on your local disk ##########
 
-    # note that mysql, java and cernlib installations are not supported in ilcinstall
+    # note that boost, mysql, java and cernlib installations are not supported in ilcinstall
     # this packages need to be installed on your system. Please change the paths to this packages in
-    # the file releases/v01-16-01/release-versions.py
+    # the file releases/v01-17-07/release-versions.py
 
     # for debian/ubuntu distributions you may need to install a few packages beforehand such as:
-    # apt-get install build-essential cmake subversion libmysqlclient-dev freeglut3-dev zlib1g-dev libqt4-dev cernlib-core-dev default-jdk libxpm-dev libxmu-dev lesstif2-dev doxygen latex2html
+    # apt-get install build-essential cmake subversion libmysqlclient-dev freeglut3-dev zlib1g-dev libqt4-dev cernlib-core-dev 
+    #  default-jdk libxpm-dev libxmu-dev lesstif2-dev doxygen latex2html
 
-    edit releases/v01-16-01/release-versions.py and modify ilcsoft_install_prefix, e.g.:
 
-        ilcsoft_install_prefix = "/scratch/ilcsoft/"    # version suffix will be added to prefix
+   #--------------------------------------------------------------------
+   # Step 1:  install the external packages  (geant4, root, GSL,....)
+   #--------------------------------------------------------------------
+   #
+   # you can skip this step, if you want to use external tools from afs or cvmfs - see below
+   #  
+
+    #-- edit releases/v01-17-07/release-versions.py and modify:
+
+    #-- depending on wether you want to use c++11 
+    use_gcc48_cpp11 = False/True  
+         
+    #NB: you have to use a compiler that is compatible w/ c++11 
+    #    for SL6 you can use gcc4.8 provided by CERN SFT
+    #    see comment in release-versions.py on how to set this up 
+
+     
+    #-- for the external base tools we don't want a version number appended to the installation path: 
+    append_version_to_install_prefix = False 
+
+
+    #-- set the installation path, e.g.:
+    ilcsoft_install_prefix = "/scratch/ilcsoft/"    # version suffix will be added to prefix
     
-    edit releases/v01-16-01/release-scratch.cfg and comment out any unneeded packages.
-
-    run:
-    ./ilcsoft-install releases/v01-16-01/release-scratch.cfg      # display installation summary
-    ./ilcsoft-install releases/v01-16-01/release-scratch.cfg -i   # install
 
 
+    #-- possibly edit releases/v01-17-07/release-base.cfg and comment out any unneeded packages
+    #   e.g. those that are already installed on your system
+    #   no need to comment out packages that are alread installed in the correct place 
+    #   ilcinstall will simply use them
+
+    #--run:
+
+    ./ilcsoft-install releases/v01-17-07/release-base.cfg [-p]     # display installation summary
+
+    #-- check the output carefully w.r.t. to pathes used, then install:
+
+    ./ilcsoft-install releases/v01-17-07/release-base.cfg -i       # install
 
 
-###### Install the core ilc software tools on your local disk using dependencies from /afs/desy.de/project/ilcsoft/sw/ #########
 
-        # ---- THIS ONLY WORKS WITH SL5 32/64BIT OR COMPATIBLE SYSTEMS ------------------------
-        #
-        #   tools are installed in afs under:
-        #
-        #   /afs/desy.de/project/ilcsoft/sw/
-        #
-        #      i386_gcc41_sl5        # i386 CPU, 32 bit, gcc4.1, SL5 and compatible
-        #      x86_64_gcc41_sl5      # i686 CPU, 64 bit, gcc4.1, SL5 and compatible
-        # -------------------------------------------------------------------------------------
+   #--------------------------------------------------------------------
+   # Step 2:  install the  actual ilcsoft release
+   #--------------------------------------------------------------------
+    
+    #--edit releases/v01-17-07/release-versions.py and modify:
 
+    append_version_to_install_prefix = True
 
-    edit releases/v01-16-01/release-versions.py and modify ilcsoft_install_prefix, e.g.:
-            
-        ilcsoft_install_prefix = "/scratch/ilcsoft/"   # version suffix will be added to prefix
+    #-- assuming you have set use_gcc48_cpp11 and ilcsoft_install_prefix already in Step 1
+    
+    #-- if you have skipped Step 0 and want to use the external tools installed in afs or cvmfs:
 
-        edit releases/v01-16-01/release-ilcsoft.cfg and comment out any unneeded packages.
-
-    run:
-    ./ilcsoft-install releases/v01-16-01/release-ilcsoft.cfg      # display installation summary
-    ./ilcsoft-install releases/v01-16-01/release-ilcsoft.cfg -i   # install ilcsoft core tools (no external dependencies)
+    	# -- set the ilcPath accordingly (see below for pathes), e.g:
+	ilcPath = '/afs/desy.de/project/ilcsoft/sw/x86_64_gcc44_sl6
+        # or
+	ilcPath = '/cvmfs/ilc.desy.de/sw/x86_64_gcc48_sl6
 
 
+    #-- possibly edit releases/v01-17-07/release-ilcsoft.cfg and comment out any unneeded packages
+
+    #--run:
+
+    ./ilcsoft-install releases/v01-17-07/release-ilcsoft.cfg [-p]     # display installation summary
+
+    #-- check the output carefully w.r.t. to pathes used, then install:
+
+    ./ilcsoft-install releases/v01-17-07/release-ilcsoft.cfg -i       # install
+
+
+
+ #-------- pathes for ilcsoft reference installations ------------------------
+
+  /afs/desy.de/project/ilcsoft/sw/
+  /cvmfs/ilc.desy.de/sw/
+
+   x86_64_gcc44_sl6    - standard SL6
+   x86_64_gcc48_sl6    - SL6 with gcc48 and c++11
+
+
+#==================================================================================
 DOCUMENTATION:
 
 Please find more detailed documentation under:
