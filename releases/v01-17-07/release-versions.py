@@ -239,12 +239,12 @@ XercesC_version = "3.1.2"
 
 HepPDT_version = "3.04.01"
 
-# new versions by J. McCormick
-GDML_version = "HEAD"
-LCDD_version = "HEAD"
-SLIC_version = "HEAD"
+# versions tagged by J.Strube for this release 
+GDML_version = "ilcsoft-v01-17-07"
+LCDD_version = "ilcsoft-v01-17-07"
+SLIC_version = "ilcsoft-v01-17-07"
 
-SlicPandora_version = "HEAD"
+SlicPandora_version = "ilcsoft-v01-17-07"
 
 DD4hep_version = "v00-12-pre05"
 DD4hepExamples_version = "v00-12-pre05"
