@@ -86,6 +86,6 @@ class lcgeo(BaseILC):
         self.envpath["PATH"].append( "$lcgeo_DIR/bin" )
         self.envpath["LD_LIBRARY_PATH"].append( "$lcgeo_DIR/lib" )
 
-        self.envcmds.append('test -r ${G4ENV_INIT} && { cd $(dirname ${G4ENV_INIT}) ; . ./$(basename ${G4ENV_INIT}) ; cd $OLDPWD ; }')
+#        self.envcmds.append('test -r ${G4ENV_INIT} && { cd $(dirname ${G4ENV_INIT}) ; . ./$(basename ${G4ENV_INIT}) ; cd $OLDPWD ; }')
         
         
