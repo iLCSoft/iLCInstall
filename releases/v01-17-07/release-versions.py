@@ -7,7 +7,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-07-pre05'
+ilcsoft_release='v01-17-07-pre06'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -40,7 +40,7 @@ append_version_to_install_prefix = True
 
 ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 #ilcsoft_install_prefix = "/afs/desy.de/project/ilcsoft/sw/x86_64_gcc44_sl6/"
-#ilcsoft_install_prefix = "/scratch/ilcsoft/"
+#ilcsoft_install_prefix = "/nfs/dust/ilc/user/voutsina/testarea/ilcsoft_c11/"
 
 
 # ----------------------------------------------------------------------------
@@ -65,7 +65,7 @@ if(append_version_to_install_prefix):
 #ilcPath = '/afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5'
 
 
-ilcPath = ilcsoft_install_prefix
+#ilcPath = ilcsoft_install_prefix
 # ----------------------------------------------------------------------------
 
 
@@ -203,7 +203,7 @@ ILDPerformance_version = "v00-01-pre02"
 
 
 LCFIVertex_version = "v00-06-02"
-LCFIPlus_version = "v00-05-03-pre"
+LCFIPlus_version = "v00-05-03-pre02"
 
 
 MarlinKinfit_version = "v00-01-05-pre"
