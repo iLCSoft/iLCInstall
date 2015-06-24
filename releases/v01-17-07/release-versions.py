@@ -195,7 +195,7 @@ MarlinDD4hep_version = "v00-01-pre"
 
 Mokka_version = "mokka-08-05-pre" 
 
-MarlinReco_version = "v01-11-pre03"
+MarlinReco_version = "v01-11-pre04"
 
 FCalClusterer_version = "v00-01-pre01"
 
