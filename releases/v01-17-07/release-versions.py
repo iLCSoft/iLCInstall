@@ -10,47 +10,69 @@
 ilcsoft_release='v01-17-07-pre05'
 # ----------------------------------------------------------------------------
 
-CMAKE_CXX_FLAGS = '-Wall'
+#-----------------------
+# optionally build with c++11 ?
+use_gcc48_cpp11 = False
 
-#CMAKE_CXX_FLAGS = '-Wall -std=c++11'
-# c++11 - needs a newer compiler and compatible python, e.g. run
+#===============================================================================
+# NB: c++11 - needs a newer compiler and compatible python, e.g. run
 '''
  source /afs/cern.ch/sw/lcg/external/gcc/4.8.1/x86_64-slc6-gcc48-opt/setup.sh
  export PATH=/afs/cern.ch/sw/lcg/external/Python/2.7.4/x86_64-slc6-gcc48-opt/bin/:$PATH
  export LD_LIBRARY_PATH=/afs/cern.ch/sw/lcg/external/Python/2.7.4/x86_64-slc6-gcc48-opt/lib/:$LD_LIBRARY_PATH
 '''
 # before starting the installation
+#================================================================================
 
-# ----- if fortran is needed give a hint where to find the libary, e.g. for c++-11 w/ gcc 4.8 :
-Fortran_lib_path = ""
-#Fortran_lib_path = "/afs/cern.ch/sw/lcg/contrib/gcc/4.8.1/x86_64-slc6-gcc48-opt/lib64"
-
-# ----------------------------------------------------------------------------
+#=================================================
+# append the version number to the install path ?
+# typically False for an installation of base tools
+#      and  True for installation of ilcsoft
+#=================================================
+append_version_to_install_prefix = True
 
 
 # --------- install dir ------------------------------------------------------
-#ilcsoft_install_prefix = "/scratch/$USER/ilcsoft/"
+# ===========================================================
+# Modify this path to where you want to install the software
+# ===========================================================
+#
+
 ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
-#ilcsoft_install_prefix = "/space/ilcsoft/"
-#ilcsoft_install_prefix = "/scratch/rosem/ilcsoft/"
+#ilcsoft_install_prefix = "/afs/desy.de/project/ilcsoft/sw/x86_64_gcc44_sl6/"
+#ilcsoft_install_prefix = "/scratch/ilcsoft/"
 
 
-#ilcsoft_install_dir = "/afs/desy.de/project/ilcsoft/sw/x86_64_gcc44_sl6/v01-17-07-pre01/"
-ilcsoft_install_dir = os.path.join(ilcsoft_install_prefix  , ilcsoft_release )
+# ----------------------------------------------------------------------------
+
+if(append_version_to_install_prefix):
+    ilcsoft_install_dir = os.path.join(ilcsoft_install_prefix , ilcsoft_release )
+
 # ----------------------------------------------------------------------------
 
 
 # --------- ilcsoft home -----------------------------------------------------
-# python variable for referring the ILC Home directory
-# used to link or use already installed packages (SL4 or SL5)
-# no need to set this variable if using SL4 or SL5 with access to /afs/desy.de/
+# ===========================================================
+# Modify this path to where you want ilcinstall to look
+# for pre-installed (base) packages
+# typically this would be left to ilcsoft_install_prefix
+# or set to an /afs or /cvmfs base installation that you 
+# want to use
+# ===========================================================
+
 #ilcPath = '/afs/desy.de/project/ilcsoft/sw/x86_64_gcc44_sl6'
+#ilcPath = '/afs/desy.de/project/ilcsoft/sw/x86_64_gcc48_sl6'
 #ilcPath = '/afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5'
-#ilcPath = ilcsoft_afs_path[ arch ]
+
+
 ilcPath = ilcsoft_install_prefix
 # ----------------------------------------------------------------------------
 
+
+#--------------------------------------------------------------------------
 #ilcPatchPath = "/afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-15"
+
+
 
 # ======================= PACKAGES WITH NO INSTALL SUPPORT ===================
 
@@ -62,23 +84,43 @@ MySQL_version = "5.0.45"
 MySQL_path = ilcPath + "/mysql/" + MySQL_version
 #MySQL_path = "/usr"
 
+
+#------ boost headers files ------------------------------------------
 Boost_path = "/afs/desy.de/project/ilcsoft/sw/boost/1.58.0"
-
-
-
-
-
-
-
-# ----- java ---------------------------------------------------------
-#Java_version = "1.6.0"
-#Java_path = ilcPath + "/java/" + Java_version # comment out to try auto-detect
 
 
 # ----- CERNLIB ------------------------------------------------------
 CERNLIB_version = "2006" 
 CERNLIB_path = "/afs/desy.de/project/ilcsoft/sw/x86_64_gcc44_sl6/cernlib/" + CERNLIB_version
 
+
+
+# ----------------------------------------------------------------------------
+
+Fortran_lib_path = ""
+# ----- when using gcc48 we need to give a hint where to find the libary:
+if( use_gcc48_cpp11 ):
+    Fortran_lib_path = "/afs/cern.ch/sw/lcg/contrib/gcc/4.8.1/x86_64-slc6-gcc48-opt/lib64"
+
+
+##########################################################################################
+#
+#  end of user configuration section
+#  only make changes below if you know what you are doing ...
+#
+##########################################################################################
+
+
+
+#=============================================================================
+# CXX_FLAGS for c++ compiler:
+#
+CMAKE_CXX_FLAGS = '-Wall'
+
+if( use_gcc48_cpp11 ):
+    CMAKE_CXX_FLAGS = '-Wall -std=c++11'
+
+# ----------------------------------------------------------------------------
 
 
 # ======================= PACKAGE VERSIONS ===================================
