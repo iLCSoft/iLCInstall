@@ -13,7 +13,7 @@
 
 
 
-Introduces 4 new package:
+Introduces 5 new package:
 
 =====================
  DD4KalTest v00-01
@@ -50,6 +50,14 @@ Introduces 4 new package:
 
   - standalone package build from the examples in DD4hep
   - mostly needed for nightly builds
+
+
+=====================
+ MarlinDD4hep v00-01
+=====================
+          by F. Gaede
+
+   - Provides one processor to initialize a DD4hep detector geometry from a compact file for a Marlin job.
 
                      _____________________
                     |                     |
@@ -254,7 +262,14 @@ F.Gaede
  
   - New joint probability introduced (T. Suehara)
   - added utility processor to convert Track to ReconstructedParticle (T. Tanabe)
+  - Durham with beam jets added (T. Suehara)
 
+
+================================
+ LCFIVertex v00-07
+===============================
+
+  - allow for using external boost (F. Gaede)
 
 
 ==============================
