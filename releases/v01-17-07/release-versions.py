@@ -82,7 +82,9 @@ if(append_version_to_install_prefix):
 # ----- mysql --------------------------------------------------------
 MySQL_version = "5.0.45"
 MySQL_path = ilcPath + "/mysql/" + MySQL_version
-#MySQL_path = "/usr"
+
+if( ilcsoft_afs_path[ arch ] == '/afs/desy.de/project/ilcsoft/sw/x86_64_gcc46_ub1204' ):
+    MySQL_path = "/usr"
 
 
 #------ boost headers files ------------------------------------------
