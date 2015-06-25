@@ -144,7 +144,7 @@ CMake_version = "2.8.5"
 
 LCIO_version = "v02-06-pre"
 
-GEAR_version = "v01-04-02-pre01" 
+GEAR_version = "v01-04-02" 
 
 CED_version = "v01-09-01"
 
@@ -161,25 +161,25 @@ MarlinFastJet_version = "v00-02"
 
 # -------------------------------------------
 
-KalTest_version = "v02-00-pre"  
+KalTest_version = "v02-00"  
 
-KalDet_version = "v01-13-02-pre"
+KalDet_version = "v01-13-02"
 
-aidaTT_version = "v00-01-pre01"
+aidaTT_version = "v00-01"
 
-DDKalTest_version = "v00-01-pre"
+DDKalTest_version = "v00-01"
 
-MarlinTrk_version = "v02-00-pre01"
+MarlinTrk_version = "v02-00"
 
-MarlinTrkProcessors_version = "v02-00-pre04"
+MarlinTrkProcessors_version = "v02-00"
 
-Clupatra_version = "v00-11-pre"
+Clupatra_version = "v00-11"
 
-KiTrack_version = "v01-06-pre"
+KiTrack_version = "v01-06"
 
-KiTrackMarlin_version = "v01-06-pre"
+KiTrackMarlin_version = "v01-06"
 
-ForwardTracking_version = "v01-08-pre"
+ForwardTracking_version = "v01-08"
 
 # -------------------------------------------
 
@@ -189,23 +189,23 @@ LCCD_version = "v01-03"
 
 RAIDA_version = "v01-06-02"
 
-MarlinUtil_version = "v01-08-01-pre03"
+MarlinUtil_version = "v01-09"
 
-Marlin_version = "v01-06-pre"
+Marlin_version = "v01-06"
 
-MarlinDD4hep_version = "v00-01-pre"
+MarlinDD4hep_version = "v00-01"
 
 Mokka_version = "mokka-08-05-pre" 
 
-MarlinReco_version = "v01-11-pre04"
+MarlinReco_version = "v01-11"
 
-FCalClusterer_version = "v00-01-pre01"
+FCalClusterer_version = "v00-01"
 
-ILDPerformance_version = "v00-01-pre02"
+ILDPerformance_version = "v00-01"
 
 
-LCFIVertex_version = "v00-07-pre"
-LCFIPlus_version = "v00-05-03-pre02"
+LCFIVertex_version = "v00-07"
+LCFIPlus_version = "v00-05-03"
 
 
 MarlinKinfit_version = "v00-01-05-pre"
@@ -214,15 +214,15 @@ PandoraPFANew_version = "v02-00-00"
 MarlinPandora_version = "v02-00-00"
 PandoraAnalysis_version = "v01-00-01" 
 
-CEDViewer_version = "v01-09-pre"
+CEDViewer_version = "v01-09"
 
 Overlay_version = "v00-14"
 
 PathFinder_version =  "v00-06"
 
-MarlinTPC_version = "v01-00-pre"
+MarlinTPC_version = "v01-00"
 
-LCTuple_version = "v01-04-pre"
+LCTuple_version = "v01-04"
 
 BBQ_version =  "v00-01-02"
 
@@ -248,11 +248,11 @@ SLIC_version = "ilcsoft-v01-17-07"
 
 SlicPandora_version = "ilcsoft-v01-17-07"
 
-DD4hep_version = "v00-12-pre05"
+DD4hep_version = "v00-12"
 DD4hepExamples_version = "v00-12-pre05"
 
-lcgeo_version = "v00-04-pre03"
+lcgeo_version = "v00-04"
 
-Physsim_version = "v00-02-pre" 
+Physsim_version = "v00-02" 
 
 
