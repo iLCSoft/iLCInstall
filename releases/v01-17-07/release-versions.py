@@ -7,7 +7,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-07-pre06'
+ilcsoft_release='v01-17-07'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -142,7 +142,7 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-06-pre"
+LCIO_version = "v02-06"
 
 GEAR_version = "v01-04-02" 
 
@@ -195,7 +195,7 @@ Marlin_version = "v01-06"
 
 MarlinDD4hep_version = "v00-01"
 
-Mokka_version = "mokka-08-05-pre" 
+Mokka_version = "mokka-08-05" 
 
 MarlinReco_version = "v01-11"
 
@@ -208,7 +208,7 @@ LCFIVertex_version = "v00-07"
 LCFIPlus_version = "v00-05-03"
 
 
-MarlinKinfit_version = "v00-01-05-pre"
+MarlinKinfit_version = "v00-01-05"
 
 PandoraPFANew_version = "v02-00-00"
 MarlinPandora_version = "v02-00-00"
@@ -249,7 +249,7 @@ SLIC_version = "ilcsoft-v01-17-07"
 SlicPandora_version = "ilcsoft-v01-17-07"
 
 DD4hep_version = "v00-12"
-DD4hepExamples_version = "v00-12-pre05"
+DD4hepExamples_version = "v00-12"
 
 lcgeo_version = "v00-04"
 
