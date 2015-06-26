@@ -12,7 +12,7 @@ ilcsoft_release='v01-17-07'
 
 #-----------------------
 # optionally build with c++11 ?
-use_gcc48_cpp11 = False
+use_cpp11 = False
 
 #===============================================================================
 # NB: c++11 - needs a newer compiler and compatible python, e.g. run
@@ -24,12 +24,6 @@ use_gcc48_cpp11 = False
 # before starting the installation
 #================================================================================
 
-#=================================================
-# append the version number to the install path ?
-# typically False for an installation of base tools
-#      and  True for installation of ilcsoft
-#=================================================
-append_version_to_install_prefix = True
 
 
 # --------- install dir ------------------------------------------------------
@@ -41,12 +35,15 @@ append_version_to_install_prefix = True
 ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 #ilcsoft_install_prefix = "/afs/desy.de/project/ilcsoft/sw/x86_64_gcc44_sl6/"
 #ilcsoft_install_prefix = "/nfs/dust/ilc/user/voutsina/testarea/ilcsoft_c11/"
-
+#ilcsoft_install_prefix = "/scratch/ilcsoft/"
 
 # ----------------------------------------------------------------------------
+#--- the ilcsoft_release is now automatically appended in release-ilcsoft.cfg 
+#     but not in release-base.cfg !!
 
-if(append_version_to_install_prefix):
-    ilcsoft_install_dir = os.path.join(ilcsoft_install_prefix , ilcsoft_release )
+#append_version_to_install_prefix = False
+#if(append_version_to_install_prefix):
+#    ilcsoft_install_dir = os.path.join(ilcsoft_install_prefix , ilcsoft_release )
 
 # ----------------------------------------------------------------------------
 
@@ -65,7 +62,7 @@ if(append_version_to_install_prefix):
 #ilcPath = '/afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5'
 
 
-#ilcPath = ilcsoft_install_prefix
+ilcPath = ilcsoft_install_prefix
 # ----------------------------------------------------------------------------
 
 
@@ -101,7 +98,7 @@ CERNLIB_path = "/afs/desy.de/project/ilcsoft/sw/x86_64_gcc44_sl6/cernlib/" + CER
 
 Fortran_lib_path = ""
 # ----- when using gcc48 we need to give a hint where to find the libary:
-if( use_gcc48_cpp11 ):
+if( use_cpp11 ):
     Fortran_lib_path = "/afs/cern.ch/sw/lcg/contrib/gcc/4.8.1/x86_64-slc6-gcc48-opt/lib64"
 
 
@@ -119,7 +116,7 @@ if( use_gcc48_cpp11 ):
 #
 CMAKE_CXX_FLAGS = '-Wall'
 
-if( use_gcc48_cpp11 ):
+if( use_cpp11 ):
     CMAKE_CXX_FLAGS = '-Wall -std=c++11'
 
 # ----------------------------------------------------------------------------

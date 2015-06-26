@@ -24,7 +24,7 @@ class DD4hepExamples(BaseILC):
         self.download.supportedTypes = [ "svn"]
         self.download.root = "aidasoft"
 
-        self.reqfiles = [ ["lib/libSimpleDetector.so", "lib/libDD4hepSimpleDetector.dylib" ]]
+        self.reqfiles = [ ["lib/libSimpleDetector.so", "lib/libSimpleDetector.dylib" ]]
 
         self.reqmodules = [ "DD4hep" , "ROOT" , "LCIO", "GEAR", "Geant4", "XercesC"]
 

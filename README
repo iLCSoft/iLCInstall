@@ -60,21 +60,19 @@ USAGE EXAMPLES:
     #-- edit releases/v01-17-07/release-versions.py and modify:
 
     #-- depending on wether you want to use c++11 
-    use_gcc48_cpp11 = False/True  
+    use_cpp11 = False/True  
          
     #NB: you have to use a compiler that is compatible w/ c++11 
     #    for SL6 you can use gcc4.8 provided by CERN SFT
     #    see comment in release-versions.py on how to set this up 
 
      
-    #-- for the external base tools we don't want a version number appended to the installation path: 
-    append_version_to_install_prefix = False 
-
-
     #-- set the installation path, e.g.:
-    ilcsoft_install_prefix = "/scratch/ilcsoft/"    # version suffix will be added to prefix
-    
+    ilcsoft_install_prefix = "/scratch/ilcsoft/"    
 
+    # note: no version suffix is added to this path here as 
+    # the external tools are rather independent of the ilcsoft version
+    
 
     #-- possibly edit releases/v01-17-07/release-base.cfg and comment out any unneeded packages
     #   e.g. those that are already installed on your system
@@ -95,11 +93,10 @@ USAGE EXAMPLES:
    # Step 2:  install the  actual ilcsoft release
    #--------------------------------------------------------------------
     
-    #--edit releases/v01-17-07/release-versions.py and modify:
+    #-- no need to edit releases/v01-17-07/release-versions.py 
+    #-- assuming you have set use_cpp11 and ilcsoft_install_prefix already in Step 1
+    #-- Note: the release version will be automatically appended to the install path !
 
-    append_version_to_install_prefix = True
-
-    #-- assuming you have set use_gcc48_cpp11 and ilcsoft_install_prefix already in Step 1
     
     #-- if you have skipped Step 0 and want to use the external tools installed in afs or cvmfs:
 
@@ -107,6 +104,8 @@ USAGE EXAMPLES:
 	ilcPath = '/afs/desy.de/project/ilcsoft/sw/x86_64_gcc44_sl6
         # or
 	ilcPath = '/cvmfs/ilc.desy.de/sw/x86_64_gcc48_sl6
+
+    #-- can be set to any other directory that contains all the needed external tools
 
 
     #-- possibly edit releases/v01-17-07/release-ilcsoft.cfg and comment out any unneeded packages
