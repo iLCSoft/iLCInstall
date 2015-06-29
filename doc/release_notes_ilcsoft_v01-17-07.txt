@@ -599,6 +599,153 @@ PandoraAnanlysis v01-00-01
  PandoraPFANew v02-00-00
 ==============================
 
+==============================
+PandoraSDK
+==============================
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+TAG v02-00-00
+--------------------------------------------------------------------------------------------------------------------------------------------
+Implementation of custom object creation factories, with plugins for pandora persistency.
+Improvements to persistency to allow use with user-modified objects.
+Interface changes for persistency.
+Reduce pointing and rectangular calohits to a single class.
+Ensure all object parameters classes are polymorphic.
+Remove cached helix fit from track object.
+Restructuring to tidy the Pandora directory.
+Fixed CXX flags for the clang 6.0 linker.
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------
+TAG v01-00-01
+--------------------------------------------------------------------------------------------------------------------------------------------
+75a3006 Improve specification of CMAKE_CXX_FLAGS.
+1241d1b Handle cases where c++11 is not available.
+e9dd775 Improved user-control of cxx flags.
+e264e99 Efficiency improvement for filling histograms.
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+TAG v01-00-00
+--------------------------------------------------------------------------------------------------------------------------------------------
+Milestone v01 release.
+Improved managed-object container efficiency if c++11 is available.
+Improved const-correctness. Algorithms are now only exposed to pointers to const managed-objects. Access to managed-object non-const functionality is now only via Pandora APIs.
+New managed-object metadata functionality, allowing for flexible modification of information associated with managed-objects.
+Overhaul of rules governing addition of objects to particle flow objects.
+Added VertexLabel property to Vertex class.
+Efficiency improvement keeping track of number of hits in cluster in calorimeter outer sampling layers.
+Efficiency improvement for calculation of cluster layer centroids.
+Reset current calo hit list at end of cluster fragmentation.
+Address issues highlighted by Coverity.
+Makefile and CMakeLists overhaul.
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------
+TAG v00-17
+--------------------------------------------------------------------------------------------------------------------------------------------
+Overhaul, with emphasis on ensuring that client applications can instantiate and use multiple concurrent pandora instances.
+Add GeometryManager and upgrade PluginManager to deal with plugins for particle id, energy corrections, shower profile calculations, pseudo-layer calculations and B-Field maps.
+Add Pandora process class: Algorithms, AlgorithmTools and all Plugins are Pandora processes, which know with which Pandora instance they are associated.
+Move some Helper classes into LCContent. No Helper classes (and indeed no Pandora classes) have any configurable static member variables.
+Address issues highlighted by Coverity.
+Tweak InputType enums and InputObject parameters classes.
+Check parent and daughter addresses are dissimilar before creating a parent-daughter pfo hierarchy.
+Alter compiler warning flags, including all, extra, pedantic and shadow declarations to Makefile. Report warnings as errors.
+
+
+==============================
+LCContent:
+==============================
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+TAG v02-00-00
+--------------------------------------------------------------------------------------------------------------------------------------------
+Update for PandoraSDK breaking change: Cached helix fit no longer available from track object.
+Fixed CXX_FLAGS for clang linker on APPLE
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------
+TAG v01-01-00
+--------------------------------------------------------------------------------------------------------------------------------------------
+Added photon fragment merging/removal algorithms.
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+TAG v01-00-01
+--------------------------------------------------------------------------------------------------------------------------------------------
+Improve specification of CMAKE_CXX_FLAGS.
+Handle cases where c++11 is not available.
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+TAG v01-00-00
+--------------------------------------------------------------------------------------------------------------------------------------------
+Milestone v01 release.
+Update to reflect recent changes to PandoraSDK.
+Improved const-correctness. Algorithms are now only exposed to pointers to const managed-objects. Access to managed-object non-const functionality is now only via Pandora APIs.
+Support c++11 (and 98/03, with reduced functionality).
+Added LCContentFast, containing faster versions of algorithms in the LCContent library, using e.g. KD-trees and relying on c++11.
+Added KD-tree and QuickUnion implementations.
+Added ClusterComparison algorithm.
+Address issues highlighted by coverity.
+Makefile and CMakeLists overhaul.
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------
+TAG v00-17
+--------------------------------------------------------------------------------------------------------------------------------------------
+Rename FineGranularityContent to LCContent.
+Update to reflect recent changes to PandoraSDK.
+Overhaul, with emphasis on ensuring that client applications can instantiate and use multiple concurrent pandora instances.
+Address issues highlighted by Coverity.
+Improved member variable initialization, with a default constructor for each algorithm.
+Make list names and current list management properties mandatory - they must be specified in the xml file.
+Move some Helper classes from PandoraSDK into LCContent. No Helper classes (and indeed no Pandora classes) have any configurable static member variables.
+Move some re-usable plugins from MarlinPandora into LCContent.
+Make use of improved monitoring functionality.
+Add to lc_content namespace.
+Alter compiler warning flags, including all, extra, pedantic and shadow declarations to Makefile. Report warnings as errors.
+
+
+==============================
+PandoraMonitoring:
+==============================
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+TAG v02-00-00
+--------------------------------------------------------------------------------------------------------------------------------------------
+Update header file include path.
+Fixed CXX_FLAGS for clang 6.0 on APPLE.
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------
+TAG v01-00-01
+--------------------------------------------------------------------------------------------------------------------------------------------
+Improve specification of CMAKE_CXX_FLAGS.
+Handle cases where c++11 is not available.
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+TAG v01-00-00
+--------------------------------------------------------------------------------------------------------------------------------------------
+Milestone v01 release.
+Update to reflect recent changes to PandoraSDK.
+Improved const-correctness. Algorithms are now only exposed to pointers to const managed-objects. Access to managed-object non-const functionality is now only via Pandora APIs.
+Construct TTreeWrapper instance (can implicitly create a dummy global TApplication) only after constructing TApplication instance.
+Work around ROOT crash in the event that a default global TApplication already exists at time of PandoraMonitoring construction.
+Makefile and CMakeLists overhaul.
+Updated readme.
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------
+TAG v00-17
+--------------------------------------------------------------------------------------------------------------------------------------------
+Update to reflect recent changes to PandoraSDK.
+Overhaul, with emphasis on ensuring that client applications can instantiate and use multiple concurrent pandora instances.
+Address issues highlighted by Coverity.
+Improvements for information available in display.
+Improvements for handling of PFO daughter tracks and clusters.
+Add new subdetectors, from separate instances, to global list of all subdetectors.
+Alter compiler warning flags, including all, extra, pedantic and shadow declarations to Makefile. Report warnings as errors.
+
 
 
 ==============================
