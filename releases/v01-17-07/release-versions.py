@@ -7,7 +7,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-07'
+ilcsoft_release='v01-17-07.p01'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -162,7 +162,7 @@ KalTest_version = "v02-00"
 
 KalDet_version = "v01-13-02"
 
-aidaTT_version = "v00-01"
+aidaTT_version = "v00-02-pre"
 
 DDKalTest_version = "v00-01"
 
@@ -211,7 +211,7 @@ PandoraPFANew_version = "v02-00-00"
 MarlinPandora_version = "v02-00-00"
 PandoraAnalysis_version = "v01-00-01" 
 
-CEDViewer_version = "v01-09"
+CEDViewer_version = "v01-09-01-pre"
 
 Overlay_version = "v00-14"
 
@@ -245,10 +245,10 @@ SLIC_version = "ilcsoft-v01-17-07"
 
 SlicPandora_version = "ilcsoft-v01-17-07"
 
-DD4hep_version = "v00-12"
-DD4hepExamples_version = "v00-12"
+DD4hep_version = "v00-13-pre"
+DD4hepExamples_version = "v00-13-pre"
 
-lcgeo_version = "v00-04"
+lcgeo_version = "v00-04-01-pre"
 
 Physsim_version = "v00-02" 
 
