@@ -7,7 +7,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-07.p01'
+ilcsoft_release='v01-17-07.p02'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -188,13 +188,13 @@ RAIDA_version = "v01-06-02"
 
 MarlinUtil_version = "v01-09"
 
-Marlin_version = "v01-06"
+Marlin_version = "v01-07-pre"
 
 MarlinDD4hep_version = "v00-01"
 
 Mokka_version = "mokka-08-05" 
 
-MarlinReco_version = "v01-11"
+MarlinReco_version = "v01-12-pre"
 
 FCalClusterer_version = "v00-01"
 
