@@ -7,7 +7,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-07.p02'
+ilcsoft_release='v01-17-07.p03'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -166,7 +166,7 @@ aidaTT_version = "v00-02-pre"
 
 DDKalTest_version = "v00-01"
 
-MarlinTrk_version = "v02-00"
+MarlinTrk_version = "v02-00-01-pre"
 
 MarlinTrkProcessors_version = "v02-00"
 
