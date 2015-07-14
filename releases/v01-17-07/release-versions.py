@@ -192,6 +192,8 @@ Marlin_version = "v01-07-pre"
 
 MarlinDD4hep_version = "v00-01"
 
+DDMarlinPandora_version = "HEAD"
+
 Mokka_version = "mokka-08-05" 
 
 MarlinReco_version = "v01-12-pre"
