@@ -26,7 +26,7 @@ class DD4hepExamples(BaseILC):
 
         self.reqfiles = [ ["lib/libSimpleDetector.so", "lib/libSimpleDetector.dylib" ]]
 
-        self.reqmodules = [ "DD4hep" , "ROOT" , "LCIO", "GEAR", "Geant4", "XercesC"]
+        self.reqmodules = [ "DD4hep" , "ROOT" , "LCIO", "GEAR", "Geant4"]
 
 
     def setMode(self, mode):

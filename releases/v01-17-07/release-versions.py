@@ -174,7 +174,7 @@ Clupatra_version = "v00-11"
 
 KiTrack_version = "v01-06"
 
-KiTrackMarlin_version = "v01-06"
+KiTrackMarlin_version = "v01-07-pre"
 
 ForwardTracking_version = "v01-08"
 

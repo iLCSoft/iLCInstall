@@ -52,7 +52,7 @@ class KiTrackMarlin(BaseILC):
 
         self.reqfiles = [ ["lib/libKiTrackMarlin.so","lib/libKiTrackMarlin.a","lib/libKiTrackMarlin.dylib"] ]
 
-        self.reqmodules = [ "KiTrack", "MarlinTrk", "GSL" ]
+        self.reqmodules = [ "KiTrack", "MarlinTrk", "GSL" , "DD4hep"]
 
         # svn root
         self.download.root = "marlinreco"
