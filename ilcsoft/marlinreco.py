@@ -19,7 +19,7 @@ class MarlinReco(MarlinPKG):
         self.hasCMakeFindSupport = True
 
         # required modules
-        self.reqmodules = [ "Marlin", "MarlinUtil", "CLHEP", "GEAR", "GSL", "LCIO" ]
+        self.reqmodules = [ "Marlin", "MarlinUtil", "MarlinKinfit", "CLHEP", "GEAR", "GSL", "LCIO" ]
 
         # optional modules
         self.optmodules = [ "CERNLIB", "AIDA" ]
