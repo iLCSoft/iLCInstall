@@ -7,7 +7,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-07.p03'
+ilcsoft_release='v01-17-07.p04'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -170,7 +170,7 @@ MarlinTrk_version = "v02-00-01-pre"
 
 MarlinTrkProcessors_version = "v02-00"
 
-Clupatra_version = "v00-11"
+Clupatra_version = "v00-12-pre"
 
 KiTrack_version = "v01-06"
 
@@ -186,13 +186,13 @@ LCCD_version = "v01-03"
 
 RAIDA_version = "v01-06-02"
 
-MarlinUtil_version = "v01-09"
+MarlinUtil_version = "v01-10-pre"
 
 Marlin_version = "v01-07-pre"
 
 MarlinDD4hep_version = "v00-01"
 
-DDMarlinPandora_version = "HEAD"
+DDMarlinPandora_version = "v00-01-pre"
 
 Mokka_version = "mokka-08-05" 
 
@@ -247,10 +247,10 @@ SLIC_version = "ilcsoft-v01-17-07"
 
 SlicPandora_version = "ilcsoft-v01-17-07"
 
-DD4hep_version = "v00-13-pre"
-DD4hepExamples_version = "v00-13-pre"
+DD4hep_version = "v00-14-pre"
+DD4hepExamples_version = "v00-14-pre"
 
-lcgeo_version = "v00-04-01-pre"
+lcgeo_version = "v00-05-pre"
 
 Physsim_version = "v00-02" 
 
