@@ -250,7 +250,7 @@ SlicPandora_version = "ilcsoft-v01-17-07"
 DD4hep_version = "v00-14-pre"
 DD4hepExamples_version = "v00-14-pre"
 
-lcgeo_version = "v00-05-pre"
+lcgeo_version = "v00-05-pre01"
 
 Physsim_version = "v00-02" 
 
