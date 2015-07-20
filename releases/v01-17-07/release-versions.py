@@ -196,7 +196,7 @@ DDMarlinPandora_version = "v00-01-pre"
 
 Mokka_version = "mokka-08-05" 
 
-MarlinReco_version = "v01-12-pre"
+MarlinReco_version = "v01-13-pre"
 
 FCalClusterer_version = "v00-01"
 
