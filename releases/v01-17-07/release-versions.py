@@ -164,7 +164,7 @@ KalDet_version = "v01-13-02"
 
 aidaTT_version = "v00-02-pre"
 
-DDKalTest_version = "v00-01"
+DDKalTest_version = "v00-02-pre"
 
 MarlinTrk_version = "v02-00-01-pre"
 
