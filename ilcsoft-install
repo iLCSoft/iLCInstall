@@ -5,7 +5,7 @@ import logging
 import commands
 from ilcsoft import *
 
-_version = "v01-17-07-pre01"
+_version = "v01-17-07"
 
 _usage = """%prog [options] INSTALL_CONFIG_FILE
 if called with no options only an installation summary is shown
@@ -15,6 +15,7 @@ if called with no options only an installation summary is shown
 from optparse import OptionParser
 parser = OptionParser( usage=_usage, version=_version )
 parser.add_option('-p', '--preview', action='store_true', help='preview installation')
+parser.add_option('-d', '--dependencies', action='store_true', help='show dependencies')
 parser.add_option('-i', '--install', action='store_true', help='install the software')
 parser.add_option('-v', '--verbose', action='store_true', dest='verbose', help='run in DEBUG mode')
 parser.add_option('--log-cfg-file', help='file to configure logging settings')
@@ -24,7 +25,6 @@ parser.add_option('--log-cfg-file', help='file to configure logging settings')
 if len(args) != 1:
     parser.error('incorrect number of arguments (-h for help)')
 # ------------------------------------------------------------------------
-
 
 if options.log_cfg_file:
     logging.config.fileConfig( options.log_cfg_file )
@@ -84,9 +84,11 @@ ilcsoft.config_file = config_file
 ilcsoft.config_file_prefix = config_file_basename
 ilcsoft.config_file_suffix = config_file_extension
 
+
 # this is for initializing the modules
 # (called right after reading the config file)
 ilcsoft.init()
+
 
 # display an installation summary
 ilcsoft.summary()
@@ -97,3 +99,11 @@ if options.preview :
 if options.install :
     ilcsoft.makeinstall()
 
+
+print "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
+
+if options.dependencies :
+   ilcsoft.showDependencies()
+
+
+print "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
