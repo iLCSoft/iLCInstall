@@ -1,0 +1,311 @@
+#################################
+#
+#   iLCSoft release - v01-17-08
+#
+#################################
+
+ This is a developers release that adds some functionality 
+ to the recent v01-17-07 release.  
+
+ In particluar there have been many new subpackages added
+ to MarlinReco as a result of the 
+ High Level Reconstruction Week held at DESY:
+   http://agenda.linearcollider.org/event/6787/ 
+
+ Also some important changes have been made to the
+ 'new' reconstruction code for DD4hep (lcgeo) based
+ simulations.
+
+
+=================================================
+
+ Changes in v01-17-08  w.r.t. iLCSoft v01-17-07
+ 
+=================================================
+
+
+Introduced 1 new package:
+
+=========================
+ DDMarlinPandora v00-01
+=========================
+  N.Nikiforou, CERN
+
+  - copy of MarlinPandora that replaces the geometry definition from GEAR
+    with DD4hep/DDRec
+
+  - staus: experiemental
+
+
+
+Changed Packages:
+-----------------------------------------------------
+
+=========================
+MarlinReco  v01-13
+=========================
+  F.Gaede
+   - renamed SimpleLHCalDigi to SimpleFCalDigi
+   - deleted SimpleLCalDigi
+   => old steering files need to be updated !!
+
+  M. Berggren 
+   - added  parameter FixLCalHits SimpleLHCalDigi in order to:
+    - fix of the wrong xyz for hits in LCal. LCal CaloHits (collection LCAL) 
+      are now within a few micron of their correct position. LCal SimCaloHits 
+      (collection LumiCalCollection) still have the flawed xyz.
+
+  J.List
+  - updated SimpleLHCalDigi to include functionality fromm SimpleLCalDigi
+   -> can be used for all fwd calos
+
+  J.Tian
+   - added new package:
+     Analysis/OverlayRemoval
+
+  H.Sert
+  - new processor low momentum pi/mu separation:
+    Analysis/PIDTools/LowMomentumMuPiSeparationPID_BDTG
+
+  G.Wilson
+  - new photon finder package: 
+    Analysis/GammaGammaCandidateFinder
+    - provides a 4-vector w/  mass-constrained fit (using MarlinKinfit  - new dependency )
+
+  M Berggren
+  - fixed links in RecoMCTruthLink/src/RecoMCTruthLinker.cc
+  - full links in both directions (true->seen, seen->true) for PFOs, Tracks and Clusters.
+
+
+
+  --------
+ | v01-12 |   ( v01-17-07 contained v01-11 !)
+  --------
+
+  J.Tian
+   - added new Analysis/IsolatedLeptonTagging
+      MVA based isolated lepton finder
+
+  T.Calancha
+    - fixes for Analysis/FourMomentumCovMat
+       - printout and read-only exception
+
+  M.Kurata
+  - update PIDTools for several kinds of likelihood calculation
+
+  S.Bilokin
+   - added Analysis/VertexChargeRecovery
+
+  T.Suehara:
+   - Analysis/TauFinder added
+
+  F.Gaede
+
+  - added copy of ClusterShapes from MarlinUtil 
+    -> use "include "ClusterShapesMR.hh"
+       and marlinreco::ClusterShapes
+  - applied to ComputeShowerShapesProcessor.cc
+  - eventuall changes should be merged back to MarlinUtil
+  
+  - fixed warning  -Wc++11-narrowing in TPCDigitizer
+
+=========================
+DD4hep  v00-14
+=========================
+
+  F.Gaede: 2015-07-15
+   - changed type in SurfaceList and SurfaceMap from Surface to ISurface
+   - added methods length_along_u/v() to ISurface
+   - moved setting of CMAKE_CXX_FLAGS (if DD4HEP_USE_CXX11) from DD4hep.cmake to CMakeLists.txt
+  
+  2015-07-11 M.Frank
+  -------------------
+    -  added starter docs DD4hepStartersGuide.pdf
+  
+  *** Important ***
+    Before updating, backup your existing and working checkout. Though I was running 
+    the basic tests, there may be unchecked corners of the software.
+  
+  Notes:
+    - Backwards compatibility mode for the usage of ROOT 5 and ROOT 6 alternatively.
+    - For ROOT 6 the Gaudi PluginService is used and added to the distribution.
+    - DD4hep is distributed with a licence. See $DD4hepINSTALL/LICENSE for details.
+    - In the doc area the $DD4hepINSTALL/doc/CREDITS file everybode should add her/his 
+      name, if contributed significantly.
+    - Unfortunately this meant to add/change the headers of all files and give a 
+      pointer to the licence file. If I accidentally changed the author name, please
+      chagne it back.
+  
+    - The plugin factory declaration statements were changed to accomodate both
+      ROOT 5 and ROOT 6 and to keep the number of 'ifdef' statements at a minimum.
+  
+    - TODO: Properly change the cmake scripts to accomodate for ROOT 6 and the 
+      automatic switch when building DD4hep. 
+  
+      For reference reasons: this commits is revision 1812 + 1813 (DDDetectors)
+
+   --------
+  | v00-13 |   ( v01-17-07 contained v00-12 )  
+   --------   
+
+   2015/07/02 Nikiforos Nikiforou
+   ------------------------------
+   
+       - Added isRadiator() helper function in DDCore/XML/XMLDetector.h/cpp 
+         Mirroring functionality of isSensitive() and used in geometry drivers
+         e.g. to calculate total absorber thickness
+      
+       - Extended LayeredCalorimeterStruct in DDRec/DetectorData.h to include 
+         additional parameters required by Pandora:
+         	      inner_phi0 (e.g. alignment for inner symmetry)
+      	      outer_phi0 (e.g  aligment for outer symmetry)
+      	      NOTE: phi0 still remains but is deprecated
+      	      gap0 (e.g stave gap along r-phi)  
+      	      gap1 (e.g middle stave gap along z)
+      	      gap2 (reserved for future use)
+      
+   
+   
+    2015-06-29 A.Sailer
+   ---------------------
+     - always store lcio collections, even if they are empty in Geant4Output2LCIO (DDG4/ddsim)
+   
+   
+   2015-06-29 F.Gaede
+   ------------------
+     - changed env scripts to prepend to library pathes (DD4hep and dependant packages)
+        -> using a newer lcgeo version than the one provided in ilcsoft can simply
+           be done w/ source ./bin/thislcgeo.sh 
+	      
+
+=========================
+DD4hepExamples  v00-14
+=========================
+
+   - no changes wrt. v00-12
+
+=========================
+lcgeo  v00-05
+=========================
+
+   A.Sailer
+     - Implemented FieldMapBrBz.cpp, based on the 2D Fieldmap of Mokka FieldX03
+     - Example XML for the fields section of the compact XML
+
+            <field name="DetectorMap" type="FieldBrBz"
+                   filename="${lcgeo_DIR}/fieldmaps/ILDMap_KB_20150204_BRhoZ.root"
+               tree="fieldmap:rho:z:Brho:Bz"
+               rScale = "1.0"
+               zScale = "1.0"
+               bScale = "1.0"
+               rhoMin = "5*mm"
+               zMin = "5*mm"
+               rhoMax = "7005*mm"
+               zMax = "7005*mm"
+               nRho = "701"
+               nZ = "701"
+               >
+            </field>
+
+     - added ./fieldmaps/ILDMap_KB_20150204_BRhoZ.root 
+       latest field simulation for ILD by K.Buesser
+
+     - requires BOOST
+
+   N. Nikiforou
+     - added  EcalBarrelFace_v00.xml/EcalEndcapFace_v00.xml to CLIC_o2_v01
+     - Enabled detailed shower mode for calorimeters by default in ddsim.py/DD4hepSimulation.py
+
+   F.Gaede
+     - added PolyhedralBarrelSurfaces_geo.cpp/PolyhedralBarrelSurfaces_geo.cpp
+     - to be used for track states at the calorimeters
+     - added as EcalBarrelFace_v00.xml/EcalEndcapFace_v00.xml to ILD_o1_v05
+
+
+
+=========================
+DDKalTest  v00-02
+=========================
+
+    F.Gaede
+   - changed to just use abstract ISurface and ICylinder
+
+=========================
+aidaTT  v00-02
+=========================
+   -F.Gaede:
+      - fixed major memory leak in Vector5 and fiveByFiveMatrix 
+        ( unneeded alloc in assignment operator)
+
+      - made c'tors and accessors in Vector5 and fiveByFiveMatrix 
+        more efficient by removing unneeded range checks and
+        initializations
+
+    -Y.Voutsinas:
+      -  adding test for functions calculateCurvature & calculateLambda
+      -  correcting transformation from perigee to L3
+
+=========================
+MarlinTrk  v02-00-01
+=========================
+
+    F.Gaede
+  - made createTrackStateAtCaloFace() work for DD4hep 
+     (and old Mokka/Gear ) based tracking
+
+=========================
+MarlinTrkProcessors  v02-00-01
+=========================
+    F.Gaede
+  - handle empty collections gracefully ( for lcgeo/ddsim ) 
+    in Digitisers/src/PlanarDigiProcessor.cc
+
+  - use abstract ISurface
+
+=========================
+Clupatra  v00-12
+=========================
+
+    F.Gaede
+   - added parameters CaloFaceBarrelID/CaloFaceEndcapID
+      to ClupatraProcessor ( needed for lcgeo based simulations )
+      default value for both : ILDDetID::Ecal
+    - adopted LCIOTrackConverter to use these paramters
+
+
+=========================
+KiTrackMarlin  v01-07
+=========================
+    F.Gaede
+    - added workaround to Tools/Fitter.cc for getting the correct system ID 
+      of the calorimeter face (barrel and endcap)  if run w/ lcgeo output  ( F.Gaede )
+    -> depends now on DD4hep
+
+=========================
+MarlinUtil  v01-10
+=========================
+   J.List
+    - added helper function in CHT 
+      CHT::CaloType caloTypeFromString(const std::string& name) 
+
+   F.Gaede
+    - fixes in MarlinCED 
+      - fixed warning -Wc++11-narrowing
+      - draw inner and outer edge of FTD disks in wireframe
+
+
+=========================
+Marlin  v01-07
+=========================
+   F.Gaede
+     - introduced global flag: AllowToModifyEvent
+       allowing to modify LCIO collections that have
+       been read from an input file in the processEvent()
+       method
+
+=========================
+CEDViewer  v01-09-01
+=========================
+  - M.Petric:
+     - updated ced2go template files for new CLIC simulation model
+
