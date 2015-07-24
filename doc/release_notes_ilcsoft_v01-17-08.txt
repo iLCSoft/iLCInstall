@@ -304,8 +304,16 @@ Marlin  v01-07
        method
 
 =========================
-CEDViewer  v01-09-01
+CEDViewer  v01-10
 =========================
+
+   T.Quast, RWTH Aachen
+    - add DrawDetectorDD4hep
+    - general detector (CLIC & ILD) drawing for the event display without GEAR
+    
+    => depends now on DD4hep/Root
+
+v01-09-01:
   - M.Petric:
      - updated ced2go template files for new CLIC simulation model
 
