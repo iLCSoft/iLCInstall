@@ -213,7 +213,7 @@ PandoraPFANew_version = "v02-00-00"
 MarlinPandora_version = "v02-00-00"
 PandoraAnalysis_version = "v01-00-01" 
 
-CEDViewer_version = "v01-10-pre"
+CEDViewer_version = "v01-10-pre01"
 
 Overlay_version = "v00-14"
 
@@ -250,7 +250,7 @@ SlicPandora_version = "ilcsoft-v01-17-07"
 DD4hep_version = "v00-14-pre04"
 DD4hepExamples_version = "v00-14-pre04"
 
-lcgeo_version = "v00-05-pre03"
+lcgeo_version = "v00-05-pre04"
 
 Physsim_version = "v00-02" 
 
