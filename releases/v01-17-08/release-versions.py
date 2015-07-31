@@ -7,7 +7,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-08-pre02'
+ilcsoft_release='v01-17-08'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -162,19 +162,19 @@ KalTest_version = "v02-00"
 
 KalDet_version = "v01-13-02"
 
-aidaTT_version = "v00-02-pre"
+aidaTT_version = "v00-02"
 
-DDKalTest_version = "v00-02-pre"
+DDKalTest_version = "v00-02"
 
-MarlinTrk_version = "v02-00-01-pre"
+MarlinTrk_version = "v02-00-01"
 
-MarlinTrkProcessors_version = "v02-01-pre"
+MarlinTrkProcessors_version = "v02-01"
 
-Clupatra_version = "v00-12-pre"
+Clupatra_version = "v00-12"
 
 KiTrack_version = "v01-06"
 
-KiTrackMarlin_version = "v01-07-pre"
+KiTrackMarlin_version = "v01-07"
 
 ForwardTracking_version = "v01-08"
 
@@ -186,17 +186,17 @@ LCCD_version = "v01-03"
 
 RAIDA_version = "v01-06-02"
 
-MarlinUtil_version = "v01-10-pre01"
+MarlinUtil_version = "v01-10"
 
-Marlin_version = "v01-07-pre"
+Marlin_version = "v01-07"
 
 MarlinDD4hep_version = "v00-01"
 
-DDMarlinPandora_version = "v00-01-pre"
+DDMarlinPandora_version = "v00-01"
 
 Mokka_version = "mokka-08-05" 
 
-MarlinReco_version = "v01-13-pre01"
+MarlinReco_version = "v01-13"
 
 FCalClusterer_version = "v00-01"
 
@@ -213,7 +213,7 @@ PandoraPFANew_version = "v02-00-00"
 MarlinPandora_version = "v02-00-00"
 PandoraAnalysis_version = "v01-00-01" 
 
-CEDViewer_version = "v01-10-pre02"
+CEDViewer_version = "v01-10"
 
 Overlay_version = "v00-14"
 
@@ -247,10 +247,10 @@ SLIC_version = "ilcsoft-v01-17-07"
 
 SlicPandora_version = "ilcsoft-v01-17-07"
 
-DD4hep_version = "v00-14-pre04"
-DD4hepExamples_version = "v00-14-pre04"
+DD4hep_version = "v00-14"
+DD4hepExamples_version = "v00-14"
 
-lcgeo_version = "v00-05-pre05"
+lcgeo_version = "v00-05"
 
 Physsim_version = "v00-02" 
 

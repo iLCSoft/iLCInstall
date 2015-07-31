@@ -113,6 +113,13 @@ MarlinReco  v01-13
 DD4hep  v00-14
 =========================
 
+ F.Gaede
+   - fixed writing of generator status for lcio::MCParticle
+     in Geant4Output2LCIO.cpp
+
+ A.Sailer
+   - Add missing scope to /DD4hep/Factories.h, to not force everyone to use using namespace
+
   F.Gaede: 2015-07-15
    - changed type in SurfaceList and SurfaceMap from Surface to ISurface
    - added methods length_along_u/v() to ISurface
@@ -188,6 +195,44 @@ DD4hepExamples  v00-14
 lcgeo  v00-05
 =========================
 
+   N. Nikiforou
+   - Added TrackerEndcap_o1_v02_geo.cpp (svn cp'd from TrackerEndcap_o1_v01_geo.cpp) which supports
+     ILD ID encoding and implements ring modules. Elements (enumerated as "sensors") in one ring
+     (constant R) have the same "module" number but different sensor number.
+     Also modified the CLIC_o2_v02 model compact (InnerTracker_o2_v01_01.xml
+     and OuterTracker_o2_v01_01.xml) to use the new driver. Also now implements the "side" bitfield
+     side=0 is positive, side=1 is negative.
+   - Introduced new driver VertexEndcap_o1_v02 and necessary changes to compact file for CLIC_o2_v02.
+     The new xml also implements double layers in the endcap but with each layer having its own ID.
+     Also, in the new VertexEndcap driver similar changes as above VertexEndcap.
+
+
+   S.Lu
+   - updated Ecal and Hcal in Share_ILD_o1_CLIC
+
+   T.Quast
+   - fixed DetectorData structure for several drivers
+     ( as needed for drawing the detector w/ DD4hep in CED )
+
+
+   M. Petric
+   - added CLIC_o2_v02 model w/ simplified Ecal barrel
+     ECalBarrel_o2_v01_01.xml in order to set correct W thicknesses
+
+   F.Gaede
+
+   - added TPCSDAction.cpp
+     - ported from Mokka/TPCSD04.cc
+   - introduces Geant4 dependency
+      -> to be addressed ...
+   - activated in TPC10_geo.cpp
+     -> hits should be exactly on pad row centers ...
+
+   - updated ddsim.py :
+      - use Geant4ScintillatorCalorimeterAction
+        as defaults for all calorimeters
+      - use TPCSDAction for TPC
+
    A.Sailer
      - Implemented FieldMapBrBz.cpp, based on the 2D Fieldmap of Mokka FieldX03
      - Example XML for the fields section of the compact XML
@@ -254,8 +299,14 @@ MarlinTrk  v02-00-01
      (and old Mokka/Gear ) based tracking
 
 =========================
-MarlinTrkProcessors  v02-00-01
+MarlinTrkProcessors  v02-01
 =========================
+
+
+   R.Simoniello
+   - updated Refitting/src/ExtrToTracker.cc
+     - extrapolation also in endcap subdetectors + CA selecting longest (nhits) tracks
+
     F.Gaede
   - handle empty collections gracefully ( for lcgeo/ddsim ) 
     in Digitisers/src/PlanarDigiProcessor.cc
@@ -308,10 +359,15 @@ CEDViewer  v01-10
 =========================
 
    T.Quast, RWTH Aachen
+
     - add DrawDetectorDD4hep
     - general detector (CLIC & ILD) drawing for the event display without GEAR
-    
+    - adapted ced2go to transparently use DD4hep if a compact file is given
+      with -d instead of a Gear file
+    - add option to ced2go to draw tracking surfaces from DDRec (-s)
+
     => depends now on DD4hep/Root
+
 
 v01-09-01:
   - M.Petric:
