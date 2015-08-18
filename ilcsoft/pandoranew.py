@@ -74,7 +74,7 @@ class PandoraAnalysis(MarlinPKG):
         MarlinPKG.__init__(self, "PandoraAnalysis", userInput )
 
         # required modules
-        self.reqmodules = [ "Marlin", "GEAR", "LCIO", "ROOT" ]
+        self.reqmodules = [ "Marlin", "GEAR", "LCIO", "ROOT" , "MarlinUtil" ]
 
         self.download.root = 'PandoraPFANew'
 
