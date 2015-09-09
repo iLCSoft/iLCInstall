@@ -8,20 +8,18 @@
 ##################################################
 
 # custom imports
-from baseilc import BaseILC
-from util import *
-
+from marlinpkg import MarlinPKG
 
 ##################################################
 # DDMarlinPandora module
 ##################################################
 
 
-class DDMarlinPandora(BaseILC):
+class DDMarlinPandora(MarlinPKG):
     """ Responsible for the DDMarlinPandora software installation process. """
     
     def __init__(self, userInput):
-        BaseILC.__init__(self, userInput, "DDMarlinPandora", "DDMarlinPandora")
+        MarlinPKG.__init__(self, "DDMarlinPandora", userInput)
 
         self.reqfiles = [ ["lib/libDDMarlinPandora.so","lib/libDDMarlinPandora.a","lib/libDDMarlinPandora.dylib"] ]
 
