@@ -97,6 +97,8 @@ class QT(BaseILC):
         if( Version( self.version ) > '4.5' ):
             qt_cfg_options += " -opensource"
             
+        print "#################### echo \"yes\" | ./configure -prefix " + self.installPath + qt_cfg_options + " 2>&1 | tee -a " + self.logfile 
+ 
         if( os.system( "echo \"yes\" | ./configure -prefix " + self.installPath + qt_cfg_options
                 + " 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
