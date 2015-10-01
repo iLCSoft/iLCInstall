@@ -19,16 +19,17 @@ class PandoraPFANew(BaseILC):
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "PandoraPFANew","PandoraPFANew" )
 
-        self.download.root = 'PandoraPFANew'
+        self.download.supportedTypes = ["git"]
+        self.download.svnurl = 'https://github.com/PandoraPFA/PandoraPFA.git'
 
         self.hasCMakeFindSupport = True
 
         self.optmodules = [ "ROOT" ]
 
         self.reqfiles = [ [ 
-            'lib/libPandoraFramework.so', 'lib/libPandoraFramework.a', 'lib/libPandoraFramework.dylib',
-            'lib/libPandoraPFANew.so', 'lib/libPandoraPFANew.a', 'lib/libPandoraPFANew.dylib',
             'lib/libPandoraSDK.so', 'lib/libPandoraSDK.a', 'lib/libPandoraSDK.dylib',
+            'lib/libPandoraMonitoring.so', 'lib/libPandoraMonitoring.a', 'lib/libPandoraMonitoring.dylib',
+            'lib/libLCContent.so', 'lib/libLCContent.a', 'lib/libLCContent.dylib',
         ] ]
 
     def compile(self):
@@ -61,10 +62,11 @@ class MarlinPandora(MarlinPKG):
     def __init__(self, userInput):
         MarlinPKG.__init__(self, "MarlinPandora", userInput )
 
+        self.download.supportedTypes = ["git"]
+        self.download.svnurl = 'https://github.com/PandoraPFA/MarlinPandora.git'
+
         # required modules
         self.reqmodules = [ "Marlin", "MarlinUtil", "GEAR", "PandoraPFANew", "LCIO" ]
-
-        self.download.root = 'PandoraPFANew'
 
 
 class PandoraAnalysis(MarlinPKG):
@@ -73,8 +75,8 @@ class PandoraAnalysis(MarlinPKG):
     def __init__(self, userInput):
         MarlinPKG.__init__(self, "PandoraAnalysis", userInput )
 
+        self.download.supportedTypes = ["git"]
+        self.download.svnurl = 'https://github.com/PandoraPFA/LCPandoraAnalysis.git'
+
         # required modules
         self.reqmodules = [ "Marlin", "GEAR", "LCIO", "ROOT" , "MarlinUtil" ]
-
-        self.download.root = 'PandoraPFANew'
-

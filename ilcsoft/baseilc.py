@@ -721,7 +721,13 @@ class BaseILC:
 
             print "git download cmd:",cmd
             if( os.system( cmd ) != 0 ):
-                self.abort( "Problems ocurred downloading sources with "+self.download.type+"!!")
+                self.abort( "Problems occurred downloading sources with "+self.download.type+"!!")
+
+            gittagcmd="cd %s && git checkout %s && cd -" % (self.version, self.version)
+
+            print "git checkout tag cmd:",gittagcmd
+            if( os.system( gittagcmd ) != 0 ):
+                self.abort( "Problems occurred checking out tag "+self.version+"!!")
 
         elif( self.download.type == "wget" ):
 
