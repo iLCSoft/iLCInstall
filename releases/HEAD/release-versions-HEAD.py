@@ -130,6 +130,7 @@ if( use_cpp11 ):
 Geant4_version = "10.01"  
 
 ROOT_version = "5.34.30" 
+#ROOT_version = "6.04.08" 
 
 CLHEP_version = "2.1.4.1" 
 
@@ -203,6 +204,8 @@ MarlinReco_version = "HEAD" # "v01-13"
 FCalClusterer_version = "HEAD" # "v00-01"
 
 ILDPerformance_version = "HEAD" # "v00-01"
+
+ILDConfig_version = "HEAD" 
 
 
 LCFIVertex_version = "HEAD" # "v00-07"
