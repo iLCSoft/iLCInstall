@@ -246,18 +246,17 @@ Physsim_version = "HEAD" # "v00-02"
 #--- slic et al:
 
 # xerces-c (needed by geant4 for building gdml support - required by mokka)
-XERCESC_ROOT_DIR = ilcPath + "/xercesc/3.1.2"
+#XERCESC_ROOT_DIR = ilcPath + "/xercesc/3.1.2"
 
-XercesC_version = "3.1.2" 
+#XercesC_version = "3.1.2" 
 
-HepPDT_version = "3.04.01"
+#HepPDT_version = "3.04.01"
 
 # versions tagged by J.Strube for this release 
-GDML_version = "ilcsoft-v01-17-07"
-LCDD_version = "ilcsoft-v01-17-07"
-SLIC_version = "ilcsoft-v01-17-07"
-
-SlicPandora_version = "ilcsoft-v01-17-07"
+#GDML_version = "ilcsoft-v01-17-07"
+#LCDD_version = "ilcsoft-v01-17-07"
+#SLIC_version = "ilcsoft-v01-17-07"
+#SlicPandora_version = "ilcsoft-v01-17-07"
 
 
 

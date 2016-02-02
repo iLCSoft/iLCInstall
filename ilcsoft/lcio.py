@@ -27,7 +27,7 @@ class LCIO(BaseILC):
         # supported download types
         self.download.supportedTypes = ["svn"]
 
-        self.envcmake["INSTALL_JAR"]="ON"
+        self.envcmake["INSTALL_JAR"]="OFF"
 
 
     def compile(self):
