@@ -243,12 +243,13 @@ lcgeo_version = "HEAD" # "v00-05"
 Physsim_version = "HEAD" # "v00-02" 
 
 
+# xerces-c (needed by geant4 for building gdml support - required by mokka)
+XERCESC_ROOT_DIR = ilcPath + "/xercesc/3.1.2"
+
+XercesC_version = "3.1.2" 
+
 #--- slic et al:
 
-# xerces-c (needed by geant4 for building gdml support - required by mokka)
-#XERCESC_ROOT_DIR = ilcPath + "/xercesc/3.1.2"
-
-#XercesC_version = "3.1.2" 
 
 #HepPDT_version = "3.04.01"
 
