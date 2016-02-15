@@ -161,11 +161,11 @@ MarlinFastJet_version = "v00-02"
 
 # -------------------------------------------
 
-DD4hep_version = "v00-14"
-DD4hepExamples_version = "v00-14"
+DD4hep_version = "v00-15-pre" ## need update for rel. notes
+DD4hepExamples_version = "v00-15-pre"
 
-lcgeo_version = "v00-05"
-
+lcgeo_version = "v00-06-pre" ## need update for rel. notes
+ 
 # -------------------------------------------
 
 KalTest_version = "v02-01"  
@@ -217,7 +217,7 @@ LCFIVertex_version = "v00-07-01"
 LCFIPlus_version = "v00-07-pre"
 
 
-MarlinKinfit_version = "HEAD" #"v00-02-pre"
+MarlinKinfit_version = "v00-02-pre" ## need update for rel. notes
 
 PandoraPFANew_version = "v02-05-00"
 MarlinPandora_version = "HEAD"  #"v02-02-00"
