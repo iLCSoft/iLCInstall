@@ -178,7 +178,7 @@ DDKalTest_version = "v00-03-pre"
 
 MarlinTrk_version = "v02-01-pre"
 
-MarlinTrkProcessors_version = "v02-01-pre"
+MarlinTrkProcessors_version = "v02-02-pre"
 
 Clupatra_version = "v00-13"
 
