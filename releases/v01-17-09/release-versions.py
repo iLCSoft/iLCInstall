@@ -1,13 +1,13 @@
 ###########################################
 #
-# iLCSoft versions for release v01-17-08
+# iLCSoft versions for release v01-17-09
 #
 # DESY ilcsoft team
 ###########################################
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-08'
+ilcsoft_release='v01-17-09-pre'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -143,11 +143,11 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-06"
+LCIO_version = "v02-07-pre"
 
-GEAR_version = "v01-04-02" 
+GEAR_version = "v01-05-pre" 
 
-CED_version = "v01-09-01"
+CED_version = "v01-09-02"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
 
@@ -159,28 +159,34 @@ FastJetClustering_version = "v00-02"
 
 MarlinFastJet_version = "v00-02"
 
+# -------------------------------------------
+
+DD4hep_version = "v00-14"
+DD4hepExamples_version = "v00-14"
+
+lcgeo_version = "v00-05"
 
 # -------------------------------------------
 
-KalTest_version = "v02-00"  
+KalTest_version = "v02-01"  
 
 KalDet_version = "v01-13-02"
 
-aidaTT_version = "v00-02"
+aidaTT_version = "v00-03-pre"
 
-DDKalTest_version = "v00-02"
+DDKalTest_version = "v00-03-pre"
 
-MarlinTrk_version = "v02-00-01"
+MarlinTrk_version = "v02-01-pre"
 
-MarlinTrkProcessors_version = "v02-01"
+MarlinTrkProcessors_version = "v02-01-pre"
 
-Clupatra_version = "v00-12"
+Clupatra_version = "v00-13"
 
 KiTrack_version = "v01-06"
 
-KiTrackMarlin_version = "v01-07"
+KiTrackMarlin_version = "v01-08"
 
-ForwardTracking_version = "v01-08"
+ForwardTracking_version = "v01-09-pre"
 
 # -------------------------------------------
 
@@ -190,34 +196,34 @@ LCCD_version = "v01-03"
 
 RAIDA_version = "v01-06-02"
 
-MarlinUtil_version = "v01-10"
+MarlinUtil_version = "v01-11-pre"
 
-Marlin_version = "v01-07"
+Marlin_version = "v01-08-pre"
 
 MarlinDD4hep_version = "v00-01"
 
-DDMarlinPandora_version = "v00-01"
+DDMarlinPandora_version = "v00-02-pre"
 
-Mokka_version = "mokka-08-05" 
+Mokka_version = "mokka-08-05-01" 
 
-MarlinReco_version = "v01-13"
+MarlinReco_version = "v01-14-pre"
 
-FCalClusterer_version = "v00-01"
+FCalClusterer_version = "v00-02-pre"
 
-ILDPerformance_version = "v00-01"
-
-
-LCFIVertex_version = "v00-07"
-LCFIPlus_version = "v00-05-03"
+ILDPerformance_version = "HEAD"
 
 
-MarlinKinfit_version = "v00-01-05"
+LCFIVertex_version = "v00-07-01"
+LCFIPlus_version = "v00-07-pre"
 
-PandoraPFANew_version = "v02-00-00"
-MarlinPandora_version = "v02-00-00"
-PandoraAnalysis_version = "v01-00-01" 
 
-CEDViewer_version = "v01-10"
+MarlinKinfit_version = "HEAD" #"v00-02-pre"
+
+PandoraPFANew_version = "v02-05-00"
+MarlinPandora_version = "HEAD"  #"v02-02-00"
+PandoraAnalysis_version = "v01-02-00" 
+
+CEDViewer_version = "v01-11-pre"
 
 Overlay_version = "v00-14"
 
@@ -225,7 +231,7 @@ PathFinder_version =  "v00-06"
 
 MarlinTPC_version = "v01-00"
 
-LCTuple_version = "v01-04"
+LCTuple_version = "v01-05-pre"
 
 BBQ_version =  "v00-01-02"
 
@@ -233,14 +239,15 @@ Druid_version = "2.2" # "1.8"
 
 Garlic_version = "v3.0.3"
 
+Physsim_version = "v00-02" 
 
-
-#--- slic et al:
 
 # xerces-c (needed by geant4 for building gdml support - required by mokka)
 XERCESC_ROOT_DIR = ilcPath + "/xercesc/3.1.2"
 
 XercesC_version = "3.1.2" 
+
+#--- slic et al:
 
 HepPDT_version = "3.04.01"
 
@@ -251,11 +258,6 @@ SLIC_version = "ilcsoft-v01-17-07"
 
 SlicPandora_version = "ilcsoft-v01-17-07"
 
-DD4hep_version = "v00-14"
-DD4hepExamples_version = "v00-14"
 
-lcgeo_version = "v00-05"
-
-Physsim_version = "v00-02" 
 
 
