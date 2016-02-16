@@ -208,9 +208,9 @@ Mokka_version = "mokka-08-05-01"
 
 MarlinReco_version = "v01-14-pre"
 
-FCalClusterer_version = "v00-02-pre"
+FCalClusterer_version = "v00-02-pre01"
 
-ILDPerformance_version = "HEAD"
+ILDPerformance_version = "v00-02-pre"
 
 
 LCFIVertex_version = "v00-07-01"
@@ -220,7 +220,7 @@ LCFIPlus_version = "v00-07-pre"
 MarlinKinfit_version = "v00-02-pre" ## need update for rel. notes
 
 PandoraPFANew_version = "v02-05-00"
-MarlinPandora_version = "HEAD"  #"v02-02-00"
+MarlinPandora_version = "v02-02-00"
 PandoraAnalysis_version = "v01-02-00" 
 
 CEDViewer_version = "v01-11-pre"
@@ -229,7 +229,7 @@ Overlay_version = "v00-14"
 
 PathFinder_version =  "v00-06"
 
-MarlinTPC_version = "v01-00"
+MarlinTPC_version = "v01-01"
 
 LCTuple_version = "v01-05-pre"
 
