@@ -218,6 +218,7 @@ LCFIPlus_version = "v00-07-pre"
 
 
 MarlinKinfit_version = "v00-02-pre" ## need update for rel. notes
+MarlinKinfitProcessors_version = "v00-01-pre"
 
 PandoraPFANew_version = "v02-05-00"
 MarlinPandora_version = "v02-02-00"
