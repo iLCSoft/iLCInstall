@@ -7,7 +7,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-09-pre'
+ilcsoft_release='v01-17-09-pre01'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -143,7 +143,7 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-07-pre"
+LCIO_version = "v02-07-pre01"
 
 GEAR_version = "v01-05-pre" 
 
@@ -202,15 +202,15 @@ Marlin_version = "v01-08-pre"
 
 MarlinDD4hep_version = "v00-01"
 
-DDMarlinPandora_version = "v00-02-pre"
+DDMarlinPandora_version = "v00-03-pre"
 
 Mokka_version = "mokka-08-05-01" 
 
-MarlinReco_version = "v01-14-pre"
+MarlinReco_version = "v01-14-pre01"
 
 FCalClusterer_version = "v00-02-pre01"
 
-ILDPerformance_version = "v00-02-pre"
+ILDPerformance_version = "v00-02-pre01"
 
 
 LCFIVertex_version = "v00-07-01"
