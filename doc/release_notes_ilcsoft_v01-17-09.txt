@@ -1,0 +1,1192 @@
+#################################
+#
+#   iLCSoft release - v01-17-09
+#
+#################################
+
+ This is a developers release with many changes wrt. v01-17-08, 
+ particularly to DD4hep and lcgeo, tracking and PFA code...
+
+
+=================================================
+
+ Changes in v01-17-09  w.r.t. iLCSoft v01-17-08
+ 
+=================================================
+
+
+Introduced 1 new package:
+
+=========================
+ MarlinKinfitProcessors v00-01
+=========================
+ J.List
+  moved example processors from MarlinKinfit to this new package in order to
+  reduce cross-dependencies with MarlinReco (eg via GammaGammaFinder).
+ 
+ 
+
+
+Changed Packages:
+-----------------------------------------------------
+=========================
+ LCIO v02-07
+=========================
+
+ N.Graf
+  - Added support for new momentumAtEndpoint feature
+    in Java
+
+ F.Gaede 
+     C++ :
+    - added MCParticle::getMomentumAtEndpoint()
+
+    - removed long deprecated methods
+       - MCParticle::getNumberOfParents()
+       - MCParticle::getParent(int i)
+       - MCParticle::getNumberOfDaughters()
+       - MCParticle::getDaughter(int i)
+
+    - fixed many compiler warnings for clang
+
+    - added example for setting particle id to recjob
+
+    - added IDs for coild and calo endcaps to UTIL/ILDConf.h
+
+    - fixed setting of CMAKE_INSTALL_PREFIX to allow
+      installation in 'usr/local'
+
+    - fixed incorrect file names printed at the end of anajob
+
+    - fixed compiler warnings for clang and c++11 in TESTs:
+      non-constant-expression cannot be narrowed from type 'double' to 'float' in initializer list [-Wc++11-narrowing]
+
+ T.Bisanz
+    - made UTIL::LCTime and UTIL::LCStdHepRdr compatible with gcc 5.3.1
+ 
+
+=========================
+ Gear v01-05
+=========================
+
+  - Vector3D.h: fixed compiler warnings of type:
+     declaration of 'phi' shadows a member of 'this' 
+
+   - added search field to doxygen doc
+
+
+=========================
+ CED v01-09-02
+=========================
+    M /CED/trunk/src/server/glced.cc
+ - replace << std::cout w/ std::endl ( bug for c++11)
+
+=========================
+ DD4hep v00-15
+=========================
+
+
+ 2016-02-15 A.Sailer
+  -  LCIOStdHepReader.cpp
+    - fixed memory leak, compiled and valgrinded
+
+ 2016-02-10 F.Gaede
+  - added utility  DD4hep::XML::setDetectorTypeFlag()
+    to set the TypeFlag from xml element <type_flag type="0x42"/>
+  - select detectors with 
+    DD4hep::Geometry::DetectorSelector(lcdd).detectors(  ( DD4hep::DetType::TRACKER | DD4hep::DetType::ENDCAP )) ;
+  - used in UtilityApps/dumpdetector.cc
+  - added detector_types.xml with int constants defined in DetType.h, include with :
+    <include ref="${DD4hepINSTALL}/DDDetectors/compact/detector_types.xml"/>
+    - add elements to xml, e.g.
+     <type_flags type="DetType_TRACKER +  DetType_ENDCAP  + DetType_PIXEL + DetType_STRIP "/>
+
+2016-02-10 M.Frank
+  DDCond
+    First implementation of conditions access. Required some movements of files
+    from DDG4 (Properties) and some changes in the core conditions implementation.
+    The basic infrastructure is now present. Don't know yet however how buggy it is...
+
+
+2016-02-05 F.Gaede
+  - added DetElement::typeFlag() and DetElement::setTypeFlag(unsigned int types)
+  - added utility class DetType for setting detector type properties in type flag
+
+2016-02-03 N.Nikiforou
+  DDDetectors
+  - Added plugin DD4hep_GenericSurfaceInstallerPlugin, copied from lcgeo
+    to allow installation of surfaces to any sliced detector
+  cmake/Doxyfile.in
+  - Added DDDetectors to the sources directory so Doxygen picks up the
+    plugin documentation
+
+2016-02-02 F.Gaede
+  - set momentum at endpoint (if lcio version > 2.6 ) for MCParticles in Geant4Output2LCIO.cpp 
+  - fixed printlevel in Geant4Action::print()
+  - removed random lines drawn in teveDisplay
+  - dont't print DetectorData by default in dumpdetector
+
+2016-02-02 A.Sailer
+  DDG4
+  - Implemented SimulatorFlags (DDFORHEP-17)
+    * In ParticleHandler: vertexIsNotEndpointOfParent, Stopped, leftDetector
+    * Steerable distance for vertexIsNotEndpointOfParent
+    * TCUserParticleHanlder Simulator flags: DecayedInTracker, DecayedInCalorimeter
+
+2016-01-21 A.Sailer/M.Frank
+  DDG4
+  - Improved user defined physics constructors
+    * Allows user defined global rangecut
+    * Allows extending particle table (e.g. B-Hadrons unknown to geant4)
+
+2016-01-18 F.Gaede
+  - fixed default c'tors in DDRec/DetectorData.h  to zero initialize sub-structures (LayerLayout etc)
+
+2016-01-13 F.Gaede
+   - allow the default sensitive action to be a tuple with parameter dictionary in DDG4.py/ddsim.steer e.g.:
+     SIM.action.tracker = ("Geant4TrackerWeightedAction", {"HitPositionCombination" : 1 , "CollectSingleDeposits" :  False } )
+   - fixed endpoint in MC-truth particles
+ 
+2016-01-11 F.Gaede
+  - fix hit momentum in Geant4TrackerAction (Geant4SDActions.cpp)
+
+2016-01-11 A.Sailer
+  DDG4
+  - Add LargestAcceptableStep to field setup
+
+2016-01-07 A.Sailer
+  DDG4
+  - Fix the logic for skipping of events at the start of input files: LCIO, HepMC, stdhep and HepEvt
+  - Event number in lcio outputfile takes skipped events into account now
+
+2016-01-06 F.Gaede
+   - bug fix in DDSurfaces::ISurface for surface properties (orthogonal/parallel to z)
+   (affected ILD VXD)
+
+2016-01-05 F.Gaede
+ - added print functions for DDRec::DetectorData objects
+ - used in dumpdetector:
+   dumpdetector compact.xml -d 
+
+
+2015-12-09 N.Nikiforou
+  UtilityApps/teveDisplay
+  - Modified teveDisplay to have three separate collections of surface vectors (u,v,n) 
+    instead of one collection. Now the vectors are colored differently.
+  - Changed signature of getSurfaceVectors() to allow selection of o,u,v,n vectors to 
+    add to the collection, added option for name and color of collection.
+  - Renamed surface list collections to "HelperSurfaces" and "SensitiveSurfaces".
+  - Changed signature of getSurfaces() to allow setting of name and color of collection.
+  
+
+2015-12-01 M.Frank
+  DDG4
+  - Remove some of the compilation warnings
+  - Remove energy cut in sensitive detectors
+    If you though need, use a Geant4Filter to mask the action processing
+  examples/CLICSiD
+  - Add a few tests for materialscan and simulation setups using XML or CINT.
+  examples/ClientTests
+  - Add a few tests for materialscan and simulation
+
+2015-11-24 M.Frank
+  DDG4
+  - Implementation of multi-threading mode.
+    To use and understand, please consult the DDG4 manual from the doc area.
+  - "Old" Single threaded mode and functionality is preserved.
+  - Numerous new classes supporting thread and master specific setup
+    functionality.
+  - Support for python configuration (see manual for details)
+  - Support for global Geant4Actions executing in thread reentrant shared mode.
+    (see manual for details)
+  - DDG4 examples: DDG4/examples/CLICSidSimu.py deleted and replaced with:
+    1) DDG4/examples/SiDSim.py  (single threaded, old example)
+    2) DDG4/examples/SiDSim_MT.py (multi threaded version of SiDSim.py)
+  DDCore:
+  - Support user formats for the default printout statements for nicer printouts.
+  - Removal of compiler warnings
+
+2015-11-23 F.Gaede
+ - added glbal method DD4hep::versionString() 
+
+2015-11-13 S.Lu
+ -  Added a new AHcal Barrel segementation: TiledLayerGridXY, to be used e.g.  
+    for the ILD AHcal Barrel Sensitive layer segmentation design.
+
+2015-10-30 F.Gaede
+ - fixed LCIOFileReader to use sequential reading mode
+   as using direct access always required runNum==0 and sequential evt nums ...
+   
+
+2015-10-15 F.Gaede
+   DDSurfaces::ISurface/Surface
+  - added implemation of conical surfaces 
+    - ICone, VolConeImpl, VolCone, ConeSurface
+
+2015-10-13 M.Frank
+  DDG4
+  - Remove explicit constructors for modular physics lists.
+    Use the native Geant4 provided G4PhysListFactory instead.
+    The physics list is instantiated as before with the "Extends" property.
+  - Implement angular ranges in the Geant4IsotropeGenerator for phi [0,2pi] and theta[0,pi]
+  - New sensitive detector Geant4TrackerWeightedAction
+    Attempt to properly process combined deposits in tracking detectors.
+  - Debug component Geant4SurfaceTest similar to the standalone program
+    test_surfaces, but to be appended as a DDG4 event action for event by event
+    tests of hits.
+
+2015-10-09 M.Frank
+  DDG4
+  - Extend the functionality of the DDG4 plugins
+    Geant4InteractionVertexBoost and Geant4InteractionVertexSmear.
+    If the Mask property is set to -1, all interactions present
+    at call time are smeared/boosted according to the parameters.
+    Note, that the position of the plugins within the generation 
+    sequence is important.
+  - Add a new generator Geant4GeneratorWrapper to allow the use
+    of native G4 generator classes such as the G4ParticleGun or
+    the G4GeneralParticleSource. Still to be tested.
+  - Extend the Geant4Random functionality: May now be instantiated
+    like any other Geant4Action. Users may set the seed or the 
+    luxury level.
+    All calls to HepRandom (CLHEP) or gRandom (ROOT) will re-use 
+    this instance. See DDG4/examples/CLICRandom.py for illustration.
+  - Updated DDG4 manual.
+
+2015-09-30 F.Gaede
+ - updated createGearForILD.cpp to use new parameters in LayeredCalorimeterData
+  ( innerThickness, innerRadLength, etc)
+
+
+2015-09-15 F.Gaede
+  - refactoring of Surface classes:
+    - made VolSurface a reference counting handle to 
+      a polymorphic pointer of type VolSurfaceBase
+      - this should facilitate the creation
+        of dedicated surface classes for special cases
+        such as inside the beampipe or the face of the calorimeter
+
+2015-08-27 F.Gaede
+  - added macros DD4HEP_VERSION_GE(MAJV,MINV) and DD4HEP_VERSION_GT(MAJV,MINV)
+    to LCDD.h
+
+  - increased version number to v00-15
+
+
+2015-08-20 M.Frank
+  - DDCore: Modularize/abstract plugin manager 
+  - VolumeManager: Fix bug propagating sensitive detectors
+    Showed up in the examples of nested detectors
+
+
+2015-08-12 N.Nikiforou
+-----------------------
+ - DDCore/XML: Added new helper functions to Layering engine:
+   - double absorberThicknessInLayer(XML::Element e) : 
+     returns total absorber thickness in given layer
+   - void sensitivePositionsInLayer(XML::Element e, std::vector<double>& sens_pos) :
+     provides positions of sensitive slices within a layer with respect to the 
+     center of the layer
+
+
+2015-07-25 M.Frank
+------------------
+  - DDSegmentation: Remove several 'shadow' warnings.
+
+  - New build system for the DD4hep core, which greatly simplyfies the cmake files
+    for the various sub-packages. 
+    Tested with Andre's build script doc/CompileAllOptionPermutations.sh.
+    (GEAR usage not tested though)
+
+=========================
+ lcgeo v00-16
+=========================
+
+F.Gaede
+ - added detector type flags to xml files for ILD_o1_v05 and Simplified_ILD_o1_v05
+ - updated (ILD) geometry constructors to call XML::setDetectorTypeFlag(e,det)
+ - fixed thicknesses for surfaces in FTD (FTD_Simple_Staggered_geo.cpp)
+ - added surface for Be endplate of VXD shell (VXD04_geo.cpp)
+ - added surface for support shell barrel  (VXD04_geo.cpp)
+ - fixed layer structure BeamCal08.xml: include graphite in first layer
+ - ILD_o1_v05.xml
+   - fixed length of B-field
+   - fixed z-position of EcalEndcap caloface surface
+   - changed calo face layers to be constructed by plugin now
+
+ - added example reconstruction steering file for SiD: ./example/run_sid_reco.xml
+ - fixed material for encap helper surfaces 
+   ( moved origin away from centerwhich is in the beam pipe)
+    -./other/TrackerEndcapSupport_o1_v01.cpp
+    -./tracker/TPC10_geo.cpp
+    -./tracker/VXD04_geo.cpp
+ - added lcgeo.h defining version macros and
+   method versionString()
+ - renamed DDSimExceptions.h to LcgeoExceptions.h
+ - added RunHeader to lcio file in lcio_particle_gun.py
+ - added first example implementation of SiDloi3:
+    - ./SiD/compact/sidloi3/sidloi3_v00.xml
+ - added connical surfaces to beam pipe:
+   ./detector/other/Beampipe_o1_v01_geo.cpp
+ - added sensitive action CaloPreShowerSDAction
+   - creates pre-shower collections for hits from first layer
+   - to be used for (ILD) Ecals
+ - protect usage of new member variables in LayeredCalorimeterData
+   by usage of #if DD4HEP_VERSION_GE( 0, 15 )
+   ( added workaround for this to work with ilcsoft v01-17-08/DD4hep v00-14 )
+    - ./detector/calorimeter/GenericCalBarrel_o1_v01_geo.cpp
+    - ./detector/calorimeter/GenericCalEndcap_o1_v01_geo.cpp
+    - ./detector/fcal/BeamCal_o1_v01_geo.cpp
+    - ./detector/fcal/LumiCal_o1_v01_geo.cpp
+
+S.Lu
+ - ILD_o1_v05.xml
+   - Remove unused 'slice' from ILD calorimeters
+
+  - Added two simplified SEcal drivers by removing detail Si wafer structure in the Si layer, which could 
+    improve the performance by saving 9.4 s/event in simulation. Todo: thinking about a sensitive driver (segmentation) 
+    for virtual cell and virtual gap from guard_ring and so on:
+     - ./detector/calorimeter/SEcal04_Barrel_v01.cpp
+     - ./detector/calorimeter/SEcal04_Endcaps_v01.cpp
+  - ./detector/calorimeter/SEcal04_Barrel.cpp:
+    - Added 'Ecal_fiber_thickness' and 'Ecal_Slab_shielding' thickness to the layer placement position. 
+    - Update the Ecal wafer placement position 'wafer_pos_z' with correct dimension parameter to work together with 
+      'Ecal_guard_ring_size'
+
+  - Remove 'slice' from the following calorimeter drivers
+    - ./detector/calorimeter/Yoke05_Barrel.cpp
+    - ./detector/calorimeter/Yoke05_Endcaps.cpp
+    - ./detector/calorimeter/SHcalSc04_EndcapRing.cpp
+    - ./detector/calorimeter/SHcalSc04_Endcaps.cpp
+    - ./detector/calorimeter/SHcalSc04_Barrel_v02.cpp
+    - ./detector/calorimeter/SHcalSc04_Barrel_v01.cpp
+    - ./detector/calorimeter/SHcalSc04_Barrel.cpp
+
+
+
+
+A.Sailer 02/02/2016
+-------------------
+  - ddsim
+    * Add ExtraParticle tables
+    * Add flag to define distance for vertexIsNotEndpointOfParent
+
+
+N.Nikiforou 12/02/2016
+----------------------
+  - Changed Solenoid_o1_v01_geo.cpp and SCoil02_geo.cpp for proper filling of 
+    solenoid extent in the LayeredCalorimeterStructure for use by DDMarlinPandora
+
+N.Nikiforou 11/02/2016
+----------------------
+  - Fixed errors due to change of namespace of "_toDouble"
+  - Added using of "DetType_AUXILIARY" for CLIC_o2_v04  ECalPlug and HCalRing
+
+
+N.Nikiforou 10/02/2016
+----------------------
+  - Modified Tracker*_geo.cpp, Vertex*_geo.cpp, ZPlanarTracker_geo.cpp, GenericCal*_geo.cpp  to add setting detector type via xml tag
+  - Moved CLIC_o2_v04 to using TrackerEndcap_o1_v04 drivers that set ZPetalDisksData according to minimum/maximum R and average Z
+    of all rings in one endcap tracker disk (for DDMarlinPandora)
+  - Added "type_flags" tags to all CLIC_o2_v04 subdetector xml files and added include of detector_types.xml
+
+N.Nikiforou 03/02/2016
+----------------------
+  - Added deprecation warning for GenericSurfaceInstaller plugin which is now part of DD4hep. 
+  - Moved CLIC_o2_v04 to using DDhep_GenericSurfaceInstallerPlugin rather than the local lcgeo implementation which is deprecated
+
+A.Sailer 18/01/2016
+-------------------
+  - ddsim
+    * Add RangeCut parameter
+    * Add LargestAcceptableStep for magneticField (10*m)
+
+N.Nikiforou 15/12/2015
+----------------------
+  - Switched CLIC_o2_v04 to using the GenericSurfaceInstaller. Changed therefore to using the following
+    includes (notice _02 at the end of the name):
+    * Vertex_o2_v04_02.xml
+    * InnerTracker_o2_v03_02.xml
+    * OuterTracker_o2_v03_02.xml
+  - Changed the orientation of the endcap uvn vectors for Vertex and Tracker to 
+    u(-1.,0.,0.), v(0.,0.,1.), n(0.,1.,0.), o(0.,0.,0.) using the GenericSurfaceInstaller rather than
+    the individual surface installers (for which the orientation of uvn remains as before). The 
+    vectors were set using plugin arguments in the xml. The resulting orientation puts v along R
+    i.e. the "bad" measurement direction and u along -phi (clockwise). 
+  - GenericSurfaceInstaller: by default all u,v,n,o vector components are now set to 0 which means 
+    that the user has to define the non-zero components as arguments, otherwise the plugin fails
+    
+A.Sailer 15/12/2016
+-------------------
+  - ddsim
+    * Add default filter with Edep > 0
+
+N.Nikiforou 10/12/2015
+----------------------
+  - Added GenericSurfaceInstaller in detector/other to install surfaces to a given
+    box-like volume. The u,v,n,o vectors are provided component-wise as arguments to the plugin.
+    If the volumes are trapezoids (as in the case of the endcap) the thickness dimension is supposed to be 
+    the same for both sides of the trapezoid (for example, dy1=dy2=dy) which is supposed to be handled
+    when "casting" the Trapezoid shape into a Box
+  - Added InnerTracker_o2_v03_02.xml and OuterTracker_o2_v03_02.xml in CLIC_o2_v04 (not used by default)
+    as examples using the new GenericSurfaceInstaller
+  
+N.Nikiforou 04/12/2015
+----------------------
+  - Modified CLIC_o2_v04 to use proper convention for listing slices in module composition.
+    In this convention, when you list a layer or a slice/component in a module, the top-most
+    element in the xml is the component that is closest to the IP (top-most is inner-most).
+  - Created new drivers and new xml files to use them
+     * TrackerBarrel_o1_v03 and TrackerEndcap_o1_v03 used by Inner/OuterTracker_o2_v03.xml
+     * VertexEndcap_o2_v03 used by Vertex_o2_v04_01
+  - Created new surface installer plugins copied from DD4hep that follow the convention discussed above
+    and used by the new drivers. They are listed below with the u,v,n and origin vectors as defined in 
+    the driver coordinate system :
+     * TrackerBarrelSurfacePlugin: u(-1.,0.,0.), v(0.,-1.,0.), n(0.,0.,1.), o(0.,0.,0.)
+        + Assumes the driver builds the module along the original +z axis, with the top-most slice
+          stacked perpendicular to z, closest to (0,0,0) with eventual rotations to place the module
+          in the barrel so that the slice is inner-most. This is the case now in TrackerBarrel_o1_v03 
+     * TrackerEndcapSurfacePlugin: u(0.,0.,1.), v(1.,0.,0.), n(0.,1.,0.), o(0.,0.,0.);
+        + Assumes the driver builds the module along the original +y axis, with the top-most slice
+          stacked perpendicular to y, closest to (0,0,0) with eventual rotations to place the module
+          in the barrel so that the slice is inner-most. This is the case now in TrackerEndcap_o1_v03 
+
+A.Sailer 30/11/2015
+----------------------
+  - Added steering of filter to ddsim
+    * assign filters to sensitive detectors
+    * create your own filters
+  - Added dumpSteeringFile option to ddsim
+    * prints steeringFile to stdout with current values as default
+
+A.Sailer 23/11/2015
+----------------------
+ - Added information to the lcio runHeader in ddsim. This needs the DD4hep revision 1984!
+   * The steeringFile content, commandline and resulting ddsim parameters are written
+   * geant4 and dd4hep version is written directly in dd4hep.
+   * user, workingdirectory and date are written as well
+
+A.Sailer 06/10/2015
+----------------------
+ - ddsim python simulator
+ * "ddsim --help" to print all the command line parameters currently available
+ * example/steeringFile.py to see an example steering file with some options
+ * to enable tab-completion for ddsim: requires bash (or zsh),bash-completion, and python argcomplete
+   (e.g. install with: [sudo] pip install argcomplete)
+   in the shell run: eval "$(register-python-argcomplete ddsim)"
+
+
+N.Nikiforou 24/08/2015
+----------------------
+ - Modified CLIC_o2_v03/ECalBarrel_o2_v01_01.xml, ECalEndcap_02_v01_01.xml and
+   ECalPlug_o1_v01_01.xml to avoid having layers without active element
+   which complicates implementation for reconstruction.
+   This was the case for the last (outermost) dead layer (absorber only).
+   Instead, added one more type of layer with only one repeat which includes the extra
+   absorber plate
+ - Fixed bug (?) in CLIC_o2_v03/ECalEndcap_02_v01_01.xml and ECalPlug_o1_v01_01.xml
+   which had different siPCBMix thickness compared to the ECalBarrel (1.20 mm -> 0.80 mm). 
+
+
+N. Nikiforou 19/08/2015 
+-----------------------
+
+   M.Petric
+   - Made a new version for CLIC named CLIC_o2_v03 which includes better representations
+     of X0 in the Trackers
+   N. Nikiforou
+   - Added new Generic Calorimeter drivers based on Polyhedra Calorimeters named
+     GenericCalBarrel and GenericCalEndcap. The Generic drivers
+     were obtained by svn cp from HCalBarrel and HCalEndcap respectively and are used
+     in the CLIC_o2_v03 model by the ECal, HCal and Yoke Endcaps, Barrels and Rings.
+     These new drivers (almost identical to the old ones) will be used to avoid making 
+     changes in all the drivers while developing the reconstruction framework.
+     Changes include:
+     - Cleaning up of old comments, old code snippets and featurs no longer used (like
+       multiple sensitive elements per layer which will not be supported by the reco).
+     - Introduction of the new LayeredCalorimeterStruct variables defined in DDRec:
+       - inner/outer thicknesses, nRad/nIntLengths and sensitive element thicknesses
+     - Avoidance of cloning of element volumes in the barrel case
+     - Start of counters (e.g. layer, module, stave, etc) from 0 rather than 1
+
+=========================
+ KalTest v02-01
+=========================
+  F.Gaede
+   - default measurement dimension (kSdim) set to 5
+   - added flag BUILD_WITH_T0_FIT (default OFF)
+     setting the measurement dimension to 6 
+  
+   - TKalDetCradle.cxx
+     - bug fix for intersection calculation using the newtonian
+       solver such as cones for example
+       ( reseting the deflection angle to 0 in TKalDetCradle::Transport()) 
+
+=========================
+ aidaTT v00-03
+=========================
+ - many changes, fixes and updates (for details, see svn -v log )
+
+F.Gaede
+
+ - added material_ntuples.cpp to create ntuple with material
+   properties from model and surfaces
+ - drawx0.C makes comparison plots for x0 
+ 
+ - fixed scattering matrices 
+   (setting off diagonal elements to 0.)
+
+ - implmented cone intersection 
+   using a newtonian method
+
+  - added optional use of streamlog
+  -  adapted lcio_tracks.cpp to (re)fit
+    tracks including material effects
+   - fixed some compiler warnings
+  - fixed geometry initialization for examples
+   ( added  IGeometry& instance(const std::string& initString ) )
+  - added example material_effects/check_materials.cpp
+
+  - cleaned up trajectory class ( documentation, code,...)
+    - fixed issue w/ energy loss for jacobian
+    - removed unneeded members and methods
+      - surface intersections, bfield,...
+
+  - fixed issue w/ calculation of curvilinear coordinate system (use s==0.)
+  - pulls for central muons are now as good as w/ DDKalTest
+
+ - finished first implementation of taking energy loss into account for
+   initial track parameters:
+     - trajectorElements now hold a track state that is valid until the next element
+     - track states are computed in addMeasurment/addScatterer
+   - implemented pointAt/tangentAt for trajectory with many track parameters
+ - moved energy loss calculation to materialutils.cc
+ - updated examples to using IGeometry instead of DD4hepGeometry
+ - some code cleanup ...
+
+  - cleaned up geometry interface:
+    - made IGeometry a singleton
+    - implemented access to B field map
+    - added doxygen documentation
+  - added materialUtils.hh
+    - computeQMS ( needs debugging )
+  - added a track state to trajectoryElement
+
+  - restrucured code base:
+    - renamed helixGymnastics.hh to helixUtil.hh
+    - removed helixHelpers.hh
+      -> combine all helix relates utilitiy functions in helixUtil.hh
+      -> combine fitting releated helper functions in utilities.hh   
+    - documented helix functions
+    - created second version taking only Vector5 and Vector3D as
+      arguments to have less overhead when used outside aidaTT
+    - cleaned up definition of track parameterization 
+       -> access functions defined in trackParameterizationLCIO.hh
+    - moved Vector3D, Vector5 and fiveByfiveMatrix to core
+    - renamed helpers to util
+   - added implementations of Vector5 and fiveByFiveMatrix
+      using the Eigen library for later use  ...
+
+   - bug fix for intersection calculation w/ cylinders:
+      - return solution w/ positive s if both solutions
+        are ~equal
+   - bug fix for calculation of phi from x,y:
+     - take abs(dphi) to be less than M_PI
+
+   - added code to treat 1D measurements (commented out for now)
+   - write out Millipede-2 file for debugging in GBLInterface
+
+   - restrict intersections to first half arc of the track
+
+   - GBLInterface
+   - calculate only intersections with positive s and sort list
+   - fix calculation of qms
+
+  - changed IFittingAlgorithm, GBLInterface and
+    trajectory to be able to return more than one result
+    (at different sites) for the fit
+
+Y.Voutsinas
+
+  - calculating energy loss only in surfaces that are considered scatterers
+  - correction in  the calculation of particle's energy
+  - first implementation of energy loss - still needs some debugging & testing
+  - modify trajectoryElement as to obtain an element that isn't a scatterer or a measurement, 
+   use IP as such an element and add it to the trajectory
+
+  - re-implement seeding and iterative fitting in the example, removing some not necessary debugging output
+
+  - modifying function intersectsWithinZCylinderBounds in order to return both solutions and not only the closest one
+
+  - correcting the sign in the calculation of qop
+
+  -  fixing a bug in the calculation of the first's element arc-length & 
+   modify the lcio_tracks example in order to cope with TPC tracks
+
+  - crosschecking the system's transformations
+
+  - unitTests/finalTrackTest.cc
+    adding test to check the creation of an lcio track from an aida track
+  - adding test of covariance matrix in initial track parameters test
+  - test for comparing the trajectory cov. mat with the one that is written out to lcio track
+
+=========================
+ DDKalTest v00-03
+=========================
+ 
+ F.Gaede
+ - use new (faster) standalone helix intersection methods
+
+ - workaround for hits that are smeared off the DDRec::surface in the
+   old digitizer
+
+ - added DDConeMeasLayer
+ - fixed bug in energy loss and multiple scattering
+   for non-planar surfaces ( compute normal at x'ing point)
+
+- distinguish between zplanes, disks and generic planes for sorting policy
+
+- switch back to use SurfaceHelper class in order to get
+  all insensitive surfaces ( lost in SurfaceMap )
+- fixed some compiler warnings
+
+
+=========================
+ MarlinTrk v02-01
+=========================
+
+ F.Gaede
+ - MarlinTrkUtils.cc
+ - fix condition for setting the z0 to 0 for calo TS
+   for curling tracks 
+
+ - generalized the subdetectorHitNumbers to work for 
+   any detector (assuming that the tracker system ids are
+   smaller than the Ecal system id !)
+
+ - fix bug with track state at cale endcap for old tracking 
+   ( use  lcio::ILDDetID::ECAL also for endcap ) 
+
+ - MarlinAidaTTTrack:
+     added a prefit to the initialize: 
+     use up to ~25 hits for an initial fit (w/o material) 
+     before doing the actual fit with all hits 
+   - added IMarlinTrkSystem::name() 
+     in order to allow tracking utilities to adapt 
+     to special features of fitters 
+   - allow to fall back to IMarlinTrkTrack implementations
+     initialise()  in createFinalisedLCIOTrack()
+       -> for aidaTT see procedure above
+    - set precision of 2nd direction v to 0. for 1D hits
+    - ignore virtual surface with no material (e.g. inside the beam pipe)
+    - fixed issue w/ result labels 
+    - fixed point labels if QMS is turned off
+    - treat 1D measurements correctly
+    - finalized implementation of IMarlinTrkTrack interface
+    - can be used in RefittProcessor 
+    - added first implementation if IMarlinTrk for aidaTT
+      - needs debugging ...
+
+ - MarlinDDKalTest.cc
+   - fixed track state at calo creation 
+   - consider only DDCylinderMeasLayers as IP layers 
+
+=========================
+ MarlinTrkProcessors v02-02
+=========================
+
+
+ R.Simoniello
+   - RefitProcessor
+     - for each subdetctor X, store nhits in fit in lcio::ILDDetID::X -1 and nhits 
+       in track in lcio::ILDDetIDX -2. Structure needed for Pandora.
+   - file added for correct comparison for float and double: fpcompare.h 
+   -DDCellsAutomatonMV/ ExtrToTracker
+     - criteria based on nhits ans QI for CA vertex tracks, remove the possibility of geo from gear file (option GEO1 in compilation) 
+       for extrapolated tracks
+
+  F.Gaede
+  - DDPlanarDigiProcessor:
+   - introduced parameter ForceHitsOntoSurface:
+     - if true hits are projected onto the planar surface
+       if they are putside the bounds
+     - no check on distance is applied !
+    - store the resolution from the length of the wafer for 1D hits
+      ( could be treated as 2d measurements )
+
+  - RefitProcessor:
+     - no longer write incomplete tracks (w/o) track state at calo
+     - rely on MarlinTrkTrack's implementation of initialise() if
+       no already fitted TrackState is used
+
+
+=========================
+ Clupatra v00-13
+=========================
+ F.Gaede
+  - fix for TS @calo: set z0 to 0
+  - protect against failure in adding a trackerhit in TrackSegmentMerger
+  - make track state at calo again compatible w/ old sim/rec
+  - fixed creation of track state at calo
+  - activate propagete in track fit
+    (-> needed for pull distributions)
+
+=========================
+ KiTrackMarlin v01-08
+=========================
+F.Gaede
+   M /KiTrackMarlin/trunk/src/Tools/Fitter.cc
+ - make track state at calo compatible with old sim/rec again
+ - fixed creation of track state at calo
+
+=========================
+ ForwardTracking v01-09
+=========================
+  Rosa Simoniello
+   - added DDForwardTracking
+   - ATT: Endcap* and Sector* files for CLIC temporary added in this package instead of KiTrack till the pattern
+          recognition for CLIC is stable. DDForwardTracking added. It contains the patter recognition for CLIC in 
+          the endcap vertex+tracker region. It is interfaced with DD4hep.
+
+
+=========================
+ MarlinUtil v01-11
+=========================
+
+M.Berggren
+  - Added WeightedPoints3D class, a class that analyses a set of points
+    in 3 dimensions (possibly with weights), and calculates things like
+    covariance matrix, averge position, eigen-vectors/values ...
+
+ F.Gaede
+   M /MarlinUtil/trunk/source/src/ClusterShapes.cc
+ - merge back changes from version copied to
+   MarlinReco for HLR week at Desy:
+    - added dummy error functions to ClusterShapes for MarlinPandora development (J.List)
+    - cluster shape variables added for mu-pi seaparation (H.Sert)
+
+ T.Quast (RWTH Aachen)
+ 
+   - added DDMarlinCED.cc
+     utility and detector draw routines for CEDViewer
+
+
+=========================
+ Marlin  v01-08
+=========================
+
+   M /Marlin/trunk/source/include/marlin/Processor.h
+  - commented out old define for m_out (conflicts with a boost header )
+
+
+=========================
+ DDMarlinPandora  v00-03
+=========================
+
+ N. Nikiforou 19/02/2016
+ - Merged changes from ILDCaloDigi (MarlinReco rev. 5432) into DDCaloDigi. 
+   It incorporates changes to ILDCaloDigy by Daniel. The introduction of
+   parameters for the cell encoding fiels was not merged, since lcio files
+   produced with DDSim will have the standard conventions defined in 
+   the calorimeter segmentations
+ - Implemented access of subdetectors by DetType flags instead of strings
+ - Elevated missing ECal parameters to ERROR
+   
+
+  
+N. Nikiforou 17/02/2016
+ - Merged changes from MalrinPandora 02-02-00 up to today (7c88d10)
+
+--------
+v00-02 
+--------
+
+F.Gaede
+ - enforce unique selection in getExtension(include,exclude)
+   - throws exception if not unique
+ - bug fix: eCalBarrelExtension -> eCalEndcapExtension
+   for setting m_eCalEndCapInnerZ 
+ - added DetType::FORWARD to excludeFlags for main calorimeters 
+ - added DetType::AUXILIARY to excludeFlag for LCal ( exclude BeamCal )
+ - DDTrackCreatorILD.cc :
+   - added dd4hep units to parameters extracted from DD4hep 
+   - protect against poor tracks ( ndf <0 or missing/poor parameters)
+   - added debug printout for track selection
+
+
+
+N.Nikiforou 12/02/2016:
+  - Changed handling of Coil parameters: now the info is accessed from LayeredCalorimeterData 
+    extensions attached to the drivers (Solenoid for CLICdp, SCoil02 for ILD).
+  - Removed/commented out obsolete and unused auxilliary static functions
+
+N.Nikiforou 11/02/2016 (pm):
+  - Major overhaul using the detector type flags throught the package. No more string processor parameters
+    to access detectors.
+  - Protected some more against uncaught exceptions, but still more work needed
+  - Added more static helper functions to access extensions by data type flags
+
+N.Nikiforou 11/02/2016 (am):
+  - Modified DDTrackCreatorILD to use det type flags. Dropped tracker/vertex detector name parameters
+  - Modified DDTrackCreatorILD to actually access hits in fit (offset 2) which is the definition now. 
+    
+
+N.Nikiforou 10/02/2016:
+  - Started using the new facility by DD4hep that allows the accessing of detectors based on their
+    detector type flags. For now, just DDTrackCreatorCLIC was modified. The Marlin Processor parameters
+    associated with the vertex and tracker will soon be removed.
+
+N.Nikiforou 07/09/2015:
+  - Many changes that require full implemetation of DDRec structures for all subdetectors 
+  - Introduced DDTrackCreatorBase class and derived implementation classes for ILD and CLIC
+  - Removed references to "TPC" from DDTrackCreatorBase::Settings. Whatever was a configuration parameter
+    has its relevant variable and Processor parameter names changed from "Tpc" to "BarrelTracker". Also, 
+    moved any TPC geometry-related variables from DDTrackCreatorBase::Settings to DDTrackCreatorILD proper.
+  - Added Parameter for DDPandoraPFANewProcessor: TrackCreatorName to select the relevant implementation 
+    of DDTrackCreatorBase for the detector model in use (Curretly ILD or CLIC). Still need to implement
+    a proper factory to select the proper algorithm. 
+
+
+=========================
+ Mokka mokka-08-05-01
+=========================
+ F.Gaede
+ - patch in PhysicsListFactory.cc:
+   - use G4PhysListFactory if specified list not found
+     ( allows e.g. to use FTFP_BERT_EMY )
+
+
+=========================
+ MarlinReco v01-14
+=========================
+
+M. Berggren
+   - Much ameliorated linking for clusters, taking back-scattering and
+     decays in flight into account in a more correct way when finding
+     what MCP to connect to a sim-hit.
+     Work-around for the inverted meaning of the vertexIsNotEndpointOfParent
+     method in Mokka. Set processor parameter  InvertedNonDestructiveInteractionLogic
+     to activate the work-around (default is false)
+     More consistent debugging. All levels from 0 to 9 used.
+
+   - improved RecoMCTruthLinker
+     Changed weight in hit<->mcparticle relation to the CaloHit energy (instead of the
+     SimHit one). Also means the sim-hits not digitised (ie. without related CaloHit)
+     are ignored. This also feeds through to the weights in the Cluster<->MCparticle
+     relation, which should now be more correct: correct calibration factors applied
+     for each hit.
+     When doing the final relinking in problematic cases, explicitly check *only* back-scatters.
+     Added MCP->cluster link for the case with the fixup of the missing truth-link for
+     the LCAL in the DBD samples. Before only cluster->MCP was filled in this case.
+   - Correted the true-particle to calorimeter-hit link for the case that
+     the original true particle has been squeezed out by the cluster-linker,
+     typically because it was created before the calorimeter, but after the
+     last sensitive layer in the tracker.
+
+
+  - AddClusterProperties:
+     Use the PFO energy (not the cluster) when assign the PFO 4-momentum.
+     Also add the sum of weights (=hit energy) to the cluster shape parameters.
+     (In the DBD production, this is the same as the cluster energy, but it
+     is not guaranteed to be the case).
+   - Better/safer use of collection-parameters for indexing in sub-detector energy and shape-parameter arrays.
+   - Different/simpler(?) calculation of Cov(4mom) in PFO.
+
+F.Gaede 
+ - changed log level for "processing event" from MESSAGE to DEBUG8
+   in TPCDigiProcessor.cc
+   -> use Statusmonitor instead
+
+
+
+G.Wilson
+   - added GammaGammaCandidateTruthFilter
+    New processor to select those GammaGammaCandidates (fitted pairs of Pandora PFO photons) based 
+    on MC information indicating actual parentage from a true pi0, eta or eta' meson decaying to gamma gamma.
+    Output collections are called TrueGammaGammaPi0s etc.
+    Cuts are made on the parent meson being prompt (production vertex distance < 10 cm), and the amount of the PFO 
+    energy coming from the MC photon following similar criteria developed in ILDPerformance/pi0.
+    This aspect will need some further investigation/tuning.
+
+
+J.List
+ - improve TrueJet:
+ - First version that runs also over Higgs samples. No crash/obvious problem in several 1000s of events, 
+   but more sophisticated checks pending. When running with full RecoMCTruthLink, estimate of of seen of true 
+   energy needs fix, both on standard Whizard and Higgs samples
+
+
+ M. Kurata
+    - change overall structure for particle ID in LikelihoodPIDProcessor
+    - change dEdx error estimation
+
+ 
+M.Berggren:
+
+    Added AddClusterProperties processor, a processor that adds cluster
+    position and direction (w/uncertainties) to clusters, energy error 
+    (if not already set) to clusters and 4-mom (w/ covariance)
+    to neutral PFOs. Depends on a new MarlinUtil class (WeightedPoints3D),
+    so for now, the processor is out-commented in CMakeLists.txt, to
+    avoid problems if MarlinUtil isnot up-to-date !
+
+
+G.Wilson 
+  - update GammaGammaCandidateFinder
+    - compute and fill ReconstructedParticle covariance matrix
+  - Add GammaGammaSolutionFinder and DistilledPFOCreator processors
+  - Add some steering options - and fit quality checks
+  - Add 1st implementation of graph based solution finding in GammaGammaSolutionFinder - depends on BOOST
+
+T.Calancha
+  - The correlations of the energy (e) with x,y,z,e were stored in the wrong position of the matrix
+    in FourMomentumCovMat. Thx to Ali Ebrahimi.
+
+D.Jeans 
+  -  electronics dynamic range applied before unfolding of PPD saturation
+    in ILDCaloDigi.cc /  ScintillatorPpdDigi.cc
+
+H.Sert
+  - a separate algorithm was created for low P mu-pi ID in LikelihoodPIDProcessor.cc
+
+ J.Tian
+ - leave skipping or not an event without isolep to user in IsolatedLeptonTaggingProcessor.cc
+
+T.Suehara
+  -  bugfix on track charge in TrackToRecoParticleConverter
+
+ J.List
+  - added dummy error functions to ClusterShapesMR for MarlinPandora development, to be filled with life 
+    once proper calculations 
+    are available
+  - made SimpleFCalDigi use MarlinUtil:caloTypeFromString(_caloType)
+
+
+=========================
+ FCalClusterer v00-02
+=========================
+
+LumiCalReco:
+* Bugfixes/improvements by Bogdan Pawlik
+  - Read Parameters from Gear
+  - More steering parameters from xml
+  - Fix to create the cluster on the proper side
+
+BeamCalReco:
+* Bugfixes/improvements from Andrey Sapronov
+  - BackgroundMethod Parametrised renamed to Gaussian
+  - new BackgroundMethod Parametrised with Gaus/x parametrisation
+
+* More examples in the example folder
+
+* Bugfixes from Andre Sailer
+
+
+=========================
+ ILDPerformance v00-02
+=========================
+
+  - Jenny added PID subdirectory 
+  - additional directories:  JER, PID, pi0 
+
+   -> for details see Changelog.txt 
+  https://svnsrv.desy.de/websvn/wsvn/General.marlinreco/ILDPerformance/tags/v00-02/Changelog.txt
+
+=========================
+ LCFIVertex v00-07-01
+=========================
+  - same code as  v00-07 but correct version number ( was  v00-06-02 in v00-07)
+
+=========================
+ LCFIPlus v00-07
+=========================
+   F.Gaede:  the releases mentioned below have never been created in SVN
+     but they are contained in this release:
+
+--------------
+| v00-06-03 |
+--------------
+- Bugfix in JetFinder (default behaviour changed at v00-06-01)
+- Durham and Valencia jet algorithms with beam jets introduced
+
+--------------
+| v00-06-02 |
+--------------
+- Automatic creation of JointProbability histograms implemented
+- Calculation of joint probability with histograms automatically created (jprob2)
+  Use v03_p01 steering, vertex probability and weight files in ILDConfig
+  for the new joint probability.
+
+--------------
+| v00-06-01? |
+--------------
+- Added possibility to include beam jets in JetFinder (thanks to Philipp Roloff)
+
+--------------
+| v00-06-00a |
+--------------
+***** Development release: please use at your own risk *****
+- 6-category training (b,c,o,bb,bc,cc) implemented
+- Extracting all variables used for the flavor tagging now available
+- Added MC-related input variables (MCnb, MCnc etc.)
+  in flavor tagging to be used for training
+  (available only if MCParticle collection is supplied)
+- Added more input variables for flavor tagging
+
+
+=========================
+ MarlinKinfit v00-02
+=========================
+ J.List
+ moved example processors now into separate package MarlinKinfitProcessors,
+ added ZinvisibleFitObject,
+ debugged covariance matrix on fitted 4-momenta. 
+
+=========================
+ PandoraPFANew v02-05-00
+=========================
+ 
+many changes - see individual packages release notes:
+PandoraSDK: v02-02-00
+PandoraMonitoring: v02-02-00
+LArContent: v02-04-01
+LCContent: v02-02-00
+ExampleContent: v02-01-02
+ ---- previous release:
+PandoraSDK: v02-00-00
+PandoraMonitoring: v02-00-00
+LArContent: v02-00-00
+LCContent: v02-00-00
+
+
+=========================
+ MarlinPandora v02-02-00
+=========================
+
+PfoCreator updates to set Cluster and ReconstructedParticle properties. Requires new functionality from MarlinUtil ClusterShapes class.
+Changed definition of some output properties and provided some new outputs, as agreed at High Level Reconstruction Workshop in June 2015.
+Update Track creator to calculate track time at calorimeter.
+Bug fix added to validate track relationship information in the case where pattern recognition is cheated.
+Added MarlinPandoraValidation.xml to scripts directory.  This script is to be used when validating changes to Pandora.
+Modified MarlinPandora.xml to show necessary settings for running of multiple concurrent pandora instances.
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+TAG v02-01-00
+--------------------------------------------------------------------------------------------------------------------------------------------
+PandoraSettings updates, switch verson control and source distribution to git.
+
+
+=========================
+ CEDViewer v01-11
+=========================
+ F.Gaede
+ - ced2go
+    - increased size of tracker hits drawn for tracks
+    - added optional EventSelector to ced2go/ced2go-template-DD4.xml
+     ( commented out )
+ - DDCEDViewer.cc
+   - added printout of shown collections and event number to DDCEDViewer
+   - fixed duplicate drawing of collections in DDCEDViewer
+   - fixed some log levels
+   - introduced flag DrawEllipsoidForPFOClusters
+     (default is Disabled)
+   - draw calorimeter hits for PFO clusters ...
+
+T.Quast, RWTH Aachen
+   
+  - ced2go
+   - Allow for Marlin options '--', '-n' option removed due to default 'global.SkipNEvents=...' option
+   - Extend ced2go's help message
+  - DDCEDViewer
+   - Jet collections to be defined in DrawInLayer, jets are drawn if the collection contains the substring 'Jet'
+   - use logarithmic (ROOT) color map for reconstructed clusters' energy visualization
+   - energy-weighted track lengths for jet entities
+   - energy-weighted track lengths for jet entities
+   - Draw energy clusters as ellipsoids. Energy scaling with colors, (energy weighted) spatial extension <--> size of according ellipsoid
+   - Improve jet visualization for CEDViewer
+   - removed GEAR dependencies, merge of processors, adjusted ced2go and add skipNEvents option, 
+     implement jet visualization  (commit requires tip version of MarlinUtil
+
+
+=========================
+ MarlinTPC v01-01
+=========================
+
+F.Gaede
+  - replaced m_out with streamlog_out
+    ( m_out no longer defined in Marlin)
+
+P.Malek
+  - updated pulse fraction plot implementation and included plot with fraction of hits with 4 or more pulses
+  
+  - added the possibility to run distortion corrections based on calculations done
+  with Millepede II, for which the data is prepared by
+  SimpleHelixGeneralBrokenLineInterfaceProcessor and
+  GeneralBrokenLineInterfaceHelpers
+  also added SelectNthEventsProcessor (originally written by Uli Einhaus, improved
+  by me) which allows to select a subset of events to run the distortion
+  calculations on
+  
+  - I split off the pulse shape part of PulsePerHitProcessor into it's own Processor
+  I also added a new plot to the PulsePerHit rootscript, which shows the fractions
+  of hits with specific numbers of pulses vs the drift distance
+
+
+
+ A.Vauth 
+  -Changes in the simulation of readout electronics (ADC pulses): 
+  - adding the possibility to include time jitter for Gaussian ADC and ALTRO ADC.
+  - changed shaper function in ALTROADC from TF1 to a plain double function to save computing time - TF1::EvalPar comes with a lot of extra stuff which is run every time Eval is called, when all we really need is to calculate the function result).
+  (- and also some indentation changes in the GaussianADC.)
+  
+   - calculation of hit time: added option to take neighbour pulses into account in addition to the maximum.
+  
+  - Simulation of primary ionisation: more flexibility in reading in electrons-per-cluster file (e.g. no more hard-coded line numbers). Replaces all printf's and cerr's with matching streamlog_out. 
+   
+  
+  - Added the possibility to include noise to simulated ADC spectra.
+  
+  - One can switch between different models to describe the (options are 0=no noise, 1=gaussian, 2=landau):
+  When noise is included, the amount of noise to add to the ADC spectrum is taken from a Gaus distributed around zero. The with of this Gaus is chosen for each pad individually from either a Gaus or a Landau distribution around the parameter NoiseLevel (mean of the pedestal width distribution) with width parameter NoiseWidth.
+  
+  - To account for the fact that horribly noisy channels would probably be excluded from the analysis of real data, a cutoff for the allowed noise level can be set.
+  
+  
+  
+  - Fixed the indentation of a few files I'm planning to commit (decided to do it in a seperate commit, so that svn diff will still show meaningful differences for the actual changes in future commits, and not be flooded by whitespace / linebreak / ... changes).
+  Indentation now done according to the coding conventions as described in the MarlinTPC wiki (i.e. the result of running astyle -s4 -C -c -M80 -U -p -k1 -A1 -S -Y on the files...).
+  
+  - Fixes/changes in MMHitTimeCorrectionProcessor
+   - now the readout frequency set in ReadoutFrequencyOverride is actually used
+   - in methods 6 and 7 (Gaussian Inflexion Point and Gaussian Mean): changing from arrays to vectors for the fitted bins, to account for the case where less than 5 bins before the maximum are available
+   - fixed indentation of the code
+  
+  - Simulation of primary ionisation: adding option to use user-given parametrisation for the cluster density.
+  This was necessary since the parametrisation for TDR/P5/P10 does not match T2K gas as well (seems to be mostly due to the isobutane).
+  
+  - Adding the T2K parametrisation to simulation inputs;
+  also including the code used to obtain it in tools/SimulationClusterDensity for potential future use with other gas mixtures.
+  
+   - Simulation: bug fix in HitDistributor. A factor of 0.5 was missing in the gaussian integral for the z-distribution calculated when longitudinal distribution in the GEM stack is switched on. This resulted in depositing a total charge factor 2 too high.
+  
+   - GEM simulation: allow setting of the theta-parameter for polya gain as an optional parameter. Some minor changes to othere files in addition (mostly graph/histogram names).
+
+
+=========================
+ LCTuple v01-05
+=========================
+
+ F.Gaede
+  - protect against missing collections in CreateRecoRelations.cc
+ 
+ S.Lu
+  -  Implement CalorimeterHitBranches into LCTuple.
+ 
+ A.Ebrahimi
+  - Added covariance matrix histograms to jet branches
+ 
+ J.List
+  - added lctuple_DST.xml  to convert current DST to root
+
+
+=============================================================================================================================

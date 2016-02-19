@@ -7,7 +7,7 @@
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-09-pre01'
+ilcsoft_release='v01-17-09'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -143,9 +143,9 @@ CMake_version = "2.8.5"
 
 # -------------------------------------------
 
-LCIO_version = "v02-07-pre01"
+LCIO_version = "v02-07"
 
-GEAR_version = "v01-05-pre" 
+GEAR_version = "v01-05" 
 
 CED_version = "v01-09-02"
 
@@ -161,10 +161,10 @@ MarlinFastJet_version = "v00-02"
 
 # -------------------------------------------
 
-DD4hep_version = "v00-15-pre" ## need update for rel. notes
-DD4hepExamples_version = "v00-15-pre"
+DD4hep_version = "v00-15" 
+DD4hepExamples_version = "v00-15"
 
-lcgeo_version = "v00-06-pre" ## need update for rel. notes
+lcgeo_version = "v00-06" ## need update for rel. notes
  
 # -------------------------------------------
 
@@ -172,13 +172,13 @@ KalTest_version = "v02-01"
 
 KalDet_version = "v01-13-02"
 
-aidaTT_version = "v00-03-pre"
+aidaTT_version = "v00-03"
 
-DDKalTest_version = "v00-03-pre"
+DDKalTest_version = "v00-03"
 
-MarlinTrk_version = "v02-01-pre"
+MarlinTrk_version = "v02-01"
 
-MarlinTrkProcessors_version = "v02-02-pre"
+MarlinTrkProcessors_version = "v02-02"
 
 Clupatra_version = "v00-13"
 
@@ -186,7 +186,7 @@ KiTrack_version = "v01-06"
 
 KiTrackMarlin_version = "v01-08"
 
-ForwardTracking_version = "v01-09-pre"
+ForwardTracking_version = "v01-09"
 
 # -------------------------------------------
 
@@ -196,35 +196,35 @@ LCCD_version = "v01-03"
 
 RAIDA_version = "v01-06-02"
 
-MarlinUtil_version = "v01-11-pre"
+MarlinUtil_version = "v01-11"
 
-Marlin_version = "v01-08-pre"
+Marlin_version = "v01-08"
 
 MarlinDD4hep_version = "v00-01"
 
-DDMarlinPandora_version = "v00-03-pre"
+DDMarlinPandora_version = "v00-03"
 
 Mokka_version = "mokka-08-05-01" 
 
-MarlinReco_version = "v01-14-pre01"
+MarlinReco_version = "v01-14"
 
-FCalClusterer_version = "v00-02-pre01"
+FCalClusterer_version = "v00-02"
 
-ILDPerformance_version = "v00-02-pre01"
-
+ILDPerformance_version = "v00-02"
 
 LCFIVertex_version = "v00-07-01"
-LCFIPlus_version = "v00-07-pre"
+
+LCFIPlus_version = "v00-07"
 
 
-MarlinKinfit_version = "v00-02-pre" ## need update for rel. notes
-MarlinKinfitProcessors_version = "v00-01-pre"
+MarlinKinfit_version = "v00-02"
+MarlinKinfitProcessors_version = "v00-01"
 
 PandoraPFANew_version = "v02-05-00"
 MarlinPandora_version = "v02-02-00"
 PandoraAnalysis_version = "v01-02-00" 
 
-CEDViewer_version = "v01-11-pre"
+CEDViewer_version = "v01-11"
 
 Overlay_version = "v00-14"
 
@@ -232,7 +232,7 @@ PathFinder_version =  "v00-06"
 
 MarlinTPC_version = "v01-01"
 
-LCTuple_version = "v01-05-pre"
+LCTuple_version = "v01-05"
 
 BBQ_version =  "v00-01-02"
 
