@@ -164,7 +164,7 @@ MarlinFastJet_version = "v00-02"
 DD4hep_version = "v00-15" 
 DD4hepExamples_version = "v00-15"
 
-lcgeo_version = "v00-06" ## need update for rel. notes
+lcgeo_version = "v00-07"
  
 # -------------------------------------------
 
