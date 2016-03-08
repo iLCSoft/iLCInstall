@@ -11,11 +11,13 @@ import datetime
 # --------- ilcsoft release version ------------------------------------------
 today = str( datetime.date.today() )
 ilcsoft_release='HEAD-'+today
+#ilcsoft_release='HEAD-2016-03-07'
+
 # ----------------------------------------------------------------------------
 
 #-----------------------
 # optionally build with c++11 ?
-use_cpp11 = False
+use_cpp11 = True
 
 #===============================================================================
 # NB: c++11 - needs a newer compiler and compatible python, e.g. run
@@ -121,24 +123,27 @@ if( use_cpp11 ):
 #=============================================================================
 # CXX_FLAGS for c++ compiler:
 #
-CMAKE_CXX_FLAGS = '-Wall'
 
 if( use_cpp11 ):
     CMAKE_CXX_FLAGS = '-Wall -std=c++11'
+else:
+    CMAKE_CXX_FLAGS = '-Wall -ansi -pedantic -Wno-long-long'
 
 # ----------------------------------------------------------------------------
 
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version = "10.01"  
+Geant4_version = "10.01" # "10.02.p01" # "10.01" 
 
-ROOT_version = "5.34.30" 
-#ROOT_version = "6.04.08" 
+if( use_cpp11 ):
+    ROOT_version = "6.06.02"
+else:
+    ROOT_version = "5.34.30" 
 
-CLHEP_version = "2.1.4.1" 
+CLHEP_version = "2.1.4.1" # "2.3.1.1" #  "2.1.4.1"
 
-GSL_version = "1.14"
+GSL_version = "2.1" # "1.14"
 
 QT_version = "4.7.4"
 
@@ -158,9 +163,9 @@ ILCUTIL_version = "v01-02-01"
 
 FastJet_version = "3.1.2"
 
-FastJetClustering_version = "v00-02"
+FastJetClustering_version = "HEAD" #"v00-02"
 
-MarlinFastJet_version = "v00-02"
+MarlinFastJet_version = "HEAD" # "v00-02"
 
 
 # -------------------------------------------
@@ -187,7 +192,7 @@ ForwardTracking_version = "HEAD" # "v01-08"
 
 # -------------------------------------------
 
-GBL_version = "V01-16-04"
+GBL_version = "HEAD" # "V01-16-04"
 
 LCCD_version = "HEAD" # "v01-03"
 
