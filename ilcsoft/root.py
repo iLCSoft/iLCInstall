@@ -53,8 +53,8 @@ class ROOT(BaseILC):
         BaseILC.downloadSources(self)
 
         # move sources to a subdirectory
-        os.renames( self.version, self.name )
-        os.renames( self.name, self.version + "/" + self.name )
+##        os.renames( self.version, self.name )
+##        os.renames( self.name, self.version + "/" + self.name )
 
     def cleanupInstall(self):
         BaseILC.cleanupInstall(self)
@@ -64,27 +64,55 @@ class ROOT(BaseILC):
     def compile(self):
         """ compile root """
 
-        os.chdir( self.installPath + "/" + self.name )
+#        os.chdir( self.installPath + "/" + self.name )
 
         #if( self.rebuild ):
         #    os.system( "make clean" )
 
         gsl=self.parent.module("GSL")
+        gsl_bindir = gsl.installPath + "/bin"
         gsl_libdir = gsl.installPath + "/lib"
         gsl_incdir = gsl.installPath + "/include"
 
         os.environ["LD_RUN_PATH"] = gsl_libdir
 
-#        if( os.system( "./configure --fail-on-missing --enable-builtin-pcre --enable-explicitlink --enable-soversion --enable-roofit --enable-minuit2 --enable-gdml --enable-table --enable-unuran --enable-xrootd --enable-gsl-shared --with-gsl-incdir="+ gsl_incdir +" --with-gsl-libdir="+ gsl_libdir ) != 0 ):
-#        if( os.system( "./configure --fail-on-missing --enable-builtin-pcre --enable-explicitlink --enable-soversion --enable-roofit --enable-minuit2 --enable-gdml --enable-table --enable-unuran --enable-gsl-shared --with-gsl-incdir="+ gsl_incdir +" --with-gsl-libdir="+ gsl_libdir + " --enable-python --with-python-libdir=/usr/lib") != 0 ):
-        if( os.system( "./configure --fail-on-missing --enable-builtin-pcre --enable-explicitlink --enable-soversion --enable-roofit --enable-minuit2 --enable-gdml --enable-table --enable-unuran --enable-gsl-shared --with-gsl-incdir="+ gsl_incdir +" --with-gsl-libdir="+ gsl_libdir + " --enable-python") != 0 ):
+##        if( os.system( "./configure --fail-on-missing --enable-builtin-pcre --enable-explicitlink --enable-soversion --enable-roofit --enable-minuit2 --enable-gdml --enable-table --enable-unuran --enable-gsl-shared --with-gsl-incdir="+ gsl_incdir +" --with-gsl-libdir="+ gsl_libdir + " --enable-python") != 0 ):
+##            self.abort( "failed to configure!!" )
+##
+##
+##
+##        if( os.system( "make 2>&1 | tee -a " + self.logfile ) != 0 ):
+##            self.abort( "failed to compile!!" )
+##
+##        if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
+##            self.abort( "failed to install!!" )
+
+        trymakedir( self.installPath + "/../build-" + self.version )
+        os.chdir( self.installPath + "/../build-" + self.version )
+
+        if( self.rebuild ):
+            tryunlink( "CMakeCache.txt" )
+
+        self.envcmake['CMAKE_INSTALL_PREFIX']=self.installPath
+
+        self.envcmake['GSL_CONFIG_EXECUTABLE']=gsl_bindir+'/gsl-config'
+
+        self.envcmake.setdefault( 'gsl_shared',     'ON' )
+        self.envcmake.setdefault( 'gdml',           'ON' )
+        self.envcmake.setdefault( 'minuit2',        'ON' )
+        self.envcmake.setdefault( 'roofit',         'ON' )
+        self.envcmake.setdefault( 'unuran',         'ON' )
+        self.envcmake.setdefault( 'xrootd',         'ON' )
+        self.envcmake.setdefault( 'builtin_xrootd', 'ON' )
+        self.envcmake.setdefault( 'fortran',        'OFF' )
+
+        if( os.system( self.genCMakeCmd() + " 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
-
-        if( os.system( "make 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
-
         if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to install!!" )
+
 
 
     def postCheckDeps(self):
