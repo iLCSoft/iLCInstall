@@ -134,20 +134,20 @@ else:
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version = "10.01" # "10.02.p01" # "10.01" 
+Geant4_version = "10.02.p01" # "10.01" 
 
 if( use_cpp11 ):
     ROOT_version = "6.06.02"
 else:
     ROOT_version = "5.34.30" 
 
-CLHEP_version = "2.1.4.1" # "2.3.1.1" #  "2.1.4.1"
+CLHEP_version =   "2.3.1.1" #  "2.1.4.1"
 
 GSL_version = "2.1" # "1.14"
 
 QT_version = "4.7.4"
 
-CMake_version = "2.8.5"
+CMake_version = "3.4.3" # "2.8.5"
 
 CED_version = "v01-09-01"
 
@@ -253,9 +253,9 @@ Physsim_version = "HEAD" # "v00-02"
 
 
 # xerces-c (needed by geant4 for building gdml support - required by mokka)
-XERCESC_ROOT_DIR = ilcPath + "/xercesc/3.1.2"
+XERCESC_ROOT_DIR = ilcPath + "/xercesc/3.1.3"
 
-XercesC_version = "3.1.2" 
+XercesC_version = "3.1.3" 
 
 #--- slic et al:
 
