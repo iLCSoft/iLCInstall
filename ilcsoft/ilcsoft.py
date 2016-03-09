@@ -12,7 +12,7 @@ from util import *
 from java import Java
 from qt import QT
 from cmake import CMake
-
+import commands
 
 class ILCSoft:
     """ Container class for the ILC software modules.
@@ -374,6 +374,24 @@ class ILCSoft:
         
         f.write( 'export ILCSOFT='+self.installPath  + os.linesep  )
         
+        #------- prepend the pathes for the compiler and python used in this installation -------
+
+        compiler = self.env["CXX"]
+        status, cxx_path = commands.getstatusoutput( "which "+compiler )
+        cxx_path =  os.path.dirname( os.path.dirname( cxx_path ) ) # remove '/bin/g++'
+
+        status, py_path = commands.getstatusoutput( "which python" )
+        py_path =  os.path.dirname( os.path.dirname( py_path ) ) # remove '/bin/python'
+
+        f.write( os.linesep + '# -------------------------------------------------------------------- ---' + os.linesep )
+        f.write( os.linesep + '# ---  Use the same compiler and python as used for the installation   ---' + os.linesep )
+        f.write( os.linesep + '# -------------------------------------------------------------------- ---' + os.linesep )
+        f.write( 'export PATH='+cxx_path+'/bin:'+ py_path+'/bin:${PATH}' + os.linesep  )
+        f.write( 'export LD_LIBRARY_PATH='+cxx_path+'/lib:'+ cxx_path+'/lib64:'+ py_path+'/lib:${LD_LIBRARY_PATH}' + os.linesep  + os.linesep )
+
+        #----------------------------------------------------------------------------------------
+
+
         for mod in self.modules:
             mod.writeEnv(f, checked)
         geant=self.module('Geant4')
