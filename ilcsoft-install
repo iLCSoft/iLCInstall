@@ -59,6 +59,7 @@ ilcsoft_afs_path['gcc41_64bit'] = os.path.normpath( os.path.join( ilcsoft_afs_pa
 ilcsoft_afs_path['gcc44_64bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc44_sl6' ))
 ilcsoft_afs_path['gcc48_64bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc48_sl6' ))
 ilcsoft_afs_path['gcc46_64bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc46_ub1204' ))
+ilcsoft_afs_path['gcc48_64bit_ub1404'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc48_ub1404' ))
 
 ilcPath = None
 try:
@@ -66,6 +67,9 @@ try:
     sizeofint = platform.architecture()[0]
     gccver = ''.join( platform.python_compiler().split()[-1].split('.')[:2] )
     arch = 'gcc' + gccver + '_' + sizeofint
+    platf = platform.platform()
+    if( platf.find("trusty")>0):
+        arch += "_ub1404"
     ilcPath = ilcsoft_afs_path[ arch ] + '/'
     gcccheck = platform.python_compiler()
     print gcccheck
