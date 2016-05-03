@@ -82,6 +82,8 @@ class DD4hep(BaseILC):
 
         self.env[ 'DD4HEP' ] = self.installPath
         self.env[ 'DD4hepINSTALL' ] = self.installPath
+        self.env[ 'DD4hep_DIR' ] = self.installPath
+        self.env[ 'DD4hep_ROOT' ] = self.installPath
 
 #        self.envcmds.append("export G4WORKDIR=$DD4HEP")
 
