@@ -20,7 +20,8 @@ class CED(BaseILC):
 
         self.reqfiles = [ ["lib/libCED.so","lib/libCED.a","lib/libCED.dylib"] ]
 
-        self.download.root = "marlinreco"
+        self.download.supportedTypes = [ "git"]
+        self.download.svnurl = 'https://github.com/iLCSoft/CED.git'
 
         self.envcmake['CED_SERVER']='OFF'
 

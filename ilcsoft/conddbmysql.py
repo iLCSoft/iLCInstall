@@ -20,7 +20,8 @@ class CondDBMySQL(BaseILC):
 
         self.reqfiles = [ ["lib/libconddb.so","lib/libconddb.dylib"] ]
 
-        self.download.root = "calice"
+        self.download.supportedTypes = [ "git"]
+        self.download.svnurl = 'https://github.com/iLCSoft/CondDBMySQL.git'
 
         self.reqmodules_buildonly = [ "MySQL" ]
 

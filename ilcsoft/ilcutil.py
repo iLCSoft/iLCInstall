@@ -23,7 +23,8 @@ class ILCUTIL(BaseILC):
             [ "lib/libstreamlog.a", "lib/libstreamlog.so", "lib/libstreamlog.dylib"]
         ]
 
-        self.download.root = "ilctools"
+        self.download.supportedTypes = [ "git"]
+        self.download.svnurl = 'https://github.com/iLCSoft/iLCUtil.git'
 
     def compile(self):
         """ compile ilcutil """
