@@ -9,18 +9,20 @@
 
 # --------- ilcsoft release version ------------------------------------------
 #ilcsoft_release='v00-00'
+#ilcsoft_release='TEST'
 ilcsoft_release='HEAD'
 # ----------------------------------------------------------------------------
 
 
 # --------- install dir ------------------------------------------------------
-#ilcsoft_install_prefix = "/scratch/$USER/slic/"
-ilcsoft_install_prefix = "/u1/projects/slic"
+#ilcsoft_install_prefix = "/work/ilcsoft/slic"
+ilcsoft_install_prefix = "/scratch/$USER/slic/"
+#ilcsoft_install_prefix = "/u1/projects/slic"
 #ilcsoft_install_prefix = "/work/projects/slic"
 
 # ======================= PACKAGE VERSIONS ===================================
 
-XercesC_version = "3.1.1" 
+XercesC_version = "3.1.3"
 LCIO_version = "HEAD"
 ILCUTIL_version = "v01-00"
 Geant4_version = "10.00.p02"
