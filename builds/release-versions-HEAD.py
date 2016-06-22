@@ -10,7 +10,7 @@ import datetime
 
 # --------- ilcsoft release version ------------------------------------------
 today = str( datetime.date.today() )
-ilcsoft_release='HEAD'
+ilcsoft_release=''
 #ilcsoft_release='HEAD-2016-03-07'
 
 use_cpp11 = True
@@ -20,7 +20,7 @@ ilcsoft_install_prefix = "/scratch/ilcsoft/"
 
 ilcPath = ilcsoft_install_prefix
 
-Boost_path = "/cvmfs/clicdp.cern.ch/software/Boost/1.61.0/x86_64-slc6-gcc48-opt/"
+Boost_path = "/cvmfs/clicdp.cern.ch/software/Boost/1.61.0/x86_64-slc6-gcc48-dbg/"
 
 if( use_cpp11 ):
     CMAKE_CXX_FLAGS = '-Wall -std=c++11'
@@ -42,7 +42,7 @@ QT_version = "4.7.4"
 
 CMake_version = "3.4.3" # "2.8.5"
 
-CED_version = "v01-09-01"
+CED_version = "HEAD"
 
 # -------------------------------------------
 
@@ -50,11 +50,11 @@ LCIO_version = "HEAD" # "v02-06"
 
 GEAR_version = "HEAD" # "v01-04-02" 
 
-CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
+CondDBMySQL_version = "HEAD"
 
-ILCUTIL_version = "v01-02-01" 
+ILCUTIL_version = "HEAD" 
 
-FastJet_version = "3.1.3"
+FastJet_version = "HEAD"
 
 FastJetClustering_version = "HEAD" #"v00-02"
 
@@ -144,11 +144,6 @@ lcgeo_version = "HEAD" # "v00-05"
 
 Physsim_version = "HEAD" # "v00-02" 
 
-
-# xerces-c (needed by geant4 for building gdml support - required by mokka)
-XERCESC_ROOT_DIR = ilcPath + "/xercesc/3.1.3"
-
-XercesC_version = "3.1.3" 
 
 #--- slic et al:
 
