@@ -7,17 +7,17 @@
 ###########################################
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release = "HEAD"
+ilcsoft_release = "DEV"
 
 # --------- install dir ------------------------------------------------------
-#ilcsoft_install_prefix = "/scratch/$USER/slic/"
-#ilcsoft_install_prefix = "/u1/projects/slic"
-ilcsoft_install_prefix = "/work/ilcsoft/slic"
+ilcsoft_install_prefix = "/scratch/$USER/slic/"
+#ilcsoft_install_prefix = "/work/ilcsoft/slic"
+#ilcsoft_install_prefix = "/work/projects/slic"
 
 # ======================= PACKAGE VERSIONS ===================================
 
 ILCUTIL_version = "v01-00"
-CMake_version = "3.3.1"
+CMake_version = "3.5.2"
 XercesC_version = "3.1.3"
 Geant4_version = "10.01.p02"
 HepPDT_version = "3.04.01"
