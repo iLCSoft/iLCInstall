@@ -17,7 +17,7 @@ ilcsoft_release='HEAD-'+today
 
 #-----------------------
 # optionally build with c++11 ?
-use_cpp11 = True
+use_cpp11 = True #False 
 
 #===============================================================================
 # NB: c++11 - needs a newer compiler and compatible python, e.g. run
@@ -124,10 +124,11 @@ if( use_cpp11 ):
 # CXX_FLAGS for c++ compiler:
 #
 
-if( use_cpp11 ):
-    CMAKE_CXX_FLAGS = '-Wall -std=c++11'
-else:
-    CMAKE_CXX_FLAGS = '-Wall -ansi -pedantic -Wno-long-long'
+#if( use_cpp11 ):
+#    CMAKE_CXX_FLAGS = '-Wall -std=c++11'
+#else:
+#  CMAKE_CXX_FLAGS = '-Wall -ansi -pedantic -Wno-long-long'
+
 
 # ----------------------------------------------------------------------------
 
@@ -159,7 +160,7 @@ GEAR_version = "HEAD" # "v01-04-02"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
 
-ILCUTIL_version = "v01-02-01" 
+ILCUTIL_version = "v01-03-pre"  #  "v01-02-01" 
 
 FastJet_version = "3.1.2"
 
