@@ -11,6 +11,8 @@
 from util import *
 
 import logging
+import requests
+import simplejson
 
 log = logging.getLogger('ilcinstall')
 log.setLevel(logging.DEBUG)
@@ -341,7 +343,7 @@ class BaseILC:
                     else:
                         self.download.svnurl += 'tags/'+self.version
             # git access to repository
-            elif ( self.download.type[:3] == "git" ):
+            elif ( self.download.type[:3] == "git" or self.download.type[:6] == "GitHub"):
                 if( not isinPath("git") ):
                     self.abort( "git not found on your system!!" )
 
@@ -728,6 +730,29 @@ class BaseILC:
             print "git checkout tag cmd:",gittagcmd
             if( os.system( gittagcmd ) != 0 ):
                 self.abort( "Problems occurred checking out tag "+self.version+"!!")
+
+        elif( self.download.type[:6] == "GitHub" ):
+	    if( self.version =="HEAD" or self.version =="dev" or self.version =="devel" or self.version =="master"):
+	        #clone the whole repo into the directory
+	        cmd="git clone https://github.com/%s/%s.git %s" % (self.download.gituser, self.download.gitrepo, self.version)
+	        print "Executing command:",cmd
+                if( os.system( cmd ) != 0 ):
+                    self.abort( "Problems occurred during execution of " + cmd + " [!!ERROR!!]")
+
+		print "Cloning of repository %s/%s into directory %s sucessfully finished" % (self.download.gituser, self.download.gitrepo, self.version)
+
+	      
+	    elif( 'message' not in requests.get('https://api.github.com/repos/%s/%s/git/refs/tags/%s' % (self.download.gituser, self.download.gitrepo, self.version)).json().keys() ):
+	        cmd = "mkdir -p %s" % (self.version)
+	        if( os.system( cmd ) != 0 ):
+                    self.abort( "Could not create folder" + self.version + " [!!ERROR!!]")
+                    
+	        cmd = "curl -L -k https://api.github.com/repos/%s/%s/tarball/refs/tags/%s | tar xz --strip-components=1 -C %s" % (self.download.gituser, self.download.gitrepo, self.version, self.version)
+                if( os.system( cmd ) != 0 ):
+                    self.abort( "Could not download and extract tag " + self.version + " [!!ERROR!!]")
+		print "Downloading of the tag %s of repository %s/%s into directory %s sucessfully finished" % (self.version, self.download.gituser, self.download.gitrepo, self.version)
+            else:
+                self.abort( "The specified tag " + self.version + " does not exist [!!ERROR!!]")
 
         elif( self.download.type == "wget" ):
 
@@ -1288,11 +1313,13 @@ class Download:
         self.accessmode = "ext"                     # server access mode
         self.url = ""                               # url for getting tarball with wget
         self.svnurl = ""                            # url for getting tarball with wget
+        self.gituser = ""                           # varibale for storing the git user
+        self.gitrepo = ""                           # varibale for storing the git repository of a user
         self.tarball = ""                           # name of the tarball used for wget downloads
         self.env = {}                               # environment (CVSROOT, CVS_RSH)
         self.type = "wget"                          # download type (wget, cvs, ccvssh)
         self.supportHEAD = True                     # support for downloading HEAD version
-        self.supportedTypes = [ "wget", "svn", "svn-desy", "svn-p12cert", "svn-export", "git", "git-clone", "ccvssh" ]  # supported download types for the module
+        self.supportedTypes = [ "wget", "svn", "svn-desy", "svn-p12cert", "svn-export", "git", "git-clone", "ccvssh", "GitHub" ]  # supported download types for the module
         self.url = {}
         self.cmd = "wget"
 
@@ -1303,6 +1330,8 @@ class Download:
             return "\t\t+ SVN [ " + self.svnurl + " ]"
         elif ( self.type[:3] == "git" ):
             return "\t\t+ git [ " + self.svnurl + " ]"
+        elif ( self.type[:6] == "GitHub" ):
+            return "\t\t+ git [ " + self.gituser + "/" + self.gitrepo + " ]"
         else:
             return "\t\t+ CVSROOT [ " + self.env["CVSROOT"] + " ]"
 
