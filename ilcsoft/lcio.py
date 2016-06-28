@@ -20,12 +20,12 @@ class LCIO(BaseILC):
         
         self.reqfiles = [ ["lib/liblcio.a", "lib/liblcio.so", "lib/liblcio.dylib"] ]
         
-        # optional modules
-        #self.optmodules = [ "dcap", "ROOT" ]
         self.optmodules = [ "ROOT" ]
 
         # supported download types
-        self.download.supportedTypes = ["svn"]
+        self.download.supportedTypes = ["GitHub"]
+        self.download.gituser = 'iLCSoft'
+        self.download.gitrepo = 'LCIO'
 
         self.envcmake["INSTALL_JAR"]="OFF"
 
