@@ -18,7 +18,11 @@ class ConfigPKG(BaseILC):
     def __init__(self, name, userInput):
         BaseILC.__init__(self, userInput, name, name)
         self.reqfiles = []
-        self.download.root = "ilctools"
+
+        self.download.supportedTypes = ["GitHub"]
+        self.download.gituser = 'iLCSoft'
+        self.download.gitrepo = name
+
         self.hasCMakeBuildSupport = False
         self.hasCMakeFindSupport = False
         self.skipCompile = True
@@ -30,6 +34,9 @@ class MarlinPKG(BaseILC):
         BaseILC.__init__(self, userInput, name, name)
         self.reqfiles = [ [ str("lib/lib" + name + ".a"), str("lib/lib" + name + ".so"), str("lib/lib" + name + ".dylib") ] ]
         self.reqmodules=[ 'LCIO', 'Marlin' ]
+
+        self.download.gituser = 'iLCSoft'
+        self.download.gitrepo = name
 
     def compile(self):
         """ compile MarlinPKG """
