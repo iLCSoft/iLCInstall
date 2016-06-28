@@ -23,8 +23,9 @@ class LCFIVertex(MarlinPKG):
         # optional modules
         self.optmodules = [ "AIDA" ]
 
-        # cvs root
-        self.download.root="marlinreco"
+        self.download.supportedTypes = ["GitHub"]
+        self.download.gituser = 'iLCSoft'
+        self.download.gitrepo = 'LCFIVertex'
 
         # serves as base pkg for lcfiplus
         self.hasCMakeFindSupport = True

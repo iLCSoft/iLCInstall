@@ -22,8 +22,9 @@ class MarlinTrk(BaseILC):
 
         self.reqmodules = [ "LCIO", "GEAR", "GSL", "Marlin", "MarlinUtil", "KalTest", "KalDet", "ROOT",  "DDKalTest", "DD4hep" ,"aidaTT"]
 
-        # svn root
-        self.download.root = "marlinreco"
+        self.download.supportedTypes = ["GitHub"]
+        self.download.gituser = 'iLCSoft'
+        self.download.gitrepo = 'MarlinTrk'
 
     def compile(self):
         """ compile MarlinTrk """

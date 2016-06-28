@@ -41,8 +41,9 @@ export PATH=${CMAKE_HOME}/bin:$PATH
 #     Python
 #--------------------------------------------------------------------------------
 
-export PYTHONDIR=${CLICREPO}/software/Python/2.7.11/${BUILD_FLAVOUR}
-export PATH=$PYTHONDIR/bin:$PATH
-export LD_LIBRARY_PATH=$PYTHONDIR/lib:$LD_LIBRARY_PATH
+
+#export PYTHONDIR=${CLICREPO}/software/Python/2.7.11/${BUILD_FLAVOUR}
+#export PATH=$PYTHONDIR/bin:$PATH
+#export LD_LIBRARY_PATH=$PYTHONDIR/lib:$LD_LIBRARY_PATH
 
 

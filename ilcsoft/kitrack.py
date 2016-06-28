@@ -22,8 +22,10 @@ class KiTrack(BaseILC):
 
         self.reqmodules = [ "Marlin", "ROOT" ]
 
-        # svn root
-        self.download.root = "marlinreco"
+        # supported download types
+        self.download.supportedTypes = ["GitHub"]
+        self.download.gituser = 'iLCSoft'
+        self.download.gitrepo = self.name
 
     def compile(self):
         """ compile KiTrack """
@@ -54,8 +56,10 @@ class KiTrackMarlin(BaseILC):
 
         self.reqmodules = [ "KiTrack", "MarlinTrk", "GSL" , "DD4hep"]
 
-        # svn root
-        self.download.root = "marlinreco"
+        # supported download types
+        self.download.supportedTypes = ["GitHub"]
+        self.download.gituser = 'iLCSoft'
+        self.download.gitrepo = self.name
 
     def compile(self):
         """ compile KiTrackMarlin """

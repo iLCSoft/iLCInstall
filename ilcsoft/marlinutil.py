@@ -21,6 +21,8 @@ class MarlinUtil(MarlinPKG):
         # required modules
         self.reqmodules = [ "Marlin", "GSL", "CLHEP", "GEAR", "LCIO" , "CED" , "DD4hep", "ROOT" ]
 
-        # cvs root
-        self.download.root = "marlinreco"
+
+        self.download.supportedTypes = ["GitHub"]
+        self.download.gituser = 'iLCSoft'
+        self.download.gitrepo = 'MarlinUtil'
 

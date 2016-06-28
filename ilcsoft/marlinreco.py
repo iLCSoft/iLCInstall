@@ -24,7 +24,12 @@ class MarlinReco(MarlinPKG):
         # optional modules
         self.optmodules = [ "CERNLIB", "AIDA" ]
 
-        self.envcmake["MARLINRECO_FORTRAN"] = "ON"
+        self.download.supportedTypes = ["GitHub"]
+        self.download.gituser = 'iLCSoft'
+        self.download.gitrepo = 'MarlinReco'
+
+        self.envcmake["MARLINRECO_FORTRAN"] = "OFF"
+
 
     def preCheckDeps(self):
         MarlinPKG.preCheckDeps(self)
