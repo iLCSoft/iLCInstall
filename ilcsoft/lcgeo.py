@@ -18,32 +18,14 @@ class lcgeo(BaseILC):
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "lcgeo", "lcgeo")
 
-        #self.hasCMakeBuildSupport = False
-        #self.hasCMakeFindSupport = False
-
-        self.download.supportedTypes = [ "svn"]
-        self.download.root = "ddsim"
 
         self.reqfiles = [ ["lib/liblcgeo.so", "lib/liblcgeo.dylib" ]]
 
         self.reqmodules = [ "DD4hep" , "ROOT" , "LCIO", "GEAR", "Geant4" ]
-#        self.reqmodules = [ "DD4hep" , "ROOT" , "LCIO", "GEAR", "Geant4" , "CLHEP" ]
 
-
-#    def setMode(self, mode):
-#        BaseILC.setMode(self, mode)
-#
-#        self.download.type = "svn"
-#        
-#        self.download.svnurl = 'http://llrforge.in2p3.fr/svn/lcgeo'
-#
-#        if( Version( self.version ) == 'HEAD' ):
-#            self.download.svnurl += '/trunk'
-#        elif 'pre' in self.version or 'dev' in self.version:
-#            self.download.svnurl += '/branches/' + self.version
-#        else:
-#            self.download.svnurl += '/tags/' + self.version
-
+        self.download.supportedTypes = ["GitHub"]
+        self.download.gituser = 'iLCSoft'
+        self.download.gitrepo = 'lcgeo'
 
     def init(self):
         """ init lcgeo """
@@ -81,12 +63,8 @@ class lcgeo(BaseILC):
 
         self.env[ 'lcgeo_DIR' ] = self.installPath
 
-#        self.envcmds.append("export G4WORKDIR=$lcgeo_DIR")
-
         self.envpath["PATH"].append( "$lcgeo_DIR/bin" )
         self.envpath["LD_LIBRARY_PATH"].append( "$lcgeo_DIR/lib" )
         self.envpath["PYTHONPATH"].append( "$lcgeo_DIR/lib/python" )
 
-#        self.envcmds.append('test -r ${G4ENV_INIT} && { cd $(dirname ${G4ENV_INIT}) ; . ./$(basename ${G4ENV_INIT}) ; cd $OLDPWD ; }')
-        
         
