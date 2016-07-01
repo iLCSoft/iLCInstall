@@ -735,6 +735,10 @@ class BaseILC:
 	    if( self.version =="HEAD" or self.version =="dev" or self.version =="devel" or self.version =="master"):
 	        #clone the whole repo into the directory
 	        cmd="git clone https://github.com/%s/%s.git %s" % (self.download.gituser, self.download.gitrepo, self.version)
+
+	        if(self.parent.accessmode == "ssh"):
+		    cmd="git clone git@github.com:%s/%s.git %s" % (self.download.gituser, self.download.gitrepo, self.version)
+
 	        print "Executing command:",cmd
                 if( os.system( cmd ) != 0 ):
                     self.abort( "Problems occurred during execution of " + cmd + " [!!ERROR!!]")

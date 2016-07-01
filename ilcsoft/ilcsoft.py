@@ -30,6 +30,7 @@ class ILCSoft:
         self.modules = []           # list of modules
         self.autoModules = []       # list of auto detected modules
         self.downloadOnly = False   # global download flag
+        self.accessmode   = "https" # global flag for access mode to GitHub
         self.downloadUser = ""      # global download cvs/ccvssh username
         self.downloadPass = ""      # global download cvs/ccvssh password
         self.downloadType = ""      # global download cvs/ccvssh password
