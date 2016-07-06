@@ -17,7 +17,7 @@ ilcsoft_release='HEAD-'+today
 
 #-----------------------
 # optionally build with c++11 ?
-use_cpp11 = False #True 
+use_cpp11 = False
 
 #===============================================================================
 # NB: c++11 - needs a newer compiler and compatible python, e.g. run
@@ -127,8 +127,9 @@ if( use_cpp11 ):
 #if( use_cpp11 ):
 #    CMAKE_CXX_FLAGS = '-Wall -std=c++11'
 #else:
-#  CMAKE_CXX_FLAGS = '-Wall -ansi -pedantic -Wno-long-long'
+CMAKE_CXX_FLAGS = '-Wall -ansi -pedantic -Wno-long-long'
 
+# ----------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------
 

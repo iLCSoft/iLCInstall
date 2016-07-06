@@ -134,7 +134,7 @@ ROOT_version = "5.34.30"
 
 CLHEP_version = "2.1.4.1" 
 
-GSL_version = "1.14"
+GSL_version = "2.1"
 
 QT_version = "4.7.4"
 
