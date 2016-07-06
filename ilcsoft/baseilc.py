@@ -11,8 +11,8 @@
 from util import *
 
 import logging
-import requests
-import simplejson
+import urllib
+import simplejson as json
 
 log = logging.getLogger('ilcinstall')
 log.setLevel(logging.DEBUG)
@@ -742,7 +742,7 @@ class BaseILC:
 		print "Cloning of repository %s/%s into directory %s sucessfully finished" % (self.download.gituser, self.download.gitrepo, self.version)
 
 	      
-	    elif( 'message' not in requests.get('https://api.github.com/repos/%s/%s/git/refs/tags/%s' % (self.download.gituser, self.download.gitrepo, self.version)).json().keys() ):
+	    elif( 'message' not in json.loads(urllib.urlopen('https://api.github.com/repos/%s/%s/git/refs/tags/%s' % (self.download.gituser, self.download.gitrepo, self.version)).read()).keys() ):
 	        cmd = "mkdir -p %s" % (self.version)
 	        if( os.system( cmd ) != 0 ):
                     self.abort( "Could not create folder" + self.version + " [!!ERROR!!]")
