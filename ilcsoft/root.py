@@ -34,7 +34,7 @@ class ROOT(BaseILC):
     def setMode(self, mode):
         BaseILC.setMode(self, mode)
 
-        self.download.url = 'ftp://root.cern.ch/root/root_v%s.source.tar.gz' % self.version
+        self.download.url = 'https://root.cern.ch/download/root_v%s.source.tar.gz' % self.version
         self.download.svnurl = 'http://root.cern.ch/svn/root'
 
         if( Version( self.version ) == 'HEAD' ):
