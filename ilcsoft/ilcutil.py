@@ -23,7 +23,9 @@ class ILCUTIL(BaseILC):
             [ "lib/libstreamlog.a", "lib/libstreamlog.so", "lib/libstreamlog.dylib"]
         ]
 
-        self.download.root = "ilctools"
+        self.download.supportedTypes = ["GitHub"]
+        self.download.gituser = 'iLCSoft'
+        self.download.gitrepo = 'iLCUtil'
 
     def compile(self):
         """ compile ilcutil """

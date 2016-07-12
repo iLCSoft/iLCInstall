@@ -22,8 +22,9 @@ class CEDViewer(MarlinPKG):
         # optional modules
         #self.optmodules = [ "LCCD", "MarlinTPC" ]
 
-        # cvs root
-        self.download.root="marlinreco"
+        self.download.supportedTypes = ["GitHub"]
+        self.download.gituser = 'iLCSoft'
+        self.download.gitrepo = 'CEDViewer'
 
 
     def postCheckDeps(self):

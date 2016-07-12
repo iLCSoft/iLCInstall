@@ -27,7 +27,9 @@ class DDKalTest(BaseILC):
 
         self.reqmodules = [ "LCIO", "KalTest", "aidaTT", "GSL" ]
 
-        self.download.root = "kaltest"
+        self.download.supportedTypes = ["GitHub"]
+        self.download.gituser = 'iLCSoft'
+        self.download.gitrepo = self.name
 
     def compile(self):
         """ compile DDKalTest """

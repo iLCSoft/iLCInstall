@@ -22,6 +22,10 @@ class KalTest(BaseILC):
 
         self.reqmodules = [ "ROOT" ]
 
+        self.download.supportedTypes = ["GitHub"]
+        self.download.gituser = 'iLCSoft'
+        self.download.gitrepo = self.name
+
     def compile(self):
         """ compile KalTest """
         
@@ -63,7 +67,9 @@ class KalDet(BaseILC):
 
         self.reqmodules = [ "KalTest", "Marlin", "MarlinUtil", "GEAR", "ROOT" ]
 
-        self.download.root = "kaltest"
+        self.download.supportedTypes = ["GitHub"]
+        self.download.gituser = 'iLCSoft'
+        self.download.gitrepo = self.name
 
     def compile(self):
         """ compile KalDet """

@@ -23,8 +23,9 @@ class RAIDA(BaseILC):
         # ROOT is required for building RAIDA
         self.reqmodules = [ "ROOT" ]
 
-        # cvs root
-        self.download.root = "ilctools"
+        self.download.supportedTypes = ["GitHub"]
+        self.download.gituser = 'iLCSoft'
+        self.download.gitrepo = self.name
 
     def compile(self):
         """ compile RAIDA """

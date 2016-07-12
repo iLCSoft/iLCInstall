@@ -26,6 +26,10 @@ class GEAR(BaseILC):
                 ["lib/libgearxml.a", "lib/libgearxml.so", "lib/libgearxml.dylib"]
         ]
 
+        self.download.supportedTypes = ["GitHub"]
+        self.download.gituser = 'iLCSoft'
+        self.download.gitrepo = 'GEAR'
+
     def compile(self):
         """ compile GEAR """
         

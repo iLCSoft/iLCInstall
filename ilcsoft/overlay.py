@@ -19,6 +19,7 @@ class Overlay(MarlinPKG):
         # required modules
         self.reqmodules = [ "Marlin", "LCIO", "CLHEP", "MarlinUtil" ]
 
-        # cvs root
-        self.download.root="marlin"
+        self.download.supportedTypes = ["GitHub"]
+        self.download.gituser = 'iLCSoft'
+        self.download.gitrepo = 'Overlay'
 

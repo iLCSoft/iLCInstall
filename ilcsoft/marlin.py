@@ -27,6 +27,10 @@ class Marlin(BaseILC):
         self.optmodules = [ "CLHEP", "LCCD" , "AIDA" ]
 
         self.envcmake['MARLIN_GUI']='OFF'
+
+        self.download.supportedTypes = ["GitHub"]
+        self.download.gituser = 'iLCSoft'
+        self.download.gitrepo = self.name
     
     def compile(self):
         """ compile Marlin """
