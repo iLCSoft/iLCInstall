@@ -330,6 +330,17 @@ class ILCSoft:
         f.write( os.linesep )
         f2.write( os.linesep )
 
+        #write some CMAKE env variables so the user can build an individual package  
+        f.write( "option(USE_CXX11"  + " " + unicode(self.envcmake["USE_CXX11"]) +")"  )
+        f.write( os.linesep )
+        f.write( "option(Boost_NO_BOOST_CMAKE"  + " " + self.envcmake["Boost_NO_BOOST_CMAKE"] +")"  )
+        f2.write( "option(USE_CXX11"  + " " + unicode(self.envcmake["USE_CXX11"]) +")"  )
+        f2.write( os.linesep )
+        f2.write( "option(Boost_NO_BOOST_CMAKE"  + " " + self.envcmake["Boost_NO_BOOST_CMAKE"] +")"  )
+
+        f.write( os.linesep )
+        f2.write( os.linesep )
+
         # close file
         f.close()
         f2.close()
