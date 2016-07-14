@@ -12,7 +12,11 @@ from util import *
 
 import logging
 import urllib
-import simplejson as json
+
+try:
+    import simplejson as json
+except:
+    import json
 
 log = logging.getLogger('ilcinstall')
 log.setLevel(logging.DEBUG)
