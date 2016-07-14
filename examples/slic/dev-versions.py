@@ -10,9 +10,7 @@
 ilcsoft_release = "DEV"
 
 # --------- install dir ------------------------------------------------------
-#ilcsoft_install_prefix = "/scratch/$USER/slic/"
 ilcsoft_install_prefix = "/work/ilcsoft/slic"
-#ilcsoft_install_prefix = "/work/projects/slic"
 
 # ======================= PACKAGE VERSIONS ===================================
 
