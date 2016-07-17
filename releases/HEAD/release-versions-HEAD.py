@@ -17,7 +17,11 @@ ilcsoft_release='HEAD-'+today
 
 #-----------------------
 # optionally build with c++11 ?
-use_cpp11 = True #False 
+use_cpp11 = True #True #False 
+if nightlies:
+   use_cpp11 = nb_use_cpp11
+   print "******************* use_cpp11", use_cpp11
+
 
 #===============================================================================
 # NB: c++11 - needs a newer compiler and compatible python, e.g. run
@@ -137,10 +141,14 @@ if( use_cpp11 ):
 
 Geant4_version =  "10.01" # "10.02.p01" # "10.01" 
 
-if( use_cpp11 ):
+print "value for use_cpp11: ", use_cpp11
+
+if use_cpp11:
     ROOT_version = "6.06.02"
+    print " I install ROOT version : 6. " , ROOT_version , use_cpp11
 else:
-    ROOT_version = "5.34.30" 
+    ROOT_version = "5.34.30"
+    print " I install ROOT version : 5. " , ROOT_version , use_cpp11
 
 CLHEP_version =  "2.1.4.1" # "2.3.1.1" #  "2.1.4.1"
 

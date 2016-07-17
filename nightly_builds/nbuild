@@ -7,6 +7,7 @@ import shutil
 import time
 import os.path
 
+from ilcsoft import *
 
 #----- settings --------------------------------------------------------------
 # define how much lines from the logfile's tail should be sent in the email
@@ -17,7 +18,14 @@ max_days=3
 #date_iso8601 = getoutput( "date --iso-8601" )
 date_iso8601 = getoutput( "date '+20%y-%m-%d'" )
 # you can set the mail addresses in the config file
-mail_addresses=[]
+mail_addresses=["georgios.voutsinas@desy.de", "frank.gaede@desy.de"]
+nightlies = True
+
+nb_use_cpp11 = True
+if( sys.argv[2] == "False" ):
+    nb_use_cpp11 = False
+#nb_use_cpp11 = sys.argv[2]
+print "Use Cpp 11? ", sys.argv[2]
 #-----------------------------------------------------------------------------
 
 # check args
@@ -30,6 +38,7 @@ ilcsoft_afs_path={}
 ilcsoft_afs_path['base']  = '/afs/desy.de/project/ilcsoft/sw'
 ilcsoft_afs_path['gcc41_64bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc41_sl5' ))
 ilcsoft_afs_path['gcc44_64bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc44_sl6' ))
+ilcsoft_afs_path['gcc48_64bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc48_sl6' ))
 
 ilcPath = None
 try:
@@ -37,7 +46,15 @@ try:
     sizeofint = platform.architecture()[0]
     gccver = ''.join( platform.python_compiler().split()[-1].split('.')[:2] )
     arch = 'gcc' + gccver + '_' + sizeofint
+    platf = platform.platform()
+    if( platf.find("trusty")>0):
+        arch += "_ub1404"
     ilcPath = ilcsoft_afs_path[ arch ] + '/'
+    gcccheck = platform.python_compiler()
+    print gcccheck
+    print ilcPath
+    print arch
+    print gccver
 except:
     pass
 
@@ -47,6 +64,7 @@ config_file = os.path.abspath(sys.argv[1])
 config_file_basename = config_file[config_file.rfind( '/' )+1:config_file.rfind(".")]
 config_file_extension = config_file[config_file.rfind(".")+1:]
 
+
 if( not os.path.exists( config_file )):
     print "config file [%s] does not exist" % (config_file,)
     sys.exit(1)
@@ -54,6 +72,7 @@ if( not os.path.exists( config_file )):
 print "+ Read configuration file [ %s ]\n" % (config_file,)
 
 ex_handler=None
+
 
 try:
     from ilcsoft import *
@@ -64,9 +83,16 @@ try:
     ilcsoft.config_file_prefix = config_file_basename
     ilcsoft.config_file_suffix = config_file_extension
 
-    ilcsoft.init()
+    nb_use_cpp11 = sys.argv[2]
+    print "Use Cpp 11? [%s] " % sys.argv[2]
 
-    ## delete old night builds (won't work after year 2999 ;)
+
+    ilcsoft.init()
+    
+    # display an installation summary
+    #ilcsoft.summary()
+    #ilcsoft.previewinstall()
+    # delete old night builds (won't work after year 2999 ;)
     dirs = glob.glob(os.path.dirname(os.path.dirname(ilcsoft.installPath))+"/2*")
     dirs.sort()
     while( len( dirs ) >= max_days ):
@@ -75,26 +101,28 @@ try:
         dirs = dirs[1:]
 
     ilcsoft.makeinstall()
-
+        
 except SystemExit, e:
     # ilcinstall called the abort method
     build_status="FAILED"
     # the exit exception should still be raised at the end
     ex_handler=e
-
+    
 except Exception, e:
     # some python error ccurred
     build_status="FAILED"
     os.system( 'echo "*** Error occured in ilcinstall: %s" >> %s ' % (e, ilcsoft.logfile) )
     ex_handler=e
-
+    
 else:
     # no exception was raised
     build_status="SUCCESS"
+    
 
 # mail subject title
 mail_subject = "[Nightly Build] (%s): %s] %s %s" % \
     (ilcsoft.os.shortver, build_status, ilcsoft.config_file_prefix, date_iso8601)
+
 
 # mail output of nightly build
 for addr in mail_addresses:
