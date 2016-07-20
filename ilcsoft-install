@@ -79,6 +79,8 @@ try:
 except:
     pass
 
+nightlies = False
+
 print '+ Running ilcsoft-install [ %s ]' % _version
 print '+ Read configuration file [ %s ]' % config_file
 execfile( config_file )
