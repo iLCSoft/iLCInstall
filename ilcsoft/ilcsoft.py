@@ -406,7 +406,7 @@ class ILCSoft:
         f.write( os.linesep + '# ---  Use the same compiler and python as used for the installation   ---' + os.linesep )
         f.write( os.linesep + '# -------------------------------------------------------------------- ---' + os.linesep )
         f.write( 'export PATH='+cxx_path+'/bin:'+ py_path+'/bin:${PATH}' + os.linesep  )
-        f.write( 'export LD_LIBRARY_PATH='+cxx_path+'/lib:'+ cxx_path+'/lib64:'+ py_path+'/lib:${LD_LIBRARY_PATH}' + os.linesep  + os.linesep )
+        f.write( 'export LD_LIBRARY_PATH='+cxx_path+'/lib64:'+ cxx_path+'/lib:'+ py_path+'/lib:${LD_LIBRARY_PATH}' + os.linesep  + os.linesep )
 
         #----------------------------------------------------------------------------------------
 
