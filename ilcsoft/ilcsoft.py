@@ -339,10 +339,10 @@ class ILCSoft:
             noBoostCMake = unicode(self.envcmake["Boost_NO_BOOST_CMAKE"])
 
         #write some CMAKE env variables so the user can build an individual package  
-        f.write( "option(USE_CXX11" + " " + useCxx11 +")" )
+        f.write( "option(USE_CXX11" + " \"Use cxx11\" " + useCxx11 +")" )
         f.write( os.linesep )
         f.write( "option(Boost_NO_BOOST_CMAKE"  + " " + "\"dont use cmake find module for boost\"" + " " + noBoostCmake +")"  )
-        f2.write( "option(USE_CXX11"  + " " + useCxx11 +")"  )
+        f2.write( "option(USE_CXX11" + " \"Use cxx11\" " + useCxx11 +")" )
         f2.write( os.linesep )
         f2.write( "option(Boost_NO_BOOST_CMAKE "  + " " + "\"dont use cmake find module for boost\"" + " " + noBoostCmake +")"  )
 
