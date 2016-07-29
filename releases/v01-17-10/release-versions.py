@@ -254,7 +254,7 @@ DD4hep_version = "v00-16-pre" # "v00-14"
 
 DD4hepExamples_version = "HEAD" # "v00-14"
 
-lcgeo_version = "v00-08-pre01" # "v00-05"
+lcgeo_version = "v00-08-pre02" # "v00-05"
 
 Physsim_version = "v00-03-pre" # "v00-02" 
 
