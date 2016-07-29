@@ -190,7 +190,7 @@ MarlinTrkProcessors_version = "v02-03-pre01" # "v02-01"
 
 Clupatra_version = "v00-14-pre" # "v00-12"
 
-KiTrack_version = "v01-07" # "v01-06"
+KiTrack_version = "v01-07-pre" # "v01-06"
 
 KiTrackMarlin_version = "v01-09-pre" # "v01-07"
 
@@ -198,7 +198,7 @@ ForwardTracking_version = "v01-10-pre" # "v01-08"
 
 # -------------------------------------------
 
-GBL_version = "HEAD" # "V01-16-04"
+GBL_version = "V01-17-01" # "V01-16-04"
 
 LCCD_version = "HEAD" # "v01-03"
 
