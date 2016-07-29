@@ -44,6 +44,7 @@ class CED(BaseILC):
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
         self.envpath["PATH"].append( self.installPath + '/bin' )
+        self.envpath["LD_LIBRARY_PATH"].append( self.installPath + ‘/lib’ )
 
         if self.mode == "install":
 

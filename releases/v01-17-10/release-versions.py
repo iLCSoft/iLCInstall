@@ -216,7 +216,7 @@ Mokka_version = "mokka-08-05" # "mokka-08-05"
 
 MarlinReco_version = "v01-15-pre" # "v01-13"
 
-FCalClusterer_version = "HEAD" # "v00-01"
+FCalClusterer_version = "v00-03-pre" # "v00-01"
 
 ILDPerformance_version = "v01-00-pre01" # "v00-01"
 
@@ -227,7 +227,7 @@ LCFIVertex_version = "v00-07-02-pre" # "v00-07"
 LCFIPlus_version = "HEAD" # "v00-05-03"
 
 
-MarlinKinfit_version = "v00-03-pre" # "v00-01-05"
+MarlinKinfit_version = "v00-03-pre01" # "v00-01-05"
 
 PandoraPFANew_version = "HEAD" # "v02-00-00"
 MarlinPandora_version = "HEAD" # "v02-00-00"

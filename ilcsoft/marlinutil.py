@@ -24,3 +24,6 @@ class MarlinUtil(MarlinPKG):
         # cvs root
         self.download.root = "marlinreco"
 
+    def postCheckDeps(self):
+        MarlinPKG.postCheckDeps(self)
+        self.envpath["LD_LIBRARY_PATH"].append( self.installPath+'/lib' )
