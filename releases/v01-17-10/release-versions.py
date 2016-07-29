@@ -206,7 +206,7 @@ RAIDA_version = "v01-06-02" # "v01-06-02"
 
 MarlinUtil_version = "v01-12-pre" # "v01-10"
 
-Marlin_version = "01-09-pre" # "v01-07"
+Marlin_version = "v01-09-pre" # "v01-07"
 
 MarlinDD4hep_version = "v00-02-pre" # "v00-01"
 
