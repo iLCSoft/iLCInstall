@@ -159,7 +159,7 @@ CED_version = "v01-09-01"
 
 # -------------------------------------------
 
-LCIO_version = "HEAD" # "v02-06"
+LCIO_version = "v02-07-02-pre" # "v02-06"
 
 GEAR_version = "v01-06" # "v01-04-02" 
 
@@ -171,7 +171,7 @@ FastJet_version = "3.1.2"
 
 FastJetClustering_version = "v00-03-pre" #"v00-02"
 
-MarlinFastJet_version = "v00-03-pre" # "v00-02"
+MarlinFastJet_version = "v00-03-pre01" # "v00-02"
 
 
 # -------------------------------------------
@@ -186,7 +186,7 @@ DDKalTest_version = "v01-00-pre" # "v00-02"
 
 MarlinTrk_version = "v02-02-pre" # "v02-00-01"
 
-MarlinTrkProcessors_version = "v02-03-pre" # "v02-01"
+MarlinTrkProcessors_version = "v02-03-pre01" # "v02-01"
 
 Clupatra_version = "v00-14-pre" # "v00-12"
 
@@ -218,12 +218,12 @@ MarlinReco_version = "v01-15-pre" # "v01-13"
 
 FCalClusterer_version = "HEAD" # "v00-01"
 
-ILDPerformance_version = "v01-00-pre" # "v00-01"
+ILDPerformance_version = "v01-00-pre01" # "v00-01"
 
 #ILDConfig_version = "HEAD" 
 
 
-LCFIVertex_version = "HEAD" # "v00-07"
+LCFIVertex_version = "v00-07-02-pre" # "v00-07"
 LCFIPlus_version = "HEAD" # "v00-05-03"
 
 
@@ -239,7 +239,7 @@ Overlay_version = "v00-15-pre" # "v00-14"
 
 PathFinder_version = "HEAD" #  "v00-06" # should be changed 
 
-MarlinTPC_version = "HEAD" # "v01-00"
+MarlinTPC_version = "v01-02-pre" # "v01-00"
 
 LCTuple_version = "v01-06-pre" # "v01-04"
 
@@ -249,11 +249,11 @@ Druid_version = "2.2" # "2.2" # "1.8"
 
 Garlic_version = "v3.0.3" # "v3.0.3"
 
-DD4hep_version = "HEAD" # "v00-14"
+DD4hep_version = "v00-16-pre" # "v00-14"
 
 DD4hepExamples_version = "HEAD" # "v00-14"
 
-lcgeo_version = "v00-08-pre" # "v00-05"
+lcgeo_version = "v00-08-pre01" # "v00-05"
 
 Physsim_version = "v00-03-pre" # "v00-02" 
 
