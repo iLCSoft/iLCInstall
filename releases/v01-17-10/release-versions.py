@@ -14,7 +14,7 @@ ilcsoft_release='v01-17-10-pre'
 
 #-----------------------
 # optionally build with c++11 ?
-use_cpp11 = False 
+use_cpp11 = True 
 if nightlies:
    use_cpp11 = nb_use_cpp11
    print "******************* use_cpp11", use_cpp11
@@ -203,7 +203,7 @@ GBL_version = "V01-17-01" # "V01-16-04"
 
 LCCD_version = "HEAD" # "v01-03"
 
-RAIDA_version = "v01-06-02" # "v01-06-02"
+RAIDA_version = "v01-07-pre" # "v01-06-02"
 
 MarlinUtil_version = "v01-12-pre" # "v01-10"
 
