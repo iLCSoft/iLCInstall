@@ -252,7 +252,7 @@ Garlic_version = "v3.0.4" # "v3.0.3"
 
 DD4hep_version = "v00-16-pre" # "v00-14"
 
-DD4hepExamples_version = "HEAD" # "v00-14"
+DD4hepExamples_version = "v00-16-pre" # "v00-14"
 
 lcgeo_version = "v00-08-pre02" # "v00-05"
 
