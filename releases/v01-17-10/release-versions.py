@@ -201,7 +201,7 @@ ForwardTracking_version = "v01-10-pre" # "v01-08"
 
 GBL_version = "V01-17-01" # "V01-16-04"
 
-LCCD_version = "HEAD" # "v01-03"
+LCCD_version = "v01-03-01" # "v01-03"
 
 RAIDA_version = "v01-07-pre" # "v01-06-02"
 
@@ -248,7 +248,7 @@ BBQ_version = "v00-01-03" #  "v00-01-02"
 
 Druid_version = "2.2" # "2.2" # "1.8" 
 
-Garlic_version = "v3.0.3" # "v3.0.3"
+Garlic_version = "v3.0.4" # "v3.0.3"
 
 DD4hep_version = "v00-16-pre" # "v00-14"
 
