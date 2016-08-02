@@ -215,11 +215,11 @@ DDMarlinPandora_version = "v00-04-pre" # "v00-01"
 
 Mokka_version = "mokka-08-05" # "mokka-08-05" 
 
-MarlinReco_version = "v01-15-pre" # "v01-13"
+MarlinReco_version = "v01-15-pre01" # "v01-13"
 
 FCalClusterer_version = "v00-03-pre" # "v00-01"
 
-ILDPerformance_version = "v01-00-pre01" # "v00-01"
+ILDPerformance_version = "v01-00-pre02" # "v00-01"
 
 #ILDConfig_version = "HEAD" 
 
@@ -240,7 +240,7 @@ Overlay_version = "v00-15-pre" # "v00-14"
 
 PathFinder_version = "v00-06-01" #  "v00-06" # should be changed 
 
-MarlinTPC_version = "v01-02-pre" # "v01-00"
+MarlinTPC_version = "v01-02-pre01" # "v01-00"
 
 LCTuple_version = "v01-06-pre" # "v01-04"
 
