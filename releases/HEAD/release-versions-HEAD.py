@@ -171,6 +171,7 @@ CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
 ILCUTIL_version = "v01-03-pre"  #  "v01-02-01" 
 
 FastJet_version = "3.2.0"
+FastJetcontrib_version = "1.024"
 
 FastJetClustering_version = "HEAD" #"v00-02"
 
