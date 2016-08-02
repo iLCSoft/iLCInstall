@@ -230,15 +230,15 @@ LCFIPlus_version = "HEAD" # "v00-05-03"
 
 MarlinKinfit_version = "v00-03-pre01" # "v00-01-05"
 
-PandoraPFANew_version = "HEAD" # "v02-00-00"
-MarlinPandora_version = "HEAD" # "v02-00-00"
-PandoraAnalysis_version = "HEAD" # "v01-00-01" 
+PandoraPFANew_version = "v02-08-03" # "v02-00-00"
+MarlinPandora_version = "v02-03-00" # "v02-00-00"
+PandoraAnalysis_version = "v01-02-00" # "v01-00-01" 
 
 CEDViewer_version = "v01-12-pre" # "v01-10"
 
 Overlay_version = "v00-15-pre" # "v00-14"
 
-PathFinder_version = "HEAD" #  "v00-06" # should be changed 
+PathFinder_version = "v00-06-01" #  "v00-06" # should be changed 
 
 MarlinTPC_version = "v01-02-pre" # "v01-00"
 
