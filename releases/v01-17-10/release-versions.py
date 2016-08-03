@@ -232,7 +232,7 @@ MarlinKinfit_version = "v00-03-pre01" # "v00-01-05"
 
 PandoraPFANew_version = "v02-08-03" # "v02-00-00"
 MarlinPandora_version = "v02-03-00" # "v02-00-00"
-PandoraAnalysis_version = "v01-02-00" # "v01-00-01" 
+PandoraAnalysis_version = "v01-02-01" # "v01-00-01" 
 
 CEDViewer_version = "v01-12-pre" # "v01-10"
 
