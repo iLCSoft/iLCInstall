@@ -219,7 +219,7 @@ MarlinReco_version = "v01-15-pre01" # "v01-13"
 
 FCalClusterer_version = "v00-03-pre" # "v00-01"
 
-ILDPerformance_version = "v01-00-pre05" # "v00-01"
+ILDPerformance_version = "v01-00-pre06" # "v00-01"
 
 #ILDConfig_version = "HEAD" 
 
