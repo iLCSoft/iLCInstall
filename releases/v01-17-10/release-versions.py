@@ -9,12 +9,12 @@
 import datetime
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-10-pre02'
+ilcsoft_release='v01-17-10'
 # ----------------------------------------------------------------------------
 
 #-----------------------
 # optionally build with c++11 ?
-use_cpp11 = True 
+use_cpp11 = False #True 
 if nightlies:
    use_cpp11 = nb_use_cpp11
    print "******************* use_cpp11", use_cpp11
@@ -159,7 +159,7 @@ CED_version = "v01-09-01"
 
 # -------------------------------------------
 
-LCIO_version = "v02-07-02-pre" # "v02-06"
+LCIO_version = "v02-07-02" # "v02-06"
 
 GEAR_version = "v01-06" # "v01-04-02" 
 
@@ -217,7 +217,7 @@ Mokka_version = "mokka-08-05" # "mokka-08-05"
 
 MarlinReco_version = "v01-15" # "v01-13"
 
-FCalClusterer_version = "v00-03-pre" # "v00-01"
+FCalClusterer_version = "v00-03" # "v00-01"
 
 ILDPerformance_version = "v01-00" # "v00-01"
 

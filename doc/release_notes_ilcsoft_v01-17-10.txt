@@ -1,0 +1,592 @@
+#################################
+#
+#   iLCSoft release - v01-17-10
+#
+#################################
+
+This is a new developers release with some updates and fixes 
+to  v01-17-09 and should be the last release with c++98, ROOT5, 
+Mokka, ... ( up to patches )
+
+
+=================================================
+
+ Changes in v01-17-10  w.r.t. iLCSoft v01-17-09
+ 
+=================================================
+
+ - consistently handle CMAKE_CXX_FLAGS and building for c++11
+   in ilcutil and updated all packages accrodingly
+   - removed local CMAKE_CXX_FLAGS   
+     
+
+-----------------------------------------------------
+ ilcutil v01-03
+-----------------------------------------------------
+  A.Sailer
+  - Add Macro to set the default cxx flags for all packages depending on ilcutil
+  - Add option for USE_CXX11 and set it to True by default
+
+
+
+==========
+ lcio v02-07-02
+==========
+
+ F.Gaede:  - add EXAMPLE/readmcparticles.cc
+           - fix some documentation
+                - Cluster: itheta/iPhi and deprecated methods in MCParticle
+           - bug fix in  SIOReader::skipNEvents:
+                - allow to call with 0 as argument
+           - fix handling of default CXX_FLAGS
+             - can be overwritten on command line
+           - install also the python source code and examples (M.Petric)
+
+ J.McCormick: Implement handling of daughter to mother relationships in StdHep reader;
+              use separate classes for now:  LCStdHepRdrNew ( and EXAMPLE/stdhepjob_new.cc )
+              - pending more testing.
+
+
+----------------------
+ DDKalTest v01-00 
+----------------------
+
+   F.Gaede
+
+   - added DDSurfaces::ISurface* surface() and some debug output
+
+   - remove hard coded muon mass for track fits
+
+   - fixed the sorting policy for zdisks
+     -> major improvement in forward track fitting
+
+   - crosscheck of energy loss from aidaTT
+     - commented out
+   - made compatible with c++11 and ROOT6
+
+
+
+----------------------
+  MarlinTrk v02-02
+----------------------
+
+F. Gaede
+    - added setMass()/getMass to IMarlinTrack interface
+    - implemented for KalTest, DDKalTest and aidaTT tracks
+    - made compatible with c++11
+    - removed -ansi -pedantic -Wno-long-long
+    - fixed narrowing in initializer lists
+
+
+----------------------
+ FCalClusterer v0-03 
+----------------------
+  BeamCalReco (A.Sailer):
+  * Reduce memory footprint and fix memory leaks for Parameterized background method
+  * Silence warnigns from root integral and getrandom, enabled for DEBUG0
+  * Compatible with ROOT 6
+  
+  LumiCalReco (B.Pawlik):
+  * Massive fixes, mainly coordinate system, cluster merging. Creating ClustersClass Map and root output is optional now
+  * Fix LCIO interface to pass hit positions, geo info. Create LucasGear for Marlin reco, and more...
+
+
+=========================
+ Physsim v00-03
+=========================
+
+F.Gaede
+   - made compatible w/ c++11   
+   - remove -Wall -ansi
+
+
+=========================
+ lcgeo v00-08
+=========================
+
+S. Lu
+   - Adapted to Hcal endcap Ring to DD4hep envelope, and improve the code to read the envelope information clearly from compact file directly.
+   - Updated to read the 'HcalEndcapRing_inner_radius' directly from compact file, and derivative dependence on 'Ecal_endcap_outer_radius' implemented in compact file.
+   - added 'Hcal_endcap_thickness' the value came from 26.5*mm*48+15.0*mm. Fixed the 'Hcal_barrel_thickness' the value came from engineer, it is about 26.5*mm*48 and 0.3*mm of tolerance for the 'Hcal_outer_radius' maximum 3395.5*mm
+   - Added two parameters 'Ecal_Barrel_thickness', and 'Hcal_Barrel_thickness', and use them to increase the ILD calorimeters (ECAL, HCAL) radius automaticly.
+   - Update material for the Ecal ECRing module as Mokka used
+   - Change the thickness of the scintillator in the active layer.
+   - Updated 'detector/CaloTB/CaloPrototype_v02.cpp' and remove the hardcode layer/ identifier 'layer/K' in the testbeam geometry driver, get this string via segmentation, and use the defination in the compact xml file, whatever the user wanted, 'layer' or, 'K' ... .
+   - added ID 'slice' in the geometry driver, and to be used in the cellEncoding string in compact file.
+   - Updated SEcal04_Endcaps.cpp to set the Magic Wafer size in group tower, and set the group indentifier in the compact file for both Barrel (in layer group) and Endcaps (in tower group).
+   - Use WaferGridXY segmentation for the EcalEndcapsCollection digitization in the DD4hep ILD_o1_v05, to improve the Magic wafer part in each layer too, as EcalBarrelCollection
+
+D. Protopopescu
+   - AHCal Barrel implementation of the layout from 70th SiD Optimization Meeting presentation, from Ross Gordon McCoy (ross.mccoy@mavs.uta.edu),
+HCalEndcap with the same layer structure, and SiD_o1_v03 including the two new XMLs. Perhaps the Scintillator HCal should be o2 (option 2)?
+   - Added new materials, and terminator absorber layer to the Scintillator HCal                   
+   - Fix for SiD 'make test'
+   - Updated Muon endcap and barrel XMLs with latest dimensions, and using the Generic drivers (will have to change this!). Added envelope (Aidan).
+Modified Fe slice thicknesses (20->19.6cm) to fit within the new dimensions.
+   - Added test for SiD_o1_v1
+
+M. Petric
+   - Make the sum of readout bits 32 otherwise we have a problem with the encoding of the surfaces
+   - Fix problem with replication of color name
+   - Add interlink to tracker
+   - Change CI to new Geant4 10.2.2
+   - converged design for tracker
+   - Add diagnostic color to gcc 4.9 and move CI build to Ninja and add output on failure to tests
+   - New tracker layot as requested by the tracking group
+   - Addopt to 40 layers ECal in the endscaps 
+   - Add change ECal to 40 layes and move everything in barrel after ECal 27mm outwards
+   - Converted readme to markdown and added badge
+   - change dd4hep init
+   - Make lcgeo ROOT6 compatible. There is no Reflex in 6.
+
+N. Nikiforou
+   - Modified CLIC_o2_v04 BeamCal to avoid dummy layer
+
+F. Gaede
+   - updated enevelope parameters of ILD_o1_v05 simulation model
+   - updated tex file
+   - added picture for barrel enevelopes 
+
+K. Coterra
+   - Sc_Si_hybrid Ecal drivers for barrel and endcaps were created. So far, they dedicated for Sc-strip ECAL.
+   - parameter files for ILD_o3_v05 model, Sc_Si_hybridECAL with AHCAL, were created. So far, for only Sc strip ECal, not for Hybrid ECAL.
+
+Y. Voutsinas
+   - updates in VXD material/surface description
+   - external cabling and internal strip lines for the innermost VXD layer added
+   - adding surfaces for beryllium annulus blocks
+   - adding surfaces for the electronics at the end of the ladders
+   - adding surface for the beryllium shell cone 
+
+A.Sailer 05/07/2016
+
+  - DDSim: * If no random seed is defined we get a random random seed.
+           * new option random.enableEventSeed to calculate reproducible random seeds using the same method as the EventSeeder in Marlin
+
+A.Sailer 08/03/2016
+
+  - DDSim: Add enableG4Gun and enableG4GPS flags to enable the Geant4 Gun or GeneralParticleSource
+    see examples/gun.mac or examples/gps.mac
+    use with ddsim --enablgeG4Gun --macroFile gun.mac  --compactFile ...
+
+
+=========================
+ DD4hep v00-16
+=========================
+
+
+Shaojun Lu | 2016-07-26  
+        Added new MegatileLayerGridXY segmentation for Scintillator strip Ecal, which is implemented by K.Kotera, 
+        and used by SEcal04Hybrid geometry driver.
+
+ - many ( minor fixes ) by F. Gaede, M. Petric, A Sailer, ...
+
+
+2016-06-24 M.Frank
+  Implement multiple segmentations.
+  Though one readout objects (associated to one DetElement) may only have on segmentation,
+  The MultiSegmentation type allows to have several sub-segmentations, which can be chosen
+  from.
+  Please see examples/ClientTests/*/MultiSegmentations
+
+  At the same time allow the readout object to defined multiple collections through
+  the IDDescriptor.
+  Please see examples/ClientTests/*/MultiCollections
+
+  The combined example can be found in
+  Please see examples/ClientTests/*/NestedSegmentations
+
+
+
+2016-05-03 M.Frank
+  Green light is ON. You may use revision 2237 and above.
+
+2016-05-03 M.Frank
+  ++++++++++++++++++++  NOTE: +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  - Mega commit. Do not use until green signal arrives with seperate release notice.
+  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  - Package DDDB: Prove of concept, that we can populate the geometry also from other
+    sources than xml files obeying the lccdd notation.
+  - DDCore/XML: Implement the possibility to use external entity resolution for Xerces.
+    There is not equivalent in TinyXML (AFAIK).
+  - Remove some of the Spirit parsers, since the libraries are getting way too big.
+    This implicitly assumes, that object properties of 'exotic' types such as
+    deque<long double> etc. are not really used. If you need properties stay to the obvious:
+    string, int float, double and vectors, maps and sets thereof!
+  - DDG4 needed to public the DDG4Python include directory (Now in DDG4/Python).
+    Reason: try to create ROOT 6 dictionaries, which can be relocated for release purposes.
+  - ROOT 6 dictionary generation: Create dictionaries with the additional flag:
+    "-inlineInputHeader" which physically includes the header files used to generate the 
+    dictionaries --> relocatability.
+
+2016-03-21 M.Frank
+  - Add additional vertex argument to EventReader::readParticles, which supposedly should
+
+2016-03-03 M.Frank
+  - Improve/complete job options type palette. 
+  - Allow modify the Geant4IsotropGenerator to shoot particle distributions according
+    to several distributions:
+    flat in : uniform, cos(theta), eta/pseudorapidity, ffbar (1+cos^2 theta)
+    Option: generator.Distribution = 'cos(theta)'
+    Default is uniform.
+
+=========================
+ LCTuple v01-06
+=========================
+
+ F.Gaede
+    - made compatible with c++11
+    - removed -ansi -pedantic -Wno-long-long
+
+ S.Lu
+    - Added root headers and declared the parameters to fix the error: use of undeclared identifier 'MyLCTuple' in ROOT 6.06/02.
+
+
+=============================
+ MarlinTPC v01-02
+=============================
+
+------------------------------------------------------------------------
+r5055 | kleinwrt | 2016-06-17 13:38:40 +0200 (Fri, 17 Jun 2016) | 1 line
+Changed paths:
+   M /trunk/reconstruction/trackreco/include/GeneralBrokenLineInterfaceHelpers.h
+   M /trunk/reconstruction/trackreco/src/GeneralBrokenLineInterfaceHelpers.cc
+   M /trunk/reconstruction/trackreco/src/SimpleHelixGeneralBrokenLineInterfaceProcessor.cc
+   M /trunk/reconstruction/trackreco/src/StepWiseHelixGeneralBrokenLineInterfaceProcessor.cc
+
+GeneralBrokenLineInterfaceHelpers updated for TimePix
+------------------------------------------------------------------------
+r5054 | kleinwrt | 2016-06-17 10:10:01 +0200 (Fri, 17 Jun 2016) | 1 line
+Changed paths:
+   M /trunk/reconstruction/trackreco/include/SimpleHelixGeneralBrokenLineInterfaceProcessor.h
+   M /trunk/reconstruction/trackreco/include/SimpleHelixTrackModel.h
+   M /trunk/reconstruction/trackreco/include/StepWiseHelixGeneralBrokenLineInterfaceProcessor.h
+   M /trunk/reconstruction/trackreco/src/SimpleHelixTrackModel.cc
+
+Improved numerical stability for very small curvature
+------------------------------------------------------------------------
+r5038 | krieger@physik.uni-bonn.de | 2016-04-25 12:47:32 +0200 (Mon, 25 Apr 2016) | 1 line
+Changed paths:
+   M /trunk/tools/processors/src/TimePixXYReaderProcessor.cc
+
+Merged small bugfixes for TimePixXYReaderProcessor from branches/krieger
+------------------------------------------------------------------------
+r5036 | krieger@physik.uni-bonn.de | 2016-04-20 18:30:28 +0200 (Wed, 20 Apr 2016) | 5 lines
+Changed paths:
+   M /trunk/tools/processors/include/TimePixXYReaderProcessor.h
+   M /trunk/tools/processors/src/TimePixXYReaderProcessor.cc
+
+Merged changes done to the TimePixXYReaderProcessor from branches/krieger:
+Processor is now also able to correctly read in frames with the new header format used by SRS-TOS
+Compatibility to old header versions and frames without header is assured
+
+
+------------------------------------------------------------------------
+r5034 | krieger@physik.uni-bonn.de | 2016-04-06 09:53:46 +0200 (Wed, 06 Apr 2016) | 15 lines
+Changed paths:
+   A /trunk/analysis/include/WriteXrayObjectsToROOTTreeProcessor.h (from /branches/krieger/analysis/include/WriteXrayObjectsToROOTTreeProcessor.h:5033)
+   A /trunk/analysis/include/XrayLikelihoodProcessor.h (from /branches/krieger/analysis/include/XrayLikelihoodProcessor.h:5032)
+   A /trunk/analysis/src/WriteXrayObjectsToROOTTreeProcessor.cc (from /branches/krieger/analysis/src/WriteXrayObjectsToROOTTreeProcessor.cc:5033)
+   A /trunk/analysis/src/XrayLikelihoodProcessor.cc (from /branches/krieger/analysis/src/XrayLikelihoodProcessor.cc:5032)
+
+Added two additional processors used for X-ray photons recorded with an InGrid based detector:
+
+XrayLikelihoodProcessor
+        -Calculates likelihood value for each GridPixXrayObject based on reference histograms loaded from root file(s)
+        -Different reference sets for defined energy ranges can be given
+        -Reference histograms are created with XrayGeometryAnalysisProcessor (may need data selection with XrayCutApplicationProcessor before)
+
+WriteXrayObjectsToROOTTreeProcessor
+        -Exports all GridPixXrayObjects given as collection to a root tree saved as .root file
+        -Several event shape variables are exported
+        -Energy and likelihood are exported
+        -Pixel positions and values are exported as three vectors per event
+        -Event number, run number and timestamp are exported
+
+
+------------------------------------------------------------------------
+r5032 | gaede | 2016-03-08 15:14:34 +0100 (Tue, 08 Mar 2016) | 3 lines
+Changed paths:
+   M /trunk/reconstruction/trackreco/src/TrackFitterLikelihoodProcessor.cc
+
+ - added namespace std to isinf and isnan (SL6/gcc4.8)
+
+
+------------------------------------------------------------------------
+r5031 | gaede | 2016-03-07 16:41:16 +0100 (Mon, 07 Mar 2016) | 16 lines
+Changed paths:
+   M /trunk/CMakeLists.txt
+   M /trunk/calibration/src/MMScatterProcessor.cc
+   M /trunk/reconstruction/padbased/src/MMHitFinderProcessor.cc
+   M /trunk/reconstruction/photoelectric/src/PhotoelectricClusterTools.cc
+   M /trunk/tools/DataConversionUtils/src/TEventBlock_V42.cpp
+   M /trunk/validation/testSimHitDistributor/testSimHitDistributor.cpp
+
+ - made compatible with c++11 and ROOT6
+    - removed -ansi -pedantic -Wno-long-long ...
+    - added std:: to i/ofstream
+    - fixed narowing in initializer list
+
+- **************** NOTE: ***************************
+   If build with ROOT 6 the following processor is excluded:
+    ./reconstruction/pixelbased/src/GridPixXrayObjectCalculatorProcessor.cc
+   as it uses TFitterMinut which no longer exists in ROOT6
+
+      -> needs to be fixed by an expert ...
+  ***************************************************
+
+
+------------------------------------------------------------------------
+r5030 | kleinwrt | 2016-02-24 15:22:54 +0100 (Wed, 24 Feb 2016) | 1 line
+Changed paths:
+   M /trunk/reconstruction/trackreco/include/SimpleHelixGeneralBrokenLineInterfaceProcessor.h
+   M /trunk/reconstruction/trackreco/include/StepWiseHelixGeneralBrokenLineInterfaceProcessor.h
+   M /trunk/reconstruction/trackreco/src/SimpleHelixGeneralBrokenLineInterfaceProcessor.cc
+   M /trunk/reconstruction/trackreco/src/SimpleHelixTrackModel.cc
+   M /trunk/reconstruction/trackreco/src/StepWiseHelixGeneralBrokenLineInterfaceProcessor.cc
+
+TPC gas (between first and last hit) implemented as homogeneous scatterer for track fitting with GBL
+
+
+
+==================================
+ Overlay v00-15 
+==================================
+
+F. Gaede
+   - protect against calling LCReader::skipNEvents() with 0 ( now also fixed in LCIO trunk )
+
+R. Simoniello
+   - new collections added for CLIC
+
+A. Sailer
+   - Remove Ansi and other definitions, allow compiling with different standard
+
+
+==================================
+ CEDViewer v01-12 
+==================================
+
+F. Gaede
+   - made compatible with c++11
+   - removed -ansi -pedantic -Wno-long-long
+   - fixed narrowing in initializer lists
+
+
+==================================
+ MarlinKinfit v00-03 
+==================================
+
+J. List
+   - added FourJetZHPairing
+
+F. Gaede
+   - made compatible with c++11
+   - removed -ansi -pedantic -Wno-long-long
+
+G. Wilson
+   - Revise LeptonFitObject to use (q/pt, theta, phi) and track error matrix.
+   - Also add some additional print methods to BaseFitObject.
+   - Fix benign index issue with jlocal<ilocal elements incorrectly set for mirror off-diagonal elements in getSecondDerivative (affected all fit objects).
+   - Add constructor based on TrackState requested by Daniel
+
+
+==================================
+ ILDPerformance v01-00 
+==================================
+
+D. Jeans
+  - add simulation validation processor, examples and short documentation
+  - extend for CalorimeterHits and TrackerHits; a few other cleanups
+M. Petric
+   - Added GSL because required. It would however better to fix aidaTT to propagate GSL properly
+
+H.L. Tran
+   - Modify CMakeLists.txt file to include the validateSim folder.
+
+J. List
+   - added ZHWW5CFit
+   - added ZH example
+   - added first version of test on WW->4jets
+   - added likelihood values for all hypotheses as LiPDG_mu etc to PIDtree; == 9 means is -inf on DST =>check with Masakazu?; == 2 means no PID or no recoParticle existing for this MCP
+  - significantly improved truth vs reco navigation
+  - added dEdx distance and dEdx likelihood to tree)
+
+Y. Voutsinas
+   - add a diagnostics script that run a simple analysis hZ->mumuX for Mokka as well
+   - processor that calculates track - hit residuals based on aidaTT intersection calculation added
+   - updating tracking performance macros, track resolution performance plots
+
+F. Gaede
+   - - finalized plotting of dE/dx for all particle types ( code from P.McKeown )
+   - made compatible with c++11
+   - removed -ansi -pedantic -Wno-long-long
+   -  added trueMass to PID TTree
+   - added macro plotdEdx
+   - bug fix for getParents.size()==0
+
+P. McKeown
+   - added plots for
+   - efficiency and fake rate for likelihoodPID
+   - dE/dx
+   - likelihood PID
+   - efficiency vs. purity for likelihoodPID
+
+
+==================================
+ MarlinReco v01-15 
+==================================
+
+
+M. Kurata
+   - Include dEdx angular correction, which is a feedback from Sviatoslav
+   - add PDF creation processor and steering file
+   - add hadron type likelihood and probability
+   - PIDTools: Adding PIDVariables and PIDParticles to trunk
+   - assign 999 to likelihood when cannot perform PID
+
+F. Gaede
+   - introduced anonymous namespace to compile w/ -pedantic
+   -  made compatible with c++11
+   - removed -ansi -pedantic -Wno-long-long
+   - build sub-package Relaistic only if DD4hep is found
+   - added implementation of getExtension() - copied from DDMarlinPandora
+  
+D. Jeans
+   - introduction of RealisticCaloDigi/Reco processors: refactorisation and cleaning up of ILDCaloDigi
+   - gap corrections split off into BruteForceEcalGapFiller processor; change to setup of reco hit relations
+   - fixed logic in determination of calibration by layer
+
+M. Chera
+   - fixed bug such that the processor now skips events with empty PFO collections without crashing
+
+
+==================================
+ DDMarlinPandora v00-04 
+==================================
+
+N. Nikiforou
+   - Merged changes in MarlinPandora by Bono up to Mar. 30t
+   - Added note to handle exception not caught for very small omega in TrackCreator. Not a problem currently
+
+
+==================================
+ MarlinTrkProcessors v02-03
+==================================
+
+  R. Simoniello
+     - Add procedure to handle with spiral tracks. Fit direction and fit initialisation configurable by steering macro (default fit direction: backward)
+     - improved speed, map of hits on each element introduced, find neighbours of element ID and extrapolate to them (to be improved to some problem in the geo datat structure)        
+
+  F. Gaede
+     - made compatible with c++11
+       - removed -ansi -pedantic -Wno-long-long
+       - fixed narrowing in initializer lists
+
+  Y. Voutsinas
+     - Minivector creation from 1D SIT hits added 
+
+==================================
+ MarlinDD4hep v00-02
+==================================
+
+
+ F. Gaede
+   - made compatible with c++11
+   - removed -ansi -pedantic -Wno-long-long
+
+
+
+
+==================================
+ Marlin v01-09
+==================================
+
+
+F. Gaede
+   - made compatible with c++11
+   - removed -ansi -pedantic -Wno-long-long
+   - fix comparison of ostream and std::cout
+
+A. Sailer
+   - Add program to compare two marlinSteering files and print out differences between the two files based on parameter values installs the compareMarlinSteeringFiles.py into the Marlin bin folder, which is usually in the PATH
+
+R. Simoniello
+   - removed -Wall etc from mymarlin example for c++11
+
+
+
+==================================
+ MarlinUtil v01-12  
+==================================
+
+F. Gaede
+   - protect against missing SurfaceManager object in DD4hep model
+   - updated to use gsl 2.1
+   - made compatible with c++11
+   - removed -ansi -pedantic -Wno-long-long
+
+
+==================================
+ RAIDA v01-07
+==================================
+
+F. Gaede
+   - made compatible with c++11
+   - removed -ansi -pedantic -Wno-long-long
+
+
+==================================
+ ForwardTracking v01-10
+==================================
+
+F.Gaede
+     -  made compatible with c++11
+     - removed -ansi -pedantic -Wno-long-long
+     - fixed narrowing in initializer lists
+
+
+==================================
+ KiTrackMarlin v01-09
+==================================
+
+F. Gaede
+   - made compatible with c++11
+   - removed -ansi -pedantic -Wno-long-long
+   - fixed narrowing in initializer lists
+   - added std to i/ofstream
+
+Y. Voutsinas
+   - VXD cellular automaton can cope with mini-vectors made of 1 D hits
+
+
+
+==================================
+ KiTrack v01-07
+==================================
+
+F. Gaede
+   - made compatible with c++11
+   - removed -ansi -pedantic -Wno-long-long
+
+
+==================================
+ Clupatra v00-14
+==================================
+
+F. Gaede
+  - made compatible with c++11
+  - removed -ansi -pedantic -Wno-long-long
+  - fixed template parameters in nnclu::(not)inRange<int,int>
+
+==================================
+ MarlinTrk v02-02
+==================================
+
+
+F. Gaede
+    - added setMass()/getMass to IMarlinTrack interface
+    - implemented for KalTest, DDKalTest and aidaTT tracks
+    - made compatible with c++11
+    - removed -ansi -pedantic -Wno-long-long
+    - fixed narrowing in initializer lists
