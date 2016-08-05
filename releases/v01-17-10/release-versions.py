@@ -14,7 +14,7 @@ ilcsoft_release='v01-17-10'
 
 #-----------------------
 # optionally build with c++11 ?
-use_cpp11 = False #True 
+use_cpp11 = True 
 if nightlies:
    use_cpp11 = nb_use_cpp11
    print "******************* use_cpp11", use_cpp11
