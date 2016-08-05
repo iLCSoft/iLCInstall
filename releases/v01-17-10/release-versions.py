@@ -165,37 +165,37 @@ GEAR_version = "v01-06" # "v01-04-02"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
 
-ILCUTIL_version = "v01-03-pre"  #  "v01-02-01" 
+ILCUTIL_version = "v01-03"  #  "v01-02-01" 
 
 FastJet_version = "3.2.0"
 FastJetcontrib_version = "1.024"
 
-FastJetClustering_version = "v00-03-pre" #"v00-02"
+FastJetClustering_version = "v00-03" #"v00-02"
 
-MarlinFastJet_version = "v00-03-pre01" # "v00-02"
+MarlinFastJet_version = "v00-03" # "v00-02"
 
 
 # -------------------------------------------
 
-KalTest_version = "v02-02-pre" # "v02-00"  
+KalTest_version = "v02-02" # "v02-00"  
 
-KalDet_version = "v01-13-03-pre" # "v01-13-02"
+KalDet_version = "v01-13-03" # "v01-13-02"
 
-aidaTT_version = "v00-04-pre" # "v00-02"
+aidaTT_version = "v00-04" # "v00-02"
 
-DDKalTest_version = "v01-00-pre" # "v00-02"
+DDKalTest_version = "v01-00" # "v00-02"
 
-MarlinTrk_version = "v02-02-pre" # "v02-00-01"
+MarlinTrk_version = "v02-02" # "v02-00-01"
 
-MarlinTrkProcessors_version = "v02-03-pre03" # "v02-01"
+MarlinTrkProcessors_version = "v02-03" # "v02-01"
 
-Clupatra_version = "v00-14-pre" # "v00-12"
+Clupatra_version = "v00-14" # "v00-12"
 
-KiTrack_version = "v01-07-pre" # "v01-06"
+KiTrack_version = "v01-07" # "v01-06"
 
-KiTrackMarlin_version = "v01-09-pre" # "v01-07"
+KiTrackMarlin_version = "v01-09" # "v01-07"
 
-ForwardTracking_version = "v01-10-pre" # "v01-08"
+ForwardTracking_version = "v01-10" # "v01-08"
 
 # -------------------------------------------
 
@@ -203,46 +203,46 @@ GBL_version = "V01-17-01" # "V01-16-04"
 
 LCCD_version = "v01-03-01" # "v01-03"
 
-RAIDA_version = "v01-07-pre" # "v01-06-02"
+RAIDA_version = "v01-07" # "v01-06-02"
 
-MarlinUtil_version = "v01-12-pre" # "v01-10"
+MarlinUtil_version = "v01-12" # "v01-10"
 
-Marlin_version = "v01-09-pre" # "v01-07"
+Marlin_version = "v01-09" # "v01-07"
 
-MarlinDD4hep_version = "v00-02-pre" # "v00-01"
+MarlinDD4hep_version = "v00-02" # "v00-01"
 
-DDMarlinPandora_version = "v00-04-pre" # "v00-01"
+DDMarlinPandora_version = "v00-04" # "v00-01"
 
 Mokka_version = "mokka-08-05" # "mokka-08-05" 
 
-MarlinReco_version = "v01-15-pre01" # "v01-13"
+MarlinReco_version = "v01-15" # "v01-13"
 
 FCalClusterer_version = "v00-03-pre" # "v00-01"
 
-ILDPerformance_version = "v01-00-pre06" # "v00-01"
+ILDPerformance_version = "v01-00" # "v00-01"
 
 #ILDConfig_version = "HEAD" 
 
 
-LCFIVertex_version = "v00-07-02-pre" # "v00-07"
+LCFIVertex_version = "v00-07-02" # "v00-07"
 LCFIPlus_version = "HEAD" # "v00-05-03"
 
 
-MarlinKinfit_version = "v00-03-pre01" # "v00-01-05"
+MarlinKinfit_version = "v00-03" # "v00-01-05"
 
 PandoraPFANew_version = "v02-09-00" # "v02-00-00"
 MarlinPandora_version = "v02-04-00" # "v02-00-00"
 PandoraAnalysis_version = "v01-02-01" # "v01-00-01" 
 
-CEDViewer_version = "v01-12-pre" # "v01-10"
+CEDViewer_version = "v01-12" # "v01-10"
 
-Overlay_version = "v00-15-pre" # "v00-14"
+Overlay_version = "v00-15" # "v00-14"
 
 PathFinder_version = "v00-06-01" #  "v00-06" # should be changed 
 
-MarlinTPC_version = "v01-02-pre01" # "v01-00"
+MarlinTPC_version = "v01-02" # "v01-00"
 
-LCTuple_version = "v01-06-pre" # "v01-04"
+LCTuple_version = "v01-06" # "v01-04"
 
 BBQ_version = "v00-01-03" #  "v00-01-02"
 
@@ -250,13 +250,13 @@ Druid_version = "2.2" # "2.2" # "1.8"
 
 Garlic_version = "v3.0.4" # "v3.0.3"
 
-DD4hep_version = "v00-16-pre01" # "v00-14"
+DD4hep_version = "v00-16" # "v00-14"
 
-DD4hepExamples_version = "v00-16-pre01" # "v00-14"
+DD4hepExamples_version = "v00-16" # "v00-14"
 
-lcgeo_version = "v00-08-pre04" # "v00-05"
+lcgeo_version = "v00-08" # "v00-05"
 
-Physsim_version = "v00-03-pre" # "v00-02" 
+Physsim_version = "v00-03" # "v00-02" 
 
 
 # xerces-c (needed by geant4 for building gdml support - required by mokka)
