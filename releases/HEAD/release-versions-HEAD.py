@@ -93,7 +93,7 @@ ilcPath = ilcsoft_install_prefix
 MySQL_version = "5.0.45"
 MySQL_path = ilcPath + "/mysql/" + MySQL_version
 
-if( ilcsoft_afs_path[ arch ] == '/afs/desy.de/project/ilcsoft/sw/x86_64_gcc46_ub1204' ):
+if( ilcsoft_afs_path[ arch ].find('_ub') > 0 ):
     MySQL_path = "/usr"
 
 

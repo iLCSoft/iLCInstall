@@ -22,7 +22,8 @@ class MySQL(BaseILC):
         self.hasCMakeBuildSupport = False
 
         self.reqfiles = [
-            ["lib/mysql/libmysqlclient.so", "lib/libmysqlclient.so",
+            ["lib/mysql/libmysqlclient.so", "lib/libmysqlclient.so", 
+             "lib/x86_64-linux-gnu/libmysqlclient.so",
                 "lib64/mysql/libmysqlclient.so", "lib64/libmysqlclient.so",
                 "lib/mysql/libmysqlclient.dylib", "lib/libmysqlclient.dylib"]
         ]
