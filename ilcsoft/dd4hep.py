@@ -21,8 +21,9 @@ class DD4hep(BaseILC):
         #self.hasCMakeBuildSupport = False
         #self.hasCMakeFindSupport = False
 
-        self.download.supportedTypes = [ "svn", "svn-desy"]
-        self.download.root = "aidasoft"
+        self.download.supportedTypes = [ "GitHub" ] 
+        self.download.gituser = 'AIDASoft'
+        self.download.gitrepo = 'DD4hep'
 
         self.reqfiles = [ ["lib/libDDCore.so", "lib/libDDCore.dylib" ]]
 
