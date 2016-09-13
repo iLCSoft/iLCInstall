@@ -22,7 +22,6 @@ class DD4hepExamples(BaseILC):
         #self.hasCMakeFindSupport = False
 
         self.download.supportedTypes = [ "svn"]
-        self.download.root = "aidasoft"
 
         self.reqfiles = [ ["lib/libSimpleDetector.so", "lib/libSimpleDetector.dylib" ]]
 
@@ -33,7 +32,8 @@ class DD4hepExamples(BaseILC):
         BaseILC.setMode(self, mode)
             
         self.download.type = "svn"
-        self.download.svnurl = 'https://svnsrv.desy.de/public/aidasoft/DD4hep'
+        self.download.svnurl = 'https://github.com/AIDASoft/DD4hep'
+        # simply do an svn co from the git repository
 
         if( Version( self.version ) == 'HEAD' ):
             self.download.svnurl += '/trunk'
