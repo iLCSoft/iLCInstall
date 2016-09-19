@@ -232,6 +232,7 @@ LCFIPlus_version = "HEAD" # "v00-05-03"
 
 
 MarlinKinfit_version = "HEAD" # "v00-01-05"
+MarlinKinfitProcessors_version = "HEAD" # "v00-01-05"
 
 PandoraPFANew_version = "HEAD" # "v02-00-00"
 MarlinPandora_version = "HEAD" # "v02-00-00"

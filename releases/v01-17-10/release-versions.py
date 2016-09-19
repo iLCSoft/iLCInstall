@@ -229,6 +229,7 @@ LCFIPlus_version = "v00-07-01-pre" # "v00-05-03"
 
 
 MarlinKinfit_version = "v00-03" # "v00-01-05"
+MarlinKinfitProcessors_version = "v00-02" # "v00-01"
 
 PandoraPFANew_version = "v02-09-01" # "v02-00-00"
 MarlinPandora_version = "v02-04-00" # "v02-00-00"
