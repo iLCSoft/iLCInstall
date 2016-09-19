@@ -85,5 +85,6 @@ from geant4 import Geant4
 from java import Java
 from mysql import MySQL
 from boost import Boost
+from eigen import Eigen
 
 from gcc481 import GCC481
