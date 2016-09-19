@@ -161,7 +161,7 @@ CED_version = "v01-09-02"
 
 LCIO_version = "v02-07-02" # "v02-06"
 
-GEAR_version = "v01-06" # "v01-04-02" 
+GEAR_version = "v01-06-01" # "v01-04-02" 
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
 
