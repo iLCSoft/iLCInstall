@@ -24,7 +24,7 @@ class aidaTT(BaseILC):
 
         self.reqfiles = [ ["lib/libaidaTT.so", "lib/libaidaTT.dylib" ]]
 
-        self.reqmodules = [ "GSL" , "GBL", "DD4hep" , "LCIO", ]
+        self.reqmodules = [ "Eigen" , "GBL", "DD4hep" , "LCIO", ]
 
 
     def init(self):
