@@ -100,6 +100,8 @@ if( ilcsoft_afs_path[ arch ].find('_ub') > 0 ):
 #------ boost headers files ------------------------------------------
 Boost_path = "/afs/desy.de/project/ilcsoft/sw/boost/1.58.0"
 
+#------ Eigen headers files ------------------------------------------
+Eigen_path = "/afs/desy.de/project/ilcsoft/sw/Eigen/3.2.9"
 
 # ----- CERNLIB ------------------------------------------------------
 CERNLIB_version = "2006" 
