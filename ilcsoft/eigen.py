@@ -24,7 +24,7 @@ class Eigen(BaseILC):
         self.hasCMakeBuildSupport = False
 
         self.reqfiles = [
-            ["Eigen/src/Core/Matrix.h", "Eigen/Core" ]
+            ["include/eigen3/Eigen/src/Core/Matrix.h", "include/eigen3/Eigen/Core" ]
         ]
 
     def postCheckDeps(self):
