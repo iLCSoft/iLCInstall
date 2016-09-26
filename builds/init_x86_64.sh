@@ -12,7 +12,7 @@ fi
 
 
 if [ -z ${GCC_VERSION} ]; then
-    GCC_VERSION=4.9.3
+    GCC_VERSION=4.8.5
 fi
   
 if [ -z ${BUILD_TYPE} ]; then

@@ -15,19 +15,19 @@ ilcsoft_release=''
 
 use_cpp11 = True
 
-ilcsoft_install_prefix = "/scratch/ilcsoft/"
+ilcsoft_install_prefix = "/cvmfs/clicdp.cern.ch/iLCSoft/builds/2016-09-26/x86_64-slc6-gcc48-opt/"
 
 
 ilcPath = ilcsoft_install_prefix
 
-Boost_path = "/cvmfs/clicdp.cern.ch/software/Boost/1.61.0/x86_64-slc6-gcc48-dbg/"
+Boost_path = "/cvmfs/clicdp.cern.ch/software/Boost/1.61.0/x86_64-slc6-gcc48-opt/"
 
 if( use_cpp11 ):
     CMAKE_CXX_FLAGS = '-Wall -std=c++11'
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version =  "10.01" # "10.02.p01" # "10.01" 
+Geant4_version =  "10.02.p02" # "10.02.p01" # "10.01" 
 
 if( use_cpp11 ):
     ROOT_version = "6.06.04"
@@ -106,6 +106,7 @@ MarlinReco_version = "HEAD" # "v01-13"
 FCalClusterer_version = "HEAD" # "v00-01"
 
 ILDPerformance_version = "HEAD" # "v00-01"
+ClicPerformance_version = "HEAD" # "v00-01"
 
 ILDConfig_version = "HEAD" 
 
@@ -143,6 +144,10 @@ DD4hepExamples_version = "HEAD" # "v00-14"
 lcgeo_version = "HEAD" # "v00-05"
 
 Physsim_version = "HEAD" # "v00-02" 
+
+ConformalTracking_version = "HEAD"
+
+
 
 
 #--- slic et al:
