@@ -30,6 +30,6 @@ class Eigen(BaseILC):
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
 
-        self.envorder = [ "EIGEN_DIR" ]
-        self.env["EIGEN_DIR"] = self.installPath
+        self.envorder = [ "EIGEN_INCLUDE_DIR" ]
+        self.env["EIGEN_INCLUDE_DIR"] = self.installPath+'/include/eigen3/'
 
