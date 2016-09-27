@@ -15,7 +15,7 @@ ilcsoft_release=''
 
 use_cpp11 = True
 
-ilcsoft_install_prefix = "/cvmfs/clicdp.cern.ch/iLCSoft/builds/2016-09-26/x86_64-slc6-gcc48-opt/"
+ilcsoft_install_prefix = "/cvmfs/clicdp.cern.ch/iLCSoft/builds/2016-09-27/x86_64-slc6-gcc48-opt/"
 
 
 ilcPath = ilcsoft_install_prefix
