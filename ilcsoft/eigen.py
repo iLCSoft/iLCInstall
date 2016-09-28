@@ -24,12 +24,9 @@ class Eigen(BaseILC):
         self.hasCMakeBuildSupport = False
 
         self.reqfiles = [
-            ["include/eigen3/Eigen/src/Core/Matrix.h", "include/eigen3/Eigen/Core" ]
+            ["include/eigen3/Eigen/src/Core/Matrix.h", "include/eigen3/Eigen/Core",
+             "Eigen/src/Core/Matrix.h", "Eigen/Core" ]
         ]
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
-
-        self.envorder = [ "EIGEN_INCLUDE_DIR" ]
-        self.env["EIGEN_INCLUDE_DIR"] = self.installPath+'/include/eigen3/'
-
