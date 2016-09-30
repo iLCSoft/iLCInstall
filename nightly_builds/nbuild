@@ -93,7 +93,7 @@ try:
     #ilcsoft.summary()
     #ilcsoft.previewinstall()
     # delete old night builds (won't work after year 2999 ;)
-    dirs = glob.glob(os.path.dirname(os.path.dirname(ilcsoft.installPath))+"/2*")
+    dirs = glob.glob(os.path.dirname(ilcsoft.installPath)+"/2*")
     dirs.sort()
     while( len( dirs ) >= max_days ):
         print "removing nightly build: ", dirs[0]
