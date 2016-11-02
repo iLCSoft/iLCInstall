@@ -18,13 +18,16 @@ class aidaTT(BaseILC):
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "aidaTT", "aidaTT")
 
-        self.download.supportedTypes = [ "GitHub" ] 
+        self.download.supportedTypes = [ "svn", "GitHub" ] 
+        self.download.root = 'aidasoft'
         self.download.gituser = 'AIDASoft'
         self.download.gitrepo = 'aidaTT'
 
         self.reqfiles = [ ["lib/libaidaTT.so", "lib/libaidaTT.dylib" ]]
 
-        self.reqmodules = [ "Eigen" , "GBL", "DD4hep" , "LCIO", ]
+
+#        self.reqmodules = [ "Eigen" , "GBL", "DD4hep" , "LCIO", ]
+        self.reqmodules = [ "GSL" , "GBL", "DD4hep" , "LCIO", ]
 
 
     def init(self):
