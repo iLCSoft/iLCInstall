@@ -18,7 +18,8 @@ class aidaTT(BaseILC):
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "aidaTT", "aidaTT")
 
-        self.download.supportedTypes = [ "GitHub" ] 
+        self.download.supportedTypes = [ "svn", "GitHub" ] 
+        self.download.root = 'aidasoft'
         self.download.gituser = 'AIDASoft'
         self.download.gitrepo = 'aidaTT'
 
