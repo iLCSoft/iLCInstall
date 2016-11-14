@@ -205,7 +205,7 @@ LCCD_version = "v01-03-01" # "v01-03"
 
 RAIDA_version = "v01-07" # "v01-06-02"
 
-MarlinUtil_version = "v01-12" # "v01-10"
+MarlinUtil_version = "v01-12-01" # "v01-10"
 
 Marlin_version = "v01-09" # "v01-07"
 
