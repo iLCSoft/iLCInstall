@@ -11,13 +11,13 @@ import datetime
 # --------- ilcsoft release version ------------------------------------------
 today = str( datetime.date.today() )
 ilcsoft_release='HEAD-'+today
-#ilcsoft_release='HEAD-2016-07-05'
+ilcsoft_release='HEAD-2016-11-10'
 
 # ----------------------------------------------------------------------------
 
 #-----------------------
 # optionally build with c++11 ?
-use_cpp11 = True #True #False 
+use_cpp11 = True # False 
 if nightlies:
    use_cpp11 = nb_use_cpp11
    print "******************* use_cpp11", use_cpp11
@@ -146,7 +146,7 @@ Geant4_version =  "10.01" # "10.02.p01" # "10.01"
 print "value for use_cpp11: ", use_cpp11
 
 if use_cpp11:
-    ROOT_version = "6.06.02"
+    ROOT_version = "6.08.00"
     print " I install ROOT version : 6. " , ROOT_version , use_cpp11
 else:
     ROOT_version = "5.34.30"

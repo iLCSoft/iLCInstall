@@ -29,7 +29,7 @@ class ROOT(BaseILC):
                 ["bin/root-config"]
         ]
 
-        self.reqmodules_external = [ "GSL" ]
+        self.reqmodules_external = [ "GSL" , "MySQL" ]
 
     def setMode(self, mode):
         BaseILC.setMode(self, mode)
@@ -105,6 +105,7 @@ class ROOT(BaseILC):
         self.envcmake.setdefault( 'xrootd',         'ON' )
         self.envcmake.setdefault( 'builtin_xrootd', 'ON' )
         self.envcmake.setdefault( 'fortran',        'OFF' )
+        self.envcmake.setdefault( 'mysql',          'OFF' )
 
         if( os.system( self.genCMakeCmd() + " 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )

@@ -9,7 +9,7 @@
 import datetime
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-10-p01-pre'
+ilcsoft_release='v01-17-10-p01-pre01'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -141,7 +141,7 @@ Geant4_version =  "10.01" # "10.02.p01" # "10.01"
 print "value for use_cpp11: ", use_cpp11
 
 if use_cpp11:
-    ROOT_version = "6.06.02"
+    ROOT_version = "6.06.02" #"6.08.00"
     print " I install ROOT version : 6. " , ROOT_version , use_cpp11
 else:
     ROOT_version = "5.34.30"
@@ -187,7 +187,7 @@ DDKalTest_version = "v01-00" # "v00-02"
 
 MarlinTrk_version = "v02-02" # "v02-00-01"
 
-MarlinTrkProcessors_version = "v02-04-pre" # "v02-01"
+MarlinTrkProcessors_version = "v02-04-pre01" # "v02-01"
 
 Clupatra_version = "v00-14" # "v00-12"
 
@@ -215,17 +215,17 @@ DDMarlinPandora_version = "v00-04" # "v00-01"
 
 Mokka_version = "mokka-08-05" # "mokka-08-05" 
 
-MarlinReco_version = "v01-15" # "v01-13"
+MarlinReco_version = "v01-16-pre" # "v01-13"
 
 FCalClusterer_version = "v00-03" # "v00-01"
 
-ILDPerformance_version = "HEAD" # "v01-00" # "v00-01"
+ILDPerformance_version = "v01-01-pre" # "v00-01"
 
 #ILDConfig_version = "HEAD" 
 
 
 LCFIVertex_version = "v00-07-02" # "v00-07"
-LCFIPlus_version = "HEAD" #  "v00-07-01-pre" # "v00-05-03"
+LCFIPlus_version = "v00-06-05" #  # "v00-05-03"
 
 
 MarlinKinfit_version = "v00-04-pre" # "v00-01-05"
