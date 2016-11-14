@@ -9,7 +9,7 @@
 import datetime
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-10-p01-pre01'
+ilcsoft_release='v01-17-11'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -187,7 +187,7 @@ DDKalTest_version = "v01-00" # "v00-02"
 
 MarlinTrk_version = "v02-02" # "v02-00-01"
 
-MarlinTrkProcessors_version = "v02-04-pre01" # "v02-01"
+MarlinTrkProcessors_version = "v02-04" # "v02-01"
 
 Clupatra_version = "v00-14" # "v00-12"
 
@@ -215,11 +215,11 @@ DDMarlinPandora_version = "v00-04" # "v00-01"
 
 Mokka_version = "mokka-08-05" # "mokka-08-05" 
 
-MarlinReco_version = "v01-16-pre" # "v01-13"
+MarlinReco_version = "v01-16" # "v01-13"
 
 FCalClusterer_version = "v00-03" # "v00-01"
 
-ILDPerformance_version = "v01-01-pre" # "v00-01"
+ILDPerformance_version = "v01-01" # "v00-01"
 
 #ILDConfig_version = "HEAD" 
 
@@ -228,8 +228,8 @@ LCFIVertex_version = "v00-07-02" # "v00-07"
 LCFIPlus_version = "v00-06-05" #  # "v00-05-03"
 
 
-MarlinKinfit_version = "v00-04-pre" # "v00-01-05"
-MarlinKinfitProcessors_version = "v00-02-pre" # "v00-01"
+MarlinKinfit_version = "v00-04" # "v00-01-05"
+MarlinKinfitProcessors_version = "v00-02" # "v00-01"
 
 PandoraPFANew_version = "v02-09-01" # "v02-00-00"
 MarlinPandora_version = "v02-04-00" # "v02-00-00"
@@ -237,7 +237,7 @@ PandoraAnalysis_version = "v01-02-01" # "v01-00-01"
 
 CEDViewer_version = "v01-12" # "v01-10"
 
-Overlay_version = "v00-16-pre" # "v00-14"
+Overlay_version = "v00-16" # "v00-14"
 
 PathFinder_version = "v00-06-01" #  "v00-06" # should be changed 
 
@@ -251,11 +251,11 @@ Druid_version = "2.2" # "2.2" # "1.8"
 
 Garlic_version = "v3.0.4" # "v3.0.3"
 
-DD4hep_version = "v00-16" # "v00-14"
+DD4hep_version = "v00-18" # "v00-16"
 
-DD4hepExamples_version = "v00-16" # "v00-14"
+DD4hepExamples_version = "v00-18" # "v00-14"
 
-lcgeo_version = "v00-08" # "v00-05"
+lcgeo_version = "v00-09-pre" # "v00-08"
 
 Physsim_version = "v00-03" # "v00-02" 
 
