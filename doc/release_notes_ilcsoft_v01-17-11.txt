@@ -1,0 +1,78 @@
+#################################
+#
+#   iLCSoft release - v01-17-11
+#
+#################################
+
+This is a patch release to v01-17-10 that fixes a few known issues and 
+provides some updates and should be the last release with c++98, ROOT5, 
+Mokka, ...
+
+
+=================================================
+
+# Changes in v01-17-11  w.r.t. iLCSoft v01-17-10
+ 
+=================================================
+
+
+## LCFIPlus: v00-06-05
+
+- deal with TMVA API changes in ROOT 6.08
+- fixes known issue with TMVA training in ROOT versions
+  between 5.34 and 6.06 
+	
+
+## CED: v01-09-02
+
+   - wrong version was included in v01-17-10
+
+
+## MarlinTrkProcessors: v02-04
+
+   - improvement in MiniVectorCA based patrec
+   - added particle mass to RefitProcessor
+   - cleaned up ExtrToTracker and DDCellsAutomatonMV
+
+
+## Overlay: v00-16 
+
+   - add parameter 'KeepPairsMCPinfo' tp OverlayBX
+
+## MarlinKinfit: v00-04
+
+   - fixed error calculation in presence of unmeasured parameters in OPALFitter, New(ton)Fitter was ok already!
+   - the OPALFitter does _not_ work with SoftConstraints (runs, but SCs don't "do" anything)
+
+
+## PandoraPFA: v02-09-01
+
+   - new patch release with small bug fix for software compensation 
+
+
+## LCIO: v02-07-03
+
+   - fix issue w/ installing pcm files
+
+
+## Gear:  v01-06-01
+
+   - bug fix for computing number of TPC pad rows
+     - observed in small ILD model 
+
+
+## MarlinReco: v01-16
+
+   - add package ErrorFlow ( compute jet-specific energy uncertainty ) 
+
+
+## ILDPerformance: v01-01
+
+   - kinfit:
+     - new reference histogram file for ZH5CFit
+     - reference histograms for pull distributions
+   - tracking:
+      - adding macros that compare the resolutions with one from DBD plus a batch script to run
+        the diagnostics to the example analysos reco files
+
+
