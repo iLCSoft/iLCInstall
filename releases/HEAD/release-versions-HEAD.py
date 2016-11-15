@@ -11,13 +11,12 @@ import datetime
 # --------- ilcsoft release version ------------------------------------------
 today = str( datetime.date.today() )
 ilcsoft_release='HEAD-'+today
-ilcsoft_release='HEAD-2016-11-10'
 
 # ----------------------------------------------------------------------------
 
 #-----------------------
-# optionally build with c++11 ?
-use_cpp11 = True # False 
+# we now always build with c++11 ?
+use_cpp11 = True 
 if nightlies:
    use_cpp11 = nb_use_cpp11
    print "******************* use_cpp11", use_cpp11
@@ -103,19 +102,7 @@ Boost_path = "/afs/desy.de/project/ilcsoft/sw/boost/1.58.0"
 #------ Eigen headers files ------------------------------------------
 Eigen_path = "/afs/desy.de/project/ilcsoft/sw/Eigen/3.2.9"
 
-# ----- CERNLIB ------------------------------------------------------
-CERNLIB_version = "2006" 
-CERNLIB_path = "/afs/desy.de/project/ilcsoft/sw/x86_64_gcc44_sl6/cernlib/" + CERNLIB_version
-
-
-
 # ----------------------------------------------------------------------------
-
-Fortran_lib_path = ""
-# ----- when using gcc48 we need to give a hint where to find the libary:
-if( use_cpp11 ):
-    Fortran_lib_path = "/afs/cern.ch/sw/lcg/contrib/gcc/4.8.1/x86_64-slc6-gcc48-opt/lib64"
-
 
 ##########################################################################################
 #
@@ -126,33 +113,15 @@ if( use_cpp11 ):
 
 
 
-#=============================================================================
-# CXX_FLAGS for c++ compiler:
-#
-
-#if( use_cpp11 ):
-#    CMAKE_CXX_FLAGS = '-Wall -std=c++11'
-#else:
-#  CMAKE_CXX_FLAGS = '-Wall -ansi -pedantic -Wno-long-long'
-
-
-# ----------------------------------------------------------------------------
-
-
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version =  "10.01" # "10.02.p01" # "10.01" 
+Geant4_version =  "10.02.p02" # "10.01" 
 
 print "value for use_cpp11: ", use_cpp11
 
-if use_cpp11:
-    ROOT_version = "6.08.00"
-    print " I install ROOT version : 6. " , ROOT_version , use_cpp11
-else:
-    ROOT_version = "5.34.30"
-    print " I install ROOT version : 5. " , ROOT_version , use_cpp11
+ROOT_version = "6.08.00"
 
-CLHEP_version =  "2.1.4.1" # "2.3.1.1" #  "2.1.4.1"
+CLHEP_version =  " 2.3.3.1"
 
 GSL_version = "2.1" # "1.14"
 
@@ -160,7 +129,7 @@ QT_version = "4.7.4"
 
 CMake_version = "3.4.3" # "2.8.5"
 
-CED_version = "v01-09-01"
+CED_version = "v01-09-02"
 
 # -------------------------------------------
 
@@ -170,7 +139,7 @@ GEAR_version = "HEAD" # "v01-04-02"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
 
-ILCUTIL_version = "v01-03-pre"  #  "v01-02-01" 
+ILCUTIL_version = "v01-03"  #  "v01-02-01" 
 
 FastJet_version = "3.2.0"
 FastJetcontrib_version = "1.024"
@@ -217,8 +186,6 @@ Marlin_version = "HEAD" # "v01-07"
 MarlinDD4hep_version = "HEAD" # "v00-01"
 
 DDMarlinPandora_version = "HEAD" # "v00-01"
-
-Mokka_version = "HEAD" # "mokka-08-05" 
 
 MarlinReco_version = "HEAD" # "v01-13"
 
@@ -270,16 +237,6 @@ XERCESC_ROOT_DIR = ilcPath + "/xercesc/3.1.2"
 
 XercesC_version = "3.1.2" 
 
-#--- slic et al:
-
-
-#HepPDT_version = "3.04.01"
-
-# versions tagged by J.Strube for this release 
-#GDML_version = "ilcsoft-v01-17-07"
-#LCDD_version = "ilcsoft-v01-17-07"
-#SLIC_version = "ilcsoft-v01-17-07"
-#SlicPandora_version = "ilcsoft-v01-17-07"
 
 
 
