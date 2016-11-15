@@ -141,7 +141,7 @@ Geant4_version =  "10.01" # "10.02.p01" # "10.01"
 print "value for use_cpp11: ", use_cpp11
 
 if use_cpp11:
-    ROOT_version = "6.06.02" #"6.08.00"
+    ROOT_version = "6.08.00"
     print " I install ROOT version : 6. " , ROOT_version , use_cpp11
 else:
     ROOT_version = "5.34.30"
