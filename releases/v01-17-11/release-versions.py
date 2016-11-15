@@ -251,11 +251,11 @@ Druid_version = "2.2" # "2.2" # "1.8"
 
 Garlic_version = "v3.0.4" # "v3.0.3"
 
-DD4hep_version = "v00-18" # "v00-16"
+DD4hep_version = "v00-16" # "v00-16"
 
-DD4hepExamples_version = "v00-18" # "v00-14"
+DD4hepExamples_version = "v00-16" # "v00-14"
 
-lcgeo_version = "v00-09-pre" # "v00-08"
+lcgeo_version = "v00-08" # "v00-08"
 
 Physsim_version = "v00-03" # "v00-02" 
 
