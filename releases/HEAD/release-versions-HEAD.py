@@ -121,7 +121,7 @@ print "value for use_cpp11: ", use_cpp11
 
 ROOT_version = "6.08.00"
 
-CLHEP_version =  " 2.3.3.1"
+CLHEP_version =  "2.3.3.1"
 
 GSL_version = "2.1" # "1.14"
 
