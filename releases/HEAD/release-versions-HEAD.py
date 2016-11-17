@@ -115,13 +115,13 @@ Eigen_path = "/afs/desy.de/project/ilcsoft/sw/Eigen/3.2.9"
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version =  "10.02.p02" # "10.01" 
+Geant4_version =  "10.02.p02"
+
+CLHEP_version =  "2.3.1.1"
 
 print "value for use_cpp11: ", use_cpp11
 
 ROOT_version = "6.08.00"
-
-CLHEP_version =  "2.3.3.1"
 
 GSL_version = "2.1" # "1.14"
 
