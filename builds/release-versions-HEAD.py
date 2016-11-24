@@ -15,12 +15,12 @@ ilcsoft_release=''
 
 use_cpp11 = True
 
-ilcsoft_install_prefix = "/cvmfs/clicdp.cern.ch/iLCSoft/builds/2016-09-27/x86_64-slc6-gcc48-opt/"
+ilcsoft_install_prefix = "/cvmfs/clicdp.cern.ch/iLCSoft/builds/2016-11-24/x86_64-slc6-gcc62-opt/"
 
 
 ilcPath = ilcsoft_install_prefix
 
-Boost_path = "/cvmfs/clicdp.cern.ch/software/Boost/1.61.0/x86_64-slc6-gcc48-opt/"
+Boost_path = "/cvmfs/clicdp.cern.ch/software/Boost/1.62.0/x86_64-slc6-gcc62-opt/"
 
 if( use_cpp11 ):
     CMAKE_CXX_FLAGS = '-Wall -std=c++11'
