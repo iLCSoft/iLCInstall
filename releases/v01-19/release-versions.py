@@ -9,11 +9,11 @@
 import datetime
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-17-11'
+ilcsoft_release='v01-19-pre01'
 # ----------------------------------------------------------------------------
 
 #-----------------------
-# optionally build with c++11 ?
+# we now always build with c++11 ?
 use_cpp11 = True 
 if nightlies:
    use_cpp11 = nb_use_cpp11
@@ -43,8 +43,7 @@ if nightlies:
 #
 
 ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
-#ilcsoft_install_prefix = "/afs/desy.de/project/ilcsoft/sw/x86_64_gcc44_sl6/"
-#ilcsoft_install_prefix = "/nfs/dust/ilc/user/voutsina/testarea/ilcsoft_c11/"
+#ilcsoft_install_prefix = "/cvmfs/ilc.desy.de/sw/x86_64_gcc48_sl6/"
 #ilcsoft_install_prefix = "/scratch/ilcsoft/"
 
 # ----------------------------------------------------------------------------
@@ -66,11 +65,6 @@ ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
 # or set to an /afs or /cvmfs base installation that you 
 # want to use
 # ===========================================================
-
-#ilcPath = '/afs/desy.de/project/ilcsoft/sw/x86_64_gcc44_sl6'
-#ilcPath = '/afs/desy.de/project/ilcsoft/sw/x86_64_gcc48_sl6'
-#ilcPath = '/afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5'
-
 
 ilcPath = ilcsoft_install_prefix
 # ----------------------------------------------------------------------------
@@ -95,21 +89,10 @@ if( ilcsoft_afs_path[ arch ].find('_ub') > 0 ):
 
 
 #------ boost headers files ------------------------------------------
-Boost_path = "/afs/desy.de/project/ilcsoft/sw/boost/1.58.0"
+Boost_path = ilcPath+"/../boost/1.58.0"
 
-
-# ----- CERNLIB ------------------------------------------------------
-CERNLIB_version = "2006" 
-CERNLIB_path = "/afs/desy.de/project/ilcsoft/sw/x86_64_gcc44_sl6/cernlib/" + CERNLIB_version
-
-
-
-# ----------------------------------------------------------------------------
-
-Fortran_lib_path = ""
-# ----- when using gcc48 we need to give a hint where to find the libary:
-if( use_cpp11 ):
-    Fortran_lib_path = "/afs/cern.ch/sw/lcg/contrib/gcc/4.8.1/x86_64-slc6-gcc48-opt/lib64"
+#------ Eigen headers files ------------------------------------------
+Eigen_path =  ilcPath+"/../Eigen/3.2.9"
 
 
 ##########################################################################################
@@ -120,70 +103,47 @@ if( use_cpp11 ):
 ##########################################################################################
 
 
-
-#=============================================================================
-# CXX_FLAGS for c++ compiler:
-#
-
-#if( use_cpp11 ):
-#    CMAKE_CXX_FLAGS = '-Wall -std=c++11'
-#else:
-#  CMAKE_CXX_FLAGS = '-Wall -ansi -pedantic -Wno-long-long'
-
-
-# ----------------------------------------------------------------------------
-
-
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version =  "10.01" # "10.02.p01" # "10.01" 
+Geant4_version =  "10.02.p02" 
+CLHEP_version =  "2.3.1.1"
 
-print "value for use_cpp11: ", use_cpp11
+ROOT_version = "6.08.00"
 
-if use_cpp11:
-    ROOT_version = "6.08.00"
-    print " I install ROOT version : 6. " , ROOT_version , use_cpp11
-else:
-    ROOT_version = "5.34.30"
-    print " I install ROOT version : 5. " , ROOT_version , use_cpp11
-
-CLHEP_version =  "2.1.4.1" # "2.3.1.1" #  "2.1.4.1"
-
-GSL_version = "2.1" # "1.14"
+GSL_version = "2.1" 
 
 QT_version = "4.7.4"
 
-CMake_version = "3.4.3" # "2.8.5"
+CMake_version = "3.4.3"
 
 CED_version = "v01-09-02"
-
 # -------------------------------------------
 
-LCIO_version = "v02-07-03" # "v02-06"
+LCIO_version = "v02-07-04-pre" 
 
-GEAR_version = "v01-06-01" # "v01-04-02" 
+GEAR_version = "v01-06-01" 
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
 
-ILCUTIL_version = "v01-03"  #  "v01-02-01" 
+ILCUTIL_version = "v01-03"  
 
 FastJet_version = "3.2.0"
 FastJetcontrib_version = "1.024"
 
-FastJetClustering_version = "v00-03" #"v00-02"
+FastJetClustering_version = "v00-03" 
 
-MarlinFastJet_version = "v00-03" # "v00-02"
+MarlinFastJet_version = "v00-03" 
 
 
 # -------------------------------------------
 
-KalTest_version = "v02-02" # "v02-00"  
+KalTest_version = "v02-02" 
 
-KalDet_version = "v01-13-03" # "v01-13-02"
+KalDet_version = "v01-13-03" 
 
-aidaTT_version = "v00-04" # "v00-02"
+aidaTT_version = "v00-05" 
 
-DDKalTest_version = "v01-00" # "v00-02"
+DDKalTest_version = "v01-00-01" # "v00-02"
 
 MarlinTrk_version = "v02-02" # "v02-00-01"
 
@@ -207,11 +167,10 @@ RAIDA_version = "v01-07" # "v01-06-02"
 
 MarlinUtil_version = "v01-12-01" # "v01-10"
 
-Marlin_version = "v01-09" # "v01-07"
+Marlin_version = "v01-10-pre" #"v01-09"
 
-MarlinDD4hep_version = "v00-02" # "v00-01"
+MarlinDD4hep_version = "v00-03-pre" # "v00-02"
 
-DDMarlinPandora_version = "v00-04" # "v00-01"
 
 Mokka_version = "mokka-08-05" # "mokka-08-05" 
 
@@ -231,8 +190,9 @@ LCFIPlus_version = "v00-06-05" #  # "v00-05-03"
 MarlinKinfit_version = "v00-04" # "v00-01-05"
 MarlinKinfitProcessors_version = "v00-02" # "v00-01"
 
-PandoraPFANew_version = "v02-09-01" # "v02-00-00"
-MarlinPandora_version = "v02-04-00" # "v02-00-00"
+PandoraPFANew_version = "v03-01-00" #"v02-09-01"
+DDMarlinPandora_version = "v00-05-pre" # "v00-01"
+##MarlinPandora_version = "v02-04-00" # "v02-00-00"
 PandoraAnalysis_version = "v01-02-01" # "v01-00-01" 
 
 CEDViewer_version = "v01-12" # "v01-10"
@@ -251,11 +211,10 @@ Druid_version = "2.2" # "2.2" # "1.8"
 
 Garlic_version = "v3.0.4" # "v3.0.3"
 
-DD4hep_version = "v00-16" # "v00-16"
+DD4hep_version = "v00-19" 
+DD4hepExamples_version = "v00-19" 
 
-DD4hepExamples_version = "v00-16" # "v00-14"
-
-lcgeo_version = "v00-08" # "v00-08"
+lcgeo_version = "v00-09-pre01" 
 
 Physsim_version = "v00-03" # "v00-02" 
 
@@ -264,17 +223,4 @@ Physsim_version = "v00-03" # "v00-02"
 XERCESC_ROOT_DIR = ilcPath + "/xercesc/3.1.2"
 
 XercesC_version = "3.1.2" 
-
-#--- slic et al:
-
-
-#HepPDT_version = "3.04.01"
-
-# versions tagged by J.Strube for this release 
-#GDML_version = "ilcsoft-v01-17-07"
-#LCDD_version = "ilcsoft-v01-17-07"
-#SLIC_version = "ilcsoft-v01-17-07"
-#SlicPandora_version = "ilcsoft-v01-17-07"
-
-
 
