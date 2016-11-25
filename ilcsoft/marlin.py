@@ -18,6 +18,10 @@ class Marlin(BaseILC):
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "Marlin", "Marlin")
 
+        self.download.supportedTypes = [ "GitHub" ] 
+        self.download.gituser = 'iLCSoft'
+        self.download.gitrepo = 'Marlin'
+
         self.reqfiles = [ ["lib/libMarlin.a", "lib/libMarlin.so", "lib/libMarlin.dylib"], ["bin/Marlin"] ]
 
         # LCIO is required for building Marlin
