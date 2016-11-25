@@ -9,7 +9,7 @@
 import datetime
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-19-pre01'
+ilcsoft_release='v01-19'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -119,7 +119,7 @@ CMake_version = "3.4.3"
 CED_version = "v01-09-02"
 # -------------------------------------------
 
-LCIO_version = "v02-07-04-pre" 
+LCIO_version = "v02-07-04" 
 
 GEAR_version = "v01-06-01" 
 
@@ -167,9 +167,9 @@ RAIDA_version = "v01-07" # "v01-06-02"
 
 MarlinUtil_version = "v01-12-01" # "v01-10"
 
-Marlin_version = "v01-10-pre" #"v01-09"
+Marlin_version = "v01-10" #"v01-09"
 
-MarlinDD4hep_version = "v00-03-pre" # "v00-02"
+MarlinDD4hep_version = "v00-03" # "v00-02"
 
 
 Mokka_version = "mokka-08-05" # "mokka-08-05" 
@@ -191,7 +191,7 @@ MarlinKinfit_version = "v00-04" # "v00-01-05"
 MarlinKinfitProcessors_version = "v00-02" # "v00-01"
 
 PandoraPFANew_version = "v03-01-00" #"v02-09-01"
-DDMarlinPandora_version = "v00-05-pre" # "v00-01"
+DDMarlinPandora_version = "v00-05" # "v00-01"
 ##MarlinPandora_version = "v02-04-00" # "v02-00-00"
 PandoraAnalysis_version = "v01-02-01" # "v01-00-01" 
 
@@ -214,7 +214,7 @@ Garlic_version = "v3.0.4" # "v3.0.3"
 DD4hep_version = "v00-19" 
 DD4hepExamples_version = "v00-19" 
 
-lcgeo_version = "v00-09-pre02" 
+lcgeo_version = "v00-09" 
 
 Physsim_version = "v00-03" # "v00-02" 
 

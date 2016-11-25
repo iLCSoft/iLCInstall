@@ -1,0 +1,74 @@
+#################################
+#
+#   iLCSoft release - v01-19
+#
+#################################
+
+This is the first developers release that exclusively works with 
+the new DD4hep based software packages only. It requires a compiler
+compatible with c++11 (e.g. gcc48 or higher ) such that c++11 
+features can be used from now on.
+
+=================================================
+
+# Changes in v01-19  w.r.t. iLCSoft v01-17-11
+ 
+=================================================
+
+## Mokka
+   - dropped
+
+## MarlinPandora
+   - dropped
+
+## Marlin v01-10
+
+- F.Gaede
+   - add a licence to marlin: GPLv3
+- S.Lu
+  - fix buidling the MarlinGUI for gcc48
+- D.Hynds
+  - added escape behaviour mapped to SIGQUIT signal (^\).
+    Hitting this during running will run the end routine for each processor 
+    and then exit Marlin, allowing you to stop event processing and 
+    still preserve histograms/results/etc.
+ 
+
+## MarlinDD4hep v00-03
+
+- A.Sailer
+  - add parameter "EncodingStringParameterName" to ovewrite
+    ILDCellID0::encoder_string as workaround for CLIC/SiD tracking
+
+
+## DDMarlinPandora v00-05
+
+
+
+## PandoraPFANew v03-01-00
+
+
+
+## DD4hep v00-19
+
+
+
+## lcgeo v00-09
+
+
+
+## aidaTT v00-05
+
+
+
+## DDKalTest v01-00-01
+
+
+
+## lcio v02-07-04
+
+
+
+
+
+
