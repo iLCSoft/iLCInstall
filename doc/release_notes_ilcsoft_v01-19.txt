@@ -42,30 +42,125 @@ features can be used from now on.
 
 
 ## DDMarlinPandora v00-05
+- A.Sailer
 
+   * DDMarlinPandora::CaloHitCreator:
+   Get normal vector from DD4hep::DetElement instead of using assumptions
+   about calorimeter construction to calculate phi, which are no longer true
 
+   Add options to set local NormalVector for ecal, hcal, and muon barrels
+   in case they are not build with layers increasing along the z-axis
+   ECalBarrelNormalVector
+   HCalBarrelNormalVector
+   YokeBarrelNormalVector
+
+   All three are three vectors
+
+   Correct and simplify calculation of NormalVector for cylindrical barrel
+   calorimeters
+
+   * Fix many compiler warnings
+ 
 
 ## PandoraPFANew v03-01-00
 
+many updates in subpackages since previous version  v02-09-02 :
+
+PandoraSDK: v03-00-00 - prev: v02-03-02
+PandoraMonitoring: v03-01-00 - prev:  v02-03-01
+LArContent: v03_01_00 - prev:  v02_07_09
+LCContent: v03-00-00 - prev: v02-04-01
+ExampleContent: v03-00-00 - prev:  v02-01-03
+
+ for details see:
+https://raw.githubusercontent.com/PandoraPFA/PandoraSDK/master/ChangeLog.txt
+https://raw.githubusercontent.com/PandoraPFA/PandoraMonitoring/master/ChangeLog.txt
+https://raw.githubusercontent.com/PandoraPFA/LArContent/master/ChangeLog.txt
+https://raw.githubusercontent.com/PandoraPFA/LCContent/master/ChangeLog.txt
+https://raw.githubusercontent.com/PandoraPFA/ExampleContent/master/ChangeLog.txt
 
 
 ## DD4hep v00-19
+
+ 2016-11-17 D.Jeans
+   - rewritten MegatileLayerGrid class
+      - not backward compatible
+  M.Petric:
+  - improved Travis CI configuration
+  - remove some tests from CI
+
+ ### v00-18 
+
+2016-11-09 F.Gaede
+  - updated DDRec::LayeredCalorimeterData::Layer:
+     - remove deprecated thickness
+     - add phi0
+  - add copy assignement to DDRec::MaterialData
+2016-11-08 M.Frank
+  - Improve conditions handling. Started to implement using simple telescope
+    detector from C.Burr.
+  - Add variable DD4HEP_LIBRARY_PATH to be used on MacOSX El Capitane
+    to overcome DYLD_LIBRARY_PATH protection issues.
+  - Fix to copy with negative(rebased) IDDDescriptor fields
+    (affects IDDDescriptor and VolumeManager).
+    2 New tests:
+    - ClientTests/Bitfield_SidesTest.xml to test readout string:
+      system:8,barrel:-2
+    - ClientTests/Bitfield_SidesTest2.xml to test readout string:
+      system:16,barrel:16:-5
+2016-10-18 M.Frank
+  Due to pressure of the FCC folks, I tried to implement a more DD4hep like implementation of the
+  the segmentation objects. For testing only CartesianGridXY. If this mechanism works,
+  it could be a starting recipe for the rest of the segmentations. The draw-back of this approach is,
+  that assignments are not reversible:
+  DD4hep::CartesianGridXY xy = readout.segmentation();  // Works
+  DD4hep::Segmentation seg = xy;                    // Should not work
+
+  Reason: the managed objects are different....at some point in time I will have to find a
+  clean solution for this, but the required changes for such a solution shall be manageable.
 
 
 
 ## lcgeo v00-09
 
+  - developers release wih many changes and updates to CLIC, ILD and SiD simulation models, e.g.:
+    - made compatible w/ DD4hep v00-18 ( removed LayeredCalorimterData::Layer::thickness )
+    - ILD:
+      - add models ILD_l1_v01 and ILD_s1_v01
+      - new LCal driver
+      - new Hcal barrel w/ staircase layout
+      - ...
+    - CLIC:
+      - new mdoels CLIC_o3_v06 and CLIC_o3_v07
+      - ...
+    - SiD:
+      - new model: SiD_o2_v01
+      - make compatible w/ reconstruction
+      -...
 
 
 ## aidaTT v00-05
-
+F. Gaede
+- replaced GSL with Eigen for Vector5 and fiveByfiveMatrix
+  - needs Eigen Headers to be installed
+  - removed simpleFitter for now (depends on GSL and is used nowehre)
 
 
 ## DDKalTest v01-00-01
-
-
+A.Sailer
+  - DDParallelPlanarMeasLayer: protect against basically infinite loop if phi value is very very large
+  - DDKaltest: Ignore warnings from external header files
 
 ## lcio v02-07-04
+
+F.Gaede
+  - make LCIO relocatable ( as suggested by M.Petric/A.Sailer)
+     - install cmake macros
+     - use CMAKE_CURRENT_LIST_DIR in cmake config files
+
+  - remove const from ILDCellID0::encoder_string
+    - so it can be changed for CLIC/SiD as
+      as workaround
 
 
 
