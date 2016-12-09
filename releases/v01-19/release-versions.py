@@ -157,6 +157,10 @@ KiTrackMarlin_version = "v01-09" # "v01-07"
 
 ForwardTracking_version = "v01-10" # "v01-08"
 
+ConformalTracking_version = "HEAD" # "v01-08"
+
+LICH_version = "HEAD" # "v01-08"
+
 # -------------------------------------------
 
 GBL_version = "V01-17-01" # "V01-16-04"
