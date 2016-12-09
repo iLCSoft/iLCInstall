@@ -25,7 +25,11 @@ class LCIO(BaseILC):
         self.optmodules = [ "ROOT" ]
 
         # supported download types
-        self.download.supportedTypes = ["svn"]
+        #self.download.supportedTypes = ["svn"]
+        self.download.supportedTypes = [ "GitHub" ] 
+        self.download.gituser = 'iLCSoft'
+        self.download.gitrepo = 'LCIO'
+
 
         self.envcmake["INSTALL_JAR"]="OFF"
 
