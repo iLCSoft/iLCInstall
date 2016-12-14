@@ -194,10 +194,9 @@ LCFIPlus_version = "v00-06-05" #  # "v00-05-03"
 MarlinKinfit_version = "v00-04" # "v00-01-05"
 MarlinKinfitProcessors_version = "v00-02" # "v00-01"
 
-PandoraPFANew_version = "v03-01-00" #"v02-09-01"
-DDMarlinPandora_version = "v00-05" # "v00-01"
-##MarlinPandora_version = "v02-04-00" # "v02-00-00"
-PandoraAnalysis_version = "v01-02-01" # "v01-00-01" 
+PandoraPFANew_version   = "HEAD" # "v03-01-00"
+DDMarlinPandora_version = "HEAD" # "v00-05"
+PandoraAnalysis_version = "HEAD" # "v01-02-01"
 
 CEDViewer_version = "v01-12" # "v01-10"
 
