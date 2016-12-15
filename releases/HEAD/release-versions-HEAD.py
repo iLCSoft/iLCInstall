@@ -23,18 +23,18 @@ if nightlies:
 
 
 #===============================================================================
-# DD4hep crashes the gcc 4.8.1 compiler - which is the only one available
-# with consistent versions in afs and cvmfs, so we have different versions for now ...
-# run either of:
+# use a compiler that knows c++11, run 
+#
 '''
- source /afs/cern.ch/sw/lcg/external/gcc/4.8.4/x86_64-slc6-gcc48-opt/setup.sh
- export PATH=/afs/cern.ch/sw/lcg/external/Python/2.7.4/x86_64-slc6-gcc48-opt/bin/:$PATH
- export LD_LIBRARY_PATH=/afs/cern.ch/sw/lcg/external/Python/2.7.4/x86_64-slc6-gcc48-opt/lib/:$LD_LIBRARY_PATH
+ source /afs/cern.ch/sw/lcg/contrib/gcc/4.9.3/x86_64-slc6/setup.sh
+ export PATH=/afs/cern.ch/sw/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/bin:$PATH
+ export LD_LIBRARY_PATH=/afs/cern.ch/sw/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/lib:$LD_LIBRARY_PATH
 
 # or on cvmfs:
- source /cvmfs/clicdp.cern.ch/compilers/gcc/4.8.5/x86_64-slc6/setup.sh 
- export PATH=/cvmfs/clicdp.cern.ch/software/Python/2.7.11/x86_64-slc6-gcc48-opt/bin/:$PATH
- export LD_LIBRARY_PATH=/cvmfs/clicdp.cern.ch/software/Python/2.7.11/x86_64-slc6-gcc48-opt/lib:$LD_LIBRARY_PATH
+
+ source /cvmfs/sft.cern.ch/lcg/contrib/gcc/4.9.3/x86_64-slc6/setup.sh
+ export PATH=/cvmfs/sft.cern.ch/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/bin:$PATH
+ export LD_LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/lib:$LD_LIBRARY_PATH
 '''
 # before starting the installation
 #================================================================================
