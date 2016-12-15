@@ -21,8 +21,9 @@ class lcgeo(BaseILC):
         #self.hasCMakeBuildSupport = False
         #self.hasCMakeFindSupport = False
 
-        self.download.supportedTypes = [ "svn"]
-        self.download.root = "ddsim"
+        self.download.supportedTypes = [ "GitHub" ] 
+        self.download.gituser = 'iLCSoft'
+        self.download.gitrepo = 'lcgeo'
 
         self.reqfiles = [ ["lib/liblcgeo.so", "lib/liblcgeo.dylib" ]]
 
