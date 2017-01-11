@@ -18,7 +18,7 @@ max_days=3
 #date_iso8601 = getoutput( "date --iso-8601" )
 date_iso8601 = getoutput( "date '+20%y-%m-%d'" )
 # you can set the mail addresses in the config file
-mail_addresses=["georgios.voutsinas@desy.de", "frank.gaede@desy.de"]
+mail_addresses=["shaojun.lu@desy.de", "frank.gaede@desy.de"]
 nightlies = True
 
 nb_use_cpp11 = True
@@ -39,6 +39,7 @@ ilcsoft_afs_path['base']  = '/afs/desy.de/project/ilcsoft/sw'
 ilcsoft_afs_path['gcc41_64bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc41_sl5' ))
 ilcsoft_afs_path['gcc44_64bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc44_sl6' ))
 ilcsoft_afs_path['gcc48_64bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc48_sl6' ))
+ilcsoft_afs_path['gcc49_64bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc49_sl6' ))
 
 ilcPath = None
 try:
@@ -93,7 +94,7 @@ try:
     #ilcsoft.summary()
     #ilcsoft.previewinstall()
     # delete old night builds (won't work after year 2999 ;)
-    dirs = glob.glob(os.path.dirname(os.path.dirname(ilcsoft.installPath))+"/2*")
+    dirs = glob.glob(os.path.dirname(ilcsoft.installPath)+"/2*")
     dirs.sort()
     while( len( dirs ) >= max_days ):
         print "removing nightly build: ", dirs[0]
