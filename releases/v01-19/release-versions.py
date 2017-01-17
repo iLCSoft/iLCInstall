@@ -9,7 +9,7 @@
 import datetime
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-19-01-pre01'
+ilcsoft_release='v01-19-01-pre03'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -24,12 +24,21 @@ if nightlies:
 # use a compiler that knows c++11, run 
 #
 '''
+# ==== gcc 4.8
+source /afs/cern.ch/sw/lcg/external/gcc/4.8.1/x86_64-slc6-gcc48-opt/setup.sh
+export PATH=/afs/cern.ch/sw/lcg/external/Python/2.7.4/x86_64-slc6-gcc48-opt/bin/:$PATH
+export LD_LIBRARY_PATH=/afs/cern.ch/sw/lcg/external/Python/2.7.4/x86_64-slc6-gcc48-opt/lib/:$LD_LIBRARY_PATH
+# cvmfs:
+source /cvmfs/sft.cern.ch/lcg/external/gcc/4.8.1/x86_64-slc6-gcc48-opt/setup.sh
+export PATH=/cvmfs/sft.cern.ch/lcg/external/Python/2.7.4/x86_64-slc6-gcc48-opt/bin/:$PATH
+export LD_LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/external/Python/2.7.4/x86_64-slc6-gcc48-opt/lib/:$LD_LIBRARY_PATH
+
+
+#===== gcc 4.9:
  source /afs/cern.ch/sw/lcg/contrib/gcc/4.9.3/x86_64-slc6/setup.sh
  export PATH=/afs/cern.ch/sw/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/bin:$PATH
  export LD_LIBRARY_PATH=/afs/cern.ch/sw/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/lib:$LD_LIBRARY_PATH
-
 # or on cvmfs:
-
  source /cvmfs/sft.cern.ch/lcg/contrib/gcc/4.9.3/x86_64-slc6/setup.sh
  export PATH=/cvmfs/sft.cern.ch/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/bin:$PATH
  export LD_LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/lib:$LD_LIBRARY_PATH
@@ -111,13 +120,16 @@ Eigen_path =  ilcPath+"/../Eigen/3.2.9"
 Geant4_version =  "10.02.p02" 
 CLHEP_version =  "2.3.1.1"
 
-ROOT_version = "6.08.00"
+#Geant4_version =  "10.03" 
+#CLHEP_version =  "2.3.4.3"
+
+ROOT_version = "6.08.02"
 
 GSL_version = "2.1" 
 
 QT_version = "4.7.4"
 
-CMake_version = "3.4.3"
+CMake_version = "3.6.3" #"3.4.3"
 
 CED_version = "v01-09-02"
 # -------------------------------------------
@@ -128,7 +140,7 @@ GEAR_version = "v01-06-01"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
 
-ILCUTIL_version = "v01-03"  
+ILCUTIL_version = "v01-03" # "v01-04"  
 
 FastJet_version = "3.2.0"
 FastJetcontrib_version = "1.024"
@@ -140,19 +152,19 @@ MarlinFastJet_version = "v00-03"
 
 # -------------------------------------------
 
-KalTest_version = "v02-02" 
+KalTest_version = "v02-02-01" 
 
 KalDet_version = "v01-13-03" 
 
 aidaTT_version = "v00-05" 
 
-DDKalTest_version = "v01-00-01" # "v00-02"
+DDKalTest_version = "v01-01"   #"v01-00-01" 
 
 MarlinTrk_version = "v02-02" # "v02-00-01"
 
 MarlinTrkProcessors_version = "v02-04" # "v02-01"
 
-Clupatra_version = "v00-14" # "v00-12"
+Clupatra_version = "v00-14"  # "v01-00-pre"  
 
 KiTrack_version = "v01-07" # "v01-06"
 
@@ -162,7 +174,7 @@ ForwardTracking_version = "v01-10" # "v01-08"
 
 ConformalTracking_version = "HEAD" # "v01-08"
 
-LICH_version = "HEAD" # "v01-08"
+LICH_version = "v00-01" 
 
 # -------------------------------------------
 
@@ -178,10 +190,7 @@ Marlin_version = "v01-10" #"v01-09"
 
 MarlinDD4hep_version = "v00-03" # "v00-02"
 
-
-Mokka_version = "mokka-08-05" # "mokka-08-05" 
-
-MarlinReco_version = "v01-16" # "v01-13"
+MarlinReco_version = "v01-17-pre" # "v01-16"
 
 FCalClusterer_version = "v00-03" # "v00-01"
 
@@ -197,9 +206,9 @@ LCFIPlus_version = "v00-06-05" #  # "v00-05-03"
 MarlinKinfit_version = "v00-04" # "v00-01-05"
 MarlinKinfitProcessors_version = "v00-02" # "v00-01"
 
-PandoraPFANew_version   = "HEAD" # "v03-01-00"
-DDMarlinPandora_version = "HEAD" # "v00-05"
-PandoraAnalysis_version = "HEAD" # "v01-02-01"
+PandoraPFANew_version   = "v03-01-02" # "v03-01-00"
+DDMarlinPandora_version = "v00-05"
+PandoraAnalysis_version = "v01-02-01"
 
 CEDViewer_version = "v01-12" # "v01-10"
 
@@ -217,16 +226,16 @@ Druid_version = "2.2" # "2.2" # "1.8"
 
 Garlic_version = "v3.0.4" # "v3.0.3"
 
-DD4hep_version = "v00-19" 
-DD4hepExamples_version = "v00-19" 
+DD4hep_version = "v00-20-pre01" 
+DD4hepExamples_version = "v00-20-pre01" 
 
-lcgeo_version = "v00-09-01-pre" 
+lcgeo_version = "v00-10-pre05" 
 
 Physsim_version = "v00-03" # "v00-02" 
 
 
 # xerces-c (needed by geant4 for building gdml support - required by mokka)
-XERCESC_ROOT_DIR = ilcPath + "/xercesc/3.1.2"
+XERCESC_ROOT_DIR = ilcPath + "/xercesc/3.1.4"
 
-XercesC_version = "3.1.2" 
+XercesC_version = "3.1.4" 
 

@@ -37,8 +37,8 @@ class DD4hepExamples(BaseILC):
 
         if( Version( self.version ) == 'HEAD' ):
             self.download.svnurl += '/trunk'
-        elif 'pre' in self.version or 'dev' in self.version:
-            self.download.svnurl += '/branches/' + self.version
+#        elif 'pre' in self.version or 'dev' in self.version:
+#            self.download.svnurl += '/branches/' + self.version
         else:
             self.download.svnurl += '/tags/' + self.version
 
