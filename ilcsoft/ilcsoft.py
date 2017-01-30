@@ -409,6 +409,10 @@ class ILCSoft:
         f.write( 'export PATH='+cxx_path+'/bin:'+ py_path+'/bin:${PATH}' + os.linesep  )
         f.write( 'export LD_LIBRARY_PATH='+cxx_path+'/lib64:'+ cxx_path+'/lib:'+ py_path+'/lib:${LD_LIBRARY_PATH}' + os.linesep  + os.linesep )
 
+        f.write( 'export CXX=' + compiler + os.linesep )
+        ccompiler = self.env["CC"]
+        f.write( 'export CC=' + ccompiler + os.linesep )
+
         #----------------------------------------------------------------------------------------
 
 
