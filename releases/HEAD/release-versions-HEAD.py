@@ -121,7 +121,7 @@ Eigen_path = "/afs/desy.de/project/ilcsoft/sw/Eigen/3.2.9"
 Geant4_version =  "10.02.p02" 
 CLHEP_version =  "2.3.1.1"
 
-ROOT_version = "6.08.00"
+ROOT_version = "6.08.02"
 
 
 GSL_version = "2.1" 
@@ -238,9 +238,9 @@ Physsim_version = "HEAD" # "v00-02"
 
 
 # xerces-c (needed by geant4 for building gdml support - required by mokka)
-XERCESC_ROOT_DIR = ilcPath + "/xercesc/3.1.2"
+XERCESC_ROOT_DIR = ilcPath + "/xercesc/3.1.4"
 
-XercesC_version = "3.1.2" 
+XercesC_version = "3.1.4" 
 
 
 
