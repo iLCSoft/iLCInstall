@@ -2,20 +2,18 @@
 #
 # iLCSoft versions for installing a current HEAD 
 # version of the ilcsoft packages.
-# The external base tools need to be installed
 #
-# DESY ilcsoft team
 ###########################################
 import datetime
 
 # --------- ilcsoft release version ------------------------------------------
-today = str( datetime.date.today() )
-ilcsoft_release=''
-#ilcsoft_release='HEAD-2016-03-07'
+today = datetime.date.today()
+
+release_date=today.strftime('%Y-%m-%d')
 
 use_cpp11 = True
 
-ilcsoft_install_prefix = "/cvmfs/clicdp.cern.ch/iLCSoft/builds/2016-11-24/x86_64-slc6-gcc62-opt/"
+ilcsoft_install_prefix = '/cvmfs/clicdp.cern.ch/iLCSoft/builds/' + release_date + '/x86_64-slc6-gcc62-opt/'
 
 
 ilcPath = ilcsoft_install_prefix
