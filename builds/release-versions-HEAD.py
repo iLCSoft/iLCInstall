@@ -13,12 +13,16 @@ release_date=today.strftime('%Y-%m-%d')
 
 use_cpp11 = True
 
-ilcsoft_install_prefix = '/cvmfs/clicdp.cern.ch/iLCSoft/builds/' + release_date + '/x86_64-slc6-gcc62-opt/'
+build_directory = os.getenv("BUILD_PATH", release_date)
+compiler_version = os.getenv("COMPILER_VERSION", "gcc62")
+
+
+ilcsoft_install_prefix = '/cvmfs/clicdp.cern.ch/iLCSoft/builds/' + BUILD_PATH + '/x86_64-slc6-' + compiler_version + '-opt/'
 
 
 ilcPath = ilcsoft_install_prefix
 
-Boost_path = "/cvmfs/clicdp.cern.ch/software/Boost/1.62.0/x86_64-slc6-gcc62-opt/"
+Boost_path = "/cvmfs/clicdp.cern.ch/software/Boost/1.62.0/x86_64-slc6-" + compiler_version + "-opt/"
 
 if( use_cpp11 ):
     CMAKE_CXX_FLAGS = '-Wall -std=c++11'
@@ -144,20 +148,6 @@ lcgeo_version = "HEAD" # "v00-05"
 Physsim_version = "HEAD" # "v00-02" 
 
 ConformalTracking_version = "HEAD"
-
-
-
-
-#--- slic et al:
-
-
-#HepPDT_version = "3.04.01"
-
-# versions tagged by J.Strube for this release 
-#GDML_version = "ilcsoft-v01-17-07"
-#LCDD_version = "ilcsoft-v01-17-07"
-#SLIC_version = "ilcsoft-v01-17-07"
-#SlicPandora_version = "ilcsoft-v01-17-07"
 
 
 
