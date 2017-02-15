@@ -17,7 +17,7 @@ build_directory = os.getenv("BUILD_PATH", release_date)
 compiler_version = os.getenv("COMPILER_VERSION", "gcc62")
 
 
-ilcsoft_install_prefix = '/cvmfs/clicdp.cern.ch/iLCSoft/builds/' + BUILD_PATH + '/x86_64-slc6-' + compiler_version + '-opt/'
+ilcsoft_install_prefix = '/cvmfs/clicdp.cern.ch/iLCSoft/builds/' + build_directory + '/x86_64-slc6-' + compiler_version + '-opt/'
 
 
 ilcPath = ilcsoft_install_prefix
