@@ -34,19 +34,19 @@ fi
 
 #Determine which compiler to use
 if [ -z ${COMPILER_TYPE} ]; then
-    COMPILER_TYPE="gcc"
+    COMPILER_TYPE='gcc'
 fi
-if [ ${COMPILER_TYPE} == "gcc" ]; then
-    COMPILER_VERSION="gcc62"
+if [ ${COMPILER_TYPE} == 'gcc' ]; then
+    COMPILER_VERSION='gcc62'
 fi
-if [ ${COMPILER_TYPE} == "llvm" ]; then
-    COMPILER_VERSION="llvm39"
+if [ ${COMPILER_TYPE} == 'llvm' ]; then
+    COMPILER_VERSION='llvm39'
 fi
 
 
 #Choose build type
 if [ -z ${BUILD_TYPE} ]; then
-    BUILD_TYPE=opt
+    BUILD_TYPE='opt'
 fi
 
 

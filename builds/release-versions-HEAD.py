@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 ###########################################
 #
 # iLCSoft versions for installing a current HEAD 
