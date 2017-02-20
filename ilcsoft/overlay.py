@@ -15,6 +15,9 @@ class Overlay(MarlinPKG):
     
     def __init__(self, userInput):
         MarlinPKG.__init__(self, "Overlay", userInput )
+        self.download.type = "GitHub"
+        self.download.gituser="iLCSoft"
+        self.download.gitrepo="Overlay"
 
         # required modules
         self.reqmodules = [ "Marlin", "LCIO", "CLHEP", "MarlinUtil" ]
