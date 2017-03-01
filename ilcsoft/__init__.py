@@ -86,5 +86,6 @@ from java import Java
 from mysql import MySQL
 from boost import Boost
 from eigen import Eigen
+from ninja import ninja
 
 from gcc481 import GCC481

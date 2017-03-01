@@ -48,7 +48,7 @@ class ninja(BaseILC):
         if( self.rebuild ):
             os.system( "./configure.py --bootstrap" )
 
-        if( os.system( "configure.py --bootstrap" ):
+        if( os.system( "configure.py --bootstrap" ) ):
             self.abort( "failed to bootstrap!!" )
 
     def cleanupInstall(self):
