@@ -23,7 +23,10 @@ class FastJetClustering(MarlinPKG):
         # required modules
         self.reqmodules = [ "Marlin", "MarlinUtil", "CLHEP", "GEAR", "GSL",  "LCIO", "FastJet" ]
 
-        self.download.root = "marlinreco"
+        #self.download.root = "marlinreco"
+        self.download.supportedTypes = [ "GitHub" ] 
+        self.download.gituser = 'iLCSoft'
+        self.download.gitrepo = 'CEDViewer'
 
 
 class FastJet(BaseILC):
