@@ -18,6 +18,7 @@ class GEAR(BaseILC):
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "GEAR", "gear")
 
+
         self.optmodules = [ "ROOT" ]
         self.reqmodules = [ "CLHEP" ]
 

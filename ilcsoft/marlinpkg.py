@@ -31,6 +31,8 @@ class MarlinPKG(BaseILC):
         self.reqfiles = [ [ str("lib/lib" + name + ".a"), str("lib/lib" + name + ".so"), str("lib/lib" + name + ".dylib") ] ]
         self.reqmodules=[ 'LCIO', 'Marlin' ]
 
+        self.download.gitrepo = name
+        
     def compile(self):
         """ compile MarlinPKG """
         

@@ -52,6 +52,7 @@ class BaseILC:
 #        self.nightlyBuild = False               # flag for nightly builds
         self.installSupport = True              # flag for install support
         self.download = Download(self)          # download struct ( groups together a bunch of download variables )
+        self.download.gitrepo = name
         self.hasCMakeBuildSupport = True        # can the package be built with cmake?
         self.hasCMakeFindSupport = True         # if yes PKG_HOME variable is set and package can be used in BUILD_WITH
         self.makeTests = False                  # flag for calling "make test" after building the software
@@ -1317,7 +1318,7 @@ class Download:
         self.accessmode = "ext"                     # server access mode
         self.url = ""                               # url for getting tarball with wget
         self.svnurl = ""                            # url for getting tarball with wget
-        self.gituser = ""                           # varibale for storing the git user
+        self.gituser = "iLCSoft"                    # varibale for storing the git user
         self.gitrepo = ""                           # varibale for storing the git repository of a user
         self.tarball = ""                           # name of the tarball used for wget downloads
         self.env = {}                               # environment (CVSROOT, CVS_RSH)

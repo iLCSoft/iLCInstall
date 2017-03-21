@@ -23,8 +23,6 @@ class ILCUTIL(BaseILC):
             [ "lib/libstreamlog.a", "lib/libstreamlog.so", "lib/libstreamlog.dylib"]
         ]
 
-        self.download.root = "ilctools"
-
     def compile(self):
         """ compile ilcutil """
         

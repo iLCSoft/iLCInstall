@@ -22,8 +22,6 @@ class KiTrack(BaseILC):
 
         self.reqmodules = [ "Marlin", "ROOT" ]
 
-        # svn root
-        self.download.root = "marlinreco"
 
     def compile(self):
         """ compile KiTrack """
@@ -54,8 +52,6 @@ class KiTrackMarlin(BaseILC):
 
         self.reqmodules = [ "KiTrack", "MarlinTrk", "GSL" , "DD4hep"]
 
-        # svn root
-        self.download.root = "marlinreco"
 
     def compile(self):
         """ compile KiTrackMarlin """
