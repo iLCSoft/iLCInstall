@@ -150,5 +150,5 @@ Physsim_version = "HEAD" # "v00-02"
 
 ConformalTracking_version = "HEAD"
 
-
+LICH_version = "HEAD"
 
