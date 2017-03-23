@@ -1,13 +1,13 @@
 ###########################################
 #
-# iLCSoft versions for release v01-17-07
+# iLCSoft versions for HEAD release
 #
 # DESY ilcsoft team
 ###########################################
 
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release= "HEAD" # 'v01-17-07'
+ilcsoft_release= "HEAD" 
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -92,18 +92,7 @@ Boost_path = "/usr/local/opt/boost160"
 Eigen_path = "/usr/local/opt/eigen32"
 
 
-# ----- CERNLIB ------------------------------------------------------
-CERNLIB_version = "2006" 
-#CERNLIB_path = "/afs/desy.de/project/ilcsoft/sw/x86_64_gcc44_sl6/cernlib/" + CERNLIB_version
-
-
-
 # ----------------------------------------------------------------------------
-
-Fortran_lib_path = ""
-# ----- when using gcc48 we need to give a hint where to find the libary:
-##if( use_cpp11 ):
-##    Fortran_lib_path = "/afs/cern.ch/sw/lcg/contrib/gcc/4.8.1/x86_64-slc6-gcc48-opt/lib64"
 
 
 ##########################################################################################
@@ -116,12 +105,9 @@ Fortran_lib_path = ""
 
 
 #=============================================================================
-# CXX_FLAGS for c++ compiler:
+# additional CXX_FLAGS for c++ compiler:
 #
 #CMAKE_CXX_FLAGS = '-Wall'
-
-#if( use_cpp11 ):
-#    CMAKE_CXX_FLAGS = '-Wall -std=c++11'
 
 # ----------------------------------------------------------------------------
 
@@ -131,10 +117,6 @@ Fortran_lib_path = ""
 Geant4_version =  "10.03"
 CLHEP_version =  "2.3.4.3" #"2.3.1.1"
 ROOT_version = "6.08.00"
-
-#Geant4_version = "10.01.p01"  
-#ROOT_version = "6.06.02" # "6.04.14" # "5.34.32" 
-#CLHEP_version = "2.2.0.4" 
 
 GSL_version = "2.1" # "1.15"
 
@@ -242,23 +224,10 @@ Druid_version = "HEAD" # "2.2" # "1.8"
 Garlic_version = "HEAD" # "v3.0.3"
 
 
-
-#--- slic et al:
-
-## xerces-c (needed by geant4 for building gdml support - required by mokka)
+## xerces-c (needed by geant4 for building gdml support 
 #
 XercesC_version = "3.1.4" 
 XERCESC_ROOT_DIR = ilcPath + "/xercesc/" + XercesC_version
-
-#
-#HepPDT_version = "3.04.01"
-#
-## versions tagged by J.Strube for this release 
-#GDML_version = "ilcsoft-v01-17-07"
-#LCDD_version = "ilcsoft-v01-17-07"
-#SLIC_version = "ilcsoft-v01-17-07"
-#
-#SlicPandora_version = "ilcsoft-v01-17-07"
 
 DD4hep_version = "HEAD" # "v00-12"
 DD4hepExamples_version = "HEAD" # "v00-12"
