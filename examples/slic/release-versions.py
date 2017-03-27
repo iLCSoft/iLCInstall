@@ -1,8 +1,8 @@
 ###########################################
 #
-# SLIC versions for v05-00-00 release
+# Package versions for SLIC release build
 #
-# Jeremy McCormick 
+# Jeremy McCormick, SLAC 
 #
 ###########################################
 
@@ -11,11 +11,11 @@ ilcsoft_release='REL'
 # ----------------------------------------------------------------------------
 
 # --------- install dir ------------------------------------------------------
-ilcsoft_install_prefix = "/work/ilcsoft/slic/"
+ilcsoft_install_prefix = os.path.join(os.path.expanduser("~"), "slic")
 
 # ======================= PACKAGE VERSIONS ===================================
 
-ILCUTIL_version = "v01-02-01"
+ILCUTIL_version = "v01-03"
 CMake_version = "3.4.3"
 XercesC_version = "3.1.4"
 Geant4_version = "10.01.p03"
