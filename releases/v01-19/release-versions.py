@@ -145,8 +145,6 @@ ILCUTIL_version = "v01-03" # "v01-04"
 FastJet_version = "3.2.0"
 FastJetcontrib_version = "1.024"
 
-FastJetClustering_version = "v00-03" 
-
 MarlinFastJet_version = "v00-03" 
 
 

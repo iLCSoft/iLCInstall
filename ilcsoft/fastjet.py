@@ -25,7 +25,7 @@ class FastJetClustering(MarlinPKG):
 
         self.download.supportedTypes = [ "GitHub" ] 
         self.download.gituser = 'iLCSoft'
-        self.download.gitrepo = 'FastJetClustering'
+        self.download.gitrepo = 'obsolete_FastJetClustering'
 
 
 class FastJet(BaseILC):

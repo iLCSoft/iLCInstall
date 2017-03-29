@@ -59,8 +59,6 @@ ILCUTIL_version = "HEAD"
 
 FastJet_version = "HEAD"
 
-FastJetClustering_version = "HEAD" #"v00-02"
-
 MarlinFastJet_version = "HEAD" # "v00-02"
 
 
