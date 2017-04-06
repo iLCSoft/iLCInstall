@@ -73,5 +73,6 @@ class HepPDT(BaseILC):
         BaseILC.postCheckDeps(self)
 
         self.env["HepPDT_HOME"] = self.installPath
-        self.envpath["PATH"].append( "$HepPDT_HOME/bin" )
-        self.envpath["LD_LIBRARY_PATH"].append( "$HepPDT_HOME/lib" )
+        if self.installPath == "/usr":
+            self.envpath["PATH"].append( "$HepPDT_HOME/bin" )
+            self.envpath["LD_LIBRARY_PATH"].append( "$HepPDT_HOME/lib" )

@@ -60,4 +60,5 @@ class ninja(BaseILC):
         BaseILC.postCheckDeps(self)
 
         self.env["ninja_HOME"] = self.installPath
-        self.envpath["PATH"].append( "$ninja_HOME" )
+        if self.installPath == "/usr":
+            self.envpath["PATH"].append( "$ninja_HOME" )
