@@ -48,5 +48,6 @@ class RAIDA(BaseILC):
         BaseILC.postCheckDeps(self)
 
         self.env["RAIDA_HOME"] = self.installPath
-        self.envpath["PATH"].append( "$RAIDA_HOME/bin" )
+        if self.installPath == "/usr":
+            self.envpath["PATH"].append( "$RAIDA_HOME/bin" )
 
