@@ -422,7 +422,7 @@ class Repo(object):
     major, minor, patch = self._version.getMajorMinorPatch()
     pMajor = re.compile('_VERSION_MAJOR [0-9]*')
     pMinor = re.compile('_VERSION_MINOR [0-9]*')
-    pPatch = re.compile('_VERSION_PATCH [0-9]*')
+    pPatch = re.compile('_VERSION_PATCH [0-9a-zA-Z]*')
     content = pMajor.sub( "_VERSION_MAJOR %s" % major, content )
     content = pMinor.sub( "_VERSION_MINOR %s" % minor, content )
     content = pPatch.sub( "_VERSION_PATCH %s" % patch, content )
