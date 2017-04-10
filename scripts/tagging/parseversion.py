@@ -118,5 +118,6 @@ class Version( object ):
     return versionString
 
   def getMajorMinorPatch( self ):
-    """ :returns: tuple of Major, Minor Patch """
-    return self.major, self.minor, self.patch
+    """ :returns: tuple of Major, Minor, Patch """
+    patch = 0 if self.patch is None else self.patch
+    return self.major, self.minor, patch
