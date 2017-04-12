@@ -113,6 +113,8 @@ class ILCSoftTagger(object):
       for line in conf.readlines():
         if not line.strip():
           continue
+        if line.strip()[0]=="#":
+          continue
         parts = line.strip().split(" ")
         if len(parts) != 1:
           self.errors.append( "Line '%s' cannot be parsed" % line.strip() )
