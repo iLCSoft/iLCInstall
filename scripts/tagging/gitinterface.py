@@ -38,6 +38,7 @@ class Repo(object):
     self._newVersion = None
     self.newVersion = newVersion
     self._version = None
+    self._getLatestTagInfo()
     self._setNewVersion()
     self._dryRun = dryRun
 
