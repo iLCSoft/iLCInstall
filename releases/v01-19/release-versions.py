@@ -9,7 +9,7 @@
 import datetime
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-19-01'
+ilcsoft_release='v01-19-02-pre'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -129,107 +129,104 @@ GSL_version = "2.1"
 
 QT_version = "4.7.4"
 
-CMake_version = "3.6.3" #"3.4.3"
+CMake_version = "3.6.3" 
+
+FastJet_version = "3.2.0"
+
+FastJetcontrib_version = "1.024"
 
 CED_version = "v01-09-02"
 # -------------------------------------------
 
-LCIO_version = "v02-07-04" 
+LCIO_version = "v02-08-pre1" 
 
-GEAR_version = "v01-06-01" 
+GEAR_version = "v01-07-pre"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
 
-ILCUTIL_version = "v01-03" # "v01-04"  
+ILCUTIL_version = "v01-03"
 
-FastJet_version = "3.2.0"
-FastJetcontrib_version = "1.024"
-
-MarlinFastJet_version = "v00-03" 
+MarlinFastJet_version = "v00-04-pre" 
 
 
 # -------------------------------------------
 
-KalTest_version = "v02-02-01" 
+KalTest_version = "v02-03-pre1" 
 
-KalDet_version = "v01-13-03" 
+KalDet_version = "v01-14-pre" 
 
-aidaTT_version = "v00-05" 
+aidaTT_version = "v00-06-pre"
 
-DDKalTest_version = "v01-01"   #"v01-00-01" 
+DDKalTest_version = "v01-02-pre"
 
-MarlinTrk_version = "v02-02" # "v02-00-01"
+MarlinTrk_version = "v02-03-pre"
 
-MarlinTrkProcessors_version = "v02-05" # "v02-01"
+MarlinTrkProcessors_version = "v02-06-pre"
 
-Clupatra_version = "v00-14"  # "v01-00-pre"  
+Clupatra_version = "v01-00"  
 
-KiTrack_version = "v01-07" # "v01-06"
+KiTrack_version = "v01-08-prev" 
 
-KiTrackMarlin_version = "v01-09" # "v01-07"
+KiTrackMarlin_version = "v01-10-pre"
 
-ForwardTracking_version = "v01-10" # "v01-08"
+ForwardTracking_version = "v01-11-pre" 
 
-ConformalTracking_version = "HEAD" # "v01-08"
+ConformalTracking_version = "v01-02-pre" 
 
 LICH_version = "v00-01" 
 
 # -------------------------------------------
 
-GBL_version = "V01-17-01" # "V01-16-04"
+GBL_version = "V02-00-00" 
 
-LCCD_version = "v01-03-01" # "v01-03"
+LCCD_version = "v01-04-pre"
 
-RAIDA_version = "v01-07" # "v01-06-02"
+RAIDA_version = "v01-08-pre" 
 
-MarlinUtil_version = "v01-12-01" # "v01-10"
+MarlinUtil_version = "v01-13-pre" 
 
-Marlin_version = "v01-10" #"v01-09"
+Marlin_version = "v01-11-pre"
 
-MarlinDD4hep_version = "v00-03" # "v00-02"
+MarlinDD4hep_version = "v00-04-pre"
 
-MarlinReco_version = "v01-17" # "v01-16"
+MarlinReco_version = "v01-18-pre" 
 
-FCalClusterer_version = "v00-03" # "v00-01"
-
-ILDPerformance_version = "v01-01" # "v00-01"
+ILDPerformance_version = "v01-02-pre"
 
 #ILDConfig_version = "HEAD" 
 
 
-LCFIVertex_version = "v00-07-02" # "v00-07"
-LCFIPlus_version = "v00-06-05" #  # "v00-05-03"
+LCFIVertex_version = "v00-07-03-pre"
+LCFIPlus_version = "v00-06-05"
 
 
-MarlinKinfit_version = "v00-04" # "v00-01-05"
-MarlinKinfitProcessors_version = "v00-02" # "v00-01"
+MarlinKinfit_version = "v00-05-pre"
+MarlinKinfitProcessors_version = "v00-03-pre"
 
-PandoraPFANew_version   = "v03-01-02" # "v03-01-00"
-DDMarlinPandora_version = "v00-05"
+PandoraPFANew_version   = "v03-01-02"
+DDMarlinPandora_version = "v00-06-pre"
 PandoraAnalysis_version = "v01-02-01"
 
-CEDViewer_version = "v01-12" # "v01-10"
+CEDViewer_version = "v01-13-pre"
 
-Overlay_version = "v00-16" # "v00-14"
+Overlay_version = "v00-17-pre"
 
-PathFinder_version = "v00-06-01" #  "v00-06" # should be changed 
+MarlinTPC_version = "v01-02"
 
-MarlinTPC_version = "v01-02" # "v01-00"
+LCTuple_version = "v01-07-pre"
 
-LCTuple_version = "v01-06" # "v01-04"
+BBQ_version = "v00-01-03"
 
-BBQ_version = "v00-01-03" #  "v00-01-02"
+Druid_version = "2.2"
 
-Druid_version = "2.2" # "2.2" # "1.8" 
+Garlic_version = "v3.0.4"
 
-Garlic_version = "v3.0.4" # "v3.0.3"
+DD4hep_version = "v00-21-pre"
+DD4hepExamples_version = "v00-21-pre" 
 
-DD4hep_version = "v00-20" 
-DD4hepExamples_version = "v00-20" 
+lcgeo_version = "v00-11-pre1" 
 
-lcgeo_version = "v00-10" 
-
-Physsim_version = "v00-03" # "v00-02" 
+Physsim_version = "v00-04-pre" 
 
 
 # xerces-c (needed by geant4 for building gdml support - required by mokka)
