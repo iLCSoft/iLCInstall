@@ -243,7 +243,7 @@ class Repo(object):
       return
 
 
-    releaseDict = dict( tag_name=self.newVersion,
+    releaseDict = dict( tag_name=self.newTag,
                         target_commitish=self.branch,
                         name=self.newTag,
                         body=self.formatReleaseNotes(),
