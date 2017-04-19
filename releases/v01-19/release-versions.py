@@ -165,7 +165,7 @@ MarlinTrkProcessors_version = "v02-06-pre"
 
 Clupatra_version = "v01-00"  
 
-KiTrack_version = "v01-08-prev" 
+KiTrack_version = "v01-08-pre" 
 
 KiTrackMarlin_version = "v01-10-pre"
 
@@ -177,7 +177,7 @@ LICH_version = "v00-01"
 
 # -------------------------------------------
 
-GBL_version = "V02-00-00" 
+GBL_version = "V01-17-01" #"V02-00-00" 
 
 LCCD_version = "v01-04-pre"
 
@@ -224,7 +224,7 @@ Garlic_version = "v3.0.4"
 DD4hep_version = "v00-21-pre"
 DD4hepExamples_version = "v00-21-pre" 
 
-lcgeo_version = "v00-11-pre1" 
+lcgeo_version = "v00-11-pre2" 
 
 Physsim_version = "v00-04-pre" 
 
