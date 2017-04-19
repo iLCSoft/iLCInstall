@@ -9,7 +9,7 @@
 import datetime
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-19-02-pre'
+ilcsoft_release='v01-19-02'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -138,40 +138,40 @@ FastJetcontrib_version = "1.024"
 CED_version = "v01-09-02"
 # -------------------------------------------
 
-LCIO_version = "v02-08-pre1" 
+LCIO_version = "v02-08" 
 
-GEAR_version = "v01-07-pre"
+GEAR_version = "v01-07"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
 
 ILCUTIL_version = "v01-03"
 
-MarlinFastJet_version = "v00-04-pre" 
+MarlinFastJet_version = "v00-04" 
 
 
 # -------------------------------------------
 
-KalTest_version = "v02-03-pre1" 
+KalTest_version = "v02-03" 
 
-KalDet_version = "v01-14-pre" 
+KalDet_version = "v01-14" 
 
-aidaTT_version = "v00-06-pre"
+aidaTT_version = "v00-06"
 
-DDKalTest_version = "v01-02-pre"
+DDKalTest_version = "v01-02"
 
-MarlinTrk_version = "v02-03-pre"
+MarlinTrk_version = "v02-03"
 
-MarlinTrkProcessors_version = "v02-06-pre"
+MarlinTrkProcessors_version = "v02-06"
 
 Clupatra_version = "v01-00"  
 
-KiTrack_version = "v01-08-pre" 
+KiTrack_version = "v01-08" 
 
-KiTrackMarlin_version = "v01-10-pre"
+KiTrackMarlin_version = "v01-10"
 
-ForwardTracking_version = "v01-11-pre" 
+ForwardTracking_version = "v01-11" 
 
-ConformalTracking_version = "v01-02-pre" 
+ConformalTracking_version = "v01-02" 
 
 LICH_version = "v00-01" 
 
@@ -179,41 +179,41 @@ LICH_version = "v00-01"
 
 GBL_version = "V01-17-01" #"V02-00-00" 
 
-LCCD_version = "v01-04-pre"
+LCCD_version = "v01-04"
 
-RAIDA_version = "v01-08-pre" 
+RAIDA_version = "v01-08" 
 
-MarlinUtil_version = "v01-13-pre" 
+MarlinUtil_version = "v01-13" 
 
-Marlin_version = "v01-11-pre"
+Marlin_version = "v01-11"
 
-MarlinDD4hep_version = "v00-04-pre"
+MarlinDD4hep_version = "v00-04"
 
-MarlinReco_version = "v01-18-pre" 
+MarlinReco_version = "v01-18" 
 
-ILDPerformance_version = "v01-02-pre"
+ILDPerformance_version = "v01-02"
 
 #ILDConfig_version = "HEAD" 
 
 
-LCFIVertex_version = "v00-07-03-pre"
+LCFIVertex_version = "v00-07-03"
 LCFIPlus_version = "v00-06-05"
 
 
-MarlinKinfit_version = "v00-05-pre"
-MarlinKinfitProcessors_version = "v00-03-pre"
+MarlinKinfit_version = "v00-05"
+MarlinKinfitProcessors_version = "v00-03"
 
 PandoraPFANew_version   = "v03-01-02"
-DDMarlinPandora_version = "v00-06-pre"
+DDMarlinPandora_version = "v00-06"
 PandoraAnalysis_version = "v01-02-01"
 
-CEDViewer_version = "v01-13-pre"
+CEDViewer_version = "v01-13"
 
-Overlay_version = "v00-17-pre"
+Overlay_version = "v00-17"
 
 MarlinTPC_version = "v01-02"
 
-LCTuple_version = "v01-07-pre"
+LCTuple_version = "v01-07"
 
 BBQ_version = "v00-01-03"
 
@@ -221,12 +221,12 @@ Druid_version = "2.2"
 
 Garlic_version = "v3.0.4"
 
-DD4hep_version = "v00-21-pre"
-DD4hepExamples_version = "v00-21-pre" 
+DD4hep_version = "v00-21"
+DD4hepExamples_version = "v00-21" 
 
-lcgeo_version = "v00-11-pre2" 
+lcgeo_version = "v00-11" 
 
-Physsim_version = "v00-04-pre" 
+Physsim_version = "v00-04" 
 
 
 # xerces-c (needed by geant4 for building gdml support - required by mokka)
