@@ -1,6 +1,9 @@
 
-iLCSoft/LCIO/v02-08 
-iLCSoft/GEAR/v01-07 
+ilcsoft/lcio/v02-08 
+iLCSoft/lcgeo/v00-11
+AIDASoft/DD4hep/v00-21
+
+iLCSoft/gear/v01-07 
 #iLCSoft/ILCUTIL/v01-03
 iLCSoft/MarlinFastJet/v00-04 
 
@@ -19,7 +22,7 @@ iLCSoft/ForwardTracking/v01-11
 iLCSoft/ConformalTracking/v01-02 
 
 
-iLCSoft/LCCD/v01-04
+iLCSoft/lccd/v01-04
 iLCSoft/RAIDA/v01-08 
 iLCSoft/MarlinUtil/v01-13 
 iLCSoft/Marlin/v01-11
@@ -41,7 +44,5 @@ iLCSoft/LCTuple/v01-07
 ###iLCSoft/Druid/2.2
 ###iLCSoft/Garlic/v3.0.4
 
-AIDASoft/DD4hep/v00-21
-iLCSoft/lcgeo/v00-11
 
 iLCSoft/Physsim/v00-04 
