@@ -195,10 +195,10 @@ class ILCSoftTagger(object):
       try:
         dryRun = not self.makeTags
         thisPackage = Repo( owner, package, branch=branch, newVersion=version, preRelease=prerelease, dryRun=dryRun)
+        self.repos.append( thisPackage )
       except RuntimeError as e:
-        self.log.error( "Failure for %s", thisPackage )
+        self.log.error( "Failure for %s/%s/%s/%s", owner, package, branch, version )
         self.errors.append( str(e) )
-      self.repos.append( thisPackage )
 
     if self.errors:
       self.abort()
