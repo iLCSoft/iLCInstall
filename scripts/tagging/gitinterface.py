@@ -20,12 +20,13 @@ __RCSID__ = None
 class Repo(object):
   """ class representing a given repository"""
 
-  def __init__( self, owner, repo, branch='master', newVersion=None, preRelease=True, dryRun=True):
+  def __init__( self, owner, repo, branch='master', newVersion=None, preRelease=True, dryRun=True, lastTag=None):
     self.owner = owner
     self.repo = repo
     self.branch = branch
     self._options = dict( owner=self.owner, repo=self.repo  )
     self.log = getLogger( repo )
+    self._lastTag = lastTag
     self.latestTagInfo = None
     self._releaseNotes = None
     self.releaseNotesFilename = "doc/ReleaseNotes.md"
@@ -102,12 +103,18 @@ class Repo(object):
       return self.latestTagInfo ## already filled
     tags = self.getGithubTags()
     sortedTags = sorted(tags, key=itemgetter("name"), reverse=True, cmp=versionComp)
-    for di in sortedTags:
-      self.latestTagInfo = di
-      self.latestTagInfo['pre'] = True if 'pre' in di['name'] else False
-      self.latestTagInfo['sha'] = di['commit']['sha']
-      self.log.info( "Found latest tag %s", di['name'] )
-      break
+    if self._lastTag is None:
+      di = sortedTags[0]
+    else:
+      try:
+        di = [ tagInfo for tagInfo in tags if tagInfo['name'] == self._lastTag][0]
+      except IndexError:
+        raise RuntimeError( "LastTag given, but not found in tags for this package")
+    self.latestTagInfo = di
+    self.latestTagInfo['pre'] = True if 'pre' in di['name'] else False
+    self.latestTagInfo['sha'] = di['commit']['sha']
+    self.log.info( "Found latest tag %s", di['name'] )
+
 
     if not tags:
       self.log.warning( "No tags found for %s", self )

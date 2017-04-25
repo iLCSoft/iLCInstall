@@ -40,6 +40,7 @@ class ILCSoftTagger(object):
     self.properRelease = False
     self.errors = []
     self.log = getLogger( "Tagger" )
+    self.lastTag = None
 
   def abort( self ):
     """ print error messages and raise exception """
@@ -68,9 +69,12 @@ class ILCSoftTagger(object):
     parser.add_argument("--properRelease", action="store_true", dest="properRelease", default=self.properRelease,
                         help="if set make proper release, if not set make pre release only")
 
-
     parser.add_argument("--checkRate", action="store_true", dest="checkRate", default=False,
                         help="Print out remaining number of queries for this hour")
+
+
+    parser.add_argument("--lastTag", action="store", dest="lastTag", default=None,
+                        help="consider this version to be the last version and take all PRs following this tag. Only works with a single package")
 
 
     parsed = parser.parse_args()
@@ -82,11 +86,14 @@ class ILCSoftTagger(object):
     self.packages = parsed.packages
     self.makeTags = parsed.makeTags
     self.properRelease = parsed.properRelease
-
+    self.lastTag = parsed.lastTag
     self._parseConfigFile()
 
     if parsed.checkRate:
       checkRate()
+
+    if self.lastTag is not None and len(self.packages) > 1:
+      self.errors.insert( "lastTag is set but there is more than 1 (one) package")
 
     if self.errors:
       self.abort()
@@ -194,7 +201,7 @@ class ILCSoftTagger(object):
       prerelease = not self.properRelease
       try:
         dryRun = not self.makeTags
-        thisPackage = Repo( owner, package, branch=branch, newVersion=version, preRelease=prerelease, dryRun=dryRun)
+        thisPackage = Repo( owner, package, branch=branch, newVersion=version, preRelease=prerelease, dryRun=dryRun, lastTag=self.lastTag)
         self.repos.append( thisPackage )
       except RuntimeError as e:
         self.log.error( "Failure for %s/%s/%s/%s", owner, package, branch, version )
