@@ -88,7 +88,9 @@ class Repo(object):
   def _checkConsistency( self ):
     """ check for invalid version requirements"""
     lastTag = self.latestTagInfo['name']
-    if self._nextRealRelease == lastTag or versionComp( self._nextRealRelease, lastTag ) <= 0:
+    if self._nextRealRelease == lastTag \
+       or versionComp( self._nextRealRelease, lastTag ) <= 0 \
+       or versionComp( self.newTag, lastTag ) <= 0:
       self.log.error("Required (pre-)version (%r) is the same as or older than the last tag(%r)",
                      self.newVersion, lastTag)
       raise RuntimeError( "Invalid version required" )
