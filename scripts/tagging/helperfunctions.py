@@ -122,7 +122,11 @@ def curl2Json( *commands, **kwargs ):
   commands.insert( 1, '-s' )
   if kwargs.get("checkStatusOnly", False):
     commands.insert( 1, '-I' )
-  log.debug( "Running command: %r", commands )
+  cleanedCommands = list(commands)
+  ## replace the github token with Xs
+  if '-H' in cleanedCommands:
+    cleanedCommands[commands.index('-H')+1] = cleanedCommands[commands.index('-H')+1].rsplit(" ", 1)[0] + " "+ "X"*len(cleanedCommands[commands.index('-H')+1].rsplit(" ", 1)[1])
+  log.debug( "Running command: %r",  cleanedCommands )
   jsonText = subprocess.check_output( commands )
   try:
     jsonList = json.loads( jsonText )
