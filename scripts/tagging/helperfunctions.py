@@ -7,7 +7,7 @@ import re
 try:
   from GitTokens import GITHUBTOKEN
 except ImportError:
-  raise ImportError("""Failed to import GITHUBTOKEN please point the pythonpath to your GitTokens.py file which contains four "Personal Access Token" for Github
+  raise ImportError("""Failed to import GITHUBTOKEN please point the pythonpath to your GitTokens.py file which contains your "Personal Access Token" for Github
 
                     I.e.:
                     Filename: GitTokens.py
