@@ -212,8 +212,11 @@ class TestGit( unittest.TestCase ):
                   "tarball_url": "tarball/v0.1"
                 }
               ]
+    with self.assertRaisesRegexp( RuntimeError, "Invalid version required"), \
+         patch( "tagging.gitinterface.Repo.getGithubTags", new=Mock( return_value=myTagInfo)):
+      self.repo = Repo(owner="tester", repo="testrepo", branch="testbranch", newVersion="v01-03-19", preRelease=True, dryRun=True)
 
-  def test_ctor_fail_2( self ):
+  def test_ctor_fail_3( self ):
     """ test the constructor when the desired pre-version is the same as an existing one"""
     myTagInfo=[ { "name": "v01-03-20-pre2",
                   "commit": { "sha": "MyTagSha2",
@@ -252,6 +255,16 @@ class TestHelpers( unittest.TestCase ):
 
     self.assertGreater( versionComp( "v1r13p12", "v1r12p12" ), 0 )
     self.assertGreater( versionComp( "v1-13-12", "v1r12p12" ), 0 )
+
+    self.assertLess( versionComp( "v1-13-12-pre", "v1-13-12" ), 0 )
+    self.assertGreater( versionComp( "v1-13-12", "v1-13-12-pre" ), 0 )
+
+    self.assertLess( versionComp( "v1-13-12-pre", "v1-14" ), 0 )
+    self.assertGreater( versionComp( "v1-14", "v1-13-12-pre" ), 0 )
+
+    self.assertGreater( versionComp( "v1-13-12-pre2", "v1-13-12-pre" ), 0 )
+    self.assertGreater( versionComp( "v1-13-13-pre2", "v1-13-12" ), 0 )
+    self.assertLess( versionComp( "v1-13-12", "v1-13-13-pre" ), 0 )
 
   def test_importError( self ):
     """ test the import error when not having githubtoken """

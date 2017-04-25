@@ -25,6 +25,9 @@ def versionComp( v1, v2 ):
   v1r8p0 to v02-07-00 e.g. in lcio otherwise we could use normal string comparison
 
   needed for LCIO
+
+  pre version are older than non-pre version
+
   """
   if v1 == v2:
     return 0
@@ -48,6 +51,20 @@ def versionComp( v1, v2 ):
   else:
     ## neither matches, we can use string comparison
     pass
+
+  if 'pre' in v1 and 'pre' in v2:
+    ## use string comparison later
+    pass
+
+  elif 'pre' in v1:
+    if v1.split('-pre')[0]==v2:
+      return -1 # version 2 is not pre, so bigger
+    return -1 if v1.split('-pre')[0] < v2 else 1
+
+  elif 'pre' in v2:
+    if v1==v2.split('-pre')[0]:
+      return 1 # version 1 is not pre, so bigger
+    return -1 if v1 <= v2.split('-pre')[0] else 1
   
   if v1 < v2:
     return -1
