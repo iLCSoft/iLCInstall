@@ -35,9 +35,9 @@ class Repo(object):
     ## members dealing with difference between the new full version and the next
     ## tag which can be different because of pre-prereleaseness
     self.isPreRelease = preRelease
-    self._newVersion = None
+    self._nextRealRelease = None
+    self._newTag = None
     self.newVersion = newVersion
-    self._version = None
     self._getLatestTagInfo()
     self._setNewVersion()
     self._dryRun = dryRun
@@ -47,8 +47,8 @@ class Repo(object):
 
   @property
   def newTag( self ):
-    """ return next tag version, differs from newversion by pre release """
-    return str( self._version )
+    """ return next tag version, differs from nextRealRelease by pre release """
+    return str( self._newTag )
 
   @newTag.setter
   def newTag( self, val):
@@ -58,11 +58,11 @@ class Repo(object):
   @property
   def newVersion( self ):
     """ return new version """
-    if self._newVersion is not None:
-      return self._newVersion
+    if self._nextRealRelease is not None:
+      return self._nextRealRelease
 
     self._setNewVersion()
-    return self._newVersion
+    return self._nextRealRelease
 
   @newVersion.setter
   def newVersion( self, val ):
@@ -70,18 +70,19 @@ class Repo(object):
     if val is None:
       self._setNewVersion()
     else:
-      self._newVersion = str(val)
+      self._nextRealRelease = str(val)
 
   def _setNewVersion( self ):
     """ get the new version based on the previous tag, increment patch version"""
-    if self._newVersion is not None:
-      self._version = Version(self._newVersion, makePreRelease=self.isPreRelease )
-      return str( self._version )
+    if self._nextRealRelease is not None:
+      self._newTag = Version(self._nextRealRelease, makePreRelease=self.isPreRelease )
+      self._nextRealRelease = str( self._newTag ).split("-pre")[0]
+      return str( self._newTag )
     lastVersion = self._getLatestTagInfo()['name']
-    self._version = Version(lastVersion, makePreRelease=self.isPreRelease )
-    self._version.increment()
-    self._newVersion = str( self._version )
-    self.log.info( "Set new version: %s", self._newVersion )
+    self._newTag = Version(lastVersion, makePreRelease=self.isPreRelease )
+    self._newTag.increment()
+    self._nextRealRelease = str( self._newTag ).split("-pre")[0]
+    self.log.info( "Set new version: %s", self._nextRealRelease )
 
   def _getLatestTagInfo( self ):
     """ fill the information about the latest tag in the repository, ignore pre commit tags"""
@@ -420,7 +421,7 @@ class Repo(object):
     """ get the new release notes and commit them to the filename """
 
     content, sha, encodedOld = self.getFileFromBranch( self.cmakeBaseFile )
-    major, minor, patch = self._version.getMajorMinorPatch()
+    major, minor, patch = self._newTag.getMajorMinorPatch()
     pMajor = re.compile('_VERSION_MAJOR [0-9]*')
     pMinor = re.compile('_VERSION_MINOR [0-9]*')
     pPatch = re.compile('_VERSION_PATCH [0-9a-zA-Z]*')
