@@ -17,7 +17,7 @@ from pprint import pprint
 sys.modules['GitTokens'] = Mock(name="GitTokensMock", return_value=Mock(name="returnedMock"))
 
 from tagging.gitinterface import Repo
-from tagging.helperfunctions import getCommands, versionComp, parseForReleaseNotes, curl2Json
+from tagging.helperfunctions import getCommands, versionComp, parseForReleaseNotes, curl2Json, authorMapping, AUTHORMAP, checkRate
 from tagging.parseversion import Version
 
 __RCSID__ = "$Id$"
@@ -130,7 +130,11 @@ def mockCurl(*args, **kwargs):
              "protected": True,
              "protection_url": "https://api.github.com/repos/octocat/Hello-World/branches/master/protection"
            }
+  if "pulls/12/commits" in cmdString:
+    return [ {'commit':{'author': {'name':'User Name2'}}}, {'commit':{'author': {'name':'User Name2'}}} ]
 
+  if 'rate_limit' in cmdString:
+    return {'rate':{'remaining':444, 'limit':555} }
   ##default
   return {}
 
@@ -299,7 +303,7 @@ class TestHelpers( unittest.TestCase ):
 
     with patch("tagging.helperfunctions.subprocess", new=Mock()), \
          patch("tagging.helperfunctions.subprocess.check_output", new=Mock(return_value="Status: 202")) as check:
-      value = curl2Json( ["some","repo", "command"], checkStatusOnly=True)
+      value = curl2Json( ["-H", "Authorization: token NOTMYGITTOKEN","some","repo", "command"], checkStatusOnly=True)
       args, kwargs = check.call_args
       self.assertEqual( value, "Status: 202" )
       self.assertEqual( 'curl', args[0][0] )
@@ -311,7 +315,22 @@ class TestHelpers( unittest.TestCase ):
       with self.assertRaises( ValueError ):
         value = curl2Json( ["some","repo", "command"] )
 
+  def test_getAuthor( self ):
+    """ test the mapping of the username to authorname """
+    with patch.dict( AUTHORMAP, {'username': 'User Name'} ):
+      retVal = authorMapping( 'username', ['commands', 'pulls/12/commits'] )
+      self.assertEqual( retVal, 'User Name' )
 
+    with patch("tagging.helperfunctions.curl2Json",new=mockCurl):
+      retVal = authorMapping( 'username2', ['commands', 'pulls/12/commits'] )
+      self.assertEqual( retVal, 'User Name2' )
+      self.assertIn('username2', AUTHORMAP )
+      del AUTHORMAP['username2']
+
+  def test_checkRate( self ):
+    """ test the checkRate function """
+    with patch("tagging.helperfunctions.curl2Json",new=mockCurl):
+      checkRate()
 
 class TestParseVersion( unittest.TestCase ):
   """ tests for the helper functions """
