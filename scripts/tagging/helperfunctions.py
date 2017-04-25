@@ -87,7 +87,7 @@ def getCommands( *args ):
   comList = []
   for arg in args:
     if isinstance( arg, (tuple, list) ):
-      comList.extend(arg)
+      comList.extend( getCommands( *arg ) )
     else:
       comList.append(arg)
   return comList
