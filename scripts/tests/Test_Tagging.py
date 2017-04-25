@@ -210,7 +210,53 @@ class TestHelpers( unittest.TestCase ):
 
     self.assertGreater( versionComp( "v1r13p12", "v1r12p12" ), 0 )
     self.assertGreater( versionComp( "v1-13-12", "v1r12p12" ), 0 )
- 
+
+  def test_importError( self ):
+    """ test the import error when not having githubtoken """
+    del sys.modules['tagging.helperfunctions']
+    del sys.modules['GitTokens']
+
+    with patch( "__builtin__.__import__", myimport ):
+      with self.assertRaises( ImportError ):
+        from tagging.helperfunctions import GITHUBTOKEN
+        print GITHUBTOKEN
+
+  def test_parseForReleaseNotes( self ):
+    """ test parseForReleaseNotes """
+    self.assertEqual( parseForReleaseNotes(""" """), [])
+
+    self.assertEqual( parseForReleaseNotes("""BEGINRELEASENOTES """), [])
+    self.assertEqual( parseForReleaseNotes("""ENDRELEASENOTES """), [])
+    self.assertEqual( parseForReleaseNotes("""BEGINRELEASENOTES my notes ENDRELEASENOTES """), [" my notes "])
+
+
+  def test_curl2Json( self ):
+    """ test curl2Json """
+
+    with patch("tagging.helperfunctions.subprocess", new=Mock()), \
+         patch("tagging.helperfunctions.subprocess.check_output", new=Mock(return_value=json.dumps("arg"))) as check:
+      value = curl2Json( ["some","repo", "command"] )
+      args, kwargs = check.call_args
+      self.assertEqual( value, "arg" )
+      print args, kwargs
+      self.assertEqual( 'curl', args[0][0] )
+      self.assertEqual( '-s', args[0][1] )
+
+    with patch("tagging.helperfunctions.subprocess", new=Mock()), \
+         patch("tagging.helperfunctions.subprocess.check_output", new=Mock(return_value="Status: 202")) as check:
+      value = curl2Json( ["some","repo", "command"], checkStatusOnly=True)
+      args, kwargs = check.call_args
+      self.assertEqual( value, "Status: 202" )
+      self.assertEqual( 'curl', args[0][0] )
+      self.assertEqual( '-I', args[0][1] )
+      self.assertEqual( '-s', args[0][2] )
+
+    with patch("tagging.helperfunctions.subprocess", new=Mock()), \
+         patch("tagging.helperfunctions.subprocess.check_output", new=Mock(return_value="arg")) as check:
+      with self.assertRaises( ValueError ):
+        value = curl2Json( ["some","repo", "command"] )
+
+
 
 class TestParseVersion( unittest.TestCase ):
   """ tests for the helper functions """
