@@ -1,23 +1,33 @@
 #!/bin/env python
 """Test the Tagging Modules"""
 
+import json
 import logging
 import __builtin__
 import unittest
 import os
 import shutil
+import sys
 import tempfile
 import tarfile
 from zipfile import ZipFile
 from mock import patch, MagicMock as Mock, mock_open
 from pprint import pprint
 
+sys.modules['GitTokens'] = Mock(name="GitTokensMock", return_value=Mock(name="returnedMock"))
+
 from tagging.gitinterface import Repo
-from tagging.helperfunctions import getCommands, versionComp
+from tagging.helperfunctions import getCommands, versionComp, parseForReleaseNotes, curl2Json
 from tagging.parseversion import Version
 
 __RCSID__ = "$Id$"
 
+REALIMPORT = __builtin__.__import__
+def myimport(name, globs, locs, fromlist):
+  """ raise error for import """
+  if name=="GitTokens" and "GITHUBTOKEN" in fromlist:
+    raise ImportError
+  return REALIMPORT(name, globs, locs, fromlist)
 
 def mockCurl(*args, **kwargs):
   """ mock the curl2Json calls in the gitinterface """
