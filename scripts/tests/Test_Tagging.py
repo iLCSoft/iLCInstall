@@ -34,7 +34,7 @@ def mockCurl(*args, **kwargs):
   logging.error("\nArgs: %r", args)
   logging.error("\nArgs: %r", getCommands(args))
   logging.error("Kwargs: %r", kwargs )
-  
+
   cmdString = " ".join( getCommands(args) )
   logging.error( "ComdString: %s", cmdString )
   if "/tags" in cmdString:
@@ -71,11 +71,11 @@ def mockCurl(*args, **kwargs):
              "author": { "date": "2014-11-07T22:01:45Z",
                          "name": "Scott Chacon",
                          "email": "schacon@gmail.com"
-             },
+                       },
              "committer": { "date": "2014-11-07T22:01:45Z",
                             "name": "Scott Chacon",
                             "email": "schacon@gmail.com"
-             },
+                          },
              "message": "added readme, because im a good github citizen",
              "tree": { "url": "https://api.github.com/repos/octocat/Hello-World/git/trees/691272480426f78a0138979dd3ce63b77f706feb",
                        "sha": "myCommitSha"
@@ -129,7 +129,7 @@ def mockCurl(*args, **kwargs):
                        },
              "protected": True,
              "protection_url": "https://api.github.com/repos/octocat/Hello-World/branches/master/protection"
-           } 
+           }
 
   ##default
   return {}
@@ -366,21 +366,21 @@ class TestParseVersion( unittest.TestCase ):
     self.assertEqual( version.getMajorMinorPatch(), (1, 2, 0) )
 
     version = Version( "v01-02-13", makePreRelease=False )
-    self.assertEqual( str(version), "v01-02-13" ) 
+    self.assertEqual( str(version), "v01-02-13" )
     self.assertEqual( version.getMajorMinorPatch(), (1, 2, 13) )
 
 
-  
+
     version = Version( "v01-02-14-pre13" )
     self.assertEqual( str(version), "v01-02-14-pre13" )
     self.assertEqual( version.getMajorMinorPatch(), (1, 2, 14) )
 
     version = Version( "v01-02-13-pre16", makePreRelease=False )
-    self.assertEqual( str(version), "v01-02-13" ) 
+    self.assertEqual( str(version), "v01-02-13" )
     self.assertEqual( version.getMajorMinorPatch(), (1, 2, 13) )
-  
-  
-    
+
+
+
   def test_getMajorMinorPatch( self ):
     """ test from pre to increment pre"""
     version = Version( "v01-02", makePreRelease=True )
@@ -388,15 +388,16 @@ class TestParseVersion( unittest.TestCase ):
     self.assertFalse( version.isPre )
     self.assertEqual( version.getMajorMinorPatch(), (1, 2, 0) )
 
-    
-    
-    
-    
+
+
+
+
 def runTests():
   """Runs our tests"""
-  suite = unittest.defaultTestLoader.loadTestsFromTestCase( TestGit )
+  suite = unittest.TestSuite()
+  suite.addTest( unittest.defaultTestLoader.loadTestsFromTestCase( TestGit ) )
   suite.addTest( unittest.defaultTestLoader.loadTestsFromTestCase( TestHelpers ) )
-  
+
   testResult = unittest.TextTestRunner( verbosity = 2 ).run( suite )
   print testResult
 
