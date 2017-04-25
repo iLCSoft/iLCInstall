@@ -186,8 +186,50 @@ class TestGit( unittest.TestCase ):
     self.assertFalse( self.repo.isPreRelease )
     self.assertTrue( self.repo._dryRun )
 
-    
-    
+
+  def test_ctor_fail_1( self ):
+    """ test the constructor when the desired pre-version is the same as an existing one"""
+    myTagInfo=[ { "name": "v01-03-20",
+                  "commit": { "sha": "MyTagSha2",
+                              "url": "http://localhost/foo/bar"
+                            },
+                  "zipball_url": "zipball/v0.1",
+                  "tarball_url": "tarball/v0.1"
+                }
+              ]
+
+    with self.assertRaisesRegexp( RuntimeError, "Invalid version required"), \
+         patch( "tagging.gitinterface.Repo.getGithubTags", new=Mock( return_value=myTagInfo)):
+      self.repo = Repo(owner="tester", repo="testrepo", branch="testbranch", newVersion="v01-03-20-pre", preRelease=True, dryRun=True)
+
+  def test_ctor_fail_2( self ):
+    """ test the constructor when the desired pre-version is the same as an existing one"""
+    myTagInfo=[ { "name": "v01-03-20",
+                  "commit": { "sha": "MyTagSha2",
+                              "url": "http://localhost/foo/bar"
+                            },
+                  "zipball_url": "zipball/v0.1",
+                  "tarball_url": "tarball/v0.1"
+                }
+              ]
+
+  def test_ctor_fail_2( self ):
+    """ test the constructor when the desired pre-version is the same as an existing one"""
+    myTagInfo=[ { "name": "v01-03-20-pre2",
+                  "commit": { "sha": "MyTagSha2",
+                              "url": "http://localhost/foo/bar"
+                            },
+                  "zipball_url": "zipball/v0.1",
+                  "tarball_url": "tarball/v0.1"
+                }
+              ]
+
+
+    with self.assertRaisesRegexp( RuntimeError, "Invalid version required"), \
+         patch( "tagging.gitinterface.Repo.getGithubTags", new=Mock( return_value=myTagInfo)):
+      self.repo = Repo(owner="tester", repo="testrepo", branch="testbranch", newVersion="v01-03-20-pre1", preRelease=True, dryRun=True)
+
+
 class TestHelpers( unittest.TestCase ):
   """ tests for the helper functions """
 
