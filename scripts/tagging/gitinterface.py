@@ -94,7 +94,7 @@ class Repo(object):
       raise RuntimeError( "Invalid version required" )
 
   def _getLatestTagInfo( self ):
-    """ fill the information about the latest tag in the repository, ignore pre commit tags"""
+    """ fill the information about the latest tag in the repository"""
     if self.latestTagInfo is not None:
       self.log.debug( "Latest Tag Info already filled" )
       return self.latestTagInfo ## already filled
