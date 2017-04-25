@@ -41,6 +41,7 @@ class Repo(object):
     self._getLatestTagInfo()
     self._setNewVersion()
     self._dryRun = dryRun
+    self._checkConsistency()
 
   def __str__( self ):
     return self.owner+"/"+self.repo
@@ -83,6 +84,14 @@ class Repo(object):
     self._newTag.increment()
     self._nextRealRelease = str( self._newTag ).split("-pre")[0]
     self.log.info( "Set new version: %s", self._nextRealRelease )
+
+  def _checkConsistency( self ):
+    """ check for invalid version requirements"""
+    lastTag = self.latestTagInfo['name']
+    if self._nextRealRelease == lastTag or versionComp( self._nextRealRelease, lastTag ) <= 0:
+      self.log.error("Required (pre-)version (%r) is the same as or older than the last tag(%r)",
+                     self.newVersion, lastTag)
+      raise RuntimeError( "Invalid version required" )
 
   def _getLatestTagInfo( self ):
     """ fill the information about the latest tag in the repository, ignore pre commit tags"""
