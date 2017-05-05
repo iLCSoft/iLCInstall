@@ -449,12 +449,14 @@ class Repo(object):
     contentEncoded = content.encode('base64')
     if encodedOld.replace("\n","") == contentEncoded.replace("\n",""):
       self.log.info("No changes in %s, not making commit", self.cmakeBaseFile )
-      return
+    else:
+      self.log.info( "Update %s is to %s" , self.cmakeBaseFile, self.newVersion )
+      message = "Updating version to %s" % self.newVersion
+      self.createGithubCommit(self.cmakeBaseFile, sha, contentEncoded, message=message)
 
-    message = "Updating version to %s" % self.newVersion
-    self.createGithubCommit(self.cmakeBaseFile, sha, contentEncoded, message=message)
-
-
+    if self.repo.lower() == "dd4hep" and self.cmakeBaseFile == "CMakeLists.txt":
+      self.cmakeBaseFile = "DDSegmentation/CMakeLists.txt"
+      self.updateVersionSettings()
 
   def createGithubCommit( self, filename, fileSha, content, message ):
     """
