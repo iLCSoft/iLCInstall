@@ -436,7 +436,7 @@ class Repo(object):
     return content, sha, encoded
 
   def updateVersionSettings( self ):
-    """ get the new release notes and commit them to the filename """
+    """ update the version settings in CMakeLists """
 
     content, sha, encodedOld = self.getFileFromBranch( self.cmakeBaseFile )
     major, minor, patch = self._newTag.getMajorMinorPatch()
