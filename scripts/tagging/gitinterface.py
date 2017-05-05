@@ -426,7 +426,7 @@ class Repo(object):
   def getFileFromBranch( self, filename ):
     """return the content of the file in the given branch, filename needs to be the full path"""
 
-    result = curl2Json( ghHeaders(), self._github( "contents/%s?branch=%s" %(filename,self.branch) ) )
+    result = curl2Json( ghHeaders(), self._github( "contents/%s?ref=%s" %(filename,self.branch) ) )
     encoded = result.get( 'content', None )
     if encoded is None:
       self.log.error( "File %s not found for %s", filename, self )
