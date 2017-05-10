@@ -72,6 +72,6 @@ class XercesC(BaseILC):
         BaseILC.postCheckDeps(self)
 
         self.env["XercesC_HOME"] = self.installPath
-        if self.installPath == "/usr":
+        if self.installPath != "/usr":
             self.envpath["PATH"].append( "$XercesC_HOME/bin" )
             self.envpath["LD_LIBRARY_PATH"].append( "$XercesC_HOME/lib" )

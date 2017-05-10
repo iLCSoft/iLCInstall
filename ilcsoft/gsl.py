@@ -75,6 +75,6 @@ class GSL(BaseILC):
         BaseILC.postCheckDeps(self)
 
         self.env["GSL_HOME"] = self.installPath
-        if self.installPath == "/usr":
+        if self.installPath != "/usr":
             self.envpath["PATH"].append( "$GSL_HOME/bin" )
             self.envpath["LD_LIBRARY_PATH"].append( "$GSL_HOME/lib" )
