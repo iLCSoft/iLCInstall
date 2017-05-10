@@ -196,7 +196,7 @@ class CERNLIB(BaseILC):
         self.env["CERN_LEVEL"] = self.version
         self.env["CERN"] = os.path.dirname(self.installPath)
         
-        if self.installPath == "/usr":
+        if self.installPath != "/usr":
             self.envpath["PATH"].append( "$CERN_ROOT/bin" )
 
 

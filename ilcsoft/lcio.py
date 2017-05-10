@@ -97,7 +97,7 @@ class LCIO(BaseILC):
 
         # PATH
         self.envpath["PATH"].append( "$LCIO/tools" )
-        if self.installPath == "/usr":
+        if self.installPath != "/usr":
             self.envpath["PATH"].append( "$LCIO/bin" )
             self.envpath["LD_LIBRARY_PATH"].append( "$LCIO/lib" )
         self.envpath["PYTHONPATH"].append( "$LCIO/python" )
