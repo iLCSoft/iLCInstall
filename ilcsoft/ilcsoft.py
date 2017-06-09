@@ -44,7 +44,8 @@ class ILCSoft:
         }               # global environment variables
         self.envcmake = {           # global cmake environment variables
             'CMAKE_BUILD_TYPE' : 'Release',
-            'INSTALL_DOC' : 'ON'
+            'INSTALL_DOC' : 'ON',
+            'CMAKE_CXX_FLAGS_RELWITHDEBINFO' : '-O2 -g'
         }
         self.cleanInstall = True    # global flag for cleaning temporary files after installation (objects, tarfiles...)
 
