@@ -9,6 +9,7 @@
                                                                                                                                                             
 # custom imports
 from marlinpkg import MarlinPKG
+from baseilc import BaseILC
 from util import *
 
 class LCFIVertex(MarlinPKG):
@@ -18,10 +19,12 @@ class LCFIVertex(MarlinPKG):
         MarlinPKG.__init__(self, "LCFIVertex", userInput )
 
         # required modules
-        self.reqmodules = [ "Marlin", "MarlinUtil", "LCIO", "GEAR" ]
+        self.reqmodules = [ "Marlin", "MarlinUtil", "LCIO", "GEAR", "DD4hep"]
 
         # optional modules
         self.optmodules = [ "AIDA" ]
+        self.reqfiles = [ ["lib/libLCFIVertex.so", "lib/libLCFIVertex.dylib" ],
+                          ["lib/libLCFIVertexProcessors.so", "lib/libLCFIVertexProcessors.dylib"] ]
 
         # cvs root
         self.download.root="marlinreco"
@@ -31,6 +34,15 @@ class LCFIVertex(MarlinPKG):
 
     def downloadSources(self):
         MarlinPKG.downloadSources(self)
+
+    def postCheckDeps(self):
+        BaseILC.postCheckDeps(self)
+
+        # fill MARLIN_DLL
+        self.parent.module('Marlin').envpath["MARLIN_DLL"].append(
+          self.installPath+"/lib/libLCFIVertexProcessors"+self.shlib_ext )
+
+        self.envpath["LD_LIBRARY_PATH"].append( self.installPath+"/lib" )
 
 #        print "+ Unpacking Boost..."
 #        os.chdir( self.installPath )
