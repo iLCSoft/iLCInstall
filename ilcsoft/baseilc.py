@@ -739,7 +739,8 @@ class BaseILC:
         elif self.download.type[:6] == "GitHub":
             if self.version =="HEAD" or self.version =="dev" or self.version =="devel" or self.version =="master" or self.download.branch:
                 #clone the whole repo into the directory
-                cmd="git clone https://github.com/%s/%s.git %s" % (self.download.gituser, self.download.gitrepo, self.version)
+                branch = 'master' if self.download.branch is None else self.download.branch
+                cmd="git clone -b %s https://github.com/%s/%s.git %s" % (branch, self.download.gituser, self.download.gitrepo, self.version)
                 print "Executing command:",cmd
                 if os.system( cmd ) != 0:
                     self.abort( "Problems occurred during execution of " + cmd + " [!!ERROR!!]")
@@ -1326,6 +1327,7 @@ class Download:
         self.supportedTypes = [ "wget", "svn", "svn-desy", "svn-p12cert", "svn-export", "git", "git-clone", "ccvssh", "GitHub" ]  # supported download types for the module
         self.url = {}
         self.cmd = "wget"
+        self.branch = None
 
     def __repr__(self):
         if( self.type == "wget" ):
