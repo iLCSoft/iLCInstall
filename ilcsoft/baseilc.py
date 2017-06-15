@@ -736,26 +736,25 @@ class BaseILC:
             if( os.system( gittagcmd ) != 0 ):
                 self.abort( "Problems occurred checking out tag "+self.version+"!!")
 
-        elif( self.download.type[:6] == "GitHub" ):
-	    if( self.version =="HEAD" or self.version =="dev" or self.version =="devel" or self.version =="master"):
-	        #clone the whole repo into the directory
-	        cmd="git clone https://github.com/%s/%s.git %s" % (self.download.gituser, self.download.gitrepo, self.version)
-	        print "Executing command:",cmd
-                if( os.system( cmd ) != 0 ):
+        elif self.download.type[:6] == "GitHub":
+            if self.version =="HEAD" or self.version =="dev" or self.version =="devel" or self.version =="master" or self.download.branch:
+                #clone the whole repo into the directory
+                cmd="git clone https://github.com/%s/%s.git %s" % (self.download.gituser, self.download.gitrepo, self.version)
+                print "Executing command:",cmd
+                if os.system( cmd ) != 0:
                     self.abort( "Problems occurred during execution of " + cmd + " [!!ERROR!!]")
 
-		print "Cloning of repository %s/%s into directory %s sucessfully finished" % (self.download.gituser, self.download.gitrepo, self.version)
+                print "Cloning of repository %s/%s into directory %s sucessfully finished" % (self.download.gituser, self.download.gitrepo, self.version)
 
-	      
-	    elif( 'message' not in json.loads(urllib.urlopen('https://api.github.com/repos/%s/%s/git/refs/tags/%s' % (self.download.gituser, self.download.gitrepo, self.version)).read()).keys() ):
-	        cmd = "mkdir -p %s" % (self.version)
-	        if( os.system( cmd ) != 0 ):
+            elif 'message' not in json.loads(urllib.urlopen('https://api.github.com/repos/%s/%s/git/refs/tags/%s' % (self.download.gituser, self.download.gitrepo, self.version)).read()).keys():
+                cmd = "mkdir -p %s" % (self.version)
+                if os.system( cmd ) != 0:
                     self.abort( "Could not create folder" + self.version + " [!!ERROR!!]")
-                    
-	        cmd = "curl -L -k https://api.github.com/repos/%s/%s/tarball/refs/tags/%s | tar xz --strip-components=1 -C %s" % (self.download.gituser, self.download.gitrepo, self.version, self.version)
-                if( os.system( cmd ) != 0 ):
+
+                cmd = "curl -L -k https://api.github.com/repos/%s/%s/tarball/refs/tags/%s | tar xz --strip-components=1 -C %s" % (self.download.gituser, self.download.gitrepo, self.version, self.version)
+                if os.system( cmd ) != 0:
                     self.abort( "Could not download and extract tag " + self.version + " [!!ERROR!!]")
-		print "Downloading of the tag %s of repository %s/%s into directory %s sucessfully finished" % (self.version, self.download.gituser, self.download.gitrepo, self.version)
+                print "Downloading of the tag %s of repository %s/%s into directory %s sucessfully finished" % (self.version, self.download.gituser, self.download.gitrepo, self.version)
             else:
                 self.abort( "The specified tag " + self.version + " does not exist [!!ERROR!!]")
 
