@@ -14,7 +14,7 @@ iLCSoft/KalDet/v01-14
 AIDASoft/aidaTT/v00-06 
 iLCSoft/DDKalTest/v01-02  
 iLCSoft/MarlinTrk/v02-03 
-iLCSoft/MarlinTrkProcessors/v02-06 
+iLCSoft/MarlinTrkProcessors/v02-07 
 #iLCSoft/Clupatra/v01-00  
 iLCSoft/KiTrack/v01-08 
 iLCSoft/KiTrackMarlin/v01-10 

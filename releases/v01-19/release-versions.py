@@ -9,7 +9,7 @@
 import datetime
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-19-02'
+ilcsoft_release='v01-19-03-pre'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -43,7 +43,7 @@ export LD_LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/external/Python/2.7.4/x86_64-slc6-
  export PATH=/cvmfs/sft.cern.ch/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/bin:$PATH
  export LD_LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/lib:$LD_LIBRARY_PATH
 '''
-# before starting the installation
+c# before starting the installation
 #================================================================================
 
 
@@ -138,7 +138,7 @@ FastJetcontrib_version = "1.024"
 CED_version = "v01-09-02"
 # -------------------------------------------
 
-LCIO_version = "v02-08" 
+LCIO_version = "v02-09" 
 
 GEAR_version = "v01-07"
 
@@ -146,7 +146,7 @@ CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
 
 ILCUTIL_version = "v01-03"
 
-MarlinFastJet_version = "v00-04" 
+MarlinFastJet_version = "v00-05" 
 
 
 # -------------------------------------------
@@ -155,23 +155,23 @@ KalTest_version = "v02-03"
 
 KalDet_version = "v01-14" 
 
-aidaTT_version = "v00-06"
+aidaTT_version = "v00-07"
 
-DDKalTest_version = "v01-02"
+DDKalTest_version = "v01-03"
 
-MarlinTrk_version = "v02-03"
+MarlinTrk_version = "v02-04"
 
-MarlinTrkProcessors_version = "v02-06"
+MarlinTrkProcessors_version = "v02-08"
 
-Clupatra_version = "v01-00"  
+Clupatra_version = "v01-01"  
 
 KiTrack_version = "v01-08" 
 
-KiTrackMarlin_version = "v01-10"
+KiTrackMarlin_version = "v01-11"
 
-ForwardTracking_version = "v01-11" 
+ForwardTracking_version = "v01-12" 
 
-ConformalTracking_version = "v01-02" 
+ConformalTracking_version = "v01-03" 
 
 LICH_version = "v00-01" 
 
@@ -183,35 +183,35 @@ LCCD_version = "v01-04"
 
 RAIDA_version = "v01-08" 
 
-MarlinUtil_version = "v01-13" 
+MarlinUtil_version = "v01-14" 
 
-Marlin_version = "v01-11"
+Marlin_version = "v01-12"
 
-MarlinDD4hep_version = "v00-04"
+MarlinDD4hep_version = "v00-05"
 
-MarlinReco_version = "v01-18" 
+MarlinReco_version = "v01-19" 
 
-ILDPerformance_version = "v01-02"
+ILDPerformance_version = "v01-03"
 
 #ILDConfig_version = "HEAD" 
 
 
-LCFIVertex_version = "v00-07-03"
-LCFIPlus_version = "v00-06-05"
+LCFIVertex_version = "v00-07-04"
+LCFIPlus_version = "v00-06-06"
 
 
 MarlinKinfit_version = "v00-05"
 MarlinKinfitProcessors_version = "v00-03"
 
 PandoraPFANew_version   = "v03-01-02"
-DDMarlinPandora_version = "v00-06"
+DDMarlinPandora_version = "v00-07"
 PandoraAnalysis_version = "v01-02-01"
 
-CEDViewer_version = "v01-13"
+CEDViewer_version = "v01-14"
 
-Overlay_version = "v00-17"
+Overlay_version = "v00-18"
 
-MarlinTPC_version = "v01-02"
+MarlinTPC_version = "v01-03"
 
 LCTuple_version = "v01-07"
 
@@ -221,10 +221,10 @@ Druid_version = "2.2"
 
 Garlic_version = "v3.0.4"
 
-DD4hep_version = "v00-21"
-DD4hepExamples_version = "v00-21" 
+DD4hep_version = "v01-00"
+DD4hepExamples_version = "v01-00" 
 
-lcgeo_version = "v00-11" 
+lcgeo_version = "v00-12" 
 
 Physsim_version = "v00-04" 
 
