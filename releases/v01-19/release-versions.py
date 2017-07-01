@@ -177,7 +177,7 @@ LICH_version = "v00-01"
 
 # -------------------------------------------
 
-GBL_version = "V01-17-01" #"V02-00-00" 
+GBL_version = "V02-01-01" #"V02-00-00" 
 
 LCCD_version = "v01-04"
 
@@ -210,6 +210,8 @@ PandoraAnalysis_version = "v01-02-01"
 CEDViewer_version = "v01-14"
 
 Overlay_version = "v00-18"
+
+PathFinder_version = "v00-06-01"
 
 MarlinTPC_version = "v01-03"
 
