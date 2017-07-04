@@ -37,10 +37,10 @@ if [ -z ${COMPILER_TYPE} ]; then
     COMPILER_TYPE='gcc'
 fi
 if [ ${COMPILER_TYPE} == 'gcc' ]; then
-    COMPILER_VERSION='gcc7'
+    COMPILER_VERSION='gcc62'
 fi
 if [ ${COMPILER_TYPE} == 'llvm' ]; then
-    COMPILER_VERSION='llvm40'
+    COMPILER_VERSION='llvm39'
 fi
 
 
@@ -59,17 +59,17 @@ BUILD_FLAVOUR=x86_64-${OS}-${COMPILER_VERSION}-${BUILD_TYPE}
 #--------------------------------------------------------------------------------
 
 if [ ${COMPILER_TYPE} == "gcc" ]; then
-    source ${CLICREPO}/compilers/gcc/7.1.0/x86_64-${OS}/setup.sh
+    source ${CLICREPO}/compilers/gcc/6.2.0/x86_64-${OS}/setup.sh
 fi
 if [ ${COMPILER_TYPE} == "llvm" ]; then
-    source ${CLICREPO}/compilers/llvm/4.0.1/x86_64-${OS}/setup.sh
+    source ${CLICREPO}/compilers/llvm/3.9.0/x86_64-${OS}/setup.sh
 fi
 
 #--------------------------------------------------------------------------------
 #     CMake
 #--------------------------------------------------------------------------------
 
-export CMAKE_HOME=${CLICREPO}/software/CMake/3.8.1/${BUILD_FLAVOUR}
+export CMAKE_HOME=${CLICREPO}/software/CMake/3.6.2/${BUILD_FLAVOUR}
 export PATH=${CMAKE_HOME}/bin:$PATH
 
 #--------------------------------------------------------------------------------
@@ -77,7 +77,7 @@ export PATH=${CMAKE_HOME}/bin:$PATH
 #--------------------------------------------------------------------------------
 
 if [ ${OS} == "slc6" ] || [ ${OS} == "centos7" ]; then
-    export PYTHONDIR=${CLICREPO}/software/Python/2.7.13/${BUILD_FLAVOUR}
+    export PYTHONDIR=${CLICREPO}/software/Python/2.7.12/${BUILD_FLAVOUR}
     export PATH=${PYTHONDIR}/bin:$PATH
     export LD_LIBRARY_PATH=${PYTHONDIR}/lib:${LD_LIBRARY_PATH}
 fi
