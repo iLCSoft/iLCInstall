@@ -6,7 +6,7 @@
 # Date: Jan, 2011
 #
 ##################################################
-                                                                                                                                                            
+
 # custom imports
 from baseilc import BaseILC
 from util import *
@@ -14,7 +14,7 @@ from util import *
 
 class ILCUTIL(BaseILC):
     """ Responsible for the ilcutil software installation process. """
-    
+
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "ILCUTIL", "ilcutil")
 
@@ -23,9 +23,13 @@ class ILCUTIL(BaseILC):
             [ "lib/libstreamlog.a", "lib/libstreamlog.so", "lib/libstreamlog.dylib"]
         ]
 
+        self.download.supportedTypes = [ "GitHub" ]
+        self.download.gituser = 'iLCSoft'
+        self.download.gitrepo = 'iLCUtil'
+
     def compile(self):
         """ compile ilcutil """
-        
+
         os.chdir( self.installPath+'/build' )
 
         if( self.rebuild ):
@@ -47,4 +51,3 @@ class ILCUTIL(BaseILC):
 
         # PATH
         self.envpath["LD_LIBRARY_PATH"].append( "$ilcutil/lib" )
-
