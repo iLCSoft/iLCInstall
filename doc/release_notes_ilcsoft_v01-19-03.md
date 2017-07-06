@@ -14,7 +14,17 @@ Packages changed since last version:
   - Added flag -Wheader-hygiene to warn about usage of namespace directive in global context in header
 
 
-## lcgeo -  v00-13
+## lcgeo - v00-13-01
+
+* 2017-07-06 Frank Gaede ([PR#131](https://github.com/iLCSoft/lcgeo/pull/131))
+  - fix the pixel SIT for ILD_*_v02 models
+        - add new driver SIT_Simple_Pixel_geo.cpp
+        - use sit_simple_pixel_sensors_01.xml
+
+* 2017-07-06 Shaojun Lu ([PR#130](https://github.com/iLCSoft/lcgeo/pull/130))
+  - Update ILD services driver to access the ILD compact file "env_safety", and apply it in the services driver to avoid services overlap with sub-detector envelope .
+
+## lcgeo - v00-13
 
 * 2017-07-06 Frank Gaede ([PR#129](https://github.com/iLCSoft/lcgeo/pull/129))
   - ILD_*_v02 models: remove stereo angle in SIT ( move to pixel readout)
@@ -327,6 +337,12 @@ Packages changed since last version:
   - remove obsolete MarlinKalTest and MarlinKalTestTrack
          - from now on use only MarlinDDKalTest
   - fix all warnings seen with llvm (on mac)
+
+
+## MarlinTrkProcessors - v02-08-01
+
+* 2017-07-06 Frank Gaede ([PR#23](https://github.com/iLCSoft/MarlinTrkProcessors/pull/23))
+  - fix phi0 of module rings in TPCModularEndplate
 
 
 ## MarlinTrkProcessors - v02-08

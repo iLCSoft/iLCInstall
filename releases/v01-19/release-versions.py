@@ -161,7 +161,7 @@ DDKalTest_version = "v01-03-01"
 
 MarlinTrk_version = "v02-04"
 
-MarlinTrkProcessors_version = "v02-08"
+MarlinTrkProcessors_version = "v02-08-01"
 
 Clupatra_version = "v01-01"  
 
@@ -226,7 +226,7 @@ Garlic_version = "v3.0.4"
 DD4hep_version = "v01-00-01"
 DD4hepExamples_version = "v01-00-01" 
 
-lcgeo_version = "v00-13" 
+lcgeo_version = "v00-13-01" 
 
 Physsim_version = "v00-04" 
 
