@@ -187,6 +187,33 @@ Packages changed since last version:
 
 
 
+## DD4hep -  v01-01
+
+* 2017-07-06 Markus Frank ([PR#201](https://github.com/AIDASoft/DD4hep/pull/201))
+  ### DDCore: Changes to the VolumeManager interface
+  
+    Recent descrepancies showed that the call to lookup a placement
+    from the volume manager may have an ambiguous meaning:
+    It may (as used until now) be the placement of thge closest
+    detector element - a functionality used by various tests
+    or be the placement of the sensitive volume itself.
+    So far, since each sensitive volume in the DD4hep tests
+    is represented by a DetElement structure, both
+    approaches returned the same placed volume.
+  
+    Since there is the possibility to have sensitive volumes, which are not
+    directly connected to a single DetElement structure, this call was
+    split to resolve this ambiguity:
+  
+    /// Lookup a physical (placed) volume identified by its 64 bit hit ID
+    PlacedVolume lookupVolumePlacement(VolumeID volume_id) const;
+    /// Lookup a physical (placed) volume of the detector element
+    /// containing a volume identified by its 64 bit hit ID
+    PlacedVolume lookupDetElementPlacement(VolumeID volume_id) const;
+
+* 2017-07-06 Andre Sailer ([PR#200](https://github.com/AIDASoft/DD4hep/pull/200))
+  - Now will give a warning if multiple entities (e.g., constants) of the same name are defined in the XML
+
 ## DD4hep - v01-00-01
 
 * 2017-07-04 Frank Gaede ([PR#199](https://github.com/AIDASoft/DD4hep/pull/199))
@@ -655,6 +682,14 @@ Packages changed since last version:
 
 * 2017-05-10 Andre Sailer ([PR#7](https://github.com/iLCSoft/DDMarlinPandora/pull/7))
   - Add Werror to CI configuration, no more warnings allowed in DDMarlinPandora
+
+
+
+## CEDViewer - v01-14-01
+
+* 2017-07-06 Frank Gaede ([PR#4](https://github.com/iLCSoft/CEDViewer/pull/4))
+  - add "EcalXXXCollection" to ced2go  template for drawing SimCalorimeterHits
+  - fix the drawing of non-prompt neutral MCParticles in CEDViewer
 
 
 ## CEDViewer - v01-14

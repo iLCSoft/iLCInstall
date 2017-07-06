@@ -9,7 +9,7 @@
 import datetime
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-19-03-pre01'
+ilcsoft_release='v01-19-03-pre02'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -207,7 +207,7 @@ PandoraPFANew_version   = "v03-01-02"
 DDMarlinPandora_version = "v00-07"
 PandoraAnalysis_version = "v01-02-01"
 
-CEDViewer_version = "v01-14"
+CEDViewer_version = "v01-14-01"
 
 Overlay_version = "v00-18"
 
@@ -223,8 +223,8 @@ Druid_version = "2.2"
 
 Garlic_version = "v3.0.4"
 
-DD4hep_version = "v01-00-01"
-DD4hepExamples_version = "v01-00-01" 
+DD4hep_version = "v01-01"
+DD4hepExamples_version = "v01-01" 
 
 lcgeo_version = "v00-13-01" 
 
