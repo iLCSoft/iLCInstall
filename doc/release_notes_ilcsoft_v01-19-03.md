@@ -493,6 +493,10 @@ Packages changed since last version:
   - Adapt to namespace changes in DD4hep
 
 
+## MarlinReco - v01-19-01
+
+* 2017-07-04 Daniel Jeans ([PR#16](https://github.com/iLCSoft/MarlinReco/pull/16))
+  - update resolution formula in TPC digitisation (from Dimitra Tsionou)
 
 ## MarlinReco - v01-19
 
