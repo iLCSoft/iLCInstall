@@ -770,3 +770,9 @@ Packages changed since last version:
     ```
   - Fix bug in OverlayTiming::cellID2long which returned the same `long long` for different cellID pairs
 
+
+
+# LCTuple - v01-08
+
+ S.Sasikumar:
+  - add parameter rcnrp ( ReconstructedParticle::getParticles().size() ) to RecoParticle branch

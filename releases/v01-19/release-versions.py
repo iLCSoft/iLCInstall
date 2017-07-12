@@ -215,7 +215,7 @@ PathFinder_version = "v00-06-01"
 
 MarlinTPC_version = "v01-03"
 
-LCTuple_version = "v01-07"
+LCTuple_version = "v01-08"
 
 BBQ_version = "v00-01-03"
 
