@@ -9,7 +9,7 @@
 import datetime
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-19-03'
+ilcsoft_release='v01-19-03.p01-pre'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -223,8 +223,8 @@ Druid_version = "2.2"
 
 Garlic_version = "v3.0.4"
 
-DD4hep_version = "v01-01"
-DD4hepExamples_version = "v01-01" 
+DD4hep_version = "v01-01-01"
+DD4hepExamples_version = "v01-01-01"
 
 lcgeo_version = "v00-13-02" 
 
