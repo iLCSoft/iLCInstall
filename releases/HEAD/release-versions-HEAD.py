@@ -121,7 +121,7 @@ Eigen_path = "/afs/desy.de/project/ilcsoft/sw/Eigen/3.2.9"
 Geant4_version =  "10.02.p02" 
 CLHEP_version =  "2.3.1.1"
 
-ROOT_version = "6.08.02"
+ROOT_version = "6.08.06"
 
 
 GSL_version = "2.1" 
