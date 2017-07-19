@@ -226,7 +226,7 @@ Garlic_version = "v3.0.4"
 DD4hep_version = "v01-01-01"
 DD4hepExamples_version = "v01-01-01"
 
-lcgeo_version = "v00-13-02" 
+lcgeo_version = "v00-13-03" 
 
 Physsim_version = "v00-04" 
 
