@@ -83,6 +83,8 @@ class PandoraAnalysis(MarlinPKG):
 
     def postCheckDeps(self):
 
+        MarlinPKG.postCheckDeps(self)
+
         self.env["PANDORA_ANALYSIS_DIR"] = self.installPath                
         self.envpath["LD_LIBRARY_PATH"].append( "$PANDORA_ANALYSIS_DIR/lib" )
         self.envpath["PATH"].append( "$PANDORA_ANALYSIS_DIR/bin" )
