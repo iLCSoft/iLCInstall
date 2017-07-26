@@ -1,3 +1,10 @@
+
+* Frank Gaede 
+ - update lcgeo to v00-13-04
+ - update ROOT_version = "6.08.06" for HEAD releases"
+ - update DD4hep v01-01-01
+
+
 # v01-19-03
 
 * 2017-05-10 Felix Reidt ([PR#13](https://github.com/iLCSoft/ilcinstall/pull/13))
