@@ -1,3 +1,9 @@
+# v01-19-04
+
+* 2017-07-26 Frank Gaede ([PR#35](https://github.com/iLCSoft/ilcinstall/pull/35))
+  - update to v01-19-04 (identical to v01-19-03.p01)
+     - Github does not allow version v01-19-03.p01
+
 # v01-19-03.p01
 
 * 2017-07-20 Ete Remi ([PR#34](https://github.com/iLCSoft/ilcinstall/pull/34))
