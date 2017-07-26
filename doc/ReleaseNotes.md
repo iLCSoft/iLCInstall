@@ -1,3 +1,8 @@
+# v01-19-03.p01
+
+* 2017-07-20 Ete Remi ([PR#34](https://github.com/iLCSoft/ilcinstall/pull/34))
+  - Added PANDORA_ANALYSIS_DIR env var
+  - Set LD_LIBRARY_PATH and PATH accordingly
 
 * Frank Gaede 
  - update lcgeo to v00-13-04
