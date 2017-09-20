@@ -117,11 +117,11 @@ Eigen_path =  ilcPath+"/../Eigen/3.2.9"
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version =  "10.02.p02" 
-CLHEP_version =  "2.3.1.1"
+#Geant4_version =  "10.02.p02" 
+#CLHEP_version =  "2.3.1.1"
 
-#Geant4_version =  "10.03" 
-#CLHEP_version =  "2.3.4.3"
+Geant4_version =  "10.03.p02" 
+CLHEP_version =  "2.3.4.3"
 
 ROOT_version = "6.08.02"
 
@@ -215,7 +215,7 @@ PathFinder_version = "v00-06-01"
 
 MarlinTPC_version = "v01-03"
 
-LCTuple_version = "v01-08"
+LCTuple_version = "v01-09"
 
 BBQ_version = "v00-01-03"
 
