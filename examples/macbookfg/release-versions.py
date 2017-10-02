@@ -114,9 +114,9 @@ Eigen_path = "/usr/local/opt/eigen32"
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version =  "10.03"
+Geant4_version =  "10.03.p02"
 CLHEP_version =  "2.3.4.3" #"2.3.1.1"
-ROOT_version = "6.08.00"
+ROOT_version = "HEAD" #"6.08.00"
 
 GSL_version = "2.1" # "1.15"
 
@@ -164,6 +164,8 @@ Clupatra_version = "HEAD" # "v00-11"
 KiTrack_version = "HEAD" # "v01-06"
 
 KiTrackMarlin_version = "HEAD" # "v01-06"
+
+FCalClusterer_version = "HEAD" "v00-05"
 
 ForwardTracking_version = "HEAD" # "v01-08"
 
