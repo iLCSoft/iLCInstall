@@ -9,7 +9,7 @@
 import datetime
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-19-04'
+ilcsoft_release='v01-19-05-pre'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -138,7 +138,7 @@ FastJetcontrib_version = "1.024"
 CED_version = "v01-09-02"
 # -------------------------------------------
 
-LCIO_version = "v02-09" 
+LCIO_version = "v02-10"
 
 GEAR_version = "v01-07"
 
@@ -151,29 +151,29 @@ MarlinFastJet_version = "v00-05"
 
 # -------------------------------------------
 
-KalTest_version = "v02-03" 
+KalTest_version = "v02-03-01" 
 
 KalDet_version = "v01-14" 
 
-aidaTT_version = "v00-07"
+aidaTT_version = "v00-08"
 
-DDKalTest_version = "v01-03-01"
+DDKalTest_version = "v01-04"
 
-MarlinTrk_version = "v02-04"
+MarlinTrk_version = "v02-05"
 
-MarlinTrkProcessors_version = "v02-08-01"
+MarlinTrkProcessors_version = "v02-09"
 
-Clupatra_version = "v01-01"  
+Clupatra_version = "v01-02"
 
-KiTrack_version = "v01-08" 
+KiTrack_version = "v01-08"
 
 KiTrackMarlin_version = "v01-11"
 
 FCalClusterer_version = "v00-05"
 
-ForwardTracking_version = "v01-12" 
+ForwardTracking_version = "v01-13" 
 
-ConformalTracking_version = "v01-03" 
+ConformalTracking_version = "v01-04" 
 
 LICH_version = "v00-01" 
 
@@ -187,11 +187,11 @@ RAIDA_version = "v01-08"
 
 MarlinUtil_version = "v01-14" 
 
-Marlin_version = "v01-12"
+Marlin_version = "v01-13"
 
 MarlinDD4hep_version = "v00-05"
 
-MarlinReco_version = "v01-19-01" 
+MarlinReco_version = "v01-20" 
 
 ILDPerformance_version = "v01-03"
 
@@ -205,13 +205,13 @@ LCFIPlus_version = "v00-06-06"
 MarlinKinfit_version = "v00-05"
 MarlinKinfitProcessors_version = "v00-03"
 
-PandoraPFANew_version   = "v03-01-02"
-DDMarlinPandora_version = "v00-07"
-PandoraAnalysis_version = "v01-02-01"
+PandoraPFANew_version   = "v03-05-00"  ## latest as of 12.10
+DDMarlinPandora_version = "v00-08"
+PandoraAnalysis_version = "v01-02-01"  ## latest as of 12.10
 
-CEDViewer_version = "v01-14-01"
+CEDViewer_version = "v01-15"
 
-Overlay_version = "v00-18"
+Overlay_version = "v00-19"
 
 PathFinder_version = "v00-06-01"
 
@@ -225,10 +225,10 @@ Druid_version = "2.2"
 
 Garlic_version = "v3.0.4"
 
-DD4hep_version = "v01-01-01"
+DD4hep_version = "v01-03"
 DD4hepExamples_version = "v01-01-01"
 
-lcgeo_version = "v00-13-04" 
+lcgeo_version = "v00-14" 
 
 Physsim_version = "v00-04" 
 
