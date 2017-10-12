@@ -2,7 +2,7 @@
 
 Packages changed wrt. to v01-19-04.
 
-# lcio v02-10-01
+## lcio v02-10-01
 
 * 2017-10-12 Frank Gaede ([PR#40](https://github.com/ilcsoft/lcio/pull/40))
   - ensure correct version numbers in this and future releases
@@ -227,6 +227,11 @@ Packages changed wrt. to v01-19-04.
      - to be used for the ILD TPC
      - if VolCylinder is marked as unbounded, we use a 'multilayer', ie.
        one layer that extends to both sides of the cathode
+
+## MarlinTrk  v02-06
+
+* 2017-10-12 Frank Gaede ([PR#9](https://github.com/ilcsoft/MarlinTrk/pull/9))
+  - fix the re-setting of eLoss and QMS configuration parameters in TrkSysConfig
 
 ## MarlinTrk v02-05
 

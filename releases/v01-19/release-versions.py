@@ -159,7 +159,7 @@ aidaTT_version = "v00-08"
 
 DDKalTest_version = "v01-04"
 
-MarlinTrk_version = "v02-05"
+MarlinTrk_version = "v02-06"
 
 MarlinTrkProcessors_version = "v02-09"
 
