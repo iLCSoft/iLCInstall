@@ -123,7 +123,7 @@ Eigen_path =  ilcPath+"/../Eigen/3.2.9"
 Geant4_version =  "10.03.p02" 
 CLHEP_version =  "2.3.4.3"
 
-ROOT_version = "6.08.02"
+ROOT_version = "6.08.06"
 
 GSL_version = "2.1" 
 
@@ -138,7 +138,7 @@ FastJetcontrib_version = "1.024"
 CED_version = "v01-09-02"
 # -------------------------------------------
 
-LCIO_version = "v02-10"
+LCIO_version = "v02-10-01"
 
 GEAR_version = "v01-07"
 
@@ -151,7 +151,7 @@ MarlinFastJet_version = "v00-05"
 
 # -------------------------------------------
 
-KalTest_version = "v02-03-01" 
+KalTest_version = "v02-03" 
 
 KalDet_version = "v01-14" 
 
