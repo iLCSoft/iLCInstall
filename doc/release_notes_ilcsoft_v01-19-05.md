@@ -427,3 +427,30 @@ Packages changed wrt. to v01-19-04.
 
 * 2017-07-24 Andre Sailer ([PR#8](https://github.com/iLCSoft/Overlay/pull/8))
   - OverlayTiming[Generic]: get random seed from eventSeeder
+
+## FCalClusterer v00-06
+
+* 2017-07-12 Andre Sailer ([PR#19](https://github.com/FCalSW/FCalClusterer/pull/19))
+  - LumiCalClusterer: wrap decoder object in unique_ptr to guarantee cleanup, fixes memory leak
+
+* 2017-07-17 Andre Sailer ([PR#20](https://github.com/FCalSW/FCalClusterer/pull/20))
+  - LumiCalClusterer: fix memory leak if there are not enough hits to attempt clustering
+
+* 2017-07-18 Andre Sailer ([PR#22](https://github.com/FCalSW/FCalClusterer/pull/22))
+  - LumiCalReco: use lambda function in TF1 instead of string
+  - BeamCalReco: GeometryDD layer starts at 0 if simulated with ddsim
+  - BeamCalReco: fix infinite loop  in background subtraction if nBX = 0 (no background), fixes #21
+
+* 2017-10-02 Andre Sailer ([PR#26](https://github.com/FCalSW/FCalClusterer/pull/26))
+  - Adapt to changes in AidaSoft/DD4hep#238
+  - CMake add C language to PROJECT for macs and cmake 3.3.2
+
+* 2017-07-26 Andre Sailer ([PR#24](https://github.com/FCalSW/FCalClusterer/pull/24))
+  - LumiCalReco: disable Fiducial Volume cuts, cuts on geometry should be done in later step of analysis
+
+* 2017-07-26 Andre Sailer ([PR#23](https://github.com/FCalSW/FCalClusterer/pull/23))
+  - BeamCalReco: correct the phi position of cluster reconstructed in the backward direction, which was incorrectly calculated due to the rotation of the backward BeamCal detector
+
+* 2017-10-06 Andre Sailer ([PR#27](https://github.com/FCalSW/FCalClusterer/pull/27))
+  - Drop unused and no longer existing header includes AidaSoft/DD4hep#241
+

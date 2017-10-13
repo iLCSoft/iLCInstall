@@ -169,7 +169,7 @@ KiTrack_version = "v01-08"
 
 KiTrackMarlin_version = "v01-11"
 
-FCalClusterer_version = "v00-05"
+FCalClusterer_version = "v00-06"
 
 ForwardTracking_version = "v01-13" 
 
