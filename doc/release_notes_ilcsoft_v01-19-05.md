@@ -392,6 +392,14 @@ Packages changed wrt. to v01-19-04.
 * 2017-10-06 Andre Sailer ([PR#25](https://github.com/iLCSoft/MarlinReco/pull/25))
   - Drop unused and no longer existing header includes AidaSoft/DD4hep#241
 
+## DDMarlinPandora v00-09
+
+* 2017-10-14 Ete Remi ([PR#13](https://github.com/ilcsoft/DDMarlinPandora/pull/13))
+  - Added separate registration function for software compensation energy correction
+  - Software compensation parameters added in processor parameters 
+    - SoftwareCompensationWeights : the sc weights
+    - SoftwareCompensationEnergyDensityBins : the energy density bins
+    - FinalEnergyDensityBin : the final energy density value
 
 ## DDMarlinPandora v00-08
 

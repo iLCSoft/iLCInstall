@@ -205,8 +205,8 @@ LCFIPlus_version = "v00-06-06"
 MarlinKinfit_version = "v00-05"
 MarlinKinfitProcessors_version = "v00-03"
 
-PandoraPFANew_version   = "v03-05-00"  ## latest as of 12.10
-DDMarlinPandora_version = "v00-08"
+PandoraPFANew_version   = "v03-06-00"  ## latest as of 12.10
+DDMarlinPandora_version = "v00-09"
 PandoraAnalysis_version = "v01-02-01"  ## latest as of 12.10
 
 CEDViewer_version = "v01-15"
