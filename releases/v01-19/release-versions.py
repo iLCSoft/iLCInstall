@@ -9,7 +9,7 @@
 import datetime
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-19-05-pre'
+ilcsoft_release='v01-19-05-pre02'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -161,7 +161,7 @@ DDKalTest_version = "v01-04"
 
 MarlinTrk_version = "v02-06"
 
-MarlinTrkProcessors_version = "v02-09"
+MarlinTrkProcessors_version = "v02-09-01"
 
 Clupatra_version = "v01-02"
 
@@ -206,7 +206,7 @@ MarlinKinfit_version = "v00-05"
 MarlinKinfitProcessors_version = "v00-03"
 
 PandoraPFANew_version   = "v03-06-00"
-DDMarlinPandora_version = "v00-09"
+DDMarlinPandora_version = "v00-09-01"
 PandoraAnalysis_version = "v02-00-00"
 
 CEDViewer_version = "v01-15"

@@ -10,7 +10,7 @@ Packages changed wrt. to v01-19-04.
       - will allow to use tagging script for GitHub to make a new release
   - no code changes wrt. v02-10
 
-## lcio v02-10
+### lcio v02-10
 
 * 2017-07-07 Andre Sailer ([PR#36](https://github.com/ilcsoft/lcio/pull/36))
   - CellIDDecoder: use static string instead of static pointer to string for defaultEncoding
@@ -233,7 +233,7 @@ Packages changed wrt. to v01-19-04.
 * 2017-10-12 Frank Gaede ([PR#9](https://github.com/ilcsoft/MarlinTrk/pull/9))
   - fix the re-setting of eLoss and QMS configuration parameters in TrkSysConfig
 
-## MarlinTrk v02-05
+### MarlinTrk v02-05
 
 * 2017-10-12 Shaojun Lu ([PR#8](https://github.com/iLCSoft/MarlinTrk/pull/8))
   - Fix the segmentation fault which is caused by assigning the wrong number to _indexMap.
@@ -251,7 +251,14 @@ Packages changed wrt. to v01-19-04.
         - should have no effect on Si-Tracking
 
 
-## MarlinTrkProcessors v02-09
+## MarlinTrkProcessors v02-09-01
+
+* 2017-10-18 Frank Gaede ([PR#31](https://github.com/iLCSoft/MarlinTrkProcessors/pull/31))
+  - fix DDTPCDigiProcessor
+      - allow smearing beyond cathode boundaries
+  - reduce verbosity in ExtrToSIT
+
+### MarlinTrkProcessors v02-09
 
 * 2017-10-12 Frank Gaede ([PR#30](https://github.com/iLCSoft/MarlinTrkProcessors/pull/30))
   - set correct MarlinTrkSystem configuration for every event with `MarlinTrk::TrkSysConfig`
@@ -392,7 +399,16 @@ Packages changed wrt. to v01-19-04.
 * 2017-10-06 Andre Sailer ([PR#25](https://github.com/iLCSoft/MarlinReco/pull/25))
   - Drop unused and no longer existing header includes AidaSoft/DD4hep#241
 
-## DDMarlinPandora v00-09
+## DDMarlinPandora  v00-09-01
+
+* 2017-10-18 Frank Gaede ([PR#16](https://github.com/ilcsoft/DDMarlinPandora/pull/16))
+  - fix DDTrackCreatorBase::GetTrackStatesAtCalo
+      - treat correctly composite spacepoints (from strip stereo layers)
+      - protect against initialization error
+      - fix logic for backward tracks hitting endcap
+   - fixes https://github.com/iLCSoft/DDMarlinPandora/issues/15
+
+### DDMarlinPandora v00-09
 
 * 2017-10-14 Ete Remi ([PR#13](https://github.com/ilcsoft/DDMarlinPandora/pull/13))
   - Added separate registration function for software compensation energy correction
@@ -401,7 +417,7 @@ Packages changed wrt. to v01-19-04.
     - SoftwareCompensationEnergyDensityBins : the energy density bins
     - FinalEnergyDensityBin : the final energy density value
 
-## DDMarlinPandora v00-08
+### DDMarlinPandora v00-08
 
 * 2017-07-07 Andre Sailer ([PR#11](https://github.com/iLCSoft/DDMarlinPandora/pull/11))
   - DDCaloDigi: add cleanup of PpdDigi objects, fixes small memory leak
