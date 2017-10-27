@@ -363,9 +363,15 @@ Packages changed wrt. to v01-19-04.
   - add "copy_new_Processor.sh" and "action.sh" to the example folder. The former is for copying an old processor to the new one and it can also copy the example processor to user's directory. The latter for compiling the code. 
   - change the README.md, add usage for this two scripts.
 
+## MarlinReco v01-21
+
+* 2017-10-26 KURATA Masakazu ([PR#26](https://github.com/ilcsoft/MarlinReco/pull/26))
+  - improved PIDTools
+        - added additional smearing functon for dE/dx resolution.
+        - and corrected the strange behavior for PID. That is most of the muons are identified as pions.
 
 
-## MarlinReco v01-20
+### MarlinReco v01-20
 
 * 2017-07-20 Andre Sailer ([PR#17](https://github.com/iLCSoft/MarlinReco/pull/17))
   - TauFinder: fix memory leak (few kB/event)
