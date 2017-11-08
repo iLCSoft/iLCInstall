@@ -2,7 +2,17 @@
 
 Packages changed wrt. to v01-19-04.
 
-## lcio v02-10-01
+## lcio v02-11
+
+* 2017-11-10 Frank Gaede ([PR#41](https://github.com/ilcsoft/lcio/pull/41))
+  - add the step length to the MC-Contributions of the `SimCalorimeterHit`
+    - add method `SimCalorimeterHit::getLengthCont(int) ` to access it 
+    - only stored if `LCIO.CHBIT_STEP` is set (detailed shower mode)
+    - implemented in C++ and Java (!?)
+    - updated version number to v02-11
+    - fixed some versions in ./cmake/lcio.xml.in
+
+### lcio v02-10-01
 
 * 2017-10-12 Frank Gaede ([PR#40](https://github.com/ilcsoft/lcio/pull/40))
   - ensure correct version numbers in this and future releases
@@ -18,7 +28,14 @@ Packages changed wrt. to v01-19-04.
 * 2017-09-28 Marko Petric ([PR#38](https://github.com/ilcsoft/lcio/pull/38))
   - Correct LCIO_MINOR_VERSION
 
-## lcgeo v00-15
+## lcgeo  v00-15-01
+
+* 2017-11-10 Shaojun Lu ([PR#179](https://github.com/iLCSoft/lcgeo/pull/179))
+  - update HcalEndcapRing in ILD models
+       - Fix HcalEndcapRing first layer placement Z offset.
+       - Update HcalEndcapRing alignment to the back of the envelope.
+
+### lcgeo v00-15
 
 * 2017-11-02 Shaojun Lu ([PR#177](https://github.com/ilcsoft/lcgeo/pull/177))
   - Added one independent parameter "Hcal_endcap_lateral_structure_thickness"
@@ -163,8 +180,62 @@ Packages changed wrt. to v01-19-04.
   - fix spelling of ddsim parameter:
        - rename mcParticleCollectionName to MCParticleCollectionName
 
+## DD4hep v01-05
 
-## DD4hep v01-03
+* 2017-11-10 Dan Protopopescu ([PR#262](https://github.com/aidaSoft/DD4hep/pull/262))
+  - Added createGearForSiD minimal plugin solely for use with LCCalibration
+
+* 2017-11-10 Frank Gaede ([PR#261](https://github.com/aidaSoft/DD4hep/pull/261))
+  - add `Geant4::HitData::MonteCarloContrib::length`  (step length) 
+  - set in all CalorimeterSDActions
+  - write out it LCIO if `Geant4Sensitive::DETAILED_MODE` and LCIO_VERS>v02-10
+
+* 2017-11-10 Whitney Armstrong ([PR#260](https://github.com/aidaSoft/DD4hep/pull/260))
+  - added electric and magnetic field functions that return the field value (taking the position as the only argument) directly in `dd4hep::OverlayedField`
+
+
+### DD4hep v01-04
+
+* 2017-10-17 Markus Frank ([PR#248](https://github.com/aidasoft/DD4hep/pull/248))
+  ### VolumeManager Implementation
+  A possibly important bug was fixed for the lookup of top level subdetectors in the `VolumeManager` by volume identifers of (sensitive) volumes. Due to a bug in the de-masking possible wrong top level subdetectors were returned. The default use cases typically do not use this call and hence should not be affected.
+
+* 2017-10-17 Shaojun Lu ([PR#247](https://github.com/aidasoft/DD4hep/pull/247))
+  - Fix C++11 pointer error by adding include <memory> for 'unique_ptr' (GCC 4.9).
+
+* 2017-10-13 Marko Petric ([PR#246](https://github.com/aidasoft/DD4hep/pull/246))
+  ### DDCMS:
+  - Improve the CMS excercise. New examples etc.
+  - Support for simulation using DDG4 (at least partially - since not all subdetector volumes are accepted by Geant4).
+  
+  ### DDG4:
+  - Event reader returns `EVENT_READER_EOF` if `EOF` is detected rather than a generic IO error.
+  - Add generator status word to the `Geant4Particle` object. Remove the extension mechanism, which is very heavy to just add one integer.
+  
+  ### General:
+   - We need to distinguish the plugins using some namespace mechanism. I started to introduce the namespace separator `"_".` Hence all DD4hep plugins start with `DD4hep_<plugin>`. I hope this does not break everything. If it does, please notify me and we can undo.
+
+* 2017-10-13 Whitney Armstrong ([PR#243](https://github.com/aidasoft/DD4hep/pull/243))
+  - Added helper function `getAttrOrDefault` (defined in  `DDCore/include/XML/Helper.h`) 
+   This  function `getAttrOrDefault(xml::Element e, xml::XmlChar attr_name, T default_value)` will return the attribute  name,  converted to to type `T` but if it is not found it will return `default_value`. When building new detectors supplying this is useful for supplying default attribute values.
+
+* 2017-10-19 Markus Frank ([PR#249](https://github.com/aidasoft/DD4hep/pull/249))
+  * Improve the CMS tracker visualisation
+  * Add DDG4 simulation example to DDCMS
+  * Add some plugins to add visualisation attributes if required (not for the compact description)
+
+* 2017-11-01 David Blyth ([PR#254](https://github.com/aidasoft/DD4hep/pull/254))
+  - DDG4/python/DDG4.py: loadDDG4() changed to not raise exception if libraries are already loaded
+
+* 2017-11-01 David Blyth ([PR#252](https://github.com/aidasoft/DD4hep/pull/252))
+  - Added requirement of Python 2 in cmake/FindPYTHON.cmake.  This makes clear the requirement of Python 2, and resolves the issue where CMake tries to build with Python 3 in a system where both exist.
+
+* 2017-11-07 Frank Gaede ([PR#256](https://github.com/aidasoft/DD4hep/pull/256))
+  - bug fix in `BitField64::operator[std::string]() `
+  - make uses of TString in DocumentHandler.cpp compatible with clang9 (on Mac)
+
+
+### DD4hep v01-03
 
 * 2017-10-12 Frank Gaede ([PR#244](https://github.com/AIDASoft/DD4hep/pull/244))
   - allow for unbounded surfaces in DDRec
@@ -352,7 +423,34 @@ Packages changed wrt. to v01-19-04.
 
 
 
-## Marlin v01-14
+## Marlin v01-15
+
+* 2017-11-10 Ete Remi ([PR#24](https://github.com/iLCSoft/Marlin/pull/24))
+  - EventSelector inherits from EventModifier and call processEvent() from modifyEvent()
+  - Added safety clear of conditions in ProcessorMgr::modifyEvent
+
+* 2017-11-10 Ete Remi ([PR#23](https://github.com/iLCSoft/Marlin/pull/23))
+  - Added constants replacement for condition attributes in the execute section
+    - Allows permanent conditions at runtime (not depending on processor return values)
+    - Allows to refer to constants in conditions in the execute section, e.g : 
+  ```xml
+  <constants>
+    <constant name="RunOverlay" value="false" />
+  </constants>
+  
+  <execute>
+    <if condition="${RunOverlay}">
+      <processor name="MyOverlayBg"/>
+    </if>
+  </execute>
+  ```
+  and run : 
+  ```shell
+  Marlin steering.xml --constant.RunOverlay=true
+  ```
+  to change the behavior.
+
+### Marlin v01-14
 
 * 2017-11-02 Ete Remi ([PR#22](https://github.com/ilcsoft/Marlin/pull/22))
   - Added write() method to XMLParser (resp. Parser) to write the loaded xml tree (resp. same file) in a new file.
@@ -404,7 +502,14 @@ Packages changed wrt. to v01-19-04.
   - add "copy_new_Processor.sh" and "action.sh" to the example folder. The former is for copying an old processor to the new one and it can also copy the example processor to user's directory. The latter for compiling the code. 
   - change the README.md, add usage for this two scripts.
 
-## MarlinReco v01-21
+## MarlinReco v01-21-01
+
+* 2017-11-10 Ete Remi ([PR#28](https://github.com/iLCSoft/MarlinReco/pull/28))
+  - Missing memory allocation and delete for random engine
+  - Added delete specification for copy constructor and assignment operator to avoid warning on compilation
+  - Missing delete for two arrays causing memory leaks
+
+### MarlinReco v01-21
 
 * 2017-10-26 KURATA Masakazu ([PR#26](https://github.com/ilcsoft/MarlinReco/pull/26))
   - improved PIDTools
@@ -491,7 +596,30 @@ Packages changed wrt. to v01-19-04.
       - remove duplicated  LumiCalCollection.
 
 
-## Overlay v00-19
+## Overlay v00-20
+
+* 2017-11-09 Ete Remi ([PR#11](https://github.com/iLCSoft/Overlay/pull/11))
+  - Overlay processor : 
+    - changed default collection names for processor parameter CollectionMap
+      - default names are MCParticle MCParticle
+    - changed condition for overlaying all collections
+      - if the parameter CollectionMap is not set then process all collections
+
+* 2017-10-20 Andre Sailer ([PR#9](https://github.com/iLCSoft/Overlay/pull/9))
+  - OverlayTiming[Generic]: exhaust all events in a file instead of opening a file for each event. Should be reproducible for when not skipping events.
+  - OverlayTiming[Generic]: add parameters that allow setting the initial state also after skipping events.
+
+* 2017-11-03 Emilia Leogrande ([PR#10](https://github.com/iLCSoft/Overlay/pull/10))
+  - OverlayTiming[Generic]: optionally prevent re-use of background files
+     * keep track of used files and only use files that haven't been used before
+     * add parameter AllowReusingBackgroundFiles (default true for backward compatibility)
+
+* 2017-11-10 Ete Remi ([PR#12](https://github.com/iLCSoft/Overlay/pull/12))
+  - Overlay processor : Open LCIO files not in init() but in modifyEvent() only if isFirstEvent() is true
+    - Allows to do not open a lcio file if the processor condition at runtime is false
+  - Overlay processor : Missing delete call for lcReader at end of processing (memory leak)
+
+### Overlay v00-19
 
 * 2017-07-07 Andre Sailer ([PR#7](https://github.com/iLCSoft/Overlay/pull/7))
   - OverlayTiming[Generic]: clean the LCReader instance at the end
@@ -525,3 +653,15 @@ Packages changed wrt. to v01-19-04.
 * 2017-10-06 Andre Sailer ([PR#27](https://github.com/FCalSW/FCalClusterer/pull/27))
   - Drop unused and no longer existing header includes AidaSoft/DD4hep#241
 
+## ILDPerformance v01-04
+
+* 2017-11-08 Shaojun Lu ([PR#5](https://github.com/ilcsoft/ILDPerformance/pull/5))
+  - New implementation adapted to DD4hep framework for accessing geometry and BField.
+      - keep the old with accessing gear geometry and BField as reference.
+  - initialise/add more quantity/quality monitor plots.
+
+### ILDPerformance v01-03-01
+
+* 2017-11-08 Shaojun Lu ([PR#6](https://github.com/ilcsoft/ILDPerformance/pull/6))
+  - Add one script to prepare the working directory.
+      - no error if existing, make parent directories as needed.

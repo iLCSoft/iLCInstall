@@ -9,7 +9,7 @@
 import datetime
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-19-05-pre03'
+ilcsoft_release='v01-19-05-pre04'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -138,7 +138,7 @@ FastJetcontrib_version = "1.024"
 CED_version = "v01-09-02"
 # -------------------------------------------
 
-LCIO_version = "v02-10-01"
+LCIO_version = "v02-11"
 
 GEAR_version = "v01-07"
 
@@ -187,13 +187,13 @@ RAIDA_version = "v01-08"
 
 MarlinUtil_version = "v01-14" 
 
-Marlin_version = "v01-14"
+Marlin_version = "v01-15"
 
 MarlinDD4hep_version = "v00-05"
 
-MarlinReco_version = "v01-21"
+MarlinReco_version = "v01-21-01"
 
-ILDPerformance_version = "v01-03"
+ILDPerformance_version = "v01-04"
 
 #ILDConfig_version = "HEAD" 
 
@@ -217,7 +217,7 @@ PathFinder_version = "v00-06-01"
 
 MarlinTPC_version = "v01-03"
 
-LCTuple_version = "v01-09"
+LCTuple_version = "v01-10"
 
 BBQ_version = "v00-01-03"
 
@@ -225,10 +225,10 @@ Druid_version = "2.2"
 
 Garlic_version = "v3.0.4"
 
-DD4hep_version = "v01-03"
-DD4hepExamples_version = "v01-01-01"
+DD4hep_version = "v01-04"
+DD4hepExamples_version = "v01-04"
 
-lcgeo_version = "v00-15"
+lcgeo_version = "v00-15-01"
 
 Physsim_version = "v00-04" 
 
