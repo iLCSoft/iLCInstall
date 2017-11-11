@@ -225,8 +225,8 @@ Druid_version = "2.2"
 
 Garlic_version = "v3.0.4"
 
-DD4hep_version = "v01-04"
-DD4hepExamples_version = "v01-04"
+DD4hep_version = "v01-05"
+DD4hepExamples_version = "v01-05"
 
 lcgeo_version = "v00-15-01"
 
