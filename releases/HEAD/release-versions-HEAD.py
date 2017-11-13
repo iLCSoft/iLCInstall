@@ -212,7 +212,7 @@ PandoraAnalysis_version = "HEAD" # "v01-00-01"
 
 CEDViewer_version = "HEAD" # "v01-10"
 
-Overlay_version = "HEAD" # "v00-14"
+Overlay_version = "HEAD" # "v00-20"
 
 PathFinder_version = "HEAD" #  "v00-06"
 

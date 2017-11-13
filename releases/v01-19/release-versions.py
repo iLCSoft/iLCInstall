@@ -211,7 +211,7 @@ PandoraAnalysis_version = "v02-00-00"
 
 CEDViewer_version = "v01-15"
 
-Overlay_version = "v00-19"
+Overlay_version = "v00-20"
 
 PathFinder_version = "v00-06-01"
 
