@@ -665,3 +665,20 @@ Packages changed wrt. to v01-19-04.
 * 2017-11-08 Shaojun Lu ([PR#6](https://github.com/ilcsoft/ILDPerformance/pull/6))
   - Add one script to prepare the working directory.
       - no error if existing, make parent directories as needed.
+
+## LCTuple v01-10
+
+* 2017-11-06 Frank Gaede ([PR#3](https://github.com/ilcsoft/LCTuple/pull/3))
+  - add CalorimeterHit::getTime() as 'catim'
+
+### LCTuple v01-09
+
+* 2017-07-26 Frank Gaede ([PR#2](https://github.com/iLCSoft/LCTuple/pull/2))
+  - add collection parameters to output collection in MergeCollections
+         - add parameter CollectionParameterIndex
+          - copy the collection parameters from the given input collection
+             to the output collection
+          - note: this is done in addition to the collection parameters from all
+             collections that are added under a new name w/ the collection name
+             prepended
+
