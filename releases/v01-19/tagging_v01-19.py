@@ -37,7 +37,7 @@ iLCSoft/MarlinKinfitProcessors/v00-03
 iLCSoft/DDMarlinPandora/v00-06
 ###iLCSoft/PandoraAnalysis/v01-02-01
 iLCSoft/CEDViewer/v01-13
-iLCSoft/Overlay/v00-17
+iLCSoft/Overlay/v00-20
 ###iLCSoft/MarlinTPC/v01-02
 iLCSoft/LCTuple/v01-07
 ###iLCSoft/BBQ/v00-01-03
