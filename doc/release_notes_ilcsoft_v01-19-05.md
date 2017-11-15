@@ -422,8 +422,12 @@ Packages changed wrt. to v01-19-04.
   - Drop unused and no longer existing header includes AidaSoft/DD4hep#241
 
 
+## Marlin v01-15-01
 
-## Marlin v01-15
+* 2017-11-15 Ete Remi ([PR#25](https://github.com/ilcsoft/Marlin/pull/25))
+  - remove exception thrown in ProcessorMgr::processRunHeader() if gear detector name is different from the one in the lcio file, and just warn the user
+
+### Marlin v01-15
 
 * 2017-11-10 Ete Remi ([PR#24](https://github.com/iLCSoft/Marlin/pull/24))
   - EventSelector inherits from EventModifier and call processEvent() from modifyEvent()
@@ -502,7 +506,19 @@ Packages changed wrt. to v01-19-04.
   - add "copy_new_Processor.sh" and "action.sh" to the example folder. The former is for copying an old processor to the new one and it can also copy the example processor to user's directory. The latter for compiling the code. 
   - change the README.md, add usage for this two scripts.
 
-## MarlinReco v01-21-01
+## MarlinReco v01-22
+
+* 2017-11-15 Ete Remi ([PR#30](https://github.com/ilcsoft/MarlinReco/pull/30))
+  - New SDHCAL digitizer version from Lyon group (ggarillot)
+    - step linking and 'Angular Correction' 
+    - two processors, one for applying the threshold, one for the threshold energy factors
+
+* 2017-11-15 Shaojun Lu ([PR#29](https://github.com/ilcsoft/MarlinReco/pull/29))
+  - replace gear with DD4hep in FourMomentumCovMat and PIDTools
+        - use DD4hep for accessing BField and LayeredCalorimeterData extension to replace Gear.
+         - with this the ILD standard reconstruction does no longer need a  gear file
+
+### MarlinReco v01-21-01
 
 * 2017-11-10 Ete Remi ([PR#28](https://github.com/iLCSoft/MarlinReco/pull/28))
   - Missing memory allocation and delete for random engine

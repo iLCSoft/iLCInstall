@@ -9,7 +9,7 @@
 import datetime
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-19-05-pre04'
+ilcsoft_release='v01-19-05-pre05'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -187,11 +187,11 @@ RAIDA_version = "v01-08"
 
 MarlinUtil_version = "v01-14" 
 
-Marlin_version = "v01-15"
+Marlin_version = "v01-15-01"
 
 MarlinDD4hep_version = "v00-05"
 
-MarlinReco_version = "v01-21-01"
+MarlinReco_version = "v01-22"
 
 ILDPerformance_version = "v01-04"
 
