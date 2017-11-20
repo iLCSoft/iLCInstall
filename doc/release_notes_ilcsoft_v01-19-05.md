@@ -28,7 +28,13 @@ Packages changed wrt. to v01-19-04.
 * 2017-09-28 Marko Petric ([PR#38](https://github.com/ilcsoft/lcio/pull/38))
   - Correct LCIO_MINOR_VERSION
 
-## lcgeo  v00-15-01
+## lcgeo v00-15-02
+
+* 2017-11-20 Daniel Jeans ([PR#181](https://github.com/ilcsoft/lcgeo/pull/181))
+  - bug fix for ILD_l/s5 models
+     - fix calculation of layer positions in dd4hep::rec::LayeredCalorimeterData in SEcal06_Helpers
+
+### lcgeo  v00-15-01
 
 * 2017-11-10 Shaojun Lu ([PR#179](https://github.com/iLCSoft/lcgeo/pull/179))
   - update HcalEndcapRing in ILD models
