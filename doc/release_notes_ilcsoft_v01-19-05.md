@@ -28,7 +28,22 @@ Packages changed wrt. to v01-19-04.
 * 2017-09-28 Marko Petric ([PR#38](https://github.com/ilcsoft/lcio/pull/38))
   - Correct LCIO_MINOR_VERSION
 
-## lcgeo v00-15-02
+## lcgeo  v00-15-03
+
+* 2017-11-22 Frank Gaede ([PR#182](https://github.com/ilcsoft/lcgeo/pull/182))
+  - update the documentation for the ILD detector models in `./ILD/compact/Readme.md`
+
+* 2017-11-22 TiborILD ([PR#180](https://github.com/ilcsoft/lcgeo/pull/180))
+  - Bug fixing and modifications in ILD_l2_v02 model 
+      - Removed 1st comment line from Hcal_EndcapRing_SD_v01.xml  preventing to appear this detector in the geometry
+      -  alligned Hcal_EndcapRing_SD to the back envelope and replaced the material of the remaining free space at the start of this detector by air
+      - reduced the thickness of HcalSD_back_plate  from 15->10 mm; gain of additional layer in Endcaps; now at (47/48)
+      - ILD_l2_v02  stands for SDHCAL technology in VIDEAU geometry
+      - some modifications in Hcal_Endcaps_SD_v01, Hcal_Endcaps_SD_v02
+  - Added  ILD_l6_v02 for  SDHCAL technology in TESLA geometry
+  - Added  ILD_s6_v02 a small version w/SDHCAL in TESLA geomtry
+
+### lcgeo v00-15-02
 
 * 2017-11-20 Daniel Jeans ([PR#181](https://github.com/ilcsoft/lcgeo/pull/181))
   - bug fix for ILD_l/s5 models
@@ -428,7 +443,13 @@ Packages changed wrt. to v01-19-04.
   - Drop unused and no longer existing header includes AidaSoft/DD4hep#241
 
 
-## Marlin v01-15-01
+## Marlin v01-15-02
+
+* 2017-11-22 Ete Remi ([PR#26](https://github.com/ilcsoft/Marlin/pull/26))
+  - Added specific xml tree parsing to remove the output steering file name from the xml tree after parsing
+    - avoid to re-generate repeatably parsed steering files after a first parsing
+
+### Marlin v01-15-01
 
 * 2017-11-15 Ete Remi ([PR#25](https://github.com/ilcsoft/Marlin/pull/25))
   - remove exception thrown in ProcessorMgr::processRunHeader() if gear detector name is different from the one in the lcio file, and just warn the user

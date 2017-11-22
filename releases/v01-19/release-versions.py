@@ -9,7 +9,7 @@
 import datetime
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-19-05-pre06'
+ilcsoft_release='v01-19-05'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -187,7 +187,7 @@ RAIDA_version = "v01-08"
 
 MarlinUtil_version = "v01-14" 
 
-Marlin_version = "v01-15-01"
+Marlin_version = "v01-15-02"
 
 MarlinDD4hep_version = "v00-05"
 
@@ -228,7 +228,7 @@ Garlic_version = "v3.0.4"
 DD4hep_version = "v01-05"
 DD4hepExamples_version = "v01-05"
 
-lcgeo_version = "v00-15-02"
+lcgeo_version = "v00-15-03"
 
 Physsim_version = "v00-04" 
 
