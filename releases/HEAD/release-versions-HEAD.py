@@ -118,34 +118,36 @@ Eigen_path = "/afs/desy.de/project/ilcsoft/sw/Eigen/3.2.9"
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version =  "10.02.p02" 
-CLHEP_version =  "2.3.1.1"
+#Geant4_version =  "10.02.p02" 
+#CLHEP_version =  "2.3.1.1"
+
+Geant4_version =  "10.03.p02" 
+CLHEP_version =  "2.3.4.3"
 
 ROOT_version = "6.08.06"
-
 
 GSL_version = "2.1" 
 
 QT_version = "4.7.4"
 
-CMake_version = "3.4.3"
+CMake_version = "3.6.3"
 
 CED_version = "v01-09-02"
 
 # -------------------------------------------
 
-LCIO_version = "HEAD" # "v02-06"
+LCIO_version = "HEAD"
 
-GEAR_version = "HEAD" # "v01-04-02" 
+GEAR_version = "HEAD"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
 
-ILCUTIL_version = "v01-03"  #  "v01-02-01" 
+ILCUTIL_version = "v01-03"
 
 FastJet_version = "3.2.0"
 FastJetcontrib_version = "1.024"
 
-MarlinFastJet_version = "HEAD" # "v00-02"
+MarlinFastJet_version = "HEAD"
 
 
 # -------------------------------------------
