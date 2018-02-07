@@ -44,7 +44,7 @@ class CERNLIB(BaseILC):
         trymakedir( self.installPath+'/sources' )
         os.chdir( os.path.dirname(self.installPath) )
 
-        import urllib
+        import urllib2 as urllib
 
         if self.version == '2005' :
             # cernlib fix from Harald Vogt: http://www-zeuthen.desy.de/~hvogt/
