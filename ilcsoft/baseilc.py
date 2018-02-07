@@ -11,7 +11,7 @@
 from util import *
 
 import logging
-import urllib
+import urllib2 as urllib
 
 try:
     import simplejson as json
