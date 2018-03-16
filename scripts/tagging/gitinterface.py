@@ -219,38 +219,6 @@ class Repo(object):
     treesha = result['tree']['sha']
     return treesha
 
-  # def createGithubTag( self ):
-  #   """
-  #   create a tag on the repository with `version` and on `branch`, makes tag on last commit of the branch
-  #   """
-  #   message = "New tag %s" % self.newVersion
-  #   prDict = dict( branch=self.branch, version=self.newVersion, message=message,
-  #                  gtype="commit"
-  #                )
-
-  #   prDict['sha'] = self.getHeadOfBranch()
-  #   if self._dryRun:
-  #     self.log.info( "DryRun: not actually making tag: %s", prDict )
-  #     return {}
-
-  #   result = curl2Json( ghHeaders(),
-  #                       '-d { "tag": "%(version)s", "message": "%(message)s", "object":"%(sha)s", "type":"%(gtype)s" '% prDict ,
-  #                       self._github( "git/tags" ) )
-  #   #pprint(result)
-
-  #   #FIXME: error message is actually different
-  #   if 'errors' in result:
-  #     for error in result['errors']:
-  #       self.log.error( "ERROR creating Tag: %s", error['message'] )
-  #     return False
-
-  #   prDict['tagSha'] = result['sha']
-
-  #   result = curl2Json( ghHeaders(),
-  #                       '-d { "ref": "refs/tags/%(version)s", "sha": "%(tagSha)s" '% prDict ,
-  #                       self._github( "git/refs" ) )
-  #   self.log.info( "New tag created" )
-  #   return result
 
   def createGithubRelease( self ):
     """ make a release on github """
@@ -467,32 +435,6 @@ class Repo(object):
       raise RuntimeError( "Failed to update file: %s" % result['message'] )
 
     return result
-
-
-  def createGithubPR( self, sourceBranch, targetRepo, targetBranch ):
-    """ create a PR on Github
-
-
-    :param str sourceBranch: branch the PR is based on
-    :param str targetRepo: target repository for the PR
-    :param str targetBranch: target for the PR
-    """
-
-    title = "Mirror from gitlab MR: %s" % sourceBranch
-    prDict = dict( head=sourceBranch, base=targetBranch, title=title, sourceRepo=self.repo, targetRepo=targetRepo )
-    if not all( opt in prDict for opt in ( 'branch', 'base', 'title', 'sourceRepo', "FIXME" ) ):
-      self.log.error( "Missing some option in the option dict: %s" , prDict )
-
-    result = curl2Json(parameterDict=prDict, url=self._github("pulls"))
-
-    if 'errors' in result:
-      for error in result['errors']:
-        self.log.error( "ERROR creating PullRequest: %s", error['message'] )
-      return False
-    else:
-      self.log.info( "Created pullrequest" )
-      url = result['html_url']
-      return url
 
 
   def isUpToDate( self ):
