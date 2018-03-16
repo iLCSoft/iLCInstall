@@ -11,8 +11,9 @@ import re
 from pprint import pprint
 from operator import itemgetter
 
-from helperfunctions import parseForReleaseNotes, getCommands, curl2Json, \
-                            authorMapping, ghHeaders, versionComp
+from helperfunctions import parseForReleaseNotes, curl2Json, \
+                            authorMapping, versionComp
+
 from parseversion import Version
 
 __RCSID__ = None
@@ -123,10 +124,10 @@ class Repo(object):
       self.latestTagInfo['sha'] = "SHASHASHA"
       self.latestTagInfo['name'] = "00-00"
     else:
-      commitInfo = curl2Json( ghHeaders(), self._github( "git/commits/%s" % self.latestTagInfo['sha'] ) )
+      commitInfo = curl2Json(url=self._github("git/commits/%s" % self.latestTagInfo['sha']))
       self.latestTagInfo['date'] = commitInfo['committer']['date']
 
-    lastCommitInfo = curl2Json( ghHeaders(), self._github( "branches/%s" % self.branch ) )
+    lastCommitInfo = curl2Json(url=self._github("branches/%s" % self.branch))
     self._lastCommitOnBranch =  lastCommitInfo['commit']
 
     # tags = self.getGithubReleases()
@@ -160,7 +161,7 @@ class Repo(object):
     :returns: list of githubPRs
     """
     url = self._github( "pulls?state=%s&per_page=%s" % (state, perPage) )
-    prs = curl2Json( ghHeaders(), url )
+    prs = curl2Json(url=url)
     #pprint(prs)
     if not mergedOnly:
       return prs
@@ -184,7 +185,7 @@ class Repo(object):
 
     :returns: list of tags
     """
-    result = curl2Json( ghHeaders(), self._github( "tags" ) )
+    result = curl2Json(url=self._github("tags"))
     if isinstance( result, dict ) and 'Not Found' in result.get('message'):
       raise RuntimeError( "Package not found: %s" % str(self) )
     return result
@@ -194,16 +195,14 @@ class Repo(object):
 
     :returns: list of releases
     """
-    result = curl2Json( ghHeaders(), self._github( "releases" ) )
+    result = curl2Json(url=self._github("releases"))
     #pprint(result)
     return result
 
 
   def getHeadOfBranch( self ):
     """return the commit sha of the head of the branch"""
-    result = curl2Json( ghHeaders(),
-                        self._github( "git/refs/heads/%s" % self.branch )
-                      )
+    result = curl2Json(url=self._github("git/refs/heads/%s" % self.branch))
     if 'message' in result:
       raise RuntimeError( "Error:",result['message'] )
 
@@ -214,9 +213,7 @@ class Repo(object):
 
   def getTreeShaForCommit( self, commit ):
     """ return the sha of the tree for given commit"""
-    result = curl2Json( ghHeaders(),
-                        self._github( "git/commits/%s" % commit )
-                      )
+    result = curl2Json(self._github( "git/commits/%s" % commit))
     if 'sha' not in result:
       raise RuntimeError( "Error: Commit not found" )
     treesha = result['tree']['sha']
@@ -271,31 +268,9 @@ class Repo(object):
     if self._dryRun:
       self.log.info( "DryRun: not actually making Release: %s", releaseDict )
       return {}
-    result = curl2Json( ghHeaders(), self._github( "releases" ),
-                        '-d %s ' % json.dumps( releaseDict )
-                      )
+    result = curl2Json(url=self._github( "releases" ), parameterDict=releaseDict, requestType='POST')
     #pprint(result)
     return result
-
-
-
-  def isPRMerged( self, prID ):
-    """ returns True/False wether the PR has been merged or not
-
-    :param int prID: ID of the pull request
-    :returns: True/False
-    """
-    result = curl2Json( ghHeaders(), self._github( "pulls/%d/merge" %prID ), checkStatusOnly=True )
-    for line in result.splitlines():
-      if "Status" in line:
-        if "204" in line:
-          self.log.debug( "PR %d is merged", prID)
-          return True
-        else:
-          self.log.debug( "PR %d is NOT merged", prID)
-          return False
-    return False
-
 
   def _getPRsSinceLatestTag( self ):
     """ return the PRs since the last tag """
@@ -328,7 +303,7 @@ class Repo(object):
     :returns: list of comments
     """
     self.log.debug( "Getting comments for PR %s", prID )
-    comments = curl2Json( ghHeaders(), self._github("issues/%s/comments" %prID  ) )
+    comments = curl2Json(url=self._github("issues/%s/comments" % prID))
     commentTexts = []
     for comment in comments:
       commentTexts.append( comment['body'] )
@@ -339,8 +314,8 @@ class Repo(object):
     """ return the author name of given PR, check cache if username already known """
     username = pr['user']['login']
     prID = pr['number']
-    commands = list(ghHeaders()) + [ self._github( "pulls/%s/commits" % prID ) ]
-    authorName = authorMapping( username, commands )
+    url=self._github("pulls/%s/commits" % prID)
+    authorName = authorMapping(username, url)
     return authorName
     
     
@@ -426,7 +401,7 @@ class Repo(object):
   def getFileFromBranch( self, filename ):
     """return the content of the file in the given branch, filename needs to be the full path"""
 
-    result = curl2Json( ghHeaders(), self._github( "contents/%s?ref=%s" %(filename,self.branch) ) )
+    result = curl2Json(url=self._github( "contents/%s?ref=%s" %(filename,self.branch)))
     encoded = result.get( 'content', None )
     if encoded is None:
       self.log.error( "File %s not found for %s", filename, self )
@@ -485,9 +460,8 @@ class Repo(object):
       self.log.info( "DryRun: not actually making commit: %s", coDict )
       return
 
-    result = curl2Json( ghHeaders(), '-X','PUT',
-                        '-d %s ' % json.dumps( coDict ),
-                        self._github( "contents/%s" % filename ) )
+    result = curl2Json(requestType='PUT', parameterDict=coDict,
+                       url=self._github("contents/%s" % filename))
 
     if 'commit' not in result:
       raise RuntimeError( "Failed to update file: %s" % result['message'] )
@@ -505,13 +479,11 @@ class Repo(object):
     """
 
     title = "Mirror from gitlab MR: %s" % sourceBranch
-    prDict = dict( branch=sourceBranch, base=targetBranch, title=title, sourceRepo=self.repo, targetRepo=targetRepo )
+    prDict = dict( head=sourceBranch, base=targetBranch, title=title, sourceRepo=self.repo, targetRepo=targetRepo )
     if not all( opt in prDict for opt in ( 'branch', 'base', 'title', 'sourceRepo', "FIXME" ) ):
       self.log.error( "Missing some option in the option dict: %s" , prDict )
 
-    result = curl2Json( ghHeaders(),
-                        '-d { "title": "%(title)s", "head": "%(branch)s", "base": "%(base)s"}' % prDict ,
-                        self._github( "pulls" ) )
+    result = curl2Json(parameterDict=prDict, url=self._github("pulls"))
 
     if 'errors' in result:
       for error in result['errors']:
