@@ -15,9 +15,10 @@ from mock import patch, MagicMock as Mock, mock_open
 from pprint import pprint
 
 sys.modules['GitTokens'] = Mock(name="GitTokensMock", return_value=Mock(name="returnedMock"))
+sys.modules['requests'] = Mock(name="RequestMock",side_effect=ImportError("nope"))
 
 from tagging.gitinterface import Repo
-from tagging.helperfunctions import getCommands, versionComp, parseForReleaseNotes, curl2Json, authorMapping, AUTHORMAP, checkRate
+from tagging.helperfunctions import getCommands, versionComp, parseForReleaseNotes, _curl2Json as curl2Json, authorMapping, AUTHORMAP, checkRate
 from tagging.parseversion import Version
 
 __RCSID__ = "$Id$"
@@ -36,6 +37,7 @@ def mockCurl(*args, **kwargs):
   logging.error("Kwargs: %r", kwargs )
 
   cmdString = " ".join( getCommands(args) )
+  cmdString += str(kwargs)
   logging.error( "ComdString: %s", cmdString )
   if "/tags" in cmdString:
     logging.error("Returning tags structure")
@@ -300,15 +302,6 @@ class TestHelpers( unittest.TestCase ):
       print args, kwargs
       self.assertEqual( 'curl', args[0][0] )
       self.assertEqual( '-s', args[0][1] )
-
-    with patch("tagging.helperfunctions.subprocess", new=Mock()), \
-         patch("tagging.helperfunctions.subprocess.check_output", new=Mock(return_value="Status: 202")) as check:
-      value = curl2Json( ["-H", "Authorization: token NOTMYGITTOKEN","some","repo", "command"], checkStatusOnly=True)
-      args, kwargs = check.call_args
-      self.assertEqual( value, "Status: 202" )
-      self.assertEqual( 'curl', args[0][0] )
-      self.assertEqual( '-I', args[0][1] )
-      self.assertEqual( '-s', args[0][2] )
 
     with patch("tagging.helperfunctions.subprocess", new=Mock()), \
          patch("tagging.helperfunctions.subprocess.check_output", new=Mock(return_value="arg")) as check:
