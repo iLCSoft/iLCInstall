@@ -19,6 +19,15 @@ except ImportError:
                     """
                    )
 
+HAVE_REQUESTS=False
+try:
+  import requests
+  HAVE_REQUESTS=True
+  SESSION = requests.Session()
+  SESSION.headers.update({'Authorization': "token %s " % GITHUBTOKEN})
+except ImportError:
+  pass
+
 
 def versionComp( v1, v2 ):
   """ compare version strings, problem is comparing
@@ -110,36 +119,56 @@ def getCommands( *args ):
   return comList
 
 
-def curl2Json( *commands, **kwargs ):
+def curl2Json(url='', parameterDict=None, requestType='GET'):
+  """ send request to github api """
+  if HAVE_REQUESTS:
+    return _req2Json(url, parameterDict, requestType)
+  else:
+    return _curl2Json(url, parameterDict, requestType)
+
+def _curl2Json(url, parameterDict=None, requestType='GET'):
   """ return the json object from calling curl with the given commands
 
-  :param *commands: list of strings or tuples/lists, will be passed to `getCommands` to be flattend
+  :param url: api url to call
+  :param parameterDict: parameters to pass in addition
+  :param requestType: the request type to use GET, POST, PUT
   :returns: json object returned from the github or gitlab API
   """
   log = logging.getLogger("GitHub")
-  commands = getCommands( *commands )
-  commands.insert( 0, 'curl' )
-  commands.insert( 1, '-s' )
-  if kwargs.get("checkStatusOnly", False):
-    commands.insert( 1, '-I' )
+  commands = ['curl', '-s', ghHeaders()]
+  if requestType != 'GET':
+    commands.extend(['-X', requestType ])
+  if parameterDict:
+    commands.append( '-d %s ' % json.dumps(parameterDict))
+  commands=getCommands(commands)
+  commands.append(url)
   cleanedCommands = list(commands)
   ## replace the github token with Xs
   if '-H' in cleanedCommands:
     cleanedCommands[commands.index('-H')+1] = cleanedCommands[commands.index('-H')+1].rsplit(" ", 1)[0] + " "+ "X"*len(cleanedCommands[commands.index('-H')+1].rsplit(" ", 1)[1])
-  log.debug( "Running command: %r",  cleanedCommands )
+  log.debug("Running command: %r", cleanedCommands)
   jsonText = subprocess.check_output( commands )
   try:
     jsonList = json.loads( jsonText )
   except ValueError:
-    if kwargs.get("checkStatusOnly", False):
-      return jsonText
     raise
   return jsonList
 
+def _req2Json(url, parameterDict, requestType):
+  """ call to github api using requests package if available """
+  log = logging.getLogger("GitHub Requests")
+  log.debug("Running %s with %s ", requestType, parameterDict)
+  req = getattr(SESSION, requestType.lower())(url, json=parameterDict)
+  if req.status_code not in (200, 201):
+    log.error("Unable to access API: %s", req.text)
+    raise RuntimeError("Failed to access API")
+
+  log.debug("Result obtained: %s", req.text)
+  return req.json()
 
 
 AUTHORMAP = {}
-def authorMapping( username, commands ):
+def authorMapping(username, url):
   """return the name of the author for given username, if not found query github
   PR for author via the commands given
   """
@@ -150,7 +179,7 @@ def authorMapping( username, commands ):
     return author
 
   log.debug( "Checking Commits for Author ")
-  commits = curl2Json( commands )
+  commits = curl2Json(url=url)
   author = commits[-1]['commit']['author']['name'] ## use the last commit of PR to get author
   AUTHORMAP[username] = author
   log.debug( "Found author: %s", author )
@@ -159,6 +188,6 @@ def authorMapping( username, commands ):
 
 def checkRate():
   """ return the result for check_rate call """
-  rate = curl2Json( ghHeaders(), "https://api.github.com/rate_limit" )
+  rate = curl2Json(url="https://api.github.com/rate_limit")
   logging.getLogger("Rate").info("Remaining calls to github API are %s of %s", rate['rate']['remaining'], rate['rate']['limit'] )
 
