@@ -173,7 +173,7 @@ FCalClusterer_version = "v01-00"
 
 ForwardTracking_version = "v01-14" 
 
-ConformalTracking_version = "v01-05" 
+ConformalTracking_version = "v01-06"
 
 LICH_version = "v00-01" 
 
@@ -205,7 +205,7 @@ LCFIPlus_version = "v00-06-08"
 MarlinKinfit_version = "v00-06"
 MarlinKinfitProcessors_version = "v00-04"
 
-PandoraPFANew_version   = "v03-06-00"
+PandoraPFANew_version   = "v03-09-00"
 DDMarlinPandora_version = "v00-10"
 PandoraAnalysis_version = "v02-00-00"
 
