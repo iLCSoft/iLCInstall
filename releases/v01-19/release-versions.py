@@ -171,7 +171,7 @@ KiTrackMarlin_version = "v01-12"
 
 FCalClusterer_version = "v01-00"
 
-ForwardTracking_version = "v01-14" 
+ForwardTracking_version = "v01-13"
 
 ConformalTracking_version = "v01-06"
 
@@ -215,7 +215,7 @@ Overlay_version = "v00-21"
 
 PathFinder_version = "v00-06-01"
 
-MarlinTPC_version = "v01-03"
+MarlinTPC_version = "v01-04"
 
 LCTuple_version = "v01-11"
 
@@ -230,7 +230,7 @@ DD4hepExamples_version = "v01-07"
 
 lcgeo_version = "v00-16"
 
-Physsim_version = "v00-04" 
+Physsim_version = "v00-04-01"
 
 
 # xerces-c (needed by geant4 for building gdml support - required by mokka)
