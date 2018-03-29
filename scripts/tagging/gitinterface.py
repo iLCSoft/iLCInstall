@@ -397,9 +397,9 @@ class Repo(object):
       message = "Updating version to %s" % self.newVersion
       self.createGithubCommit(self.cmakeBaseFile, sha, contentEncoded, message=message)
 
-    if self.repo.lower() == "dd4hep" and self.cmakeBaseFile == "CMakeLists.txt":
-      self.cmakeBaseFile = "DDSegmentation/CMakeLists.txt"
-      self.updateVersionSettings()
+#    if self.repo.lower() == "dd4hep" and self.cmakeBaseFile == "CMakeLists.txt":
+#      self.cmakeBaseFile = "DDSegmentation/CMakeLists.txt"
+#      self.updateVersionSettings()
 
   def createGithubCommit( self, filename, fileSha, content, message ):
     """
