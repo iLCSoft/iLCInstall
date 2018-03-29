@@ -18,7 +18,7 @@ max_days=3
 #date_iso8601 = getoutput( "date --iso-8601" )
 date_iso8601 = getoutput( "date '+20%y-%m-%d'" )
 # you can set the mail addresses in the config file
-mail_addresses=["shaojun.lu@desy.de", "frank.gaede@desy.de"]
+mail_addresses=["shaojun.lu@desy.de", "frank.gaede@desy.de", "remi.ete@desy.de"]
 nightlies = True
 
 nb_use_cpp11 = True
