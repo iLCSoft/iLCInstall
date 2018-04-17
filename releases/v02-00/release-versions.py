@@ -9,7 +9,7 @@
 import datetime
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v01-19-06'
+ilcsoft_release='v02-00-pre'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -24,21 +24,15 @@ if nightlies:
 # use a compiler that knows c++11, run 
 #
 '''
-# ==== gcc 4.8
-source /afs/cern.ch/sw/lcg/external/gcc/4.8.1/x86_64-slc6-gcc48-opt/setup.sh
-export PATH=/afs/cern.ch/sw/lcg/external/Python/2.7.4/x86_64-slc6-gcc48-opt/bin/:$PATH
-export LD_LIBRARY_PATH=/afs/cern.ch/sw/lcg/external/Python/2.7.4/x86_64-slc6-gcc48-opt/lib/:$LD_LIBRARY_PATH
-# cvmfs:
-source /cvmfs/sft.cern.ch/lcg/external/gcc/4.8.1/x86_64-slc6-gcc48-opt/setup.sh
-export PATH=/cvmfs/sft.cern.ch/lcg/external/Python/2.7.4/x86_64-slc6-gcc48-opt/bin/:$PATH
-export LD_LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/external/Python/2.7.4/x86_64-slc6-gcc48-opt/lib/:$LD_LIBRARY_PATH
-
-
 #===== gcc 4.9:
+# . ./scripts/use_gcc49_afs.sh 
  source /afs/cern.ch/sw/lcg/contrib/gcc/4.9.3/x86_64-slc6/setup.sh
  export PATH=/afs/cern.ch/sw/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/bin:$PATH
  export LD_LIBRARY_PATH=/afs/cern.ch/sw/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/lib:$LD_LIBRARY_PATH
+
+
 # or on cvmfs:
+# . ./scripts/use_gcc49_cvmfs.sh 
  source /cvmfs/sft.cern.ch/lcg/contrib/gcc/4.9.3/x86_64-slc6/setup.sh
  export PATH=/cvmfs/sft.cern.ch/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/bin:$PATH
  export LD_LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/lib:$LD_LIBRARY_PATH
@@ -117,9 +111,6 @@ Eigen_path =  ilcPath+"/../Eigen/3.2.9"
 
 # ======================= PACKAGE VERSIONS ===================================
 
-#Geant4_version =  "10.02.p02" 
-#CLHEP_version =  "2.3.1.1"
-
 Geant4_version =  "10.03.p02" 
 CLHEP_version =  "2.3.4.3"
 
@@ -173,7 +164,7 @@ FCalClusterer_version = "v01-00"
 
 ForwardTracking_version = "v01-13"
 
-ConformalTracking_version = "v01-06"
+ConformalTracking_version = "v01-07"
 
 LICH_version = "v00-01" 
 
@@ -191,9 +182,9 @@ Marlin_version = "v01-16"
 
 MarlinDD4hep_version = "v00-06"
 
-MarlinReco_version = "v01-23"
+MarlinReco_version = "HEAD" #"v01-23"
 
-ILDPerformance_version = "v01-05"
+ILDPerformance_version = "HEAD" # "v01-05"
 
 #ILDConfig_version = "HEAD" 
 
@@ -228,7 +219,7 @@ Garlic_version = "v03-01"
 DD4hep_version = "v01-07"
 DD4hepExamples_version = "v01-07"
 
-lcgeo_version = "v00-16"
+lcgeo_version = "HEAD"  # "v00-16"
 
 Physsim_version = "v00-04-01"
 
