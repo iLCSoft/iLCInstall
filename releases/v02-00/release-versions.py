@@ -182,9 +182,9 @@ Marlin_version = "v01-16"
 
 MarlinDD4hep_version = "v00-06"
 
-MarlinReco_version = "HEAD" #"v01-23"
+MarlinReco_version = "v01-24"
 
-ILDPerformance_version = "HEAD" # "v01-05"
+ILDPerformance_version = "v01-06"
 
 #ILDConfig_version = "HEAD" 
 
@@ -219,7 +219,7 @@ Garlic_version = "v03-01"
 DD4hep_version = "v01-07"
 DD4hepExamples_version = "v01-07"
 
-lcgeo_version = "HEAD"  # "v00-16"
+lcgeo_version = "v00-16"
 
 Physsim_version = "v00-04-01"
 
