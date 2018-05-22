@@ -122,9 +122,8 @@ QT_version = "4.7.4"
 
 CMake_version = "3.6.3" 
 
-FastJet_version = "3.2.0"
-
-FastJetcontrib_version = "1.024"
+FastJet_version = "3.2.1"
+FastJetcontrib_version = "1.025"
 
 CED_version = "v01-09-02"
 # -------------------------------------------
