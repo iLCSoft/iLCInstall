@@ -144,8 +144,8 @@ CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
 
 ILCUTIL_version = "v01-05"
 
-FastJet_version = "3.2.0"
-FastJetcontrib_version = "1.024"
+FastJet_version = "3.2.1"
+FastJetcontrib_version = "1.025"
 
 MarlinFastJet_version = "HEAD"
 
