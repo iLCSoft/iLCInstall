@@ -9,7 +9,7 @@
 import datetime
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v02-00-01'
+ilcsoft_release='v02-00-02-pre'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -128,7 +128,7 @@ FastJetcontrib_version = "1.025"
 CED_version = "v01-09-02"
 # -------------------------------------------
 
-LCIO_version = "v02-12"
+LCIO_version = "v02-12-01"
 
 GEAR_version = "v01-08"
 
