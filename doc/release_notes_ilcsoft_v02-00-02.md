@@ -15,7 +15,15 @@ Package changed wrt. to v02-00-01
   - fixes #47
 
 
-## lcgeo v00-16-02
+## lcgeo v00-16-03
+
+* 2018-06-26 Frank Gaede ([PR#224](https://github.com/iLCSoft/lcgeo/pull/224)
+  - make lcgeo (v00-16-03 and higher) compatible w/ DD4hep v01-17-0X releases
+  -  revert https://github.com/iLCSoft/lcgeo/pull/219
+       - use DD4hep rather than dd4hep in ddsim python
+
+
+### lcgeo v00-16-02
 
 * 2018-06-25 Frank Gaede ([PR#223](https://github.com/ilcsoft/lcgeo/pull/223))
   - fix travis CI: use wget --no-check-certificate
@@ -36,4 +44,12 @@ Package changed wrt. to v02-00-01
 
 * 2018-06-01 Marko Petric ([PR#219](https://github.com/ilcsoft/lcgeo/pull/219))
   - Accommodate AIDASoft/DD4hep#397 - `DD4hep.py` was dropped in favor of `dd4hep.py`
+
+
+## DD4hep v01-07-02
+
+* 2018-06-26 Frank Gaede ([PR#413](https://github.com/AIDASoft/DD4hep/pull/413)
+  - bug fix in Geant4EventReaderGuineaPig
+    - fix ignoring input lines with 'nan'
+    - did not work on SL6 w/ gcc
 
