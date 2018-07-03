@@ -255,7 +255,7 @@ class Repo(object):
 
     self.log.info( "Getting PRs...")
     for pr in mergedPRs:
-      if pr['merged_at'] > lastTagDate:
+      if pr['merged_at'] > lastTagDate and pr['base']['label'].endswith(self.branch):
         self.log.debug( "PR %s was merged _AFTER_ the last tag", pr['number'] )
         self._prsSinceLastTag.append(pr)
       else:
@@ -327,8 +327,8 @@ class Repo(object):
 
     releaseNotesString = "# " + self.newVersion.split("-pre")[0] ## never write comments for new releases
 
-    for date, prs in self._releaseNotes.iteritems():
-      for prID,content in prs.iteritems():
+    for date, prs in sorted(self._releaseNotes.iteritems(), reverse=True):
+      for prID, content in sorted(prs.iteritems(), reverse=True):
         if not content.get( 'notes' ):
           continue
 

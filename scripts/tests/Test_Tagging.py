@@ -18,7 +18,7 @@ sys.modules['GitTokens'] = Mock(name="GitTokensMock", return_value=Mock(name="re
 sys.modules['requests'] = Mock(name="RequestMock",side_effect=ImportError("nope"))
 
 from tagging.gitinterface import Repo
-from tagging.helperfunctions import getCommands, versionComp, parseForReleaseNotes, _curl2Json as curl2Json, authorMapping, AUTHORMAP, checkRate
+from tagging.helperfunctions import getCommands, versionComp, parseForReleaseNotes, _curl2Json as curl2Json, authorMapping, checkRate
 from tagging.parseversion import Version
 
 __RCSID__ = "$Id$"
@@ -310,15 +310,9 @@ class TestHelpers( unittest.TestCase ):
 
   def test_getAuthor( self ):
     """ test the mapping of the username to authorname """
-    with patch.dict( AUTHORMAP, {'username': 'User Name'} ):
-      retVal = authorMapping( 'username', ['commands', 'pulls/12/commits'] )
-      self.assertEqual( retVal, 'User Name' )
-
     with patch("tagging.helperfunctions.curl2Json",new=mockCurl):
       retVal = authorMapping( 'username2', ['commands', 'pulls/12/commits'] )
       self.assertEqual( retVal, 'User Name2' )
-      self.assertIn('username2', AUTHORMAP )
-      del AUTHORMAP['username2']
 
   def test_checkRate( self ):
     """ test the checkRate function """
