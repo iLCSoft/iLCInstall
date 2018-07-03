@@ -167,21 +167,14 @@ def _req2Json(url, parameterDict, requestType):
   return req.json()
 
 
-AUTHORMAP = {}
 def authorMapping(username, url):
-  """return the name of the author for given username, if not found query github
+  """return the name of the author for given username, query github
   PR for author via the commands given
   """
   log = logging.getLogger("Author")
-  author = AUTHORMAP.get(username)
-  if author is not None:
-    log.debug( "Found author in map: %s", author)
-    return author
-
-  log.debug( "Checking Commits for Author ")
+  log.debug("Checking Commits for Author")
   commits = curl2Json(url=url)
   author = commits[-1]['commit']['author']['name'] ## use the last commit of PR to get author
-  AUTHORMAP[username] = author
   log.debug( "Found author: %s", author )
   return author
 
