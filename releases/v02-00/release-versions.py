@@ -141,7 +141,7 @@ MarlinFastJet_version = "v00-05-01"
 
 # -------------------------------------------
 
-KalTest_version = "v02-04" 
+KalTest_version = "v02-05"
 
 KalDet_version = "v01-14-01"
 
@@ -181,7 +181,7 @@ Marlin_version = "v01-16"
 
 MarlinDD4hep_version = "v00-06"
 
-MarlinReco_version = "v01-24-01"
+MarlinReco_version = "v01-25"
 
 ILDPerformance_version = "v01-06"
 
@@ -199,7 +199,7 @@ PandoraPFANew_version   = "v03-09-00"
 DDMarlinPandora_version = "v00-10"
 PandoraAnalysis_version = "v02-00-00"
 
-CEDViewer_version = "v01-15"
+CEDViewer_version = "v01-16"
 
 Overlay_version = "v00-21"
 

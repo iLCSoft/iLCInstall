@@ -116,7 +116,7 @@ Eigen_path = "/usr/local/opt/eigen32"
 
 Geant4_version =  "10.03.p02"
 CLHEP_version =  "2.3.4.3" #"2.3.1.1"
-ROOT_version = "HEAD" #"6.08.00"
+ROOT_version = "6.14.02"
 
 GSL_version = "2.1" # "1.15"
 
