@@ -93,3 +93,14 @@ Package changed wrt. to v02-00-01
   - Added a command line option, "-n 1".
        - If this option is specified, glced is not executed.
        - This option is useful for a case to run glced at local client and run CEDViewer at remote host.
+
+
+
+## LCFIPlus v00-06-09
+
+* 2018-05-14 Ryo Yonamine ([PR#38](https://github.com/lcfiplus/LCFIPlus/pull/38))
+  Add daughter relation in lcfiplus::MCPartilce. This change does not affect usual reconstruction where no MCParticle is used.
+
+* 2018-07-14 Ryo Yonamine ([PR#39](https://github.com/lcfiplus/LCFIPlus/pull/39))
+  Cope with events having no vertex track candidates.
+  - It tried to add a vertex even if it is a null pointer. This is confusing and caused a problem later processes in some cases.

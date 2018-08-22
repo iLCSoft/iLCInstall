@@ -189,7 +189,7 @@ ILDPerformance_version = "v01-06"
 
 
 LCFIVertex_version = "v00-07-04"
-LCFIPlus_version = "v00-06-08"
+LCFIPlus_version = "v00-06-09"
 
 
 MarlinKinfit_version = "v00-06"
