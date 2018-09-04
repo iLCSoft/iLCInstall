@@ -1,3 +1,18 @@
+# v02-00-02
+
+* 2018-09-04 Frank Gaede ([PR#57](https://github.com/ilcsoft/ilcinstall/pull/57))
+  - update versions for bug fix release v02-00-02 for ILD w/ updates to 
+        - LCIO, DD4hep, lcgeo, MarlinReco, KalTest, CEDViewer, LCFIPlus
+
+* 2018-07-03 Andre Sailer ([PR#56](https://github.com/ilcsoft/ilcinstall/pull/56))
+  - Tagging:
+    - Fix problem for the username. Caching does not work  when the PR author and commits do not come from the same person
+    - PRs are only chosen for the branch that should be tagged
+    - Sort release notes by date and PR number
+
+* 2018-05-22 Frank Gaede ([PR#55](https://github.com/ilcsoft/ilcinstall/pull/55))
+  - update versions and release notes for v02-00-01
+
 # v01-19-04
 
 * 2017-07-26 Frank Gaede ([PR#35](https://github.com/iLCSoft/ilcinstall/pull/35))
