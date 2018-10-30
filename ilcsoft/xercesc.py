@@ -19,11 +19,9 @@ class XercesC(BaseILC):
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "XercesC","xercesc")
 
-        # no cmake build support
-        self.hasCMakeBuildSupport = False
-        
-        self.download.supportHEAD = False
-        self.download.supportedTypes = ["wget"]
+        self.download.supportedTypes = [ "GitHub" ] 
+        self.download.gituser = 'apache'
+        self.download.gitrepo = 'xerces-c'
 
         self.reqfiles = [[
                 "lib/libxerces-c.a",
@@ -31,30 +29,17 @@ class XercesC(BaseILC):
                 "lib/libxerces-c.dylib",
         ]]
     
-    def setMode(self, mode):
-        BaseILC.setMode(self, mode)
-
-        self.download.url = "http://www.apache.org/dist/xerces/c/3/sources/xerces-c-" + self.version + ".tar.gz"
-        
-    def downloadSources(self):
-        BaseILC.downloadSources(self)
-
-        # move sources to a subdirectory
-        os.renames( self.version, self.name )
-        os.renames( self.name, self.version + "/" + self.name )
-
-        # create build directory
-        trymakedir( self.installPath + "/build" )
-
     def compile(self):
         """ compile XercesC """
 
         os.chdir( self.installPath + "/build" )
 
-        if( self.rebuild ):
-            os.system( "make distclean" )
+        if self.rebuild:
+            tryunlink( "CMakeCache.txt" )
+        
+        self.envcmake['CMAKE_INSTALL_PREFIX']=self.installPath
 
-        if( os.system( "../" + self.name + "/configure --prefix=" + self.installPath + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os.system( self.genCMakeCmd() + " 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
 
         if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
