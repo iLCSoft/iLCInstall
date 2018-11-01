@@ -9,7 +9,7 @@
 import datetime
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v02-00-02'
+ilcsoft_release='v02-00-03-pre'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -189,7 +189,7 @@ ILDPerformance_version = "v01-06"
 
 
 LCFIVertex_version = "v00-07-04"
-LCFIPlus_version = "v00-06-09"
+LCFIPlus_version = "v00-07"
 
 
 MarlinKinfit_version = "v00-06"
