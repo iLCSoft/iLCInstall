@@ -41,17 +41,22 @@ def _github( owner, repo, action ):
     ghURL = "https://api.github.com/repos/%(owner)s/%(repo)s/%(action)s" % options
     return ghURL
 
+def cypher( string ):
+    """ special unicode treatment 
+    """
+    chars = {u'\u0107' : "c"}
+    return ''.join(chars.get(l,l) for l in string).encode("utf-8").strip()
+    
+
 repositories=["ilcsoft/marlin",
 	      "ilcsoft/lcio",
 	      "ilcsoft/conformaltracking",
 	      "ilcsoft/lccalibration",
-	      "aidasoft/aidatt",
 	      "ilcsoft/ced",
 	      "ilcsoft/cedviewer",
 	      "ilcsoft/clupatra",
 	      "ilcsoft/CondDBMySQL",
 	      "ilcsoft/ConformalTracking",
-	      "aidasoft/DD4hep",
 	      "ilcsoft/DDKalTest",
 	      "ilcsoft/DDMarlinPandora",
 	      "ilcsoft/ForwardTracking",
@@ -76,16 +81,10 @@ repositories=["ilcsoft/marlin",
 	      "ilcsoft/Overlay",
 	      "ilcsoft/Physsim",
 	      "ilcsoft/RAIDA",
-	      "FCALSW/FCalClusterer",
 	      "lcfiplus/lcfiplus",
-	      "ilcsoft/lcfivertex",
-	      "PandoraPFA/LCPandoraAnalysis",
-	      "PandoraPFA/PandoraPFA",
-	      "PandoraPFA/LCContent",
-	      "PandoraPFA/PandoraSDK",
-	      "PandoraPFA/PandoraMonitoring"]
+	      "ilcsoft/lcfivertex"]
 
-usersMask = ["PandoraPFA", "lcdprod"]
+usersMask = ["lcdprod"]
 
 if __name__ == "__main__":
    parser = argparse.ArgumentParser("Get iLCSoft contributors",
@@ -118,19 +117,20 @@ if __name__ == "__main__":
                continue
            usermap[login] = ""
 
-   finalUserMap = {}
+   contributorList = []
+   
    for key, val in usermap.iteritems():
        result = curl2Json(url="https://api.github.com/users/" + key)
        fullName = result["name"]
-       print "Getting user full name for login '{0}".format(key)
+       print "Getting user full name for login '{0}'".format(key)
        if fullName:
-           finalUserMap[key] = fullName.encode('utf-8').strip()
+           contributorList.append(cypher(fullName))
 
 
    if parsed.outputFile:
        with open(parsed.outputFile, 'w') as output:
-           output.write(str(finalUserMap))
-   else:
-       print finalUserMap
+           output.write(str(contributorList))
+
+   print contributorList
        
 
