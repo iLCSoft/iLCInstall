@@ -81,8 +81,9 @@ class BaseILC:
             "MARLIN_DLL" : []
         }
 
-        if self.os_ver.type == "Darwin":
-            self.download.cmd="curl"
+## fg: this causes problems on (my) mac with Mojave ...
+##        if self.os_ver.type == "Darwin":
+##            self.download.cmd="curl"
     
     def __repr__(self):
         if( self.mode == "install" ):

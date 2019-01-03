@@ -114,9 +114,9 @@ Eigen_path = "/usr/local/opt/eigen32"
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version =  "10.03.p02"
-CLHEP_version =  "2.3.4.3" #"2.3.1.1"
-ROOT_version = "6.14.02"
+Geant4_version =  "10.05"
+CLHEP_version =  "2.4.1.0"  #"2.3.4.3"
+ROOT_version = "6.14.06"
 
 GSL_version = "2.1" # "1.15"
 
@@ -137,8 +137,8 @@ CondDBMySQL_version = "HEAD" # "CondDBMySQL_ILC-0-9-6"
 
 ILCUTIL_version = "HEAD" # "v01-02-01" 
 
-FastJet_version = "3.2.0"
-FastJetcontrib_version = "1.024"
+FastJet_version = "3.3.1"
+FastJetcontrib_version = "1.041"
 
 FastJetClustering_version = "HEAD" # "v00-02"
 
