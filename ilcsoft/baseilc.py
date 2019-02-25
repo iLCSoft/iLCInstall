@@ -329,7 +329,7 @@ class BaseILC:
                 # if svnurl not set by user generate a default one
                 if( len(self.download.svnurl) == 0 ):
                     # initialize svn settings for desy
-                    self.download.accessmode = "https"
+                    self.download.accessmode = "http"
                     self.download.server = "svnsrv.desy.de"
                     #if( self.download.username == "anonymous" ):
                     #    self.download.root = "public/" + self.download.root

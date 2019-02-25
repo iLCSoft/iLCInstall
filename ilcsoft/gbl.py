@@ -50,7 +50,7 @@ class GBL(BaseILC):
         BaseILC.setMode(self, mode)
 
         self.download.type = 'svn'
-        self.download.svnurl = 'https://svnsrv.desy.de/public/GeneralBrokenLines'
+        self.download.svnurl = 'http://svnsrv.desy.de/public/GeneralBrokenLines'
 
         if( Version( self.version ) == 'HEAD' ):
             self.download.svnurl += '/trunk/cpp'
