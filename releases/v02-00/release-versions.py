@@ -224,7 +224,7 @@ Physsim_version = "v00-04-01"
 
 
 # xerces-c (needed by geant4 for building gdml support - required by mokka)
-XERCESC_ROOT_DIR = ilcPath + "/xercesc/3.1.4"
+XercesC_version = "Xerces-C_3_2_2" 
+XERCESC_ROOT_DIR = ilcPath + "/xercesc/" + XercesC_version
 
-XercesC_version = "3.1.4" 
 
