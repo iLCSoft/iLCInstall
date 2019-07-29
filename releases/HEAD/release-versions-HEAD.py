@@ -21,6 +21,11 @@ if nightlies:
    use_cpp11 = nb_use_cpp11
    print "******************* use_cpp11", use_cpp11
 
+afsPath = None
+try:
+    afsPath = ilcsoft_afs_path[ arch ]
+except KeyError:
+    pass
 
 #===============================================================================
 # use a compiler that knows c++11, run 
@@ -47,7 +52,10 @@ if nightlies:
 # ===========================================================
 #
 
-ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
+if installPrefix is None:
+    ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
+else:
+    ilcsoft_install_prefix = installPrefix
 #ilcsoft_install_prefix = "/afs/desy.de/project/ilcsoft/sw/x86_64_gcc44_sl6/"
 #ilcsoft_install_prefix = "/nfs/dust/ilc/user/voutsina/testarea/ilcsoft_c11/"
 #ilcsoft_install_prefix = "/scratch/ilcsoft/"
@@ -95,7 +103,7 @@ ilcPath = ilcsoft_install_prefix
 MySQL_version = "5.0.45"
 MySQL_path = ilcPath + "/mysql/" + MySQL_version
 
-if( ilcsoft_afs_path[ arch ].find('_ub') > 0 ):
+if( arch.find('_ub') > 0 ):
     MySQL_path = "/usr"
 
 
