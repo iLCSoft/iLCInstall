@@ -18,6 +18,7 @@ parser.add_option('-d', '--dependencies', action='store_true', help='show depend
 parser.add_option('-i', '--install', action='store_true', help='install the software')
 parser.add_option('-v', '--verbose', action='store_true', dest='verbose', help='run in DEBUG mode')
 parser.add_option('--log-cfg-file', help='file to configure logging settings')
+parser.add_option('--install-prefix', action='store', help='location where to install the software')
 
 (options, args) = parser.parse_args()
 
@@ -63,6 +64,11 @@ ilcsoft_afs_path['gcc48_64bit_ub1404'] = os.path.normpath( os.path.join( ilcsoft
 ilcsoft_afs_path['gcc54_64bit_ub1604'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc54_ub1604' ))
 
 ilcPath = None
+installPrefix = None
+
+if options.install_prefix:
+    installPrefix = options.install_prefix
+
 try:
     import platform
     sizeofint = platform.architecture()[0]
@@ -74,6 +80,8 @@ try:
         arch += "_ub1404"
     if( platf.find("xenial")>0):
         arch += "_ub1604"
+    if( platf.find("bionic")>0):
+        arch += "_ub1804"
     ilcPath = ilcsoft_afs_path[ arch ] + '/'
     gcccheck = platform.python_compiler()
     print gcccheck
