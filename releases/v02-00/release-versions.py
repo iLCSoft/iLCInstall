@@ -97,7 +97,7 @@ ilcPath = ilcsoft_install_prefix
 MySQL_version = "5.0.45"
 MySQL_path = ilcPath + "/mysql/" + MySQL_version
 
-if( arch.find('_ub') > 0 ):
+if( platf.lower().find('linux') > 0 ):
     MySQL_path = "/usr"
 
 
