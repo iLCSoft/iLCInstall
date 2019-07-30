@@ -27,6 +27,9 @@ class XercesC(BaseILC):
                 "lib/libxerces-c.a",
                 "lib/libxerces-c.so",
                 "lib/libxerces-c.dylib",
+                "lib64/libxerces-c.a",
+                "lib64/libxerces-c.so",
+                "lib64/libxerces-c.dylib",
         ]]
     
     def compile(self):
