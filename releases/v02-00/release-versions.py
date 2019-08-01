@@ -121,7 +121,7 @@ Eigen_path =  ilcPath+"/../Eigen/3.2.9"
 Geant4_version =  "10.03.p02" 
 CLHEP_version =  "2.3.4.3"
 
-ROOT_version = "6.08.06"
+ROOT_version = "6.16.00"
 
 GSL_version = "2.1" 
 
