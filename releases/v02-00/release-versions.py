@@ -104,8 +104,15 @@ if( platf.lower().find('linux') >= 0 ):
 #------ boost headers files ------------------------------------------
 Boost_path = ilcPath+"/../boost/1.58.0"
 
+if( platf.lower().find('linux') >= 0 ):
+    Boost_path = "/usr"
+
+
 #------ Eigen headers files ------------------------------------------
 Eigen_path =  ilcPath+"/../Eigen/3.2.9"
+
+if( platf.lower().find('linux') >= 0 ):
+    Eigen_path = "/usr"
 
 
 ##########################################################################################
@@ -222,8 +229,8 @@ Druid_version = "2.2"
 
 Garlic_version = "v03-01"
 
-DD4hep_version = "v01-07-02"
-DD4hepExamples_version = "v01-07-02"
+DD4hep_version = "v01-10"
+DD4hepExamples_version = "v01-10"
 
 lcgeo_version = "v00-16-03"
 
