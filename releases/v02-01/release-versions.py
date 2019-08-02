@@ -116,9 +116,9 @@ MySQL_path = platfDefault
 Boost_path = platfDefault
 # Boost_path = ilcPath+"/../boost/1.58.0"
 
-#------ Eigen headers files ------------------------------------------
-Eigen_path = platfDefault
-# Eigen_path =  ilcPath+"/../Eigen/3.2.9"
+if( platf.lower().find('linux') >= 0 ):
+    Boost_path = "/usr"
+
 
 ##########################################################################################
 #
