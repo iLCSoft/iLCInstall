@@ -102,16 +102,18 @@ if( platf.lower().find('linux') >= 0 ):
 
 
 #------ boost headers files ------------------------------------------
-Boost_path = ilcPath+"/../boost/1.58.0"
+Boost_path = None
+# Boost_path = ilcPath+"/../boost/1.58.0"
 
-if( platf.lower().find('linux') >= 0 ):
+if( not Boost_path and platf.lower().find('linux') >= 0 ):
     Boost_path = "/usr"
 
 
 #------ Eigen headers files ------------------------------------------
-Eigen_path =  ilcPath+"/../Eigen/3.2.9"
+Eigen_path = None
+# Eigen_path =  ilcPath+"/../Eigen/3.2.9"
 
-if( platf.lower().find('linux') >= 0 ):
+if( not Eigen_path and platf.lower().find('linux') >= 0 ):
     Eigen_path = "/usr"
 
 
