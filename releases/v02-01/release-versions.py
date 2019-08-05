@@ -100,7 +100,7 @@ platfDefault = None
 
 if platform.system().lower().find('linux') >= 0:
    platfDefault = '/usr'
-else if platform.system().lower().find('darwin') >= 0:
+elif platform.system().lower().find('darwin') >= 0:
    platfDefault = '/usr/local'
 
 # ----- mysql --------------------------------------------------------
