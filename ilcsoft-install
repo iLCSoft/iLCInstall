@@ -17,6 +17,7 @@ parser.add_option('-p', '--preview', action='store_true', help='preview installa
 parser.add_option('-d', '--dependencies', action='store_true', help='show dependencies')
 parser.add_option('-i', '--install', action='store_true', help='install the software')
 parser.add_option('-v', '--verbose', action='store_true', dest='verbose', help='run in DEBUG mode')
+parser.add_option('-j', '--ncores',  action='store', dest='ncores', default=4, help='number of cores to use')
 parser.add_option('--log-cfg-file', help='file to configure logging settings')
 parser.add_option('--install-prefix', action='store', help='location where to install the software')
 
@@ -41,6 +42,10 @@ if options.verbose:
 
 
 config_file = os.path.abspath(args[0])
+
+ncores = 4
+if options.ncores:
+    ncores = options.ncores
    
 if( not os.path.exists(config_file) ):
     parser.error( 'config file %s does not exist' % config_file )
