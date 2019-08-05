@@ -125,10 +125,10 @@ if( platf.lower().find('linux') >= 0 ):
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version =  "10.03.p02" 
+Geant4_version =  "10.05.p01" 
 CLHEP_version =  "2.3.4.3"
 
-ROOT_version = "6.16.00"
+ROOT_version = "6.18.00"
 
 GSL_version = "2.1" 
 
