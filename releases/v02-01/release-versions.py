@@ -111,15 +111,6 @@ MySQL_version = "5.0.45"
 MySQL_path = platfDefault
 #MySQL_path = ilcPath + "/mysql/" + MySQL_version
 
-
-#------ boost headers files ------------------------------------------
-Boost_path = platfDefault
-# Boost_path = ilcPath+"/../boost/1.58.0"
-
-if( platf.lower().find('linux') >= 0 ):
-    Boost_path = "/usr"
-
-
 ##########################################################################################
 #
 #  end of user configuration section
