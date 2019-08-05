@@ -7,6 +7,7 @@
 # DESY ilcsoft team
 ###########################################
 import datetime
+import platform
 
 # --------- ilcsoft release version ------------------------------------------
 ilcsoft_release='v02-00-03-pre'
@@ -93,29 +94,28 @@ ilcPath = ilcsoft_install_prefix
 # these packages need to be pre-installed for your system
 # please adjust the path variables accordingly
 
+# detect the default software installation path
+# when using package manager like apt-get, yum or brew
+platfDefault = None
+
+if platform.system().lower().find('linux') >= 0:
+   platfDefault = '/usr'
+else if platform.system().lower().find('darwin') >= 0:
+   platfDefault = '/usr/local'
+
 # ----- mysql --------------------------------------------------------
 MySQL_version = "5.0.45"
-MySQL_path = ilcPath + "/mysql/" + MySQL_version
-
-if( platf.lower().find('linux') >= 0 ):
-    MySQL_path = "/usr"
+MySQL_path = platfDefault
+#MySQL_path = ilcPath + "/mysql/" + MySQL_version
 
 
 #------ boost headers files ------------------------------------------
-Boost_path = None
+Boost_path = platfDefault
 # Boost_path = ilcPath+"/../boost/1.58.0"
 
-if( not Boost_path and platf.lower().find('linux') >= 0 ):
-    Boost_path = "/usr"
-
-
 #------ Eigen headers files ------------------------------------------
-Eigen_path = None
+Eigen_path = platfDefault
 # Eigen_path =  ilcPath+"/../Eigen/3.2.9"
-
-if( not Eigen_path and platf.lower().find('linux') >= 0 ):
-    Eigen_path = "/usr"
-
 
 ##########################################################################################
 #
