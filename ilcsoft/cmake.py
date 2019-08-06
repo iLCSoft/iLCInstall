@@ -55,8 +55,8 @@ class CMake(BaseILC):
 
     def setMode(self, mode):
         BaseILC.setMode(self, mode)
-
-        self.download.url = "https://cmake.org/files/v%s/cmake-%s.tar.gz" % (self.version[:3], self.version)
+        versionDirectory = ".".join(self.version.split('.')[0:2])
+        self.download.url = "https://cmake.org/files/v%s/cmake-%s.tar.gz" % (versionDirectory, self.version)
         
     def downloadSources(self):
         
