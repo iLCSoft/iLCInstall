@@ -89,7 +89,7 @@ class DD4hep(BaseILC):
 #        self.envcmds.append("export G4WORKDIR=$DD4HEP")
 
         self.envpath["PATH"].append( "$DD4HEP/bin" )
-        self.envpath["LD_LIBRARY_PATH"].append( "$DD4HEP/lib" )
+        self.envpath["LD_LIBRARY_PATH"].append( "$DD4HEP/lib:$BOOST_ROOT/lib" )
 
         self.envpath["PYTHONPATH"].append( "$DD4HEP/python:$DD4HEP/DDCore/python" )
 
