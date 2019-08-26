@@ -12,7 +12,7 @@ today = datetime.date.today()
 
 release_date=today.strftime('%Y-%m-%d')
 
-use_cpp11 = True
+use_cpp11 = False
 
 build_directory = os.getenv("BUILD_PATH", release_date)
 compiler_version = os.getenv("COMPILER_VERSION", "gcc62")
@@ -25,17 +25,12 @@ ilcPath = ilcsoft_install_prefix
 
 Boost_path = "/cvmfs/clicdp.cern.ch/software/Boost/1.62.0/x86_64-slc6-" + compiler_version + "-opt/"
 
-if( use_cpp11 ):
-    CMAKE_CXX_FLAGS = '-Wall -std=c++11'
 
 # ======================= PACKAGE VERSIONS ===================================
 
 Geant4_version =  "10.02.p02" # "10.02.p01" # "10.01" 
 
-if( use_cpp11 ):
-    ROOT_version = "6.06.04"
-else:
-    ROOT_version = "5.34.30" 
+ROOT_version = "6.06.04"
 
 CLHEP_version =  "2.1.4.1" # "2.3.1.1" #  "2.1.4.1"
 
