@@ -130,7 +130,7 @@ Eigen_path = platfDefault
 Geant4_version =  "10.05.p01" 
 CLHEP_version =  "2.3.4.3"
 
-ROOT_version = "6.18.00"
+ROOT_version = "6.18.02"
 
 GSL_version = "2.1" 
 
