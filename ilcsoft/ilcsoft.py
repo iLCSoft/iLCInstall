@@ -348,6 +348,11 @@ class ILCSoft:
         f.write( "set(CMAKE_CXX_FLAGS_RELWITHDEBINFO \"-O2 -g\" CACHE STRING \"\" FORCE )"  )
         f.write( os.linesep )
 
+        cxxStandard = unicode(self.envcmake.get("CMAKE_CXX_STANDARD", None))
+        if cxxStandard:
+          f.write( 'set(CMAKE_CXX_STANDARD %s CACHE STRING "C++ Standard" FORCE)' % cxxStandard )
+          f.write( os.linesep )
+
         # close file
         f.close()
         f2.close()
