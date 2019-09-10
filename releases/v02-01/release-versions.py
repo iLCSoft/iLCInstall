@@ -134,7 +134,7 @@ ROOT_version = "6.18.02"
 
 GSL_version = "2.1" 
 
-QT_version = "4.7.4"
+Qt5_version = "v5.13.1"
 
 CMake_version = "3.15.1" 
 
