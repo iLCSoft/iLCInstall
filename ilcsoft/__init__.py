@@ -76,6 +76,7 @@ from gsl import GSL
 from xercesc import XercesC
 from heppdt import HepPDT
 from qt import QT
+from qt5 import Qt5
 from dcap import dcap
 
 
