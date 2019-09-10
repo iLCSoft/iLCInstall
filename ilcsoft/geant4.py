@@ -38,7 +38,7 @@ class Geant4(BaseILC):
             "lib/Geant4-9.5.0/"+self.env["G4SYSTEM"]+"/libG4run.dylib"
         ] ]
 
-        self.optmodules = [ 'QT', 'CLHEP' , "XercesC"]
+        self.optmodules = [ 'Qt5', 'CLHEP' , "XercesC"]
 
     def createLink(self):
         BaseILC.createLink(self)
@@ -130,9 +130,9 @@ class Geant4(BaseILC):
 
                 if not self.envcmake.has_key('QT_QMAKE_EXECUTABLE'):
 
-                    self.addExternalDependency( ["QT"] )
+                    self.addExternalDependency( ["Qt5"] )
 
-                    qtmod = self.parent.module("QT")
+                    qtmod = self.parent.module("Qt5")
                     if not qtmod:
                         self.abort( "please set QT_QMAKE_EXECUTABLE if using option GEANT4_USE_QT or add QT to your ilcinstall cfg file")
                     
