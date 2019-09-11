@@ -96,6 +96,6 @@ class DD4hep(BaseILC):
         else:
             self.envpath["PYTHONPATH"].append("$DD4HEP/lib/python%s.%s/site-packages" % (sys.version_info[0], sys.version_info[1]))
 
-#       self.envcmds.append('test -r ${G4ENV_INIT} && { cd $(dirname ${G4ENV_INIT}) ; . ./$(basename ${G4ENV_INIT}) ; cd $OLDPWD ; }')
+        self.envcmds.append('test -r ${G4ENV_INIT} && { cd $(dirname ${G4ENV_INIT}) ; . ./$(basename ${G4ENV_INIT}) ; cd $OLDPWD ; }')
         
         
