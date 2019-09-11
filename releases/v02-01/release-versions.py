@@ -211,7 +211,7 @@ LCFIPlus_version = "v00-07"
 MarlinKinfit_version = "v00-06"
 MarlinKinfitProcessors_version = "v00-04"
 
-PandoraPFANew_version   = "v03-09-00"
+PandoraPFANew_version   = "v03-13-02"
 DDMarlinPandora_version = "v00-10"
 PandoraAnalysis_version = "v02-00-00"
 
@@ -225,7 +225,7 @@ MarlinTPC_version = "v01-04"
 
 LCTuple_version = "v01-11"
 
-BBQ_version = "v00-01-03"
+BBQ_version = "v00-01-04"
 
 Druid_version = "2.2"
 
