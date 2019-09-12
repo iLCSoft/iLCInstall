@@ -219,8 +219,7 @@ MarlinTPC_version = "v01-04"
 
 LCTuple_version = "v01-11"
 
-# BBQ_version = "v00-01-04"
-BBQ_version = "HEAD"
+BBQ_version = "v00-01-04"
 
 Druid_version = "2.2"
 
