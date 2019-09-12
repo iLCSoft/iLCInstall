@@ -73,7 +73,7 @@ class Qt5(BaseILC):
         # Qt5 is a super module. We need to trigger the package download before-hand
         if( os.path.isfile( self.version + "/" + self.name + "/init-repository" ) ):
             os.chdir( self.version + "/" + self.name )
-            if( os.system( "./init-repository 2>&1 | tee -a " + self.logfile ) != 0 ):
+            if( os.system( "./init-repository --module-subset=essential,qt3d 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to init Qt5 submodules!!" )
         
     def compile(self):
