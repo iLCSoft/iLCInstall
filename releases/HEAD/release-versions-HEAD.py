@@ -122,7 +122,7 @@ if( platf.lower().find('linux') >= 0 ):
 #Geant4_version =  "10.02.p02" 
 #CLHEP_version =  "2.3.1.1"
 
-Geant4_version =  "10.05.p01" 
+Geant4_version =  "10.04.p03" 
 CLHEP_version =  "2.3.4.3"
 
 ROOT_version = "6.18.02"
