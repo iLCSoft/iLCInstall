@@ -15,10 +15,13 @@ ilcsoft_release='v02-00-03-pre'
 
 #-----------------------
 # we now always build with c++11 ?
-use_cpp11 = True 
-if nightlies:
-   use_cpp11 = nb_use_cpp11
-   print "******************* use_cpp11", use_cpp11
+# use_cpp11 = True 
+# if nightlies:
+#    use_cpp11 = nb_use_cpp11
+#    print "******************* use_cpp11", use_cpp11
+
+# which cxx standard to use
+cxx_standard = 14
 
 afsPath = None
 try:
@@ -130,7 +133,7 @@ Eigen_path = platfDefault
 Geant4_version =  "10.04.p03" 
 CLHEP_version =  "2.3.4.3"
 
-ROOT_version = "6.18.02"
+ROOT_version = "6.18.04"
 
 GSL_version = "2.1" 
 
