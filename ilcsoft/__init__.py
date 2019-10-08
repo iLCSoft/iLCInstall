@@ -18,6 +18,7 @@ from kaltest import KalTest, KalDet
 from pathfinder import PathFinder
 from bbq import BBQ
 from gbl import GBL
+from sio import SIO
 
 from ddkaltest import DDKalTest
 
