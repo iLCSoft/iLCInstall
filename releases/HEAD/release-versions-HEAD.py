@@ -103,12 +103,18 @@ ilcPath = ilcsoft_install_prefix
 # these packages need to be pre-installed for your system
 # please adjust the path variables accordingly
 
+# detect the default software installation path
+# when using package manager like apt-get, yum or brew
+platfDefault = None
+
+if platform.system().lower().find('linux') >= 0:
+   platfDefault = '/usr'
+elif platform.system().lower().find('darwin') >= 0:
+   platfDefault = '/usr/local'
+
 # ----- mysql --------------------------------------------------------
 MySQL_version = "5.0.45"
-MySQL_path = ilcPath + "/mysql/" + MySQL_version
-
-if( platf.lower().find('linux') >= 0 ):
-    MySQL_path = "/usr"
+MySQL_path = platfDefault
 
 # ----------------------------------------------------------------------------
 
@@ -123,13 +129,11 @@ if( platf.lower().find('linux') >= 0 ):
 
 # ======================= PACKAGE VERSIONS ===================================
 
-#Geant4_version =  "10.02.p02" 
-#CLHEP_version =  "2.3.1.1"
-
 Geant4_version =  "10.04.p03" 
+
 CLHEP_version =  "2.3.4.3"
 
-ROOT_version = "6.18.02"
+ROOT_version = "6.18.04"
 
 GSL_version = "2.1" 
 
@@ -147,21 +151,25 @@ Eigen_version = "3.3.7"
 
 # -------------------------------------------
 
-LCIO_version = "HEAD"
-
-GEAR_version = "HEAD"
-
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
 
 ILCUTIL_version = "v01-05"
 
 FastJet_version = "3.2.1"
+
 FastJetcontrib_version = "1.025"
 
-MarlinFastJet_version = "HEAD"
-
+# xerces-c (needed by geant4 for building gdml support - required by mokka)
+XercesC_version = "Xerces-C_3_2_2" 
+XERCESC_ROOT_DIR = ilcPath + "/xercesc/" + XercesC_version
 
 # -------------------------------------------
+
+LCIO_version = "HEAD"
+
+GEAR_version = "HEAD"
+
+MarlinFastJet_version = "HEAD"
 
 KalTest_version = "HEAD" # "v02-00"  
 
@@ -187,8 +195,6 @@ ConformalTracking_version = "HEAD" # "v01-08"
 
 LICH_version = "HEAD" # "v01-08"
 
-# -------------------------------------------
-
 GBL_version = "HEAD" # "V01-16-04"
 
 LCCD_version = "HEAD" # "v01-03"
@@ -211,16 +217,18 @@ ILDPerformance_version = "HEAD" # "v00-01"
 
 ILDConfig_version = "HEAD" 
 
-
 LCFIVertex_version = "HEAD" # "v00-07"
+
 LCFIPlus_version = "HEAD" # "v00-05-03"
 
-
 MarlinKinfit_version = "HEAD" # "v00-01-05"
+
 MarlinKinfitProcessors_version = "HEAD" # "v00-01-05"
 
 PandoraPFANew_version = "HEAD" # "v02-00-00"
+
 MarlinPandora_version = "HEAD" # "v02-00-00"
+
 PandoraAnalysis_version = "HEAD" # "v01-00-01" 
 
 CEDViewer_version = "HEAD" # "v01-10"
@@ -246,13 +254,3 @@ DD4hepExamples_version = "HEAD" # "v00-14"
 lcgeo_version = "HEAD" # "v00-05"
 
 Physsim_version = "HEAD" # "v00-02" 
-
-
-# xerces-c (needed by geant4 for building gdml support - required by mokka)
-XERCESC_ROOT_DIR = ilcPath + "/xercesc/3.1.4"
-
-XercesC_version = "3.1.4" 
-
-
-
-
