@@ -142,6 +142,8 @@ CMake_version = "3.6.3"
 
 CED_version = "v01-09-02"
 
+SIO_version = "v00-00-02"
+
 # -------------------------------------------
 
 LCIO_version = "HEAD"
