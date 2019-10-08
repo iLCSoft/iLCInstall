@@ -16,10 +16,14 @@ ilcsoft_release='HEAD-'+today
 
 #-----------------------
 # we now always build with c++11 ?
-use_cpp11 = True 
-if nightlies:
-   use_cpp11 = nb_use_cpp11
-   print "******************* use_cpp11", use_cpp11
+# This variable is deprecated and replaced by cxx_standard
+# use_cpp11 = False
+# if nightlies:
+#    use_cpp11 = nb_use_cpp11
+#    print "******************* use_cpp11", use_cpp11
+
+# which cxx standard to use
+cxx_standard = 14
 
 afsPath = None
 try:
