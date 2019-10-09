@@ -19,7 +19,7 @@ class LCFIVertex(MarlinPKG):
         MarlinPKG.__init__(self, "LCFIVertex", userInput )
 
         # required modules
-        self.reqmodules = [ "Marlin", "MarlinUtil", "LCIO", "GEAR", "DD4hep"]
+        self.reqmodules = [ "Marlin", "MarlinUtil", "LCIO", "GEAR", "DD4hep", "Boost"]
 
         # optional modules
         self.optmodules = [ "AIDA" ]
