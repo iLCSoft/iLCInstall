@@ -106,10 +106,6 @@ MySQL_path = ilcPath + "/mysql/" + MySQL_version
 if( platf.lower().find('linux') >= 0 ):
     MySQL_path = "/usr"
 
-
-#------ boost headers files ------------------------------------------
-# Boost_path = "/afs/desy.de/project/ilcsoft/sw/boost/1.58.0"
-
 #------ Eigen headers files ------------------------------------------
 Eigen_path = "/afs/desy.de/project/ilcsoft/sw/Eigen/3.2.9"
 
