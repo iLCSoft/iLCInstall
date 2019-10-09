@@ -106,9 +106,6 @@ MySQL_path = ilcPath + "/mysql/" + MySQL_version
 if( platf.lower().find('linux') >= 0 ):
     MySQL_path = "/usr"
 
-#------ Eigen headers files ------------------------------------------
-Eigen_path = "/afs/desy.de/project/ilcsoft/sw/Eigen/3.2.9"
-
 # ----------------------------------------------------------------------------
 
 ##########################################################################################
@@ -141,6 +138,8 @@ CED_version = "v01-09-02"
 SIO_version = "v00-00-02"
 
 Boost_version = "1.65.0"
+
+Eigen_version = "3.3.7"
 
 # -------------------------------------------
 
