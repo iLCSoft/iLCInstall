@@ -398,6 +398,7 @@ class BaseILC:
         boost = self.parent.module( "Boost" )
         if boost and self.hasCMakeBuildSupport:
             self.envcmake["BOOST_ROOT"]=boost.installPath
+            self.envcmake["Boost_NO_SYSTEM_PATHS"]=True
 
 
     def postCheckDeps(self):
