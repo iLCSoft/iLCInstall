@@ -108,7 +108,7 @@ if( platf.lower().find('linux') >= 0 ):
 
 
 #------ boost headers files ------------------------------------------
-Boost_path = "/afs/desy.de/project/ilcsoft/sw/boost/1.58.0"
+# Boost_path = "/afs/desy.de/project/ilcsoft/sw/boost/1.58.0"
 
 #------ Eigen headers files ------------------------------------------
 Eigen_path = "/afs/desy.de/project/ilcsoft/sw/Eigen/3.2.9"
@@ -143,6 +143,8 @@ CMake_version = "3.6.3"
 CED_version = "v01-09-02"
 
 SIO_version = "v00-00-02"
+
+Boost_version = "1.65.0"
 
 # -------------------------------------------
 
