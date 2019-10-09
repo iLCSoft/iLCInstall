@@ -395,6 +395,10 @@ class BaseILC:
             if self.name != "LCIO":
                 self.addExternalDependency( ["ILCUTIL" ] )
 
+        boost = self.parent.module( "Boost" )
+        if boost and self.hasCMakeBuildSupport:
+            self.envcmake["BOOST_ROOT"]=boost.installPath
+
 
     def postCheckDeps(self):
         """ called after running dependency check
