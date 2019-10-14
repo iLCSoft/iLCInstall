@@ -91,8 +91,10 @@ class DD4hep(BaseILC):
 
         self.envpath["PATH"].append( "$DD4HEP/bin" )
         self.envpath["LD_LIBRARY_PATH"].append( "$DD4HEP/lib:$BOOST_ROOT/lib" )
-
-        self.envpath["PYTHONPATH"].append("$DD4HEP/lib/python%s.%s/site-packages:$DD4HEP/python" % (sys.version_info[0], sys.version_info[1]))
+        if( Version( self.version ) <= '1.10' ):
+            self.envpath["PYTHONPATH"].append( "$DD4HEP/python:$DD4HEP/DDCore/python" )
+        else:
+            self.envpath["PYTHONPATH"].append("$DD4HEP/lib/python%s.%s/site-packages" % (sys.version_info[0], sys.version_info[1]))
 
 #       self.envcmds.append('test -r ${G4ENV_INIT} && { cd $(dirname ${G4ENV_INIT}) ; . ./$(basename ${G4ENV_INIT}) ; cd $OLDPWD ; }')
         
