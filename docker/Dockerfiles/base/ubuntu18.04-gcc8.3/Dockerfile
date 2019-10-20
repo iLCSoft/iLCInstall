@@ -62,15 +62,15 @@ RUN apt-get clean
 
 # Default compiler is gcc 7.4.0
 # We need to switch to gcc 8.3.0 
-update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 50
-update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 100
-update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 50
-update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 100
-update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-8 50
-update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-7 100
-update-alternatives --set gcc /usr/bin/gcc-8
-update-alternatives --set g++ /usr/bin/g++-8
-update-alternatives --set cpp-bin /usr/bin/cpp-8
+RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 50 && \
+    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 100 && \
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 50 && \
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 100 && \
+    update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-8 50 && \
+    update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-7 100 && \
+    update-alternatives --set gcc /usr/bin/gcc-8 && \
+    update-alternatives --set g++ /usr/bin/g++-8 && \
+    update-alternatives --set cpp-bin /usr/bin/cpp-8
 
 RUN git clone https://github.com/$ILCINSTALL_USER/iLCInstall.git --branch $ILCINSTALL_BRANCH
 
