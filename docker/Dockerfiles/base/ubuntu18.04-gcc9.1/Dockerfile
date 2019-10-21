@@ -14,10 +14,14 @@ ENV HOME /home/ilc
 WORKDIR ${HOME}
 ENV ILCSOFT /home/ilc/ilcsoft
 
-# epel-release must be installed before some other libraries
+# Add recent gcc compilers repo first
+RUN apt-get install software-properties-common
+RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
+
 RUN apt-get -y update && \
     apt-get -y install \
     	    build-essential \
+	    gcc-9 g++-9 \
 	    openssl \
 	    subversion \
 	    doxygen \
@@ -58,6 +62,18 @@ RUN apt-get -y update && \
 	    emacs
 
 RUN apt-get clean
+
+# Default compiler is gcc 7.4.0
+# We need to switch to gcc 9.1.0
+RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 50 && \
+    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 100 && \
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 50 && \
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 100 && \
+    update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-9 50 && \
+    update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-7 100 && \
+    update-alternatives --set gcc /usr/bin/gcc-9 && \
+    update-alternatives --set g++ /usr/bin/g++-9 && \
+    update-alternatives --set cpp-bin /usr/bin/cpp-9
 
 RUN git clone https://github.com/$ILCINSTALL_USER/iLCInstall.git --branch $ILCINSTALL_BRANCH
 
