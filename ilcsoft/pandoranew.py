@@ -40,13 +40,13 @@ class PandoraPFANew(BaseILC):
         if self.rebuild:
             tryunlink( "CMakeCache.txt" )
 
-        if( os.system( self.genCMakeCmd() + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os.system( ". ../build_env.sh ; " + self.genCMakeCmd() + " 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
 
-        if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os.system( ". ../build_env.sh ; make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
 
-        if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os.system( ". ../build_env.sh ; make install 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to install!!" )
 
     def postCheckDeps(self):
