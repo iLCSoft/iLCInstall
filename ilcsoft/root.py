@@ -118,9 +118,5 @@ class ROOT(BaseILC):
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
-
-        self.env["ROOTSYS"] = self.installPath
-        self.envpath["PATH"].append( "$ROOTSYS/bin" )
-        self.envpath["LD_LIBRARY_PATH"].append( "$ROOTSYS/lib" )
-        self.envpath["PYTHONPATH"].append( "$ROOTSYS/lib" )
+        self.envcmds.append( self.installPath + '/bin/thisroot.sh')
 
