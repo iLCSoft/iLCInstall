@@ -85,6 +85,6 @@ class DD4hepExamples(BaseILC):
         self.envpath["PATH"].append( "$DD4hepExamples/bin" )
         self.envpath["LD_LIBRARY_PATH"].append( "$DD4hepExamples/lib" )
 
-        self.envcmds.append('test -r ${G4ENV_INIT} && { cd $(dirname ${G4ENV_INIT}) ; . ./$(basename ${G4ENV_INIT}) ; cd $OLDPWD ; }')
+        # self.envcmds.append('test -r ${G4ENV_INIT} && { cd $(dirname ${G4ENV_INIT}) ; . ./$(basename ${G4ENV_INIT}) ; cd $OLDPWD ; }')
         
         
