@@ -421,10 +421,6 @@ class ILCSoft:
 
         for mod in self.modules:
             mod.writeEnv(f, checked)
-        geant=self.module('Geant4')
-        if geant:
-            f.write( os.linesep + '# --- source GEANT4 INIT script ---' + os.linesep )
-            f.write( 'test -r ${G4ENV_INIT} && { cd $(dirname ${G4ENV_INIT}) ; . ./$(basename ${G4ENV_INIT}) ; cd $OLDPWD ; }' + os.linesep  )
         if self.os.type == "Darwin":
             f.write( os.linesep + '# --- set DYLD_LIBRARY_PATH to LD_LIBRARY_PATH for MAC compatibility ---' + os.linesep )
             f.write( 'export DYLD_LIBRARY_PATH=$LD_LIBRARY_PATH:$DYLD_LIBRARY_PATH' + os.linesep + os.linesep )
