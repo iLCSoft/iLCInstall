@@ -135,7 +135,7 @@ CLHEP_version =  "2.3.4.3"
 
 ROOT_version = "6.18.04"
 
-GSL_version = "2.1" 
+GSL_version = "2.1"
 
 Qt5_version = "v5.13.1"
 
@@ -145,7 +145,7 @@ CED_version = "v01-09-02"
 
 SIO_version = "v00-00-02"
 
-Boost_version = "1.65.0"
+Boost_version = "1.71.0"
 
 Eigen_version = "3.3.7"
 
