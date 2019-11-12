@@ -138,7 +138,7 @@ FastJetcontrib_version = "1.025"
 CED_version = "v01-09-02"
 # -------------------------------------------
 
-LCIO_version = "v02-12-01"
+LCIO_version = "v02-13"
 
 GEAR_version = "v01-08"
 
