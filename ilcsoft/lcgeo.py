@@ -81,6 +81,7 @@ class lcgeo(BaseILC):
         BaseILC.postCheckDeps(self)
 
         self.env[ 'lcgeo_DIR' ] = self.installPath
-        self.envcmds.append('source ${lcgeo_DIR}/bin/thislcgeo.sh')
+        self.env[ 'lcgeo_ENVINIT' ] = "${lcgeo_DIR}/bin/thislcgeo.sh"
+        self.envcmds.append('test -r ${lcgeo_ENVINIT} && . ${lcgeo_ENVINIT}')
         
         
