@@ -29,6 +29,7 @@ class LCCD(BaseILC):
     def compile(self):
         """ compile LCCD """
         
+        trymakedir( self.installPath + "/build" )
         os.chdir( self.installPath + "/build" )
 
         if( self.rebuild ):
