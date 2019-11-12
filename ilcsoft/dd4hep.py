@@ -83,19 +83,6 @@ class DD4hep(BaseILC):
         BaseILC.postCheckDeps(self)
 
         self.env[ 'DD4HEP' ] = self.installPath
-        self.env[ 'DD4hepINSTALL' ] = self.installPath
-        self.env[ 'DD4hep_DIR' ] = self.installPath
-        self.env[ 'DD4hep_ROOT' ] = self.installPath
-
-#        self.envcmds.append("export G4WORKDIR=$DD4HEP")
-
-        self.envpath["PATH"].append( "$DD4HEP/bin" )
-        self.envpath["LD_LIBRARY_PATH"].append( "$DD4HEP/lib:$BOOST_ROOT/lib" )
-        if( Version( self.version ) <= '1.10' ):
-            self.envpath["PYTHONPATH"].append( "$DD4HEP/python:$DD4HEP/DDCore/python" )
-        else:
-            self.envpath["PYTHONPATH"].append("$DD4HEP/lib/python%s.%s/site-packages" % (sys.version_info[0], sys.version_info[1]))
-
-        self.envcmds.append('test -r ${G4ENV_INIT} && { cd $(dirname ${G4ENV_INIT}) ; . ./$(basename ${G4ENV_INIT}) ; cd $OLDPWD ; }')
+        self.envcmds.append('source ${DD4HEP}/bin/thisdd4hep.sh')
         
         
