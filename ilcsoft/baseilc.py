@@ -1146,6 +1146,10 @@ class BaseILC:
         for k, v in self.env.iteritems():
             if k not in self.envorder:
                 f.write( "export " + str(k) + "=\"" + str(self.env[k]) + "\"" + os.linesep )
+    
+        f.write( "# --- additional " + self.name + " commands ------- " + os.linesep ) 
+        for c in self.envcmds:
+            f.write( c + os.linesep ) 
 
         # list of "trivial" paths we do not want to add again to PATH and co
         ignorepaths = ['/usr/bin','/usr/lib','/sbin','/usr/sbin']
