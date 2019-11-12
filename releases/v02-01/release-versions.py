@@ -121,7 +121,8 @@ MySQL_path = platfDefault
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version =  "10.04.p03" 
+Geant4_version =  "10.04.p03"
+
 CLHEP_version =  "2.3.4.3"
 
 ROOT_version = "6.18.04"
@@ -136,6 +137,9 @@ FastJet_version = "3.2.1"
 FastJetcontrib_version = "1.025"
 
 CED_version = "v01-09-02"
+
+Boost_version = "1.71.0"
+
 # -------------------------------------------
 
 LCIO_version = "v02-13"
