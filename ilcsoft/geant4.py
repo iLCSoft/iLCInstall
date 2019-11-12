@@ -176,19 +176,8 @@ class Geant4(BaseILC):
 
         self.envorder = [ "G4INSTALL" ]
         self.env["G4INSTALL"] = self.installPath
-
-        if Version(self.version, max_elements=2 ) < "9.5":
-            self.env["G4INCLUDE"] = "$G4INSTALL/include"
-            self.envpath["LD_LIBRARY_PATH"].append( "$G4INSTALL/sharedlib/"+self.env["G4SYSTEM"] )
-
-        if( not self.env.has_key( "G4ENV_INIT" )):
-            if Version(self.version, max_elements=2 ) < "9.5":
-                if( not os.path.exists( self.realPath() + "/env.sh" )):
-                    self.abort( "you must specify a valid path for a geant4 environment shell script e.g.:\n"\
-                            + "ilcsoft.module(\"Geant4\").env[\"G4ENV_INIT\"]=\"/foo/bar/env.sh\"" )
-                self.env["G4ENV_INIT"]="$G4INSTALL/env.sh"
-            else:
-                self.env["G4ENV_INIT"]="$G4INSTALL/bin/geant4.sh"
+        self.env["G4ENV_INIT"]="$G4INSTALL/bin/geant4.sh"
+        self.envcmds.append('test -r ${G4ENV_INIT} && { cd $(dirname ${G4ENV_INIT}) ; . ./$(basename ${G4ENV_INIT}) ; cd $OLDPWD ; }')
 
 
 
