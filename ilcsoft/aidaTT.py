@@ -61,7 +61,5 @@ class aidaTT(BaseILC):
 
         self.envpath["PATH"].append( "$AIDATT/bin" )
         self.envpath["LD_LIBRARY_PATH"].append( "$AIDATT/lib" )
-
-        self.envcmds.append('test -r ${G4ENV_INIT} && { cd $(dirname ${G4ENV_INIT}) ; . ./$(basename ${G4ENV_INIT}) ; cd $OLDPWD ; }')
         
         
