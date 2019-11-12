@@ -81,13 +81,6 @@ class lcgeo(BaseILC):
         BaseILC.postCheckDeps(self)
 
         self.env[ 'lcgeo_DIR' ] = self.installPath
-
-#        self.envcmds.append("export G4WORKDIR=$lcgeo_DIR")
-
-        self.envpath["PATH"].append( "$lcgeo_DIR/bin" )
-        self.envpath["LD_LIBRARY_PATH"].append( "$lcgeo_DIR/lib" )
-        self.envpath["PYTHONPATH"].append( "$lcgeo_DIR/lib/python" )
-
-#        self.envcmds.append('test -r ${G4ENV_INIT} && { cd $(dirname ${G4ENV_INIT}) ; . ./$(basename ${G4ENV_INIT}) ; cd $OLDPWD ; }')
+        self.envcmds.append('source ${lcgeo_DIR}/bin/thislcgeo.sh')
         
         
