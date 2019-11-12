@@ -118,5 +118,5 @@ class ROOT(BaseILC):
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
-        self.envcmds.append( self.installPath + '/bin/thisroot.sh')
+        self.envcmds.append( "source " + self.installPath + '/bin/thisroot.sh')
 
