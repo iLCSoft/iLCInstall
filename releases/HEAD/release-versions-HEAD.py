@@ -139,7 +139,7 @@ GSL_version = "2.1"
 
 Qt5_version = "v5.13.1"
 
-CMake_version = "3.15.1"
+CMake_version = "3.15.5"
 
 CED_version = "v01-09-02"
 

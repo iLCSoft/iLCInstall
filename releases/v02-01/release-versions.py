@@ -130,7 +130,7 @@ GSL_version = "2.1"
 
 Qt5_version = "v5.13.1"
 
-CMake_version = "3.15.1" 
+CMake_version = "3.15.5" 
 
 FastJet_version = "3.2.1"
 FastJetcontrib_version = "1.025"
