@@ -83,6 +83,7 @@ class DD4hep(BaseILC):
         BaseILC.postCheckDeps(self)
 
         self.env[ 'DD4HEP' ] = self.installPath
-        self.envcmds.append('source ${DD4HEP}/bin/thisdd4hep.sh')
+        self.env[ 'DD4HEP_ENVINIT' ] = "${DD4HEP}/bin/thisdd4hep.sh"
+        self.envcmds.append('test -r ${DD4HEP_ENVINIT} && . ${DD4HEP_ENVINIT}')
         
         
