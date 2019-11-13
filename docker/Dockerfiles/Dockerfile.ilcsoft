@@ -1,0 +1,18 @@
+ARG image
+FROM ${image}
+
+# Possible image build arguments 
+ARG compile_ncores=8
+ARG ilcinstall_version=master
+ARG ilcinstall_user=iLCSoft
+# LATEST or HEAD
+ARG install_mode=LASTEST
+
+# Clone iLCInstall and compile the base stack
+WORKDIR ${HOME}
+RUN git clone https://github.com/${ilcinstall_user}/iLCInstall.git iLCInstall/ilcsoft --branch ${ilcinstall_version}
+WORKDIR ${HOME}/iLCInstall/ilcsoft
+RUN ./ilcsoft-install -i --install-prefix ${ILCSOFT} -j ${compile_ncores} releases/${install_mode}/release-ilcsoft.cfg
+
+# Start the image with BASH by default
+CMD ["/bin/bash"]
