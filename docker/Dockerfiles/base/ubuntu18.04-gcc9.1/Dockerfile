@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 
 # Possible image build arguments 
 ARG COMPILE_NCORES=8
-ARG ILCINSTALL_BRANCH=master
+ARG ILCINSTALL_VERSION=master
 ARG ILCINSTALL_USER=iLCSoft
 # LATEST or HEAD
 ARG INSTALL_MODE=LASTEST
@@ -75,7 +75,17 @@ RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 50 && \
     update-alternatives --set g++ /usr/bin/g++-9 && \
     update-alternatives --set cpp-bin /usr/bin/cpp-9
 
-RUN git clone https://github.com/$ILCINSTALL_USER/iLCInstall.git --branch $ILCINSTALL_BRANCH
+RUN wget http://lcgpackages.web.cern.ch/lcgpackages/tarFiles/sources/Python-2.7.15.tgz && \
+    tar xvf Python-2.7.15.tgz && \
+    cd Python-2.7.15 && \
+    ./configure --prefix=$HOME/python --enable-ipv6 --enable-shared --enable-unicode=ucs4 CXX=/usr/bin/g++ CC=/usr/bin/gcc && \
+    make install -j $COMPILE_NCORES && \
+    export LD_LIBRARY_PATH=$HOME/python/lib:$LD_LIBRARY_PATH && \
+    export PATH=$HOME/python/bin:$PATH && \
+    cd $HOME && \
+    rm -rf Python-2.7.15 Python-2.7.15.tgz
+
+RUN git clone https://github.com/$ILCINSTALL_USER/iLCInstall.git --branch $ILCINSTALL_VERSION
 
 WORKDIR ${HOME}/iLCInstall
 
