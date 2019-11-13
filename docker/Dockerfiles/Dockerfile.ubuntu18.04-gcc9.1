@@ -1,18 +1,18 @@
 FROM ubuntu:18.04
 
-# Possible image build arguments 
-ARG COMPILE_NCORES=8
-ARG ILCINSTALL_VERSION=master
-ARG ILCINSTALL_USER=iLCSoft
-# LATEST or HEAD
-ARG INSTALL_MODE=LASTEST
-ARG DEBIAN_FRONTEND=noninteractive
+LABEL product="iLCSoft"
+LABEL maintainer="remi.ete@desy.de"
+LABEL description="Image setting up the OS flavor, compiler version \
+and any other environement for building iLCSoft 'base' and 'ilcsoft' stacks"
+LABEL os="ubuntu 18.04"
+LABEL compiler="GCC 9.1"
+LABEL python="Python 2.7.15"
 
 # Perform the installation as root:
 USER root
 ENV HOME /home/ilc
-WORKDIR ${HOME}
 ENV ILCSOFT /home/ilc/ilcsoft
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Add recent gcc compilers repo first
 RUN apt-get install software-properties-common
@@ -20,7 +20,7 @@ RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
 
 RUN apt-get -y update && \
     apt-get -y install \
-    	    build-essential \
+    	build-essential \
 	    gcc-9 g++-9 \
 	    openssl \
 	    subversion \
@@ -84,12 +84,6 @@ RUN wget http://lcgpackages.web.cern.ch/lcgpackages/tarFiles/sources/Python-2.7.
     export PATH=$HOME/python/bin:$PATH && \
     cd $HOME && \
     rm -rf Python-2.7.15 Python-2.7.15.tgz
-
-RUN git clone https://github.com/$ILCINSTALL_USER/iLCInstall.git --branch $ILCINSTALL_VERSION
-
-WORKDIR ${HOME}/iLCInstall
-
-RUN ./ilcsoft-install -i --install-prefix ${ILCSOFT} -j $COMPILE_NCORES releases/$INSTALL_MODE/release-base.cfg
 
 # Start the image with BASH by default
 CMD ["/bin/bash"]
