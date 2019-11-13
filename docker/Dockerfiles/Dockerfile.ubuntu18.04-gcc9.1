@@ -15,8 +15,9 @@ ENV ILCSOFT /home/ilc/ilcsoft
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Add recent gcc compilers repo first
-RUN apt-get install software-properties-common
-RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
+RUN apt-get -y update && \
+    apt-get -y install software-properties-common && \
+    add-apt-repository -y ppa:ubuntu-toolchain-r/test
 
 RUN apt-get -y update && \
     apt-get -y install \
@@ -75,15 +76,19 @@ RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 50 && \
     update-alternatives --set g++ /usr/bin/g++-9 && \
     update-alternatives --set cpp-bin /usr/bin/cpp-9
 
+WORKDIR ${HOME}
+
+# Install Python 2.7, compiled against the GCC version we use here (very important !)
 RUN wget http://lcgpackages.web.cern.ch/lcgpackages/tarFiles/sources/Python-2.7.15.tgz && \
     tar xvf Python-2.7.15.tgz && \
     cd Python-2.7.15 && \
     ./configure --prefix=$HOME/python --enable-ipv6 --enable-shared --enable-unicode=ucs4 CXX=/usr/bin/g++ CC=/usr/bin/gcc && \
-    make install -j $COMPILE_NCORES && \
-    export LD_LIBRARY_PATH=$HOME/python/lib:$LD_LIBRARY_PATH && \
-    export PATH=$HOME/python/bin:$PATH && \
+    make install -j 10 && \
     cd $HOME && \
     rm -rf Python-2.7.15 Python-2.7.15.tgz
+
+ENV PATH ${HOME}/python/bin:${PATH}
+ENV LD_LIBRARY_PATH ${HOME}/python/lib:${LD_LIBRARY_PATH}
 
 # Start the image with BASH by default
 CMD ["/bin/bash"]
