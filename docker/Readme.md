@@ -1,5 +1,5 @@
 
-# Docker infrastructure for iLCSoft
+# Docker images for iLCSoft
 
 ## Generate official Docker images
 
