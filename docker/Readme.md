@@ -3,7 +3,7 @@
 
 ## Generate official Docker images
 
-This section is meant for helping iLCSoft admins to (re-)generate Docker images for different OS flavors, compiler version, iLCSoft version, etc...
+This section is meant for helping iLCSoft maintainers to (re-)generate Docker images for different OS flavors, compiler version, iLCSoft version, etc...
 
 The images are produced on a three layer basis 
 
@@ -58,7 +58,7 @@ docker build \
   .
 ```
 
-**For admins only:**
+**For iLCSoft maintainers only:**
 
 Once you have produced an image, you can push it to our official docker repository.
 
