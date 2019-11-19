@@ -106,6 +106,7 @@ class ROOT(BaseILC):
         self.envcmake.setdefault( 'builtin_xrootd', 'ON' )
         self.envcmake.setdefault( 'fortran',        'OFF' )
         self.envcmake.setdefault( 'mysql',          'OFF' )
+        self.envcmake.setdefault( 'sqlite',         'OFF' )
 
         if( os.system( self.genCMakeCmd() + " 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
