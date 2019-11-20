@@ -25,6 +25,7 @@ class CED(BaseILC):
         self.download.gitrepo = 'CED'
 
         self.envcmake['CED_SERVER']='OFF'
+        self.envcmake['CED_NOT_INCLUDE_OPENGL_LINKER_PATH']='TRUE'
 
     def compile(self):
         """ compile CED """
