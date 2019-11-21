@@ -109,6 +109,13 @@ elif platform.system().lower().find('darwin') >= 0:
 # ----- mysql --------------------------------------------------------
 MySQL_version = "5.0.45"
 MySQL_path = platfDefault
+
+# overwrite with a patch set in the environment
+my_mysql_path = os.getenv("MYSQL_DIR", default=None)
+if( my_mysql_path !=  None ):
+    MySQL_path = my_mysql_path
+
+
 #MySQL_path = ilcPath + "/mysql/" + MySQL_version
 
 ##########################################################################################
