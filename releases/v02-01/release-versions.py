@@ -1,6 +1,6 @@
 ###########################################
 #
-# iLCSoft versions for installing a current HEAD 
+# iLCSoft versions for installing a current HEAD
 # version of the ilcsoft packages.
 # The external base tools need to be installed
 #
@@ -15,13 +15,13 @@ ilcsoft_release='v02-00-03-pre'
 
 #-----------------------
 # we now always build with c++11 ?
-# use_cpp11 = True 
+# use_cpp11 = True
 # if nightlies:
 #    use_cpp11 = nb_use_cpp11
 #    print "******************* use_cpp11", use_cpp11
 
 # which cxx standard to use
-cxx_standard = 14
+cxx_standard = 17
 
 afsPath = None
 try:
@@ -30,18 +30,18 @@ except KeyError:
     pass
 
 #===============================================================================
-# use a compiler that knows c++11, run 
+# use a compiler that knows c++11, run
 #
 '''
 #===== gcc 4.9:
-# . ./scripts/use_gcc49_afs.sh 
+# . ./scripts/use_gcc49_afs.sh
  source /afs/cern.ch/sw/lcg/contrib/gcc/4.9.3/x86_64-slc6/setup.sh
  export PATH=/afs/cern.ch/sw/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/bin:$PATH
  export LD_LIBRARY_PATH=/afs/cern.ch/sw/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/lib:$LD_LIBRARY_PATH
 
 
 # or on cvmfs:
-# . ./scripts/use_gcc49_cvmfs.sh 
+# . ./scripts/use_gcc49_cvmfs.sh
  source /cvmfs/sft.cern.ch/lcg/contrib/gcc/4.9.3/x86_64-slc6/setup.sh
  export PATH=/cvmfs/sft.cern.ch/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/bin:$PATH
  export LD_LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/lib:$LD_LIBRARY_PATH
@@ -64,7 +64,7 @@ else:
 #ilcsoft_install_prefix = "/scratch/ilcsoft/"
 
 # ----------------------------------------------------------------------------
-#--- the ilcsoft_release is now automatically appended in release-ilcsoft.cfg 
+#--- the ilcsoft_release is now automatically appended in release-ilcsoft.cfg
 #     but not in release-base.cfg !!
 
 #append_version_to_install_prefix = False
@@ -79,7 +79,7 @@ else:
 # Modify this path to where you want ilcinstall to look
 # for pre-installed (base) packages
 # typically this would be left to ilcsoft_install_prefix
-# or set to an /afs or /cvmfs base installation that you 
+# or set to an /afs or /cvmfs base installation that you
 # want to use
 # ===========================================================
 
@@ -134,11 +134,11 @@ CLHEP_version =  "2.3.4.3"
 
 ROOT_version = "6.18.04"
 
-GSL_version = "2.6" 
+GSL_version = "2.6"
 
 Qt5_version = "v5.13.1"
 
-CMake_version = "3.15.5" 
+CMake_version = "3.15.5"
 
 FastJet_version = "3.2.1"
 FastJetcontrib_version = "1.025"
@@ -161,7 +161,7 @@ CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
 
 ILCUTIL_version = "v01-05"
 
-MarlinFastJet_version = "v00-05-01" 
+MarlinFastJet_version = "v00-05-01"
 
 
 # -------------------------------------------
@@ -190,17 +190,17 @@ ForwardTracking_version = "v01-13"
 
 ConformalTracking_version = "v01-09"
 
-LICH_version = "v00-01" 
+LICH_version = "v00-01"
 
 # -------------------------------------------
 
-GBL_version = "V02-01-01" #"V02-00-00" 
+GBL_version = "V02-01-01" #"V02-00-00"
 
 LCCD_version = "v01-05"
 
 RAIDA_version = "v01-09"
 
-MarlinUtil_version = "v01-15-01" 
+MarlinUtil_version = "v01-15-01"
 
 Marlin_version = "v01-16"
 
@@ -210,7 +210,7 @@ MarlinReco_version = "v01-25"
 
 ILDPerformance_version = "v01-06"
 
-#ILDConfig_version = "HEAD" 
+#ILDConfig_version = "HEAD"
 
 
 LCFIVertex_version = "v00-07-04"
@@ -249,7 +249,5 @@ Physsim_version = "v00-04-01"
 
 
 # xerces-c (needed by geant4 for building gdml support - required by mokka)
-XercesC_version = "Xerces-C_3_2_2" 
+XercesC_version = "Xerces-C_3_2_2"
 XERCESC_ROOT_DIR = ilcPath + "/xercesc/" + XercesC_version
-
-
