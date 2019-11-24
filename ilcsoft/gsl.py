@@ -57,7 +57,7 @@ class GSL(BaseILC):
         if( self.rebuild ):
             os.system( "make distclean" )
 
-        if( os.system( "../" + self.name + "/configure --prefix=" + self.installPath + "CFLAGS=\"$CFLAGS\"  2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os.system( "../" + self.name + "/configure --prefix=" + self.installPath + " CFLAGS=\"${CFLAGS}\"  2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
 
         if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
