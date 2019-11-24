@@ -7,7 +7,7 @@
 # Date: Jul, 2010
 #
 ##################################################
-                                                                                                                                                            
+
 # custom imports
 from baseilc import BaseILC
 from marlinpkg import MarlinPKG
@@ -16,36 +16,36 @@ from util import *
 
 class FastJetClustering(MarlinPKG):
     """ Responsible for the FastJetClustering installation process. """
-    
+
     def __init__(self, userInput):
         MarlinPKG.__init__(self, "FastJetClustering", userInput )
 
         # required modules
         self.reqmodules = [ "Marlin", "MarlinUtil", "CLHEP", "GEAR", "GSL",  "LCIO", "FastJet" ]
 
-        self.download.supportedTypes = [ "GitHub" ] 
+        self.download.supportedTypes = [ "GitHub" ]
         self.download.gituser = 'iLCSoft'
         self.download.gitrepo = 'obsolete_FastJetClustering'
 
 
 class FastJet(BaseILC):
     """ Responsible for the FastJet installation process. """
-    
+
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "FastJet", "FastJet")
 
         # no cmake build support
         self.hasCMakeBuildSupport = False
-        
+
         self.download.supportHEAD = False
         self.download.supportedTypes = ["wget"]
 
         self.reqfiles = [[ "lib/libfastjet.so", "lib/libfastjet.a", "lib/libfastjet.dylib" ]]
-    
+
     def setMode(self, mode):
-        BaseILC.setMode(self, mode)       
+        BaseILC.setMode(self, mode)
         self.download.url = "http://fastjet.fr/repo/fastjet-" + self.version + ".tar.gz"
-        
+
     def downloadSources(self):
         BaseILC.downloadSources(self)
 
@@ -74,7 +74,7 @@ class FastJet(BaseILC):
         if( self.rebuild ):
             os.system( "make distclean" )
 
-        if( os.system( "../" + self.name + "/configure --prefix=" + self.installPath + " --enable-shared 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os.system( "../" + self.name + "/configure --prefix=" + self.installPath + " CXXFLAGS=\"CXXFLAGS\" --enable-auto-ptr=no --enable-shared 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
 
         if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
@@ -85,9 +85,9 @@ class FastJet(BaseILC):
 
 
         if( len(self.fjcontrib_version) > 0) :
-            
+
             os.chdir( self.installPath+"/fjcontrib-"+self.fjcontrib_version )
-            
+
             if( os.system( "./configure --fastjet-config="+self.installPath+"/bin/fastjet-config CXXFLAGS=\"$CXXFLAGS\"  2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to configure!!" )
 
@@ -98,7 +98,7 @@ class FastJet(BaseILC):
                 self.abort( "failed to compile!!" )
 
             if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
-                self.abort( "failed to install!!" )            
+                self.abort( "failed to install!!" )
 
     def cleanupInstall(self):
         BaseILC.cleanupInstall(self)
