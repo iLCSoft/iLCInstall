@@ -61,7 +61,7 @@ class GSL(BaseILC):
 
         flags = ""
         if self.use_C11:
-            flags = "-std=c11"
+            flags = "CFLAGS=-std=c11"
 
         if( os.system( "../" + self.name + "/configure --prefix=" + self.installPath + " " + flags + " 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
