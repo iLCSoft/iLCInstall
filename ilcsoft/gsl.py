@@ -6,7 +6,7 @@
 # Date: Jan, 2007
 #
 ##################################################
-                                                                                                                                                            
+
 # custom imports
 from baseilc import BaseILC
 from util import *
@@ -14,13 +14,13 @@ from util import *
 
 class GSL(BaseILC):
     """ Responsible for the GSL installation process. """
-    
+
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "GSL", "gsl")
 
         # no cmake build support
         self.hasCMakeBuildSupport = False
-        
+
         self.download.supportHEAD = False
         self.download.supportedTypes = ["wget"]
 
@@ -33,12 +33,12 @@ class GSL(BaseILC):
                 "lib64/shared/libgsl.so",
                 "lib/shared/libgsl.dylib",
         ]]
-    
+
     def setMode(self, mode):
         BaseILC.setMode(self, mode)
 
         self.download.url = "ftp://ftp.gnu.org/gnu/gsl/gsl-" + self.version + ".tar.gz"
-        
+
     def downloadSources(self):
         BaseILC.downloadSources(self)
 
@@ -57,7 +57,7 @@ class GSL(BaseILC):
         if( self.rebuild ):
             os.system( "make distclean" )
 
-        if( os.system( "../" + self.name + "/configure --prefix=" + self.installPath + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os.system( "../" + self.name + "/configure --prefix=" + self.installPath + "CFLAGS=\"$CFLAGS\"  2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
 
         if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
