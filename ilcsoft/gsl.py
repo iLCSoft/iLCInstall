@@ -34,6 +34,8 @@ class GSL(BaseILC):
                 "lib/shared/libgsl.dylib",
         ]]
 
+        self.use_C11 = True
+
     def setMode(self, mode):
         BaseILC.setMode(self, mode)
 
@@ -57,7 +59,11 @@ class GSL(BaseILC):
         if( self.rebuild ):
             os.system( "make distclean" )
 
-        if( os.system( "../" + self.name + "/configure --prefix=" + self.installPath + " CFLAGS=\"${CFLAGS}\"  2>&1 | tee -a " + self.logfile ) != 0 ):
+        flags = ""
+        if self.use_C11:
+            flags = "-std=c11"
+
+        if( os.system( "../" + self.name + "/configure --prefix=" + self.installPath + " " + flags + " 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
 
         if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
