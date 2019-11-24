@@ -1,6 +1,6 @@
 ###########################################
 #
-# iLCSoft versions for installing a current HEAD 
+# iLCSoft versions for installing a current HEAD
 # version of the ilcsoft packages.
 # The external base tools need to be installed
 #
@@ -23,7 +23,7 @@ ilcsoft_release='HEAD-'+today
 #    print "******************* use_cpp11", use_cpp11
 
 # which cxx standard to use
-cxx_standard = 14
+cxx_standard = 17
 
 afsPath = None
 try:
@@ -32,7 +32,7 @@ except KeyError:
     pass
 
 #===============================================================================
-# use a compiler that knows c++11, run 
+# use a compiler that knows c++11, run
 #
 '''
  source /afs/cern.ch/sw/lcg/contrib/gcc/4.9.3/x86_64-slc6/setup.sh
@@ -65,7 +65,7 @@ else:
 #ilcsoft_install_prefix = "/scratch/ilcsoft/"
 
 # ----------------------------------------------------------------------------
-#--- the ilcsoft_release is now automatically appended in release-ilcsoft.cfg 
+#--- the ilcsoft_release is now automatically appended in release-ilcsoft.cfg
 #     but not in release-base.cfg !!
 
 #append_version_to_install_prefix = False
@@ -80,7 +80,7 @@ else:
 # Modify this path to where you want ilcinstall to look
 # for pre-installed (base) packages
 # typically this would be left to ilcsoft_install_prefix
-# or set to an /afs or /cvmfs base installation that you 
+# or set to an /afs or /cvmfs base installation that you
 # want to use
 # ===========================================================
 
@@ -134,7 +134,7 @@ if( my_mysql_path !=  None ):
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version =  "10.04.p03" 
+Geant4_version =  "10.04.p03"
 
 CLHEP_version =  "2.3.4.3"
 
@@ -165,7 +165,7 @@ FastJet_version = "3.2.1"
 FastJetcontrib_version = "1.025"
 
 # xerces-c (needed by geant4 for building gdml support - required by mokka)
-XercesC_version = "Xerces-C_3_2_2" 
+XercesC_version = "Xerces-C_3_2_2"
 XERCESC_ROOT_DIR = ilcPath + "/xercesc/" + XercesC_version
 
 # -------------------------------------------
@@ -176,7 +176,7 @@ GEAR_version = "HEAD"
 
 MarlinFastJet_version = "HEAD"
 
-KalTest_version = "HEAD" # "v02-00"  
+KalTest_version = "HEAD" # "v02-00"
 
 KalDet_version = "HEAD" # "v01-13-02"
 
@@ -220,7 +220,7 @@ FCalClusterer_version = "HEAD" # "v00-01"
 
 ILDPerformance_version = "HEAD" # "v00-01"
 
-ILDConfig_version = "HEAD" 
+ILDConfig_version = "HEAD"
 
 LCFIVertex_version = "HEAD" # "v00-07"
 
@@ -234,7 +234,7 @@ PandoraPFANew_version = "HEAD" # "v02-00-00"
 
 MarlinPandora_version = "HEAD" # "v02-00-00"
 
-PandoraAnalysis_version = "HEAD" # "v01-00-01" 
+PandoraAnalysis_version = "HEAD" # "v01-00-01"
 
 CEDViewer_version = "HEAD" # "v01-10"
 
@@ -248,7 +248,7 @@ LCTuple_version = "HEAD" # "v01-04"
 
 BBQ_version = "HEAD" #  "v00-01-02"
 
-Druid_version = "HEAD" # "2.2" # "1.8" 
+Druid_version = "HEAD" # "2.2" # "1.8"
 
 Garlic_version = "HEAD" # "v3.0.3"
 
@@ -258,4 +258,4 @@ DD4hepExamples_version = "HEAD" # "v00-14"
 
 lcgeo_version = "HEAD" # "v00-05"
 
-Physsim_version = "HEAD" # "v00-02" 
+Physsim_version = "HEAD" # "v00-02"
