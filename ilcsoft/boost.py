@@ -8,7 +8,7 @@
 # Date: May 2015
 #
 ##################################################
-                                                                                                                                                            
+
 # custom imports
 from baseilc import BaseILC
 from util import *
@@ -16,7 +16,7 @@ from util import *
 
 class Boost(BaseILC):
     """ Responsible for the Boost configuration process. """
-    
+
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "Boost", "boost")
 
@@ -30,9 +30,19 @@ class Boost(BaseILC):
             ["lib/libboost_system.so", "lib/libboost_filesystem.so", "lib64/libboost_system.so", "lib64/libboost_filesystem.so"]
         ]
 
+        # The boost build options.
+        # See: https://boostorg.github.io/build/manual/develop/index.html
+        self.buildopts = {}
+
+    def genBuildOpts(self):
+        opts = ""
+        for k, v in self.buildopts.iteritems():
+            opts = opts + k + "=" + str(v).strip() + " "
+        return opts
+
     def setMode(self, mode):
         BaseILC.setMode(self, mode)
-        
+
         if( self.mode == "install" ):
             if( Version( self.version ) > "1.63.0" ):
                 # Example: https://dl.bintray.com/boostorg/release/1.71.0/source/boost_1_71_0.tar.gz
@@ -43,25 +53,24 @@ class Boost(BaseILC):
 
     def compile(self):
         """ compile Boost """
-        
+
         trymakedir( self.buildPath )
         os.chdir( self.installPath )
-        
+
         if( self.rebuild ):
              tryunlink( "b2" )
-        
+
         # Run the bootstrap script before-hand
         if( os.system( "./bootstrap.sh --prefix=" + self.installPath + " 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "Failed to run Boost bootstrap!!" )
-        
+
         # Compile Boost
-        if( os.system( "./b2 install --layout=system -q --build-dir=" + self.buildPath + "  --prefix=" + self.installPath + " ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os.system( "./b2 install --layout=system -q --build-dir=" + self.buildPath + "  --prefix=" + self.installPath + " " + self.genBuildOpts() + " ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "Failed to compile Boost!!" )
-        
+
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
 
         self.envorder = [ "BOOST_ROOT" ]
         self.env["BOOST_ROOT"] = self.installPath
-
