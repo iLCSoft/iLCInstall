@@ -46,4 +46,5 @@ class MySQL(BaseILC):
             self.envpath["LD_LIBRARY_PATH"].append( "$MYSQL_HOME/lib" )
         self.envpath["LD_LIBRARY_PATH"].append( "$MYSQL_HOME/lib64/mysql" )
         self.envpath["LD_LIBRARY_PATH"].append( "$MYSQL_HOME/lib/mysql" )
+        self.addCMakeCache( "MySQL_DIR", self.installPath, "Path to MySQL directory" )
 
