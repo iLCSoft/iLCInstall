@@ -39,13 +39,6 @@ class Geant4(BaseILC):
         ] ]
 
         self.optmodules = [ 'Qt5', 'CLHEP' , "XercesC"]
-    
-    def setMode(self, mode):
-        BaseILC.setMode(self, mode)
-        v = Version( self.version )
-        v = "%s.%s.%s" % ( v[0], v[1], v[2] )
-        print "Geant4 version is %s" % v
-        self.cmakeconfig = self.installPath + "/lib/Geant4-" + v
 
     def createLink(self):
         BaseILC.createLink(self)
@@ -92,6 +85,10 @@ class Geant4(BaseILC):
             # download url
             self.download.url = "http://geant4.cern.ch/support/source/geant4.%s.tar.gz" % self.version
 
+        v = Version( self.version )
+        v = "%s.%s.%s" % ( v[0], v[1], v[2] )
+        print "Geant4 version is %s" % v
+        self.cmakeconfig = self.installPath + "/lib/Geant4-" + v
 
     def compile(self):
         """ compile Geant4 """
