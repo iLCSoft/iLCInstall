@@ -69,6 +69,7 @@ class BaseILC:
                                                 # will only be written in the build_env.sh of this package
         self.envcmake = {}                      # cmake environment (e.g. BUILD_SHARED_LIBS=ON)
         self.cmakecache = {}                    # cmake variables to export in ILCSoft.cmake cache
+        self.cmakeconfig = None                 # path to package CMake config file. If None use the installPath
         self.envorder = []                      # use for environment variables that have priority
         self.env = {}                           # environment variables
         self.envcmds = []                       # cmds added to the environment script (build_env.sh)
