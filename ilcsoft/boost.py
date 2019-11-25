@@ -50,7 +50,8 @@ class Boost(BaseILC):
             else:
                 # Example: https://sourceforge.net/projects/boost/files/boost/1.63.0/boost_1_63_0.tar.gz
                 self.download.url = "https://sourceforge.net/projects/boost/files/boost/%s/boost_%s.tar.gz" % (self.version, self.version.replace( "." , "_" ) )
-
+        self.cmakeconfig = self.installPath + "/lib/cmake/Boost-" + self.version
+        
     def compile(self):
         """ compile Boost """
 

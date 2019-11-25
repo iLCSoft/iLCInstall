@@ -54,7 +54,7 @@ class BaseILC:
         self.download = Download(self)          # download struct ( groups together a bunch of download variables )
         self.download.gitrepo = name
         self.hasCMakeBuildSupport = True        # can the package be built with cmake?
-        self.hasCMakeFindSupport = True         # if yes PKG_HOME variable is set and package can be used in BUILD_WITH
+        self.hasCMakeFindSupport = True         # if yes package is listed in CMAKE_MODULE_PATH in ILCSoft.cmake
         self.makeTests = False                  # flag for calling "make test" after building the software
         self.rebuild = False                    # flag for calling a "make clean" before building the software
         self.skipCompile = False                # flag for skipping the compile step of a module

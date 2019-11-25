@@ -43,6 +43,7 @@ class CLHEP(BaseILC):
 		   
         if( Version( self.version ) >= "2.1.3.0" ):
             self.hasCMakeBuildSupport = True
+            self.cmakeconfig = self.installPath + "/lib/CLHEP-" + self.version
 
 
     def downloadSources(self):

@@ -19,7 +19,7 @@ class DD4hepExamples(BaseILC):
         BaseILC.__init__(self, userInput, "DD4hepExamples", "DD4hepExamples")
 
         #self.hasCMakeBuildSupport = False
-        #self.hasCMakeFindSupport = False
+        self.hasCMakeFindSupport = False
 
         self.download.supportedTypes = [ "svn"]
 

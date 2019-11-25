@@ -32,6 +32,9 @@ class MarlinPKG(BaseILC):
         self.reqmodules=[ 'LCIO', 'Marlin' ]
 
         self.download.gitrepo = name
+        # Marlin packages just provide libraries. 
+        # They are not supposed to be found via CMake 
+        self.hasCMakeFindSupport = False
         
     def compile(self):
         """ compile MarlinPKG """

@@ -19,7 +19,7 @@ class lcgeo(BaseILC):
         BaseILC.__init__(self, userInput, "lcgeo", "lcgeo")
 
         #self.hasCMakeBuildSupport = False
-        #self.hasCMakeFindSupport = False
+        self.hasCMakeFindSupport = False
 
         self.download.supportedTypes = [ "GitHub" ] 
         self.download.gituser = 'iLCSoft'

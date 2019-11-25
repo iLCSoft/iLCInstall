@@ -31,6 +31,9 @@ class XercesC(BaseILC):
                 "lib64/libxerces-c.so",
                 "lib64/libxerces-c.dylib",
         ]]
+    def setMode(self, mode):
+        BaseILC.setMode(self, mode)
+        self.cmakeconfig = self.installPath + "/lib/cmake/XercesC"
     
     def compile(self):
         """ compile XercesC """
