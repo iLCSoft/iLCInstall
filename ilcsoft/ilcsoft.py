@@ -272,21 +272,15 @@ class ILCSoft:
             if( mod.name in self.cmakeSupportedMods ):
 
                 f.write( "\t" )
-
-                # check if install path from module contains base path from ilcsoft
-                if( mod.installPath.find( self.installPath) == 0 ):
-                    #f.write( "SET( " + modname + "_DIR \"${ILC_HOME}/" + mod.alias + "/" + mod.version + "\"" \
-                    #        + " CACHE PATH \"Path to " + modname + "\" FORCE)" )
-                    f.write( "${ILC_HOME}/" + mod.alias + "/" + mod.version + ';' )
-                    f2.write( "${ILC_HOME}/" + mod.alias + "/" + mod.version + ':\\' )
-                else:
-                    #f.write( "SET( " + modname + "_DIR \"" + mod.installPath + "\"" \
-                    #        + " CACHE PATH \"Path to " + modname + "\" FORCE)" )
-                    f.write( mod.installPath + ';' )
-                    f2.write( mod.installPath + ':\\' )
-
-                f.write( os.linesep )
-                f2.write( os.linesep )
+                configpath = self.cmakeconfig
+                if configpath is None:
+                    # check if install path from module contains base path from ilcsoft
+                    if (mod.installPath.find( self.installPath) == 0) :
+                        configpath = "${ILC_HOME}/" + mod.alias + "/" + mod.version
+                    else:
+                        configpath = mod.installPath
+                f.write( configpath + ';' + os.linesep )
+                f2.write( configpath + ':\\' + os.linesep )
 
                 #f.write( "MARK_AS_ADVANCED( " + modname + "_DIR )" + os.linesep  )
 
