@@ -121,5 +121,8 @@ class ROOT(BaseILC):
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
+        # Required for LCIO installation.
+        # LCIO uses its own FindROOT.cmake relying on ROOT_DIR ...
+        self.addCMakeCache( "ROOT_DIR", self.installPath, "Path to ROOT" )
         self.envcmds.append('test -r ' + self.installPath + '/bin/thisroot.sh && . ' + self.installPath + '/bin/thisroot.sh')
 
