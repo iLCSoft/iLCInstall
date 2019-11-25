@@ -157,7 +157,7 @@ LCIO_version = "v02-13"
 
 GEAR_version = "v01-08"
 
-CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
+CondDBMySQL_version = "CondDBMySQL_ILC-0-9-7"
 
 ILCUTIL_version = "v01-05"
 
