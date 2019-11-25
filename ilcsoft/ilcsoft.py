@@ -272,7 +272,7 @@ class ILCSoft:
             if( mod.name in self.cmakeSupportedMods ):
 
                 f.write( "\t" )
-                configpath = self.cmakeconfig
+                configpath = mod.cmakeconfig
                 if configpath is None:
                     # check if install path from module contains base path from ilcsoft
                     if (mod.installPath.find( self.installPath) == 0) :
