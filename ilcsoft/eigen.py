@@ -62,3 +62,4 @@ class Eigen(BaseILC):
         
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
+        self.addCMakeCache( "EIGEN3_DIR", self.installPath, "Path to Eigen3" )
