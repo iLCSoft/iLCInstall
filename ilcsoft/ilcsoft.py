@@ -352,6 +352,14 @@ class ILCSoft:
         if cxxStandard:
           f.write( 'set(CMAKE_CXX_STANDARD %s CACHE STRING "C++ Standard" FORCE)' % cxxStandard )
           f.write( os.linesep )
+        
+        for mod in self.modules:
+            if mod.cmakecache:
+                f.write( "# -- Cache variables from " + mod.alias + os.linesep )
+                for k,v in mod.cmakecache.iteritems():
+                    f.write( "set(%s \"%s\" CACHE STRING \"%s\" FORCE)" % (k, v[0], v[1]) )
+                    f.write( os.linesep )
+                f.write( os.linesep )
 
         # close file
         f.close()

@@ -68,6 +68,7 @@ class BaseILC:
         self.reqmodules_buildonly = []          # required modules for only building this package (their environment variables
                                                 # will only be written in the build_env.sh of this package
         self.envcmake = {}                      # cmake environment (e.g. BUILD_SHARED_LIBS=ON)
+        self.cmakecache = {}                    # cmake variables to export in ILCSoft.cmake cache
         self.envorder = []                      # use for environment variables that have priority
         self.env = {}                           # environment variables
         self.envcmds = []                       # cmds added to the environment script (build_env.sh)
@@ -1314,6 +1315,10 @@ class BaseILC:
                 print "please recheck your config file: names are case-sensitive!!"
     
 
+    def addCMakeCache(self, var, value, description):
+        """ Added a CMake cache variable (string) to ILCSoft.cmake """
+        self.cmakecache[ str(var) ] = ( str(value), str(description) )
+        
 #--------------------------------------------------------------------------------
 
 class Download:
