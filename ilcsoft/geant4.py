@@ -87,7 +87,6 @@ class Geant4(BaseILC):
 
         v = Version( self.version )
         v = "%s.%s.%s" % ( v[0], v[1], v[2] )
-        print "Geant4 version is %s" % v
         self.cmakeconfig = self.installPath + "/lib/Geant4-" + v
 
     def compile(self):
