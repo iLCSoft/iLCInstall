@@ -31,7 +31,7 @@ class Qt5(BaseILC):
             ["bin/qmake"] ]
 
     def setMode(self, mode):
-        BaseILC.setMode(mode)
+        BaseILC.setMode(self, mode)
         # installPath does not exists before setMode is called
         self.cmakeconfig = self.installPath + "/lib/cmake/Qt5"
             

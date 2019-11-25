@@ -35,7 +35,7 @@ class Eigen(BaseILC):
         ]
         
     def setMode(self, mode):
-        BaseILC.setMode(mode)
+        BaseILC.setMode(self, mode)
         # installPath does not exists before setMode is called
         self.cmakeconfig = self.installPath + "/share/eigen3/cmake/"
         
