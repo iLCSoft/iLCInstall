@@ -112,3 +112,5 @@ class FastJet(BaseILC):
         self.env["FastJet_HOME"] = self.installPath
         self.envpath["PATH"].append( "$FastJet_HOME/bin" )
         self.envpath["LD_LIBRARY_PATH"].append( "$FastJet_HOME/lib" )
+        
+        self.addCMakeCache( "FastJet_DIR", self.installPath, "Path to FastJet" ) 
