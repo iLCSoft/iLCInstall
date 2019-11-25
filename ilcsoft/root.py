@@ -42,6 +42,8 @@ class ROOT(BaseILC):
         else:
             self.download.svnurl += '/tags/v' + self.version.replace('.','-')
 
+        self.cmakeconfig = self.installPath + "/cmake"
+
     def init(self):
         BaseILC.init(self)
 

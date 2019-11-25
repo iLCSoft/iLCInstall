@@ -23,6 +23,8 @@ class BBQ(BaseILC):
         self.reqmodules = [ "LCIO", "GEAR", "ROOT" ]
 
         self.download.root = ''
+        
+        self.hasCMakeFindSupport = False
 
     def compile(self):
         """ compile BBQ """

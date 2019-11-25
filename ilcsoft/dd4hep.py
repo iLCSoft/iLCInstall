@@ -31,19 +31,9 @@ class DD4hep(BaseILC):
         self.reqmodules = [ "ROOT" , "LCIO", "GEAR", "Geant4" , "CLHEP" ,"Boost" ]
 
 
-#    def setMode(self, mode):
-#        BaseILC.setMode(self, mode)
-#
-#        self.download.type = "svn"
-#        
-#        self.download.svnurl = 'http://llrforge.in2p3.fr/svn/DD4hep'
-#
-#        if( Version( self.version ) == 'HEAD' ):
-#            self.download.svnurl += '/trunk'
-#        elif 'pre' in self.version or 'dev' in self.version:
-#            self.download.svnurl += '/branches/' + self.version
-#        else:
-#            self.download.svnurl += '/tags/' + self.version
+   def setMode(self, mode):
+       BaseILC.setMode(self, mode)
+       self.cmakeconfig = self.installPath + "/cmake"
 
 
     def init(self):

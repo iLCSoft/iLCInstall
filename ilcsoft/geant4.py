@@ -39,6 +39,13 @@ class Geant4(BaseILC):
         ] ]
 
         self.optmodules = [ 'Qt5', 'CLHEP' , "XercesC"]
+    
+    def setMode(self, mode):
+        BaseILC.setMode(self, mode)
+        v = Version( self.version )
+        v = "%s.%s.%s" % ( v[0], v[1], v[2] )
+        print "Geant4 version is %s" % v
+        self.cmakeconfig = self.installPath + "/lib/Geant4-" + v
 
     def createLink(self):
         BaseILC.createLink(self)

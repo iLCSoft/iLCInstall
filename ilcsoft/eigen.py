@@ -34,6 +34,11 @@ class Eigen(BaseILC):
              "Eigen/src/Core/Matrix.h", "Eigen/Core" ]
         ]
         
+    def setMode(self, mode):
+        BaseILC.setMode(mode)
+        # installPath does not exists before setMode is called
+        self.cmakeconfig = self.installPath + "/share/eigen3/cmake/"
+        
     def compile(self):
         """ compile Eigen """
 	     	

@@ -29,6 +29,11 @@ class Qt5(BaseILC):
             ["lib/libQt5Core.so", "lib64/libQt5Core.so", "lib/libQt5Core.dylib", "lib/libQt5Core.la"],
             ["lib/libQt5Gui.so", "lib64/libQt5Gui.so", "lib/libQt5Gui.dylib", "lib/libQt5Gui.la"],
             ["bin/qmake"] ]
+
+    def setMode(self, mode):
+        BaseILC.setMode(mode)
+        # installPath does not exists before setMode is called
+        self.cmakeconfig = self.installPath + "/lib/cmake/Qt5"
             
     def autoDetectPath(self):
         """ tries to auto detect qt dir from system settings.
