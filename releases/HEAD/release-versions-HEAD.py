@@ -156,7 +156,7 @@ Eigen_version = "3.3.7"
 
 # -------------------------------------------
 
-CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
+CondDBMySQL_version = "CondDBMySQL_ILC-0-9-7"
 
 ILCUTIL_version = "v01-05"
 
