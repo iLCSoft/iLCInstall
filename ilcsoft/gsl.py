@@ -85,3 +85,4 @@ class GSL(BaseILC):
         if self.installPath != "/usr":
             self.envpath["PATH"].append( "$GSL_HOME/bin" )
             self.envpath["LD_LIBRARY_PATH"].append( "$GSL_HOME/lib" )
+        self.addCMakeCache( "GSL_DIR", self.installPath, "Path to GSL" )
