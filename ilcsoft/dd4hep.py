@@ -31,9 +31,9 @@ class DD4hep(BaseILC):
         self.reqmodules = [ "ROOT" , "LCIO", "GEAR", "Geant4" , "CLHEP" ,"Boost" ]
 
 
-   def setMode(self, mode):
-       BaseILC.setMode(self, mode)
-       self.cmakeconfig = self.installPath + "/cmake"
+    def setMode(self, mode):
+        BaseILC.setMode(self, mode)
+        self.cmakeconfig = self.installPath + "/cmake"
 
 
     def init(self):
