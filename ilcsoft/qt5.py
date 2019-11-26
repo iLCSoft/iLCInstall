@@ -80,6 +80,9 @@ class Qt5(BaseILC):
             os.chdir( self.version + "/" + self.name )
             if( os.system( "./init-repository --module-subset=essential,qt3d 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to init Qt5 submodules!!" )
+        else:
+           print("****** path not found",self.version + "/" + self.name + "/init-repository" )
+
         
     def compile(self):
         """ compile Qt5 """

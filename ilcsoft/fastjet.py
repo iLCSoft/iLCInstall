@@ -75,7 +75,7 @@ class FastJet(BaseILC):
         if( self.rebuild ):
             os.system( "make distclean" )
 
-        if( os.system( "../" + self.name + "/configure --prefix=" + self.installPath + " CXXFLAGS=\"CXXFLAGS\" --enable-auto-ptr=no --enable-shared 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os.system( "../" + self.name + "/configure --prefix=" + self.installPath + " CXXFLAGS=\"$CXXFLAGS\" --enable-auto-ptr=no --enable-shared 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
 
         if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
