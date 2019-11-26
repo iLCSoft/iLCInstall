@@ -15,3 +15,7 @@ export MYSQL_DIR=/cvmfs/sft.cern.ch/lcg/releases/mysql/5.7.26-c3e26/x86_64-slc6-
 # --- use a recent version of cmake 
 export PATH=/afs/desy.de/project/ilcsoft/sw/x86_64_gcc82_sl6/CMake/3.15.1/bin:$PATH
 
+# --- use a recent version of git
+export PATH=/cvmfs/sft.cern.ch/lcg/contrib/git/2.17.0/x86_64-slc6/bin:$PATH
+
+
