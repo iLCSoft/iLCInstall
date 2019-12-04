@@ -280,7 +280,7 @@ class ILCSoft:
                     else:
                         configpath = mod.installPath
                 f.write( configpath + ';' + os.linesep )
-                f2.write( configpath + ':\\' + os.linesep )
+                f2.write( configpath.replace(';', ':') + ':\\' + os.linesep )
 
                 #f.write( "MARK_AS_ADVANCED( " + modname + "_DIR )" + os.linesep  )
 
