@@ -15,15 +15,17 @@ from util import *
 class CLHEP(BaseILC):
     """ Responsible for the CLHEP installation process. """
     
-    def __init__(self, userInput):
+    def __init__(self, userInput, version=''):
         BaseILC.__init__(self, userInput, "CLHEP", "CLHEP")
 
         self.download.supportHEAD = False
         self.download.supportedTypes = ["wget"]
 
         self.reqfiles = [ ["lib/libCLHEP.a", "lib/libCLHEP.so", "lib64/libCLHEP.so", "lib/libCLHEP.dylib"] ]
-        
-			
+
+        if(len(version)>0):
+            self.version = version
+
     def setMode(self, mode):
         BaseILC.setMode(self, mode)
         
@@ -43,7 +45,7 @@ class CLHEP(BaseILC):
 		   
         if( Version( self.version ) >= "2.1.3.0" ):
             self.hasCMakeBuildSupport = True
-            self.cmakeconfig = self.installPath + "/lib/CLHEP-" + self.version
+            self.cmakeconfig = self.installPath + "/lib/CLHEP-" +  self.version
 
 
     def downloadSources(self):

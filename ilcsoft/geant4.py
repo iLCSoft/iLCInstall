@@ -15,7 +15,7 @@ from util import *
 class Geant4(BaseILC):
     """ Responsible for the Geant4 configuration process. """
     
-    def __init__(self, userInput):
+    def __init__(self, userInput, version=''):
         BaseILC.__init__(self, userInput, "Geant4", "geant4")
 
         #self.installSupport = False
@@ -39,6 +39,9 @@ class Geant4(BaseILC):
         ] ]
 
         self.optmodules = [ 'Qt5', 'CLHEP' , "XercesC"]
+
+        if(len(version)>0):
+            self.version = version
 
     def createLink(self):
         BaseILC.createLink(self)
