@@ -111,7 +111,7 @@ class BaseILC:
                     print
 
         if( self.mode == "use" ):
-            print "   + [ " + self.installPath + " ]",
+            print "   + [ " + self.installPath + " - version: " + self.version + " ]",
             if self.useLink:
                 print " -> [ "+ self.realPath() + " ]",
             print
@@ -248,7 +248,8 @@ class BaseILC:
                 # 1st case: full path to installation is given
                 self.installPath = fixPath(self.__userInput)
                 # extract version from path
-                self.version = basename( self.installPath )
+                if(  not hasattr(self, 'version') ):
+                    self.version = basename( self.installPath )
                 # 2nd case: use( Mod( "vXX-XX" ) is given
                 if( not self.checkInstall() ):
                     self.version = self.__userInput
