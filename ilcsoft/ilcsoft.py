@@ -411,8 +411,18 @@ class ILCSoft:
         f.write( os.linesep + '# -------------------------------------------------------------------- ---' + os.linesep )
         f.write( os.linesep + '# ---  Use the same compiler and python as used for the installation   ---' + os.linesep )
         f.write( os.linesep + '# -------------------------------------------------------------------- ---' + os.linesep )
-        f.write( 'export PATH='+cxx_path+'/bin:'+ py_path+'/bin:${PATH}' + os.linesep  )
-        f.write( 'export LD_LIBRARY_PATH='+cxx_path+'/lib64:'+ cxx_path+'/lib:'+ py_path+'/lib:${LD_LIBRARY_PATH}' + os.linesep  + os.linesep )
+        # On cvmfs the gcc/llvm compilers are setup using the setup.sh file
+        # source also other important scripts. Adding the compiler to LD_LIBRARY_PATH and PATH
+        # is not enough. The setup.sh file is also setting up paths to binutils and other important variables
+        if os.path.exists( cxx_path + "/setup.sh" ):
+            f.write( '. ' + cxx_path + '/setup.sh' + os.linesep + os.linesep  )
+        else:
+            f.write( 'export PATH='+cxx_path+'/bin:${PATH}' + os.linesep  )
+            f.write( 'export LD_LIBRARY_PATH='+cxx_path+'/lib64:'+ cxx_path+'/lib:${LD_LIBRARY_PATH}' + os.linesep  + os.linesep )
+        
+        # export Python in PATH and LD_LIBRARY_PATH
+        f.write( 'export PATH='+py_path+'/bin:${PATH}' + os.linesep  )
+        f.write( 'export LD_LIBRARY_PATH='+py_path+'/lib:${LD_LIBRARY_PATH}' + os.linesep  + os.linesep )
 
         f.write( 'export CXX=' + compiler + os.linesep )
         ccompiler = self.env["CC"]
