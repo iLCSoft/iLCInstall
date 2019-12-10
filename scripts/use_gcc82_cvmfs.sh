@@ -3,9 +3,6 @@ source /cvmfs/sft.cern.ch/lcg/releases/gcc/8.2.0/x86_64-slc6/setup.sh
 export PATH=/cvmfs/sft.cern.ch/lcg/releases/LCG_96/Python/2.7.16/x86_64-slc6-gcc8-opt/bin:$PATH
 export LD_LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/LCG_96/Python/2.7.16/x86_64-slc6-gcc8-opt/lib:$LD_LIBRARY_PATH
 
-# --- use correct tbb for ROOT
-export LD_LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/tbb/2019_U1-5939b/x86_64-slc6-gcc8-opt/lib/:$LD_LIBRARY_PATH 
-
 
 # --- use a suitable mysql
 
