@@ -65,6 +65,7 @@ ilcsoft_afs_path['gcc44_64bit'] = os.path.normpath( os.path.join( ilcsoft_afs_pa
 ilcsoft_afs_path['gcc48_64bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc48_sl6' ))
 ilcsoft_afs_path['gcc49_64bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc49_sl6' ))
 ilcsoft_afs_path['gcc82_64bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc82_sl6' ))
+ilcsoft_afs_path['gcc82_64bit_centos7'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc82_centos7' ))
 ilcsoft_afs_path['gcc46_64bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc46_ub1204' ))
 ilcsoft_afs_path['gcc48_64bit_ub1404'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc48_ub1404' ))
 ilcsoft_afs_path['gcc54_64bit_ub1604'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc54_ub1604' ))
@@ -88,6 +89,8 @@ try:
         arch += "_ub1604"
     if( platf.find("bionic")>0):
         arch += "_ub1804"
+    if( platf.find("centos-7")>0):
+        arch += "_centos7"
     ilcPath = ilcsoft_afs_path[ arch ] + '/'
     gcccheck = platform.python_compiler()
     print gcccheck
