@@ -146,7 +146,7 @@ Qt5_version = "v5.13.1"
 
 CMake_version = "3.15.5"
 
-CED_version = "v01-09-02"
+CED_version = "v01-09-03"
 
 SIO_version = "v00-00-02"
 
@@ -158,7 +158,7 @@ Eigen_version = "3.3.7"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-7"
 
-ILCUTIL_version = "v01-05"
+ILCUTIL_version = "v01-06"
 
 FastJet_version = "3.2.1"
 
