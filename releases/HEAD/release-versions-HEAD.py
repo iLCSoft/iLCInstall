@@ -165,7 +165,7 @@ FastJet_version = "3.2.1"
 FastJetcontrib_version = "1.025"
 
 # xerces-c (needed by geant4 for building gdml support - required by mokka)
-XercesC_version = "Xerces-C_3_2_2"
+XercesC_version = "v3.2.2"
 XERCESC_ROOT_DIR = ilcPath + "/xercesc/" + XercesC_version
 
 # -------------------------------------------
