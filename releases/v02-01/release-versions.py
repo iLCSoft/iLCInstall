@@ -10,7 +10,7 @@ import datetime
 import platform
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v02-01-pre'
+ilcsoft_release='v02-01'
 # ----------------------------------------------------------------------------
 
 #-----------------------
