@@ -490,6 +490,20 @@ All external packages have been upgraded to the latest available (see below for 
 - Fixed uninitialized values (proDer, composed trajectory)
 - Fixed uninitialized values (labDer)
 
+### DD4hep v01-11-02
+
+* 2020-03-02 Andre Sailer ([PR#641](https://github.com/AidaSoft/DD4hep/pull/641))
+  - DDSim: make the output of `ddsim --dumpSteeringFile` visible again
+  - DDSim: fix exception in ConfigHelper.printOptions, called by `--dumpParameters` option
+  - DDSim: fix parsing of vector command line parameters, gun.position, gun.direction etc.
+  - DDSim: better testing of command line parameters
+
+### DD4hep v01-11-01
+
+* patch release for v01-11 that adds this PR to v01-11:
+* 2020-02-26 Andre Sailer (PR#637)
+   - LcioEventReader: fix setting of color flow, second coordinate was never set
+
 ### DD4hep v01-11
 
 * 2019-10-23 MarkusFrankATcernch ([PR#587](https://github.com/AidaSoft/DD4hep/pull/587))
