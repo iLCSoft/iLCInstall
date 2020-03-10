@@ -1300,6 +1300,15 @@ All external packages have been upgraded to the latest available (see below for 
 * 2018-05-08 Andre Sailer ([PR#55](https://github.com/fcalsw/fcalclusterer/pull/55))
   - CMake: let include directories be decided via dependencies
 
+# lcgeo v00-16-06
+
+* 2020-03-02 Remi Ete ([PR#241](https://github.com/iLCSoft/lcgeo/pull/241))
+  - `Yoke05_Barrel` driver:
+    - Removed slices DetElement construction
+    - Moved layer DetElement construction to external loop: fixes the DetElement hierarchy.
+  This fixes the access to the DetElement given a CellID in our reconstruction. 
+  Related issue: https://github.com/iLCSoft/ILDConfig/issues/88
+
 ### lcgeo v00-16-05
 
 * 2019-12-11 Ete Remi ([PR#240](https://github.com/iLCSoft/lcgeo/pull/240))
