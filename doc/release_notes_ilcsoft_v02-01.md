@@ -21,12 +21,6 @@ All external packages have been upgraded to the latest available (see below for 
 
 ### SIO v00-00-02 (base)
 
-## Removed packages
-
-### MarlinTPC
-
-* Not compatible (yet) with C++17. Requires upgrade from TPC group (ongoing)
-
 ## Packages changed wrt. to v02-00-02:
 
 ### iLCUtil v01-06
@@ -208,6 +202,51 @@ All external packages have been upgraded to the latest available (see below for 
   - Implemented substructure parameters commonly used for top tagging. The definition of these new variables can be adjusted from the steering file (added options to steer how to calculate the energy correlation function (energyCorrelator) and how to calculate NSubjettiness (axesMode and measureMode). Only recommended options are implemented. The beta parameter would typically be the same as used for jet clustering but can also be varied separately (beta weights the angular distances between the jet constituents compared to their pt in the calculation of the energy correlation function and subjettiness). 
   - The substructure variables are added to the file as a collection "TopTaggerSubStructure" of seven elements (order: C2, D2, C3, D3, tau1, tau2, tau3). 
   - This update is backwards compatible, with the only difference being the addition of this collection.
+
+### MarlinTPC v01-06
+
+* r5500 | oschfer | 2020-01-21 10:13:55 +0100 (Tue, 21 Jan 2020) | 2 lines
+  - Replaced m_out with streamlog_out in script createProcessor.py
+
+* r5497 | oschfer | 2019-12-13 11:41:07 +0100 (Fri, 13 Dec 2019) | 6 lines
+  - Made MarlinTPC compile with C++11 and C++17.
+    Fixed bug "ISO C++17 does not allow dynamic exception specifications" by running clang-tidy with -checks='-\*,modernize-use-noexcept'
+    For unknown reasons, two runs were necessary to fix all incidents.
+
+* r5495 | oschfer | 2019-12-11 19:42:58 +0100 (Wed, 11 Dec 2019) | 15 lines
+  - Reintegrate merge of branch fixwarningsSL6 (rev5494)
+  - Compiles up to C++11.
+  - This merge brings major updates on documentation:
+    Updated Doxyfiles to Doxygen Version 1.8.11 to allow for markdown language use on newer systems.
+  - Implemented coding rules for MarlinTPC within a configuration file for clang-tidy (5460, 5487, 5493). 
+    Later, a similar one for clang-format could be used. This way the coding rules are part of the software package and officially versioned. These files can be integrated in the Doxygen documentation from version 1.8 and thus serve several purposes at once.
+    Also warning- and error checks are incorporated in the coding rules.
+  - Updated and corrected several parts of the documentation and its building process (5461, 5462, 5487, 5490, 5492).
+    For example, documentation for MarlinTPC and TPCCondData is now being properly separated and built, pictures are found.
+
+* r5481 | oschfer | 2019-11-20 20:18:56 +0100 (Wed, 20 Nov 2019) | 7 lines
+  - Exchanged deprecated auto_ptr<> for unique_ptr<> in all remaining places to prevent compile errors in upcoming C++17 (warnings in C++11).
+    Attention: This will not compile below C++11!
+
+* r5472 | oschfer | 2019-11-13 20:32:21 +0100 (Wed, 13 Nov 2019) | 22 lines
+  - First group of warning-fixes.
+    Attention: Many files are affected!
+  - Detailed changes are documented in rev 5401-5458 of branch
+    fixwarningsSL6_rollback5458. Display log messages for that branch in 
+    revision 5471 in websvn (as branch will be deleted after merging) or by 
+    svn log -gv ^/trunk | less
+
+  - Various manual fixes in rev 5401-5417, such as shadowing, unused 
+    variables, functions and parameters, misplaced files, etc.
+
+  - Automatic fix by clang-tidy of unused parameters in many processors.
+    Many empty functions were introduced by the script createProcessor.py,
+    causing these warnings. The parameter names were commented, such that
+    they are still available in the source code for structural reference.
+    (223 fixes) 
+
+  - Status: About 3500 warnings still remain, which will be fixed in
+    subsequent commits.
 
 ### LCTuple v01-12
 
