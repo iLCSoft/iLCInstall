@@ -299,6 +299,11 @@ All external packages have been upgraded to the latest available (see below for 
   - Added vector boson mass lines to plots. 
   - Added another FastJet processor to the Marlin script to remove overlay which is included in new production.
 
+### LCFIPlus v00-09
+
+* 2020-01-29 Tomohiko Tanabe (dad78f754ee7d0db652e8b178101d3eae2b414d4)
+  - Fixes bug in beam jet distance computation -- this fixed a bug introduced in 2015. The fix gives ~1% better dijet mass width for h->bb events.
+
 ### LCFIPlus v00-08
 
 * 2019-09-04 Andre Sailer ([PR#51](https://github.com/LCFIPlus/LCFIPlus/pull/51))
