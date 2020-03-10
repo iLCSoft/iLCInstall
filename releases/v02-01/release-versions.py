@@ -30,21 +30,19 @@ except KeyError:
     pass
 
 #===============================================================================
-# use a compiler that knows c++11, run
+# use the correct compiler and python 
 #
 '''
-#===== gcc 4.9:
-# . ./scripts/use_gcc49_afs.sh
- source /afs/cern.ch/sw/lcg/contrib/gcc/4.9.3/x86_64-slc6/setup.sh
- export PATH=/afs/cern.ch/sw/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/bin:$PATH
- export LD_LIBRARY_PATH=/afs/cern.ch/sw/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/lib:$LD_LIBRARY_PATH
-
-
-# or on cvmfs:
-# . ./scripts/use_gcc49_cvmfs.sh
- source /cvmfs/sft.cern.ch/lcg/contrib/gcc/4.9.3/x86_64-slc6/setup.sh
- export PATH=/cvmfs/sft.cern.ch/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/bin:$PATH
- export LD_LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/lib:$LD_LIBRARY_PATH
+#---- use gcc and python from SFT in cvmfs
+source /cvmfs/sft.cern.ch/lcg/releases/gcc/8.2.0/x86_64-slc6/setup.sh
+export PATH=/cvmfs/sft.cern.ch/lcg/releases/LCG_96/Python/2.7.16/x86_64-slc6-gcc8-opt/bin:$PATH
+export LD_LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/LCG_96/Python/2.7.16/x86_64-slc6-gcc8-opt/lib:$LD_LIBRARY_PATH
+# --- use a suitable mysql
+export MYSQL_DIR=/cvmfs/sft.cern.ch/lcg/releases/mysql/5.7.26-c3e26/x86_64-slc6-gcc8-opt
+# --- use a recent version of cmake 
+export PATH=/afs/desy.de/project/ilcsoft/sw/x86_64_gcc82_sl6/CMake/3.15.1/bin:$PATH
+# --- use a recent version of git
+export PATH=/cvmfs/sft.cern.ch/lcg/contrib/git/2.17.0/x86_64-slc6/bin:$PATH
 '''
 # before starting the installation
 #================================================================================
