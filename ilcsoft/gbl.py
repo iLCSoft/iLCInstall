@@ -22,6 +22,10 @@ class GBL(BaseILC):
 
         self.reqmodules = [ "ROOT" ]
 
+        self.download.supportedTypes = [ "GitHub" ]
+        self.download.gituser = 'GeneralBrokenLines'
+        self.download.gitrepo = 'GeneralBrokenLines'
+
     def compile(self):
         """ compile GBL """
         
@@ -48,13 +52,3 @@ class GBL(BaseILC):
 
     def setMode(self, mode):
         BaseILC.setMode(self, mode)
-
-        self.download.type = 'svn'
-        self.download.svnurl = 'https://svnsrv.desy.de/public/GeneralBrokenLines'
-
-        if( Version( self.version ) == 'HEAD' ):
-            self.download.svnurl += '/trunk/cpp'
-        elif '-pre' in self.version or '-dev' in self.version:
-            self.download.svnurl += '/branches/' + self.version + '/cpp'
-        else:
-            self.download.svnurl += '/tags/' + self.version + '/cpp'
