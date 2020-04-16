@@ -20,7 +20,7 @@ class GBL(BaseILC):
 
         self.reqfiles = [ ["lib/libGBL.so","lib/libGBL.a","lib/libGBL.dylib"] ]
 
-        self.reqmodules = [ "ROOT" , "Eigen3" ]
+        self.reqmodules = [ "ROOT" , "Eigen" ]
 
         self.download.supportedTypes = [ "GitHub" ]
         self.download.gituser = 'GeneralBrokenLines'
