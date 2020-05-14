@@ -11,8 +11,8 @@ ilcsoft_release= "HEAD"
 # ----------------------------------------------------------------------------
 
 #-----------------------
-# optionally build with c++11 ?
-use_cpp11 = True
+# which cxx standard to use
+cxx_standard = 17
 
 #===============================================================================
 # NB: c++11 - needs a newer compiler and compatible python, e.g. run
@@ -78,7 +78,7 @@ ilcPatchPath = "/data/ilcsoft/HEAD"
 # please adjust the path variables accordingly
 
 # ----- mysql --------------------------------------------------------
-MySQL_version = "5.5.22"
+MySQL_version = "8.0.13"   #"5.5.22"
 MySQL_path = ilcPath + "/mysql/" + MySQL_version
 
 #if( ilcsoft_afs_path[ arch ] == '/afs/desy.de/project/ilcsoft/sw/x86_64_gcc46_ub1204' ):
@@ -86,7 +86,7 @@ MySQL_path = "/usr/local"
 
 
 #------ boost headers files ------------------------------------------
-Boost_path = "/usr/local/opt/boost160"
+Boost_path = "/usr/local/opt/boost"
 
 #------ Eigen headers files ------------------------------------------
 Eigen_path = "/usr/local/opt/eigen32"
@@ -114,18 +114,21 @@ Eigen_path = "/usr/local/opt/eigen32"
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version =  "10.05"
+Geant4_version =  "10.06"
 CLHEP_version =  "2.4.1.0"  #"2.3.4.3"
-ROOT_version = "6.14.06"
+ROOT_version = "6.18.04"
 
-GSL_version = "2.1" # "1.15"
+GSL_version = "2.5"   #"2.1" # "1.15"
 
-QT_version = "4.7.4"
+QT_version = "4.8.7"
 
-CMake_version = "3.4.3" #"2.8.5"
+CMake_version = "3.15.2"   #"3.4.3" #"2.8.5"
 
+SIO_version = "v00-00-02"
 
 # -------------------------------------------
+
+SIO_version = "HEAD"
 
 LCIO_version = "HEAD" # "v02-06"
 
@@ -137,8 +140,8 @@ CondDBMySQL_version = "HEAD" # "CondDBMySQL_ILC-0-9-6"
 
 ILCUTIL_version = "HEAD" # "v01-02-01" 
 
-FastJet_version = "3.3.1"
-FastJetcontrib_version = "1.041"
+FastJet_version = "3.3.3"
+FastJetcontrib_version = "1.044"
 
 FastJetClustering_version = "HEAD" # "v00-02"
 
