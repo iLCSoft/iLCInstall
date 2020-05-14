@@ -78,7 +78,7 @@ class Qt5(BaseILC):
         # Qt5 is a super module. We need to trigger the package download before-hand
         if( os.path.isfile( self.version + "/" + self.name + "/init-repository" ) ):
             os.chdir( self.version + "/" + self.name )
-            if( os.system( "./init-repository --module-subset=essential,qt3d 2>&1 | tee -a " + self.logfile ) != 0 ):
+            if( os_system( "./init-repository --module-subset=essential,qt3d 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to init Qt5 submodules!!" )
         else:
            print("****** path not found",self.version + "/" + self.name + "/init-repository" )
@@ -90,27 +90,27 @@ class Qt5(BaseILC):
         os.chdir( self.installPath + "/build" )
 
         if( self.rebuild ):
-            os.system( "make distclean" )
+            os_system( "make distclean" )
         
         qt_cfg_options = " -opensource -confirm-license -nomake tests -make libs "
         cxxStandard = self.envcmake.get("CMAKE_CXX_STANDARD", None)
         if cxxStandard:
             qt_cfg_options += " -c++std c++" + str(cxxStandard)
         
-        if( os.system( "../" + self.name + "/configure -prefix " + self.installPath + qt_cfg_options
+        if( os_system( "../" + self.name + "/configure -prefix " + self.installPath + qt_cfg_options
                 + " 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
 
-        if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os_system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
 
-        if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os_system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to install!!" )
 
     def cleanupInstall(self):
         BaseILC.cleanupInstall(self)
         os.chdir( self.installPath )
-        os.system( "make clean" )
+        os_system( "make clean" )
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)

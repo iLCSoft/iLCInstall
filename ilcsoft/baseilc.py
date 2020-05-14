@@ -649,13 +649,13 @@ class BaseILC:
                 cmd = "svn update %s" % self.installPath
                 print cmd
 
-                if( os.system( cmd ) != 0 ):
+                if( os_system( cmd ) != 0 ):
                     self.abort( "error updating sources" )
             elif 'git' in self.download.type:
                 cmd = "cd %s && git pull origin && cd -" % self.installPath
                 print cmd
 
-                if( os.system( cmd ) != 0 ):
+                if( os_system( cmd ) != 0 ):
                     self.abort( "error updating sources" )
 
 
@@ -696,9 +696,9 @@ class BaseILC:
             i2=cvsroot_nopass.rfind(':',0,i1)
             i4=cvsroot_nopass.rfind(':')+1
 
-            if( os.system( 'grep "'+cvsroot_nopass[i2:i4]+'[0-9]*'+cvsroot_nopass[i4:]+'" ~/.cvspass &>/dev/null' ) != 0 ):
+            if( os_system( 'grep "'+cvsroot_nopass[i2:i4]+'[0-9]*'+cvsroot_nopass[i4:]+'" ~/.cvspass &>/dev/null' ) != 0 ):
                 print "logging in to cvs server..."
-                if( os.system( self.download.type + " login" ) != 0 ):
+                if( os_system( self.download.type + " login" ) != 0 ):
                     self.abort( "Problems ocurred downloading sources ("+self.download.type+" login)!!")
             else:
                 print "password found in ~/.cvspass, will skip login..."
@@ -708,10 +708,10 @@ class BaseILC:
             # checkout sources
             print "checking out sources..."
             if( self.version == "HEAD" ):
-                if( os.system( "cvs co -d " + self.version + " " + self.download.project ) != 0 ):
+                if( os_system( "cvs co -d " + self.version + " " + self.download.project ) != 0 ):
                     self.abort( "Problems ocurred downloading sources with "+self.download.type+"!!")
             else:
-                if( os.system( "cvs co -d " + self.version + " -r " + self.version + " " + self.download.project ) != 0 ):
+                if( os_system( "cvs co -d " + self.version + " -r " + self.version + " " + self.download.project ) != 0 ):
                     self.abort( "Problems ocurred downloading sources with "+self.download.type+"!!")
         
         elif( self.download.type[:3] == "svn" ):
@@ -727,7 +727,7 @@ class BaseILC:
                 cmd="%s %s %s" % (svncmd, self.download.svnurl, self.version)
 
             print "svn download cmd:",cmd
-            if( os.system( cmd ) != 0 ):
+            if( os_system( cmd ) != 0 ):
                 self.abort( "Problems ocurred downloading sources with "+self.download.type+"!!")
 
         elif( self.download.type[:3] == "git" ):
@@ -737,13 +737,13 @@ class BaseILC:
             cmd="%s %s %s" % (gitcmd, self.download.svnurl, self.version)
 
             print "git download cmd:",cmd
-            if( os.system( cmd ) != 0 ):
+            if( os_system( cmd ) != 0 ):
                 self.abort( "Problems occurred downloading sources with "+self.download.type+"!!")
 
             gittagcmd="cd %s && git checkout %s && cd -" % (self.version, self.version)
 
             print "git checkout tag cmd:",gittagcmd
-            if( os.system( gittagcmd ) != 0 ):
+            if( os_system( gittagcmd ) != 0 ):
                 self.abort( "Problems occurred checking out tag "+self.version+"!!")
 
         elif self.download.type[:6] == "GitHub":
@@ -752,18 +752,18 @@ class BaseILC:
                 branch = 'master' if self.download.branch is None else self.download.branch
                 cmd="git clone -b %s https://github.com/%s/%s.git %s" % (branch, self.download.gituser, self.download.gitrepo, self.version)
                 print "Executing command:",cmd
-                if os.system( cmd ) != 0:
+                if os_system( cmd ) != 0:
                     self.abort( "Problems occurred during execution of " + cmd + " [!!ERROR!!]")
 
                 print "Cloning of repository %s/%s into directory %s sucessfully finished" % (self.download.gituser, self.download.gitrepo, self.version)
 
             elif 'message' not in json.loads(urllib.urlopen('https://api.github.com/repos/%s/%s/git/refs/tags/%s' % (self.download.gituser, self.download.gitrepo, self.version)).read()).keys():
                 cmd = "mkdir -p %s" % (self.version)
-                if os.system( cmd ) != 0:
+                if os_system( cmd ) != 0:
                     self.abort( "Could not create folder" + self.version + " [!!ERROR!!]")
 
                 cmd = "curl -L -k https://api.github.com/repos/%s/%s/tarball/refs/tags/%s | tar xz --strip-components=1 -C %s" % (self.download.gituser, self.download.gitrepo, self.version, self.version)
-                if os.system( cmd ) != 0:
+                if os_system( cmd ) != 0:
                     self.abort( "Could not download and extract tag " + self.version + " [!!ERROR!!]")
                 print "Downloading of the tag %s of repository %s/%s into directory %s sucessfully finished" % (self.version, self.download.gituser, self.download.gitrepo, self.version)
             else:
@@ -779,14 +779,14 @@ class BaseILC:
             else:
                 dopt='o'
 
-            if( os.system( '%s "%s" -%s %s' % (self.download.cmd, self.download.url, dopt, self.download.tarball) ) != 0 ):
+            if( os_system( '%s "%s" -%s %s' % (self.download.cmd, self.download.url, dopt, self.download.tarball) ) != 0 ):
                 self.abort( "Problems ocurred downloading sources!!")
 
             if( not os.path.exists( "./" + self.download.tarball) ):
                 self.abort( "Problems ocurred downloading sources!!")
                 
             # find out directory inside tarball
-            os.system("tar -tzf " + self.download.tarball + " > tarlist.tmp")
+            os_system("tar -tzf " + self.download.tarball + " > tarlist.tmp")
             self.download.tardir = getoutput( "head -n1 tarlist.tmp" ).strip()
             os.unlink( "tarlist.tmp" )
             
@@ -796,7 +796,7 @@ class BaseILC:
 
             # unpack tarball
             print "+ Unpacking " + self.download.tarball
-            os.system( "tar -xzvf " + self.download.tarball )
+            os_system( "tar -xzvf " + self.download.tarball )
             
             tryrename( self.download.tardir, self.version )
 
@@ -863,13 +863,13 @@ class BaseILC:
             self.setEnv(self, [])
 
             # write snapshot of environment to logfile for debugging
-            os.system( "echo \"" + 100*'#' + "\" >> " + self.logfile )
-            os.system( "echo \"" + 10*'#' + " BUILDING " + self.name + "\" >> " + self.logfile )
-            os.system( "echo \"" + 100*'#' + "\" >> " + self.logfile )
-            os.system( "echo \"" + 5*'-' + " ENVIRONMENT SNAPSHOT " + 5*'-' + "\" >> " + self.logfile )
-            os.system( "env >> " + self.logfile )
-            os.system( "echo \"" + 5*'-' + " END OF ENVIRONMENT SNAPSHOT " + 5*'-' + "\" >> " + self.logfile )
-            os.system( "touch " + self.installPath + "/.install_failed.tmp" )
+            os_system( "echo \"" + 100*'#' + "\" >> " + self.logfile )
+            os_system( "echo \"" + 10*'#' + " BUILDING " + self.name + "\" >> " + self.logfile )
+            os_system( "echo \"" + 100*'#' + "\" >> " + self.logfile )
+            os_system( "echo \"" + 5*'-' + " ENVIRONMENT SNAPSHOT " + 5*'-' + "\" >> " + self.logfile )
+            os_system( "env >> " + self.logfile )
+            os_system( "echo \"" + 5*'-' + " END OF ENVIRONMENT SNAPSHOT " + 5*'-' + "\" >> " + self.logfile )
+            os_system( "touch " + self.installPath + "/.install_failed.tmp" )
 
             # compile module
             if( not self.skipCompile ):
@@ -881,9 +881,9 @@ class BaseILC:
                 
                 self.compile()
 
-            os.system( "echo \"" + 100*'#' + "\" >> " + self.logfile )
-            os.system( "echo \"" + 10*'#' + " FINISHED BUILDING " + self.name + "\" >> " + self.logfile )
-            os.system( "echo \"" + 100*'#' + "\" >> " + self.logfile )
+            os_system( "echo \"" + 100*'#' + "\" >> " + self.logfile )
+            os_system( "echo \"" + 10*'#' + " FINISHED BUILDING " + self.name + "\" >> " + self.logfile )
+            os_system( "echo \"" + 100*'#' + "\" >> " + self.logfile )
             
             # set the module to use mode
             self.mode = "use"

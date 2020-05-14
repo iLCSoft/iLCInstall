@@ -62,18 +62,18 @@ class lcgeo(BaseILC):
         
         if( self.rebuild ):
             tryunlink( "CMakeCache.txt" )
-        if( os.system( self.genCMakeCmd() + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os_system( self.genCMakeCmd() + " 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
 
         if (self.nightlyBuild == True):
 
             for targetName in self.nightlyTargets:
-                if( os.system( ". ../build_env.sh ; make ${MAKEOPTS} " + targetName + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+                if( os_system( ". ../build_env.sh ; make ${MAKEOPTS} " + targetName + " 2>&1 | tee -a " + self.logfile ) != 0 ):
                     self.abort( "failed to compile!!" )
         else:
-            if( os.system( ". ../build_env.sh ; make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
+            if( os_system( ". ../build_env.sh ; make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to compile!!" )
-            if( os.system( ". ../build_env.sh ; make install 2>&1 | tee -a " + self.logfile ) != 0 ):
+            if( os_system( ". ../build_env.sh ; make install 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to install!!" )
 
 

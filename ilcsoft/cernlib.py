@@ -51,11 +51,11 @@ class CERNLIB(BaseILC):
             urllib.urlretrieve( "http://www-zeuthen.desy.de/linear_collider/cernlib/new/cernlib-2005-all-new.tgz", "cernlib-2005-all-new.tgz" )
             urllib.urlretrieve( "http://www-zeuthen.desy.de/linear_collider/cernlib/new/cernlib.2005.corr.2009.06.13.tgz", "cernlib.2005.corr.2009.06.13.tgz" )
 
-            if( os.system( "tar xzf cernlib-2005-all-new.tgz") != 0 ):
+            if( os_system( "tar xzf cernlib-2005-all-new.tgz") != 0 ):
                 self.abort("failed to extract cernlib sources")
 
             # use more recent corrections (64 bit compatible)
-            os.system( "mv cernlib.2005.corr.tgz cernlib.2005.corr.tgz-old && ln -s cernlib.2005.corr.2009.06.13.tgz cernlib.2005.corr.tgz")
+            os_system( "mv cernlib.2005.corr.tgz cernlib.2005.corr.tgz-old && ln -s cernlib.2005.corr.2009.06.13.tgz cernlib.2005.corr.tgz")
 
         elif self.version == '2006' :
             
@@ -66,7 +66,7 @@ class CERNLIB(BaseILC):
             # ...
            
             ## download index.html
-            #if( os.system( "wget " + self.download.url ) != 0 ):
+            #if( os_system( "wget " + self.download.url ) != 0 ):
             #    self.abort( "Problems ocurred downloading sources!!")
             ## parse index.html for extracting source tarballs
             #src_tarballs = getoutput( r"grep tar.gz index.html | sed -e 's/.*href=\"\(.*\)\".*/\1/'" ).split('\n')
@@ -86,16 +86,16 @@ class CERNLIB(BaseILC):
             #    print 'downloading:', self.download.url + tarball
             #    urllib.urlretrieve( self.download.url + tarball, tarball )
             #    print 'extracting:', tarball
-            #    os.system( "tar xzf " + tarball )
-            #    os.system( "mv %s %s/sources" % (tarball, self.installPath) )
+            #    os_system( "tar xzf " + tarball )
+            #    os_system( "mv %s %s/sources" % (tarball, self.installPath) )
 
             tarballs = [ '2006_src.tar.gz', 'include.tar.gz' ]
             for tarball in tarballs:
                 print 'downloading:', tarball
                 urllib.urlretrieve( self.download.url + tarball, tarball )
-                if os.system( "tar xzf " + tarball ) != 0:
+                if os_system( "tar xzf " + tarball ) != 0:
                     self.abort( 'failed to extract '+ tarball )
-                os.system( "mv " + tarball + " " + self.installPath+'/sources' )
+                os_system( "mv " + tarball + " " + self.installPath+'/sources' )
 
 
     def compile(self):
@@ -131,7 +131,7 @@ class CERNLIB(BaseILC):
             f.write( install_cmd )
             f.close()
 
-            if( os.system( "chmod 755 install_cernlib.sh && ./install_cernlib.sh 2>&1 | tee -a " + self.logfile ) != 0 ):
+            if( os_system( "chmod 755 install_cernlib.sh && ./install_cernlib.sh 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort("failed to compile!!")
 
 
@@ -147,16 +147,16 @@ class CERNLIB(BaseILC):
             # Create the top level Makefile with imake
             os.chdir( "build" )
             print "* Creating the top level Makefile with imake..."
-            if( os.system( self.installPath + "/src/config/imake_boot" ) != 0 ):
+            if( os_system( self.installPath + "/src/config/imake_boot" ) != 0 ):
                 self.abort( "failed to create the top level Makefile with imake!!")
             
             # Install kuipc and the scripts (cernlib, paw and gxint) in $CERN_ROOT/bin
             print "* Building kuipc..."
-            if( os.system( "make bin/kuipc > log/kuipc 2>&1" ) != 0 ):
+            if( os_system( "make bin/kuipc > log/kuipc 2>&1" ) != 0 ):
                 self.abort( "failed to compile!!")
             
             print "* Building scripts..."
-            if( os.system( "make scripts/Makefile" ) != 0 ):
+            if( os_system( "make scripts/Makefile" ) != 0 ):
                 self.abort( "failed to compile!!")
             
             os.chdir( "scripts" )
@@ -166,12 +166,12 @@ class CERNLIB(BaseILC):
             # skip install.bin rule on 64bit
             if platform.architecture()[0] != '64bit': 
                 print "* Building install.bin..."
-                if( os.system( "make install.bin > ../log/scripts 2>&1" ) != 0 ):
+                if( os_system( "make install.bin > ../log/scripts 2>&1" ) != 0 ):
                     self.abort( "failed to compile!!")
 
             os.chdir( self.installPath + "/build" )
             print "* Building libraries..."
-            if( os.system( "make > log/make.`date +%m%d` 2>&1" ) != 0 ):
+            if( os_system( "make > log/make.`date +%m%d` 2>&1" ) != 0 ):
                 self.abort( "failed to compile!!")
     
     def cleanupInstall(self):
@@ -183,7 +183,7 @@ class CERNLIB(BaseILC):
         #os.chdir( self.installPath + "/build" )
 
         ## delete object files
-        os.system( "find "+self.installPath + "/build -type f -name *.o -exec rm -f {} \;" )
+        os_system( "find "+self.installPath + "/build -type f -name *.o -exec rm -f {} \;" )
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)

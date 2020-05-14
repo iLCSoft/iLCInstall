@@ -35,7 +35,7 @@ class Eutelescope(MarlinPKG):
     def compile(self):
         """ compile Eutelescope """
         # ----- DOWNLOAD EXTERNAL DEPENDENCIES ----------------------------
-        os.system( "sh "+self.installPath+"/tools/install-externals/install-externals.sh "
+        os_system( "sh "+self.installPath+"/tools/install-externals/install-externals.sh "
                    + self.installPath+"/external" )
 
         # ----- BUILD EUTELESCOPE ----------------------------
@@ -44,10 +44,10 @@ class Eutelescope(MarlinPKG):
         if( self.rebuild ):
             tryunlink( "CMakeCache.txt" )
 
-        if( os.system( self.genCMakeCmd() + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os_system( self.genCMakeCmd() + " 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
 
-        if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os_system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to install!!" )
 
 
@@ -56,28 +56,28 @@ class Eutelescope(MarlinPKG):
             os.chdir( self.installPath+"/external" )
             if( not self.env["EUDAQ_VERSION"] == 'trunk' ):
                 # check out e.g. the tagged version (using svn)
-                if( os.system( "svn co https://github.com/eudaq/eudaq/%s eudaq/%s" % (self.env["EUDAQ_VERSION"], os.path.basename(self.env["EUDAQ_VERSION"])) + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+                if( os_system( "svn co https://github.com/eudaq/eudaq/%s eudaq/%s" % (self.env["EUDAQ_VERSION"], os.path.basename(self.env["EUDAQ_VERSION"])) + " 2>&1 | tee -a " + self.logfile ) != 0 ):
                     self.abort( "failed to checkout EUDAQ!" )
             else:
                 # check out a full git clone of the repository
-                if( os.system( "git clone https://github.com/eudaq/eudaq eudaq/%s" % (os.path.basename(self.env["EUDAQ_VERSION"])) + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+                if( os_system( "git clone https://github.com/eudaq/eudaq eudaq/%s" % (os.path.basename(self.env["EUDAQ_VERSION"])) + " 2>&1 | tee -a " + self.logfile ) != 0 ):
                     self.abort( "failed to clone EUDAQ!" )
 
             os.chdir( self.env[ "EUDAQ" ] + "/build" ) # needs to be defined in preCheckDeps (so it is written to build_env.sh)
 
-            if( os.system( "cmake -D BUILD_gui=OFF -D BUILD_main=OFF -D BUILD_nreader=ON .." + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+            if( os_system( "cmake -D BUILD_gui=OFF -D BUILD_main=OFF -D BUILD_nreader=ON .." + " 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to configure EUDAQ!" )
 
-            if( os.system( "make install" + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+            if( os_system( "make install" + " 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to build EUDAQ!" )
 
         if self.env.get( "MILLEPEDEII_VERSION", "" ):
             # ----- BUILD MILLEPEDEII ---------------------------
             os.chdir( self.installPath+"/external" )
-            if( os.system( "svn co https://svnsrv.desy.de/public/MillepedeII/%s millepede2/%s" % (self.env["MILLEPEDEII_VERSION"], self.env["MILLEPEDEII_VERSION"]) + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+            if( os_system( "svn co https://svnsrv.desy.de/public/MillepedeII/%s millepede2/%s" % (self.env["MILLEPEDEII_VERSION"], self.env["MILLEPEDEII_VERSION"]) + " 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to build MILLEPEDE2!" )
             os.chdir( self.env[ "MILLEPEDEII" ] ) # needs to be defined in preCheckDeps (so it is written to build_env.sh)
-            if( os.system( "make" + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+            if( os_system( "make" + " 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to build MILLEPEDE2!" )
 
 

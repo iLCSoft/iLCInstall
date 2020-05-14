@@ -59,7 +59,7 @@ class CLHEP(BaseILC):
         os.chdir( self.buildPath )
 		
         if( Version( self.version ) < "2.1.3.0" ):
-            if( os.system( "../CLHEP/configure --prefix=" + self.installPath + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+            if( os_system( "../CLHEP/configure --prefix=" + self.installPath + " 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to configure!!" )
 				
         else:
@@ -68,20 +68,20 @@ class CLHEP(BaseILC):
 				
             # build software
             #fg: new clhep source is in extra subdirectory CLHEP ; default INSTALL_PREFIX is /usr/ 
-            if( os.system( self.genCMakeCmd() + "/CLHEP -DCMAKE_INSTALL_PREFIX=" + self.installPath + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+            if( os_system( self.genCMakeCmd() + "/CLHEP -DCMAKE_INSTALL_PREFIX=" + self.installPath + " 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to configure!!" )
         
-        if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os_system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
                     
-        if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os_system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to install!!" )
                         
 
     def cleanupInstall(self):
         BaseILC.cleanupInstall(self)
         os.chdir( self.buildPath ) 
-        os.system( "make clean" )
+        os_system( "make clean" )
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)

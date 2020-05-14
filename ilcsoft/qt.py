@@ -82,7 +82,7 @@ class QT(BaseILC):
         os.chdir( self.installPath )
 
         if( self.rebuild ):
-            os.system( "make distclean" )
+            os_system( "make distclean" )
 
 #        qt_cfg_options = " -prefix-install -fast -make libs -no-separate-debug-info -no-xkb -no-xinerama -no-qt3support"
 #fg: enable qt3-support (on request from Klaus)       
@@ -99,17 +99,17 @@ class QT(BaseILC):
             
         print "#################### echo \"yes\" | ./configure -prefix " + self.installPath + qt_cfg_options + " 2>&1 | tee -a " + self.logfile 
  
-        if( os.system( "echo \"yes\" | ./configure -prefix " + self.installPath + qt_cfg_options
+        if( os_system( "echo \"yes\" | ./configure -prefix " + self.installPath + qt_cfg_options
                 + " 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
 
-        if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os_system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
     
     def cleanupInstall(self):
         BaseILC.cleanupInstall(self)
         os.chdir( self.installPath )
-        os.system( "make clean" )
+        os_system( "make clean" )
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
