@@ -23,9 +23,10 @@ import platform
 
 #--------------------------------------------------------------------------------
 def os_system( cmd ):
-   cmd = cmd.replace('"',r'\"')
-   print('os_system: ', 'bash -c "'+cmd+'"')
-   return os.system('pwd ; bash -c "'+cmd+'"')
+    """ small class for detecting the OS """
+    cmd = cmd.replace('"',r'\"')
+    ##print('os_system: ', 'bash -c "'+cmd+'"')
+    return os.system('pwd ; bash -c "'+cmd+'"')
 
 #--------------------------------------------------------------------------------
 
