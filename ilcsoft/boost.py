@@ -27,7 +27,7 @@ class Boost(BaseILC):
 
         self.reqfiles = [
             ["include/boost/version.hpp", "include/boost/spirit.hpp", "boost/version.hpp", "boost/spirit.hpp"],
-            ["lib/libboost_system.so", "lib/libboost_filesystem.so", "lib64/libboost_system.so", "lib64/libboost_filesystem.so"]
+            ["lib/libboost_system.so", "lib/libboost_system.dylib","lib/libboost_filesystem.so", "lib64/libboost_system.so", "lib64/libboost_filesystem.so"]
         ]
 
         # The boost build options.

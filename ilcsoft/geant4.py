@@ -89,7 +89,11 @@ class Geant4(BaseILC):
             self.download.url = "http://geant4.cern.ch/support/source/geant4.%s.tar.gz" % self.version
 
         v = Version( self.version )
-        v = "%s.%s.%s" % ( v[0], v[1], v[2] )
+        if( len(v)==2):
+            v = "%s.%s" % ( v[0], v[1] )
+        else:
+            v = "%s.%s.%s" % ( v[0], v[1], v[2] )
+
         self.cmakeconfig = self.installPath + "/lib/Geant4-" + v  + ";" + self.installPath + "/lib64/Geant4-" + v
 
     def compile(self):
