@@ -23,7 +23,7 @@ import platform
 
 #--------------------------------------------------------------------------------
 def os_system( cmd ):
-    """ small class for detecting the OS """
+    """ forces os.system calls wto use bash """
     cmd = cmd.replace('"',r'\"')
     ##print('os_system: ', 'bash -c "'+cmd+'"')
     return os.system('pwd ; bash -c "'+cmd+'"')
