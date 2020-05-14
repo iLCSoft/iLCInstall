@@ -74,9 +74,9 @@ class Mokka(BaseILC):
             # TODO for grid binary: export G4VIS_NONE (no visualization drivers built or used)
 
             if self.rebuild:
-                os.system( ". ../build_env.sh ; make clean 2>&1 | tee -a "+self.logfile )
+                os_system( ". ../build_env.sh ; make clean 2>&1 | tee -a "+self.logfile )
                 
-            if( os.system( ". ../build_env.sh ; make -j1 2>&1 | tee -a "+self.logfile ) != 0 ):
+            if( os_system( ". ../build_env.sh ; make -j1 2>&1 | tee -a "+self.logfile ) != 0 ):
                 self.abort( "failed to compile!!" )
         else:
             trymakedir( self.installPath + "/build" )
@@ -85,11 +85,11 @@ class Mokka(BaseILC):
             if( self.rebuild ):
                 tryunlink( "CMakeCache.txt" )
 
-            if( os.system( self.genCMakeCmd() + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+            if( os_system( self.genCMakeCmd() + " 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to configure!!" )
-            if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
+            if( os_system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to compile!!" )
-            if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
+            if( os_system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to install!!" )
 
 

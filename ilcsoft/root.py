@@ -61,7 +61,7 @@ class ROOT(BaseILC):
     def cleanupInstall(self):
         BaseILC.cleanupInstall(self)
         os.chdir( self.installPath )
-        os.system( "rm -rf ./" + self.name )
+        os_system( "rm -rf ./" + self.name )
 
     def compile(self):
         """ compile root """
@@ -69,7 +69,7 @@ class ROOT(BaseILC):
 #        os.chdir( self.installPath + "/" + self.name )
 
         #if( self.rebuild ):
-        #    os.system( "make clean" )
+        #    os_system( "make clean" )
 
         gsl=self.parent.module("GSL")
         gsl_bindir = gsl.installPath + "/bin"
@@ -78,15 +78,15 @@ class ROOT(BaseILC):
 
         os.environ["LD_RUN_PATH"] = gsl_libdir
 
-##        if( os.system( "./configure --fail-on-missing --enable-builtin-pcre --enable-explicitlink --enable-soversion --enable-roofit --enable-minuit2 --enable-gdml --enable-table --enable-unuran --enable-gsl-shared --with-gsl-incdir="+ gsl_incdir +" --with-gsl-libdir="+ gsl_libdir + " --enable-python") != 0 ):
+##        if( os_system( "./configure --fail-on-missing --enable-builtin-pcre --enable-explicitlink --enable-soversion --enable-roofit --enable-minuit2 --enable-gdml --enable-table --enable-unuran --enable-gsl-shared --with-gsl-incdir="+ gsl_incdir +" --with-gsl-libdir="+ gsl_libdir + " --enable-python") != 0 ):
 ##            self.abort( "failed to configure!!" )
 ##
 ##
 ##
-##        if( os.system( "make 2>&1 | tee -a " + self.logfile ) != 0 ):
+##        if( os_system( "make 2>&1 | tee -a " + self.logfile ) != 0 ):
 ##            self.abort( "failed to compile!!" )
 ##
-##        if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
+##        if( os_system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
 ##            self.abort( "failed to install!!" )
 
         trymakedir( self.installPath + "/../build-" + self.version )
@@ -113,11 +113,11 @@ class ROOT(BaseILC):
         self.envcmake.setdefault( 'mysql',          'OFF' )
         self.envcmake.setdefault( 'sqlite',         'OFF' )
 
-        if( os.system( self.genCMakeCmd() + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os_system( self.genCMakeCmd() + " 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
-        if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os_system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
-        if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os_system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to install!!" )
 
 

@@ -62,11 +62,11 @@ class Boost(BaseILC):
              tryunlink( "b2" )
 
         # Run the bootstrap script before-hand
-        if( os.system( "./bootstrap.sh --prefix=" + self.installPath + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os_system( "./bootstrap.sh --prefix=" + self.installPath + " 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "Failed to run Boost bootstrap!!" )
 
         # Compile Boost
-        if( os.system( "./b2 install --layout=system -q --build-dir=" + self.buildPath + "  --prefix=" + self.installPath + " " + self.genBuildOpts() + " ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os_system( "./b2 install --layout=system -q --build-dir=" + self.buildPath + "  --prefix=" + self.installPath + " " + self.genBuildOpts() + " ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "Failed to compile Boost!!" )
 
 

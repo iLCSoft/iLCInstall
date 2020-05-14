@@ -156,7 +156,7 @@ class ILCSoft:
             installation mode or anything that depends on user changes in the
             configuration file """
 
-        if( os.system( "which which > /dev/null 2>&1" ) != 0 ):
+        if( os_system( "which which > /dev/null 2>&1" ) != 0 ):
             print "\"which\" is not installed on your system!!"
             sys.exit(1)
             
@@ -377,10 +377,10 @@ class ILCSoft:
             sys.exit(1)
         
         # initialize log file
-        os.system( "echo \"Install started at: " + self.ctime + "\" > " + self.logfile )
-        os.system( "echo \"Configuration file: " + self.config_file + "\" >> " + self.logfile )
-        os.system( "echo \"Using " + getoutput( "g++ --version | head -n1" ).strip() + "\" >> " + self.logfile )
-        os.system( "echo \"Using " + getoutput( "make --version | head -n1" ).strip() + "\" >> " + self.logfile )
+        os_system( "echo \"Install started at: " + self.ctime + "\" > " + self.logfile )
+        os_system( "echo \"Configuration file: " + self.config_file + "\" >> " + self.logfile )
+        os_system( "echo \"Using " + getoutput( "g++ --version | head -n1" ).strip() + "\" >> " + self.logfile )
+        os_system( "echo \"Using " + getoutput( "make --version | head -n1" ).strip() + "\" >> " + self.logfile )
 
         # set global environment
         self.setEnv()
@@ -478,8 +478,8 @@ class ILCSoft:
                     if not os.path.exists( patchfilecopy ):
                         if os.path.exists( file2patch ):
                             print 'patching file: ', file2patch
-                            os.system( "patch " + file2patch + ' ' + patchfile )
-                            os.system( "cp " + patchfile + ' ' + patchfilecopy ) 
+                            os_system( "patch " + file2patch + ' ' + patchfile )
+                            os_system( "cp " + patchfile + ' ' + patchfilecopy ) 
                         else:
                             print 'Warning: file to patch not found:', file2patch
                 os.chdir( self.ilcinstallDir )
@@ -492,9 +492,9 @@ class ILCSoft:
         # write dependencies to file
         depsfile=self.installPath+"/.dependencies/external"
         trymakedir( self.installPath + "/.dependencies" )
-        os.system( "rm -f %s ; touch %s" % (depsfile, depsfile) )
+        os_system( "rm -f %s ; touch %s" % (depsfile, depsfile) )
         for mod in self.modules:
-            os.system( "echo '%s:%s' >> %s" % (mod.alias,mod.version,depsfile) )
+            os_system( "echo '%s:%s' >> %s" % (mod.alias,mod.version,depsfile) )
 
         print "\n" + 30*'*' + " Finished installation " + 30*'*' + "\n"
 

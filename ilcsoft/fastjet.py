@@ -64,8 +64,8 @@ class FastJet(BaseILC):
             os.chdir( self.installPath )
             print "+ Downloading FastJetContrib version : ", self.fjcontrib_version
 
-            os.system( "wget http://fastjet.hepforge.org/contrib/downloads/fjcontrib-"+self.fjcontrib_version+".tar.gz")
-            os.system( "tar -xzvf fjcontrib-"+self.fjcontrib_version+".tar.gz")
+            os_system( "wget http://fastjet.hepforge.org/contrib/downloads/fjcontrib-"+self.fjcontrib_version+".tar.gz")
+            os_system( "tar -xzvf fjcontrib-"+self.fjcontrib_version+".tar.gz")
 
     def compile(self):
         """ compile FastJet """
@@ -73,15 +73,15 @@ class FastJet(BaseILC):
         os.chdir( self.installPath + "/build" )
 
         if( self.rebuild ):
-            os.system( "make distclean" )
+            os_system( "make distclean" )
 
-        if( os.system( "../" + self.name + "/configure --prefix=" + self.installPath + " CXXFLAGS=\"$CXXFLAGS\" --enable-auto-ptr=no --enable-shared 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os_system( "../" + self.name + "/configure --prefix=" + self.installPath + " CXXFLAGS=\"$CXXFLAGS\" --enable-auto-ptr=no --enable-shared 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
 
-        if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os_system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
 
-        if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os_system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to install!!" )
 
 
@@ -89,22 +89,22 @@ class FastJet(BaseILC):
 
             os.chdir( self.installPath+"/fjcontrib-"+self.fjcontrib_version )
 
-            if( os.system( "./configure --fastjet-config="+self.installPath+"/bin/fastjet-config CXXFLAGS=\"$CXXFLAGS\"  2>&1 | tee -a " + self.logfile ) != 0 ):
+            if( os_system( "./configure --fastjet-config="+self.installPath+"/bin/fastjet-config CXXFLAGS=\"$CXXFLAGS\"  2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to configure!!" )
 
-            if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
+            if( os_system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to compile!!" )
 
-            if( os.system( "make ${MAKEOPTS} fragile-shared-install 2>&1 | tee -a " + self.logfile ) != 0 ):
+            if( os_system( "make ${MAKEOPTS} fragile-shared-install 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to compile!!" )
 
-            if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
+            if( os_system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to install!!" )
 
     def cleanupInstall(self):
         BaseILC.cleanupInstall(self)
         os.chdir( self.installPath + "/build" )
-        os.system( "make clean" )
+        os_system( "make clean" )
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)

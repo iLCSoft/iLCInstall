@@ -70,13 +70,13 @@ class Geant4(BaseILC):
         g4dataversfile = depsdir+"/g4data"
 
         trymakedir( depsdir )
-        os.system( "> " + g4dataversfile )
+        os_system( "> " + g4dataversfile )
         
         for envvar in datasetsenv:
             envval=getoutput( ". "+self.env["G4ENV_INIT"]+" >/dev/null 2>&1 ; echo $"+envvar )
             if envval:
                 ver=Version(envval).versions[-1]
-                os.system( "echo %s:%s >> %s" % (envvar,ver,g4dataversfile) )
+                os_system( "echo %s:%s >> %s" % (envvar,ver,g4dataversfile) )
 
     def setMode(self, mode):
         BaseILC.setMode(self, mode)
@@ -111,11 +111,11 @@ class Geant4(BaseILC):
         #self.envcmake.setdefault( 'CMAKE_INSTALL_DATAROOTDIR', self.installPath + "/../g4data" )
 
 
-        if( os.system( self.genCMakeCmd() + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os_system( self.genCMakeCmd() + " 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
-        if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os_system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
-        if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os_system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to install!!" )
 
 

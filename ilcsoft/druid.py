@@ -37,9 +37,9 @@ class Druid(BaseILC):
         os.chdir( self.installPath + "/src" )
 
         if( self.rebuild ):
-            os.system( "make clean" )
+            os_system( "make clean" )
 
-        if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os_system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
 
     def postCheckDeps(self):

@@ -46,15 +46,15 @@ class ninja(BaseILC):
 
 
         if( self.rebuild ):
-            os.system( "./configure.py --bootstrap" )
+            os_system( "./configure.py --bootstrap" )
 
-        if( os.system( "configure.py --bootstrap" ) ):
+        if( os_system( "configure.py --bootstrap" ) ):
             self.abort( "failed to bootstrap!!" )
 
     def cleanupInstall(self):
         BaseILC.cleanupInstall(self)
         os.chdir( self.installPath )
-        os.system( "find . \! -name 'ninja' -delete" )
+        os_system( "find . \! -name 'ninja' -delete" )
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
