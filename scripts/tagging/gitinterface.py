@@ -103,19 +103,6 @@ class Repo(object):
       self.log.debug( "Latest Tag Info already filled" )
       return self.latestTagInfo ## already filled
     tags = self.getGithubTags()
-    sortedTags = sorted(tags, key=itemgetter("name"), reverse=True, cmp=versionComp)
-    if self._lastTag is None:
-      di = sortedTags[0]
-    else:
-      try:
-        di = [ tagInfo for tagInfo in tags if tagInfo['name'] == self._lastTag][0]
-      except IndexError:
-        raise RuntimeError( "LastTag given, but not found in tags for this package")
-    self.latestTagInfo = di
-    self.latestTagInfo['pre'] = True if 'pre' in di['name'] else False
-    self.latestTagInfo['sha'] = di['commit']['sha']
-    self.log.info( "Found latest tag %s", di['name'] )
-
 
     if not tags:
       self.log.warning( "No tags found for %s", self )
@@ -123,7 +110,21 @@ class Repo(object):
       self.latestTagInfo['date'] = "1977-01-01T"
       self.latestTagInfo['sha'] = "SHASHASHA"
       self.latestTagInfo['name'] = "00-00"
+      self.latestTagInfo['pre'] = False
     else:
+      sortedTags = sorted(tags, key=itemgetter("name"), reverse=True, cmp=versionComp)
+      if self._lastTag is None:
+        di = sortedTags[0]
+      else:
+        try:
+          di = [ tagInfo for tagInfo in tags if tagInfo['name'] == self._lastTag][0]
+        except IndexError:
+          raise RuntimeError( "LastTag given, but not found in tags for this package")
+      self.latestTagInfo = di
+      self.latestTagInfo['pre'] = True if 'pre' in di['name'] else False
+      self.latestTagInfo['sha'] = di['commit']['sha']
+      self.log.info( "Found latest tag %s", di['name'] )
+
       commitInfo = curl2Json(url=self._github("git/commits/%s" % self.latestTagInfo['sha']))
       self.latestTagInfo['date'] = commitInfo['committer']['date']
 
