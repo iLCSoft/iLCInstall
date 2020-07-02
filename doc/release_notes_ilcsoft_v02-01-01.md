@@ -119,6 +119,21 @@ None
          - adjust the magnitude of the *momentum* of photon PFOs, not just their energies.
             (this bug resulted in photon PFOs with inconsistent energy and momentum.)
 
+## MarlinKinfitProcessors v00-04-02
 
+* 2020-06-26 Yasser Radkhorrami ([PR#12](https://github.com/iLCSoft/MarlinKinFitProcessors/pull/12))
+  - FourMomentumCovMat, algebraImplementation:
+     - the lower triangle of CovMatrix should be applied for correct diagonal and off-diagonal elements
+
+* 2020-06-11 Yasser Radkhorrami ([PR#11](https://github.com/iLCSoft/MarlinKinFitProcessors/pull/11))
+  1. derivatives for calculating errors of jet angles are corrected now:
+         **d_theta / d_px = px . pz / ( P^2 . pT )**
+         **d_theta / d_py = py . pz / ( P^2 . pT )**
+         **d_theta / d_pz = -pT / P^2**
+  2. JetResTheta is corrected (sqrt was missed):
+     **JetResTheta = sqrt ( (d_theta / d_px)^2 * SigPx2 + ... )**
+  
+  3. JetResPhi is corrected (sqrt was missed, d_theta / d_px and d_theta / d_py should be replaced by d_phi / d_px and d_phi / d_py ):
+     **JetResPhi = sqrt ( (d_phi / d_px)^2 * SigPx2 + ...  )**
 
 
