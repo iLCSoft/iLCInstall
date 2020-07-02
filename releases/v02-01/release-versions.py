@@ -204,7 +204,7 @@ Marlin_version = "v01-17"
 
 MarlinDD4hep_version = "v00-06"
 
-MarlinReco_version = "v01-26"
+MarlinReco_version = "v01-27"
 
 ILDPerformance_version = "v01-07"
 
