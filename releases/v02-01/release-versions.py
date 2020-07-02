@@ -222,7 +222,7 @@ PandoraPFANew_version   = "v03-13-02"
 DDMarlinPandora_version = "v00-11"
 PandoraAnalysis_version = "v02-00-01"
 
-CEDViewer_version = "v01-17"
+CEDViewer_version = "v01-17-01"
 
 Overlay_version = "v00-22"
 
