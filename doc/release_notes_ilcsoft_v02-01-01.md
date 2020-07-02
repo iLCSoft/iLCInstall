@@ -137,3 +137,16 @@ None
      **JetResPhi = sqrt ( (d_phi / d_px)^2 * SigPx2 + ...  )**
 
 
+## ILDPerformance v01-08
+
+* 2020-04-13 Frank Gaede ([PR#30](https://github.com/iLCSoft/ILDPerformance/pull/30))
+  - make compatible w/ -std=c++17
+        - needed on macos w/ clang
+
+* 2019-12-13 Frank Gaede ([PR#29](https://github.com/iLCSoft/ILDPerformance/pull/29))
+  - update of tracking performance scripts for IDR
+       - redo tracking performance and efficiency plots w/ HEAD-2019-06-04
+         containing the latest improvements to the tracking efficiency by S.Lu
+       - add scripts to re-run ttbar sim and rec for efficiency plots
+
+
