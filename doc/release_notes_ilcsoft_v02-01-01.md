@@ -149,4 +149,10 @@ None
          containing the latest improvements to the tracking efficiency by S.Lu
        - add scripts to re-run ttbar sim and rec for efficiency plots
 
+## CEDViewer v01-17-01
+
+* 2020-04-13 Frank Gaede ([PR#13](https://github.com/iLCSoft/CEDViewer/pull/13))
+  - make compatible w/ -std=c++17 
+         - needed on macos w/ clang
+
 
