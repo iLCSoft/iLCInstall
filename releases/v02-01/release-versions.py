@@ -206,7 +206,7 @@ MarlinDD4hep_version = "v00-06"
 
 MarlinReco_version = "v01-27"
 
-ILDPerformance_version = "v01-07"
+ILDPerformance_version = "v01-08"
 
 #ILDConfig_version = "HEAD"
 
