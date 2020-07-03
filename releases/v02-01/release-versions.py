@@ -212,7 +212,7 @@ ILDPerformance_version = "v01-08"
 
 
 LCFIVertex_version = "v00-08"
-LCFIPlus_version = "v00-10"
+LCFIPlus_version = "v00-09"
 
 
 MarlinKinfit_version = "v00-06"
@@ -228,7 +228,7 @@ Overlay_version = "v00-22"
 
 PathFinder_version = "v00-06-01"
 
-MarlinTPC_version = "v01-06"
+MarlinTPC_version = "v01-07"
 
 LCTuple_version = "v01-12"
 
