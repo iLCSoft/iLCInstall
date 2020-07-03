@@ -14,7 +14,15 @@ None
 
 ## Packages changed wrt. to v02-01:
 
-### LCIO v02-14
+## LCIO  v02-14-01
+
+* 2020-07-02 Frank Gaede ([PR#87](https://github.com/ilcsoft/lcio/pull/87))
+  - updated  documentation
+      -  README.md with some basic introduction 
+      - added slightly updated manual.pdf
+  - minor fixes in delphes2lcio
+
+### v02-14
 
 * 2020-07-01 Frank Gaede ([PR#86](https://github.com/ilcsoft/lcio/pull/86))
   - new classes  `UTIL::EventSummary` and `UTIL::ProcessFlag`
@@ -156,5 +164,30 @@ None
          - needed on macos w/ clang
 
 
-## LCFIPlus v00-10
+## MarlinTPC  v01-07 
+
+
+* Removed version switching for GBL from CMakeLists.txt, which was used with ROOT in older versions 
+  and with Eigen3 in newer ones. In r5508 this was done in a preliminary way and now completely transformed 
+  to the standard way in r5511.
+ 
+*  r5511 | oschfer | 2020-05-29 19:03:55 +0200 (Fri, 29 May 2020) | 7 lines
+
+  - Removed version switching for GBL, which was used with ROOT in older versions and with Eigen3 in newer ones.
+  - The switch does not work with Ubuntu installations of ilcsoft.
+  - Due to the change Eigen3 can now simply be treated like the other packages.
+  - Older versions of GBL are likely incompatible with the new C++ standards, and thus cannot be  used anyway.
+
+Cleanup of some older, disconnected comments.
+
+
+* r5508 | oschfer | 2020-03-30 20:51:23 +0200 (Mon, 30 Mar 2020) | 8 lines
+
+  - Temporarily fixed finding method of Eigen3 in CMakeLists.txt 
+  - So far, a special cmake-script in GBL was used to find Eigen3.
+  - However, this does not find the version given in the ILCSoft.cmake file.
+  - From iLCSoft version v02-01 it also  is not needed anymore, as Eigen3 can be found on its own.
+  - Due to unclear legacy status of other parts of the GBL-Eigen3 finding algorithm in MarlinTPC, the deprecated variables for version and include directory are still used.
+  - In future, Eigen3 could be added simply by an add_target_libraries call, like the other dependencies.
+
 
