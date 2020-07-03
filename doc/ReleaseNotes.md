@@ -1,3 +1,34 @@
+# v02-01-01
+
+* 2020-07-02 Remi Ete ([PR#115](https://github.com/ilcsoft/ilcinstall/pull/115))
+  - Upgraded versions for new release v02-01-01
+
+* 2020-06-16 Andre Sailer ([PR#114](https://github.com/ilcsoft/ilcinstall/pull/114))
+  - Fix for the CI, increment pytest version requirement
+
+* 2020-06-16 Placido Fernandez Declara ([PR#113](https://github.com/ilcsoft/ilcinstall/pull/113))
+  - ilcsofttagger: Fix first release tagging script
+
+* 2020-06-02 Remi Ete ([PR#112](https://github.com/ilcsoft/ilcinstall/pull/112))
+  - Fixed SIO configuration for nightly builds
+
+* 2020-05-29 Frank Gaede ([PR#111](https://github.com/ilcsoft/ilcinstall/pull/111))
+  - add standalone SIO library to LCG releases and nightlies
+        - will be needed for LCIO and PODIO
+
+* 2020-05-18 Frank Gaede ([PR#109](https://github.com/ilcsoft/ilcinstall/pull/109))
+  - make it work again for Ubuntu (18.04)
+      - force system calls to be made through bash
+
+* 2020-05-14 Frank Gaede ([PR#108](https://github.com/ilcsoft/ilcinstall/pull/108))
+  - update examples/macbookfg to work for v02-01
+
+* 2020-04-06 Marko Petric ([PR#104](https://github.com/ilcsoft/ilcinstall/pull/104))
+  - Use github repo for GBL
+
+* 2020-04-03 Daniel Jeans ([PR#105](https://github.com/ilcsoft/ilcinstall/pull/105))
+  - increase timeout to prevent installation failures due to slow G4 data downloads (default is 1500 s)
+
 # v02-00-02
 
 * 2018-09-04 Frank Gaede ([PR#57](https://github.com/ilcsoft/ilcinstall/pull/57))
