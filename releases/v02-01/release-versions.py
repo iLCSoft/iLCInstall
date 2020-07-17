@@ -151,7 +151,7 @@ Eigen_version = "3.3.7"
 
 # -------------------------------------------
 
-LCIO_version = "v02-14-01"
+LCIO_version = "v02-14-02"
 
 GEAR_version = "v01-09"
 
@@ -200,7 +200,7 @@ RAIDA_version = "v01-09"
 
 MarlinUtil_version = "v01-15-01"
 
-Marlin_version = "v01-17"
+Marlin_version = "v01-17-01"
 
 MarlinDD4hep_version = "v00-06"
 
