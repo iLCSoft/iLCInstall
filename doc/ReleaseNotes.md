@@ -1,3 +1,11 @@
+# v02-01-02
+
+* 2020-07-17 Remi Ete ([PR#116](https://github.com/iLCSoft/ILCInstall/pull/116))
+  - Updated packages version:
+     - Marlin to v01-17-01
+     - LCIO to v02-14-02
+  - Added release notes
+
 # v02-01-01
 
 * 2020-07-02 Remi Ete ([PR#115](https://github.com/ilcsoft/ilcinstall/pull/115))
