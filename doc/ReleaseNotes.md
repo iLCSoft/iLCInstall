@@ -1,3 +1,9 @@
+# v02-02
+
+* 2020-08-13 Frank Gaede ([PR#117](https://github.com/ilcsoft/ilcinstall/pull/117))
+  - ilcsoft release v02-02
+      - update LCIO to v02-15
+
 # v02-01-02
 
 * 2020-07-17 Remi Ete ([PR#116](https://github.com/iLCSoft/ILCInstall/pull/116))
