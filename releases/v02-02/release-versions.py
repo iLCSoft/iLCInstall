@@ -10,7 +10,7 @@ import datetime
 import platform
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v02-01-02'
+ilcsoft_release='v02-02'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -151,7 +151,7 @@ Eigen_version = "3.3.7"
 
 # -------------------------------------------
 
-LCIO_version = "v02-14-02"
+LCIO_version = "v02-15"
 
 GEAR_version = "v01-09"
 
