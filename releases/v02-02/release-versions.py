@@ -151,7 +151,7 @@ Eigen_version = "3.3.7"
 
 # -------------------------------------------
 
-LCIO_version = "v02-15"
+LCIO_version = "v02-15-01"
 
 GEAR_version = "v01-09"
 
