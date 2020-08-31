@@ -12,6 +12,12 @@ None
 
 ## Packages changed wrt. to v02-01-02:
 
+# iLCUtil v01-06-01
+
+* 2020-05-13 Frank Gaede ([PR#17](https://github.com/iLCSoft/iLCUtil/pull/17))
+  - fix FindMySQL.cmake
+          - add correct search path for Ubuntu (>=18.04)
+
 # LCIO v02-15
 
 * 2020-08-13 Frank Gaede ([PR#102](https://github.com/ilcsoft/lcio/pull/102))
