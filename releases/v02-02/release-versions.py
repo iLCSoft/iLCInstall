@@ -157,7 +157,7 @@ GEAR_version = "v01-09"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-7"
 
-ILCUTIL_version = "v01-06"
+ILCUTIL_version = "v01-06-01"
 
 MarlinFastJet_version = "v00-05-02"
 
