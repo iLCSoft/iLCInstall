@@ -86,7 +86,7 @@ class Geant4(BaseILC):
                 self.abort( "ilcinstall only supports installation of Geant4 9.5 or greater!" )
 
             # download url
-            self.download.url = "http://geant4.cern.ch/support/source/geant4.%s.tar.gz" % self.version
+            self.download.url = "http://cern.ch/geant4-data/releases/geant4.%s.tar.gz" % self.version
 
         v = Version( self.version )
         if( len(v)==2):
