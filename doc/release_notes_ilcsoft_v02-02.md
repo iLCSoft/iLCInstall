@@ -71,3 +71,17 @@ None
 
 * 2020-07-22 JennyListDESY ([PR#90](https://github.com/ilcsoft/lcio/pull/90))
   - inserted a missing cd LCIO to the instructions
+
+
+# MarlinReco v01-28
+
+* 2020-09-02 Carl Mikael Berggren ([PR#81](https://github.com/iLCSoft/MarlinReco/pull/81))
+  - Fix wrong signs in Jacobian in the transformation of the covariance matrix of cluster CoG and Energy to neutral PFO (E,px,py,pz), and double declaration of local variable Eerror.  Update example  CMakeLists.txt and AddClusterProperties.xml to work in the present world.
+
+* 2020-09-02 Junping Tian ([PR#79](https://github.com/iLCSoft/MarlinReco/pull/79))
+  - added a new processor for finding isolated photon
+  - the default option for isolated muon finder is changed back to use Yoke energy
+
+* 2020-08-31 Yasser Radkhorrami ([PR#80](https://github.com/iLCSoft/MarlinReco/pull/80))
+  - An option is added to include full CovMat of neutral PFOs in jet error
+
