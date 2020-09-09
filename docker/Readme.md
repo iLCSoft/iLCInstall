@@ -116,7 +116,7 @@ docker pull ilcsoft/ilcsoft-cvmfs-sl6
 To create a container, run:
 
 ```shell
-docker run -it --privileged ilcsoft/ilcsoft-cvmfs
+docker run -it --privileged ilcsoft/ilcsoft-cvmfs-sl6
 ```
 
 **IMPORTANT**: note the `--privileged` argument here which is required because CVMFS repositories mounting requires privileged containers.
