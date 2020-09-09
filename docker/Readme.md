@@ -103,11 +103,19 @@ To regenerate these images, simply do:
 docker build --file Dockerfile.cvmfs.sl6 --tag ilcsoft/ilcsoft-cvmfs-sl6 .
 ```
 
+#### Pulling from Dockerhub
+
+The CVMFS iLCSoft docker images are available at `hub.docker.com/u/ilcsoft`. For example, the sl6 image can be pulled using:
+
+```shell
+docker pull ilcsoft/ilcsoft-cvmfs-sl6
+```
+
 #### Creating a container
 
 To create a container, run:
 
-```
+```shell
 docker run -it --privileged ilcsoft/ilcsoft-cvmfs
 ```
 
