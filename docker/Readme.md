@@ -5,6 +5,8 @@
 
 This section is meant for helping iLCSoft maintainers to (re-)generate Docker images for different OS flavors, compiler version, iLCSoft version, etc...
 
+### Standalone images
+
 The images are produced on a three layer basis 
 
 - **Layer 1**: The *env* image. This defines the OS, the compiler version to use for building the iLCSoft stack. For example: `Ubuntu 18.04` and `GCC 8.3`. They are normally not often re-generated.
@@ -83,4 +85,44 @@ so, if you have generated the three image above, you can use:
 docker push ilcsoft/env-ubuntu18.04-gcc8.3
 docker push ilcsoft/base-ubuntu18.04-gcc8.3
 docker push ilcsoft/ilcsoft-ubuntu18.04-gcc8.3
+```
+
+### CVMFS images
+
+We also provide docker images that mounts CVMFS at startup. Having such images ensure that the compiled code of the iLCSoft installation on CVMFS are compatible with the OS.
+
+For the time being, we provide images for:
+- Scientific Linux 6 (sl6)
+
+#### Image creation
+
+To regenerate these images, simply do:
+
+```shell
+# for example for sl6
+docker build --file Dockerfile.cvmfs.sl6 --tag ilcsoft/ilcsoft-cvmfs-sl6 .
+```
+
+#### Creating a container
+
+To create a container, run:
+
+```
+docker run -it --privileged ilcsoft/ilcsoft-cvmfs
+```
+
+**IMPORTANT**: note the `--privileged` argument here which is required because CVMFS repositories mounting requires privileged containers.
+
+Once the container is created, any iLCSoft release can be accessed in the usual location.
+For example, for sl6:
+
+```shell
+# show all version directories
+ls -d /cvmfs/ilc.desy.de/sw/x86_64_*_sl6/v*
+```
+
+For GCC 8.2, iLCSoft v02-02, initialize the software as:
+
+```shell
+source /cvmfs/ilc.desy.de/sw/x86_64_gcc82_sl6/v02-02/init_ilcsoft.sh
 ```
