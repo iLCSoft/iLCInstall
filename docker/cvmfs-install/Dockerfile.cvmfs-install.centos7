@@ -1,0 +1,36 @@
+FROM centos:centos7
+
+LABEL product="iLCSoft-cvmfs-install-centos7"
+LABEL maintainer="remi.ete@desy.de"
+LABEL description="Image to install iLCSoft on CVMFS for centos7 flavor"
+LABEL os="centos7"
+
+RUN yum install -y cvmfs \
+    	 wget \
+		   emacs \
+		   sudo \
+		   curl \
+		   tar \
+		   bzip2 \
+		   tar \
+		   git \
+		   which \
+		   make \
+		   libX11-devel \
+		   libXext-devel \
+		   freeglut-devel \
+		   libXmu-devel \
+		   libXpm-devel \
+		   libXft-devel \
+		   python-devel \
+		   subversion \
+		   doxygen \
+		   texlive \
+		   mysql \
+		   mysql-devel \
+		   ghostscript \
+		   gcc-gfortran \
+		   kernel-devel
+
+# Start the image with BASH by default
+CMD ["/bin/bash"]
