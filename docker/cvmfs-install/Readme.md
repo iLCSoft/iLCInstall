@@ -5,7 +5,7 @@
 CVMFS is one of the main deployment solution for the iLCSoft stack. CVMFS provides servers to software teams to install and publish their packages. 
 Setting up such servers requires some effort and are not always available for all OS flavors that are supported in the different labs. 
 
-Here at DESY, the main OSs that are supported are SL6 (end of life in November 2020), Centos7 and Ubuntu 18.04. Only one CVMFS server is available for our deployment. To be able to install the iLCSoft stack on all possible OS flavors, we provide Docker images for these OS flavors within which the iLCSoft stack is compiled and then deployed later on on our CVMFS server. 
+Here at DESY, the main OSs that are supported are SL6 (end of life in November 2020), Centos7 and Ubuntu 18.04. Only one CVMFS server is available for our deployment. To be able to install the iLCSoft stack on all possible OS flavors, we provide Docker images for these OS flavors within which the iLCSoft stack is compiled and then deployed later on our CVMFS server. 
 
 As of today, the available images are:
 - centos7: `ilcsoft/ilcsoft-cvmfs-install-centos7`
@@ -26,7 +26,7 @@ docker push ilcsoft/ilcsoft-cvmfs-install-centos7
 
 ## Compiling the stack
 
-For example here, we assume that you are using the centos7 image. The installation must performed on a machine where the stack can be uploaded later on to the CVMFS server (using `rsync`, see below). At DESY, any NAF machine is suitable. Please, also ensure you have enough disk space before starting the installation. Depending on the machine, docker might or not be available. The NAF machines at DESY currently do not support `docker` but have `singularity` installed.
+For example here, we assume that you are using the centos7 image. The installation must be performed on a machine where the stack can be uploaded later on to the CVMFS server (using `rsync`, see below). At DESY, any NAF machine is suitable. Please, also ensure you have enough disk space before starting the installation. Depending on the machine, docker might or not be available. The NAF machines at DESY currently do not support `docker` but have `singularity` installed.
 
 It is not possible to install directly the stack on CVMFS via the NAF machine, because CVMFS is read-only. It is also not possible to install the stack on any other location and then move directories because all paths will be wrongly hardcoded. The trick is to create a directory on your local machine (the NAF machine in our case) that will temporarily store the installation, but that actually points to the target CVMFS repository in the container.
 
