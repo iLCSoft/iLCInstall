@@ -29,8 +29,16 @@ RUN yum install -y cvmfs \
 		   mysql \
 		   mysql-devel \
 		   ghostscript \
+           gcc \
 		   gcc-gfortran \
+           gcc-c++ \
+           libstdc++ \
+           patch \
+           file \
+           cmake \
 		   kernel-devel
+
+RUN yum groupinstall -y "Development Tools"
 
 # Start the image with BASH by default
 CMD ["/bin/bash"]
