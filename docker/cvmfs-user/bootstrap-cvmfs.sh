@@ -7,6 +7,6 @@ sudo mount -t cvmfs sft.cern.ch /cvmfs/sft.cern.ch
 sudo mount -t cvmfs ilc.desy.de /cvmfs/ilc.desy.de
 
 echo 
-ls /cvmfs/ilc.desy.de
+ls /cvmfs/ilc.desy.de/sw
 
 bash

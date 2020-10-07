@@ -1,0 +1,51 @@
+FROM scientificlinux/sl:6
+
+# setup the ilc user
+RUN useradd -rm -s /bin/bash -G root ilc
+RUN echo "ilc ALL=NOPASSWD: ALL" >> /etc/sudoers
+
+# install CVMFS and additional packages
+RUN yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm && \
+    yum install -y cvmfs \
+    		   wget \
+		   emacs \
+		   sudo \
+		   curl \
+		   tar \
+		   bzip2 \
+		   tar \
+		   git \
+		   which \
+		   make \
+		   libX11-devel \
+		   libXext-devel \
+		   freeglut-devel \
+		   libXmu-devel \
+		   libXpm-devel \
+		   libXft-devel \
+		   python-devel \
+		   subversion \
+		   doxygen \
+		   texlive \
+		   mysql \
+		   mysql-devel \
+		   ghostscript \
+		   gcc-gfortran
+
+# configure CVMFS
+RUN mkdir -p /etc/cvmfs
+COPY etc.cvmfs/default.local /etc/cvmfs/
+COPY etc.cvmfs/config.d/ilc.desy.de.local /etc/cvmfs/config.d/ilc.desy.de
+COPY etc.cvmfs/domain.d/desy.de.conf /etc/cvmfs/domain.d/desy.de.conf
+COPY etc.cvmfs/keys/desy.de/desy.de.pub /etc/cvmfs/keys/desy.de/desy.de.pub
+RUN /etc/init.d/autofs stop && cvmfs_config setup
+
+# change user to ilc
+USER ilc
+ENV HOME /home/ilc
+WORKDIR ${HOME}
+
+# copy the boot script. It will mount cvmfs on container startup
+COPY --chown=ilc  bootstrap-cvmfs.sh $HOME/.bootstrap.sh
+CMD ["/home/ilc/.bootstrap.sh"]
+  
