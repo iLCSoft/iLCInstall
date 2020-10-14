@@ -96,7 +96,7 @@ From your local (NAF) machine, log into the CVMFs server:
 
 ```shell
 # requires permissions of course!
-ssh ilcsgm000@grid-cvmfs-ilc
+ssh  ilccv@ilc-cvmfs
 ```
 
 Start a CVMFS transaction:
