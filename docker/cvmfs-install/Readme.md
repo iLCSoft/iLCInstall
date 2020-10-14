@@ -2,10 +2,10 @@
 
 # CVMFS installation with docker images
 
-CVMFS is one of the main deployment solution for the iLCSoft stack. CVMFS provides servers to software teams to install and publish their packages. 
-Setting up such servers requires some effort and are not always available for all OS flavors that are supported in the different labs. 
+CVMFS is one of the main deployment solution for the iLCSoft stack. CVMFS provides servers to software teams to install and publish their packages.
+Setting up such servers requires some effort and are not always available for all OS flavors that are supported in the different labs.
 
-Here at DESY, the main OSs that are supported are SL6 (end of life in November 2020), Centos7 and Ubuntu 18.04. Only one CVMFS server is available for our deployment. To be able to install the iLCSoft stack on all possible OS flavors, we provide Docker images for these OS flavors within which the iLCSoft stack is compiled and then deployed later on our CVMFS server. 
+Here at DESY, the main OSs that are supported are SL6 (end of life in November 2020), Centos7 and Ubuntu 18.04. Only one CVMFS server is available for our deployment. To be able to install the iLCSoft stack on all possible OS flavors, we provide Docker images for these OS flavors within which the iLCSoft stack is compiled and then deployed later on our CVMFS server.
 
 As of today, the available images are:
 - centos7: `ilcsoft/ilcsoft-cvmfs-install-centos7`
@@ -13,7 +13,7 @@ As of today, the available images are:
 ## Generating a docker image
 
 The Dockerfiles available in this directory are meant for updating or re-generating images for a CVMFS deployment.
-These images are generally already available on Dockerhub, so this step is not required. 
+These images are generally already available on Dockerhub, so this step is not required.
 
 If you need to create or re-generate an image, simply pickup a Dockerfile and e.g run:
 
@@ -41,18 +41,25 @@ With docker:
 ```shell
 docker run -it \
     -v /cvmfs/sft.cern.ch:/cvmfs/sft.cern.ch \
-    -v /nfs/dust/ilc/group/cvmfs_ilc/sw/x86_64_gcc82_centos7:/cvmfs/ilc.desy/sw/x86_64_gcc82_centos7 \
+    -v /nfs/dust/ilc/group/cvmfs_ilc/sw/x86_64_gcc82_centos7:/cvmfs/ilc.desy.de/sw/x86_64_gcc82_centos7 \
     ilcsoft/ilcsoft-cvmfs-install-centos7
 ```
 
 With singularity:
 
+**IMPORTANT:** before running it the first time, create a home directory (not in *afs*) for using with this container, e.g:
+```sh
+mkdir -p /nfs/dust/ilc/user/$USER/singularity/homedir
+```
+
 ```shell
-# Mandatory step before running singularity
-cd /nfs/dust/ilc/group/cvmfs_ilc/sw
+# Mandatory step before running singularity - change to the
+# home directory created above:
+cd /nfs/dust/ilc/user/$USER/singularity/homedir
+
 singularity shell -H $PWD \
     --bind /cvmfs/sft.cern.ch:/cvmfs/sft.cern.ch \
-    --bind /nfs/dust/ilc/group/cvmfs_ilc/sw/x86_64_gcc82_centos7:/cvmfs/ilc.desy/sw/x86_64_gcc82_centos7 \
+    --bind /nfs/dust/ilc/group/cvmfs_ilc/sw/x86_64_gcc82_centos7:/cvmfs/ilc.desy.de/sw/x86_64_gcc82_centos7 \
     docker://ilcsoft/ilcsoft-cvmfs-install-centos7
 ```
 
@@ -112,7 +119,7 @@ rsync -avz <username>@<local-machine>:/nfs/dust/ilc/group/cvmfs_ilc/sw/x86_64_gc
 # Example: rsync -avz toto@naf-ilc.desy.de:/nfs/dust/ilc/group/cvmfs_ilc/sw/x86_64_gcc82_centos7 .
 # Exit the /cvmfs/ilc.desy.de repository to finalize the transaction
 cd $HOME
-# Publish the new release. 
+# Publish the new release.
 # For a meaningful release name and commit message, you can list available tags:
 cvmfs_server tag
 # This takes even longer than rsync.
@@ -121,7 +128,6 @@ cvmfs_server tag
 cvmfs_server publish -a release-name -m "Commit message"
 ```
 
-**Congratulations!** 
+**Congratulations!**
 
 It's Friday, 10pm. You can wait for maybe 30 minutes for your new release to be visible on CVMFS or you can go home and recall yourself to have a social life.
-
