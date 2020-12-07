@@ -36,7 +36,7 @@ cxx_standard = 17
 #ilcsoft_install_prefix = "/afs/desy.de/project/ilcsoft/sw/x86_64_gcc44_sl6/"
 #ilcsoft_install_prefix = "/nfs/dust/ilc/user/voutsina/testarea/ilcsoft_c11/"
 
-ilcsoft_install_prefix = "/data/ilcsoft/"
+ilcsoft_install_prefix = "/usr/local/ilcsoft/"
 
 # ----------------------------------------------------------------------------
 #--- the ilcsoft_release is now automatically appended in release-ilcsoft.cfg 
@@ -85,13 +85,6 @@ MySQL_path = ilcPath + "/mysql/" + MySQL_version
 MySQL_path = "/usr/local"
 
 
-#------ boost headers files ------------------------------------------
-Boost_path = "/usr/local/opt/boost"
-
-#------ Eigen headers files ------------------------------------------
-Eigen_path = "/usr/local/opt/eigen32"
-
-
 # ----------------------------------------------------------------------------
 
 
@@ -114,21 +107,24 @@ Eigen_path = "/usr/local/opt/eigen32"
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version =  "10.06"
-CLHEP_version =  "2.4.1.0"  #"2.3.4.3"
-ROOT_version = "6.18.04"
+Geant4_version =  "10.06.p02"
+CLHEP_version =  "2.4.1.3"  #"2.3.4.3"
+ROOT_version = "6.22.02"
 
-GSL_version = "2.5"   #"2.1" # "1.15"
+GSL_version = "2.6"   #"2.1" # "1.15"
 
-QT_version = "4.8.7"
+Qt5_version = "v5.13.1"
 
-CMake_version = "3.15.2"   #"3.4.3" #"2.8.5"
+CMake_version = "3.17.3" ##"3.15.2"   #"3.4.3" #"2.8.5"
 
-SIO_version = "v00-00-02"
+SIO_version = "v00-00-03"
+
+Eigen_version = "3.3.7"
+
+Boost_version = "1.71.0"
 
 # -------------------------------------------
 
-SIO_version = "HEAD"
 
 LCIO_version = "HEAD" # "v02-06"
 
@@ -231,7 +227,7 @@ Garlic_version = "HEAD" # "v3.0.3"
 
 ## xerces-c (needed by geant4 for building gdml support 
 #
-XercesC_version = "3.1.4" 
+XercesC_version = "v3.2.2" 
 XERCESC_ROOT_DIR = ilcPath + "/xercesc/" + XercesC_version
 
 DD4hep_version = "HEAD" # "v00-12"
@@ -241,5 +237,11 @@ lcgeo_version = "HEAD" # "v00-04"
 
 Physsim_version = "HEAD" # "v00-02" 
 
+ILDConfig_version = "HEAD"
+
+LICH_version = "HEAD"
 
 
+podio_version = "HEAD"
+
+edm4hep_version = "HEAD"
