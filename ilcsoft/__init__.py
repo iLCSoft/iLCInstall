@@ -54,6 +54,8 @@ from dd4hep import DD4hep
 from dd4hep_examples import DD4hepExamples
  
 from lcgeo import lcgeo
+from podio import podio
+from edm4hep import edm4hep
 
 from aidaTT import aidaTT 
 
