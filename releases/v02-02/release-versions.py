@@ -10,7 +10,7 @@ import datetime
 import platform
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v02-02'
+ilcsoft_release='v02-02-01'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -143,7 +143,7 @@ FastJetcontrib_version = "1.025"
 
 CED_version = "v01-09-03"
 
-SIO_version = "v00-00-02"
+SIO_version = "v00-01"
 
 Boost_version = "1.71.0"
 
@@ -151,7 +151,7 @@ Eigen_version = "3.3.7"
 
 # -------------------------------------------
 
-LCIO_version = "v02-15-01"
+LCIO_version = "v02-16-01"
 
 GEAR_version = "v01-09"
 
@@ -204,9 +204,9 @@ Marlin_version = "v01-17-01"
 
 MarlinDD4hep_version = "v00-06"
 
-MarlinReco_version = "v01-28"
+MarlinReco_version = "v01-29"
 
-ILDPerformance_version = "v01-08"
+ILDPerformance_version = "v01-09"
 
 #ILDConfig_version = "HEAD"
 
