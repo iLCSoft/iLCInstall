@@ -1,0 +1,29 @@
+name: build
+
+on: [push, pull_request]
+
+jobs:
+  python-unittest:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        py_version: ['2.7.x', '3.7']
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.py_version }}
+    - name: Install requirements
+      run: pip install -r ${GITHUB_WORKSPACE}/.travis-ci.d/requirements.txt
+    - name: Run python unit tests
+      env:
+        GITHUB_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
+        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
+      run: |
+        export PYTHONPATH=${GITHUB_WORKSPACE}:${PYTHONPATH}
+        echo $PYTHONPATH
+        source ${GITHUB_WORKSPACE}/.travis-ci.d/set-reportstyle.sh
+        export PYTEST_ADDOPTS=$PYTEST_ADDOPTS" -m 'not integration'"
+        py.test
+        coveralls
