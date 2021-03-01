@@ -18,7 +18,8 @@ class SIO(BaseILC):
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "SIO", "sio")
         
-        self.reqfiles = [ ["lib/libsio.a", "lib/libsio.so", "lib/libsio.dylib"] ]
+        self.reqfiles = [ ["lib64/libsio.a", "lib64/libsio.so",
+                          "lib/libsio.a", "lib/libsio.so", "lib/libsio.dylib" ] ]
         self.reqmodules = [ "CMake" ]
 
         # supported download types
