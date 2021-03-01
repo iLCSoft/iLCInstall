@@ -13,6 +13,20 @@ None
 
 ## Packages changed wrt. to v02-02:
 
+# Overlay v00-22-02
+
+* 2021-03-01 tmadlener ([PR#22](https://github.com/iLCSoft/Overlay/pull/22))
+  - Migrate CI to github actions
+
+* 2021-03-01 hegarcia ([PR#21](https://github.com/iLCSoft/Overlay/pull/21))
+  - fix for merging SimCalorimeterHits in Merger.cc
+        - Adding length and position to the MC Contributions for use in the SDHCALDigi.
+
+# Overlay v00-22-01
+
+* 2020-07-09 Placido Fernandez Declara ([PR#20](https://github.com/iLCSoft/Overlay/pull/20))
+  - OverlayTiming/OverlayTimingGeneric: Fixed accessing empty file name for background file
+
 # MarlinReco v01-29
 
 * 2021-02-26 Bohdan Dudar ([PR#88](https://github.com/iLCSoft/MarlinReco/pull/88))
