@@ -5,9 +5,7 @@ LABEL maintainer="remi.ete@desy.de"
 LABEL description="Image to install iLCSoft on CVMFS for centos7 flavor"
 LABEL os="centos7"
 
-RUN yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
-
-RUN yum install -y cvmfs \
+RUN yum install -y \
     	 wget \
 		   emacs \
 		   sudo \
@@ -41,6 +39,8 @@ RUN yum install -y cvmfs \
 		   kernel-devel
 
 RUN yum groupinstall -y "Development Tools"
+
+RUN yum clean all && rm -rf /var/cache/yum
 
 # Start the image with BASH by default
 CMD ["/bin/bash"]
