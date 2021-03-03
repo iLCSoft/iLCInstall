@@ -19,6 +19,8 @@ except ImportError:
                     """
                    )
 
+from parseversion import getVersionComp
+
 HAVE_REQUESTS=False
 try:
   import requests
@@ -79,6 +81,14 @@ def versionComp( v1, v2 ):
     return -1
   else:
     return 1
+
+def versionToKey(tag):
+  log = logging.getLogger('VersionComp')
+  v1 = tag['name']
+  log.debug('checking %s', v1)
+  result = getVersionComp(v1)
+  log.debug('Result %s', result)
+  return result
   
 
 def parseForReleaseNotes( commentBody ):

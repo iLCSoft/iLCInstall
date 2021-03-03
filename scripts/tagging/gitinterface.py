@@ -12,7 +12,7 @@ from pprint import pprint
 from operator import itemgetter
 
 from helperfunctions import parseForReleaseNotes, curl2Json, \
-                            authorMapping, versionComp
+                            authorMapping, versionComp, versionToKey
 
 from parseversion import Version
 
@@ -112,7 +112,7 @@ class Repo(object):
       self.latestTagInfo['name'] = "00-00"
       self.latestTagInfo['pre'] = False
     else:
-      sortedTags = sorted(tags, key=itemgetter("name"), reverse=True, cmp=versionComp)
+      sortedTags = sorted(tags, reverse=True, key=versionToKey)
       if self._lastTag is None:
         di = sortedTags[0]
       else:
