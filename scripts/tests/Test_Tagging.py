@@ -1,9 +1,16 @@
 #!/bin/env python
 """Test the Tagging Modules"""
+from __future__ import print_function
+
 
 import json
 import logging
-import __builtin__
+try:
+  import __builtin__ as builtins
+  builtin_module_name = '__builtin__'
+except ImportError:  # for python3
+  import builtins
+  builtin_module_name = 'builtins'
 import unittest
 import os
 import shutil
@@ -23,8 +30,8 @@ from tagging.parseversion import Version
 
 __RCSID__ = "$Id$"
 
-REALIMPORT = __builtin__.__import__
-def myimport(name, globs, locs, fromlist):
+REALIMPORT = builtins.__import__
+def myimport(name, globs, locs, fromlist, level=0):
   """ raise error for import """
   if name=="GitTokens" and "GITHUBTOKEN" in fromlist:
     raise ImportError
@@ -274,13 +281,16 @@ class TestHelpers( unittest.TestCase ):
 
   def test_importError( self ):
     """ test the import error when not having githubtoken """
-    del sys.modules['tagging.helperfunctions']
-    del sys.modules['GitTokens']
+    try:
+      del sys.modules['tagging.helperfunctions']
+      del sys.modules['GitTokens']
+    except KeyError:
+      pass
 
-    with patch( "__builtin__.__import__", myimport ):
+    with patch(builtin_module_name + ".__import__", myimport):
       with self.assertRaises( ImportError ):
         from tagging.helperfunctions import GITHUBTOKEN
-        print GITHUBTOKEN
+        print(GITHUBTOKEN)
 
   def test_parseForReleaseNotes( self ):
     """ test parseForReleaseNotes """
@@ -299,7 +309,7 @@ class TestHelpers( unittest.TestCase ):
       value = curl2Json( ["some","repo", "command"] )
       args, kwargs = check.call_args
       self.assertEqual( value, "arg" )
-      print args, kwargs
+      print(args, kwargs)
       self.assertEqual( 'curl', args[0][0] )
       self.assertEqual( '-s', args[0][1] )
 
@@ -418,7 +428,7 @@ def runTests():
   suite.addTest( unittest.defaultTestLoader.loadTestsFromTestCase( TestHelpers ) )
 
   testResult = unittest.TextTestRunner( verbosity = 2 ).run( suite )
-  print testResult
+  print(testResult)
 
 if __name__ == '__main__':
   runTests()
