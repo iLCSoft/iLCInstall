@@ -325,7 +325,7 @@ class Repo(object):
       self._getReleaseNotes()
 
     if self.isUpToDate():
-      return
+      return ''
 
     releaseNotesString = "# " + self.newVersion.split("-pre")[0] ## never write comments for new releases
 
