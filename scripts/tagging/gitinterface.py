@@ -3,6 +3,7 @@ interface to github via CURL
 
 """
 
+import base64
 import json
 from logging import getLogger
 from collections import OrderedDict, defaultdict
@@ -358,7 +359,7 @@ class Repo(object):
       content = "\n".join(content.split("\n")[2:]) ## remove first line which is the release name
     contentNew = self.formatReleaseNotes() + "\n\n" + content
     
-    contentEncoded = contentNew.encode('base64')
+    contentEncoded = base64.b64encode(contentNew.encode()).decode()
 
     if encodedOld.replace("\n","") == contentEncoded.replace("\n",""):
       self.log.info("No changes in %s, not making commit", self.releaseNotesFilename )
@@ -369,13 +370,12 @@ class Repo(object):
 
   def getFileFromBranch( self, filename ):
     """return the content of the file in the given branch, filename needs to be the full path"""
-
     result = curl2Json(url=self._github( "contents/%s?ref=%s" %(filename,self.branch)))
     encoded = result.get( 'content', None )
     if encoded is None:
       self.log.error( "File %s not found for %s", filename, self )
       raise RuntimeError( "File not found" )
-    content = encoded.decode("base64")
+    content = base64.b64decode(encoded).decode()
     sha = result['sha']
     return content, sha, encoded
 
@@ -390,7 +390,7 @@ class Repo(object):
     content = pMajor.sub( "_VERSION_MAJOR %s" % major, content )
     content = pMinor.sub( "_VERSION_MINOR %s" % minor, content )
     content = pPatch.sub( "_VERSION_PATCH %s" % patch, content )
-    contentEncoded = content.encode('base64')
+    contentEncoded = base64.b64encode(content.encode()).decode()
     if encodedOld.replace("\n","") == contentEncoded.replace("\n",""):
       self.log.info("No changes in %s, not making commit", self.cmakeBaseFile )
     else:
