@@ -112,7 +112,7 @@ class Version( object ):
 
     if self.makePreRelease:
       versionString += "-pre"
-      if self.pre > 0:
+      if self.pre and self.pre > 0:
         versionString += "%d" % self.pre
 
     return versionString
@@ -121,3 +121,10 @@ class Version( object ):
     """ :returns: tuple of Major, Minor, Patch """
     patch = 0 if self.patch is None else self.patch
     return self.major, self.minor, patch
+
+
+def getVersionComp(version):
+  parsed = Version(version)
+  major, minor, patch = parsed.getMajorMinorPatch()
+  pre = parsed.pre if parsed.pre else 0
+  return 100 * 100 * 100 * major + 100 * 100 * minor + 100 * patch + pre
