@@ -7,6 +7,7 @@ Tagging System for iLCSoft libraries. Make tags, collate release notes via comma
 owner, repository, branch, tag (optional), createReleaseNotes(bool), prerelease(bool)
 
 """
+from __future__ import print_function
 
 from logging import getLogger
 import logging
@@ -105,9 +106,9 @@ class ILCSoftTagger(object):
     for package in self.repos:
       versionsContent += '\n%s_version = "%s" ' % ( package.repo, package.newTag )
 
-    print "*"*80
-    print versionsContent
-    print "*"*80
+    print("*"*80)
+    print(versionsContent)
+    print("*"*80)
 
 
   def _parseConfigFile( self ):
