@@ -329,8 +329,8 @@ class Repo(object):
 
     releaseNotesString = "# " + self.newVersion.split("-pre")[0] ## never write comments for new releases
 
-    for date, prs in sorted(self._releaseNotes.iteritems(), reverse=True):
-      for prID, content in sorted(prs.iteritems(), reverse=True):
+    for date, prs in sorted(self._releaseNotes.items(), reverse=True):
+      for prID, content in sorted(prs.items(), reverse=True):
         if not content.get( 'notes' ):
           continue
 
