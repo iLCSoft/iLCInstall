@@ -133,4 +133,4 @@ def getVersionComp(version):
     return (-1, -1, -1, -1)
   major, minor, patch = parsed.getMajorMinorPatch()
   pre = parsed.pre if parsed.pre else 0
-  return 100 * 100 * 100 * major + 100 * 100 * minor + 100 * patch + pre
+  return (major, minor, patch, pre)
