@@ -31,6 +31,9 @@ except ImportError:
   pass
 
 
+class MissingFileError(RuntimeError):
+  pass
+
 def versionComp( v1, v2 ):
   """ compare version strings, problem is comparing
   v1r8p0 to v02-07-00 e.g. in lcio otherwise we could use normal string comparison
@@ -169,6 +172,8 @@ def _req2Json(url, parameterDict, requestType):
   log = logging.getLogger("GitHub Requests")
   log.debug("Running %s with %s ", requestType, parameterDict)
   req = getattr(SESSION, requestType.lower())(url, json=parameterDict)
+  if req.status_code in (404,):
+    raise MissingFileError('File not found: %s' % url)
   if req.status_code not in (200, 201):
     log.error("Unable to access API: %s", req.text)
     raise RuntimeError("Failed to access API")

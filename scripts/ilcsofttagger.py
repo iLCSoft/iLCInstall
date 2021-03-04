@@ -18,7 +18,7 @@ import argparse
 __RCSID__ = None
 
 from tagging.gitinterface import Repo
-from tagging.helperfunctions import checkRate
+from tagging.helperfunctions import checkRate, MissingFileError
 
 def _parsePrintLevel( level ):
   """ translate printlevel to logging level"""
@@ -39,6 +39,7 @@ class ILCSoftTagger(object):
     self.repos = []
     self.makeTags = False
     self.properRelease = False
+    self.ignoreMissingCmake = False
     self.errors = []
     self.log = getLogger( "Tagger" )
     self.lastTag = None
@@ -73,10 +74,11 @@ class ILCSoftTagger(object):
     parser.add_argument("--checkRate", action="store_true", dest="checkRate", default=False,
                         help="Print out remaining number of queries for this hour")
 
-
     parser.add_argument("--lastTag", action="store", dest="lastTag", default=None,
                         help="consider this version to be the last version and take all PRs following this tag. Only works with a single package")
 
+    parser.add_argument("--ignoreMissingCmake", action="store_true", dest="ignoreMissingCmake", default=False,
+                        help="Ignore the error associated with a missing CMakeLists.txt file containing the version to update")
 
     parsed = parser.parse_args()
 
@@ -89,7 +91,7 @@ class ILCSoftTagger(object):
     self.properRelease = parsed.properRelease
     self.lastTag = parsed.lastTag
     self._parseConfigFile()
-
+    self.ignoreMissingCmake = parsed.ignoreMissingCmake
     if parsed.checkRate:
       checkRate()
 
@@ -190,7 +192,14 @@ class ILCSoftTagger(object):
       self.log.info( "Committing release notes for: %s", package )
       package.commitNewReleaseNotes()
       self.log.info( "Updating version: %s to %s", package, package.newVersion )
-      package.updateVersionSettings()
+      try:
+        package.updateVersionSettings()
+      except MissingFileError:
+        if self.ignoreMissingCmake:
+          self.log.info('Ignoring missing file to update version')
+        else:
+          self.log.error('Failed to update Version in CMakeLists! Ignore this error with `--ignoreMissingCmake`')
+          raise
       package.createGithubRelease()
 
 
