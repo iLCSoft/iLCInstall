@@ -12,10 +12,10 @@ import re
 from pprint import pprint
 from operator import itemgetter
 
-from helperfunctions import parseForReleaseNotes, curl2Json, \
-                            authorMapping, versionComp, versionToKey
+from tagging.helperfunctions import (parseForReleaseNotes, curl2Json,
+                                     authorMapping, versionComp, versionToKey)
 
-from parseversion import Version
+from tagging.parseversion import Version
 
 __RCSID__ = None
 
