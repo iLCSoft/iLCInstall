@@ -19,7 +19,7 @@ except ImportError:
                     """
                    )
 
-from parseversion import getVersionComp
+from tagging.parseversion import getVersionComp
 
 HAVE_REQUESTS=False
 try:
