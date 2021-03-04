@@ -15,6 +15,9 @@ class Version( object ):
 
   """
 
+  class VersionStringError(RuntimeError):
+    pass
+
   def __init__( self, versionString, makePreRelease=True ):
     self.version = versionString
     self.major = 0
@@ -43,7 +46,7 @@ class Version( object ):
       self.major = int(parts[0])
       self.minor = int(parts[1])
     else:
-      raise RuntimeError( "Cannot parse this version string: %s" % self.version )
+      raise self.VersionStringError("Cannot parse this version string: %s" % self.version)
 
     if len(parts) >= 3:
       if 'pre' == parts[2]:
@@ -59,7 +62,7 @@ class Version( object ):
       elif 'pre' in parts[3]:
         self.pre = int(parts[3].strip('pre'))
       else:
-        raise RuntimeError( "Cannot parse this version string: %s" % self.version )
+        raise self.VersionStringError("Cannot parse this version string: %s" % self.version)
 
 
   def __incrementPatch( self ):
@@ -124,7 +127,10 @@ class Version( object ):
 
 
 def getVersionComp(version):
-  parsed = Version(version)
+  try:
+    parsed = Version(version)
+  except Version.VersionStringError:
+    return (-1, -1, -1, -1)
   major, minor, patch = parsed.getMajorMinorPatch()
   pre = parsed.pre if parsed.pre else 0
   return 100 * 100 * 100 * major + 100 * 100 * minor + 100 * patch + pre
