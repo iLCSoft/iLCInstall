@@ -267,11 +267,10 @@ class Repo(object):
     return
 
   def getAuthorForPR( self, pr ):
-    """ return the author name of given PR, check cache if username already known """
-    username = pr['user']['login']
+    """Return the author name of given PR."""
     prID = pr['number']
     url=self._github("pulls/%s/commits" % prID)
-    authorName = authorMapping(username, url)
+    authorName = authorMapping(url)
     return authorName
     
     

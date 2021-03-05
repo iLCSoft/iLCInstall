@@ -321,7 +321,7 @@ class TestHelpers( unittest.TestCase ):
   def test_getAuthor( self ):
     """ test the mapping of the username to authorname """
     with patch("tagging.helperfunctions.curl2Json",new=mockCurl):
-      retVal = authorMapping( 'username2', ['commands', 'pulls/12/commits'] )
+      retVal = authorMapping(['commands', 'pulls/12/commits'])
       self.assertEqual( retVal, 'User Name2' )
 
   def test_checkRate( self ):

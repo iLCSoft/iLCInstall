@@ -182,14 +182,12 @@ def _req2Json(url, parameterDict, requestType):
   return req.json()
 
 
-def authorMapping(username, url):
-  """return the name of the author for given username, query github
-  PR for author via the commands given
-  """
+def authorMapping(url):
+  """Return the name of the author for github PR forvia the commands given."""
   log = logging.getLogger("Author")
   log.debug("Checking Commits for Author")
   commits = curl2Json(url=url)
-  author = commits[-1]['commit']['author']['name'] ## use the last commit of PR to get author
+  author = commits[0]['commit']['author']['name'] # use the first commit of PR to get author
   log.debug( "Found author: %s", author )
   return author
 
