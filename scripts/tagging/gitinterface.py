@@ -266,20 +266,6 @@ class Repo(object):
       self.log.info( "... PRs merged after Tag: %s", ", ".join( sorted(str( pr['number'] ) for pr in self._prsSinceLastTag )) )
     return
 
-  def getCommentsForPR( self, prID ):
-    """get the comments for a PR
-
-    :param int prID: pull request ID to get the comments from
-    :returns: list of comments
-    """
-    self.log.debug( "Getting comments for PR %s", prID )
-    comments = curl2Json(url=self._github("issues/%s/comments" % prID))
-    commentTexts = []
-    for comment in comments:
-      commentTexts.append( comment['body'] )
-
-    return commentTexts
-
   def getAuthorForPR( self, pr ):
     """ return the author name of given PR, check cache if username already known """
     username = pr['user']['login']
@@ -310,11 +296,6 @@ class Repo(object):
       notes = parseForReleaseNotes( pr['body'] )
       if notes:
         relNotes[date][prID]['notes'].extend( notes )
-      commentTexts = self.getCommentsForPR( prID )
-      for comment in commentTexts:
-        notes = parseForReleaseNotes( comment )
-        if notes:
-          relNotes[date][prID]['notes'].extend( notes )
     self._releaseNotes = relNotes
     self.log.info( "... finished getting release notes" )
     return
