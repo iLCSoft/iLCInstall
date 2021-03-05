@@ -129,7 +129,8 @@ class Version( object ):
 def getVersionComp(version):
   try:
     parsed = Version(version)
-  except Version.VersionStringError:
+  except Version.VersionStringError as e:
+    getLogger('getVersionComp').debug(str(e))
     return (-1, -1, -1, -1)
   major, minor, patch = parsed.getMajorMinorPatch()
   pre = parsed.pre if parsed.pre else 0
