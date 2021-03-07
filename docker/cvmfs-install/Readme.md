@@ -66,7 +66,7 @@ singularity shell -H $PWD \
 Inside the container, "git-clone" the `ILCInstall` package with your favorite version:
 
 ```shell
-git clone https://github.com/iLCSoft/ILInstall.git --branch v02-02 # v02-02, only if v02-02 is your favorite version...
+git clone https://github.com/iLCSoft/iLCInstall.git --branch v02-02 # v02-02, only if v02-02 is your favorite version...
 cd ILCInstall
 ```
 
