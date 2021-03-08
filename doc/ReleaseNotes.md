@@ -1,3 +1,68 @@
+# v02-02-01
+
+* 2021-03-08 Andre Sailer ([PR#139](https://github.com/iLCSoft/iLCInstall/pull/139))
+  - ilcsofttagger: make python3 compatible, keep python2 compatibility for the moment
+  - ilcsofttagger: add --ignoreMissingCmake flag to ignore the absence of CMakeLists.txt in the repository
+  - ilcsofttagger: no longer look up release notes in comments to PRs, only the opening post
+  - ilcsofttagger: try to get author name from the first commit of a PR not the last, might fix issue with wrongly attributed changes in the release notes
+
+* 2021-03-07 tmadlener ([PR#140](https://github.com/iLCSoft/iLCInstall/pull/140))
+  - Fix small typo in README for cvmfs installation
+
+* 2021-03-04 tmadlener ([PR#138](https://github.com/iLCSoft/iLCInstall/pull/138))
+  - Update cvmfs installation docker container
+
+* 2021-03-03 tmadlener ([PR#137](https://github.com/iLCSoft/iLCInstall/pull/137))
+  - Update MarlinReco version to v01-30
+
+* 2021-03-01 tmadlener ([PR#136](https://github.com/iLCSoft/iLCInstall/pull/136))
+  - Make sure that `libsio` is found after CMake updates to sio
+
+* 2021-03-01 tmadlener ([PR#135](https://github.com/iLCSoft/iLCInstall/pull/135))
+  - Upgrade Overlay to v00-22-02
+
+* 2021-02-26 Remi Ete ([PR#133](https://github.com/iLCSoft/iLCInstall/pull/133))
+  - Upgrade MarlinReco to v01-29
+  - Upgrade ILDPerformance to v01-09
+  - Upgrade SIO to v00-01
+  - Upgrade LCIO to v02-16-01
+
+* 2020-12-08 Frank Gaede ([PR#130](https://github.com/iLCSoft/iLCInstall/pull/130))
+  - add edm4hep and podio install scripts
+  - update macbook example
+        - add edm4hep and podio
+        - updated to Catalina (10.15.7)
+
+* 2020-10-14 Frank Gaede ([PR#127](https://github.com/iLCSoft/iLCInstall/pull/127))
+  - fix cvmfs readme wrt. using singularity
+         - using a dedicated home_dir on startup
+
+* 2020-10-13 tmadlener ([PR#126](https://github.com/iLCSoft/iLCInstall/pull/126))
+  - Add proper cvmfs repository for installing cvmfs in Docker image
+
+* 2020-10-07 Remi Ete ([PR#125](https://github.com/iLCSoft/iLCInstall/pull/125))
+  - Moved CVMFS user images in a separate directory
+  - Added image for using iLCSoft in a centos 7 image by mounting CVMFS
+
+* 2020-10-07 tmadlener ([PR#124](https://github.com/iLCSoft/iLCInstall/pull/124))
+  - Add a few more packages in order to start installing things with spack inside the cvmfs installation container.
+
+* 2020-10-06 Remi Ete ([PR#123](https://github.com/iLCSoft/iLCInstall/pull/123))
+  - Added Dockerfile for CVMFS installation on centos7. 
+   - Added complete Readme file with corresponding installation procedure
+
+* 2020-09-10 Remi Ete ([PR#122](https://github.com/iLCSoft/iLCInstall/pull/122))
+  - Provide Dockerfile for CVMFS installation based on SL6
+  - Image and documentation available here: https://hub.docker.com/repository/docker/ilcsoft/ilcsoft-cvmfs-sl6
+  - Run it with:
+  ```shell
+  docker run -it --privileged ilcsoft/ilcsoft-cvmfs-sl6
+  ```
+
+* 2020-09-04 Remi Ete ([PR#120](https://github.com/iLCSoft/iLCInstall/pull/120))
+  - Upgraded MarlinReco version. 
+  - Updated release notes for v02-02
+
 # v02-02
 
 * 2020-08-13 Frank Gaede ([PR#117](https://github.com/ilcsoft/ilcinstall/pull/117))
