@@ -13,6 +13,8 @@ class Version( object ):
   v01-00-pre1
   v01-01-01-pre8
 
+  v01.01.01.pre8
+
   """
 
   class VersionStringError(RuntimeError):
@@ -27,6 +29,12 @@ class Version( object ):
     self.isPre = False
     self.makePreRelease=makePreRelease
     self.log = getLogger( "Version" )
+    self.delimiter = ""
+
+    if ("." in self.version):
+      self.delimiter = "."
+    else:
+      self.delimiter = "-"
 
     try:
       self._parseVersion()
@@ -38,7 +46,7 @@ class Version( object ):
     """ parse the version string """
     ## strip starting parts, e.g. CondBMYSQL_ILC-
     self.version = self.version.lstrip('vABCDEFGHIJKLMNOPQRSTUVWXZYabcdefghijklmnopqrstuvwxzy_-')
-    parts = self.version.lstrip('v').split("-")
+    parts = self.version.lstrip('v').split(self.delimiter)
     if 'pre' in self.version:
       self.isPre = True
 
@@ -109,12 +117,12 @@ class Version( object ):
 
   def __str__( self ):
     """ return version string """
-    versionString = "v%02d-%02d" % ( self.major, self.minor )
+    versionString = "v%02d%s%02d" % ( self.major, self.delimiter, self.minor )
     if self.patch is not None:
-      versionString += "-%02d" % self.patch
+      versionString += ".%02d" % self.patch
 
     if self.makePreRelease:
-      versionString += "-pre"
+      versionString += "%spre" % (self.delimiter)
       if self.pre and self.pre > 0:
         versionString += "%d" % self.pre
 
