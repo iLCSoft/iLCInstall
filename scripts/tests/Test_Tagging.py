@@ -433,6 +433,20 @@ class TestParseVersion( unittest.TestCase ):
       'v02-02-00-bad',
     ]
 
+  def test_dotSortVersions(self):
+
+    versions = ['v01.12', 'v00.10', 'v02.02.00.bad', 'v01.12.01', 'v02.22.00.pre3', 'v00.01']
+    sv = sorted(versions, key=getVersionComp)
+    assert sv == ['v02.02.00.bad', 'v00.01', 'v00.10', 'v01.12', 'v01.12.01', 'v02.22.00.pre3']
+    sv = sorted(versions, reverse=True, key=getVersionComp)
+    assert sv == [
+      'v02.22.00.pre3',
+      'v01.12.01',
+      'v01.12',
+      'v00.10',
+      'v00.01',
+      'v02.02.00.bad',
+    ]
 
 
 def runTests():
