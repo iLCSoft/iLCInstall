@@ -29,12 +29,7 @@ class Version( object ):
     self.isPre = False
     self.makePreRelease=makePreRelease
     self.log = getLogger( "Version" )
-    self.delimiter = ""
-
-    if ("." in self.version):
-      self.delimiter = "."
-    else:
-      self.delimiter = "-"
+    self.delimiter = '-' if '-' in self.version else '.'
 
     try:
       self._parseVersion()
