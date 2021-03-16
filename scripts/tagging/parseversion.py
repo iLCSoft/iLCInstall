@@ -114,7 +114,7 @@ class Version( object ):
     """ return version string """
     versionString = "v%02d%s%02d" % ( self.major, self.delimiter, self.minor )
     if self.patch is not None:
-      versionString += ".%02d" % self.patch
+      versionString += "%s%02d" % (self.delimiter, self.patch)
 
     if self.makePreRelease:
       versionString += "%spre" % (self.delimiter)
