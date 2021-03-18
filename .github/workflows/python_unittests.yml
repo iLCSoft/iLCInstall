@@ -1,0 +1,21 @@
+name: build
+
+on: [push, pull_request]
+
+jobs:
+  python-unittest:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '2.7.x'
+    - name: Install requirements
+      run: pip install -r ${GITHUB_WORKSPACE}/.travis-ci.d/requirements.txt
+    - name: Run python unit tests
+      run: |
+        export PYTHONPATH=${GITHUB_WORKSPACE}
+        echo $PYTHONPATH
+        source ${GITHUB_WORKSPACE}/.travis-ci.d/set-reportstyle.sh
+        export PYTEST_ADDOPTS=$PYTEST_ADDOPTS" -m 'not integration'"
+        py.test
