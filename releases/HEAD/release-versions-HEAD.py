@@ -13,14 +13,6 @@ today = str( datetime.date.today() )
 ilcsoft_release='HEAD-'+today
 # ----------------------------------------------------------------------------
 
-#-----------------------
-# we now always build with c++11 ?
-# This variable is deprecated and replaced by cxx_standard
-# use_cpp11 = False
-# if nightlies:
-#    use_cpp11 = nb_use_cpp11
-#    print "******************* use_cpp11", use_cpp11
-
 # which cxx standard to use
 cxx_standard = 17
 
@@ -31,18 +23,21 @@ except KeyError:
     pass
 
 #===============================================================================
-# use a compiler that knows c++11, run
+# use a compiler that knows c++17, run
 #
 '''
- source /afs/cern.ch/sw/lcg/contrib/gcc/4.9.3/x86_64-slc6/setup.sh
- export PATH=/afs/cern.ch/sw/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/bin:$PATH
- export LD_LIBRARY_PATH=/afs/cern.ch/sw/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/lib:$LD_LIBRARY_PATH
+# --- gcc from LCG_99
+source /cvmfs/sft.cern.ch/lcg/releases/gcc/10.1.0/x86_64-centos7/setup.sh
 
-# or on cvmfs:
+# --- python from LCG_99
+export PATH=/cvmfs/sft.cern.ch/lcg/releases/Python/3.8.6-3199b/x86_64-centos7-gcc10-opt/bin:${PATH}
+export LD_LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/Python/3.8.6-3199b/x86_64-centos7-gcc10-opt/lib:${LD_LIBRARY_PATH}
 
- source /cvmfs/sft.cern.ch/lcg/contrib/gcc/4.9.3/x86_64-slc6/setup.sh
- export PATH=/cvmfs/sft.cern.ch/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/bin:$PATH
- export LD_LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/lib:$LD_LIBRARY_PATH
+# --- git from LCG_99
+export PATH=/cvmfs/sft.cern.ch/lcg/releases/git/2.29.2-e475b/x86_64-centos7-gcc10-opt/bin:${PATH}
+
+# --- use a suitable mysql (also LCG_99)
+export MYSQL_DIR=/cvmfs/sft.cern.ch/lcg/releases/mysql/10.4.12-8f05c/x86_64-centos7-gcc10-opt
 '''
 # before starting the installation
 #================================================================================
@@ -112,7 +107,7 @@ elif platform.system().lower().find('darwin') >= 0:
    platfDefault = '/usr/local'
 
 # ----- mysql --------------------------------------------------------
-MySQL_version = "5.0.45"
+MySQL_version = "5.7.26"
 MySQL_path = platfDefault
 
 # overwrite with a patch set in the environment
