@@ -7,11 +7,18 @@
 #
 ##################################################
 
+from __future__ import print_function
+
 # custom imports
-from .util import *
+from util import *
 
 import logging
-import urllib2 as urllib
+import re
+import time
+try:
+    from urllib.request import urlopen
+except ImportError:
+    from urllib2 import urlopen
 
 try:
     import simplejson as json
@@ -757,7 +764,7 @@ class BaseILC:
 
                 print("Cloning of repository %s/%s into directory %s sucessfully finished" % (self.download.gituser, self.download.gitrepo, self.version))
 
-            elif 'message' not in list(json.loads(urllib.request.urlopen('https://api.github.com/repos/%s/%s/git/refs/tags/%s' % (self.download.gituser, self.download.gitrepo, self.version)).read()).keys()):
+            elif 'message' not in list(json.loads(urlopen('https://api.github.com/repos/%s/%s/git/refs/tags/%s' % (self.download.gituser, self.download.gitrepo, self.version)).read()).keys()):
                 cmd = "mkdir -p %s" % (self.version)
                 if os_system( cmd ) != 0:
                     self.abort( "Could not create folder" + self.version + " [!!ERROR!!]")

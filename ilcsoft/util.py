@@ -7,19 +7,27 @@
 #
 ##################################################
 
-from .version import Version
-from subprocess import getstatusoutput
-from subprocess import getoutput
+from version import Version
+import subprocess
 import os
 import os.path
 import sys
-import shutil
-import glob
-import time
-import string
-import re
 import fnmatch
 import platform
+
+from six.moves import input
+
+# A lot of packages depend on getoutput (and an implicit import from here)
+# Luckily those have been "de-deprecated" and put into the subprocess module so
+# we have to see where we can find them
+#
+# NOTE: This should probably be fixed to use check_output and friends where
+# possible for proper python2 and python3 support. See also:
+# https://docs.python.org/3/library/subprocess.html#legacy-shell-invocation-functions
+try:
+    from subprocess import getoutput, getstatusoutput
+except ImportError:
+    from commands import getoutput, getstatusoutput
 
 #--------------------------------------------------------------------------------
 def os_system( cmd ):
@@ -54,14 +62,18 @@ class OSDetect(object):
 
         if( self.type == "Linux" ):
             # description
-            out=getstatusoutput("lsb_release -d")
-            if( out[0] == 0 ):
-                self.ver=out[1].split("Description:")[1].strip()
+            try:
+                version = subprocess.check_output("lsb_release -b", shell=True,
+                                                  stderr=subprocess.STDOUT)
+                self.ver = version.split("Description:")[1].strip()
+            except subprocess.CalledProcessError:
+                pass
             # hardware platform
-            out=getstatusoutput("uname -i")
-            if( out[0] == 0 ):
-                self.platform=out[1].strip()
-
+            try:
+                self.platform = subprocess.check_output("uname -i", shell=True,
+                                                   stderr=subprocess.STDOUT).strip()
+            except subprocess.CalledProcessError:
+                pass
 
         try:
             sizeofint = platform.architecture()[0]
