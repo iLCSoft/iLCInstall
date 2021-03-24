@@ -1,9 +1,11 @@
 #!/usr/bin/env python
+
+from __future__ import print_function
+
 import os, sys
 import logging
-import subprocess
-# from ilcsoft import *
-import ilcsoft as ilcsoft
+from ilcsoft import *
+from util import getoutput
 
 _version = "v01-17-07"
 
@@ -52,7 +54,7 @@ if( not os.path.exists(config_file) ):
     parser.error( 'config file %s does not exist' % config_file )
 
 # some settings needed for reading nightly build cfg files
-date_iso8601 = subprocess.getoutput( "date +%F" )
+date_iso8601 = getoutput( "date +%F" )
 config_file_basename = config_file[config_file.rfind( '/' )+1:config_file.rfind(".")]
 config_file_extension = config_file[config_file.rfind(".")+1:]
 

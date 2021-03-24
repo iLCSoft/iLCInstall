@@ -7,12 +7,22 @@
 #
 ##################################################
 
+from __future__ import print_function
+
 # custom imports
 from .util import *
 from .java import Java
 from .qt import QT
 from .cmake import CMake
-import subprocess
+import time
+import re
+import shutil
+
+try:
+    from subprocess import DEVNULL
+except ImportError:
+    from os import devnull
+    DEVNULL = open(devnull, 'wb')
 
 class ILCSoft:
     """ Container class for the ILC software modules.
@@ -372,7 +382,8 @@ class ILCSoft:
         # copy config file
         try:
             shutil.copyfile( self.config_file, self.logsdir + self.config_file_prefix + "-" + self.time + ".cfg")
-        except:
+        # Should be fine for python2 and python3 to signal that there is a permission problem
+        except IOError:
             print("*** FATAL ERROR: you don't have write permissions in " + self.installPath + "!!!\n")
             sys.exit(1)
         
@@ -402,10 +413,10 @@ class ILCSoft:
         #------- prepend the pathes for the compiler and python used in this installation -------
 
         compiler = self.env["CXX"]
-        status, cxx_path = subprocess.getstatusoutput( "which "+compiler )
+        status, cxx_path = getstatusoutput( "which "+compiler )
         cxx_path =  os.path.dirname( os.path.dirname( cxx_path ) ) # remove '/bin/g++'
 
-        status, py_path = subprocess.getstatusoutput( "which python" )
+        status, py_path = getstatusoutput( "which python" )
         py_path =  os.path.dirname( os.path.dirname( py_path ) ) # remove '/bin/python'
 
         f.write( os.linesep + '# -------------------------------------------------------------------- ---' + os.linesep )
