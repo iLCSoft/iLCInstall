@@ -7,11 +7,11 @@
 #
 ##################################################
 
-from util import *                                                                                                                                                            
+from .util import *                                                                                                                                                            
 
 # custom imports
-from marlinpkg import MarlinPKG
-from baseilc import BaseILC
+from .marlinpkg import MarlinPKG
+from .baseilc import BaseILC
 
 class PandoraPFANew(BaseILC):
     """ Responsible for the PandoraPFANew installation process. """

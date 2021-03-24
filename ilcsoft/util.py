@@ -7,9 +7,9 @@
 #
 ##################################################
 
-from version import Version
-from commands import getstatusoutput
-from commands import getoutput
+from .version import Version
+from subprocess import getstatusoutput
+from subprocess import getoutput
 import os
 import os.path
 import sys
@@ -253,7 +253,7 @@ def ask_ok( prompt, retries=3, complaint="[y/n] , please !" ):
     """ prompts user for yes or no """
 
     while 1:
-        ok = raw_input( prompt )
+        ok = input( prompt )
 
         if ok in ( 'y' , 'yes '):
             return True
@@ -262,9 +262,9 @@ def ask_ok( prompt, retries=3, complaint="[y/n] , please !" ):
 
         retries = retries - 1
         if retries < 0:
-            raise IOError , 'refusenik user '
+            raise IOError('refusenik user ')
 
-        print complaint
+        print(complaint)
 
 #--------------------------------------------------------------------------------
 

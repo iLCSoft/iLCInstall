@@ -8,7 +8,7 @@
 ##################################################
                                                                                                                                                             
 # custom imports
-from marlinpkg import MarlinPKG
+from .marlinpkg import MarlinPKG
 
 class CEDViewer(MarlinPKG):
     """ Responsible for the CEDViewer installation process. """

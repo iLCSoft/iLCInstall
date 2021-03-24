@@ -8,8 +8,8 @@
 ##################################################
 
 # custom imports
-from baseilc import BaseILC
-from util import *
+from .baseilc import BaseILC
+from .util import *
 
 
 ##################################################

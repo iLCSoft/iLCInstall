@@ -9,9 +9,9 @@
 ##################################################
 
 # custom imports
-from baseilc import BaseILC
-from marlinpkg import MarlinPKG
-from util import *
+from .baseilc import BaseILC
+from .marlinpkg import MarlinPKG
+from .util import *
 
 
 class FastJetClustering(MarlinPKG):
@@ -62,7 +62,7 @@ class FastJet(BaseILC):
             self.reqfiles.append( [ "lib/libfastjetcontribfragile.so",  "lib/libfastjetcontribfragile.dylib" ] )
 
             os.chdir( self.installPath )
-            print "+ Downloading FastJetContrib version : ", self.fjcontrib_version
+            print("+ Downloading FastJetContrib version : ", self.fjcontrib_version)
 
             os_system( "wget http://fastjet.hepforge.org/contrib/downloads/fjcontrib-"+self.fjcontrib_version+".tar.gz")
             os_system( "tar -xzvf fjcontrib-"+self.fjcontrib_version+".tar.gz")

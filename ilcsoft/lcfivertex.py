@@ -8,9 +8,9 @@
 ##################################################
                                                                                                                                                             
 # custom imports
-from marlinpkg import MarlinPKG
-from baseilc import BaseILC
-from util import *
+from .marlinpkg import MarlinPKG
+from .baseilc import BaseILC
+from .util import *
 
 class LCFIVertex(MarlinPKG):
     """ Responsible for the LCFIVertex installation process. """
