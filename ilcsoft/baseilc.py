@@ -8,7 +8,7 @@
 ##################################################
 
 # custom imports
-from util import *
+from .util import *
 
 import logging
 import urllib2 as urllib
@@ -89,32 +89,32 @@ class BaseILC:
     
     def __repr__(self):
         if( self.mode == "install" ):
-            print "\n\t+ " + self.name + ":",
-            print "version [ " + self.version + " ]"
+            print("\n\t+ " + self.name + ":", end=' ')
+            print("version [ " + self.version + " ]")
             if( not os.path.exists(self.installPath) ):
-                print "\t   + will be installed to: [ " + self.installPath + " ]"
-                print "\t   + download sources with [ " + self.download.type + " ] from:"
-                print self.download
+                print("\t   + will be installed to: [ " + self.installPath + " ]")
+                print("\t   + download sources with [ " + self.download.type + " ] from:")
+                print(self.download)
             if( self.downloadOnly ):
-                print "\t   + download only: True"
+                print("\t   + download only: True")
             else:
                 mods = self.reqmodules + self.optmodules + self.reqmodules_buildonly
                 if( len(mods) > 0 ):
-                    print "\t   + will be built with:",
+                    print("\t   + will be built with:", end=' ')
                     for modname in mods:
-                        print "[" + modname + "]",
+                        print("[" + modname + "]", end=' ')
                 if( (len(self.reqmodules) > 0) or (len(self.reqmodules_buildonly) > 0) or (len(self.reqmodules_external) > 0)):
-                    print "\n\t   + following modules are required:",
+                    print("\n\t   + following modules are required:", end=' ')
                     reqmods = self.reqmodules + self.reqmodules_buildonly + self.reqmodules_external
                     for modname in reqmods:
-                        print "[" + modname + "]",
-                    print
+                        print("[" + modname + "]", end=' ')
+                    print()
 
         if( self.mode == "use" ):
-            print "   + [ " + self.installPath + " - version: " + self.version + " ]",
+            print("   + [ " + self.installPath + " - version: " + self.version + " ]", end=' ')
             if self.useLink:
-                print " -> [ "+ self.realPath() + " ]",
-            print
+                print(" -> [ "+ self.realPath() + " ]", end=' ')
+            print()
 
         return str("")
 
@@ -122,14 +122,14 @@ class BaseILC:
         """ used to abort the installation.
             displays the module name and the given message """
 
-        print
-        print "*** ERROR in module [ " + self.name + " ]: DEBUG INFO: " + str(self.parent.debugInfo)
-        print
-        print "*** ERROR in module [ " + self.name + " ]: " + msg
+        print()
+        print("*** ERROR in module [ " + self.name + " ]: DEBUG INFO: " + str(self.parent.debugInfo))
+        print()
+        print("*** ERROR in module [ " + self.name + " ]: " + msg)
 
         if ("logfile" in dir(self)):
-            print
-            print "Logfile for failed module: " + self.logfile
+            print()
+            print("Logfile for failed module: " + self.logfile)
 
         # write error to logfile
         try:
@@ -256,7 +256,7 @@ class BaseILC:
                     self.installPath = self.parent.installPath + "/" + self.alias + "/" + self.version
                     # 1st and 2nd cases failed:
                     if( not self.checkInstall() ):
-                        print 'failed to find', self.name, 'in', self.installPath
+                        print('failed to find', self.name, 'in', self.installPath)
                         # revert installPath back to user input
                         self.installPath = fixPath(self.__userInput)
                         self.version = basename( self.installPath )
@@ -372,17 +372,17 @@ class BaseILC:
         if( self.mode == "install" and os.path.exists( self.installPath )):
             if( os.path.exists( self.installPath + "/.install_failed.tmp" )):
                 self.rebuild = True
-                print "   + [%s] %s installation status: failed - set to rebuild" % \
-                    (self.installPath, (55-len(self.installPath))*' ')
+                print("   + [%s] %s installation status: failed - set to rebuild" % \
+                    (self.installPath, (55-len(self.installPath))*' '))
             elif( not self.checkInstall() ):
-                print "   + [%s] %s installation status: incomplete" % \
-                    (self.installPath, (55-len(self.installPath))*' ')
+                print("   + [%s] %s installation status: incomplete" % \
+                    (self.installPath, (55-len(self.installPath))*' '))
             elif( self.rebuild ):
-                print "   + [%s] %s installation status: OK - rebuild flag set to true" % \
-                    (self.installPath, (55-len(self.installPath))*' ')
+                print("   + [%s] %s installation status: OK - rebuild flag set to true" % \
+                    (self.installPath, (55-len(self.installPath))*' '))
             else:
-                print "   + [%s] %s installation status: OK - set to use mode" % \
-                    (self.installPath, (55-len(self.installPath))*' ')
+                print("   + [%s] %s installation status: OK - set to use mode" % \
+                    (self.installPath, (55-len(self.installPath))*' '))
                 #print "   + %-55s installation status: OK - set to use mode" % \
                 #    ('['+self.installPath+']',)
                 self.mode = "use"
@@ -459,7 +459,7 @@ class BaseILC:
                     self.parent.use( self.parent.module(req, True) )
                     self.parent.module( req ).init()
 
-                    print self.name + ": auto-detected " + req + " version " + self.parent.module( req ).version
+                    print(self.name + ": auto-detected " + req + " version " + self.parent.module( req ).version)
         
         # build only dependencies
         if( self.mode == "install" ):
@@ -475,7 +475,7 @@ class BaseILC:
                         self.parent.use( self.parent.module(req, True) )
                         self.parent.module( req ).init()
 
-                        print "   - " + self.name + ": auto-detected " + req + " version " + self.parent.module( req ).version
+                        print("   - " + self.name + ": auto-detected " + req + " version " + self.parent.module( req ).version)
 
     def checkDeps( self ):
         """ check if a package needs to be rebuilt by checking the 
@@ -523,48 +523,48 @@ class BaseILC:
         log.debug( 'Dependencies found in current cfg file: %s', deplist )
         
         # compare dependencies
-        for k, v in filedeplist.iteritems():
-            if( deplist.has_key( k )):
+        for k, v in filedeplist.items():
+            if( k in deplist):
                 if( deplist[k] != v ):
                     if( os.path.basename(deplist[k]) != os.path.basename(v) ):
                         if( r ):
-                            print "*** WARNING: ***\n***\tFollowing dependencies from " + self.name + " located at [ "  \
-                                    + self.realPath() + " ] failed:\n***"
-                        print "***\t * " + k + " " + os.path.basename(v) + " differs from version " \
-                                + os.path.basename(deplist[k]) + " defined in your config file.."
+                            print("*** WARNING: ***\n***\tFollowing dependencies from " + self.name + " located at [ "  \
+                                    + self.realPath() + " ] failed:\n***")
+                        print("***\t * " + k + " " + os.path.basename(v) + " differs from version " \
+                                + os.path.basename(deplist[k]) + " defined in your config file..")
                         r = False
             else:
                 if( r ): #just print this once
-                    print "*** WARNING: ***\n***\tFollowing dependencies from " + self.name + " located at [ "  + self.realPath() \
-                            + " ] failed:\n***"
-                print "***\t * " + k + " not found in your config file!!"
+                    print("*** WARNING: ***\n***\tFollowing dependencies from " + self.name + " located at [ "  + self.realPath() \
+                            + " ] failed:\n***")
+                print("***\t * " + k + " not found in your config file!!")
                 r = False
                 
 
         if( not r ):
-            print "***"
+            print("***")
             if( self.useLink ):
-                print "***\t" + self.name + " is in \"link\" mode, if you want to rebuild it with the new dependencies set it to \"use\" mode..."
+                print("***\t" + self.name + " is in \"link\" mode, if you want to rebuild it with the new dependencies set it to \"use\" mode...")
                 r = True
             else:
                 if( not self.parent.noAutomaticRebuilds ):
-                    print "***\t * " + self.name + " changed to \"install\" mode and rebuild flag set to True..."
+                    print("***\t * " + self.name + " changed to \"install\" mode and rebuild flag set to True...")
                     self.mode = "install"
                     self.rebuild = True
                     self.preCheckDeps()
-                    print "***\n***\tUpdating dependency tree ( modules that depend on " + self.name + " need also to be rebuilt )...\n***"
+                    print("***\n***\tUpdating dependency tree ( modules that depend on " + self.name + " need also to be rebuilt )...\n***")
                     self.updateDepTree([])
-                    print "***\n***\tif you do NOT want to rebuild this module(s) just answer \"no\" later on in the installation process,\n" \
-                            + "***\tor set the global flag ilcsoft.noAutomaticRebuilds=True in your config file..."
+                    print("***\n***\tif you do NOT want to rebuild this module(s) just answer \"no\" later on in the installation process,\n" \
+                            + "***\tor set the global flag ilcsoft.noAutomaticRebuilds=True in your config file...")
                 else:
-                    print "***\n***\tglobal flag ilcsoft.noAutomaticRebuilds is set to True, nothing will be done...\n***"
+                    print("***\n***\tglobal flag ilcsoft.noAutomaticRebuilds is set to True, nothing will be done...\n***")
         return r
 
     def getDepList(self, dict):
         """ helper function for getting a list of the dependencies
             and their installPath for this module """
         
-        if( dict.has_key( self.name) ):
+        if( self.name in dict ):
             return
         else:
             dict[ self.name ] = self.installPath
@@ -594,12 +594,12 @@ class BaseILC:
                     if( mod.mode != "install" or not mod.rebuild ):
                     #if( mod.mode != "install" and not mod.rebuild ):
                         if( mod.useLink ):
-                            print "***\t * WARNING: " + mod.name + " is in \"link\" mode, " \
-                                    + "if you want to rebuild it with the new dependencies set it to \"use\" mode...!!"
+                            print("***\t * WARNING: " + mod.name + " is in \"link\" mode, " \
+                                    + "if you want to rebuild it with the new dependencies set it to \"use\" mode...!!")
                         else:
                             if( not self.parent.noAutomaticRebuilds ):
                                 if( mod.mode != "install" ):
-                                    print "***\t * " + mod.name + " changed to \"install\" mode and rebuild Flag set to true!!"
+                                    print("***\t * " + mod.name + " changed to \"install\" mode and rebuild Flag set to true!!")
                                     mod.mode = "install"
                                     mod.rebuild = True
                                     mod.preCheckDeps()
@@ -647,13 +647,13 @@ class BaseILC:
 
 
                 cmd = "svn update %s" % self.installPath
-                print cmd
+                print(cmd)
 
                 if( os_system( cmd ) != 0 ):
                     self.abort( "error updating sources" )
             elif 'git' in self.download.type:
                 cmd = "cd %s && git pull origin && cd -" % self.installPath
-                print cmd
+                print(cmd)
 
                 if( os_system( cmd ) != 0 ):
                     self.abort( "error updating sources" )
@@ -670,7 +670,7 @@ class BaseILC:
         if( self.download.type == "cvs" or self.download.type == "ccvssh" ):
 
             # set env
-            for k, v in self.download.env.iteritems():
+            for k, v in self.download.env.items():
                 os.environ[k] = v
 
             cvsroot=os.environ["CVSROOT"]
@@ -697,16 +697,16 @@ class BaseILC:
             i4=cvsroot_nopass.rfind(':')+1
 
             if( os_system( 'grep "'+cvsroot_nopass[i2:i4]+'[0-9]*'+cvsroot_nopass[i4:]+'" ~/.cvspass &>/dev/null' ) != 0 ):
-                print "logging in to cvs server..."
+                print("logging in to cvs server...")
                 if( os_system( self.download.type + " login" ) != 0 ):
                     self.abort( "Problems ocurred downloading sources ("+self.download.type+" login)!!")
             else:
-                print "password found in ~/.cvspass, will skip login..."
+                print("password found in ~/.cvspass, will skip login...")
 
             os.environ["CVSROOT"] = cvsroot_nopass
 
             # checkout sources
-            print "checking out sources..."
+            print("checking out sources...")
             if( self.version == "HEAD" ):
                 if( os_system( "cvs co -d " + self.version + " " + self.download.project ) != 0 ):
                     self.abort( "Problems ocurred downloading sources with "+self.download.type+"!!")
@@ -726,7 +726,7 @@ class BaseILC:
             else:
                 cmd="%s %s %s" % (svncmd, self.download.svnurl, self.version)
 
-            print "svn download cmd:",cmd
+            print("svn download cmd:",cmd)
             if( os_system( cmd ) != 0 ):
                 self.abort( "Problems ocurred downloading sources with "+self.download.type+"!!")
 
@@ -736,13 +736,13 @@ class BaseILC:
             gitcmd = "git clone"
             cmd="%s %s %s" % (gitcmd, self.download.svnurl, self.version)
 
-            print "git download cmd:",cmd
+            print("git download cmd:",cmd)
             if( os_system( cmd ) != 0 ):
                 self.abort( "Problems occurred downloading sources with "+self.download.type+"!!")
 
             gittagcmd="cd %s && git checkout %s && cd -" % (self.version, self.version)
 
-            print "git checkout tag cmd:",gittagcmd
+            print("git checkout tag cmd:",gittagcmd)
             if( os_system( gittagcmd ) != 0 ):
                 self.abort( "Problems occurred checking out tag "+self.version+"!!")
 
@@ -751,13 +751,13 @@ class BaseILC:
                 #clone the whole repo into the directory
                 branch = 'master' if self.download.branch is None else self.download.branch
                 cmd="git clone -b %s https://github.com/%s/%s.git %s" % (branch, self.download.gituser, self.download.gitrepo, self.version)
-                print "Executing command:",cmd
+                print("Executing command:",cmd)
                 if os_system( cmd ) != 0:
                     self.abort( "Problems occurred during execution of " + cmd + " [!!ERROR!!]")
 
-                print "Cloning of repository %s/%s into directory %s sucessfully finished" % (self.download.gituser, self.download.gitrepo, self.version)
+                print("Cloning of repository %s/%s into directory %s sucessfully finished" % (self.download.gituser, self.download.gitrepo, self.version))
 
-            elif 'message' not in json.loads(urllib.urlopen('https://api.github.com/repos/%s/%s/git/refs/tags/%s' % (self.download.gituser, self.download.gitrepo, self.version)).read()).keys():
+            elif 'message' not in list(json.loads(urllib.request.urlopen('https://api.github.com/repos/%s/%s/git/refs/tags/%s' % (self.download.gituser, self.download.gitrepo, self.version)).read()).keys()):
                 cmd = "mkdir -p %s" % (self.version)
                 if os_system( cmd ) != 0:
                     self.abort( "Could not create folder" + self.version + " [!!ERROR!!]")
@@ -765,7 +765,7 @@ class BaseILC:
                 cmd = "curl -L -k https://api.github.com/repos/%s/%s/tarball/refs/tags/%s | tar xz --strip-components=1 -C %s" % (self.download.gituser, self.download.gitrepo, self.version, self.version)
                 if os_system( cmd ) != 0:
                     self.abort( "Could not download and extract tag " + self.version + " [!!ERROR!!]")
-                print "Downloading of the tag %s of repository %s/%s into directory %s sucessfully finished" % (self.version, self.download.gituser, self.download.gitrepo, self.version)
+                print("Downloading of the tag %s of repository %s/%s into directory %s sucessfully finished" % (self.version, self.download.gituser, self.download.gitrepo, self.version))
             else:
                 self.abort( "The specified tag " + self.version + " does not exist [!!ERROR!!]")
 
@@ -795,7 +795,7 @@ class BaseILC:
                 self.download.tardir = self.download.tardir[:self.download.tardir.find('/')]
 
             # unpack tarball
-            print "+ Unpacking " + self.download.tarball
+            print("+ Unpacking " + self.download.tarball)
             os_system( "tar -xzvf " + self.download.tarball )
             
             tryrename( self.download.tardir, self.version )
@@ -825,13 +825,13 @@ class BaseILC:
                         + os.path.basename( self.installPath ) + " ]!!!" )
 
             os.symlink( self.linkPath , self.version )
-            print "+ Linking " + self.parent.installPath + "/" + self.alias + "/" + self.version \
-                    + " -> " + self.linkPath
+            print("+ Linking " + self.parent.installPath + "/" + self.alias + "/" + self.version \
+                    + " -> " + self.linkPath)
 
     def compile(self):
         """ method used for compiling module.
             does nothing in the base class """
-        print "+ Nothing to be done ;)"
+        print("+ Nothing to be done ;)")
 
     def install(self, installed=[]):
         """ install this module """
@@ -851,7 +851,7 @@ class BaseILC:
                 mod = self.parent.module(modname)
                 mod.install(installed)
     
-            print 80*'#' + "\n##### Compiling " + self.name + " version " + self.version + "...\n" + 80*'#'
+            print(80*'#' + "\n##### Compiling " + self.name + " version " + self.version + "...\n" + 80*'#')
 
             # create install directory if it hasn't already been created
             trymakedir( self.installPath )
@@ -875,9 +875,9 @@ class BaseILC:
             if( not self.skipCompile ):
                 if( self.hasCMakeBuildSupport ):
                     #self.setCMakeVars(self,[])
-                    print "+ Generated cmake build command:"
-                    print '  $ ', self.genCMakeCmd()
-                    print os.linesep
+                    print("+ Generated cmake build command:")
+                    print('  $ ', self.genCMakeCmd())
+                    print(os.linesep)
                 
                 self.compile()
 
@@ -912,7 +912,7 @@ class BaseILC:
             else:
                 installed.append( self.name )
         
-            print "\n" + 20*'-' + " Starting " + self.name + " Installation Test " + 20*'-' + '\n'
+            print("\n" + 20*'-' + " Starting " + self.name + " Installation Test " + 20*'-' + '\n')
             
             # additional modules
             mods = self.optmodules + self.reqmodules + self.reqmodules_external + self.reqmodules_buildonly
@@ -920,21 +920,21 @@ class BaseILC:
                 for modname in mods:
                     mod = self.parent.module(modname)
                     if( mod.mode == "install" and not mod.name in installed ):
-                        print "+ " + self.name + " will launch installation of " + mod.name
+                        print("+ " + self.name + " will launch installation of " + mod.name)
                     mod.previewinstall(installed)
-                    print "+ "+ self.name + " using " + mod.name + " at [ " + mod.installPath + " ]"
+                    print("+ "+ self.name + " using " + mod.name + " at [ " + mod.installPath + " ]")
 
-            print "\n+ Environment Settings used for building " + self.name + ":"
+            print("\n+ Environment Settings used for building " + self.name + ":")
             # print environment settings recursively
             self.setEnv(self, [], True )
 
             if( self.hasCMakeBuildSupport ):
                 #self.setCMakeVars(self, [])
-                print "\n+ Generated CMake command for building " + self.name + ":"
-                print '  $ ',self.genCMakeCmd()
+                print("\n+ Generated CMake command for building " + self.name + ":")
+                print('  $ ',self.genCMakeCmd())
             
-            print "\n+ " + self.name + " installation finished."
-            print '\n' + 20*'-' + " Finished " + self.name + " Installation Test " + 20*'-' + '\n'
+            print("\n+ " + self.name + " installation finished.")
+            print('\n' + 20*'-' + " Finished " + self.name + " Installation Test " + 20*'-' + '\n')
 
 
     def showDependencies(self, installed=[]):
@@ -949,7 +949,7 @@ class BaseILC:
                 installed.append( self.name )
         
          
-            print self.name + "[color=orange1, fontcolor=white, label=\"" + self.name + "\"shape=rectangle];"
+            print(self.name + "[color=orange1, fontcolor=white, label=\"" + self.name + "\"shape=rectangle];")
             
             # additional modules
             mods = self.optmodules + self.reqmodules + self.reqmodules_external + self.reqmodules_buildonly
@@ -959,7 +959,7 @@ class BaseILC:
 #                    if( mod.mode == "install" and not mod.name in installed ):
 #                        print "+ " + self.name + " will launch installation of " + mod.name
 #                    mod.previewinstall(installed)
-                    print self.name + " -> " + mod.name + ";"
+                    print(self.name + " -> " + mod.name + ";")
 
 #            print "\n+ Environment Settings used for building " + self.name + ":"
             # print environment settings recursively
@@ -977,7 +977,7 @@ class BaseILC:
     def cmakeBoolOptionIsSet(self, opt):
         """ checks if a cmake option is set """
 
-        if self.envcmake.has_key( opt ):
+        if opt in self.envcmake:
 
             val = str(self.envcmake.get(opt,""))
 
@@ -992,7 +992,7 @@ class BaseILC:
         """ generates a CMake command out of envcmake """
         
         cmd = "cmake -C " + self.parent.env["ILCSOFT_CMAKE"] + " "
-        for k, v in self.envcmake.iteritems():
+        for k, v in self.envcmake.items():
             cmd = cmd + "-D" + k + "=\"" + str(v).strip() + "\" "
 
         cmd += self.installPath
@@ -1010,21 +1010,21 @@ class BaseILC:
             checked.append( self.name )
 
         # set values to strings
-        for k in self.env.keys():
+        for k in list(self.env.keys()):
             self.env[k]=str(self.env[k])
         
         # set environment variables
         if( simOnly ):
             if( len( checked ) == 1 ):
                 if( len(self.parent.env) != 0 ):
-                    print "\n   + Global Environment variables:"
-                    for k, v in self.parent.env.iteritems():
-                        print "\t* " + k + ": " + str(v)
+                    print("\n   + Global Environment variables:")
+                    for k, v in self.parent.env.items():
+                        print("\t* " + k + ": " + str(v))
 
-            print "\n   + Environment variables set by " + self.name + ":"
+            print("\n   + Environment variables set by " + self.name + ":")
             
-            for k, v in self.env.iteritems():
-                print "\t* " + k + ": " + str(v)
+            for k, v in self.env.items():
+                print("\t* " + k + ": " + str(v))
         else:
             # first set the priority values
             for k in self.envorder:
@@ -1033,7 +1033,7 @@ class BaseILC:
                 else:
                     os.environ[k] = self.env[k]
             # then set the rest
-            for k, v in self.env.iteritems():
+            for k, v in self.env.items():
                 if k not in self.envorder:
                     if( v.find('$') != -1 ):
                         os.environ[k] = os.path.expandvars(v)
@@ -1042,9 +1042,9 @@ class BaseILC:
 
         # print path and build environment variables
         if( simOnly ):
-            for k, v in self.envpath.iteritems():
+            for k, v in self.envpath.items():
                 if( len(v) != 0 ):
-                    print "\t* " + k + ": " + str(v)
+                    print("\t* " + k + ": " + str(v))
 
         # set environment for dependencies
         if( len( checked ) > 1 ):
@@ -1059,7 +1059,7 @@ class BaseILC:
         # list of "trivial" paths we do not want to add again to PATH and co
         ignorepaths = ['/usr/bin','/usr/lib','/sbin','/usr/sbin']
         # set path environment variables
-        for k, v in self.envpath.iteritems():
+        for k, v in self.envpath.items():
             if( len(v) != 0 ):
                 env = getenv( k )
                 newvalues = ""
@@ -1080,12 +1080,12 @@ class BaseILC:
             checked.append( self.name )
 
         # delete environment variables
-        for k, v in self.env.iteritems():
+        for k, v in self.env.items():
             trydelenv(k)
 
         # restore path variables (only need to do this at the root module, skip recursivity!)
         if( len( checked ) == 1 ):
-            for k, v in self.parent.envpathbak.iteritems():
+            for k, v in self.parent.envpathbak.items():
                 os.environ[k] = v
 
         # delete environment for dependencies
@@ -1108,7 +1108,7 @@ class BaseILC:
         if( len( self.parent.env ) > 0 ):
             f.write( 2*os.linesep + "#" + 80*'-' + os.linesep + "#" + 5*' ' + "Global Environment Variables" + os.linesep \
                     + "#" + 80*'-' + os.linesep )
-            for k, v in self.parent.env.iteritems():
+            for k, v in self.parent.env.items():
                 f.write( "export " + str(k) + "=\"" + str(v) + "\"" + os.linesep )
         
 
@@ -1117,10 +1117,10 @@ class BaseILC:
         
 
         f.write( "# --- additional comands ------- " + os.linesep ) 
-        print "\n   ----- adding additional commands to build_env.sh : \n "
+        print("\n   ----- adding additional commands to build_env.sh : \n ")
         for c in self.envcmds:
             f.write( c + os.linesep ) 
-            print "\n   ----- adding additional command to build_env.sh " + c + "\n"
+            print("\n   ----- adding additional command to build_env.sh " + c + "\n")
 
         if self.os_ver.type == "Darwin":
             f.write( os.linesep + '# --- set DYLD_LIBRARY_PATH to LD_LIBRARY_PATH for MAC compatibility ---' + os.linesep )
@@ -1138,7 +1138,7 @@ class BaseILC:
         else:
             checked.append( self.name )
 
-        if self.env or sum(map(len, self.envpath.values()), 0):
+        if self.env or sum(list(map(len, list(self.envpath.values()))), 0):
             f.write( 2*os.linesep + "#" + 80*'-' + os.linesep + "#" + 5*' ' \
                     + self.name + os.linesep + "#" + 80*'-' + os.linesep )
         
@@ -1146,7 +1146,7 @@ class BaseILC:
         for k in self.envorder:
             f.write( "export " + str(k) + "=\"" + str(self.env[k]) + "\"" + os.linesep )
         # then write the rest
-        for k, v in self.env.iteritems():
+        for k, v in self.env.items():
             if k not in self.envorder:
                 f.write( "export " + str(k) + "=\"" + str(self.env[k]) + "\"" + os.linesep )
     
@@ -1157,11 +1157,11 @@ class BaseILC:
         # list of "trivial" paths we do not want to add again to PATH and co
         ignorepaths = ['/usr/bin','/usr/lib','/sbin','/usr/sbin']
         # path environment variables
-        for k, v in self.envpath.iteritems():
+        for k, v in self.envpath.items():
             if( len(v) != 0 ):
                 # expand every variable we introduced previously
                 exp = str().join(v)
-                for e, ev in self.env.iteritems():
+                for e, ev in self.env.items():
                     p = re.compile(r"\$"+str(e)) # compile regular expression to match shell variable
                     exp = p.sub(str(ev), exp)  # replace with expanded variable for absolute path
                 # check for match
@@ -1234,8 +1234,8 @@ class BaseILC:
             try:
                 self.optmodules.remove(modname)
             except:
-                print "\n*** WARNING: " + modname + " not found in the list of modules from " + self.name + "!!"
-                print "please recheck your config file: names are case-sensitive!!"
+                print("\n*** WARNING: " + modname + " not found in the list of modules from " + self.name + "!!")
+                print("please recheck your config file: names are case-sensitive!!")
     
     def addDependency(self, mods):
         """ use this to add a dependency to the module """
@@ -1257,8 +1257,8 @@ class BaseILC:
             try:
                 self.reqmodules.remove(mod)
             except:
-                print "\n*** WARNING: " + mod + " not found in the list of dependencies from " + self.name + "!!"
-                print "please recheck your config file: names are case-sensitive!!"
+                print("\n*** WARNING: " + mod + " not found in the list of dependencies from " + self.name + "!!")
+                print("please recheck your config file: names are case-sensitive!!")
     
     def addExternalDependency(self, mods):
         """ use this to add external dependencies to the module """
@@ -1285,8 +1285,8 @@ class BaseILC:
             try:
                 self.reqmodules_external.remove(mod)
             except:
-                print "\n*** WARNING: " + mod + " not found in the list of external dependencies from " + self.name + "!!"
-                print "please recheck your config file: names are case-sensitive!!"
+                print("\n*** WARNING: " + mod + " not found in the list of external dependencies from " + self.name + "!!")
+                print("please recheck your config file: names are case-sensitive!!")
 
     def addBuildOnlyDependency(self, mods):
         """ use this to add a "build only" dependency to the module """
@@ -1313,8 +1313,8 @@ class BaseILC:
             try:
                 self.reqmodules_buildonly.remove(mod)
             except:
-                print "\n*** WARNING: " + mod + " not found in the list of build only dependencies from " + self.name + "!!"
-                print "please recheck your config file: names are case-sensitive!!"
+                print("\n*** WARNING: " + mod + " not found in the list of build only dependencies from " + self.name + "!!")
+                print("please recheck your config file: names are case-sensitive!!")
     
 
     def addCMakeCache(self, var, value, description):

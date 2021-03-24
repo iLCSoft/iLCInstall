@@ -8,11 +8,11 @@
 ##################################################
 
 # custom imports
-from util import *
-from java import Java
-from qt import QT
-from cmake import CMake
-import commands
+from .util import *
+from .java import Java
+from .qt import QT
+from .cmake import CMake
+import subprocess
 
 class ILCSoft:
     """ Container class for the ILC software modules.
@@ -72,10 +72,10 @@ class ILCSoft:
         if len( release_string ): 
             self.release_number = release_string[re.search('\d', release_string).start()]
         
-        for k,v in self.debugInfo.iteritems():
-            print "+", k, '\t', str(v).replace("\n","\n\t\t")
+        for k,v in self.debugInfo.items():
+            print("+", k, '\t', str(v).replace("\n","\n\t\t"))
 
-        print
+        print()
 
 
     
@@ -88,7 +88,7 @@ class ILCSoft:
             module.setMode("use")
             self.modules.append(module)
         else:
-            print "module " + module.name + " defined more than once in your config file!!"
+            print("module " + module.name + " defined more than once in your config file!!")
             sys.exit(1)
     
     def link(self, module):
@@ -106,7 +106,7 @@ class ILCSoft:
 
             self.modules.append(module)
         else:
-            print "module " + module.name + " defined more than once in your config file!!"
+            print("module " + module.name + " defined more than once in your config file!!")
             sys.exit(1)
     
     def install(self, module):
@@ -118,7 +118,7 @@ class ILCSoft:
             module.setMode("install")
             self.modules.append(module)
         else:
-            print "module " + module.name + " defined more than once in your config file!!"
+            print("module " + module.name + " defined more than once in your config file!!")
             sys.exit(1)
 
     def module(self, modname, auto=False):
@@ -147,7 +147,7 @@ class ILCSoft:
     def setEnv(self):
         """ sets global environment variables """
 
-        for k, v in self.env.iteritems():
+        for k, v in self.env.items():
             os.environ[k] = str(v)
 
     def init(self):
@@ -157,7 +157,7 @@ class ILCSoft:
             configuration file """
 
         if( os_system( "which which > /dev/null 2>&1" ) != 0 ):
-            print "\"which\" is not installed on your system!!"
+            print("\"which\" is not installed on your system!!")
             sys.exit(1)
             
 
@@ -189,11 +189,11 @@ class ILCSoft:
                 self.cmakeSupportedMods.append( mod.name )
         
         # initialize each module
-        print "+ Initialize modules..."
+        print("+ Initialize modules...")
         for mod in self.modules:
             mod.init()
 
-        print "\n+ Check for previous installations...\n"
+        print("\n+ Check for previous installations...\n")
         for mod in self.modules:
             mod.checkInstallConsistency()
         
@@ -201,11 +201,11 @@ class ILCSoft:
         if( self.downloadOnly ):
             return
         
-        print "\n+ Dependencies Pre-Check..."
+        print("\n+ Dependencies Pre-Check...")
         for mod in self.modules:
             mod.preCheckDeps()
         
-        print "\n+ Dependencies Check..."
+        print("\n+ Dependencies Check...")
         PkgUpdated = True
         while PkgUpdated:
             PkgUpdated = False
@@ -220,11 +220,11 @@ class ILCSoft:
                 if( not mod.checkDeps() ):
                     PkgUpdated = True
         
-        print "\n+ Dependencies Post-Check..."
+        print("\n+ Dependencies Post-Check...")
         for mod in self.modules:
             mod.postCheckDeps()
             
-        print
+        print()
     
     def writeCMakeEnv(self):
         
@@ -325,14 +325,14 @@ class ILCSoft:
         f.write( os.linesep )
         f2.write( os.linesep )
 
-        useCxx11 = unicode("OFF")
+        useCxx11 = str("OFF")
         if "USE_CXX11" in self.envcmake:
-            useCxx11 = unicode(self.envcmake["USE_CXX11"])
+            useCxx11 = str(self.envcmake["USE_CXX11"])
 
-        noBoostCMake = unicode("OFF")
+        noBoostCMake = str("OFF")
         if "Boost_NO_BOOST_CMAKE" in self.envcmake:
-            noBoostCMake = unicode(self.envcmake["Boost_NO_BOOST_CMAKE"])
-            print "*********  setting Boost_NO_BOOST_CMAKE to : "  , noBoostCMake  
+            noBoostCMake = str(self.envcmake["Boost_NO_BOOST_CMAKE"])
+            print("*********  setting Boost_NO_BOOST_CMAKE to : "  , noBoostCMake)  
 
         #write some CMAKE env variables so the user can build an individual package  
         f.write( "option(USE_CXX11" + " \"Use cxx11\" " + useCxx11 +")" )
@@ -342,7 +342,7 @@ class ILCSoft:
         f.write( "set(CMAKE_CXX_FLAGS_RELWITHDEBINFO \"-O2 -g\" CACHE STRING \"\" FORCE )"  )
         f.write( os.linesep )
 
-        cxxStandard = unicode(self.envcmake.get("CMAKE_CXX_STANDARD", None))
+        cxxStandard = str(self.envcmake.get("CMAKE_CXX_STANDARD", None))
         if cxxStandard:
           f.write( 'set(CMAKE_CXX_STANDARD %s CACHE STRING "C++ Standard" FORCE)' % cxxStandard )
           f.write( os.linesep )
@@ -350,7 +350,7 @@ class ILCSoft:
         for mod in self.modules:
             if mod.cmakecache:
                 f.write( "# -- Cache variables from " + mod.alias + os.linesep )
-                for k,v in mod.cmakecache.iteritems():
+                for k,v in mod.cmakecache.items():
                     f.write( "set(%s \"%s\" CACHE STRING \"%s\" FORCE)" % (k, v[0], v[1]) )
                     f.write( os.linesep )
                 f.write( os.linesep )
@@ -364,7 +364,7 @@ class ILCSoft:
     def makeinstall(self):
         """ starts the installation process """
 
-        print "\n" + 30*'*' + " Starting installation " + 30*'*' + "\n"
+        print("\n" + 30*'*' + " Starting installation " + 30*'*' + "\n")
 
         # create log directory
         trymakedir( self.logsdir )
@@ -373,7 +373,7 @@ class ILCSoft:
         try:
             shutil.copyfile( self.config_file, self.logsdir + self.config_file_prefix + "-" + self.time + ".cfg")
         except:
-            print "*** FATAL ERROR: you don't have write permissions in " + self.installPath + "!!!\n"
+            print("*** FATAL ERROR: you don't have write permissions in " + self.installPath + "!!!\n")
             sys.exit(1)
         
         # initialize log file
@@ -386,10 +386,10 @@ class ILCSoft:
         self.setEnv()
 
         # make backup of path environment variables
-        for k, v in self.envpathbak.iteritems():
+        for k, v in self.envpathbak.items():
             self.envpathbak[k] = getenv(k)
         
-        print "\n" + 30*'*' + " Starting ILC Software installation process " + 30*'*' + "\n"
+        print("\n" + 30*'*' + " Starting ILC Software installation process " + 30*'*' + "\n")
         # write CMake Environment to file ILCSoft.cmake
         self.writeCMakeEnv()
 
@@ -402,10 +402,10 @@ class ILCSoft:
         #------- prepend the pathes for the compiler and python used in this installation -------
 
         compiler = self.env["CXX"]
-        status, cxx_path = commands.getstatusoutput( "which "+compiler )
+        status, cxx_path = subprocess.getstatusoutput( "which "+compiler )
         cxx_path =  os.path.dirname( os.path.dirname( cxx_path ) ) # remove '/bin/g++'
 
-        status, py_path = commands.getstatusoutput( "which python" )
+        status, py_path = subprocess.getstatusoutput( "which python" )
         py_path =  os.path.dirname( os.path.dirname( py_path ) ) # remove '/bin/python'
 
         f.write( os.linesep + '# -------------------------------------------------------------------- ---' + os.linesep )
@@ -441,17 +441,17 @@ class ILCSoft:
             f.write( 'export LIBGL_ALWAYS_INDIRECT=1' + os.linesep  )
 
 
-        print "\n" + 30*'*' + " Creating symlinks " + 30*'*' + "\n"
+        print("\n" + 30*'*' + " Creating symlinks " + 30*'*' + "\n")
         for mod in self.modules:
             mod.createLink()
-        print "\n" + 30*'*' + " Checking for rebuilds " + 30*'*' + "\n"
+        print("\n" + 30*'*' + " Checking for rebuilds " + 30*'*' + "\n")
         for mod in self.modules:
             mod.confirmRebuild()
-        print "\n" + 30*'*' + " Downloading sources " + 30*'*' + "\n"
+        print("\n" + 30*'*' + " Downloading sources " + 30*'*' + "\n")
         for mod in self.modules:
             if mod.mode == "install":
                 if not os.path.exists( mod.installPath ):
-                    print 80*'*' + "\n*** Downloading sources for " + mod.name + " version " + mod.version + "...\n" + 80*'*'
+                    print(80*'*' + "\n*** Downloading sources for " + mod.name + " version " + mod.version + "...\n" + 80*'*')
                     mod.downloadSources()
                 # no point in updating the sources unless 'make install' is called for each of those packages afterwards
                 # do we really want this?
@@ -460,14 +460,14 @@ class ILCSoft:
 
         # apply patches
         if self.patch:
-            print "\n" + 30*'*' + " Patching sources " + 30*'*' + "\n"
+            print("\n" + 30*'*' + " Patching sources " + 30*'*' + "\n")
             for patchname in self.patch:
                 relpatchdir = os.path.join( 'patches/', patchname )
                 abspatchdir = os.path.abspath( os.path.join( self.ilcinstallDir, relpatchdir ))
 
                 # FIXME check this in preview mode
                 if not os.path.exists( abspatchdir ):
-                    print "patch not valid:", patchname
+                    print("patch not valid:", patchname)
                     sys.exit(1)
 
                 os.chdir( abspatchdir )
@@ -477,15 +477,15 @@ class ILCSoft:
                     patchfilecopy = os.path.join( dirfile2patch, '.'+os.path.basename( patchfile ) )
                     if not os.path.exists( patchfilecopy ):
                         if os.path.exists( file2patch ):
-                            print 'patching file: ', file2patch
+                            print('patching file: ', file2patch)
                             os_system( "patch " + file2patch + ' ' + patchfile )
                             os_system( "cp " + patchfile + ' ' + patchfilecopy ) 
                         else:
-                            print 'Warning: file to patch not found:', file2patch
+                            print('Warning: file to patch not found:', file2patch)
                 os.chdir( self.ilcinstallDir )
 
         if( not self.downloadOnly ):
-            print "\n" + 30*'*' + " Installing software " + 30*'*' + "\n"
+            print("\n" + 30*'*' + " Installing software " + 30*'*' + "\n")
             for mod in self.modules:
                 mod.install([])
 
@@ -496,45 +496,45 @@ class ILCSoft:
         for mod in self.modules:
             os_system( "echo '%s:%s' >> %s" % (mod.alias,mod.version,depsfile) )
 
-        print "\n" + 30*'*' + " Finished installation " + 30*'*' + "\n"
+        print("\n" + 30*'*' + " Finished installation " + 30*'*' + "\n")
 
     def summary(self):
         """ displays an installation summary """
 
-        print "\n" + 30*'=' + " Installation Summary: " + 40*'='
+        print("\n" + 30*'=' + " Installation Summary: " + 40*'=')
 
-        print "\n+ ILC Software will be installed to [" + self.installPath + "]"
+        print("\n+ ILC Software will be installed to [" + self.installPath + "]")
     
-        print "\n+ Following modules will be installed:\n"
+        print("\n+ Following modules will be installed:\n")
         for mod in self.modules:
             if( mod.mode == "install" ):
-                print mod
+                print(mod)
         
-        print "\n+ Following modules will be used for the installation:\n"
+        print("\n+ Following modules will be used for the installation:\n")
         for mod in self.modules:
             if( mod.mode == "use" ):
-                print mod,
+                print(mod, end=' ')
 
-        print "\n" + 30*'=' + " End of Installation Summary: " + 33*'=' + "\n\n"
+        print("\n" + 30*'=' + " End of Installation Summary: " + 33*'=' + "\n\n")
 
 
     def previewinstall(self):
         """ tests the installation process """
 
-        print "\n" + 30*'=' + " Installation Simulation: " + 37*'='
+        print("\n" + 30*'=' + " Installation Simulation: " + 37*'=')
         for mod in self.modules:
             if( mod.mode == "install" ):
                 mod.previewinstall()
-        print "\n" + 30*'=' + " End of Installation Simulation: " + 30*'=' + "\n"
+        print("\n" + 30*'=' + " End of Installation Simulation: " + 30*'=' + "\n")
 
 
     def showDependencies(self):
 
-        print "digraph iLCSoftPackages {"
-        print "node [ fontname = \"Helvetica\",style = filled ]; "
+        print("digraph iLCSoftPackages {")
+        print("node [ fontname = \"Helvetica\",style = filled ]; ")
 
         for mod in self.modules:
             if( mod.mode == "install" ):
                 mod.showDependencies()
 
-        print "};"
+        print("};")

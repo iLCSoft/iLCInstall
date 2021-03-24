@@ -35,8 +35,8 @@ class Uranus(BaseILC):
         """ compile Uranus """
         os.chdir( self.installPath )
         buildcmd='( export IMAKEINCLUDE=\"-I${LCBASEDIR} -I${LCLIBROOT}\" && make )'
-        print "Compile Uranus will starts"
-        print "buildcmd ="+buildcmd
+        print("Compile Uranus will starts")
+        print("buildcmd ="+buildcmd)
         if( os.system( buildcmd + " 2>&1 | tee -a " + self.logfile ) != 0 ) :
             self.abort( "failed to compile!!" )
 

@@ -2,7 +2,7 @@
 # py.test module for testing the Version class
 ################################################
 
-from version import Version
+from .version import Version
 import py
 
 def test_sanity():
@@ -35,8 +35,8 @@ def test_general():
 
     # getitem / getslice
     NUM_ELEM = MIN_ELEM+2
-    assert Version( range(NUM_ELEM) )[NUM_ELEM-1] == NUM_ELEM-1
-    assert Version( range(NUM_ELEM) )[1:NUM_ELEM-1] == tuple(range(1,NUM_ELEM-1))
+    assert Version( list(range(NUM_ELEM)) )[NUM_ELEM-1] == NUM_ELEM-1
+    assert Version( list(range(NUM_ELEM)) )[1:NUM_ELEM-1] == tuple(range(1,NUM_ELEM-1))
 
     # strict vs non-strict
     assert str( Version( (NUM_ELEM * '1.')+'1-01' )) == (NUM_ELEM * '1.')+'1-01'
@@ -150,13 +150,13 @@ def test_lt_gt():
 
 
 def test_cmd_outputs():
-    from util import OSDetect
+    from .util import OSDetect
     
     sl_ver = OSDetect().isSL()
 
     if sl_ver:
         import os.path
-        from commands import getoutput
+        from subprocess import getoutput
         
         ilcHome='/afs/desy.de/group/it/ilcsoft/'
         prdHome='/opt/products/'

@@ -8,8 +8,8 @@
 ##################################################
                                                                                                                                                             
 # custom imports
-from baseilc import BaseILC
-from util import *
+from .baseilc import BaseILC
+from .util import *
 
 
 class SlicPandora(BaseILC):
@@ -45,7 +45,7 @@ class SlicPandora(BaseILC):
         else:
             self.download.svnurl += '/tags/' + self.version
 
-        print "slicPandora SVN URL: ", self.download.svnurl
+        print("slicPandora SVN URL: ", self.download.svnurl)
 
     def compile(self):
         """ compile slicPandora """

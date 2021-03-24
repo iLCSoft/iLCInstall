@@ -9,8 +9,8 @@
 ##################################################
 
 # custom imports
-from baseilc import BaseILC
-from util import *
+from .baseilc import BaseILC
+from .util import *
 
 
 class Qt5(BaseILC):
@@ -81,7 +81,7 @@ class Qt5(BaseILC):
             if( os_system( "./init-repository --module-subset=essential,qt3d 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to init Qt5 submodules!!" )
         else:
-           print("****** path not found",self.version + "/" + self.name + "/init-repository" )
+           print(("****** path not found",self.version + "/" + self.name + "/init-repository" ))
 
         
     def compile(self):

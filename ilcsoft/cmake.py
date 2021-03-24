@@ -8,8 +8,8 @@
 ##################################################
                                                                                                                                                             
 # custom imports
-from baseilc import BaseILC
-from util import *
+from .baseilc import BaseILC
+from .util import *
 
 
 class CMake(BaseILC):
@@ -60,7 +60,7 @@ class CMake(BaseILC):
         
     def downloadSources(self):
         
-        print "downloadSources from : " , self.download.url
+        print("downloadSources from : " , self.download.url)
 
         BaseILC.downloadSources(self)
 

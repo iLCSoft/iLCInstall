@@ -8,8 +8,8 @@
 ##################################################
 
 # custom imports
-from marlinpkg import MarlinPKG
-from util import *
+from .marlinpkg import MarlinPKG
+from .util import *
 
 class MarlinTPC(MarlinPKG):
     """ Responsible for the MarlinTPC installation process. """
