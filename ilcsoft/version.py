@@ -69,11 +69,11 @@ class Version:
     # regular expression for checking if a string contains a version
     # a version has to have at least min elements separated by one version_separator
     # the end slice removes the last separators
-    _regex = (_min_elements * ('\d+ [%s] ' % _separators))[:-(4+len(_separators))]
+    _regex = (_min_elements * (r'\d+ [%s] ' % _separators))[:-(4+len(_separators))]
     _re_has_version = re.compile( _regex, re.VERBOSE )
 
     # regular expression for extracting all digits in a string
-    _re_any_digit = re.compile( '(\d+)' )
+    _re_any_digit = re.compile( r'(\d+)' )
 
     def __init__(self, arg, max_elements=None, strict=False):
 
@@ -209,19 +209,61 @@ class Version:
     def __str__(self):
         return self._strver
 
-    def __cmp__(self, other):
-        #print 'cmp - self:', self, 'other:', other
-        #if other:
-        #    if isinstance( other, self.__class__ ):
-        #        return cmp(self._cmpver, other._cmpver )
-        #    #print 'cmp - converting other:', other
-        #    return cmp(self._cmpver, self.__class__(other)._cmpver)
-
+    def __lt__(self, other):
         if other:
-            #print 'cmp - converting other:', other
-            return cmp(self._cmpver, self.__class__(other)._cmpver)
+            if not isinstance(other, Version):
+                other = Version(other)
 
-        return cmp(self._cmpver, other)
+            # some special case handling for python3
+            if self._cmpver == ('HEAD',):
+                return False
+            if other._cmpver == ('HEAD',):
+                return True
+
+            return self._cmpver < other._cmpver
+        return False
+
+    def __gt__(self, other):
+        # for some reason we need this to make python2 happy, otherwise version
+        # comparison tests break.
+        if other:
+            if not isinstance(other, Version):
+                other = Version(other)
+
+            # some special case handling for python3
+            if self._cmpver == ('HEAD',):
+                return True
+            if other._cmpver == ('HEAD',):
+                return False
+
+            return self._cmpver > other._cmpver
+        return False
+
+    def __ge__(self, other):
+        # Since we overload __gt__ we also have to define this one...
+        if other:
+            if not isinstance(other, Version):
+                other = Version(other)
+
+            return self._cmpver >= other._cmpver
+        return False
+
+    def __le__(self, other):
+        # Since we overload __gt__ we also have to define this one...
+        if other:
+            if not isinstance(other, Version):
+                other = Version(other)
+
+            return self._cmpver <= other._cmpver
+        return False
+
+
+    def __eq__(self, other):
+        if other:
+            if not isinstance(other, Version):
+                other = Version(other)
+            return self._cmpver == other._cmpver
+        return False
 
 
 if __name__ == '__main__':
