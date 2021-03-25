@@ -107,7 +107,7 @@ elif platform.system().lower().find('darwin') >= 0:
    platfDefault = '/usr/local'
 
 # ----- mysql --------------------------------------------------------
-MySQL_version = "5.7.26"
+MySQL_version = "10.4.12"
 MySQL_path = platfDefault
 
 # overwrite with a patch set in the environment
