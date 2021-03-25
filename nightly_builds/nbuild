@@ -77,7 +77,7 @@ ex_handler=None
 
 try:
     from ilcsoft import *
-    execfile( config_file )
+    exec(compile(open(config_file, "rb").read(), config_file, "exec"))
 
     # pass the name of the config file to ilcsoft
     ilcsoft.config_file = config_file
