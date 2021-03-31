@@ -47,6 +47,15 @@ class ROOT(BaseILC):
     def init(self):
         BaseILC.init(self)
 
+        if Version(self.version) <= '6.19':
+            # See: https://root-forum.cern.ch/t/problems-building-root-6-18-04-with-builtin-davix/44225
+            self.download.supportedTypes = ['Github']
+            self.download.gituser = 'root-project'
+            self.download.gitrepo = 'root'
+            self.download.branch = 'v6-18-00-patches'
+            self.download.type = 'GitHub'
+
+
         if( Version( self.version ) == 'HEAD' and self.download.type[:3] != 'svn' ):
             self.download.type="svn-export"
 
