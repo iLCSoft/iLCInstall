@@ -8,8 +8,8 @@
 ##################################################
 
 # custom imports
-from baseilc import BaseILC
-from util import *
+from .baseilc import BaseILC
+from .util import *
 
 
 class CERNLIB(BaseILC):
@@ -48,8 +48,8 @@ class CERNLIB(BaseILC):
 
         if self.version == '2005' :
             # cernlib fix from Harald Vogt: http://www-zeuthen.desy.de/~hvogt/
-            urllib.urlretrieve( "http://www-zeuthen.desy.de/linear_collider/cernlib/new/cernlib-2005-all-new.tgz", "cernlib-2005-all-new.tgz" )
-            urllib.urlretrieve( "http://www-zeuthen.desy.de/linear_collider/cernlib/new/cernlib.2005.corr.2009.06.13.tgz", "cernlib.2005.corr.2009.06.13.tgz" )
+            urllib.request.urlretrieve( "http://www-zeuthen.desy.de/linear_collider/cernlib/new/cernlib-2005-all-new.tgz", "cernlib-2005-all-new.tgz" )
+            urllib.request.urlretrieve( "http://www-zeuthen.desy.de/linear_collider/cernlib/new/cernlib.2005.corr.2009.06.13.tgz", "cernlib.2005.corr.2009.06.13.tgz" )
 
             if( os_system( "tar xzf cernlib-2005-all-new.tgz") != 0 ):
                 self.abort("failed to extract cernlib sources")
@@ -91,8 +91,8 @@ class CERNLIB(BaseILC):
 
             tarballs = [ '2006_src.tar.gz', 'include.tar.gz' ]
             for tarball in tarballs:
-                print 'downloading:', tarball
-                urllib.urlretrieve( self.download.url + tarball, tarball )
+                print('downloading:', tarball)
+                urllib.request.urlretrieve( self.download.url + tarball, tarball )
                 if os_system( "tar xzf " + tarball ) != 0:
                     self.abort( 'failed to extract '+ tarball )
                 os_system( "mv " + tarball + " " + self.installPath+'/sources' )
@@ -146,16 +146,16 @@ class CERNLIB(BaseILC):
 
             # Create the top level Makefile with imake
             os.chdir( "build" )
-            print "* Creating the top level Makefile with imake..."
+            print("* Creating the top level Makefile with imake...")
             if( os_system( self.installPath + "/src/config/imake_boot" ) != 0 ):
                 self.abort( "failed to create the top level Makefile with imake!!")
             
             # Install kuipc and the scripts (cernlib, paw and gxint) in $CERN_ROOT/bin
-            print "* Building kuipc..."
+            print("* Building kuipc...")
             if( os_system( "make bin/kuipc > log/kuipc 2>&1" ) != 0 ):
                 self.abort( "failed to compile!!")
             
-            print "* Building scripts..."
+            print("* Building scripts...")
             if( os_system( "make scripts/Makefile" ) != 0 ):
                 self.abort( "failed to compile!!")
             
@@ -165,12 +165,12 @@ class CERNLIB(BaseILC):
 
             # skip install.bin rule on 64bit
             if platform.architecture()[0] != '64bit': 
-                print "* Building install.bin..."
+                print("* Building install.bin...")
                 if( os_system( "make install.bin > ../log/scripts 2>&1" ) != 0 ):
                     self.abort( "failed to compile!!")
 
             os.chdir( self.installPath + "/build" )
-            print "* Building libraries..."
+            print("* Building libraries...")
             if( os_system( "make > log/make.`date +%m%d` 2>&1" ) != 0 ):
                 self.abort( "failed to compile!!")
     

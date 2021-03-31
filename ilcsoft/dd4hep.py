@@ -8,9 +8,9 @@
 ##################################################
 
 # custom imports
-from baseilc import BaseILC
+from .baseilc import BaseILC
 import sys
-from util import *
+from .util import *
 
 
 class DD4hep(BaseILC):

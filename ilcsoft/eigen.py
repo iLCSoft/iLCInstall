@@ -10,8 +10,8 @@
 ##################################################
                                                                                                                                                             
 # custom imports
-from baseilc import BaseILC
-from util import *
+from .baseilc import BaseILC
+from .util import *
 
 
 class Eigen(BaseILC):
@@ -25,9 +25,7 @@ class Eigen(BaseILC):
         self.hasCMakeBuildSupport = True
         
         self.reqmodules = [ "CMake" ]
-        self.download.supportedTypes = [ "GitHub" ] 
-        self.download.gituser = 'eigenteam'
-        self.download.gitrepo = 'eigen-git-mirror'
+        self.download.supportedTypes = [ "wget" ]
 
         self.reqfiles = [
             ["include/eigen3/Eigen/src/Core/Matrix.h", "include/eigen3/Eigen/Core",
@@ -38,6 +36,8 @@ class Eigen(BaseILC):
         BaseILC.setMode(self, mode)
         # installPath does not exists before setMode is called
         self.cmakeconfig = self.installPath + "/share/eigen3/cmake/"
+
+        self.download.url = 'https://gitlab.com/libeigen/eigen/-/archive/%s/eigen-%s.tar.gz' % (self.version, self.version)
         
     def compile(self):
         """ compile Eigen """

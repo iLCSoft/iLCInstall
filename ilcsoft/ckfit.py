@@ -8,7 +8,7 @@
 ##################################################
                                                                                                                                                             
 # custom imports
-from marlinpkg import MarlinPKG
+from .marlinpkg import MarlinPKG
 
 class CKFit(MarlinPKG):
     """ Responsible for the CKFit installation process. """

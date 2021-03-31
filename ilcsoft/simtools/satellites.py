@@ -35,8 +35,8 @@ class Satellites(BaseILC):
         """ compile Satellites """
         os.chdir( self.installPath )
         buildcmd='( export IMAKEINCLUDE=\"-I${LCBASEDIR} -I${LCLIBROOT}\" && make )'
-        print "Compiling Satellites"
-        print "buildcmd ="+buildcmd
+        print("Compiling Satellites")
+        print("buildcmd ="+buildcmd)
         if( os.system( buildcmd + " 2>&1 | tee -a " + self.logfile ) != 0 ) :
             self.abort( "failed to compile!!" )
 

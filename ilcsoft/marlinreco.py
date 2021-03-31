@@ -8,7 +8,7 @@
 ##################################################
                                                                                                                                                             
 # custom imports
-from marlinpkg import MarlinPKG
+from .marlinpkg import MarlinPKG
 
 class MarlinReco(MarlinPKG):
     """ Responsible for the MarlinReco installation process. """

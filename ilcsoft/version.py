@@ -8,6 +8,7 @@ import os
 import operator
 import string
 import re
+from functools import reduce
 
 __all__ = [ 'Version' ]
 
@@ -68,11 +69,11 @@ class Version:
     # regular expression for checking if a string contains a version
     # a version has to have at least min elements separated by one version_separator
     # the end slice removes the last separators
-    _regex = (_min_elements * ('\d+ [%s] ' % _separators))[:-(4+len(_separators))]
+    _regex = (_min_elements * (r'\d+ [%s] ' % _separators))[:-(4+len(_separators))]
     _re_has_version = re.compile( _regex, re.VERBOSE )
 
     # regular expression for extracting all digits in a string
-    _re_any_digit = re.compile( '(\d+)' )
+    _re_any_digit = re.compile( r'(\d+)' )
 
     def __init__(self, arg, max_elements=None, strict=False):
 
@@ -98,13 +99,13 @@ class Version:
             ver = [ i for i in ver if self._re_has_version.search(i) ]
 
             # split by whitespaces
-            ver = map( str.split, ver )
+            ver = list(map( str.split, ver ))
 
             # filter out elements without version(s) and merge them into single list
             ver = [ j for i in ver for j in i if self._re_has_version.search(j) ]
 
             # split by os.sep (in case of a path)
-            ver = map( lambda x: x.split( os.sep ), ver )
+            ver = [x.split( os.sep ) for x in ver]
 
             # filter out elements without version(s) and merge elements into single list
             ver = [ j for i in ver for j in i if self._re_has_version.search(j) ]
@@ -113,7 +114,7 @@ class Version:
             ver = [ i.strip( string.punctuation ) for i in ver ]
 
             if len(ver) == 0:
-                raise ValueError, 'invalid version string "%s": no versions were found' % arg
+                raise ValueError('invalid version string "%s": no versions were found' % arg)
 
             # create this object with the first element
             strver = ver.pop(0)
@@ -161,7 +162,7 @@ class Version:
         try:
             ver = list(arg)
         except:
-            raise ValueError, 'invalid version "%s": is not a sequence' % (arg,)
+            raise ValueError('invalid version "%s": is not a sequence' % (arg,))
 
         # check max elements
         if max_elements != None and len(ver) > max_elements:
@@ -171,15 +172,15 @@ class Version:
         try:
             ver = [ int(i) for i in ver if i != None and i != '' ]
         except:
-            raise ValueError, 'invalid version "%s: element cannot be cast to integer"' % (arg,)
+            raise ValueError('invalid version "%s: element cannot be cast to integer"' % (arg,))
         
         # version numbers must be >= 0
         if min(ver) < 0:
-            raise ValueError, 'invalid version "%s": version numbers must be >=0' % (arg,)
+            raise ValueError('invalid version "%s": version numbers must be >=0' % (arg,))
 
         # at least one element must be greater than 0
         if reduce( operator.add, ver ) <= 0:
-            raise ValueError, 'invalid version "%s": at least one element must be greater than 0' % (arg,)
+            raise ValueError('invalid version "%s": at least one element must be greater than 0' % (arg,))
 
         # remove exceeding 0's at the end, so 1.3.0.0 == 1.3.0 == 1.3
         cmpver = ver[:]
@@ -188,7 +189,7 @@ class Version:
         # fill with 0' until min_elements is reached
         repver = ver + (self._min_elements-len(ver))*[0]
 
-        strver = str.join('.', map(str, repver))
+        strver = str.join('.', list(map(str, repver)))
 
         return (tuple(cmpver),tuple(repver), strver)
 
@@ -208,19 +209,61 @@ class Version:
     def __str__(self):
         return self._strver
 
-    def __cmp__(self, other):
-        #print 'cmp - self:', self, 'other:', other
-        #if other:
-        #    if isinstance( other, self.__class__ ):
-        #        return cmp(self._cmpver, other._cmpver )
-        #    #print 'cmp - converting other:', other
-        #    return cmp(self._cmpver, self.__class__(other)._cmpver)
-
+    def __lt__(self, other):
         if other:
-            #print 'cmp - converting other:', other
-            return cmp(self._cmpver, self.__class__(other)._cmpver)
+            if not isinstance(other, Version):
+                other = Version(other)
 
-        return cmp(self._cmpver, other)
+            # some special case handling for python3
+            if self._cmpver == ('HEAD',):
+                return False
+            if other._cmpver == ('HEAD',):
+                return True
+
+            return self._cmpver < other._cmpver
+        return False
+
+    def __gt__(self, other):
+        # for some reason we need this to make python2 happy, otherwise version
+        # comparison tests break.
+        if other:
+            if not isinstance(other, Version):
+                other = Version(other)
+
+            # some special case handling for python3
+            if self._cmpver == ('HEAD',):
+                return True
+            if other._cmpver == ('HEAD',):
+                return False
+
+            return self._cmpver > other._cmpver
+        return False
+
+    def __ge__(self, other):
+        # Since we overload __gt__ we also have to define this one...
+        if other:
+            if not isinstance(other, Version):
+                other = Version(other)
+
+            return self._cmpver >= other._cmpver
+        return False
+
+    def __le__(self, other):
+        # Since we overload __gt__ we also have to define this one...
+        if other:
+            if not isinstance(other, Version):
+                other = Version(other)
+
+            return self._cmpver <= other._cmpver
+        return False
+
+
+    def __eq__(self, other):
+        if other:
+            if not isinstance(other, Version):
+                other = Version(other)
+            return self._cmpver == other._cmpver
+        return False
 
 
 if __name__ == '__main__':
@@ -228,12 +271,12 @@ if __name__ == '__main__':
     v1=Version( 'v01-03-03' )
     v2=Version( 'v01-03-03', strict=True )
     v3=Version( 'v01-03-03', max_elements=2 )
-    v4=Version( range(4) )
-    v5=Version( range(4), max_elements=3 )
+    v4=Version( list(range(4)) )
+    v5=Version( list(range(4)), max_elements=3 )
     import os.path
     ilcHome='/afs/desy.de/group/it/ilcsoft/'
     if os.path.isdir( ilcHome ):
-        from commands import getoutput
+        from subprocess import getoutput
         c1=Version( getoutput( ilcHome+'CMake/2.4.6/bin/cmake --version' ).replace('patch ',''))
         q1=Version( getoutput( 'qmake -v' ), strict=True)
         q2=Version( getoutput( ilcHome+'QT/4.2.2/bin/qmake -v' ))
