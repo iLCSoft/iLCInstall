@@ -11,8 +11,8 @@
 ##################################################
 
 # custom imports
-from baseilc import BaseILC
-from util import *
+from .baseilc import BaseILC
+from .util import *
 
 
 class SimToolsMaker(BaseILC):
@@ -48,7 +48,7 @@ class SimToolsMaker(BaseILC):
         
         buildcmd="%s/buildtools -setup %s/build_env.sh -cvsroot %s %s" % \
                 (self.installPath,self.installPath,self.download.env["CVSROOT"],opt)
-        print ">", buildcmd
+        print(">", buildcmd)
         
         if( os.system( buildcmd + " | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )

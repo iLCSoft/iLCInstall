@@ -15,12 +15,6 @@ ilcsoft_release='HEAD-'+today
 # ----------------------------------------------------------------------------
 
 #-----------------------
-# we now always build with c++11 ?
-# This variable is deprecated and replaced by cxx_standard
-# use_cpp11 = False
-# if nightlies:
-#    use_cpp11 = nb_use_cpp11
-#    print "******************* use_cpp11", use_cpp11
 
 # which cxx standard to use
 cxx_standard = 17
@@ -32,18 +26,21 @@ except KeyError:
     pass
 
 #===============================================================================
-# use a compiler that knows c++11, run
+# use a compiler that knows c++17, run
 #
 '''
- source /afs/cern.ch/sw/lcg/contrib/gcc/4.9.3/x86_64-slc6/setup.sh
- export PATH=/afs/cern.ch/sw/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/bin:$PATH
- export LD_LIBRARY_PATH=/afs/cern.ch/sw/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/lib:$LD_LIBRARY_PATH
+# --- gcc from LCG_99
+source /cvmfs/sft.cern.ch/lcg/releases/gcc/10.1.0-6f386/x86_64-centos7/setup.sh
 
-# or on cvmfs:
+# --- python from LCG_99
+export PATH=/cvmfs/sft.cern.ch/lcg/releases/Python/3.8.6-3199b/x86_64-centos7-gcc10-opt/bin:${PATH}
+export LD_LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/Python/3.8.6-3199b/x86_64-centos7-gcc10-opt/lib:${LD_LIBRARY_PATH}
 
- source /cvmfs/sft.cern.ch/lcg/contrib/gcc/4.9.3/x86_64-slc6/setup.sh
- export PATH=/cvmfs/sft.cern.ch/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/bin:$PATH
- export LD_LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/LCG_87/Python/2.7.10/x86_64-slc6-gcc49-opt/lib:$LD_LIBRARY_PATH
+# --- git from LCG_99
+export PATH=/cvmfs/sft.cern.ch/lcg/releases/git/2.29.2-e475b/x86_64-centos7-gcc10-opt/bin:${PATH}
+
+# --- use a suitable mysql (also LCG_99)
+export MYSQL_DIR=/cvmfs/sft.cern.ch/lcg/releases/mysql/10.4.12-8f05c/x86_64-centos7-gcc10-opt
 '''
 # before starting the installation
 #================================================================================
@@ -113,7 +110,7 @@ elif platform.system().lower().find('darwin') >= 0:
    platfDefault = '/usr/local'
 
 # ----- mysql --------------------------------------------------------
-MySQL_version = "5.0.45"
+MySQL_version = "10.4.12"
 MySQL_path = platfDefault
 
 # overwrite with a patch set in the environment
@@ -134,38 +131,39 @@ if( my_mysql_path !=  None ):
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version =  "10.04.p03"
+Geant4_version =  "10.07.p01"
 
-CLHEP_version =  "2.3.4.3"
+CLHEP_version =  "2.4.4.1"
 
-ROOT_version = "6.18.04"
+ROOT_version = "6.22.08" # Don't be afraid to go on an adventure with the latest root
 
 GSL_version = "2.6"
 
 Qt5_version = "v5.13.1"
 
-CMake_version = "3.15.5"
+CMake_version = "3.18.4"
 
 CED_version = "v01-09-03"
 
-SIO_version = "v00-00-02"
+SIO_version = "v00-01"
 
-Boost_version = "1.71.0"
+Boost_version = "1.75.0"
 
-Eigen_version = "3.3.7"
+Eigen_version = "3.3.9"
 
 # -------------------------------------------
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-7"
 
-ILCUTIL_version = "v01-06"
+ILCUTIL_version = "v01-06-01"
 
-FastJet_version = "3.2.1"
+FastJet_version = "3.3.4"
 
-FastJetcontrib_version = "1.025"
+FastJetcontrib_version = "1.045"
 
 # xerces-c (needed by geant4 for building gdml support - required by mokka)
 XercesC_version = "v3.2.2"
+
 XERCESC_ROOT_DIR = ilcPath + "/xercesc/" + XercesC_version
 
 # -------------------------------------------

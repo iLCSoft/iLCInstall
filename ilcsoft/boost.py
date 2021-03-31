@@ -10,8 +10,8 @@
 ##################################################
 
 # custom imports
-from baseilc import BaseILC
-from util import *
+from .baseilc import BaseILC
+from .util import *
 
 
 class Boost(BaseILC):
@@ -36,7 +36,7 @@ class Boost(BaseILC):
 
     def genBuildOpts(self):
         opts = ""
-        for k, v in self.buildopts.iteritems():
+        for k, v in self.buildopts.items():
             opts = opts + k + "=" + str(v).strip() + " "
         return opts
 

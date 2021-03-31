@@ -8,7 +8,7 @@
 ##################################################
                                                                                                                                                             
 # custom imports
-from marlinpkg import MarlinPKG
+from .marlinpkg import MarlinPKG
 
 class Overlay(MarlinPKG):
     """ Responsible for the Overlay installation process. """
