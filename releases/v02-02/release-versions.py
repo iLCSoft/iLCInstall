@@ -10,7 +10,7 @@ import datetime
 import platform
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v02-02-01'
+ilcsoft_release='v02-02-02'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -206,7 +206,7 @@ MarlinDD4hep_version = "v00-06"
 
 MarlinReco_version = "v01-30"
 
-ILDPerformance_version = "v01-09"
+ILDPerformance_version = "v01-10"
 
 #ILDConfig_version = "HEAD"
 
