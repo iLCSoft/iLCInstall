@@ -1,3 +1,13 @@
+# v02-02-02
+
+* 2021-06-15 Thomas Madlener ([PR#145](https://github.com/iLCSoft/iLCInstall/pull/145))
+  - Update ILDPerformance to v01-10
+  - Update MarlinUtil to v01-16
+  - Update MarlinReco to v01-31
+
+* 2021-03-16 Placido Fernandez Declara ([PR#141](https://github.com/iLCSoft/iLCInstall/pull/141))
+  - Add support for "." version delimiter
+
 # v02-02-01
 
 * 2021-03-08 Andre Sailer ([PR#139](https://github.com/iLCSoft/iLCInstall/pull/139))
