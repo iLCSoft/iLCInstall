@@ -198,13 +198,13 @@ LCCD_version = "v01-05"
 
 RAIDA_version = "v01-09"
 
-MarlinUtil_version = "v01-15-01"
+MarlinUtil_version = "v01-16"
 
 Marlin_version = "v01-17-01"
 
 MarlinDD4hep_version = "v00-06"
 
-MarlinReco_version = "v01-30"
+MarlinReco_version = "v01-31"
 
 ILDPerformance_version = "v01-10"
 
