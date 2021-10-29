@@ -10,7 +10,7 @@ import datetime
 import platform
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release='v02-02-02'
+ilcsoft_release='v02-02-03'
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -151,13 +151,13 @@ Eigen_version = "3.3.7"
 
 # -------------------------------------------
 
-LCIO_version = "v02-16-01"
+LCIO_version = "v02-17"
 
 GEAR_version = "v01-09"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-7"
 
-ILCUTIL_version = "v01-06-01"
+ILCUTIL_version = "v01-06-02"
 
 MarlinFastJet_version = "v00-05-02"
 
@@ -172,9 +172,9 @@ aidaTT_version = "v00-10"
 
 DDKalTest_version = "v01-06"
 
-MarlinTrk_version = "v02-08"
+MarlinTrk_version = "v02-09"
 
-MarlinTrkProcessors_version = "v02-11"
+MarlinTrkProcessors_version = "v02-12"
 
 Clupatra_version = "v01-03"
 
@@ -186,7 +186,7 @@ FCalClusterer_version = "v01-00-01"
 
 ForwardTracking_version = "v01-14"
 
-ConformalTracking_version = "v01-10"
+ConformalTracking_version = "v01-11"
 
 LICH_version = "v00-01"
 
@@ -198,13 +198,13 @@ LCCD_version = "v01-05"
 
 RAIDA_version = "v01-09"
 
-MarlinUtil_version = "v01-16"
+MarlinUtil_version = "v01-16-01"
 
 Marlin_version = "v01-17-01"
 
 MarlinDD4hep_version = "v00-06"
 
-MarlinReco_version = "v01-31"
+MarlinReco_version = "v01-32"
 
 ILDPerformance_version = "v01-10"
 
@@ -212,25 +212,25 @@ ILDPerformance_version = "v01-10"
 
 
 LCFIVertex_version = "v00-08"
-LCFIPlus_version = "v00-09"
+LCFIPlus_version = "v00-10-01"
 
 
 MarlinKinfit_version = "v00-06"
 MarlinKinfitProcessors_version = "v00-04-02"
 
 PandoraPFANew_version   = "v03-13-02"
-DDMarlinPandora_version = "v00-11"
+DDMarlinPandora_version = "v00-12"
 PandoraAnalysis_version = "v02-00-01"
 
-CEDViewer_version = "v01-17-01"
+CEDViewer_version = "v01-19"
 
-Overlay_version = "v00-22-02"
+Overlay_version = "v00-22-03"
 
 PathFinder_version = "v00-06-01"
 
 MarlinTPC_version = "v01-07"
 
-LCTuple_version = "v01-12"
+LCTuple_version = "v01-13"
 
 BBQ_version = "v00-01-04"
 
@@ -241,7 +241,7 @@ Garlic_version = "v03-01"
 DD4hep_version = "v01-11-02"
 DD4hepExamples_version = "v01-11-02"
 
-lcgeo_version = "v00-16-06"
+lcgeo_version = "v00-16-07"
 
 Physsim_version = "v00-04-01"
 
