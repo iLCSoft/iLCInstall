@@ -18,7 +18,8 @@ class LCIO(BaseILC):
     def __init__(self, userInput):
         BaseILC.__init__(self, userInput, "LCIO", "lcio")
         
-        self.reqfiles = [ ["lib/liblcio.a", "lib/liblcio.so", "lib/liblcio.dylib"] ]
+        self.reqfiles = [ ["lib64/liblcio.a", "lib64/liblcio.so",
+                           "lib/liblcio.a", "lib/liblcio.so", "lib/liblcio.dylib"] ]
         
         # optional modules
         #self.optmodules = [ "dcap", "ROOT" ]
@@ -100,6 +101,7 @@ class LCIO(BaseILC):
         if self.installPath != "/usr":
             self.envpath["PATH"].append( "$LCIO/bin" )
             self.envpath["LD_LIBRARY_PATH"].append( "$LCIO/lib" )
+            self.envpath["LD_LIBRARY_PATH"].append( "$LCIO/lib64" )
         self.envpath["PYTHONPATH"].append( "$LCIO/python" )
         self.envpath["PYTHONPATH"].append( "$LCIO/python/examples" )
 
