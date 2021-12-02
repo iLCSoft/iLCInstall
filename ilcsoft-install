@@ -67,9 +67,8 @@ ilcsoft_afs_path['gcc49_64bit'] = os.path.normpath( os.path.join( ilcsoft_afs_pa
 ilcsoft_afs_path['gcc82_64bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc82_sl6' ))
 ilcsoft_afs_path['gcc82_64bit_centos7'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc82_centos7' ))
 ilcsoft_afs_path['gcc46_64bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc46_ub1204' ))
-ilcsoft_afs_path['gcc48_64bit_ub1404'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc48_ub1404' ))
-ilcsoft_afs_path['gcc54_64bit_ub1604'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc54_ub1604' ))
 ilcsoft_afs_path['gcc75_64bit_ub1804'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc75_ub1804' ))
+ilcsoft_afs_path['gcc93_64bit_ub2004'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc93_ub2004' ))
 
 ilcPath = None
 installPrefix = None
@@ -84,12 +83,10 @@ try:
     gccver = ''.join(platform.python_compiler().split()[1].split('.')[:2])
     arch = 'gcc' + gccver + '_' + sizeofint
     platf = platform.platform()
-    if( platf.find("trusty")>0):
-        arch += "_ub1404"
-    if( platf.find("xenial")>0):
-        arch += "_ub1604"
     if( platf.find("bionic")>0):
         arch += "_ub1804"
+    if( platf.find("focal")>0):
+        arch += "_ub2004"
     if( platf.find("centos-7")>0):
         arch += "_centos7"
     ilcPath = ilcsoft_afs_path[ arch ] + '/'
