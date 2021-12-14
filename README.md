@@ -29,7 +29,7 @@ If called without options a summary of the installation is displayed. Examples o
 
 ### Install the full ilc software tools + external dependencies on your local disk 
 
-* note that boost, mysql, java and cernlib installations are not supported in ilcinstall
+* note that mysql and java and installations are not supported in ilcinstall
 *  this packages need to be installed on your system. Please change the paths to this packages in
 * the file releases/v01-17-07/release-versions.py
 
