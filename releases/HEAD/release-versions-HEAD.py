@@ -134,38 +134,38 @@ if( my_mysql_path !=  None ):
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version =  "10.04.p03"
+Geant4_version =  "11.0.0"
 
-CLHEP_version =  "2.3.4.3"
+CLHEP_version =  "2.4.5.1"
 
-ROOT_version = "6.18.04"
+ROOT_version = "6.24.06"
 
-GSL_version = "2.6"
+GSL_version = "2.7"
 
 Qt5_version = "v5.13.1"
 
-CMake_version = "3.15.5"
+CMake_version = "3.22.1"
 
 CED_version = "v01-09-03"
 
-SIO_version = "v00-00-02"
+SIO_version = "v00-01"
 
-Boost_version = "1.71.0"
+Boost_version = "1.77.0"
 
-Eigen_version = "3.3.7"
+Eigen_version = "3.4.0"
 
 # -------------------------------------------
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-7"
 
-ILCUTIL_version = "v01-06"
+ILCUTIL_version = "v01-06-02"
 
-FastJet_version = "3.2.1"
+FastJet_version = "3.4.0"
 
-FastJetcontrib_version = "1.025"
+FastJetcontrib_version = "1.046"
 
 # xerces-c (needed by geant4 for building gdml support - required by mokka)
-XercesC_version = "v3.2.2"
+XercesC_version = "v3.2.3"
 XERCESC_ROOT_DIR = ilcPath + "/xercesc/" + XercesC_version
 
 # -------------------------------------------
