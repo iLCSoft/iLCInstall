@@ -25,9 +25,11 @@ class Eigen(BaseILC):
         self.hasCMakeBuildSupport = True
         
         self.reqmodules = [ "CMake" ]
-        self.download.supportedTypes = [ "GitHub" ] 
-        self.download.gituser = 'eigenteam'
-        self.download.gitrepo = 'eigen-git-mirror'
+        self.download.supportedTypes = [ "wget" ]
+#        self.download.server = "gitlab.com"
+#        self.download.gituser = 'eigenteam'
+#        self.download.gitrepo = 'libeigen'
+
 
         self.reqfiles = [
             ["include/eigen3/Eigen/src/Core/Matrix.h", "include/eigen3/Eigen/Core",
@@ -36,6 +38,11 @@ class Eigen(BaseILC):
         
     def setMode(self, mode):
         BaseILC.setMode(self, mode)
+
+        if( self.mode == "install" ):
+            # Example: https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
+            self.download.url = "https://gitlab.com/libeigen/eigen/-/archive/%s/eigen-%s.tar.gz" % (self.version, self.version.replace( "." , "_" ) )
+
         # installPath does not exists before setMode is called
         self.cmakeconfig = self.installPath + "/share/eigen3/cmake/"
         
