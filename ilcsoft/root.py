@@ -8,6 +8,7 @@
 ##################################################
                                                                                                                                                             
 # custom imports
+import os
 from .baseilc import BaseILC
 from .util import *
 
@@ -130,6 +131,14 @@ class ROOT(BaseILC):
             self.abort( "failed to install!!" )
 
 
+
+        if self.version > "6.19.0":
+            # Need to symlink two cmake scripts that are not installed properly
+            # otherwise and would break packages that depend on ROOT
+            for mod in ['RootMacros.cmake', 'RootTestDriver.cmake']:
+                link_path = os.path.join(self.installPath, 'cmake', mod)
+                src = os.path.join(self.installPath, 'cmake', 'modules', mod)
+                os.symlink(src, link_path)
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
