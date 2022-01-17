@@ -11,7 +11,6 @@ import datetime
 # --------- ilcsoft release version ------------------------------------------
 today = str( datetime.date.today() )
 ilcsoft_release='HEAD-'+today
-
 # ----------------------------------------------------------------------------
 
 #-----------------------
@@ -257,5 +256,9 @@ DD4hep_version = "HEAD" # "v00-14"
 DD4hepExamples_version = "HEAD" # "v00-14"
 
 lcgeo_version = "HEAD" # "v00-05"
+
+podio_version = "HEAD"
+
+edm4hep_version = "HEAD"
 
 Physsim_version = "HEAD" # "v00-02"
