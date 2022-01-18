@@ -66,3 +66,5 @@ class edm4hep(BaseILC):
         BaseILC.postCheckDeps(self)
 
         self.env['edm4hep_DIR'] = self.installPath + "/install"
+        self.envpath["LD_LIBRARY_PATH"].append("$edm4hep_DIR/lib")
+        self.envpath["LD_LIBRARY_PATH"].append("$edm4hep_DIR/lib64")
