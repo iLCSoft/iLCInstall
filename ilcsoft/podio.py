@@ -24,7 +24,9 @@ class podio(BaseILC):
         self.download.gituser = 'AIDASoft'
         self.download.gitrepo = 'podio'
 
-        self.reqfiles = [ ["install/lib/libpodio.so", "install/lib/libpodio.dylib" ]]
+        self.reqfiles = [["install/lib/libpodio.so",
+                          "install/lib64/libpodio.so",
+                          "install/lib/libpodio.dylib"]]
 
         self.reqmodules = [ "ROOT" ]
         self.optmodules = [ "SIO" ]

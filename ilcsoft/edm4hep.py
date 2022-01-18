@@ -24,7 +24,9 @@ class edm4hep(BaseILC):
         self.download.gituser = 'key4hep'
         self.download.gitrepo = 'edm4hep'
 
-        self.reqfiles = [ ["install/lib/libedm4hep.so", "install/lib/libedm4hep.dylib" ]]
+        self.reqfiles = [["install/lib/libedm4hep.so",
+                          "install/lib64/libedm4hep.so",
+                          "install/lib/libedm4hep.dylib"]]
 
         self.reqmodules = [ "podio" ]
 #        self.optmodules = [ "SIO" ]
