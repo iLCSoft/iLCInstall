@@ -66,3 +66,6 @@ class podio(BaseILC):
         BaseILC.postCheckDeps(self)
 
         self.env['podio_DIR'] = self.installPath + "/install"
+        self.envpath["LD_LIBRARY_PATH"].append("$podio_DIR/lib")
+        self.envpath["LD_LIBRARY_PATH"].append("$podio_DIR/lib64")
+        self.envpath["PYTHONPATH"].append("$podio_DIR/python")
