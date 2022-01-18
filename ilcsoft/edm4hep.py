@@ -65,4 +65,4 @@ class edm4hep(BaseILC):
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
 
-        self.env[ 'edm4hep_DIR' ] = self.installPath + "/install/lib/cmake/EDM4HEP"
+        self.env['edm4hep_DIR'] = self.installPath + "/install"

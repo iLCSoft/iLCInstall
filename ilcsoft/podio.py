@@ -65,4 +65,4 @@ class podio(BaseILC):
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
 
-        self.env[ 'podio_DIR' ] = self.installPath + "/install/lib/cmake/podio"
+        self.env['podio_DIR'] = self.installPath + "/install"
