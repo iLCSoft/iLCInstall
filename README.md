@@ -7,7 +7,6 @@ iLCInstall is distributed under the [GPLv3 License](http://www.gnu.org/licenses/
 [![License](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 [![Build Status](https://travis-ci.org/iLCSoft/iLCInstall.svg?branch=master)](https://travis-ci.org/iLCSoft/iLCInstall)
-[![Coverage Status](https://coveralls.io/repos/github/iLCSoft/iLCInstall/badge.svg?branch=master)](https://coveralls.io/github/iLCSoft/iLCInstall?branch=master)
 
 ## Usage
 
