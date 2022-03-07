@@ -434,6 +434,10 @@ class ILCSoft:
         # export Python in PATH and LD_LIBRARY_PATH
         f.write( 'export PATH='+py_path+'/bin:${PATH}' + os.linesep  )
         f.write( 'export LD_LIBRARY_PATH='+py_path+'/lib:${LD_LIBRARY_PATH}' + os.linesep  + os.linesep )
+        # copy the PYTHONPATH verbatim from the build setup if it is set
+        python_path = os.getenv('PYTHONPATH')
+        if python_path:
+            f.write('export PYTHONPATH=' + python_path + os.linesep + os.linesep )
 
         f.write( 'export CXX=' + compiler + os.linesep )
         ccompiler = self.env["CC"]
