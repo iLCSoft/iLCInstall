@@ -79,8 +79,10 @@ class ILCSoft:
 
         #fg: release_string might be empty, e.g. if lsb_release does not exis (MacOs)
         self.release_number = '-1'
-        if len( release_string ): 
+        if len( release_string ) and re.search('\d', release_string) : 
             self.release_number = release_string[re.search('\d', release_string).start()]
+        else :
+            self.release_number = '1'
         
         for k,v in self.debugInfo.items():
             print("+", k, '\t', str(v).replace("\n","\n\t\t"))
