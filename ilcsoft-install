@@ -72,6 +72,7 @@ ilcsoft_afs_path['gcc82_64bit_centos7'] = os.path.normpath( os.path.join( ilcsof
 ilcsoft_afs_path['gcc46_64bit'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc46_ub1204' ))
 ilcsoft_afs_path['gcc75_64bit_ub1804'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc75_ub1804' ))
 ilcsoft_afs_path['gcc93_64bit_ub2004'] = os.path.normpath( os.path.join( ilcsoft_afs_path['base'] , 'x86_64_gcc93_ub2004' ))
+ilcsoft_afs_path['gcc10_64bit_centos7'] = os.path.normpath(os.path.join(ilcsoft_afs_path['base'], 'x86_64_gcc103_centos7'))
 
 ilcPath = None
 installPrefix = None
