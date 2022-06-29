@@ -180,7 +180,7 @@ ConformalTracking_version = "v01-11"
 
 LICH_version = "v00-01"
 
-GBL_version = "v02-02-01"
+GBL_version = "V02-02-01"
 
 LCCD_version = "v01-05-01"
 
