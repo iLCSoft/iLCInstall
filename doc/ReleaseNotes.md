@@ -1,3 +1,64 @@
+# v02-03
+
+* 2022-08-17 Thomas Madlener ([PR#156](https://github.com/iLCSoft/iLCInstall/pull/156))
+  - Major upgrades to external software, most importantly **switching from python2 to python3**, and to newer version of gcc.
+  - Update all external software to latest available versions
+  - Include latest versions of iLCSoft packages
+    - CED v01-09-04
+    - MarlinFastJet v00-05-03
+    - MarlinReco v01-33
+    - lcgeo v00-16-08
+    - CEDViewer v01-19-01
+    - KalTest v02-05-01
+    - DDKalTest v01-07
+    - LCIO v02-17-01
+    - MarlinKinfitProcessors v00-05
+    - LCCD v01-05-01 
+    - GEAR v01-09-01 
+    - MarlinDD4hep v00-06-01 
+    - MarlinUtil v01-16-02 
+    - MarlinTrk v02-09-01 
+    - MarlinTrkProcessors v02-12-01 
+    - MarlinKinfit v00-06-01 
+    - Overlay v00-22-04 
+    - KiTrackMarlin v01-13-01 
+    - ForwardTracking v01-14-01 
+    - LCTuple v01-14
+    - ILDConfig v02-03
+    - Physsim v00-04-02
+
+* 2022-06-29 Thomas Madlener ([PR#144](https://github.com/iLCSoft/iLCInstall/pull/144))
+  - Update versions of base installation
+  - Switch to using gcc and python from LCG_99 (i.e. gcc10 and python3)
+
+* 2022-01-25 tmadlener ([PR#134](https://github.com/iLCSoft/iLCInstall/pull/134))
+  - migrate CI to github actions and run python unittests with python2 and python3.
+  - Remove coveralls instrumentation from CI
+
+* 2022-01-18 Frank Gaede ([PR#152](https://github.com/iLCSoft/iLCInstall/pull/152))
+  - add EDM4hep and PODIO to HEAD releases
+
+* 2022-01-18 Thomas Madlener ([PR#143](https://github.com/iLCSoft/iLCInstall/pull/143))
+  - Make `ilcsoft-install` work with python3. Most of the trivial changes are done via `2to3`. Some others that are necessary for this to work with both python2 and python3 are:
+    - Fixes to some (relative) imports
+    - Importing `getoutput` and `getstatusoutput` from the `subprocess` module if possible and only fallback to the `commands` module if it does not exist.
+    - Replace `execfile` with `exec`, `compile` and `open` combination.
+    - Some changes to the `Version` class to make it work with the much stricter comparison rules in python3.
+  - Fix installation of root 6.18/04 by pulling in the patched sources from git directly, instead of using the release tar ball. See: https://root-forum.cern.ch/t/problems-building-root-6-18-04-with-builtin-davix/44225
+
+* 2022-01-17 Frank Gaede ([PR#150](https://github.com/iLCSoft/iLCInstall/pull/150))
+  - update versions in HEAD release scripts:
+  - geant4 11.0 root 6.24.06,...
+  -
+
+* 2022-01-14 Frank Gaede ([PR#149](https://github.com/iLCSoft/iLCInstall/pull/149))
+  - add support for installing edm4hep and podio
+  - update macbookfg example install scripts
+
+* 2022-01-14 Frank Gaede ([PR#148](https://github.com/iLCSoft/iLCInstall/pull/148))
+  - add support for (central) ubuntu installations w/ 20.04
+  - update download path for boost
+
 # v02-02-03
 
 * 2021-11-22 Thomas Madlener ([PR#147](https://github.com/iLCSoft/iLCInstall/pull/147))
