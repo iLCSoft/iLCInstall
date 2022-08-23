@@ -200,7 +200,7 @@ FCalClusterer_version = "v01-00-03"
 
 ILDPerformance_version = "v01-10"
 
-ILDConfig_version = "v02-03"
+# ILDConfig_version = "v02-03"
 
 LCFIVertex_version = "v00-08"
 
