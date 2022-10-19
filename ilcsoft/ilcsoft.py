@@ -443,6 +443,10 @@ class ILCSoft:
         ccompiler = self.env["CC"]
         f.write( 'export CC=' + ccompiler + os.linesep )
 
+        # set GIT_EXEC_PATH inherited from the setup.sh
+        if os.environ.get("GIT_EXEC_PATH"):
+            f.write('export GIT_EXEC_PATH=%s' % os.environ.get("GIT_EXEC_PATH"))
+
         #----------------------------------------------------------------------------------------
 
 
