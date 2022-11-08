@@ -150,7 +150,7 @@ XERCESC_ROOT_DIR = ilcPath + "/xercesc/" + XercesC_version
 
 # -------------------------------------------
 
-LCIO_version = "v02-17-01"
+LCIO_version = "v02-18"
 
 GEAR_version = "v01-09-01"
 
