@@ -8,7 +8,7 @@
 ###########################################
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release = 'v02-03'
+ilcsoft_release = 'v02-03-01'
 # ----------------------------------------------------------------------------
 
 # which cxx standard to use
@@ -138,7 +138,7 @@ Eigen_version = "3.4.0"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-7"
 
-ILCUTIL_version = "v01-06-02"
+ILCUTIL_version = "v01-07"
 
 FastJet_version = "3.4.0"
 
@@ -150,7 +150,7 @@ XERCESC_ROOT_DIR = ilcPath + "/xercesc/" + XercesC_version
 
 # -------------------------------------------
 
-LCIO_version = "v02-18"
+LCIO_version = "v02-19"
 
 GEAR_version = "v01-09-01"
 
@@ -166,13 +166,13 @@ DDKalTest_version = "v01-07"
 
 MarlinTrk_version = "v02-09-01"
 
-MarlinTrkProcessors_version = "v02-12-01"
+MarlinTrkProcessors_version = "v02-12-02"
 
 Clupatra_version = "v01-03"
 
 KiTrack_version = "v01-10"
 
-KiTrackMarlin_version = "v01-13-01"
+KiTrackMarlin_version = "v01-13-02"
 
 ForwardTracking_version = "v01-14-01"
 
@@ -186,19 +186,19 @@ LCCD_version = "v01-05-01"
 
 RAIDA_version = "v01-09"
 
-MarlinUtil_version = "v01-16-02"
+MarlinUtil_version = "v01-17"
 
-Marlin_version = "v01-17-01"
+Marlin_version = "v01-19"
 
-MarlinDD4hep_version = "v00-06-01"
+MarlinDD4hep_version = "v00-06-02"
 
 DDMarlinPandora_version = "v00-12"
 
-MarlinReco_version = "v01-33"
+MarlinReco_version = "v01-33-01"
 
 FCalClusterer_version = "v01-00-03"
 
-ILDPerformance_version = "v01-10"
+ILDPerformance_version = "v01-11"
 
 # ILDConfig_version = "v02-03"
 
@@ -234,10 +234,10 @@ DD4hep_version = "v01-20-02"
 
 DD4hepExamples_version = "v01-20-02"
 
-lcgeo_version = "v00-16-08"
+lcgeo_version = "v00-18"
 
-podio_version = "v00-14-03"
+podio_version = "v00-16-01"
 
-edm4hep_version = "v00-05"
+edm4hep_version = "v00-07-02"
 
 Physsim_version = "v00-04-02"
