@@ -3,30 +3,30 @@
 ################################################
 
 from .version import Version
-import py
+import pytest
 
 def test_sanity():
-    py.test.raises(TypeError, Version )
-    py.test.raises(ValueError, Version, 0)
-    py.test.raises(ValueError, Version, [])
-    py.test.raises(ValueError, Version, '')
-    py.test.raises(ValueError, Version, '1')
-    py.test.raises(ValueError, Version, '1.')
-    py.test.raises(ValueError, Version, 'a.b')
-    py.test.raises(ValueError, Version, 'blah')
+    pytest.raises(TypeError, Version )
+    pytest.raises(ValueError, Version, 0)
+    pytest.raises(ValueError, Version, [])
+    pytest.raises(ValueError, Version, '')
+    pytest.raises(ValueError, Version, '1')
+    pytest.raises(ValueError, Version, '1.')
+    pytest.raises(ValueError, Version, 'a.b')
+    pytest.raises(ValueError, Version, 'blah')
 
 def test_general():
 
     MIN_ELEM = Version._min_elements
 
     # versions must have at least one element > 0
-    py.test.raises(ValueError, Version, MIN_ELEM * (0,) )
+    pytest.raises(ValueError, Version, MIN_ELEM * (0,) )
 
     # elements must be integers or convertible to int
-    py.test.raises(ValueError, Version, (MIN_ELEM * [1]) + ['a'] )
+    pytest.raises(ValueError, Version, (MIN_ELEM * [1]) + ['a'] )
 
     # elements must be >= 0
-    py.test.raises(ValueError, Version, (MIN_ELEM * [1]) + [-1] )
+    pytest.raises(ValueError, Version, (MIN_ELEM * [1]) + [-1] )
 
     # cutting off / filling missing elements
     MAX_ELEM = 4
