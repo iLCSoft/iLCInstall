@@ -183,7 +183,7 @@ class CERNLIB(BaseILC):
         #os.chdir( self.installPath + "/build" )
 
         ## delete object files
-        os_system( "find "+self.installPath + "/build -type f -name *.o -exec rm -f {} \;" )
+        os_system( "find "+self.installPath + r"/build -type f -name *.o -exec rm -f {} \;" )
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)

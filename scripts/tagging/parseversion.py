@@ -57,7 +57,7 @@ class Version( object ):
       elif 'pre' in parts[2]:
         self.pre = int(parts[2].strip('pre'))
       else:
-        self.patch = int( parts[2] )
+        self.patch = int( parts[2].strip('p') )
 
     if len(parts) >= 4:
       if 'pre' == parts[3]:
