@@ -211,7 +211,7 @@ class TestGit( unittest.TestCase ):
                 }
               ]
 
-    with self.assertRaisesRegexp( RuntimeError, "Invalid version required"), \
+    with self.assertRaisesRegex( RuntimeError, "Invalid version required"), \
          patch( "tagging.gitinterface.Repo.getGithubTags", new=Mock( return_value=myTagInfo)):
       self.repo = Repo(owner="tester", repo="testrepo", branch="testbranch", newVersion="v01-03-20-pre", preRelease=True, dryRun=True)
 
@@ -225,7 +225,7 @@ class TestGit( unittest.TestCase ):
                   "tarball_url": "tarball/v0.1"
                 }
               ]
-    with self.assertRaisesRegexp( RuntimeError, "Invalid version required"), \
+    with self.assertRaisesRegex( RuntimeError, "Invalid version required"), \
          patch( "tagging.gitinterface.Repo.getGithubTags", new=Mock( return_value=myTagInfo)):
       self.repo = Repo(owner="tester", repo="testrepo", branch="testbranch", newVersion="v01-03-19", preRelease=True, dryRun=True)
 
@@ -241,7 +241,7 @@ class TestGit( unittest.TestCase ):
               ]
 
 
-    with self.assertRaisesRegexp( RuntimeError, "Invalid version required"), \
+    with self.assertRaisesRegex( RuntimeError, "Invalid version required"), \
          patch( "tagging.gitinterface.Repo.getGithubTags", new=Mock( return_value=myTagInfo)):
       self.repo = Repo(owner="tester", repo="testrepo", branch="testbranch", newVersion="v01-03-20-pre1", preRelease=True, dryRun=True)
 
