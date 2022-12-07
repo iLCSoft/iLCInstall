@@ -11,7 +11,13 @@ try:
 except ImportError:  # for python3
   import builtins
   builtin_module_name = 'builtins'
+
 import unittest
+try: # monkey patch python2 to also use non-deprecated functionality
+  unittest.TestCase.assertRaisesRegex
+except AttributeError:
+  unittest.TestCase.assertRaisesRegex = unittest.TestCase.assertRaisesRegexp
+
 import os
 import shutil
 import sys
