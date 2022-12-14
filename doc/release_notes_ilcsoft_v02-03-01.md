@@ -9,7 +9,7 @@ None
 
 None
 
-## Packages changed wrt. v02-02-01
+## Packages changed wrt. v02-03
 
 ### LCIO v02-19
 
