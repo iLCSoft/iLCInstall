@@ -1,3 +1,31 @@
+# v02-03-01
+
+* 2022-12-21 Thomas Madlener ([PR#159](https://github.com/iLCSoft/iLCInstall/pull/159))
+  - Include latest version of packages
+    - LCIO v02-19
+    - Marlin v01-19
+    - ILCUtil v01-07
+    - MarlinTrkProcessors v02-12-02
+    - KiTrackMarlin v01-13-02
+    - MarlinUtil v01-17
+    - MarlinDD4hep v00-06-02
+    - MarlinReco v01-33-01
+    - ILDPerformance v01-11
+    - lcgeo v00-18
+    - podio v00-16-01
+    - EDM4hep v00-07-02
+
+* 2022-12-07 Thomas Madlener ([PR#160](https://github.com/iLCSoft/iLCInstall/pull/160))
+  - Disable `PathFinder`, `MarlinTPC`, and `BBQ` packages from being installed by default, as they are no longer available from the DESY SVN server and have not yet been fully migrated to the DESY gitlab server.
+  - Fix tests to work with latest versions of `pytest`. The main reason is that starting with pytest 7.2.0(?) py.test.raises only works if py is also installed. Given https://github.com/pytest-dev/py/issues/288 it is probably easiest to just use pytest directly if possible.
+  - Fix a few escape sequence warnings in packages.
+
+* 2022-10-20 Andre Sailer ([PR#158](https://github.com/iLCSoft/iLCInstall/pull/158))
+  - Make sure that `GIT_EXEC_PATH` is also present in `init_ilcsoft.sh` if it has been present in the build environment to ensure git is usable.
+
+* 2022-08-24 Thomas Madlener ([PR#157](https://github.com/iLCSoft/iLCInstall/pull/157))
+  - Remove ILDConfig from installed packages again as it is installed separately in any case.
+
 # v02-03
 
 * 2022-08-17 Thomas Madlener ([PR#156](https://github.com/iLCSoft/iLCInstall/pull/156))
