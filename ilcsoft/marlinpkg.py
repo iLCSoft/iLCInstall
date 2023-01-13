@@ -30,7 +30,7 @@ class MarlinPKG(BaseILC):
     
     def __init__(self, name, userInput):
         BaseILC.__init__(self, userInput, name, name)
-        self.reqfiles = [ [ str("lib/lib" + name + ".a"), str("lib/lib" + name + ".so"), str("lib/lib" + name + ".dylib") ] ]
+        self.reqfiles = [ [ folder + "lib" + name + ext for ext in ('.so', '.a', '.dylib') for folder in ('lib/', 'lib64/') ] ]
         self.reqmodules=[ 'LCIO', 'Marlin' ]
 
         self.download.gitrepo = name
