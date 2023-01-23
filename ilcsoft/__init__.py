@@ -40,7 +40,8 @@ from .ckfit import CKFit
 from .fastjet import FastJet, FastJetClustering
 from .marlintrk import MarlinTrk
 from .kitrack import KiTrack, KiTrackMarlin
-#from ddmarlinpandora import DDMarlinPandora 
+from .physsim import Physsim
+#from ddmarlinpandora import DDMarlinPandora
 
 #slic et al
 from .gdml import GDML
