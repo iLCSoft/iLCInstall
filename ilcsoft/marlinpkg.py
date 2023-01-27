@@ -6,7 +6,9 @@
 # Date: Jan, 2007
 #
 ##################################################
-                                                                                                                                                            
+
+import os
+
 # custom imports
 from .baseilc import BaseILC
 from .util import *
@@ -60,6 +62,8 @@ class MarlinPKG(BaseILC):
 
         # fill MARLIN_DLL
         if( self.name != "MarlinUtil" and self.name != "PandoraPFANew" ):
-            self.parent.module('Marlin').envpath["MARLIN_DLL"].append( 
-                self.installPath+"/lib/lib"+self.name+self.shlib_ext )
-
+            for libdir in ("/lib/", "/lib64/"):
+                libname = self.installPath + libdir + "lib" + self.name + self.shlib_ext
+                if os.path.exists(libname):
+                    self.parent.module('Marlin').envpath["MARLIN_DLL"].append(libname)
+                    break
