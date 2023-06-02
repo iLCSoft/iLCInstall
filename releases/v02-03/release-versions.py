@@ -8,16 +8,16 @@
 ###########################################
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release = 'v02-03-01'
+ilcsoft_release = "v02-03-02"
 # ----------------------------------------------------------------------------
 
 # which cxx standard to use
 cxx_standard = 17
 
-#===============================================================================
+# ===============================================================================
 # use a compiler that knows c++17, use e.g. scripts/use_gcc103_cvmfs_centos7.sh
 #
-'''
+"""
 # --- gcc from LCG_101
 source /cvmfs/sft.cern.ch/lcg/releases/gcc/10.3.0/x86_64-centos7/setup.sh
 
@@ -32,10 +32,9 @@ export GIT_EXEC_PATH=/cvmfs/sft.cern.ch/lcg/releases/git/2.29.2-e475b/x86_64-cen
 
 # --- use a suitable mysql (also LCG_101)
 export MYSQL_DIR=/cvmfs/sft.cern.ch/lcg/releases/mysql/10.4.20-c0154/x86_64-centos7-gcc10-opt
-'''
+"""
 # before starting the installation
-#================================================================================
-
+# ================================================================================
 
 
 # --------- install dir ------------------------------------------------------
@@ -45,16 +44,16 @@ export MYSQL_DIR=/cvmfs/sft.cern.ch/lcg/releases/mysql/10.4.20-c0154/x86_64-cent
 #
 
 if installPrefix is None:
-    ilcsoft_install_prefix = ilcsoft_afs_path[ arch ]
+    ilcsoft_install_prefix = ilcsoft_afs_path[arch]
 else:
     ilcsoft_install_prefix = installPrefix
 
 # ----------------------------------------------------------------------------
-#--- the ilcsoft_release is now automatically appended in release-ilcsoft.cfg
+# --- the ilcsoft_release is now automatically appended in release-ilcsoft.cfg
 #     but not in release-base.cfg !!
 
-#append_version_to_install_prefix = False
-#if(append_version_to_install_prefix):
+# append_version_to_install_prefix = False
+# if(append_version_to_install_prefix):
 #    ilcsoft_install_dir = os.path.join(ilcsoft_install_prefix , ilcsoft_release )
 
 # ----------------------------------------------------------------------------
@@ -73,9 +72,8 @@ ilcPath = ilcsoft_install_prefix
 # ----------------------------------------------------------------------------
 
 
-#--------------------------------------------------------------------------
-#ilcPatchPath = "/afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-15"
-
+# --------------------------------------------------------------------------
+# ilcPatchPath = "/afs/desy.de/project/ilcsoft/sw/x86_64_gcc41_sl5/v01-15"
 
 
 # ======================= PACKAGES WITH NO INSTALL SUPPORT ===================
@@ -87,10 +85,10 @@ ilcPath = ilcsoft_install_prefix
 # when using package manager like apt-get, yum or brew
 platfDefault = None
 
-if platform.system().lower().find('linux') >= 0:
-   platfDefault = '/usr'
-elif platform.system().lower().find('darwin') >= 0:
-   platfDefault = '/usr/local'
+if platform.system().lower().find("linux") >= 0:
+    platfDefault = "/usr"
+elif platform.system().lower().find("darwin") >= 0:
+    platfDefault = "/usr/local"
 
 # ----- mysql --------------------------------------------------------
 MySQL_version = "10.4.20"
@@ -98,7 +96,7 @@ MySQL_path = platfDefault
 
 # overwrite with a patch set in the environment
 my_mysql_path = os.getenv("MYSQL_DIR", default=None)
-if( my_mysql_path !=  None ):
+if my_mysql_path != None:
     MySQL_path = my_mysql_path
 
 # ----------------------------------------------------------------------------
@@ -111,12 +109,11 @@ if( my_mysql_path !=  None ):
 ##########################################################################################
 
 
-
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version =  "11.0.2"
+Geant4_version = "11.0.2"
 
-CLHEP_version =  "2.4.5.3"
+CLHEP_version = "2.4.5.3"
 
 ROOT_version = "6.24.06"
 
@@ -150,7 +147,7 @@ XERCESC_ROOT_DIR = ilcPath + "/xercesc/" + XercesC_version
 
 # -------------------------------------------
 
-LCIO_version = "v02-19"
+LCIO_version = "v02-20"
 
 GEAR_version = "v01-09-01"
 
@@ -166,7 +163,7 @@ DDKalTest_version = "v01-07"
 
 MarlinTrk_version = "v02-09-01"
 
-MarlinTrkProcessors_version = "v02-12-02"
+MarlinTrkProcessors_version = "v02-12-03"
 
 Clupatra_version = "v01-03"
 
@@ -176,7 +173,7 @@ KiTrackMarlin_version = "v01-13-02"
 
 ForwardTracking_version = "v01-14-01"
 
-ConformalTracking_version = "v01-11"
+ConformalTracking_version = "v01-11-01"
 
 LICH_version = "v00-01"
 
@@ -184,9 +181,9 @@ GBL_version = "V02-02-01"
 
 LCCD_version = "v01-05-01"
 
-RAIDA_version = "v01-09"
+RAIDA_version = "v01-10"
 
-MarlinUtil_version = "v01-17"
+MarlinUtil_version = "v01-17-01"
 
 Marlin_version = "v01-19"
 
@@ -216,7 +213,7 @@ PandoraAnalysis_version = "v02-00-01"
 
 CEDViewer_version = "v01-19-01"
 
-Overlay_version = "v00-22-04"
+Overlay_version = "v00-23"
 
 PathFinder_version = "v00-06-01"
 
@@ -230,11 +227,11 @@ BBQ_version = "v00-01-04"
 
 Garlic_version = "v03-01"
 
-DD4hep_version = "v01-20-02"
+DD4hep_version = "v01-25-01"
 
-DD4hepExamples_version = "v01-20-02"
+DD4hepExamples_version = "v01-25-01"
 
-lcgeo_version = "v00-18"
+lcgeo_version = "v00-18-01"
 
 podio_version = "v00-16-01"
 
