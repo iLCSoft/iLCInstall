@@ -134,7 +134,7 @@ Geant4_version =  "11.1.1"
 
 CLHEP_version =  "2.4.6.4"
 
-ROOT_version = "6.28.02"
+ROOT_version = "6.28.04"
 
 GSL_version = "2.7"
 
