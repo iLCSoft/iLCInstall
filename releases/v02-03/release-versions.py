@@ -115,7 +115,7 @@ Geant4_version = "11.1.1"
 
 CLHEP_version = "2.4.5.3"
 
-ROOT_version = "6.24.06"
+ROOT_version = "6.28.04"
 
 GSL_version = "2.7"
 
@@ -135,7 +135,7 @@ Eigen_version = "3.4.0"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-7"
 
-ILCUTIL_version = "v01-07"
+ILCUTIL_version = "v01-07-01"
 
 FastJet_version = "3.4.0"
 
@@ -181,7 +181,7 @@ GBL_version = "V02-02-01"
 
 LCCD_version = "v01-05-01"
 
-RAIDA_version = "v01-10"
+RAIDA_version = "v01-11"
 
 MarlinUtil_version = "v01-17-01"
 
@@ -191,11 +191,11 @@ MarlinDD4hep_version = "v00-06-02"
 
 DDMarlinPandora_version = "v00-12"
 
-MarlinReco_version = "v01-33-01"
+MarlinReco_version = "v01-34"
 
 FCalClusterer_version = "v01-00-03"
 
-ILDPerformance_version = "v01-11"
+ILDPerformance_version = "v01-12"
 
 # ILDConfig_version = "v02-03"
 
@@ -233,8 +233,10 @@ DD4hepExamples_version = "v01-25-01"
 
 lcgeo_version = "v00-18-01"
 
-podio_version = "v00-16-01"
+podio_version = "v00-16-05"
 
-edm4hep_version = "v00-07-02"
+edm4hep_version = "v00-09"
+
+k4edm4hep2lcioconv_version = "HEAD"  # TODO: tag
 
 Physsim_version = "v00-04-02"
