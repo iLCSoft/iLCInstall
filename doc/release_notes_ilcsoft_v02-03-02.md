@@ -3,7 +3,9 @@
 Patch release for the v02-03 development series (see the [v02-03 release notes](https://github.com/iLCSoft/iLCInstall/blob/master/doc/release_notes_ilcsoft_v02-03.md) for more details about this series).
 
 ## External software versions upgrade
-DD4hep 01-20-02 :arrow_right: 01-25-01
+- DD4hep 01-20-02 :arrow_right: 01-25-0
+- ROOT 6.24/06 :arrow_right: 6.28/04
+- Geant4 11.0.2 :arrow_right: 11.1.1
 
 ## New packages
 

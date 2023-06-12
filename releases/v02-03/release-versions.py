@@ -111,7 +111,7 @@ if my_mysql_path != None:
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version = "11.0.2"
+Geant4_version = "11.1.1"
 
 CLHEP_version = "2.4.5.3"
 
