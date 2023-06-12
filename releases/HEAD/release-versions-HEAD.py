@@ -130,11 +130,11 @@ if( my_mysql_path !=  None ):
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version =  "11.0.0"
+Geant4_version =  "11.1.1"
 
-CLHEP_version =  "2.4.5.1"
+CLHEP_version =  "2.4.6.4"
 
-ROOT_version = "6.24.06"
+ROOT_version = "6.28.02"
 
 GSL_version = "2.7"
 
@@ -154,7 +154,7 @@ Eigen_version = "3.4.0"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-7"
 
-ILCUTIL_version = "v01-06-02"
+ILCUTIL_version = "v01-07-01"
 
 FastJet_version = "3.4.0"
 
