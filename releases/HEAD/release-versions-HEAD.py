@@ -258,4 +258,6 @@ podio_version = "HEAD"
 
 edm4hep_version = "HEAD"
 
+k4edm4hep2lcioconv_version = "HEAD"
+
 Physsim_version = "HEAD" # "v00-02"
