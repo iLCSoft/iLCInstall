@@ -147,22 +147,27 @@ standalone `lcio2edm4hep` conversion executable. Repository: [key4hep/k4EDM4hep2
   - Data model comparison tool w/ simple heuristics to identify potential omissions / mistakes (e.g. checking for the limits of the ROOT backend)
   - Changed handling of backwards compatibility for the collection info metadata
 
-### EDM4hep v00-09
+### EDM4hep v00-10
 
-* 2023-05-03 Thomas Madlener ([PR#152](https://github.com/key4hep/EDM4hep/pull/152))
-  - Add a `EDM4hepVersion.h` file that has the same basic structure and functionality as other Key4hep packages.
+* 2023-07-07 BrieucF ([PR#212](https://github.com/key4hep/EDM4hep/pull/212))
+  - Add a script to automatically update the README.md links
 
-* 2023-05-02 jmcarcell ([PR#193](https://github.com/key4hep/EDM4hep/pull/193))
-  - Add a configuration file for the new podio visualization tool
+* 2023-07-04 tmadlener ([PR#209](https://github.com/key4hep/EDM4hep/pull/209))
+  - Add brief documentation of the `edm4hep2json` tool with minimal documentation of the output JSON schema.
 
-* 2023-04-28 jmcarcell ([PR#203](https://github.com/key4hep/EDM4hep/pull/203))
-  - Remove root version check inside CMakeLists.txt
+* 2023-06-30 jmcarcell ([PR#207](https://github.com/key4hep/EDM4hep/pull/207))
+  - Improve python API, use `import edm4hep` instead of `from edm4hep import edm4hep`
 
-* 2023-04-26 jmcarcell ([PR#205](https://github.com/key4hep/EDM4hep/pull/205))
-  - Add missing units to the comments
+* 2023-06-29 tmadlener ([PR#206](https://github.com/key4hep/EDM4hep/pull/206))
+  - Replace TPCHit with RawTimeSeries
+  - Update version to 0.9
+  - Add TrackerPulse
 
-* 2023-04-23 Thomas Madlener ([PR#200](https://github.com/key4hep/EDM4hep/pull/200))
-  - Add `schema_version` to YAML definition now that podio has limited support (see AIDASoft/podio#341)
+* 2023-06-14 jmcarcell ([PR#204](https://github.com/key4hep/EDM4hep/pull/204))
+  - Add python bindings for the datamodel classes and some documentation on how to use the bindings
+
+* 2023-06-07 FinnJohannsen ([PR#188](https://github.com/key4hep/EDM4hep/pull/188))
+  - Changed the name of one VectorMember of edm4hep::track from subDetectorHitNumbers to subdetectorHitNumbers to be consistent with other spellings of the word subdetector in the yaml file and in LCIO.
 
 ### iLCUtil v01-07-01
 
