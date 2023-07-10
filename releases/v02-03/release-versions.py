@@ -237,6 +237,6 @@ podio_version = "v00-16-05"
 
 edm4hep_version = "v00-09"
 
-k4edm4hep2lcioconv_version = "HEAD"  # TODO: tag
+k4edm4hep2lcioconv_version = "v00-05"
 
 Physsim_version = "v00-04-02"
