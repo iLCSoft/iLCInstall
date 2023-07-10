@@ -235,7 +235,7 @@ lcgeo_version = "v00-18-01"
 
 podio_version = "v00-16-05"
 
-edm4hep_version = "v00-09"
+edm4hep_version = "v00-10"
 
 k4edm4hep2lcioconv_version = "v00-05"
 
