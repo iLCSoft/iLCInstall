@@ -18,6 +18,14 @@ class k4edm4hep2lcioconv(BaseILC):
 
         self.reqmodules = ["edm4hep", "LCIO"]
 
+        self.reqfiles = [
+            [
+                "install/lib/libk4EDM4hep2LcioConv.so",
+                "install/lib64/libk4EDM4hep2LcioConv.so",
+            ],
+            ["install/bin/lcio2edm4hep"],
+        ]
+
     def init(self):
         """initialize k4edm4hep2lcioconv"""
         BaseILC.init(self)
