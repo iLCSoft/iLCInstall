@@ -1,3 +1,39 @@
+# v02-03-02
+
+* 2023-07-12 tmadlener ([PR#164](https://github.com/iLCSoft/iLCInstall/pull/164))
+  - Add new package
+    - k4EDM4hep2LcioConv v00-05 (LCIO to EDM4hep conversion)
+  
+  - Update base package versions
+    - DD4hep 01-25-01
+    - ROOT 6.28/04
+    - Geant4 11.1.1
+  
+  - Update package versions to latest tags
+      - MarlinReco v01-34
+      - podio v00-16-05
+      - EDM4hep v00-10
+      - iLCUtil v01-07-01
+      - LCIO v02-20
+      - lcgeo (k4geo) v00-18-01
+      - MarlinUtil v01-17-01
+      - RAIDA v01-10
+      - ConformalTracking v01-11-01
+      - MarlinTrkProcessors v02-12-03
+      - Overlay v00-23
+      - ILDPerformance v01-12
+
+* 2023-06-26 tmadlener ([PR#166](https://github.com/iLCSoft/iLCInstall/pull/166))
+  - Add the `k4EDM4hep2LcioConv` package
+  - Bump a few external versions in the HEAD releases
+
+* 2023-06-26 tmadlener ([PR#165](https://github.com/iLCSoft/iLCInstall/pull/165))
+  - Make sure that `CMAKE_PREFIX_PATH` points to the right place for Geant4 > v11.1 where it has been moved to a more standard location.
+
+* 2023-02-20 Thomas Madlener ([PR#162](https://github.com/iLCSoft/iLCInstall/pull/162))
+  - Make `Physsim` its own package to accomodate more easily for changed behavior after CMake config updates in iLCSoft/Physsim#2
+  - Make `MarlinPKG` slightly more clever for discovering libraries that need to be put on `MARLIN_DLL`
+
 # v02-03-01
 
 * 2022-12-21 Thomas Madlener ([PR#159](https://github.com/iLCSoft/iLCInstall/pull/159))
