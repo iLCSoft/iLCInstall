@@ -69,3 +69,5 @@ class podio(BaseILC):
         self.envpath["LD_LIBRARY_PATH"].append("$podio_DIR/lib")
         self.envpath["LD_LIBRARY_PATH"].append("$podio_DIR/lib64")
         self.envpath["PYTHONPATH"].append("$podio_DIR/python")
+        self.envpath["PATH"].append("$podio_DIR/bin")
+        self.envpath["ROOT_INCLUDE_PATH"].append("$podio_DIR/include")
