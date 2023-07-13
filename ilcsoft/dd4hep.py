@@ -28,7 +28,7 @@ class DD4hep(BaseILC):
 
         self.reqfiles = [ ["lib/libDDCore.so", "lib/libDDCore.dylib" ]]
 
-        self.reqmodules = [ "ROOT" , "LCIO", "GEAR", "Geant4" , "CLHEP" ,"Boost" ]
+        self.reqmodules = [ "ROOT" , "LCIO", "GEAR", "Geant4" , "CLHEP" ,"Boost" , "EDM4hep" ]
 
 
     def setMode(self, mode):

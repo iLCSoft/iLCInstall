@@ -106,22 +106,35 @@ MySQL_path = "/usr/local"
 
 
 # ======================= PACKAGE VERSIONS ===================================
+##Geant4_version =  "10.06.p02"
+##CLHEP_version =  "2.4.1.3"  #"2.3.4.3"
+##ROOT_version = "6.22.02"
+##GSL_version = "2.6"   #"2.1" # "1.15"
+##Qt5_version = "v5.13.1"
+##CMake_version = "3.17.3" ##"3.15.2"   #"3.4.3" #"2.8.5"
+##SIO_version = "v00-00-03"
+Eigen_version = "3.3.7"
+##Boost_version = "1.71.0"
 
-Geant4_version =  "10.06.p02"
-CLHEP_version =  "2.4.1.3"  #"2.3.4.3"
-ROOT_version = "6.22.02"
+Geant4_version =  "11.0.2"
 
-GSL_version = "2.6"   #"2.1" # "1.15"
+CLHEP_version =  "2.4.5.3"
+
+ROOT_version = "6.26.06"
+
+GSL_version = "2.7"
 
 Qt5_version = "v5.13.1"
 
-CMake_version = "3.17.3" ##"3.15.2"   #"3.4.3" #"2.8.5"
+CMake_version = "3.23.2"
 
-SIO_version = "v00-00-03"
+CED_version = "v01-09-04"
 
-Eigen_version = "3.3.7"
+SIO_version = "v00-01"
 
-Boost_version = "1.71.0"
+Boost_version = "1.77.0"
+
+#Eigen_version = "3.4.0"
 
 # -------------------------------------------
 
@@ -136,8 +149,10 @@ CondDBMySQL_version = "HEAD" # "CondDBMySQL_ILC-0-9-6"
 
 ILCUTIL_version = "HEAD" # "v01-02-01" 
 
-FastJet_version = "3.3.3"
-FastJetcontrib_version = "1.044"
+##FastJet_version = "3.3.3"
+##FastJetcontrib_version = "1.044"
+FastJet_version = "3.4.0"
+FastJetcontrib_version = "1.049"
 
 FastJetClustering_version = "HEAD" # "v00-02"
 
@@ -227,7 +242,7 @@ Garlic_version = "HEAD" # "v3.0.3"
 
 ## xerces-c (needed by geant4 for building gdml support 
 #
-XercesC_version = "v3.2.2" 
+XercesC_version = "v3.2.3" 
 XERCESC_ROOT_DIR = ilcPath + "/xercesc/" + XercesC_version
 
 DD4hep_version = "HEAD" # "v00-12"
