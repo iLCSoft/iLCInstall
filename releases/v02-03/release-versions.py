@@ -233,7 +233,7 @@ DD4hepExamples_version = "v01-25-01"
 
 lcgeo_version = "v00-18-01"
 
-podio_version = "v00-16-05"
+podio_version = "v00-16-06"
 
 edm4hep_version = "v00-10"
 
