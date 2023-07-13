@@ -87,7 +87,8 @@ class BaseILC:
             "CLASSPATH" : [],
             "LD_RUN_PATH" : [],
             "DT_RUN_PATH" : [],
-            "MARLIN_DLL" : []
+            "MARLIN_DLL" : [],
+            "ROOT_INCLUDE_PATH" : []
         }
 
 ## fg: this causes problems on (my) mac with Mojave ...
