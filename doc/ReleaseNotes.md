@@ -1,5 +1,21 @@
 # v02-03-02
 
+* 2023-07-14 tmadlener ([PR#172](https://github.com/iLCSoft/iLCInstall/pull/172))
+  - Bump the podio version to v00-16-06 to include some important bug fixes
+
+* 2023-07-13 Frank Gaede ([PR#171](https://github.com/iLCSoft/iLCInstall/pull/171))
+  - update examples/macbookfg to work w/ recent HEAD versions (MacOS 12.61)
+
+* 2023-07-13 Frank Gaede ([PR#170](https://github.com/iLCSoft/iLCInstall/pull/170))
+  - add ROOT_INCLUDE_PATH to base module
+       - needed for podio.py (see: https://github.com/iLCSoft/iLCInstall/pull/168)
+
+* 2023-07-12 tmadlener ([PR#169](https://github.com/iLCSoft/iLCInstall/pull/169))
+  - Remove workflow that requires a no longer supported python version. Fixes #167
+
+* 2023-07-12 tmadlener ([PR#168](https://github.com/iLCSoft/iLCInstall/pull/168))
+  - Make sure to put `PATH` and `ROOT_INCLUDE_PATH` into the environment for podio.
+
 * 2023-07-12 tmadlener ([PR#164](https://github.com/iLCSoft/iLCInstall/pull/164))
   - Add new package
     - k4EDM4hep2LcioConv v00-05 (LCIO to EDM4hep conversion)
