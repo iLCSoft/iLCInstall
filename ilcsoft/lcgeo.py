@@ -25,7 +25,7 @@ class lcgeo(BaseILC):
         self.download.gituser = 'iLCSoft'
         self.download.gitrepo = 'lcgeo'
 
-        self.reqfiles = [ ["lib/liblcgeo.so", "lib/liblcgeo.dylib" ]]
+        self.reqfiles = [ ["lib/liblcgeo.so", "lib/liblcgeo.dylib", "lib/libk4geo.so", "lib/libk4geo.dylib" ]]
 
         self.reqmodules = [ "DD4hep" , "ROOT" , "LCIO", "GEAR", "Geant4" ]
 #        self.reqmodules = [ "DD4hep" , "ROOT" , "LCIO", "GEAR", "Geant4" , "CLHEP" ]
