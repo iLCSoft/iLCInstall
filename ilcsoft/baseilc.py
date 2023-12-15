@@ -757,8 +757,9 @@ class BaseILC:
         elif self.download.type[:6] == "GitHub":
             if self.version =="HEAD" or self.version =="dev" or self.version =="devel" or self.version =="master" or self.download.branch:
                 #clone the whole repo into the directory
-                branch = 'master' if self.download.branch is None else self.download.branch
-                cmd="git clone -b %s https://github.com/%s/%s.git %s" % (branch, self.download.gituser, self.download.gitrepo, self.version)
+                branch = '' if self.download.branch is None else '-b ' + self.download.branch
+
+                cmd="git clone %s https://github.com/%s/%s.git %s" % (branch, self.download.gituser, self.download.gitrepo, self.version)
                 print("Executing command:",cmd)
                 if os_system( cmd ) != 0:
                     self.abort( "Problems occurred during execution of " + cmd + " [!!ERROR!!]")
