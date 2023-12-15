@@ -67,3 +67,5 @@ class MarlinPKG(BaseILC):
                 if os.path.exists(libname):
                     self.parent.module('Marlin').envpath["MARLIN_DLL"].append(libname)
                     break
+                else:
+                    print( "ERROR: Marlin library not added to Marlin_DLL: ", libname )
