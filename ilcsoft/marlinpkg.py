@@ -64,8 +64,10 @@ class MarlinPKG(BaseILC):
         if( self.name != "MarlinUtil" and self.name != "PandoraPFANew" ):
             for libdir in ("/lib/", "/lib64/"):
                 libname = self.installPath + libdir + "lib" + self.name + self.shlib_ext
+                print("MarlinDLL: looking for ", libname)
                 if os.path.exists(libname):
+                    print("MarlinDLL: Found ", libname)
                     self.parent.module('Marlin').envpath["MARLIN_DLL"].append(libname)
                     break
-                else:
-                    print( "ERROR: Marlin library not added to Marlin_DLL: ", libname )
+            else:
+                print("Error: did not find any library for the MarlinDLL", self.name)
