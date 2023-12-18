@@ -57,11 +57,9 @@ class MarlinPKG(BaseILC):
         if( os_system( "make install" ) != 0 ):
             self.abort( "failed to install!!" )
 
-    def postCheckDeps(self):
-        BaseILC.postCheckDeps(self)
-
-        # fill MARLIN_DLL
-        if( self.name != "MarlinUtil" and self.name != "PandoraPFANew" ):
+    def checkInstall(self, abort=True):
+        BaseILC.checkInstall(self)
+        if self.name not in ("MarlinUtil", "PandoraPFANew", "Physsim", "LCFIVertex"):
             for libdir in ("/lib/", "/lib64/"):
                 libname = self.installPath + libdir + "lib" + self.name + self.shlib_ext
                 print("MarlinDLL: looking for ", libname)
@@ -71,3 +69,5 @@ class MarlinPKG(BaseILC):
                     break
             else:
                 print("Error: did not find any library for the MarlinDLL", self.name)
+                return False
+        return True
