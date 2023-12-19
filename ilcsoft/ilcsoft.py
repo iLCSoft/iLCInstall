@@ -403,63 +403,7 @@ class ILCSoft:
         print("\n" + 30*'*' + " Starting ILC Software installation process " + 30*'*' + "\n")
         # write CMake Environment to file ILCSoft.cmake
         self.writeCMakeEnv()
-
-        # write init_ilcsoft.sh
-        checked=[]
-        f = open(self.installPath + "/init_ilcsoft.sh", 'w')
-        
-        f.write( 'export ILCSOFT='+self.installPath  + os.linesep  )
-        
-        #------- prepend the pathes for the compiler and python used in this installation -------
-
-        compiler = self.env["CXX"]
-        status, cxx_path = getstatusoutput( "which "+compiler )
-        cxx_path =  os.path.dirname( os.path.dirname( cxx_path ) ) # remove '/bin/g++'
-
-        status, py_path = getstatusoutput( "which python" )
-        py_path =  os.path.dirname( os.path.dirname( py_path ) ) # remove '/bin/python'
-
-        f.write( os.linesep + '# -------------------------------------------------------------------- ---' + os.linesep )
-        f.write( os.linesep + '# ---  Use the same compiler and python as used for the installation   ---' + os.linesep )
-        f.write( os.linesep + '# -------------------------------------------------------------------- ---' + os.linesep )
-        # On cvmfs the gcc/llvm compilers are setup using the setup.sh file
-        # source also other important scripts. Adding the compiler to LD_LIBRARY_PATH and PATH
-        # is not enough. The setup.sh file is also setting up paths to binutils and other important variables
-        if os.path.exists( cxx_path + "/setup.sh" ):
-            f.write( '. ' + cxx_path + '/setup.sh' + os.linesep + os.linesep  )
-        else:
-            f.write( 'export PATH='+cxx_path+'/bin:${PATH}' + os.linesep  )
-            f.write( 'export LD_LIBRARY_PATH='+cxx_path+'/lib64:'+ cxx_path+'/lib:${LD_LIBRARY_PATH}' + os.linesep  + os.linesep )
-        
-        # export Python in PATH and LD_LIBRARY_PATH
-        f.write( 'export PATH='+py_path+'/bin:${PATH}' + os.linesep  )
-        f.write( 'export LD_LIBRARY_PATH='+py_path+'/lib:${LD_LIBRARY_PATH}' + os.linesep  + os.linesep )
-        # copy the PYTHONPATH verbatim from the build setup if it is set
-        python_path = os.getenv('PYTHONPATH')
-        if python_path:
-            f.write('export PYTHONPATH=' + python_path + os.linesep + os.linesep )
-
-        f.write( 'export CXX=' + compiler + os.linesep )
-        ccompiler = self.env["CC"]
-        f.write( 'export CC=' + ccompiler + os.linesep )
-
-        # set GIT_EXEC_PATH inherited from the setup.sh
-        if os.environ.get("GIT_EXEC_PATH"):
-            f.write('export GIT_EXEC_PATH=%s' % os.environ.get("GIT_EXEC_PATH"))
-
-        #----------------------------------------------------------------------------------------
-
-
-        for mod in self.modules:
-            mod.writeEnv(f, checked)
-        if self.os.type == "Darwin":
-            f.write( os.linesep + '# --- set DYLD_LIBRARY_PATH to LD_LIBRARY_PATH for MAC compatibility ---' + os.linesep )
-            f.write( 'export DYLD_LIBRARY_PATH=$LD_LIBRARY_PATH:$DYLD_LIBRARY_PATH' + os.linesep + os.linesep )
-        if ( self.os.ver.find("cientific") and self.release_number == '6'):
-            f.write( os.linesep + '# ---  Workaraund for OpenGl bug on SL6  ---' + os.linesep )
-            f.write( 'export LIBGL_ALWAYS_INDIRECT=1' + os.linesep  )
-
-
+        self.writeInit()
         print("\n" + 30*'*' + " Creating symlinks " + 30*'*' + "\n")
         for mod in self.modules:
             mod.createLink()
@@ -614,3 +558,4 @@ class ILCSoft:
         if ( self.os.ver.find("cientific") and self.release_number == '6'):
             f.write( os.linesep + '# ---  Workaraund for OpenGl bug on SL6  ---' + os.linesep )
             f.write( 'export LIBGL_ALWAYS_INDIRECT=1' + os.linesep  )
+        f.close()
