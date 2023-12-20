@@ -106,21 +106,12 @@ MySQL_path = "/usr/local"
 
 
 # ======================= PACKAGE VERSIONS ===================================
-##Geant4_version =  "10.06.p02"
-##CLHEP_version =  "2.4.1.3"  #"2.3.4.3"
-##ROOT_version = "6.22.02"
-##GSL_version = "2.6"   #"2.1" # "1.15"
-##Qt5_version = "v5.13.1"
-##CMake_version = "3.17.3" ##"3.15.2"   #"3.4.3" #"2.8.5"
-##SIO_version = "v00-00-03"
-Eigen_version = "3.3.7"
-##Boost_version = "1.71.0"
 
-Geant4_version =  "11.0.2"
+Geant4_version =  "11.1.1"
 
-CLHEP_version =  "2.4.5.3"
+CLHEP_version =  "2.4.6.4"
 
-ROOT_version = "6.26.06"
+ROOT_version = "6.28.04"
 
 GSL_version = "2.7"
 
@@ -134,7 +125,7 @@ SIO_version = "v00-01"
 
 Boost_version = "1.77.0"
 
-#Eigen_version = "3.4.0"
+Eigen_version = "3.4.0"
 
 # -------------------------------------------
 
