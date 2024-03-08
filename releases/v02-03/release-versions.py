@@ -111,23 +111,23 @@ if my_mysql_path != None:
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version = "11.1.1"
+Geant4_version = "11.2.1"
 
-CLHEP_version = "2.4.6.4"
+CLHEP_version = "2.4.7.1"
 
-ROOT_version = "6.28.04"
+ROOT_version = "6.30.04"
 
 GSL_version = "2.7"
 
 Qt5_version = "v5.13.1"
 
-CMake_version = "3.23.2"
+CMake_version = "3.28.3"
 
 CED_version = "v01-09-04"
 
-SIO_version = "v00-01"
+SIO_version = "v00-02"
 
-Boost_version = "1.77.0"
+Boost_version = "1.84.0"
 
 Eigen_version = "3.4.0"
 
@@ -135,11 +135,11 @@ Eigen_version = "3.4.0"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-7"
 
-ILCUTIL_version = "v01-07-01"
+ILCUTIL_version = "v01-07-02"
 
-FastJet_version = "3.4.0"
+FastJet_version = "3.4.2"
 
-FastJetcontrib_version = "1.049"
+FastJetcontrib_version = "1.054"
 
 # xerces-c (needed by geant4 for building gdml support - required by mokka)
 XercesC_version = "v3.2.3"
@@ -147,59 +147,59 @@ XERCESC_ROOT_DIR = ilcPath + "/xercesc/" + XercesC_version
 
 # -------------------------------------------
 
-LCIO_version = "v02-20"
+LCIO_version = "v02-21"
 
-GEAR_version = "v01-09-01"
+GEAR_version = "v01-09-02"
 
 MarlinFastJet_version = "v00-05-03"
 
-KalTest_version = "v02-05-01"
+KalTest_version = "v02-05-02"
 
 KalDet_version = "v01-14-01"
 
 aidaTT_version = "v00-10"
 
-DDKalTest_version = "v01-07"
+DDKalTest_version = "v01-07-01"
 
-MarlinTrk_version = "v02-09-01"
+MarlinTrk_version = "v02-09-02"
 
-MarlinTrkProcessors_version = "v02-12-03"
+MarlinTrkProcessors_version = "v02-12-05"
 
-Clupatra_version = "v01-03"
+Clupatra_version = "v01-03-01"
 
 KiTrack_version = "v01-10"
 
 KiTrackMarlin_version = "v01-13-02"
 
-ForwardTracking_version = "v01-14-01"
+ForwardTracking_version = "v01-14-02"
 
-ConformalTracking_version = "v01-11-01"
+ConformalTracking_version = "v01-12"
 
 LICH_version = "v00-01"
 
 GBL_version = "V02-02-01"
 
-LCCD_version = "v01-05-01"
+LCCD_version = "v01-05-02"
 
 RAIDA_version = "v01-11"
 
-MarlinUtil_version = "v01-17-01"
+MarlinUtil_version = "v01-17-02"
 
-Marlin_version = "v01-19"
+Marlin_version = "v01-19-02"
 
 MarlinDD4hep_version = "v00-06-02"
 
-DDMarlinPandora_version = "v00-12"
+DDMarlinPandora_version = "v00-12-01"
 
-MarlinReco_version = "v01-34"
+MarlinReco_version = "v01-35"
 
-FCalClusterer_version = "v01-00-03"
+FCalClusterer_version = "v01-00-06"
 
 ILDPerformance_version = "v01-12"
 
 # ILDConfig_version = "v02-03"
 
-LCFIVertex_version = "v00-08"
+LCFIVertex_version = "v00-09"
 
 LCFIPlus_version = "v00-10-01"
 
@@ -227,16 +227,16 @@ BBQ_version = "v00-01-04"
 
 Garlic_version = "v03-01"
 
-DD4hep_version = "v01-25-01"
+DD4hep_version = "v01-28"
 
-DD4hepExamples_version = "v01-25-01"
+DD4hepExamples_version = "v01-28"
 
 lcgeo_version = "v00-18-01"
 
-podio_version = "v00-16-06"
+podio_version = "v00-99"
 
-edm4hep_version = "v00-10"
+edm4hep_version = "v00-10-05"
 
-k4edm4hep2lcioconv_version = "v00-05"
+k4edm4hep2lcioconv_version = "v00-08-02"
 
-Physsim_version = "v00-04-02"
+Physsim_version = "v00-05"
