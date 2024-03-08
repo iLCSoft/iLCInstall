@@ -110,7 +110,10 @@ class ROOT(BaseILC):
         self.envcmake['GSL_ROOT_DIR']=gsl.installPath
         self.envcmake['GSL_CONFIG_EXECUTABLE']=gsl_bindir+'/gsl-config'
 
-        self.envcmake.setdefault( 'gsl_shared',     'ON' )
+        if Version(self.version) < "6.30":
+            self.envcmake.setdefault( 'gsl_shared',     'ON' )
+            self.envcmake.setdefault( 'builtin_gsl',    'OFF' ) # we provide GSL, don't recompile it !
+
         self.envcmake.setdefault( 'gdml',           'ON' )
         self.envcmake.setdefault( 'minuit2',        'ON' )
         self.envcmake.setdefault( 'roofit',         'ON' )
@@ -118,7 +121,6 @@ class ROOT(BaseILC):
         self.envcmake.setdefault( 'xrootd',         'ON' )
         self.envcmake.setdefault( 'mathmore',       'ON' )
         self.envcmake.setdefault( 'builtin_xrootd', 'ON' )
-        self.envcmake.setdefault( 'builtin_gsl',    'OFF' ) # we provide GSL, don't recompile it !
         self.envcmake.setdefault( 'fortran',        'OFF' )
         self.envcmake.setdefault( 'mysql',          'OFF' )
         self.envcmake.setdefault( 'sqlite',         'OFF' )
