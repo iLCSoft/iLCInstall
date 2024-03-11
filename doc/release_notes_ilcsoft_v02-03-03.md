@@ -1,4 +1,4 @@
-# iLCSoft v02-03-01
+# iLCSoft v02-03-03
 
 Patch release for the v02-03 development series (see the [v02-03 release notes](https://github.com/iLCSoft/iLCInstall/blob/master/doc/release_notes_ilcsoft_v02-03.md) for more details about this series).
 
