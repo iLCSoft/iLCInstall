@@ -231,7 +231,7 @@ DD4hep_version = "v01-28"
 
 DD4hepExamples_version = "v01-28"
 
-lcgeo_version = "v00-18-01"
+lcgeo_version = "v00-20-00"
 
 podio_version = "v00-99"
 
