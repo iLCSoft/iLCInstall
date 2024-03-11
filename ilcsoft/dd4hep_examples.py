@@ -7,6 +7,8 @@
 #
 ##################################################
 
+import warnings
+
 # custom imports
 from .baseilc import BaseILC
 from .util import *
@@ -16,6 +18,7 @@ class DD4hepExamples(BaseILC):
     """ Responsible for the DD4hepExamples configuration process. """
     
     def __init__(self, userInput):
+        warnings.warn("The examples are now built as part of DD4hep", DeprecationWarning, stacklevel=2)
         BaseILC.__init__(self, userInput, "DD4hepExamples", "DD4hepExamples")
 
         #self.hasCMakeBuildSupport = False
