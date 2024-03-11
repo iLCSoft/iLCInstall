@@ -83,5 +83,7 @@ class lcgeo(BaseILC):
         self.env[ 'lcgeo_DIR' ] = self.installPath
         self.env[ 'lcgeo_ENVINIT' ] = "${lcgeo_DIR}/bin/thislcgeo.sh"
         self.envcmds.append('test -r ${lcgeo_ENVINIT} && . ${lcgeo_ENVINIT}')
-        
-        
+
+        if Version(self.version) >= "00-19":
+            self.env["k4geo_DIR"] = self.installPath
+            self.envcmds.append("test -r ${k4geo_DIR}/bin/thisk4geo.sh && . ${k4geo_DIR}/bin/thisk4geo.sh")
