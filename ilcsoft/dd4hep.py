@@ -26,9 +26,12 @@ class DD4hep(BaseILC):
         self.download.gituser = 'AIDASoft'
         self.download.gitrepo = 'DD4hep'
 
-        self.reqfiles = [ ["lib/libDDCore.so", "lib/libDDCore.dylib" ]]
+        self.reqfiles = [ ["lib/libDDCore.so", "lib/libDDCore.dylib" ],
+                          ["lib/libSimpleDetector.so", "lib/libSimpleDetector.dylib" ]]
 
         self.reqmodules = [ "ROOT" , "LCIO", "GEAR", "Geant4" , "CLHEP" ,"Boost" , "EDM4hep" ]
+
+        self.envcmake["DD4HEP_BUILD_EXAMPLES"] = "ON"
 
 
     def setMode(self, mode):
@@ -75,5 +78,7 @@ class DD4hep(BaseILC):
         self.env[ 'DD4HEP' ] = self.installPath
         self.env[ 'DD4HEP_ENVINIT' ] = "${DD4HEP}/bin/thisdd4hep.sh"
         self.envcmds.append('test -r ${DD4HEP_ENVINIT} && . ${DD4HEP_ENVINIT}')
-        
-        
+
+        # The other parts of the environment for the examples are already part of
+        # the DD4hep environment, since artifacts go into the same directories
+        self.env["DD4hepExamples"] = self.installPath + "/examples"
