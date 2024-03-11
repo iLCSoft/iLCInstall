@@ -1,3 +1,67 @@
+# v02-03-03
+
+* 2024-03-11 tmadlener ([PR#176](https://github.com/iLCSoft/iLCInstall/pull/176))
+  - Changes wrt previous releases:
+    - DD4hepExamples are now built as part of DD4hep (see [#177](https://github.com/iLCSoft/iLCInstall/issues/177) for details). To built the examples yourself, simply `cp -r $DD4hepExamples /some/path/` and build them follow the usual steps.
+  - Update base package versions
+    - ROOT  6.30/04
+    - DD4hep  01-28
+    - Geant4 11.2.1
+    - CLHEP 2.4.7.1
+    - CMake 3.28.3
+    - boost 1.84.0
+    - FastJet3.4.2
+    - FastJet Contrib 1.054
+  - Update package versions to latest tags
+    -  SIO v00-02
+    - LCIO v02-21
+    - GEAR v01-09-02
+    - k4geo v00-20-00
+    - KalTest v02-05-02
+    - DDKalTest v01-07-01
+    - MarlinTrk v02-09-02
+    - MarlinTrkProcessors v02-12-05
+    - Clupatra v01-03-01
+    - ForwardTracking v01-14-01
+    - ConformalTracking v01-12
+    - LCCD v01-05-02
+    - MarlinUtil v01-17-02
+    - Marlin v01-19-02
+    - DDMarlinPandora v00-12-01
+    - MarlinReco v01-35
+    - FCalClusterer v01-00-06
+    - LCFIVertex v00-09
+    - podio v00-99
+    - EDM4hep v00-10-05
+    - k4EDM4hep2LcioConv v00-08-02
+    - Physsim v00-05
+
+* 2023-12-21 Frank Gaede ([PR#175](https://github.com/iLCSoft/iLCInstall/pull/175))
+  - some fixes to keep up w/ changes in key4hep packages
+        -  allow HEAD branch to be called main
+        - patch lcgeo install to work w/ latest k4geo
+  - Allow Marlin packages to be installed into `lib64` or `lib` and make sure that `MARLIN_DLL` is populated properly.
+  - update versions of externals in example macbookfg
+
+* 2023-12-20 Andre Sailer ([PR#174](https://github.com/iLCSoft/iLCInstall/pull/174))
+  - lcgeo: also allow libraries named k4geo
+
+* 2023-07-14 tmadlener ([PR#172](https://github.com/iLCSoft/iLCInstall/pull/172))
+  - Bump the podio version to v00-16-06 to include some important bug fixes
+
+* 2023-07-13 Frank Gaede ([PR#171](https://github.com/iLCSoft/iLCInstall/pull/171))
+  - update examples/macbookfg to work w/ recent HEAD versions (MacOS 12.61)
+
+* 2023-07-13 Frank Gaede ([PR#170](https://github.com/iLCSoft/iLCInstall/pull/170))
+  - add ROOT_INCLUDE_PATH to base module
+       - needed for podio.py (see: https://github.com/iLCSoft/iLCInstall/pull/168)
+
+* 2023-07-12 tmadlener ([PR#169](https://github.com/iLCSoft/iLCInstall/pull/169))
+  - Remove workflow that requires a no longer supported python version. Fixes #167
+
+* 2023-07-12 tmadlener ([PR#168](https://github.com/iLCSoft/iLCInstall/pull/168))
+  - Make sure to put `PATH` and `ROOT_INCLUDE_PATH` into the environment for podio.
+
 # v02-03-02
 
 * 2023-07-14 tmadlener ([PR#172](https://github.com/iLCSoft/iLCInstall/pull/172))
