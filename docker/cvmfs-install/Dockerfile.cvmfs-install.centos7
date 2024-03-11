@@ -5,6 +5,8 @@ LABEL maintainer="remi.ete@desy.de"
 LABEL description="Image to install iLCSoft on CVMFS for centos7 flavor"
 LABEL os="centos7"
 
+RUN yum update -y
+
 RUN yum install -y \
     	 wget \
 		   emacs \
