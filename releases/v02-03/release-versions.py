@@ -8,30 +8,27 @@
 ###########################################
 
 # --------- ilcsoft release version ------------------------------------------
-ilcsoft_release = "v02-03-03"
+ilcsoft_release = "v02-03-04"
 # ----------------------------------------------------------------------------
 
 # which cxx standard to use
-cxx_standard = 17
+cxx_standard = 20
 
 # ===============================================================================
-# use a compiler that knows c++17, use e.g. scripts/use_gcc103_cvmfs_centos7.sh
+# use a compiler that knows c++20, use e.g. scripts/use_gcc103_cvmfs_centos7.sh
 #
 """
-# --- gcc from LCG_101
-source /cvmfs/sft.cern.ch/lcg/releases/gcc/10.3.0/x86_64-centos7/setup.sh
+# --- gcc from LCG_106
+source /cvmfs/sft.cern.ch/lcg/releases/gcc/13.1.0-b3d18/x86_64-el9/setup.sh
 
-# --- python from LCG_101
-export PATH=/cvmfs/sft.cern.ch/lcg/releases/Python/3.9.6-b0f98/x86_64-centos7-gcc10-opt/bin:${PATH}
-export LD_LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/Python/3.9.6-b0f98/x86_64-centos7-gcc10-opt/lib:${LD_LIBRARY_PATH}
-export PYTHONPATH=/cvmfs/sft.cern.ch/lcg/views/LCG_101/x86_64-centos7-gcc10-opt/lib/python3.9/site-packages
+# --- python from LCG_106
+export PATH=/cvmfs/sft.cern.ch/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin:${PATH}
+export LD_LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/lib:${LD_LIBRARY_PATH}
+export PYTHONPATH=/cvmfs/sft.cern.ch/lcg/views/LCG_106/x86_64-el9-gcc13-opt/lib/python3.11/site-packages
 
-# --- git from LCG_101
-export PATH=/cvmfs/sft.cern.ch/lcg/releases/git/2.29.2-e475b/x86_64-centos7-gcc10-opt/bin:${PATH}
-export GIT_EXEC_PATH=/cvmfs/sft.cern.ch/lcg/releases/git/2.29.2-e475b/x86_64-centos7-gcc10-opt/libexec/git-core
-
-# --- use a suitable mysql (also LCG_101)
-export MYSQL_DIR=/cvmfs/sft.cern.ch/lcg/releases/mysql/10.4.20-c0154/x86_64-centos7-gcc10-opt
+# --- git from LCG_106
+export PATH=/cvmfs/sft.cern.ch/lcg/releases/git/2.29.2-daa17/x86_64-el9-gcc13-opt/bin:${PATH}
+export GIT_EXEC_PATH=/cvmfs/sft.cern.ch/lcg/releases/git/2.29.2-daa17/x86_64-el9-gcc13-opt/libexec/git-core
 """
 # before starting the installation
 # ================================================================================
@@ -91,7 +88,7 @@ elif platform.system().lower().find("darwin") >= 0:
     platfDefault = "/usr/local"
 
 # ----- mysql --------------------------------------------------------
-MySQL_version = "10.4.20"
+MySQL_version = "10.5.20"
 MySQL_path = platfDefault
 
 # overwrite with a patch set in the environment
@@ -111,23 +108,23 @@ if my_mysql_path != None:
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version = "11.2.1"
+Geant4_version = "11.2.2"
 
 CLHEP_version = "2.4.7.1"
 
-ROOT_version = "6.30.04"
+ROOT_version = "6.32.06"
 
 GSL_version = "2.7"
 
 Qt5_version = "v5.15.15-lts-lgpl"
 
-CMake_version = "3.28.3"
+CMake_version = "3.31.0"
 
-CED_version = "v01-09-04"
+CED_version = "v01-10"
 
 SIO_version = "v00-02"
 
-Boost_version = "1.84.0"
+Boost_version = "1.86.0"
 
 Eigen_version = "3.4.0"
 
@@ -135,11 +132,11 @@ Eigen_version = "3.4.0"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-7"
 
-ILCUTIL_version = "v01-07-02"
+ILCUTIL_version = "v01-07-03"
 
-FastJet_version = "3.4.2"
+FastJet_version = "3.4.3"
 
-FastJetcontrib_version = "1.054"
+FastJetcontrib_version = "1.056"
 
 # xerces-c (needed by geant4 for building gdml support - required by mokka)
 XercesC_version = "v3.2.3"
@@ -147,9 +144,9 @@ XERCESC_ROOT_DIR = ilcPath + "/xercesc/" + XercesC_version
 
 # -------------------------------------------
 
-LCIO_version = "v02-21"
+LCIO_version = "v02-22-02"
 
-GEAR_version = "v01-09-02"
+GEAR_version = "v01-09-03"
 
 MarlinFastJet_version = "v00-05-03"
 
@@ -163,11 +160,11 @@ DDKalTest_version = "v01-07-01"
 
 MarlinTrk_version = "v02-09-02"
 
-MarlinTrkProcessors_version = "v02-12-05"
+MarlinTrkProcessors_version = "v02-12-06"
 
 Clupatra_version = "v01-03-01"
 
-KiTrack_version = "v01-10"
+KiTrack_version = "v01-10-01"
 
 KiTrackMarlin_version = "v01-13-02"
 
@@ -183,15 +180,15 @@ LCCD_version = "v01-05-02"
 
 RAIDA_version = "v01-11"
 
-MarlinUtil_version = "v01-17-02"
+MarlinUtil_version = "v01-18-01"
 
-Marlin_version = "v01-19-02"
+Marlin_version = "v01-19-03"
 
 MarlinDD4hep_version = "v00-06-02"
 
-DDMarlinPandora_version = "v00-12-01"
+DDMarlinPandora_version = "v00-12-02"
 
-MarlinReco_version = "v01-35"
+MarlinReco_version = "v01-36-01"
 
 FCalClusterer_version = "v01-00-06"
 
@@ -211,7 +208,7 @@ PandoraPFANew_version = "v03-25-03"
 
 PandoraAnalysis_version = "v02-00-01"
 
-CEDViewer_version = "v01-19-01"
+CEDViewer_version = "v01-20"
 
 Overlay_version = "v00-23"
 
@@ -227,16 +224,16 @@ BBQ_version = "v00-01-04"
 
 Garlic_version = "v03-01"
 
-DD4hep_version = "v01-28"
+DD4hep_version = "v01-30"
 
-DD4hepExamples_version = "v01-28"
+DD4hepExamples_version = "v01-30"
 
-lcgeo_version = "v00-20-00"
+lcgeo_version = "v00-21"
 
-podio_version = "v00-99"
+podio_version = "v01-01"
 
-edm4hep_version = "v00-10-05"
+edm4hep_version = "v00-99-01"
 
-k4edm4hep2lcioconv_version = "v00-08-02"
+k4edm4hep2lcioconv_version = "v00-09"
 
 Physsim_version = "v00-05"
