@@ -23,7 +23,7 @@ class Qt5(BaseILC):
         self.hasCMakeFindSupport = True
         self.download.supportHEAD = False
         self.download.supportedTypes = [ "git" ] 
-        self.download.svnurl = 'https://github.com/qt/qt5.git'
+        self.download.svnurl = 'https://code.qt.io/qt/qt5.git'
 
         self.reqfiles = [
             ["lib/libQt5Core.so", "lib64/libQt5Core.so", "lib/libQt5Core.dylib", "lib/libQt5Core.la"],
@@ -95,7 +95,7 @@ class Qt5(BaseILC):
         qt_cfg_options = " -opensource -confirm-license -nomake tests -make libs "
         cxxStandard = self.envcmake.get("CMAKE_CXX_STANDARD", None)
         if cxxStandard:
-            qt_cfg_options += " -c++std c++" + str(cxxStandard)
+            qt_cfg_options += " -c++std c++17"
         
         if( os_system( "../" + self.name + "/configure -prefix " + self.installPath + qt_cfg_options
                 + " 2>&1 | tee -a " + self.logfile ) != 0 ):
