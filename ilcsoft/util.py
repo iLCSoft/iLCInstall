@@ -34,7 +34,7 @@ def os_system( cmd ):
     """ forces os.system calls wto use bash """
     cmd = cmd.replace('"',r'\"')
     ##print('os_system: ', 'bash -c "'+cmd+'"')
-    return os.system('pwd ; bash -c "'+cmd+'"')
+    return os.system('pwd ; bash -o pipefail -c "'+cmd+'"')
 
 #--------------------------------------------------------------------------------
 
