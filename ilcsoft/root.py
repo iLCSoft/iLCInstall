@@ -113,9 +113,9 @@ class ROOT(BaseILC):
         if Version(self.version) < "6.30":
             self.envcmake.setdefault( 'gsl_shared',     'ON' )
             self.envcmake.setdefault( 'builtin_gsl',    'OFF' ) # we provide GSL, don't recompile it !
+            self.envcmake.setdefault( 'minuit2',        'ON' )
 
         self.envcmake.setdefault( 'gdml',           'ON' )
-        self.envcmake.setdefault( 'minuit2',        'ON' )
         self.envcmake.setdefault( 'roofit',         'ON' )
         self.envcmake.setdefault( 'unuran',         'ON' )
         self.envcmake.setdefault( 'xrootd',         'ON' )
@@ -138,9 +138,12 @@ class ROOT(BaseILC):
             # Need to symlink two cmake scripts that are not installed properly
             # otherwise and would break packages that depend on ROOT
             for mod in ['RootMacros.cmake', 'RootTestDriver.cmake']:
-                link_path = os.path.join(self.installPath, 'cmake', mod)
-                src = os.path.join(self.installPath, 'cmake', 'modules', mod)
-                os.symlink(src, link_path)
+                try:
+                    link_path = os.path.join(self.installPath, 'cmake', mod)
+                    src = os.path.join(self.installPath, 'cmake', 'modules', mod)
+                    os.symlink(src, link_path)
+                except FileExistsError:
+                    pass
 
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
