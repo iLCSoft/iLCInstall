@@ -5,7 +5,7 @@ source /cvmfs/sft.cern.ch/lcg/releases/gcc/13.1.0-b3d18/x86_64-el9/setup.sh
 
 # --- python from LCG_106
 export PATH=/cvmfs/sft.cern.ch/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin:${PATH}
-export LD_LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/lib:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/lib:/cvmfs/sft.cern.ch/lcg/releases/blas/0.3.20.openblas-c07f1/x86_64-el9-gcc13-opt/lib:${LD_LIBRARY_PATH}
 export PYTHONPATH=/cvmfs/sft.cern.ch/lcg/views/LCG_106/x86_64-el9-gcc13-opt/lib/python3.11/site-packages
 
 # --- git from LCG_106
