@@ -112,13 +112,13 @@ Geant4_version = "11.2.2"
 
 CLHEP_version = "2.4.7.1"
 
-ROOT_version = "6.32.06"
+ROOT_version = "6.32.08"
 
 GSL_version = "2.7"
 
 Qt5_version = "v5.15.15-lts-lgpl"
 
-CMake_version = "3.31.0"
+CMake_version = "3.30.5"
 
 CED_version = "v01-10"
 
@@ -204,7 +204,7 @@ MarlinKinfit_version = "v00-06-01"
 
 MarlinKinfitProcessors_version = "v00-05"
 
-PandoraPFANew_version = "v03-25-03"
+PandoraPFANew_version = "v04-11-01"
 
 PandoraAnalysis_version = "v02-00-01"
 

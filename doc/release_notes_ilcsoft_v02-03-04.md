@@ -9,10 +9,10 @@ This patch release comes with several fundamental updates:
 - Python version updated from 3.9 to 3.11
 
 ## External software versions upgrade
-- ROOT 6.30/04 :arrow_right: 6.32/06
+- ROOT 6.30/04 :arrow_right: 6.32/08
 - DD4hep 01-28 :arrow_right: 01-30
 - Geant4 11.2.1 :arrow_right: 11.2.2
-- CMake 3.28.3 :arrow_right: 3.31.0
+- CMake 3.28.3 :arrow_right: 3.30.5
 - boost 1.84.0 :arrow_right: 1.86.0
 - FastJet 3.4.2 :arrow_right: 3.4.3
 - FastJet Contrib 1.054 :arrow_right: 1.056
@@ -412,3 +412,5 @@ None
 * 2024-08-22 tmadlener ([PR#4](https://github.com/iLCSoft/KiTrack/pull/4))
   - Move CI to github actions and remove travis-ci config
   - Fix c++ warnings and enable `-Werror` for CI
+
+### PandoraPFANew v04-11-01
