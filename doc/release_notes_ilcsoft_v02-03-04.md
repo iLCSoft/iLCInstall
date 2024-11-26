@@ -16,7 +16,7 @@ This patch release comes with several fundamental updates:
 - boost 1.84.0 :arrow_right: 1.86.0
 - FastJet 3.4.2 :arrow_right: 3.4.3
 - FastJet Contrib 1.054 :arrow_right: 1.056
-- Qt 5.13.1 :arrow_right: 5.15.15
+- Qt 5.13.1 :arrow_right: 5.15.15 (from underlying LCG_106 stack)
 
 # New packages
 
