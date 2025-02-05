@@ -24,7 +24,15 @@ None
 
 ## Packages changed wrt. v02-03-03
 
-### LCIO v02-22-02 (merged notes for several tags)
+### LCIO v02-22-04 (merged notes for several tags)
+
+* 2025-02-03 Thomas Madlener ([PR#201](https://github.com/iLCSoft/LCIO/pull/201))
+  - Make it possible to create empty subset collections during patching
+    - Appending a **`*`** (star) to the collection type name (no spaces) will make this collection an empty subset collection if it is not already present.
+    - Fixes [#199 ](https://github.com/iLCSoft/LCIO/issues/199)
+
+* 2024-10-20 Valentin Volkl ([PR#197](https://github.com/iLCSoft/LCIO/pull/197))
+  - Fix compilation on MacOS by adding missing include in dumpmctree-dot.cc
 
 * 2024-09-05 tmadlener ([PR#193](https://github.com/iLCSoft/LCIO/pull/193))
   - Add functionality to `CheckCollections` that makes it possible to add missing ParticleID algorithms to ReconstructedParticle collections
@@ -62,7 +70,10 @@ None
 * 2024-04-15 tmadlener ([PR#188](https://github.com/iLCSoft/LCIO/pull/188))
   - Make the `PIDHandler` usable as `const` object by marking getters that do not mutate internal state as `const`
 
-### Marlin v01-19-03
+### Marlin v01-19-04 (merged notes from several tags)
+
+* 2025-01-13 jmcarcell ([PR#62](https://github.com/iLCSoft/Marlin/pull/62))
+  - Include GNUInstallDirs to set CMAKE_INSTALL_LIBDIR so that the default rpath is correct in MacOS and can be used in downstream projects, like in `k4MarlinWrapper`
 
 * 2024-08-22 tmadlener ([PR#59](https://github.com/iLCSoft/Marlin/pull/59))
   - Make sure the `LCIO::lcio` target is also defined in packages consuming Marlin (necessary after #56)
@@ -379,7 +390,14 @@ None
   - Fix the problem: the system GSL may be picked. See details in https://github.com/key4hep/k4-spack/issues/77
 
 
-### GEAR v01-09-03
+### GEAR v01-09-03 (merged notes from several tags)
+
+* 2025-01-13 Thomas Madlener ([PR#15](https://github.com/iLCSoft/GEAR/pull/15))
+  - Switch to central Key4hep CI build workflows and remove clicdp nightlies based ones
+  - Fix warnings that are now enabled
+
+* 2025-01-13 jmcarcell ([PR#14](https://github.com/iLCSoft/GEAR/pull/14))
+  - Add GNUInstallDirs to set CMAKE_INSTALL_LIBDIR so that the default rpath is correct and can be used in downstream projects, like in `k4MarlinWrapper`
 
 * 2024-07-01 jmcarcell ([PR#10](https://github.com/iLCSoft/GEAR/pull/10))
   - Fix warnings about not passing exceptions by reference

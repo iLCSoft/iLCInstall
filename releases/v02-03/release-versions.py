@@ -144,9 +144,9 @@ XERCESC_ROOT_DIR = ilcPath + "/xercesc/" + XercesC_version
 
 # -------------------------------------------
 
-LCIO_version = "v02-22-02"
+LCIO_version = "v02-22-04"
 
-GEAR_version = "v01-09-03"
+GEAR_version = "v01-09-04"
 
 MarlinFastJet_version = "v00-05-03"
 
@@ -176,13 +176,13 @@ LICH_version = "v00-01"
 
 GBL_version = "V02-02-01"
 
-LCCD_version = "v01-05-02"
+LCCD_version = "v01-05-03"
 
 RAIDA_version = "v01-11"
 
 MarlinUtil_version = "v01-18-01"
 
-Marlin_version = "v01-19-03"
+Marlin_version = "v01-19-04"
 
 MarlinDD4hep_version = "v00-06-02"
 
