@@ -204,7 +204,7 @@ MarlinKinfit_version = "v00-06-01"
 
 MarlinKinfitProcessors_version = "v00-05"
 
-PandoraPFANew_version = "v04-11-01"
+PandoraPFANew_version = "v04-12"
 
 PandoraAnalysis_version = "v02-00-01"
 
