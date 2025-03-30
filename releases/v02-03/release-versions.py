@@ -108,23 +108,23 @@ if my_mysql_path != None:
 
 # ======================= PACKAGE VERSIONS ===================================
 
-Geant4_version = "11.2.2"
+Geant4_version = "11.3.1"
 
 CLHEP_version = "2.4.7.1"
 
-ROOT_version = "6.32.08"
+ROOT_version = "6.32.10"
 
 GSL_version = "2.7"
 
 Qt5_version = "v5.15.15-lts-lgpl"
 
-CMake_version = "3.30.5"
+CMake_version = "3.31.6"
 
 CED_version = "v01-10"
 
 SIO_version = "v00-02"
 
-Boost_version = "1.86.0"
+Boost_version = "1.87.0"
 
 Eigen_version = "3.4.0"
 
@@ -224,7 +224,7 @@ BBQ_version = "v00-01-04"
 
 Garlic_version = "v03-01"
 
-DD4hep_version = "v01-30"
+DD4hep_version = "v01-31"
 
 DD4hepExamples_version = "v01-30"
 
