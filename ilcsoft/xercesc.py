@@ -33,7 +33,7 @@ class XercesC(BaseILC):
         ]]
     def setMode(self, mode):
         BaseILC.setMode(self, mode)
-        self.cmakeconfig = self.installPath + "/lib/cmake/XercesC"
+        self.cmakeconfig = self.installPath
     
     def compile(self):
         """ compile XercesC """
