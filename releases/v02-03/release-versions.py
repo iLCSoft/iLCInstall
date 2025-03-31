@@ -198,13 +198,13 @@ ILDPerformance_version = "v01-12"
 
 LCFIVertex_version = "v00-09"
 
-LCFIPlus_version = "v00-10-01"
+LCFIPlus_version = "HEAD"
 
 MarlinKinfit_version = "v00-06-01"
 
 MarlinKinfitProcessors_version = "v00-05"
 
-PandoraPFANew_version = "v04-12"
+PandoraPFANew_version = "v04-12-00"
 
 PandoraAnalysis_version = "v02-00-01"
 
