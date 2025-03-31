@@ -23,8 +23,8 @@ class GEAR(BaseILC):
         self.reqmodules = [ "CLHEP" ]
 
         self.reqfiles = [
-                ["lib/libgear.a", "lib/libgear.so", "lib/libgear.dylib"],
-                ["lib/libgearxml.a", "lib/libgearxml.so", "lib/libgearxml.dylib"]
+                ["lib64/libgear.a", "lib64/libgear.so", "lib/libgear.a", "lib/libgear.so", "lib/libgear.dylib"],
+                ["lib64/libgearxml.a", "lib64/libgearxml.so", "lib/libgearxml.a", "lib/libgearxml.so", "lib/libgearxml.dylib"]
         ]
 
     def compile(self):
