@@ -465,4 +465,21 @@ None
   - Move CI to github actions and remove travis-ci config
   - Fix c++ warnings and enable `-Werror` for CI
 
-### PandoraPFANew v04-11-01
+### LCFIPlus v00-11
+
+* 2025-02-24 Thomas Madlener ([PR#73](https://github.com/LCFIPlus/LCFIPlus/pull/73))
+  - Add the `key4hep-build` action that builds LCFIPlus on top of the Key4hep nightlies and releases.
+
+* 2025-02-24 Thomas Madlener ([PR#72](https://github.com/LCFIPlus/LCFIPlus/pull/72))
+  - Make sure to explicitly have the LCIO headers available for building against them.
+  - Backport a patch that has been part of the [spack recipe in key4hep-spack](https://github.com/key4hep/key4hep-spack/blob/main/packages/lcfiplus/package.py) for 4 years now.
+
+* 2022-12-16 Ryo YONAMINE ([PR#67](https://github.com/LCFIPlus/LCFIPlus/pull/67))
+  - Make consistent between primary vertex condition and the one for ip refitting in secondary vertex finding.
+
+* 2022-12-16 Matthias Artur Weber ([PR#48](https://github.com/LCFIPlus/LCFIPlus/pull/48))
+  LCFIPLUS JetFinder
+  - new procedure avoids adding tracks originating from a vertex to a jet twice
+  - if a track is very close to a vertex, check if track already part of the vertex jet before adding it to the jet
+
+### PandoraPFANew v04-15-00
