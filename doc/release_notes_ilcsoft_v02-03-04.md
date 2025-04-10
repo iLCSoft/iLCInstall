@@ -86,7 +86,13 @@ None
 * 2024-08-22 jmcarcell ([PR#56](https://github.com/iLCSoft/Marlin/pull/56))
   - Change LCIO_LIBRARIES to LCIO::lcio
 
-### MarlinReco v01-36-01 (merged notes from two tags)
+### MarlinReco v01-36-02 (merged notes from several tags)
+
+* 2025-02-20 Bohdan Dudar ([PR#146](https://github.com/iLCSoft/MarlinReco/pull/146))
+  - Fix a segmentation fault in RecoMCTruthLinker when an MCParticle is not found in the internal map (see [#125](https://github.com/iLCSoft/MarlinReco/issues/125))
+
+* 2024-10-01 Bohdan Dudar ([PR#142](https://github.com/iLCSoft/MarlinReco/pull/142))
+  - Fix `mismateched-new-delete` warning uncovered by gcc14 (see [#140](https://github.com/iLCSoft/MarlinReco/issues/140))
 
 * 2024-09-09 jmcarcell ([PR#139](https://github.com/iLCSoft/MarlinReco/pull/139))
   - Add a missing `#include <algorithm>`
@@ -126,7 +132,10 @@ None
 * 2024-04-16 NAKAJIMA Jurina ([PR#131](https://github.com/iLCSoft/MarlinReco/pull/131))
   - Fixed PDG code for kinks identifies as antiSigma+
 
-### MarlinUtil v01-18-01 (merged notes from two tags)
+### MarlinUtil v01-18-02 (merged notes from two tags)
+
+* 2025-03-31 Thomas Madlener ([PR#49](https://github.com/iLCSoft/MarlinUtil/pull/49))
+  - Make sure to fetch a Catch2 version that can actually be built with the required C++ standard.
 
 * 2024-08-26 tmadlener ([PR#47](https://github.com/iLCSoft/MarlinUtil/pull/47))
   - Fix a potential indexing issue in `WeightedPoints3D`
@@ -344,7 +353,11 @@ None
   - Clean up unused variables
 
 
-### DDMarlinPandora v00-12-02
+### DDMarlinPandora v00-13 (merged from several tags)
+
+* 2025-03-05 Archil Durglishvili ([PR#31](https://github.com/iLCSoft/DDMarlinPandora/pull/31))
+  - The "DetectorName" parameter is added to the DDPandoraPFANewProcessor which allows to setup the DDGeometryCreator, DDCaloHitCreator and DDTrackCreator for the ALLEGRO detector;
+  - Three new classes are created that are specific for the ALLEGRO detector: DDGeometryCreatorALLEGRO, DDCaloHitCreatorALLEGRO and DDTrackCreatorALLEGRO.
 
 * 2024-08-28 tmadlener ([PR#30](https://github.com/iLCSoft/DDMarlinPandora/pull/30))
   - Remove the no longer supported CentOS7 builds from the Key4hep based CI workflows
@@ -353,7 +366,10 @@ None
   - Make it possible to register ECAL energy corrections with Pandora similar to what is possible for the HCAL
 
 
-### MarlinTrkProcessors v02-12-06
+### MarlinTrkProcessors v02-12-07 (release notes from several tags)
+
+* 2025-03-21 jmcarcell ([PR#73](https://github.com/iLCSoft/MarlinTrkProcessors/pull/73))
+  - Set the subdetectorHitNumbers in ClonesAndSplitTracksFinder that was not being set (defaulted to 0) when `mergeSplitTracks` is false.
 
 * 2024-08-28 Victor Schwan ([PR#72](https://github.com/iLCSoft/MarlinTrkProcessors/pull/72))
   - Remove the hardcoded (ILD) detector names from the FullLDC tracking to allow its usage with the `v11` model of ILD.
@@ -390,7 +406,25 @@ None
   - Fix the problem: the system GSL may be picked. See details in https://github.com/key4hep/k4-spack/issues/77
 
 
-### GEAR v01-09-03 (merged notes from several tags)
+### GEAR v01-09-05 (merged notes from several tags)
+
+* 2025-03-31 Thomas Madlener ([PR#21](https://github.com/iLCSoft/GEAR/pull/21))
+  - Make sure that all libraries go the the same place during installation.
+
+* 2025-03-31 Thomas Madlener ([PR#20](https://github.com/iLCSoft/GEAR/pull/20))
+  - Update the Key4hep build action to the latest version to include nightlies on Ubuntu24
+
+* 2025-03-31 jmcarcell ([PR#19](https://github.com/iLCSoft/GEAR/pull/19))
+  - Add LANGUAGES CXX to the top level CMakeLists.txt to disable checks for a C compiler
+
+* 2025-03-31 jmcarcell ([PR#18](https://github.com/iLCSoft/GEAR/pull/18))
+  - Bump the minimum version of CMake to 3.5, to be able to compile with CMake 4.0
+
+* 2025-03-10 scott snyder ([PR#17](https://github.com/iLCSoft/GEAR/pull/17))
+  - Fix a few compiler warning.
+
+* 2025-03-10 sss ([PR#16](https://github.com/iLCSoft/GEAR/pull/16))
+  - Fix apparent off-by-one error in TPCParametersImpl::getNearestPad.
 
 * 2025-01-13 Thomas Madlener ([PR#15](https://github.com/iLCSoft/GEAR/pull/15))
   - Switch to central Key4hep CI build workflows and remove clicdp nightlies based ones

@@ -146,7 +146,7 @@ XERCESC_ROOT_DIR = ilcPath + "/xercesc/" + XercesC_version
 
 LCIO_version = "v02-22-04"
 
-GEAR_version = "v01-09-04"
+GEAR_version = "v01-09-05"
 
 MarlinFastJet_version = "v00-05-03"
 
@@ -160,7 +160,7 @@ DDKalTest_version = "v01-07-01"
 
 MarlinTrk_version = "v02-09-02"
 
-MarlinTrkProcessors_version = "v02-12-06"
+MarlinTrkProcessors_version = "v02-12-07"
 
 Clupatra_version = "v01-03-01"
 
@@ -180,15 +180,15 @@ LCCD_version = "v01-05-03"
 
 RAIDA_version = "v01-11"
 
-MarlinUtil_version = "v01-18-01"
+MarlinUtil_version = "v01-18-02"
 
 Marlin_version = "v01-19-04"
 
 MarlinDD4hep_version = "v00-06-02"
 
-DDMarlinPandora_version = "v00-12-02"
+DDMarlinPandora_version = "v00-13"
 
-MarlinReco_version = "v01-36-01"
+MarlinReco_version = "v01-36-02"
 
 FCalClusterer_version = "v01-00-06"
 
@@ -204,7 +204,7 @@ MarlinKinfit_version = "v00-06-01"
 
 MarlinKinfitProcessors_version = "v00-05"
 
-PandoraPFANew_version = "v04-12-00"
+PandoraPFANew_version = "v04-15-00"
 
 PandoraAnalysis_version = "v02-00-01"
 
