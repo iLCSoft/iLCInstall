@@ -9,7 +9,7 @@ This patch release comes with several fundamental updates:
 - Python version updated from 3.9 to 3.11
 
 ## External software versions upgrade
-- ROOT 6.30/04 :arrow_right: 6.32.10
+- ROOT 6.30/04 :arrow_right: 6.32.12
 - DD4hep 01-28 :arrow_right: 01-31
 - Geant4 11.2.1 :arrow_right: 11.3.1
 - CMake 3.28.3 :arrow_right: 3.31.6
@@ -24,8 +24,12 @@ None
 
 ## Packages changed wrt. v02-03-03
 
-### LCIO v02-22-04 (merged notes for several tags)
+### LCIO v02-22-05 (merged notes for several tags)
 
+* 2025-02-10 Nazar Bartosik ([PR#202](https://github.com/iLCSoft/LCIO/pull/202))
+  - Merge the remaining changes that were made to the muon collider fork
+    - Make the `anajob.py` example python3 compatible (and remove python2 support) and install it as `anajob.py` executable if `BUILD_ROOTDICT` is enabled.
+    
 * 2025-02-03 Thomas Madlener ([PR#201](https://github.com/iLCSoft/LCIO/pull/201))
   - Make it possible to create empty subset collections during patching
     - Appending a **`*`** (star) to the collection type name (no spaces) will make this collection an empty subset collection if it is not already present.
