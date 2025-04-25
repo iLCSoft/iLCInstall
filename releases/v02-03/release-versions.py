@@ -144,7 +144,7 @@ XERCESC_ROOT_DIR = ilcPath + "/xercesc/" + XercesC_version
 
 # -------------------------------------------
 
-LCIO_version = "v02-22-04"
+LCIO_version = "v02-22-05"
 
 GEAR_version = "v01-09-05"
 
@@ -230,10 +230,10 @@ DD4hepExamples_version = "v01-30"
 
 lcgeo_version = "v00-21"
 
-podio_version = "v01-01"
+podio_version = "v01-02"
 
 edm4hep_version = "v00-99-01"
 
-k4edm4hep2lcioconv_version = "v00-09"
+k4edm4hep2lcioconv_version = "v00-11"
 
 Physsim_version = "v00-05"
