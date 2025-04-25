@@ -24,7 +24,6 @@ class ConfigPKG(BaseILC):
         self.hasCMakeBuildSupport = False
         self.hasCMakeFindSupport = False
         self.skipCompile = True
-        self.envcmake["CMAKE_INSTALL_PREFIX"] = "../install"
 
 class MarlinPKG(BaseILC):
     """ Responsible for Marlin Packages installation process. """
@@ -38,6 +37,7 @@ class MarlinPKG(BaseILC):
         # Marlin packages just provide libraries. 
         # They are not supposed to be found via CMake 
         self.hasCMakeFindSupport = False
+        self.envcmake["CMAKE_INSTALL_PREFIX"] = "../install"
         
     def compile(self):
         """ compile MarlinPKG """
