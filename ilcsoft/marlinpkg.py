@@ -38,8 +38,12 @@ class MarlinPKG(BaseILC):
         # They are not supposed to be found via CMake 
         self.hasCMakeFindSupport = False
         self.envcmake["CMAKE_INSTALL_PREFIX"] = self.installPath + "/install"
+
+    def setMode(self, mode):
+        BaseILC.setMode(self, mode)
+
         self.cmakeconfig = self.installPath + "/install"
-        
+
     def compile(self):
         """ compile MarlinPKG """
         
