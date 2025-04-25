@@ -22,7 +22,8 @@ class Marlin(BaseILC):
         self.download.gituser = 'iLCSoft'
         self.download.gitrepo = 'Marlin'
 
-        self.reqfiles = [ ["lib/libMarlin.a", "lib/libMarlin.so", "lib/libMarlin.dylib"], ["bin/Marlin"] ]
+        self.reqfiles = [ ["lib/libMarlin.a", "lib/libMarlin.so", "lib/libMarlin.dylib"
+                           "lib64/libMarlin.a", "lib64/libMarlin.so"], ["bin/Marlin"] ]
 
         # LCIO is required for building Marlin
         self.reqmodules = [ "LCIO", "GEAR" ]
