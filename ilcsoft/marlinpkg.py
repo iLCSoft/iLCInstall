@@ -24,6 +24,7 @@ class ConfigPKG(BaseILC):
         self.hasCMakeBuildSupport = False
         self.hasCMakeFindSupport = False
         self.skipCompile = True
+        self.envcmake["CMAKE_INSTALL_PREFIX"] = "../install"
 
 class MarlinPKG(BaseILC):
     """ Responsible for Marlin Packages installation process. """
@@ -60,7 +61,7 @@ class MarlinPKG(BaseILC):
     def checkInstall(self, abort=True):
         BaseILC.checkInstall(self)
         if self.name not in ("MarlinUtil", "PandoraPFANew", "Physsim", "LCFIVertex"):
-            for libdir in ("/lib/", "/lib64/"):
+            for libdir in ("install/lib/", "install/lib64/"):
                 libname = self.installPath + libdir + "lib" + self.name + self.shlib_ext
                 print("MarlinDLL: looking for ", libname)
                 if os.path.exists(libname):
