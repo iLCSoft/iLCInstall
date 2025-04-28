@@ -33,6 +33,7 @@ from .pandoranew import PandoraPFANew
 from .pandoranew import PandoraAnalysis
 from .pandoranew import MarlinPandora
 from .lcfivertex import LCFIVertex
+from .lcfiplus import LCFIPlus
 from .eutelescope import Eutelescope
 from .overlay import Overlay
 from .marlintpc import MarlinTPC

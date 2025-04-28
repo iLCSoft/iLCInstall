@@ -65,7 +65,7 @@ class MarlinPKG(BaseILC):
 
     def checkInstall(self, abort=True):
         BaseILC.checkInstall(self)
-        if self.name not in ("MarlinUtil", "PandoraPFANew", "Physsim", "LCFIVertex"):
+        if self.name not in ("MarlinUtil", "PandoraPFANew", "Physsim", "LCFIVertex", "LCFIPlus"):
             for libdir in ("/install/lib/", "/install/lib64/"):
                 libname = self.installPath + libdir + "lib" + self.name + self.shlib_ext
                 print("MarlinDLL: looking for ", libname)
