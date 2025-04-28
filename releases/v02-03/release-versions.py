@@ -182,7 +182,7 @@ RAIDA_version = "v01-11"
 
 MarlinUtil_version = "v01-18-02"
 
-Marlin_version = "v01-19-04"
+Marlin_version = "v01-19-05"
 
 MarlinDD4hep_version = "v00-06-02"
 
