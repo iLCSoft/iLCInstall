@@ -104,4 +104,4 @@ class LCIO(BaseILC):
             self.envpath["LD_LIBRARY_PATH"].append( "$LCIO/lib64" )
         self.envpath["PYTHONPATH"].append( "$LCIO/python" )
         self.envpath["PYTHONPATH"].append( "$LCIO/python/examples" )
-
+        self.envpath["ROOT_INCLUDE_PATH"].append( self.instalPath + "/include" )
