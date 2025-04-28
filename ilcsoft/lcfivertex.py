@@ -23,8 +23,8 @@ class LCFIVertex(MarlinPKG):
 
         # optional modules
         self.optmodules = [ "AIDA" ]
-        self.reqfiles = [ ["lib/libLCFIVertex.so", "lib/libLCFIVertex.dylib" ],
-                          ["lib/libLCFIVertexProcessors.so", "lib/libLCFIVertexProcessors.dylib"] ]
+        self.reqfiles = [ ["install/lib/libLCFIVertex.so", "install/lib/libLCFIVertex.dylib" ],
+                          ["install/lib/libLCFIVertexProcessors.so", "install/lib/libLCFIVertexProcessors.dylib"] ]
 
         # cvs root
         self.download.root="marlinreco"
@@ -40,9 +40,9 @@ class LCFIVertex(MarlinPKG):
 
         # fill MARLIN_DLL
         self.parent.module('Marlin').envpath["MARLIN_DLL"].append(
-          self.installPath+"/lib/libLCFIVertexProcessors"+self.shlib_ext )
+          self.installPath+"/install/lib/libLCFIVertexProcessors"+self.shlib_ext )
 
-        self.envpath["LD_LIBRARY_PATH"].append( self.installPath+"/lib" )
+        self.envpath["LD_LIBRARY_PATH"].append( self.installPath+"install/lib" )
 
 #        print "+ Unpacking Boost..."
 #        os.chdir( self.installPath )
