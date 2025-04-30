@@ -1,3 +1,31 @@
+# v02-03-04
+
+* 2025-04-28 tmadlener ([PR#179](https://github.com/ilCSoft/iLCInstall/pull/179))
+  - Create a first release on EL9 / Alma9
+    - Using `gcc13`, `python3.11.9`
+    - Switching to c++20
+  - Add Dockerfile to build CVMFS installation container
+  - Fix a few minor build issues in some packages
+  - Make all Marlin packages install their artifacts into `<prefix>/install` instead of only `<prefix>` to better separate the source code and the installed binaries
+  - Update packages to the following tags
+    -  LCIO v02-22-05
+    - Marlin v01-19-05
+    - MarlinReco v01-36-02
+    - MarlinUtil v01-18-02
+    - k4geo (lcgeo) v00-21
+    - DDMarlinPandora v00-13
+    - MarlinTrkProcessors v02-12-07
+    - iLCUtil v01-07-03
+    - GEAR v01-09-05
+    - CEDViewer v01-20
+    - CED v01-10
+    - KiTrack v01-10-01
+    - LCFIPlus v00-11
+    - PandoraPFANew v04-15-00
+
+* 2025-04-25 Thomas Madlener ([PR#180](https://github.com/ilCSoft/iLCInstall/pull/180))
+  - Bump python version from 3.7 to 3.12 to have unittests running in CI on latest ubuntu
+
 # v02-03-03
 
 * 2024-03-11 tmadlener ([PR#176](https://github.com/iLCSoft/iLCInstall/pull/176))
